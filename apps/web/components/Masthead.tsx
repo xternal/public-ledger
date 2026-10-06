@@ -51,7 +51,7 @@ export function Hero() {
         <span>
           Annual statement for {meta.fiscal_year}, based on the {meta.vintage_label}
         </span>
-        <span className="rounded-full bg-warn/8 px-2 py-0.5 text-caption font-medium text-warn">Prototype with sample data</span>
+        <span className="rounded-full bg-warn/8 px-2 py-0.5 text-caption font-medium text-warn">Early version: promise cards await editor review</span>
       </p>
       <h1 className="max-w-[20ch] text-[clamp(32px,4.4vw,var(--text-display))] font-semibold leading-[1.06] tracking-[-0.035em]">
         Where {gbpBn(spending_bn)} of public money went, and where it came from

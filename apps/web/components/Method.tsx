@@ -59,8 +59,8 @@ export function Footer() {
   return (
     <footer className="mt-20 grid gap-1 border-t border-line pt-5 text-[12.5px] text-muted">
       <p className="m-0">
-        Prototype for design handoff. Figures are for layout and interaction review; do not quote them until the data pipeline and editor checks are
-        in place.
+        Early version. Figures come from the official sources above; promise cards have not yet had their editor and legal review, so check a
+        card&apos;s sources before quoting it.
       </p>
       <p className="m-0">
         Data vintage {seed.statement.meta.vintage}. Engine {ENGINE_VERSION}.

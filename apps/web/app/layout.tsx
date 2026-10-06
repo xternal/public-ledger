@@ -1,10 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
+import { SITE_DESCRIPTION, SITE_NAME, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Public Ledger",
-  description: "An open P&L of the UK state: where public money comes from, where it goes, and what every promise would cost.",
+  metadataBase: new URL(siteUrl()),
+  title: "Public Ledger: where UK public money comes from and goes",
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  alternates: { canonical: "/", types: { "application/atom+xml": [{ url: "/feeds/all.xml", title: "Public Ledger: every change" }] } },
+  openGraph: { siteName: SITE_NAME, locale: "en_GB", type: "website", url: "/" },
+  twitter: { card: "summary_large_image" },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {

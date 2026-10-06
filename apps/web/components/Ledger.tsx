@@ -8,6 +8,7 @@ import { StatementSection } from "./Statement";
 import { YourShare } from "./YourShare";
 import { PromisesSection } from "./Promises";
 import { Footer, Method } from "./Method";
+import { Faq } from "./Faq";
 
 export function Ledger({ seed }: { seed: Seed }) {
   return (
@@ -20,6 +21,7 @@ export function Ledger({ seed }: { seed: Seed }) {
         <YourShare />
         <PromisesSection />
         <Method />
+        <Faq />
         <Footer />
       </main>
     </ScenarioProvider>
