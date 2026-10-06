@@ -12,3 +12,10 @@ next-env.d.ts
 .DS_Store
 .turbo/
 screenshots/tmp/
+
+# ETL
+etl/.venv/
+data/raw/
+__pycache__/
+.pytest_cache/
+data/warehouse/
