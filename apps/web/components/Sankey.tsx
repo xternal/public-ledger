@@ -5,7 +5,7 @@ import { sankey, sankeyLinkHorizontal, type SankeyLink, type SankeyNode } from "
 import type { StatementLine } from "@ledger/schema";
 import { DEBT_INTEREST_LINE } from "@ledger/engine";
 import { useScenario } from "@/lib/scenario";
-import { SANKEY, LABEL_DELTA_MIN_BN } from "@/lib/chart-config";
+import { CATCH_ALL_LINES, SANKEY, LABEL_DELTA_MIN_BN } from "@/lib/chart-config";
 import { deltaInUnit, gbpBn, inUnit, type UnitContext } from "@/lib/format";
 import { track } from "@/lib/analytics";
 import { ProvenanceDetail, QualityDot, qualityKey } from "./ui";
@@ -34,7 +34,8 @@ export function useFlowLines() {
     view: { statement, result },
   } = useScenario();
   return useMemo(() => {
-    const rank = (a: FlowLine, b: FlowLine) => Number(!!a.line?.plug) - Number(!!b.line?.plug) || b.v - a.v;
+    const last = (f: FlowLine) => Number(!!f.line?.plug || CATCH_ALL_LINES.has(f.id));
+    const rank = (a: FlowLine, b: FlowLine) => last(a) - last(b) || b.v - a.v;
     const income: FlowLine[] = statement.receipts
       .map((l) => ({ id: l.id, label: l.label, side: "income" as const, v: result.receipts[l.id] ?? 0, base: l.bn, debt: false, line: l }))
       .sort(rank);
