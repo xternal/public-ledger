@@ -21,7 +21,7 @@ describe("append-only promise history (invariant 5)", () => {
   it("rejects editing a published event", () => {
     const after = card();
     after.events[1]!.text = "Plan published (amended)";
-    expect(appendOnlyIssues(card(), after)).toEqual(["events[1] was changed or removed; history is append-only (add a new entry instead)"]);
+    expect(appendOnlyIssues(card(), after)).toEqual(["events[1] was changed or removed; history is append-only (add a new entry, or record a correction)"]);
   });
 
   it("rejects removing or reordering entries", () => {
@@ -36,6 +36,32 @@ describe("append-only promise history (invariant 5)", () => {
   it("rejects rewriting a published quote", () => {
     const after = card();
     after.versions[0]!.text = "We will do something else.";
-    expect(appendOnlyIssues(card(), after)).toEqual(["versions[0] was changed or removed; history is append-only (add a new entry instead)"]);
+    expect(appendOnlyIssues(card(), after)).toEqual(["versions[0] was changed or removed; history is append-only (add a new entry, or record a correction)"]);
+  });
+
+  it("allows a change to history when a new correction records it exactly", () => {
+    const after = card() as ReturnType<typeof card> & { corrections?: unknown[] };
+    after.events[1]!.date = "2026-06-02";
+    after.corrections = [{ date: "2026-10-07", path: "events[1].date", was: "2026-06-01", now: "2026-06-02", reason: "The plan was published a day later." }];
+    expect(appendOnlyIssues(card(), after)).toEqual([]);
+  });
+
+  it("rejects a change that goes beyond what the correction records", () => {
+    const after = card() as ReturnType<typeof card> & { corrections?: unknown[] };
+    after.events[1]!.date = "2026-06-02";
+    after.events[1]!.text = "Plan published (amended)";
+    after.corrections = [{ date: "2026-10-07", path: "events[1].date", was: "2026-06-01", now: "2026-06-02", reason: "Date." }];
+    expect(appendOnlyIssues(card(), after)).toEqual(["events[1] changed in ways its corrections do not record"]);
+  });
+
+  it("records a field that was added (was: null) and keeps existing corrections append-only", () => {
+    const before = { ...card(), corrections: [{ date: "2026-10-07", path: "events[1].text", was: "Plan", now: "Plan published", reason: "x" }] };
+    const after = structuredClone(before) as typeof before & { events: Record<string, unknown>[] };
+    (after.events[0] as Record<string, unknown>).evidence_url = "https://example.org/said";
+    after.corrections.push({ date: "2026-10-08", path: "events[0].evidence_url", was: null as never, now: "https://example.org/said", reason: "Link added." });
+    expect(appendOnlyIssues(before, after)).toEqual([]);
+    const tampered = structuredClone(after);
+    tampered.corrections[0]!.reason = "changed";
+    expect(appendOnlyIssues(before, tampered)).toEqual(["corrections[0] was changed or removed; corrections are append-only too"]);
   });
 });

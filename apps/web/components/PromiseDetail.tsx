@@ -7,6 +7,7 @@ import { EVENT_LABEL, STATUS_LABEL } from "@/lib/copy";
 import { fixed, gbp, gbpBn, longDate, monthYear, perHousehold, rangeText, shareOf } from "@/lib/format";
 import { AREA_LABEL, costSense, todayIso, whoLine } from "@/lib/promises";
 import { track } from "@/lib/analytics";
+import { correctionTarget, correctionValue } from "@/lib/corrections";
 import { FollowPanel } from "./FollowPanel";
 import { StatusPill } from "./PromiseList";
 import { QualityBadge, WithProvenance } from "./ui";
@@ -246,6 +247,34 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
               {r.editor_response && <span className="text-label text-muted">Editors: {r.editor_response}</span>}
             </blockquote>
           ))}
+        </section>
+      )}
+
+      {f.corrections.length > 0 && (
+        <section aria-labelledby={`corrections-${f.id}`} className="grid gap-2">
+          <h2 id={`corrections-${f.id}`} className="text-label font-medium text-muted">
+            Corrections
+          </h2>
+          <ol className="m-0 grid list-none gap-3 p-0 text-sm">
+            {f.corrections.map((c, i) => (
+              <li key={i} className="grid gap-1 border-l-2 border-line-strong pl-3">
+                <span className="text-caption text-muted">
+                  Corrected on {longDate(c.date)}: {correctionTarget(c, f)}
+                </span>
+                <span>{c.reason}</span>
+                <details className="text-label text-muted">
+                  <summary className="cursor-pointer">What changed</summary>
+                  <p className="m-0 mt-1">Was: {correctionValue(c, c.was)}</p>
+                  <p className="m-0">Now: {correctionValue(c, c.now)}</p>
+                  {c.source_url && (
+                    <a href={c.source_url} target="_blank" rel="noopener noreferrer">
+                      Source for the correction
+                    </a>
+                  )}
+                </details>
+              </li>
+            ))}
+          </ol>
         </section>
       )}
 

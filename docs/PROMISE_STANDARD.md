@@ -70,3 +70,14 @@ Editors declare party membership. Cards about the project's own founders' partie
 4. Same two-editor rule as any other card. Submission volume never changes a status; only evidence does.
 5. Submissions about the project's founders' own party are reviewed by an external reviewer, as in §7.
 6. Contributor credit only when requested.
+
+## 9. Corrections
+
+History is append-only, but our own mistakes must be fixable. A correction fixes an error *we* made in a version, event or reply: a wrong date, a misread figure, a cost range that was really a time profile, a note that says more than its source. It is not for changes in the world; those are new events or new versions (§3, §4).
+
+1. Change the field, and in the same pull request append an entry to the card's `corrections`: `date`, `path` (e.g. `versions[0].parameters.how_much_bn_per_year`, `events[3].date`), `was`, `now`, `reason`, and a `source_url` when a source shows the right value.
+2. CI accepts the change only if undoing the recorded corrections gives back exactly the published entry, and the card's field equals the correction's `now`. Existing corrections never change.
+3. The card shows every correction ("Corrected on 7 October 2026: cost range in version 1 …", with the old and new values). Nothing is overwritten silently.
+4. A wrong quote is corrected the same way, and the quote check is redone and `quote_checked_on` updated.
+5. Notes that describe the present (`status_note`, top-level `sources`) are kept current by ordinary edits; they are not history.
+6. Same two-editor rule as any other change.
