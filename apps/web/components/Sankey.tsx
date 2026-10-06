@@ -162,7 +162,7 @@ export function Sankey({ active, onActive }: { active: string | null; onActive: 
             onMouseEnter={() => onActive(n.id)}
             onFocus={() => {
               onActive(n.id);
-              track("statement_line_inspected", { line_id: n.id });
+              track("quality_badge_opened", { quality: n.line ? qualityKey(n.line) : "derived" });
             }}
             onBlur={() => onActive(null)}
             style={{ opacity: dim }}

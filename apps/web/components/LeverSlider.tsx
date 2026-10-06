@@ -74,10 +74,9 @@ export function LeverSlider({ lever }: { lever: Lever }) {
           style={{ "--track": track_ } as CSSProperties}
           aria-describedby={`${id}-who`}
           aria-valuetext={`${leverValueText(lever, value)}, today ${leverValueText(lever, lever.base)}`}
-          onChange={(e) => {
-            setLever(lever.id, Number(e.target.value));
-            track("lever_changed", { lever_id: lever.id });
-          }}
+          onChange={(e) => setLever(lever.id, Number(e.target.value))}
+          onPointerUp={() => track("lever_changed", { lever_id: lever.id })}
+          onKeyUp={() => track("lever_changed", { lever_id: lever.id })}
         />
       </div>
       <div id={`${id}-who`} className="-mt-0.5 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-caption text-faint">

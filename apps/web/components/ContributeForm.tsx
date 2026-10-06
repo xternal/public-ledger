@@ -3,7 +3,6 @@
 import { useState, type FormEvent } from "react";
 import type { PromiseCard } from "@ledger/schema";
 import { EVIDENCE_OPTIONS } from "@/lib/copy";
-import { track } from "@/lib/analytics";
 
 export type SubmissionKind = "new" | "evidence";
 
@@ -40,7 +39,6 @@ export function ContributeForm({
     }
     setError("");
     setSent(true);
-    track("submission_form_sent", { kind });
   };
 
   const field = "grid gap-1.5";

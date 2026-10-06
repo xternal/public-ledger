@@ -155,7 +155,7 @@ export function PromiseDetail({
             className="cursor-pointer rounded-control bg-ink px-4 py-2 text-sm font-semibold text-bg hover:opacity-90"
             onClick={() => {
               applyPreset(preset);
-              track("promise_run_in_sandbox", { promise_id: card.id });
+              track("run_in_sandbox_clicked", { promise_id: card.id });
               document.getElementById("scenario")?.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
           >

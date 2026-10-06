@@ -30,7 +30,7 @@ export function MeasureToggle({ lever }: { lever: Lever }) {
           checked={on}
           onChange={(e) => {
             setLever(lever.id, e.target.checked ? lever.max : lever.min);
-            track("measure_toggled", { lever_id: lever.id, on: e.target.checked });
+            track("lever_changed", { lever_id: lever.id });
           }}
         />
       </label>

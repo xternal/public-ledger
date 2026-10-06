@@ -89,8 +89,8 @@ export function StatementSection() {
               aria-expanded={tableOpen}
               aria-controls="statement-table"
               onClick={() => {
+                if (!tableOpen) track("chart_table_opened", { chart_id: "statement" });
                 setTableOpen(!tableOpen);
-                track("statement_table_toggled", { open: !tableOpen });
               }}
             >
               {tableOpen ? "Hide table" : "Show as table"}

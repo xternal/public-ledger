@@ -42,7 +42,7 @@ export function PromisesSection() {
           onSelect={(id) => {
             setSelected(id);
             setFollowOpen(false);
-            track("promise_card_viewed", { promise_id: id });
+            track("promise_card_viewed", { promise_id: id, status: promises.find((p) => p.id === id)!.status });
           }}
         />
         <PromiseDetail
@@ -50,13 +50,12 @@ export function PromisesSection() {
           today={today}
           followOpen={followOpen}
           onToggleFollow={() => {
-            if (!followOpen) track("follow_opened", { promise_id: card.id });
+            if (!followOpen) track("follow_panel_opened", { target_kind: "promise" });
             setFollowOpen(!followOpen);
           }}
           onAddEvidence={() => {
             setKind("evidence");
             setCardId(card.id);
-            track("evidence_started", { promise_id: card.id });
             document.getElementById("contribute")?.scrollIntoView({ behavior: "smooth", block: "start" });
             setTimeout(() => document.getElementById("sub-url")?.focus({ preventScroll: true }), 0);
           }}

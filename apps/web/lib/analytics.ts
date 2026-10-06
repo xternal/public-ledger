@@ -12,19 +12,21 @@
 
 import type { Unit } from "./format";
 
+/**
+ * Client events, named as in the event catalogue in
+ * docs/CUSTOMER_JOURNEYS.md ("Analytics plan"). Follow events carry no
+ * promise or actor id (privacy rule 6). Form pages fire nothing from the
+ * client (rule 4): submissions are counted on the server in M3b.
+ */
 export type AnalyticsEvent =
   | { name: "unit_changed"; props: { unit: Unit } }
-  | { name: "statement_table_toggled"; props: { open: boolean } }
-  | { name: "statement_line_inspected"; props: { line_id: string } }
+  | { name: "chart_table_opened"; props: { chart_id: "statement" | "debt_fan" } }
+  | { name: "quality_badge_opened"; props: { quality: string } }
   | { name: "lever_changed"; props: { lever_id: string } }
-  | { name: "measure_toggled"; props: { lever_id: string; on: boolean } }
   | { name: "preset_applied"; props: { preset_id: string } }
-  | { name: "scenario_reset"; props: Record<string, never> }
-  | { name: "promise_card_viewed"; props: { promise_id: string } }
-  | { name: "promise_run_in_sandbox"; props: { promise_id: string } }
-  | { name: "follow_opened"; props: { promise_id: string } }
-  | { name: "evidence_started"; props: { promise_id: string } }
-  | { name: "submission_form_sent"; props: { kind: "new" | "evidence" } };
+  | { name: "promise_card_viewed"; props: { promise_id: string; status: string } }
+  | { name: "run_in_sandbox_clicked"; props: { promise_id: string } }
+  | { name: "follow_panel_opened"; props: { target_kind: "promise" | "actor" | "area" } };
 
 type Sink = (event: AnalyticsEvent) => void;
 

@@ -86,7 +86,6 @@ export function ScenarioProvider({ seed, children }: { seed: Seed; children: Rea
     (preset: Preset | null) => {
       dispatch({ type: "preset", preset, base });
       if (preset) track("preset_applied", { preset_id: preset.id });
-      else track("scenario_reset", {});
     },
     [base],
   );

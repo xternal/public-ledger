@@ -7,6 +7,7 @@ import type { DebtPoint } from "@ledger/engine";
 import { FAN } from "@/lib/chart-config";
 import { fixed, shortYear } from "@/lib/format";
 import { useScenario } from "@/lib/scenario";
+import { track } from "@/lib/analytics";
 import { TextButton } from "./ui";
 
 /** Debt as % of GDP: OBR baseline dashed, scenario solid with its low–high band. */
@@ -77,7 +78,10 @@ export function FanChart() {
           </text>
         )}
       </svg>
-      <TextButton className="mt-2" aria-expanded={tableOpen} aria-controls="fan-table" onClick={() => setTableOpen(!tableOpen)}>
+      <TextButton className="mt-2" aria-expanded={tableOpen} aria-controls="fan-table" onClick={() => {
+          if (!tableOpen) track("chart_table_opened", { chart_id: "debt_fan" });
+          setTableOpen(!tableOpen);
+        }}>
         {tableOpen ? "Hide table" : "Show as table"}
       </TextButton>
       {tableOpen && (
