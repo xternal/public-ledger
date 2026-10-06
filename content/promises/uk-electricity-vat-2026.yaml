@@ -1,0 +1,59 @@
+id: uk-electricity-vat-2026
+actor_id: andy-burnham
+made_on: "2026-07-21"
+venue: press_release
+venue_label: No 10 press release
+policy_area: taxes
+status: delivered
+status_note: >-
+  A Treasury order made on 7 September 2026 zero-rates domestic electricity in Great Britain from 1 October 2026,
+  and the government confirmed the cut took effect that day. The zero rate is temporary and ends on 31 March 2027;
+  Northern Ireland gets equivalent funding instead because EU VAT rules apply there.
+deadline: "2026-10-01"
+origin: manual
+editor_check_required: true
+sources:
+  - title: "No 10 press release, 21 Jul 2026: New PM cuts tax on household electricity bills"
+    url: https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living
+  - title: The Value Added Tax (Supplies of Domestic Electricity) Order 2026 (SI 2026/987)
+    url: https://www.legislation.gov.uk/uksi/2026/987/contents/made
+  - title: "GOV.UK news, 1 Oct 2026: Energy bill tax cut starts today"
+    url: https://www.gov.uk/government/news/energy-bill-tax-cut-starts-today-to-give-families-breathing-space
+versions:
+  - version: 1
+    text: We’re taking immediate action to cut taxes on energy bills, put more money in people’s pockets and bring back hope.
+    recorded_on: "2026-07-21"
+    source_url: https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: >-
+        Households in Great Britain paying for domestic electricity (VAT cut from 5% to 0%), plus eligible
+        charities and care homes; Northern Ireland gets equivalent funding instead
+      how_much_bn_per_year: [0.765, 0.85, 0.935]
+      cost_note: >-
+        Year shown: 2026-27, the only year of the measure, which covers six months (1 October 2026 to
+        31 March 2027); central figure only. Government estimate: around £850m, based on estimated electricity
+        prices. There is no independent costing yet; the government says updated costs will be set out at the
+        Budget.
+        Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "No 10 press release, 21 Jul 2026: New PM cuts tax on household electricity bills"
+          url: https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living
+      when: 1 October 2026 to 31 March 2027
+      funded_by: Cancellation of the Digital ID programme (£1.8bn over the next three years)
+events:
+  - date: "2026-07-21"
+    type: promised
+    text: PM announces VAT will be removed from household electricity bills from 1 October 2026
+  - date: "2026-09-07"
+    type: legislated
+    text: Treasury makes the order zero-rating domestic electricity from 1 October 2026 to 31 March 2027
+    evidence_url: https://www.legislation.gov.uk/uksi/2026/987/contents/made
+  - date: "2026-10-01"
+    type: deadline
+    text: Due to start
+  - date: "2026-10-01"
+    type: delivered
+    text: Zero rate of VAT on domestic electricity in force
+    evidence_url: https://www.gov.uk/government/news/energy-bill-tax-cut-starts-today-to-give-families-breathing-space
+replies: []

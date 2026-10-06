@@ -1,0 +1,74 @@
+id: uk-abolish-non-dom-2024
+actor_id: labour
+made_on: "2024-06-13"
+venue: manifesto
+venue_label: 2024 manifesto, page 21
+policy_area: taxes
+status: delivered
+status_note: >-
+  Finance Act 2025 ended the remittance basis for non-domiciled individuals after the 2024-25 tax year, and on 6 April
+  2025 a 4-year foreign income and gains regime for new arrivals replaced it. The previous government had announced an
+  end to the regime in March 2024; Labour's Autumn Budget 2024 changed parts of the design, such as removing a planned
+  50% discount on foreign income in 2025-26.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Labour Party: Change, 2024 manifesto (PDF), page 21"
+    url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=21
+  - title: "Finance Act 2025, Part 2: replacement of special rules relating to domicile"
+    url: https://www.legislation.gov.uk/ukpga/2025/8/part/2
+  - title: "HMRC: Check if you can claim the 4-year foreign income and gains regime"
+    url: https://www.gov.uk/guidance/check-if-you-can-claim-the-4-year-foreign-income-and-gains-regime
+  - title: "HM Treasury: Non-UK domiciled individuals, policy summary (29 Jul 2024)"
+    url: https://www.gov.uk/government/publications/2024-non-uk-domiciled-individuals-policy-summary
+  - title: "HM Treasury: Autumn Budget 2024 (30 Oct 2024)"
+    url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+versions:
+  - version: 1
+    text: >-
+      We will abolish non-dom status once and for all, replacing it with a modern scheme for people genuinely in the
+      country for a short period.
+    recorded_on: "2024-06-13"
+    source_url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=21
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: >-
+        UK residents who used non-dom status now pay UK tax on worldwide income and gains; people who become UK
+        resident after at least 10 years as non-residents can claim relief on foreign income and gains for up to 4 years
+      how_much_bn_per_year: [-2.7995, -2.545, -2.2905]
+      cost_note: >-
+        Negative because the pledge raises money. Year used: 2028-29, the year Labour's costings use. The official
+        Autumn Budget 2024 costing of Labour's changes, on top of the abolition already in the forecast since March
+        2024, is £2,545m in 2028-29 (Table 5.1, line 20); central figure only. Other years: negligible in 2025-26,
+        £4,170m in 2026-27, £5,895m in 2027-28 and £95m in 2029-30, as the temporary repatriation facility ends.
+        Labour's own costings do not show the measure separately: it is part of £5,230m in 2028-29 from non-dom
+        loopholes and tax avoidance, plus £600m in 2025-26 from removing the non-dom discount (manifesto page 127).
+        Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "HM Treasury: Autumn Budget 2024, Table 5.1, line 20"
+          url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+        - title: "Labour Party: Change, 2024 manifesto (PDF), costings, page 127"
+          url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=127
+      when: From 6 April 2025
+      funded_by: >-
+        Not a spending pledge; the manifesto says NHS appointments will be "paid for by cracking down on tax avoidance
+        and non-dom loopholes" (page 10)
+events:
+  - date: "2024-06-13"
+    type: promised
+    text: Labour manifesto pledges to abolish non-dom status and replace it with a short-stay scheme
+  - date: "2024-07-29"
+    type: in_plan
+    text: >-
+      Treasury policy summary: the government will remove domicile status from the tax system and bring in a
+      residence-based regime from 6 April 2025
+    evidence_url: https://www.gov.uk/government/publications/2024-non-uk-domiciled-individuals-policy-summary
+  - date: "2025-03-20"
+    type: legislated
+    text: Finance Act 2025 receives Royal Assent; Part 2 ends the remittance basis after the 2024-25 tax year
+    evidence_url: https://www.legislation.gov.uk/ukpga/2025/8/part/2
+  - date: "2025-04-06"
+    type: delivered
+    text: The 4-year foreign income and gains regime replaces the remittance basis
+    evidence_url: https://www.gov.uk/guidance/check-if-you-can-claim-the-4-year-foreign-income-and-gains-regime
+replies: []

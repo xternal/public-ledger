@@ -1,0 +1,56 @@
+id: uk-green-wealth-tax-2024
+actor_id: green-party
+made_on: "2024-06-12"
+venue: manifesto
+venue_label: 2024 manifesto, page 20
+policy_area: taxes
+status: promised
+status_note: >-
+  The Green Party is not in government, so the card stays at Promised. Leader Zack Polanski restated the same rates
+  in a speech on 18 March 2026 and put the yield at around £15bn a year.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Green Party: Real Hope. Real Change. 2024 manifesto (PDF), page 20"
+    url: https://greenparty.org.uk/app/uploads/2024/06/Green-Party-2024-General-Election-Manifesto-Long-version-with-cover.pdf
+  - title: "Green Party: Investing in Hope, budget background paper (PDF), June 2024"
+    url: https://greenparty.org.uk/app/uploads/2024/06/budget-background-v3.pdf
+  - title: "Green Party: manifesto launch press release, 12 Jun 2024"
+    url: https://greenparty.org.uk/2024/06/12/greens-pledge-investment-to-mend-broken-britain/
+  - title: "Green Party: Zack Polanski speech, 18 Mar 2026"
+    url: https://greenparty.org.uk/2026/03/18/zack-polanski-lays-out-plans-to-back-the-caring-majority-in-major-speech/
+  - title: "Tax Policy Associates: Our take on the Green Party manifesto, 13 Jun 2024"
+    url: https://taxpolicy.org.uk/2024/06/13/our-take-on-the-green-manifesto/
+versions:
+  - version: 1
+    text: >-
+      Elected Greens will push for a wealth tax. This will tax the wealth of individual taxpayers with assets above
+      £10 million at 1% and assets above £1bn at 2% annually.
+    recorded_on: "2024-06-12"
+    source_url: https://greenparty.org.uk/app/uploads/2024/06/Green-Party-2024-General-Election-Manifesto-Long-version-with-cover.pdf
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: >-
+        Individual UK-resident taxpayers with net assets above £10m (the party estimates about 22,000 people), with
+        a higher rate above £1bn.
+      how_much_bn_per_year: [-16.0, -15.0, -15.0]
+      cost_note: >-
+        Negative because the pledge raises money rather than costing it. Party figures only: around £16bn a year by
+        the end of the Parliament (June 2024 budget paper) and around £15bn a year (Zack Polanski, March 2026).
+        No official or independent costing of this design was found. Tax Policy Associates notes that Spain's
+        similar tax raised €632m in 2023 and that the 2020 Wealth Tax Commission advised against an annual wealth
+        tax, so the yield is highly uncertain.
+      cost_sources:
+        - title: "Green Party: Investing in Hope, budget background paper (PDF)"
+          url: https://greenparty.org.uk/app/uploads/2024/06/budget-background-v3.pdf
+        - title: "Green Party: Zack Polanski speech, 18 Mar 2026"
+          url: https://greenparty.org.uk/2026/03/18/zack-polanski-lays-out-plans-to-back-the-caring-majority-in-major-speech/
+        - title: "Tax Policy Associates: Our take on the Green Party manifesto"
+          url: https://taxpolicy.org.uk/2024/06/13/our-take-on-the-green-manifesto/
+      when: Not stated; the party's revenue estimate is for the end of the Parliament
+      funded_by: Not a spending pledge; the party says the money raised would pay for its investment in public services
+events:
+  - date: "2024-06-12"
+    type: promised
+    text: Green Party manifesto pledges to push for an annual wealth tax
+replies: []

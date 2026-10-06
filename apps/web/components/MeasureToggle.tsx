@@ -14,7 +14,7 @@ export function MeasureToggle({ lever }: { lever: Lever }) {
   const { seed, settings, setLever, setFunding } = useScenario();
   const on = isOn(settings[lever.id] as number);
   const funding = (settings[fundingKey(lever.id)] as string | undefined) ?? lever.funding_options?.[0]?.id;
-  const card = lever.promise_id ? seed.promises.promises.find((p) => p.id === lever.promise_id) : undefined;
+  const card = lever.promise_id ? seed.cards.find((c) => c.id === lever.promise_id)?.file : undefined;
   const id = `measure-${lever.id}`;
   const fundingOption = lever.funding_options?.find((f) => f.id === funding);
 

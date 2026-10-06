@@ -567,7 +567,8 @@ def source_entries(run: Run) -> list[dict]:
         out.append(d)
     seed_levers = json.loads((SEED / "levers.json").read_text())
     for s in seed_levers["meta"]["sources"]:
-        if s["id"] not in run.sources and s["publisher"] == "Media":
+        # Sources the levers cite that no ETL module provides (announcements, policy papers).
+        if s["id"] not in run.sources and s["id"] not in {"hmrc_ready_reckoner", "obr_ready_reckoner"}:
             out.append(s)
     return out
 

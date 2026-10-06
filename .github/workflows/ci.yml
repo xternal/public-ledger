@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -20,7 +22,8 @@ jobs:
       - run: npm install -g corepack@0.34.5 && corepack enable pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm test
-      - run: pnpm validate
+      # Promise history is append-only: compare every published card with main.
+      - run: pnpm validate -- --base origin/main
       - run: pnpm typecheck
       - run: pnpm build
 

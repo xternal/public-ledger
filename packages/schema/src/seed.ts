@@ -1,18 +1,19 @@
 import type { z } from "zod";
 import bundleRaw from "../../../data/build/app.json";
-import promisesRaw from "../../../data/seed/promises.json";
 import presetsRaw from "../../../data/seed/presets.json";
 import type { StatementSeed } from "./statement";
 import { fundingKey, type Lever, type LeversSeed, type Settings } from "./levers";
-import { PromisesSeed } from "./promises";
+import { ActorFile, PromiseFile, cardViews, type CardView } from "./content";
+import { readContent, type RawContent } from "./content-files";
 import { PresetsSeed, type Preset } from "./presets";
 import type { TaxSeed } from "./tax";
 import type { Source } from "./provenance";
 import { AppBundle } from "./bundle";
 
 /**
- * What the app reads. Numbers come from data/build/app.json (the ETL build,
- * M1); promise cards and editorial presets are still seed files until M3.
+ * What the app reads. Numbers come from data/build/app.json (the ETL build);
+ * promise cards and actors from content/*.yaml (M3); editorial presets from
+ * data/seed/presets.json.
  */
 export interface Seed {
   /** The base year's Statement: the year the sandbox runs on. */
@@ -23,7 +24,9 @@ export interface Seed {
   baseYear: string;
   builtAt: string;
   levers: LeversSeed;
-  promises: PromisesSeed;
+  /** Promise cards joined with their actors, newest first. */
+  cards: CardView[];
+  actors: ActorFile[];
   /** Editorial presets followed by one preset per promise card that has lever settings. */
   presets: Preset[];
   tax: TaxSeed;
@@ -38,22 +41,23 @@ export interface SeedIssue {
 
 export interface RawSeed {
   bundle: unknown;
-  promises: unknown;
+  content: RawContent;
   presets: unknown;
 }
 
-export const RAW_SEED: RawSeed = {
-  bundle: bundleRaw,
-  promises: promisesRaw,
-  presets: presetsRaw,
-};
+let rawContent: RawContent | null = null;
+/** The raw inputs, read once per process. Content is read from disk (Node only). */
+export function rawSeed(): RawSeed {
+  rawContent ??= readContent();
+  return { bundle: bundleRaw, content: rawContent, presets: presetsRaw };
+}
 
 function zodIssues(file: string, error: z.ZodError): SeedIssue[] {
   return error.issues.map((i) => ({ level: "error", where: `${file}:${i.path.join(".")}`, message: i.message }));
 }
 
-function promisePresets(promises: PromisesSeed): Preset[] {
-  return promises.promises
+function promisePresets(promises: PromiseFile[]): Preset[] {
+  return promises
     .filter((p) => p.lever_settings && p.preset_label)
     .map((p) => ({
       id: `promise:${p.id}`,
@@ -77,7 +81,7 @@ export function crossCheck(seed: Seed): SeedIssue[] {
     if (id && !sourceIds.has(id)) err(where, `unknown source_id "${id}"`);
   };
 
-  const { statement, levers, promises } = seed;
+  const { statement, levers } = seed;
   for (const [year, s] of Object.entries(seed.statements)) {
     s.receipts.forEach((l) => checkSource(`${year}.receipts.${l.id}`, l.source_id));
     s.spending.forEach((l) => checkSource(`${year}.spending.${l.id}`, l.source_id));
@@ -87,7 +91,7 @@ export function crossCheck(seed: Seed): SeedIssue[] {
 
   const lineIds = new Set([...statement.receipts, ...statement.spending].map((l) => l.id));
   const leverById = new Map(levers.levers.map((l) => [l.id, l]));
-  const promiseIds = new Set(promises.promises.map((p) => p.id));
+  const promiseIds = new Set(seed.cards.map((c) => c.id));
   for (const l of levers.levers) {
     checkSource(`levers.${l.id}`, l.source_id);
     if (!lineIds.has(l.effect.target)) err(`levers.${l.id}`, `effect target "${l.effect.target}" is not a statement line`);
@@ -117,13 +121,17 @@ export function crossCheck(seed: Seed): SeedIssue[] {
   };
   for (const p of seed.presets) checkSettings(`presets.${p.id}`, p.settings);
 
-  for (const p of promises.promises) {
+  const actorIds = new Set(seed.actors.map((a) => a.id));
+  for (const a of seed.actors) {
+    if (a.party_id && !actorIds.has(a.party_id)) err(`actors.${a.id}`, `unknown party_id "${a.party_id}"`);
+  }
+  for (const c of seed.cards) {
+    const p = c.file;
     const where = `promises.${p.id}`;
-    if (p.lever_id && !leverById.has(p.lever_id)) err(where, `unknown lever_id "${p.lever_id}"`);
     if (p.lever_settings) checkSettings(where, p.lever_settings);
-    if (p.lever_settings && !p.preset_label) err(where, "a card with lever_settings needs a preset_label");
-    if (p.sources.length === 0) warn(where, "no sources yet; the card cannot be published (M3 makes this an error)");
     if (p.editor_check_required) warn(where, "needs editor check before publication");
+    const current = p.versions[p.versions.length - 1]!;
+    if (!current.quote_checked_on) warn(where, "quote not yet checked verbatim against its source");
   }
 
   const { income_tax, employee_ni } = seed.tax;
@@ -135,16 +143,31 @@ export function crossCheck(seed: Seed): SeedIssue[] {
   return issues;
 }
 
-export function parseSeed(raw: RawSeed = RAW_SEED): { seed: Seed | null; issues: SeedIssue[] } {
+export function parseSeed(raw: RawSeed = rawSeed()): { seed: Seed | null; issues: SeedIssue[] } {
   const bundle = AppBundle.safeParse(raw.bundle);
-  const promises = PromisesSeed.safeParse(raw.promises);
   const presets = PresetsSeed.safeParse(raw.presets);
   const issues: SeedIssue[] = [
     ...(bundle.error ? zodIssues("data/build/app.json", bundle.error) : []),
-    ...(promises.error ? zodIssues("promises.json", promises.error) : []),
     ...(presets.error ? zodIssues("presets.json", presets.error) : []),
   ];
-  if (!bundle.success || !promises.success || !presets.success) {
+  const fileName = (path: string) => path.split(/[\\/]/).pop()!.replace(/\.ya?ml$/, "");
+  const actors: ActorFile[] = [];
+  for (const f of raw.content.actors) {
+    const r = ActorFile.safeParse(f.data);
+    if (r.error) issues.push(...zodIssues(f.path, r.error));
+    else if (r.data.id !== fileName(f.path)) issues.push({ level: "error", where: f.path, message: `id "${r.data.id}" does not match the file name` });
+    else actors.push(r.data);
+  }
+  const promises: PromiseFile[] = [];
+  const actorIds = new Set(actors.map((a) => a.id));
+  for (const f of raw.content.promises) {
+    const r = PromiseFile.safeParse(f.data);
+    if (r.error) issues.push(...zodIssues(f.path, r.error));
+    else if (r.data.id !== fileName(f.path)) issues.push({ level: "error", where: f.path, message: `id "${r.data.id}" does not match the file name` });
+    else if (!actorIds.has(r.data.actor_id)) issues.push({ level: "error", where: f.path, message: `unknown actor_id "${r.data.actor_id}"` });
+    else promises.push(r.data);
+  }
+  if (!bundle.success || !presets.success || issues.some((i) => i.level === "error")) {
     return { seed: null, issues };
   }
   const b = bundle.data;
@@ -155,8 +178,9 @@ export function parseSeed(raw: RawSeed = RAW_SEED): { seed: Seed | null; issues:
     baseYear: b.base_year,
     builtAt: b.built_at,
     levers: b.levers,
-    promises: promises.data,
-    presets: [...presets.data.presets, ...promisePresets(promises.data)],
+    cards: cardViews(promises, actors),
+    actors,
+    presets: [...presets.data.presets, ...promisePresets(promises)],
     tax: b.tax,
     sources: b.sources,
   };
@@ -164,7 +188,7 @@ export function parseSeed(raw: RawSeed = RAW_SEED): { seed: Seed | null; issues:
 }
 
 /** Parse and cross-check the build bundle and seed files. Throws on any error; warnings are left to `pnpm validate`. */
-export function loadSeed(raw: RawSeed = RAW_SEED): Seed {
+export function loadSeed(raw: RawSeed = rawSeed()): Seed {
   const { seed, issues } = parseSeed(raw);
   const errors = issues.filter((i) => i.level === "error");
   if (!seed || errors.length) {

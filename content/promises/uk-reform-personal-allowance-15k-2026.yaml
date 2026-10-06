@@ -1,0 +1,52 @@
+id: uk-reform-personal-allowance-15k-2026
+actor_id: reform-uk
+made_on: "2026-09-05"
+venue_label: "The First 100 Days: Our Pledges to You, page 12"
+policy_area: taxes
+status: promised
+status_note: >-
+  Reform UK is not in government, so the card stays at Promised. This pledge replaces the party's 2024 aim of a
+  £20,000 allowance, which it said in November 2025 it was no longer committed to; the same document keeps
+  £20,000 as a long-term ambition.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Reform UK: The First 100 Days: Our Pledges to You (PDF), September 2026"
+    url: https://www.reformparty.uk/policies/the-first-100-days-our-pledges-to-you/pdf
+  - title: "BBC News: Reform promises to increase tax-free personal allowance to £15,000, 5 Sep 2026"
+    url: https://www.bbc.co.uk/news/articles/cgk5g51xk57o
+  - title: "Chartered Institute of Taxation: Reform UK Conference 2026 report"
+    url: https://www.tax.org.uk/reform-uk-conference-2026-tax-policy
+versions:
+  - version: 1
+    text: >-
+      The first Budget of a Reform government will increase the tax-free personal allowance for income tax to
+      £15,000, beginning at the next tax year.
+    recorded_on: "2026-09-05"
+    source_url: https://www.reformparty.uk/policies/the-first-100-days-our-pledges-to-you/pdf
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: >-
+        Income taxpayers earning under £100,000 (the party says about 40 million, with 2.9 million taken out of
+        income tax). The higher-rate threshold stays at £50,270 and the taper above £100,000 is kept.
+      how_much_bn_per_year: [17.7, 17.7, 21.1]
+      cost_note: >-
+        Reform UK's own costing: £17.7bn in the first year (low and central) and £21.1bn by the fifth year (high),
+        including a behavioural adjustment. No independent costing of the £15,000 pledge was found on 6 Oct 2026;
+        an editor should add one when published.
+      cost_sources:
+        - title: "Reform UK: The First 100 Days, Costings (pages 13-14)"
+          url: https://www.reformparty.uk/policies/the-first-100-days-our-pledges-to-you/pdf
+        - title: "BBC News, 5 Sep 2026"
+          url: https://www.bbc.co.uk/news/articles/cgk5g51xk57o
+      when: In the first Budget of a Reform government, pledged within its first 100 days; takes effect at the start of the next tax year
+      funded_by: >-
+        Previously announced savings: £52bn a year from the Making Welfare Work programme, £7bn from eliminating
+        most foreign aid, £10bn from cutting net zero programmes and £7bn from shrinking the government, plus
+        immigration-related savings (the party lists £91bn of itemised savings and new revenue against £58bn of
+        costs).
+events:
+  - date: "2026-09-05"
+    type: promised
+    text: Robert Jenrick announces the £15,000 allowance at Reform UK's conference; the party publishes its First 100 Days document
+replies: []

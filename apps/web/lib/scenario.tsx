@@ -7,6 +7,7 @@ import { fundingKey } from "@ledger/schema";
 import { baseSettings, compute, createModel, debtFan, decodeScenario, encodeScenario, type DebtFan, type Model, type ScenarioResult } from "@ledger/engine";
 import type { Unit } from "./format";
 import { track } from "./analytics";
+import { SourcesProvider } from "@/components/ui";
 
 interface State {
   settings: Settings;
@@ -192,7 +193,11 @@ export function ScenarioProvider({ seed, children }: { seed: Seed; children: Rea
     [seed, model, base, state, result, baseResult, fan, year, isBaseYear, view, setLever, setFunding, applyPreset, setUnit, code, linkNotice, dismissLinkNotice],
   );
 
-  return <ScenarioContext.Provider value={value}>{children}</ScenarioContext.Provider>;
+  return (
+    <ScenarioContext.Provider value={value}>
+      <SourcesProvider sources={seed.sources}>{children}</SourcesProvider>
+    </ScenarioContext.Provider>
+  );
 }
 
 export function useScenario(): ScenarioContextValue {

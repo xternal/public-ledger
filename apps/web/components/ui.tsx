@@ -1,9 +1,15 @@
 "use client";
 
-import { useId, type ReactNode } from "react";
-import type { Provenance as ProvenanceT, Quality, Range } from "@ledger/schema";
+import { createContext, useContext, useId, type ReactNode } from "react";
+import type { Provenance as ProvenanceT, Quality, Range, Source } from "@ledger/schema";
 import { QUALITY_HELP, QUALITY_LABEL, readerNote } from "@/lib/copy";
-import { useScenario } from "@/lib/scenario";
+
+/** Source registry for provenance tips. ScenarioProvider supplies it; standalone pages wrap in SourcesProvider. */
+const SourcesContext = createContext<Source[]>([]);
+
+export function SourcesProvider({ sources, children }: { sources: Source[]; children: ReactNode }) {
+  return <SourcesContext.Provider value={sources}>{children}</SourcesContext.Provider>;
+}
 
 type QualityKey = Quality | "plug";
 
@@ -24,8 +30,8 @@ export function QualityDot({ quality }: { quality: QualityKey }) {
 
 /** The body of a provenance tip: quality, method and source link. */
 export function ProvenanceDetail({ p }: { p: Partial<ProvenanceT> & { quality: Quality } }) {
-  const { seed } = useScenario();
-  const source = p.source_id ? seed.sources.find((s) => s.id === p.source_id) : undefined;
+  const sources = useContext(SourcesContext);
+  const source = p.source_id ? sources.find((s) => s.id === p.source_id) : undefined;
   const q = qualityKey(p);
   return (
     <span className="grid gap-1">

@@ -89,21 +89,26 @@ describe("golden tests: +1 unit reproduces each lever's central per_unit_bn", ()
 });
 
 describe("bus fare cap", () => {
-  it("funded by climate loans nets to +£0.1bn borrowing", () => {
+  // Official figures (DfT written statement and No 10 press release, 22 Jul 2026): £400m of extra funding for
+  // England, paid for by switching climate finance into loans. The M0 handover's +£0.1bn came from a press
+  // figure ("over £500m") that no official source gives.
+  it("funded by climate loans, as announced, nets to about zero", () => {
     const r = compute(model, { ...baseSettings(model), bus_cap_2: 1, [fundingKey("bus_cap_2")]: "climate_loans" });
-    expect(r.y1.d_borrowing_bn[1]).toBeCloseTo(0.1, 9);
+    expect(r.y1.d_borrowing_bn[1]).toBeCloseTo(0, 9);
+    expect(r.y1.d_borrowing_bn[0]).toBeLessThan(0);
+    expect(r.y1.d_borrowing_bn[2]).toBeGreaterThan(0);
     expect(r.changes.map((c) => c.kind)).toEqual(["measure", "funding"]);
   });
 
   it("borrowed in full adds its whole cost", () => {
     const r = compute(model, { ...baseSettings(model), bus_cap_2: 1 });
-    expect(r.y1.d_borrowing_bn).toEqual([0.45, 0.5, 0.6]);
+    expect(r.y1.d_borrowing_bn).toEqual([0.36, 0.4, 0.44]);
   });
 
   it("matches the card preset", () => {
     const preset = seed.presets.find((p) => p.promise_id === "uk-bus-cap-2-2026")!;
     const r = compute(model, { ...baseSettings(model), ...preset.settings });
-    expect(r.y1.d_borrowing_bn[1]).toBeCloseTo(0.1, 9);
+    expect(r.y1.d_borrowing_bn[1]).toBeCloseTo(0, 9);
   });
 });
 

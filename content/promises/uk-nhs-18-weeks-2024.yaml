@@ -1,0 +1,66 @@
+id: uk-nhs-18-weeks-2024
+actor_id: keir-starmer
+made_on: "2024-12-05"
+venue_label: Plan for Change, PM's foreword, page 6
+policy_area: health
+status: delivering
+status_note: >-
+  NHS England's plan sets March 2029 for the 92% standard, and the Spending Review 2025 ties the NHS
+  settlement to it. The share of patients waiting under 18 weeks met the interim 65% goal in March 2026
+  (65.3%) and stood at 65.4% in July 2026, still well short of 92%, so the card sits at Delivering.
+deadline: "2029-03-31"
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Plan for Change: Milestones for mission-led government (PDF), 5 Dec 2024"
+    url: https://assets.publishing.service.gov.uk/media/6751af4719e0c816d18d1df3/Plan_for_Change.pdf
+  - title: "PM speech on Plan for Change, 5 Dec 2024"
+    url: https://www.gov.uk/government/speeches/pm-speech-on-plan-for-change-5-december-2024
+  - title: "NHS England: Reforming elective care for patients, 6 Jan 2025"
+    url: https://www.england.nhs.uk/long-read/reforming-elective-care-for-patients/
+  - title: Spending Review 2025 (HM Treasury)
+    url: https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+  - title: "NHS England RTT statistical press notice, March 2026 data (14 May 2026)"
+    url: https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2026/05/Mar26-RTT-statistical-press-notice-PDF-545K-Dc1i9U.pdf
+  - title: "NHS England RTT statistical press notice, July 2026 data (10 Sep 2026)"
+    url: https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2026/09/Jul26-RTT-statistical-press-notice-PDF-578K-97ylx5.pdf
+versions:
+  - version: 1
+    text: >-
+      ending hospital backlogs to meet the NHS standard of 92% of patients in England waiting no longer than
+      18 weeks for elective treatment
+    recorded_on: "2024-12-05"
+    source_url: https://assets.publishing.service.gov.uk/media/6751af4719e0c816d18d1df3/Plan_for_Change.pdf
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: Patients in England waiting for planned (elective) hospital treatment
+      how_much_bn_per_year: null
+      cost_note: >-
+        No separate costing. The Spending Review 2025 links the NHS settlement (a £29bn real-terms rise in
+        day-to-day spending from 2023-24 to 2028-29) to this milestone but does not say how much of it pays
+        for the target.
+      cost_sources:
+        - title: Spending Review 2025 (HM Treasury)
+          url: https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+      when: By March 2029 (the end of the Parliament)
+      funded_by: null
+events:
+  - date: "2024-12-05"
+    type: promised
+    text: PM sets the 18-week milestone in the Plan for Change
+  - date: "2025-01-06"
+    type: in_plan
+    text: NHS England's elective reform plan commits to meet the 92% standard by March 2029, with 65% by March 2026
+    evidence_url: https://www.england.nhs.uk/long-read/reforming-elective-care-for-patients/
+  - date: "2025-06-11"
+    type: funded
+    text: Spending Review 2025 links the NHS settlement to 92% of patients starting treatment within 18 weeks by the end of the Parliament
+    evidence_url: https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
+  - date: "2026-05-14"
+    type: delivering
+    text: "March 2026 figures: 65.3% of patients waiting under 18 weeks, meeting the interim 65% goal"
+    evidence_url: https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2026/05/Mar26-RTT-statistical-press-notice-PDF-545K-Dc1i9U.pdf
+  - date: "2029-03-31"
+    type: deadline
+    text: 92% of patients due to wait no longer than 18 weeks
+replies: []

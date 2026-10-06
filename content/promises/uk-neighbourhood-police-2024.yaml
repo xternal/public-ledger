@@ -1,0 +1,95 @@
+id: uk-neighbourhood-police-2024
+actor_id: labour
+made_on: "2024-06-13"
+venue: manifesto
+venue_label: 2024 manifesto, page 64
+policy_area: public_order
+status: delivering
+status_note: >-
+  The Neighbourhood Policing Guarantee started in April 2025 with a £200m grant. Official statistics show 3,814 more
+  full-time-equivalent officers and PCSOs in neighbourhood roles at 31 March 2026 than a year earlier. The manifesto
+  text says "thousands"; its costings (page 129) and the government's milestone put the number at 13,000. The
+  manifesto gives no date; the government's milestone is this Parliament, taken as by 1 July 2029.
+deadline: "2029-07-01"
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Labour Party: Change, 2024 manifesto (PDF), pages 64-65"
+    url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=64
+  - title: "Labour Party: Change, 2024 manifesto (PDF), costings, page 129"
+    url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=129
+  - title: "Home Office: Police workforce, England and Wales: 31 March 2026 (22 Jul 2026)"
+    url: https://www.gov.uk/government/statistics/police-workforce-england-and-wales-31-march-2026/police-workforce-england-and-wales-31-march-2026
+  - title: "Home Office: Police funding for England and Wales 2015 to 2027 (19 Aug 2026)"
+    url: https://www.gov.uk/government/statistics/police-funding-for-england-and-wales-2015-to-2027/police-funding-for-england-and-wales-2015-to-2027
+  - title: "Home Office news: More detail announced on the Neighbourhood Policing Guarantee (10 Apr 2025)"
+    url: https://www.gov.uk/government/news/more-detail-announced-on-the-neighbourhood-policing-guarantee
+  - title: "HM Government: Plan for Change, milestones for mission-led government (5 Dec 2024)"
+    url: https://assets.publishing.service.gov.uk/media/6751af4719e0c816d18d1df3/Plan_for_Change.pdf
+versions:
+  - version: 1
+    text: >-
+      Labour will introduce a new Neighbourhood Policing Guarantee, restoring patrols to our town centres by recruiting
+      thousands of new police officers, police and community support officers, and special constables.
+    recorded_on: "2024-06-13"
+    source_url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=64
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: Communities in England and Wales; police forces recruit or move officers, PCSOs and special constables into neighbourhood roles
+      how_much_bn_per_year: [0.36, 0.4, 0.44]
+      cost_note: >-
+        Year used: the year of highest cost, as Labour's costings give one annualised figure. Labour re-allocates £400m
+        a year from a Police Efficiency and Collaboration Programme to "13,000 additional neighbourhood police and
+        community PCSOs; and specialist domestic abuse advisers in 999 control rooms at peak times" (manifesto page
+        129); central figure only. No independent costing was found. The first-year Neighbourhood Policing Grant in
+        2025-26 was £200m (Home Office police funding statistics).
+        Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "Labour Party: Change, 2024 manifesto (PDF), costings, page 129"
+          url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=129
+        - title: "Home Office: Police funding for England and Wales 2015 to 2027"
+          url: https://www.gov.uk/government/statistics/police-funding-for-england-and-wales-2015-to-2027/police-funding-for-england-and-wales-2015-to-2027
+      when: Not dated in the manifesto; the government's milestone is 13,000 over this Parliament (taken as by 1 July 2029)
+      funded_by: >-
+        "These new recruits will be paid for by tackling waste through a new Police Efficiency and Collaboration
+        programme for England and Wales." (manifesto page 65)
+events:
+  - date: "2024-06-13"
+    type: promised
+    text: Labour manifesto pledges a Neighbourhood Policing Guarantee with thousands of new officers, PCSOs and specials
+  - date: "2024-10-30"
+    type: in_plan
+    text: >-
+      Autumn Budget 2024 says the police settlement puts the government on track to start delivering 13,000 more
+      neighbourhood officers and PCSOs
+    evidence_url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+  - date: "2024-12-05"
+    type: in_plan
+    text: >-
+      Plan for Change milestone: 13,000 additional officers, PCSOs and special constables in neighbourhood roles in
+      England and Wales
+    evidence_url: https://assets.publishing.service.gov.uk/media/6751af4719e0c816d18d1df3/Plan_for_Change.pdf
+  - date: "2025-04-01"
+    type: funded
+    text: A £200m Neighbourhood Policing Grant is introduced for 2025-26
+    evidence_url: https://www.gov.uk/government/statistics/police-funding-for-england-and-wales-2015-to-2027/police-funding-for-england-and-wales-2015-to-2027
+  - date: "2025-04-10"
+    type: in_plan
+    text: Government says 3,000 more neighbourhood officers and PCSOs will be in post within 12 months, and 13,000 by 2029
+    evidence_url: https://www.gov.uk/government/news/more-detail-announced-on-the-neighbourhood-policing-guarantee
+  - date: "2025-06-11"
+    type: funded
+    text: >-
+      Spending Review 2025 raises police spending power by an average 2.3% a year in real terms, citing the 13,000
+      commitment
+    evidence_url: https://assets.publishing.service.gov.uk/media/68627094354985706f111adc/E03349913_HMT_Spending_Review_June_2025_TEXT_CS_Accessible__002_.pdf
+  - date: "2026-07-22"
+    type: delivering
+    text: >-
+      Official statistics: 20,989 full-time-equivalent officers and PCSOs in neighbourhood roles at 31 March 2026, up
+      3,814 on the 31 March 2025 baseline
+    evidence_url: https://www.gov.uk/government/statistics/police-workforce-england-and-wales-31-march-2026/police-workforce-england-and-wales-31-march-2026
+  - date: "2029-07-01"
+    type: deadline
+    text: End of the Parliament (editorial date)
+replies: []
