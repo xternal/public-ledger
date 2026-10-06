@@ -122,6 +122,14 @@ describe("validation rejects", () => {
     expect(errorsOf(raw).some((e) => e.message.includes("low–high range"))).toBe(true);
   });
 
+  it("submission credit on a card that did not start from a submission", () => {
+    const raw = clone();
+    const card = bus(raw);
+    card.origin = "manual";
+    card.credit = "reader42";
+    expect(errorsOf(raw).some((e) => e.message.includes("origin: reader_submission"))).toBe(true);
+  });
+
   it("a card without sources", () => {
     const raw = clone();
     bus(raw).sources = [];

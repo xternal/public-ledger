@@ -1,0 +1,31 @@
+{
+  "name": "@ledger/server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./follow": "./src/follow/index.ts",
+    "./intake": "./src/intake/index.ts",
+    "./alerts": "./src/alerts/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
+    "@aws-sdk/client-sesv2": "^3.1146.0",
+    "@electric-sql/pglite": "^0.5.8",
+    "@ledger/schema": "workspace:*",
+    "altcha-lib": "^2.6.0",
+    "pg": "^8.23.1",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/pg": "^8.23.1",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  }
+}

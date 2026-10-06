@@ -19,3 +19,4 @@ data/raw/
 __pycache__/
 .pytest_cache/
 data/warehouse/
+.data/

@@ -94,6 +94,10 @@ export const PromiseFile = z
     lever_settings: Settings.optional(),
     preset_label: z.string().optional(),
     origin: z.enum(["manual", "reader_submission", "llm_intake"]).default("manual"),
+    /** Reference of the reader submission the card started from (PRD F8). */
+    submission_ref: z.string().regex(/^S-\d{4}-\d{2}-\d{4}$/).optional(),
+    /** Public handle of the submitter, only when they asked for credit. Never a real name unless they chose it. */
+    credit: z.string().min(1).max(40).optional(),
     editor_check_required: z.boolean().optional(),
     sources: z.array(Link).min(1, "a card needs at least one source"),
     versions: z.array(PromiseVersion).min(1),
@@ -122,6 +126,8 @@ export const PromiseFile = z
       if (EVIDENCE_REQUIRED.includes(e.type) && !e.evidence_url)
         ctx.addIssue({ code: "custom", path: ["events", i, "evidence_url"], message: `a "${e.type}" event needs an evidence_url` });
     });
+    if ((p.submission_ref || p.credit) && p.origin !== "reader_submission")
+      ctx.addIssue({ code: "custom", path: ["origin"], message: "submission_ref and credit belong to cards with origin: reader_submission" });
     if (p.lever_settings && !p.preset_label)
       ctx.addIssue({ code: "custom", path: ["preset_label"], message: "a card with lever_settings needs a preset_label" });
   });

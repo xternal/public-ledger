@@ -256,6 +256,11 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
       )}
 
       <div className="grid gap-2.5 text-label">
+        {f.origin === "reader_submission" && (
+          <p className="m-0 text-muted">
+            Started from a reader submission{f.credit ? `, sent by ${f.credit}` : ""}.
+          </p>
+        )}
         <span className="text-muted">Sources</span>
         {f.sources.map((s) => (
           <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer">
