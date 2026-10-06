@@ -1,0 +1,72 @@
+# Promise standard v0
+
+The rules that turn a sentence into a card. Published, versioned, applied to every actor in the same way, including the project's own founders.
+
+## 1. What counts as a promise
+
+A statement by a person or organisation with power or seeking it, that commits to a **future, checkable change**. In: "We will cap bus fares at £2 from January." Out: descriptions of the past, opinions, predictions about others' behaviour.
+
+Intake sources: manifestos, ministerial statements, speeches, debates (Parliament and TV), interviews, official social media accounts.
+
+## 2. The four parameters
+
+| Parameter | Question | Example (bus cap) |
+|---|---|---|
+| **Who** | Who benefits / pays? | Bus passengers in England |
+| **How much** | £ per year, range | £0.45–0.6bn |
+| **When** | Start date and/or deadline | From 1 Jan 2027 |
+| **From where** | Funding named at announcement? | £400m climate finance → loans; DESNZ savings; existing DfT money |
+
+Rules:
+- Use the actor's own figure if given, plus an independent range. If they gave none, use the best official costing (OBR, HMRC, department) or a documented T0 estimate.
+- "From where" is recorded exactly as stated. If nothing was stated: `funded_by: null` and the card shows **"Funding not stated"**. That is a fact about the promise, not a judgement.
+- A promise missing two or more of who / how much / when, and not inferable from official documents within 7 days, gets status **unscoreable**. Shown as such. It is a slogan.
+
+## 3. Status ladder
+
+```
+promised → in_plan → legislated → funded → delivering → delivered
+                                           ↘ failed
+           (any stage) ↘ quietly_dropped
+unscoreable (separate)
+```
+
+| Status | Evidence required |
+|---|---|
+| promised | Primary source of the statement (video/transcript/document), archived |
+| in_plan | Official plan, white paper, departmental plan naming it |
+| legislated | Bill passed / statutory instrument made (link to legislation.gov.uk) |
+| funded | Money allocated in a Budget, Spending Review or estimates line |
+| delivering | Started: scheme open, payments flowing, contracts signed |
+| delivered | Outcome met as worded (partial delivery stays `delivering` with a note) |
+| failed | Deadline passed and evidence shows it was not met, or officially abandoned |
+| quietly_dropped | Deadline passed, no official statement, no evidence of delivery. Auto-flagged by `deadline_missed`, confirmed by an editor after 30 days |
+
+## 4. Rewording
+
+If the actor restates the promise with different terms, add a `PromiseVersion` and a `reworded` event. The card shows a diff (e.g. "2023: £2 cap → 2025: £3 cap → 2026: £2 cap"). Rewording is not failure, but it is visible.
+
+## 5. Right of reply
+
+Any actor (or their office) may dispute a card's parameters. The reply is published next to the card within 5 working days with the editor's response. If the editor accepts, a new version of the parameters is recorded with the reason.
+
+## 6. Editorial process
+
+1. Intake (manual or LLM draft from transcript) → draft card in a pull request.
+2. Editor checks quote against primary source, fills parameters, cites costings.
+3. Second editor approves. Two-person rule for every merge.
+4. Publish. Nightly job appends `deadline_missed` where due.
+5. Quarterly audit: random 5% sample re-checked by an external reviewer.
+
+## 7. Conflicts of interest
+
+Editors declare party membership. Cards about the project's own founders' parties require an external reviewer's approval.
+
+## 8. Reader submissions
+
+1. Anyone can send a new promise or evidence for an existing card (`PRIVACY_AND_ACCOUNTS.md`).
+2. Automatic checks: URL reachable, archived snapshot, transcript exact-match where available, duplicate detection, LLM pre-fill.
+3. An editor triages within 3 working days: accept → draft card or new timeline event in a pull request; reject with a reason code (no primary source, not a promise, duplicate, out of scope).
+4. Same two-editor rule as any other card. Submission volume never changes a status; only evidence does.
+5. Submissions about the project's founders' own party are reviewed by an external reviewer, as in §7.
+6. Contributor credit only when requested.

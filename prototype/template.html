@@ -1,0 +1,721 @@
+<title>UK Public Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&display=swap">
+<style>
+/* Layout: a public data product, not a poster. White page, one typeface, numbers carry the weight.
+   Sticky bar → statement headline → key figures → flow + controls → result → you → promises → method. */
+:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --sunk:#F5F5F6; --line:#E7E7EA; --line-strong:#D4D4D8;
+  --ink:#0B0B0D; --muted:#61616B; --faint:#9A9AA3;
+  --accent:#2457F5;
+  --rec:#2457F5; --rec-soft:rgba(36,87,245,.16);
+  --spend:#52525B; --spend-soft:rgba(82,82,91,.13);
+  --debt:#F2600C; --debt-soft:rgba(242,96,12,.16);
+  --good:#15803D; --warn:#B45309; --bad:#DC2626; --idle:#8B8B94;
+  --focus:#2457F5;
+  --f-display:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-body:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-num:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#09090B; --surface:#09090B; --sunk:#141417; --line:#232328; --line-strong:#33333A;
+  --ink:#F4F4F5; --muted:#A1A1AA; --faint:#6B6B74;
+  --accent:#6F93FF;
+  --rec:#6F93FF; --rec-soft:rgba(111,147,255,.22);
+  --spend:#A1A1AA; --spend-soft:rgba(161,161,170,.16);
+  --debt:#FF7A2E; --debt-soft:rgba(255,122,46,.20);
+  --good:#4ADE80; --warn:#FBBF24; --bad:#F87171; --idle:#71717A; --focus:#6F93FF;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#09090B; --surface:#09090B; --sunk:#141417; --line:#232328; --line-strong:#33333A;
+  --ink:#F4F4F5; --muted:#A1A1AA; --faint:#6B6B74;
+  --accent:#6F93FF;
+  --rec:#6F93FF; --rec-soft:rgba(111,147,255,.22);
+  --spend:#A1A1AA; --spend-soft:rgba(161,161,170,.16);
+  --debt:#FF7A2E; --debt-soft:rgba(255,122,46,.20);
+  --good:#4ADE80; --warn:#FBBF24; --bad:#F87171; --idle:#71717A; --focus:#6F93FF;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:24px;padding-block:0 72px}
+@media (max-width:520px){.wrap{padding-inline:16px}}
+.num{font-variant-numeric:tabular-nums}
+a{color:var(--accent);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.015em}
+h1{font-size:clamp(30px,4.2vw,46px);font-weight:600;line-height:1.08;letter-spacing:-.03em;max-width:22ch}
+h2{font-size:22px;font-weight:600}
+h3{font-size:15px;font-weight:600;letter-spacing:-.005em}
+.eyebrow{font-size:13px;color:var(--muted);font-weight:500}
+.lede{color:var(--muted);max-width:60ch;margin:14px 0 0;font-size:17px;line-height:1.5}
+.lede b{color:var(--ink);font-weight:600;box-shadow:inset 0 -3px 0 var(--debt-soft)}
+
+/* Top bar */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:1200px;margin:0 auto;padding-inline:24px;height:56px;display:flex;align-items:center;gap:24px}
+@media (max-width:520px){.bar-in{padding-inline:16px;gap:12px}}
+.mark{font-weight:650;font-size:15px;color:var(--ink);text-decoration:none;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.mark i{width:14px;height:14px;border-radius:3px;background:linear-gradient(90deg,var(--rec) 0 55%,var(--debt) 55% 100%);display:inline-block}
+nav.sections{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+nav.sections::-webkit-scrollbar{display:none}
+nav.sections a{font-size:14px;font-weight:500;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:6px;white-space:nowrap}
+nav.sections a:hover{color:var(--ink);background:var(--sunk)}
+.ctx{font-size:13px;color:var(--muted);white-space:nowrap;border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+@media (max-width:760px){.ctx{display:none}}
+
+/* Hero */
+.hero{padding-block:48px 28px}
+.kicker{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--muted);margin:0 0 14px}
+.proto{font-size:12px;color:var(--warn);background:color-mix(in srgb,var(--warn) 10%,transparent);padding:2px 8px;border-radius:999px}
+
+/* Key figures */
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px;padding-block:24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kpi{display:grid;gap:4px;min-width:0;align-content:start}
+.kpi .v{font-size:28px;font-weight:600;letter-spacing:-.03em;line-height:1.1;white-space:nowrap}
+.kpi .s{font-size:12.5px;color:var(--muted)}
+.kpi.debt .v{color:var(--debt)}
+@media (max-width:980px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}.kpi .v{font-size:24px}}
+
+section{padding-top:64px;scroll-margin-top:64px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.sec-head p{margin:6px 0 0;color:var(--muted);max-width:66ch}
+
+/* Statement + sandbox */
+.pnl{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:40px;align-items:start}
+@media (max-width:1040px){.pnl{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.chart-panel{border:0;border-radius:0;padding:0;min-width:0;background:transparent}
+.toolbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.seg{display:inline-flex;background:var(--sunk);border-radius:8px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;color:var(--muted);font:500 13px var(--f-body);padding:6px 12px;border-radius:6px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--bg);color:var(--ink);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(0,0,0,.06)}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.scroll-x{overflow-x:auto}
+#sankey{display:block;width:100%;min-width:760px;height:auto}
+#sankey text{font-family:var(--f-body);font-size:13.5px;fill:var(--ink);font-weight:500}
+#sankey text.val{font-size:12.5px;fill:var(--muted);font-weight:400}
+#sankey text.mid{font-weight:600;font-size:16px;letter-spacing:-.01em}
+#sankey .delta-up{fill:var(--bad)} #sankey .delta-down{fill:var(--good)}
+#sankey path:hover{opacity:.75}
+.flowlist{display:none}
+@media (max-width:720px){.chart-panel .scroll-x{display:none}.flowlist{display:grid;gap:22px}}
+.fl-col{display:grid;gap:8px}
+.fl-col h3{font-size:13px;color:var(--muted);font-weight:500}
+.fl-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;font-size:14px}
+.fl-row .fl-v{font-weight:500;text-align:right}
+.fl-row .fl-v small{font-size:12px;margin-left:6px}
+.fl-track{grid-column:1 / -1;height:6px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.fl-track i{display:block;height:100%;border-radius:3px;background:var(--spend)}
+.fl-row.inc .fl-track i{background:var(--rec)}
+.fl-row.debt .fl-track i{background:repeating-linear-gradient(45deg,var(--debt) 0 3px,var(--debt-soft) 3px 6px)}
+.fl-total{display:flex;justify-content:space-between;font-weight:600;font-size:15px;padding-block:10px;border-block:1px solid var(--line)}
+.quality{font-size:13px;color:var(--muted);padding:14px 0 0;display:flex;gap:6px 14px;align-items:center;flex-wrap:wrap;line-height:1.4}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--muted);white-space:nowrap}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--idle);flex:none}
+.badge.sourced::before{background:var(--good)}
+.badge.approx::before{background:var(--warn)}
+.badge.training::before{background:var(--bad)}
+.badge.plug::before{background:transparent;border:1.5px dashed var(--bad);width:5px;height:5px}
+
+.sandbox{padding:20px;display:grid;gap:18px;background:var(--sunk);border:0;position:sticky;top:76px}
+@media (max-width:1040px){.sandbox{position:static}}
+.sandbox h2{font-size:18px}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line-strong);background:var(--bg);color:var(--ink);font:500 13px var(--f-body);padding:5px 10px;border-radius:999px;cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip.ghost{color:var(--muted);background:transparent}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.lever{display:grid;gap:6px}
+.lever .row{display:flex;justify-content:space-between;gap:8px;font-size:14px;align-items:baseline}
+.lever .row label{font-weight:500}
+.lever .row .num{color:var(--faint);font-size:12.5px}
+.lever .row .num .was{margin-left:6px}
+.lever .row .num b{color:var(--ink);font-weight:600;font-size:14px}
+.lever.changed .row .num b{color:var(--debt)}
+input[type=range]{width:100%;accent-color:var(--ink);height:18px;margin:0}
+.lever .who{font-size:12px;color:var(--faint);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.toggle{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500}
+.toggle input{width:18px;height:18px;accent-color:var(--debt)}
+select{font:400 14px var(--f-body);background:var(--bg);color:var(--ink);border:1px solid var(--line-strong);border-radius:8px;padding:8px 10px;width:100%}
+.divider{height:1px;background:var(--line-strong)}
+
+/* Result */
+.result{padding:28px 0 0;display:grid;gap:24px;margin-top:40px;border:0;border-top:1px solid var(--line);border-radius:0;background:transparent}
+.result-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.result-grid > div{min-width:0;display:grid;gap:4px;align-content:start}
+@media (max-width:760px){.result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.rv{font-size:26px;font-weight:600;letter-spacing:-.03em;white-space:nowrap;line-height:1.15}
+.rr{font-size:12.5px;color:var(--muted)}
+.rl{font-size:13px;color:var(--muted)}
+.up{color:var(--bad)} .down{color:var(--good)} .flat{color:var(--ink)}
+.changes{margin:0;padding:0;list-style:none;display:grid;font-size:14px}
+.changes li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-block:8px}
+.changes li:not(.empty) span:last-child{white-space:nowrap;font-weight:500}
+.fan-wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:start}
+@media (max-width:760px){.fan-wrap{grid-template-columns:minmax(0,1fr)}}
+#fan{width:100%;height:auto;display:block}
+#fan text{font-family:var(--f-num);font-size:11px;fill:var(--muted)}
+.empty{color:var(--muted);font-size:14px}
+
+/* Your share */
+.you{display:grid;grid-template-columns:300px minmax(0,1fr);gap:40px;align-items:start}
+@media (max-width:860px){.you{grid-template-columns:minmax(0,1fr)}}
+.you .panel{padding:20px}
+.you .panel + .panel{border:0;padding:0}
+.field{display:grid;gap:6px}
+.field label{font-size:13px;font-weight:500;color:var(--muted)}
+.field input{font:600 22px var(--f-num);letter-spacing:-.02em;padding:8px 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg);color:var(--ink);width:100%}
+.paid{display:grid;gap:8px;margin-top:16px;font-size:14px}
+.paid div{display:flex;justify-content:space-between}
+.paid .tot{border-top:1px solid var(--line);padding-top:8px;font-weight:600}
+.bars{display:grid;gap:10px}
+.bar{display:grid;grid-template-columns:180px minmax(0,1fr) 72px;gap:14px;align-items:center;font-size:14px}
+@media (max-width:520px){.bar{grid-template-columns:112px minmax(0,1fr) 60px;gap:10px;font-size:13px}}
+.bar .track{height:8px;background:var(--sunk);border-radius:4px;overflow:hidden}
+.bar .fill{height:100%;background:var(--spend);border-radius:4px}
+.bar.debt .fill{background:repeating-linear-gradient(45deg,var(--debt) 0 3px,var(--debt-soft) 3px 6px)}
+.bar .amt{text-align:right;font-weight:500}
+.note{font-size:12.5px;color:var(--muted);margin-top:12px}
+
+/* Promises */
+.promises{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:40px;align-items:start}
+@media (max-width:900px){.promises{grid-template-columns:minmax(0,1fr)}}
+.plist{display:grid;gap:0;border-top:1px solid var(--line)}
+.pcard{padding:16px 12px;display:grid;gap:8px;cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent}
+.pcard:hover{background:var(--sunk)}
+.pcard[aria-pressed="true"]{background:var(--sunk);box-shadow:inset 2px 0 0 var(--ink)}
+.pcard .who{font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pcard .txt{font-weight:550;font-size:16px;line-height:1.35;letter-spacing:-.01em}
+.pcard .meta{display:flex;gap:6px 14px;flex-wrap:wrap;align-items:center}
+.pill{font-size:12px;font-weight:550;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.st-funded,.st-delivering{background:color-mix(in srgb,var(--warn) 13%,transparent);color:var(--warn)}
+.st-delivered{background:color-mix(in srgb,var(--good) 13%,transparent);color:var(--good)}
+.st-failed,.st-quietly_dropped{background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)}
+.st-unscoreable,.st-promised{background:var(--sunk);color:var(--muted);box-shadow:inset 0 0 0 1px var(--line)}
+.st-in_plan,.st-legislated{background:color-mix(in srgb,var(--rec) 12%,transparent);color:var(--rec)}
+.tag{font-size:12.5px;color:var(--muted)}
+
+.detail{padding:24px;display:grid;gap:18px;position:sticky;top:76px}
+@media (max-width:900px){.detail{position:static}}
+.ladder{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px}
+.ladder span{font-size:11.5px;font-weight:500;padding:16px 0 0;color:var(--faint);position:relative;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ladder span::before{content:"";position:absolute;left:0;right:0;top:4px;height:4px;border-radius:2px;background:var(--line)}
+.ladder span.past{color:var(--muted)} .ladder span.past::before{background:var(--ink);opacity:.35}
+.ladder span.on{color:var(--ink);font-weight:600} .ladder span.on::before{background:var(--ink)}
+.ladder.single{grid-template-columns:1fr}
+.ladder.single span{white-space:normal;padding:10px 12px;background:var(--sunk);border-radius:8px;color:var(--ink)}
+.ladder.single span::before{display:none}
+@media (max-width:520px){.ladder span{font-size:10.5px}}
+.timeline{list-style:none;margin:0;padding:0;display:grid;position:relative}
+.timeline li{display:grid;grid-template-columns:76px 16px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;padding-bottom:14px;position:relative}
+.timeline li .d{font-size:12.5px;color:var(--muted);padding-top:1px}
+.timeline li .dot{width:9px;height:9px;border-radius:50%;margin-top:6px;background:var(--ink);position:relative;z-index:1;justify-self:center}
+.timeline li::before{content:"";position:absolute;left:93.5px;top:12px;bottom:-4px;width:1px;background:var(--line-strong)}
+.timeline li:last-child::before{display:none}
+.timeline .t-promised .dot{background:var(--rec)}
+.timeline .t-funded .dot,.timeline .t-in_plan .dot{background:var(--warn)}
+.timeline .t-delivered .dot{background:var(--good)}
+.timeline .t-reworded .dot{background:var(--bad)}
+.timeline .t-deadline .dot{background:var(--bg);box-shadow:inset 0 0 0 2px var(--ink)}
+.timeline .t-today .dot{background:var(--debt);border-radius:2px}
+.timeline .t-today{color:var(--debt);font-weight:600}
+.translate{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-block:16px;border-block:1px solid var(--line)}
+.translate > div{min-width:0;display:grid;gap:2px}
+@media (max-width:520px){.translate{grid-template-columns:minmax(0,1fr)}}
+.btn{border:0;background:var(--ink);color:var(--bg);font:550 14px var(--f-body);padding:9px 16px;border-radius:8px;cursor:pointer;justify-self:start}
+.btn:hover{opacity:.88}
+.btn.secondary{background:var(--bg);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-strong)}
+.linkbtn{background:none;border:0;padding:0;font:500 13px var(--f-body);color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.follow{display:grid;gap:10px;padding:14px;border-radius:10px;background:var(--sunk)}
+.follow .opts{display:flex;gap:6px;flex-wrap:wrap}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.credit{margin-top:48px;padding:0;border:0;border-radius:0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:500;color:var(--muted);font-size:12.5px}
+td.num,th.num{text-align:right}
+.stack{display:flex;height:8px;border-radius:4px;overflow:hidden;min-width:160px;background:var(--sunk);gap:2px}
+.stack i{display:block;height:100%}
+.tbl-wrap{padding-top:12px}
+
+.contrib{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:40px;align-items:start;margin-top:64px;padding-top:40px;border-top:1px solid var(--line)}
+@media (max-width:900px){.contrib{grid-template-columns:minmax(0,1fr)}}
+.contrib form{padding:24px;display:grid;gap:14px}
+.contrib .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+@media (max-width:520px){.contrib .two{grid-template-columns:minmax(0,1fr)}}
+.contrib input[type=text],.contrib input[type=url],.contrib input[type=email],.contrib textarea{font:400 14px var(--f-body);padding:9px 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg);color:var(--ink);width:100%}
+.contrib textarea{min-height:84px;resize:vertical}
+.contrib .check{display:flex;gap:8px;align-items:center;font-size:14px}
+.contrib ol{margin:16px 0 0;padding-left:20px;display:grid;gap:8px;font-size:14px;color:var(--muted)}
+.ok{padding:10px 12px;border-radius:8px;background:color-mix(in srgb,var(--good) 12%,transparent);color:var(--good);font-size:13px;font-weight:500}
+
+.method{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;font-size:14px;color:var(--muted)}
+.method h3{color:var(--ink);margin-bottom:8px}
+.method ul{margin:0;padding-left:18px;display:grid;gap:6px}
+@media (max-width:860px){.method{grid-template-columns:minmax(0,1fr);gap:28px}}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="topbar">
+  <div class="bar-in">
+    <a class="mark" href="#top"><i aria-hidden="true"></i>Public Ledger</a>
+    <nav class="sections" aria-label="Sections">
+      <a href="#pnl">Statement</a><a href="#scenario">Scenario</a><a href="#you">Your share</a><a href="#promises">Promises</a><a href="#contribute">Contribute</a><a href="#method">Method</a>
+    </nav>
+    <span class="ctx">United Kingdom, 2025-26</span>
+  </div>
+</header>
+
+<div class="wrap" id="top">
+  <div class="hero">
+    <p class="kicker"><span>Annual statement for 2025-26, based on the OBR forecast of March 2026</span><span class="proto">Prototype with sample data</span></p>
+    <h1>Where £1,368bn of public money went, and where it came from</h1>
+    <p class="lede">Taxes and other income covered £1,235bn. The other <b>£133bn was borrowed</b>, so every new promise either takes money from somewhere else or adds to that line.</p>
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+
+  <section id="pnl">
+    <div class="sec-head">
+      <div><h2>The statement</h2><p>Income on the left, spending on the right. The hatched band is borrowing. Move any lever and the flows redraw.</p></div>
+    </div>
+    <div class="pnl">
+      <div class="panel chart-panel">
+        <div class="toolbar">
+          <div class="seg" role="group" aria-label="Units">
+            <button type="button" id="u-bn" aria-pressed="true">£ billion</button>
+            <button type="button" id="u-hh" aria-pressed="false">Per household</button>
+            <button type="button" id="u-p" aria-pressed="false">Pence per £1</button>
+          </div>
+          <div class="legend"><span><i style="background:var(--rec)"></i>Income</span><span><i style="background:var(--debt)"></i>Borrowing &amp; interest</span><span><i style="background:var(--spend)"></i>Spending</span></div>
+        </div>
+        <div class="flowlist" id="flowlist"></div>
+        <div class="scroll-x"><svg id="sankey" viewBox="0 0 1000 800" role="img" aria-label="Sankey chart of UK public income and spending"></svg></div>
+        <div class="quality"><span class="badge sourced">sourced</span>Totals, borrowing, debt interest: OBR March 2026. <span class="badge approx">approx</span>Tax and function splits scaled from HMT PESA 2024-25. <span class="badge plug">plug</span>"Other taxes", "Non-tax income" and "Other &amp; accounting" are residuals until the data pipeline replaces them. <button type="button" class="linkbtn" id="tbl-toggle" aria-expanded="false" aria-controls="tbl">Show as table</button></div>
+        <div class="tbl-wrap scroll-x" id="tbl" hidden></div>
+      </div>
+
+      <aside class="panel sandbox" aria-labelledby="sb-h">
+        <div><h2 id="sb-h">What if…</h2><div class="eyebrow" style="margin-top:2px">Move a lever or pick a proposal</div></div>
+        <div class="presets" id="presets"></div>
+        <div id="levers" style="display:grid;gap:14px"></div>
+        <div class="divider"></div>
+        <div class="lever">
+          <label class="toggle"><input type="checkbox" id="bus"> £2 bus fare cap, England</label>
+          <div class="who">Announced 22 Jul 2026. Cost £0.45–0.6bn a year.</div>
+          <label for="busfund" class="who" style="margin-top:4px">Paid for by</label>
+          <select id="busfund"></select>
+        </div>
+      </aside>
+    </div>
+
+    <div class="panel result" id="scenario">
+      <div class="sec-head" style="margin:0"><div><div class="eyebrow">Scenario vs baseline, year one</div><h2 id="res-h" style="margin-top:4px">No changes yet</h2></div><button type="button" class="chip ghost" id="reset">Reset all levers</button></div>
+      <div class="result-grid">
+        <div><div class="rl">Borrowing, per year</div><div class="rv" id="r-psnb">£0bn</div><div class="rr" id="r-psnb-r">range —</div></div>
+        <div><div class="rl">Per household, per year</div><div class="rv" id="r-hh">£0</div><div class="rr">28.6m households</div></div>
+        <div><div class="rl">Prices (CPI), one-off</div><div class="rv" id="r-cpi">0.0pp</div><div class="rr" id="r-cpi-r">range —</div><div class="rr"><span class="badge training">rule of thumb</span></div></div>
+        <div><div class="rl">GDP, year one</div><div class="rv" id="r-gdp">0.00%</div><div class="rr" id="r-gdp-r">range —</div><div class="rr"><span class="badge training">rule of thumb</span></div></div>
+      </div>
+      <div class="fan-wrap">
+        <div>
+          <div class="rl" style="margin-bottom:6px">Public debt, % of GDP. Dashed: baseline. Solid: scenario, with its low–high band.</div>
+          <svg id="fan" viewBox="0 0 520 220" role="img" aria-label="Debt to GDP projection"></svg>
+        </div>
+        <div>
+          <div class="rl" style="margin-bottom:6px">What moved</div>
+          <ul class="changes" id="changes"></ul>
+          <p class="note" id="mortgage"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="you">
+    <div class="sec-head"><div><h2>Your share of the bill</h2><p>Income tax and National Insurance on a salary, under the current rates or your scenario, split the way the state spends it.</p></div></div>
+    <div class="you">
+      <div class="panel">
+        <div class="field"><label for="salary">Annual salary, £</label><input id="salary" type="number" inputmode="numeric" min="0" step="1000" value="38000"></div>
+        <div class="paid" id="paid"></div>
+        <p class="note">Excludes VAT, council tax and other taxes you also pay. Rates: England, Wales and NI, 2025-26.</p>
+      </div>
+      <div class="panel">
+        <div class="bars" id="bars"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="promises">
+    <div class="sec-head"><div><h2>Promise ledger</h2><p>Every promise gets a card: what, who, how much, from where, and a timeline that ends in delivery or in silence.</p></div><span class="badge approx">Sample cards, editor check pending</span></div>
+    <div class="promises">
+      <div class="plist" id="plist" aria-label="Promises"></div>
+      <div class="panel detail" id="pdetail"></div>
+    </div>
+    <div class="panel credit">
+      <div class="sec-head" style="margin-bottom:8px"><div><h2>Track record</h2><p>How each actor's promises ended up.</p></div><span class="badge training">Illustrative numbers</span></div>
+      <div class="scroll-x"><table id="credit"></table></div>
+    </div>
+
+    <div class="contrib" id="contribute">
+      <div>
+        <h2>Seen a promise? Send it in.</h2>
+        <p class="lede" style="margin-top:6px">No account needed. Editors check every submission against the original source before it becomes a card.</p>
+        <ol>
+          <li>You send a link and, for video, the moment it was said.</li>
+          <li>We archive the source and match the exact words in the transcript.</li>
+          <li>Two editors fill in who, how much, when and from where.</li>
+          <li>The card goes live. You are credited if you ask to be.</li>
+        </ol>
+      </div>
+      <form class="panel" id="sub-form" novalidate>
+        <div class="field"><label for="sub-kind">What are you sending?</label>
+          <select id="sub-kind"><option value="new">A new promise</option><option value="evidence">Evidence for an existing card</option></select></div>
+        <div class="field" id="sub-card-row" hidden><label for="sub-card">Which card</label><select id="sub-card"></select></div>
+        <div class="field" id="sub-ev-row" hidden><label for="sub-ev">What changed</label>
+          <select id="sub-ev"><option>It was reworded</option><option>A plan or bill names it</option><option>It was funded in a Budget or Estimates</option><option>It started</option><option>It was delivered</option><option>It was dropped or failed</option></select></div>
+        <div class="field"><label for="sub-url">Link to the source</label><input type="url" id="sub-url" placeholder="https://… (video, transcript, article, Hansard)" required></div>
+        <div class="two">
+          <div class="field"><label for="sub-who">Who said it</label><input type="text" id="sub-who" placeholder="Name and role"></div>
+          <div class="field"><label for="sub-when">When</label><input type="text" id="sub-when" placeholder="Date, and time in video e.g. 12:40"></div>
+        </div>
+        <div class="field"><label for="sub-quote">Their words, as close as you can</label><textarea id="sub-quote" placeholder="We will…"></textarea></div>
+        <div class="field"><label for="sub-email">Email, if you want credit or an update (optional)</label><input type="email" id="sub-email" placeholder="you@example.com"></div>
+        <label class="check"><input type="checkbox" id="sub-credit"> Credit me by name on the card</label>
+        <div class="actions"><button type="submit" class="btn">Send to editors</button><span class="rl" id="sub-err"></span></div>
+        <div class="ok" id="sub-ok" hidden>Prototype: nothing was sent. In the product this goes to the editors' queue and you get a reference number.</div>
+      </form>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="sec-head"><div><h2>How the numbers work</h2></div></div>
+    <div class="method">
+      <div><h3>Ranges, not points</h3><ul><li>Every result shows low, central and high.</li><li>Tax levers use HMRC's static costings; behaviour is not modelled in v0.</li><li>GDP effects use spending multipliers of 0.4–1.0 and tax multipliers of 0.2–0.6.</li></ul></div>
+      <div><h3>Every number has a label</h3><ul><li><span class="badge sourced">sourced</span> taken from an official release, linked.</li><li><span class="badge approx">approx</span> derived or scaled; method shown.</li><li><span class="badge training">training</span> placeholder until the data pipeline replaces it.</li><li><span class="badge plug">plug</span> a residual that makes the statement balance; must be broken down before launch.</li></ul></div>
+      <div><h3>Sources</h3><ul id="sources"></ul></div>
+    </div>
+  </section>
+
+  <footer>Prototype for design handoff. Figures are for layout and interaction review; do not quote them until the ingestion pipeline and editor checks are in place.</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-sankey/0.12.3/d3-sankey.min.js"></script>
+<script>
+const PNL = /*__PNL__*/null;
+const LEV = /*__LEV__*/null;
+const PROM = /*__PROM__*/null;
+
+const M = PNL.macro;
+const TME0 = PNL.spending.reduce((a,s)=>a+s.bn,0);
+const REC0 = PNL.receipts.reduce((a,s)=>a+s.bn,0);
+const leverById = Object.fromEntries(LEV.levers.map(l=>[l.id,l]));
+const SLIDERS = ["bank_rate","income_tax_basic","nics_main","vat_standard","corp_tax","defence_gdp","health_change","state_pension_change"];
+const state = {unit:"bn", bus:false, busFund:"borrow", v:{}};
+SLIDERS.forEach(id=>state.v[id]=leverById[id].base);
+
+const fmtBn = x => (Math.abs(x)>=100? Math.round(x).toLocaleString("en-GB") : (Math.round(x*10)/10).toLocaleString("en-GB"));
+const sign = x => x>0.0001?"+":(x<-0.0001?"−":"");
+const money = x => "£"+Math.round(x).toLocaleString("en-GB");
+const signedBn = x => sign(x)+"£"+fmtBn(Math.abs(x))+"bn";
+function unitDelta(bn,total){
+  const s=bn>0?"+":"−", a=Math.abs(bn);
+  if(state.unit==="hh") return s+money(a*1e9/(M.households_m*1e6));
+  if(state.unit==="p") return s+(a/total*100).toFixed(2)+"p";
+  return s+"£"+fmtBn(a)+"bn";
+}
+function unitFmt(bn, total){
+  if(state.unit==="hh") return money(bn*1e9/(M.households_m*1e6));
+  if(state.unit==="p") return (bn/total*100).toFixed(1)+"p";
+  return "£"+fmtBn(bn)+"bn";
+}
+
+/* ---------- model: v0 arithmetic tier ---------- */
+function compute(){
+  const rec = Object.fromEntries(PNL.receipts.map(r=>[r.id,r.bn]));
+  const sp  = Object.fromEntries(PNL.spending.map(s=>[s.id,s.bn]));
+  const out = {changes:[], d:[0,0,0], dSpendNonInt:[0,0,0], dTax:[0,0,0], cpi:[0,0,0], rateY1:[0,0,0], rateY5:[0,0,0]};
+  for(const id of SLIDERS){
+    const L = leverById[id], d = state.v[id]-L.base;
+    if(Math.abs(d)<1e-9) continue;
+    const per = L.effect.per_unit_bn.y1;
+    const vals = per.map(p=>p*d);
+    const isTax = ["income_tax","nics","vat","corp_tax"].includes(L.effect.target);
+    if(isTax){
+      rec[L.effect.target]+=vals[1];
+      const dd = vals.map(v=>-v);
+      out.d = out.d.map((a,i)=>a+dd[i]); out.dTax = out.dTax.map((a,i)=>a+vals[i]);
+      if(L.effect.cpi_pp_per_unit) out.cpi = out.cpi.map((a,i)=>a+L.effect.cpi_pp_per_unit[i]*d);
+      out.changes.push([L.label+" "+(d>0?"+":"")+d+"pp", -vals[1]]);
+    } else {
+      sp[L.effect.target]+=vals[1];
+      out.d = out.d.map((a,i)=>a+vals[i]);
+      if(id==="bank_rate"){ out.rateY1=vals.slice(); out.rateY5=L.effect.per_unit_bn.y5.map(p=>p*d); }
+      else out.dSpendNonInt = out.dSpendNonInt.map((a,i)=>a+vals[i]);
+      const u = L.unit==="pct_gdp" ? (d>0?"+":"")+d.toFixed(1)+"pp of GDP" : L.unit==="pct" ? (d>0?"+":"")+d+"%" : (d>0?"+":"")+d.toFixed(2)+"pp";
+      out.changes.push([L.label+" "+u, vals[1]]);
+    }
+  }
+  if(state.bus){
+    const L=leverById.bus_cap_2, per=L.effect.per_unit_bn.y1;
+    sp.economic_affairs+=per[1];
+    out.d=out.d.map((a,i)=>a+per[i]); out.dSpendNonInt=out.dSpendNonInt.map((a,i)=>a+per[i]);
+    out.changes.push(["£2 bus fare cap", per[1]]);
+    const f=L.funding_options.find(o=>o.id===state.busFund);
+    if(f && f.offset_bn){
+      if(f.target==="fuel_duty"){ rec.fuel_duty+=f.offset_bn; out.dTax=out.dTax.map(a=>a+f.offset_bn); }
+      else { sp[f.target]-=f.offset_bn; out.dSpendNonInt=out.dSpendNonInt.map(a=>a-f.offset_bn); }
+      out.d=out.d.map(a=>a-f.offset_bn);
+      out.changes.push(["Funding: "+f.label.replace(/ \(.*\)/,""), -f.offset_bn]);
+    }
+  }
+  out.rec=rec; out.sp=sp;
+  out.REC=Object.values(rec).reduce((a,b)=>a+b,0);
+  out.TME=Object.values(sp).reduce((a,b)=>a+b,0);
+  out.B=out.TME-out.REC;
+  // GDP effect: + spending stimulus, − tax rises. low/high use multiplier ranges
+  const ms=LEV.macro_rules.spending_multiplier, mt=LEV.macro_rules.tax_multiplier;
+  const g=[0,1,2].map(i=>(ms[i]*out.dSpendNonInt[1] - mt[i]*out.dTax[1])/M.nominal_gdp_bn*100);
+  out.gdp=[Math.min(...g),g[1],Math.max(...g)];
+  out.drange=[Math.min(...out.d),out.d[1],Math.max(...out.d)];
+  out.cpi=[Math.min(...out.cpi),out.cpi[1],Math.max(...out.cpi)];
+  return out;
+}
+
+/* debt path: 2025-26 .. 2030-31; scenario starts 2026-27 */
+function debtPath(r, which){ // which: 0 low,1 central,2 high, -1 baseline (OBR PSND % GDP path, sourced)
+  const years=Object.keys(M.baseline_psnd_pct_gdp), base=Object.values(M.baseline_psnd_pct_gdp);
+  let extra=0, gdp=M.nominal_gdp_bn; const out=[{y:years[0],v:base[0]}];
+  for(let t=1;t<years.length;t++){
+    gdp*=1+M.baseline_nominal_growth_pct/100;
+    if(which>=0){
+      const k=Math.min(t-1,4)/4;
+      const rate=r.rateY1[which]+(r.rateY5[which]-r.rateY1[which])*k;
+      const nonRate=r.d[which]-r.rateY1[which];
+      extra+=nonRate+rate+extra*(state.v.bank_rate/100); // v0: extra debt costs Bank Rate; v1: effective gilt rate
+    }
+    out.push({y:years[t],v:base[t]+extra/gdp*100});
+  }
+  return out;
+}
+
+/* ---------- render ---------- */
+function renderKPIs(r){
+  const B=r.B, k=[
+    ["Income",`£${fmtBn(r.REC)}bn`,"taxes and other receipts"],
+    ["Spending",`£${fmtBn(r.TME)}bn`,"total managed expenditure"],
+    ["Borrowed",`£${fmtBn(B)}bn`,`${(B/r.TME*100).toFixed(1)}p of every £1 spent`,"debt"],
+    ["Debt",`£${(M.psnd_bn/1000).toFixed(1)}tn`,`${M.psnd_pct_gdp}% of GDP`],
+    ["Debt interest",`£${fmtBn(r.sp.debt_interest)}bn`,`${(r.sp.debt_interest/r.TME*100).toFixed(1)}p of every £1`,"debt"],
+    ["Bank Rate",`${state.v.bank_rate.toFixed(2)}%`,state.v.bank_rate===M.bank_rate_pct?"held 18 Sep 2026":"scenario value"]
+  ];
+  document.getElementById("kpis").innerHTML=k.map(([l,v,s,c])=>`<div class="kpi ${c||""}"><div class="eyebrow">${l}</div><div class="v">${v}</div><div class="s">${s}</div></div>`).join("");
+}
+
+function renderSankey(r){
+  const svg=d3.select("#sankey"); svg.selectAll("*").remove();
+  const W=1000,H=800;
+  const defs=svg.append("defs");
+  const pat=defs.append("pattern").attr("id","hatch").attr("width",7).attr("height",7).attr("patternUnits","userSpaceOnUse").attr("patternTransform","rotate(45)");
+  pat.append("rect").attr("width",7).attr("height",7).attr("style","fill:var(--debt-soft)");
+  pat.append("line").attr("x1",0).attr("y1",0).attr("x2",0).attr("y2",7).attr("style","stroke:var(--debt);stroke-width:2.2");
+  const rec=PNL.receipts.map(x=>({id:x.id,label:x.label,v:r.rec[x.id],base:x.bn,side:"L"})).sort((a,b)=>b.v-a.v);
+  const tail=rec.filter(x=>["other_taxes","non_tax"].includes(x.id)); const head=rec.filter(x=>!["other_taxes","non_tax"].includes(x.id));
+  const left=[...head,...tail,{id:"borrowing",label:"Borrowing",v:Math.max(r.B,0),base:PNL.borrowing_bn,side:"L",debt:true}];
+  const sp=PNL.spending.map(x=>({id:x.id,label:x.label,v:Math.max(r.sp[x.id],0),base:x.bn,side:"R",debt:x.id==="debt_interest"}));
+  const right=[...sp.filter(x=>x.id!=="accounting_adj").sort((a,b)=>b.v-a.v),sp.find(x=>x.id==="accounting_adj")];
+  const nodes=[...left,{id:"purse",label:"Public purse",side:"M"},...right];
+  const links=[...left.filter(n=>n.v>0).map(n=>({source:n.id,target:"purse",value:n.v,debt:!!n.debt})),...right.filter(n=>n.v>0).map(n=>({source:"purse",target:n.id,value:n.v,debt:!!n.debt}))];
+  const sk=d3.sankey().nodeId(d=>d.id).nodeWidth(8).nodePadding(12).nodeSort(null).extent([[190,20],[W-230,H-16]]);
+  const g=sk({nodes:nodes.map(d=>({...d})),links:links.map(d=>({...d}))});
+  svg.append("g").selectAll("path").data(g.links).join("path")
+    .attr("d",d3.sankeyLinkHorizontal()).attr("fill","none")
+    .attr("stroke-width",d=>Math.max(1,d.width))
+    .attr("style",d=>d.debt?(d.target.id==="purse"?"stroke:url(#hatch)":"stroke:var(--debt-soft)"):(d.target.id==="purse"?"stroke:var(--rec-soft)":"stroke:var(--spend-soft)"))
+    .append("title").text(d=>`${d.source.label||""} → ${d.target.label||""}: £${fmtBn(d.value)}bn`);
+  const total=r.TME;
+  const ng=svg.append("g").selectAll("g").data(g.nodes).join("g");
+  ng.append("rect").attr("x",d=>d.x0).attr("y",d=>d.y0).attr("width",d=>d.x1-d.x0).attr("height",d=>Math.max(1,d.y1-d.y0))
+    .attr("style",d=>d.side==="M"?"fill:var(--ink)":d.debt?"fill:var(--debt)":d.side==="L"?"fill:var(--rec)":"fill:var(--spend)");
+  ng.filter(d=>d.side!=="M").each(function(d){
+    const el=d3.select(this), L=d.side==="L", x=L?d.x0-8:d.x1+8, y=(d.y0+d.y1)/2, anchor=L?"end":"start";
+    const small=(d.y1-d.y0)<26;
+    const t=el.append("text").attr("x",x).attr("y",small?y+4:y-1).attr("text-anchor",anchor).text(d.label);
+    const delta=d.v-d.base;
+    const vt=small? t.append("tspan").attr("class","val").attr("style","font-family:var(--f-num);font-size:11.5px;fill:var(--muted)").text("  "+unitFmt(d.v,total))
+                  : el.append("text").attr("class","val").attr("x",x).attr("y",y+12).attr("text-anchor",anchor).text(unitFmt(d.v,total));
+    if(Math.abs(delta)>0.05){
+      const bad = d.side==="L" ? (d.id==="borrowing"? delta>0 : false) : delta>0;
+      vt.append("tspan").attr("class",bad?"delta-up":"delta-down").text("  "+unitDelta(delta,total));
+    }
+  });
+  const p=g.nodes.find(n=>n.id==="purse");
+  svg.append("text").attr("class","mid").attr("x",(p.x0+p.x1)/2).attr("y",p.y0-6).attr("text-anchor","middle").text("£"+fmtBn(total)+"bn");
+  const fmax=Math.max(...left.map(n=>n.v),...right.map(n=>n.v));
+  const flRow=(n,cls)=>{const d=n.v-n.base,bad=cls==="inc"?(n.id==="borrowing"&&d>0):d>0;return `<div class="fl-row ${cls} ${n.debt?"debt":""}"><span>${n.label}</span><span class="fl-v">${unitFmt(n.v,total)}${Math.abs(d)>0.05?`<small class="${bad?"up":"down"}">${unitDelta(d,total)}</small>`:""}</span><div class="fl-track"><i style="width:${(n.v/fmax*100).toFixed(1)}%"></i></div></div>`;};
+  document.getElementById("flowlist").innerHTML=`<div class="fl-col"><h3>Where it came from</h3>${left.map(n=>flRow(n,"inc")).join("")}</div><div class="fl-total"><span>Total spending</span><span>${unitFmt(total,total)}</span></div><div class="fl-col"><h3>Where it went</h3>${right.map(n=>flRow(n,"sp")).join("")}</div>`;
+  const q=(arr,id)=>((arr.find(x=>x.id===id)||{}).quality||"");
+  const row=(n,kind)=>`<tr><td>${kind}</td><td>${n.label}</td><td class="num">${unitFmt(n.v,total)}</td><td class="num">${Math.abs(n.v-n.base)>0.05?unitDelta(n.v-n.base,total):""}</td><td>${n.id==="borrowing"?"derived":q(kind==="Income"?PNL.receipts:PNL.spending,n.id)}</td></tr>`;
+  document.getElementById("tbl").innerHTML=`<table><thead><tr><th>Side</th><th>Line</th><th class="num">Value</th><th class="num">Change</th><th>Quality</th></tr></thead><tbody>${left.map(n=>row(n,n.id==="borrowing"?"Borrowing":"Income")).join("")}${right.map(n=>row(n,"Spending")).join("")}</tbody></table>`;
+}
+
+function renderFan(r){
+  const svg=d3.select("#fan"); svg.selectAll("*").remove();
+  const W=520,H=220,m={l:36,r:58,t:12,b:24};
+  const base=debtPath(r,-1), lo=debtPath(r,0), c=debtPath(r,1), hi=debtPath(r,2);
+  const all=[...base,...lo,...hi].map(d=>d.v);
+  const y=d3.scaleLinear().domain([Math.floor(Math.min(...all)/2)*2-1,Math.ceil(Math.max(...all)/2)*2+1]).range([H-m.b,m.t]);
+  const x=d3.scalePoint().domain(base.map(d=>d.y)).range([m.l,W-m.r]);
+  y.ticks(5).forEach(t=>{svg.append("line").attr("x1",m.l).attr("x2",W-m.r).attr("y1",y(t)).attr("y2",y(t)).attr("style","stroke:var(--line)");svg.append("text").attr("x",m.l-6).attr("y",y(t)+4).attr("text-anchor","end").text(t+"%");});
+  base.forEach((d,i)=>{ if(i%1===0) svg.append("text").attr("x",x(d.y)).attr("y",H-6).attr("text-anchor","middle").text(d.y.slice(2).replace("-","/")); });
+  const area=d3.area().x((d,i)=>x(lo[i].y)).y0((d,i)=>y(Math.min(lo[i].v,hi[i].v))).y1((d,i)=>y(Math.max(lo[i].v,hi[i].v)));
+  svg.append("path").attr("d",area(lo)).attr("style","fill:var(--debt-soft)");
+  const line=d3.line().x(d=>x(d.y)).y(d=>y(d.v));
+  svg.append("path").attr("d",line(base)).attr("style","fill:none;stroke:var(--muted);stroke-width:1.5;stroke-dasharray:4 3");
+  svg.append("path").attr("d",line(c)).attr("style","fill:none;stroke:var(--debt);stroke-width:2.2");
+  const lb=base[base.length-1], lc=c[c.length-1];
+  svg.append("circle").attr("cx",x(lc.y)).attr("cy",y(lc.v)).attr("r",3.5).attr("style","fill:var(--debt)");
+  const same=Math.abs(lb.v-lc.v)<0.05;
+  svg.append("text").attr("x",x(lc.y)+7).attr("y",y(lc.v)+(same?4:(lc.v>lb.v?-2:10))).attr("style","fill:var(--debt);font-weight:600").text(lc.v.toFixed(1)+"%");
+  if(!same) svg.append("text").attr("x",x(lb.y)+7).attr("y",y(lb.v)+(lc.v>lb.v?12:-2)).text("base "+lb.v.toFixed(1)+"%");
+}
+
+function renderResult(r){
+  const d=r.drange, any=r.changes.length>0;
+  document.getElementById("res-h").textContent= !any?"No changes yet": d[1]>0.05?`Borrowing up £${fmtBn(d[1])}bn a year`: d[1]<-0.05?`Borrowing down £${fmtBn(-d[1])}bn a year`:"Borrowing unchanged";
+  const ps=document.getElementById("r-psnb"); ps.textContent=signedBn(d[1]).replace(/^£/,"£"); ps.className="rv "+(d[1]>0.05?"up":d[1]<-0.05?"down":"flat");
+  document.getElementById("r-psnb-r").textContent=any?`range ${signedBn(d[0])} to ${signedBn(d[2])}`:"range —";
+  const hh=d[1]*1e9/(M.households_m*1e6); const he=document.getElementById("r-hh"); he.textContent=sign(hh)+money(Math.abs(hh)); he.className="rv "+(hh>0.5?"up":hh<-0.5?"down":"flat");
+  document.getElementById("r-cpi").textContent=(r.cpi[1]>=0?"+":"−")+Math.abs(r.cpi[1]).toFixed(1)+"pp";
+  document.getElementById("r-cpi-r").textContent=r.cpi[1]?`range ${r.cpi[0].toFixed(1)} to ${r.cpi[2].toFixed(1)}pp`:"range —";
+  document.getElementById("r-gdp").textContent=(r.gdp[1]>=0?"+":"−")+Math.abs(r.gdp[1]).toFixed(2)+"%";
+  document.getElementById("r-gdp-r").textContent=any?`range ${r.gdp[0].toFixed(2)} to ${r.gdp[2].toFixed(2)}%`:"range —";
+  document.getElementById("changes").innerHTML= any? r.changes.map(([l,v])=>`<li><span>${l}</span><span class="${v>0.001?"up":v<-0.001?"down":""}">${signedBn(v)} borrowing</span></li>`).join("") : `<li class="empty">Move a lever or pick a preset. Results show a low–high range.</li>`;
+  const br=state.v.bank_rate, b0=leverById.bank_rate.base, mEl=document.getElementById("mortgage");
+  if(Math.abs(br-b0)>1e-9){
+    const pay=(rate)=>{const i=(rate+1.0)/100/12,n=300;return 200000*i/(1-Math.pow(1+i,-n));};
+    const dm=pay(br)-pay(b0);
+    mEl.textContent=`A £200,000 repayment mortgage over 25 years on a tracker at Bank Rate + 1pp: ${dm>0?"+":"−"}${money(Math.abs(dm))} a month. Most UK borrowers are on fixed rates and feel this when they remortgage. Bank Rate is set by the Bank of England, not the government.`;
+  } else mEl.textContent="";
+}
+
+function taxOn(salary, basic, ni){
+  let pa=12570; if(salary>100000) pa=Math.max(0,pa-(salary-100000)/2);
+  const t=Math.max(0,salary-pa); const b1=37700, b2=125140-pa;
+  const it= Math.min(t,b1)*basic/100 + Math.max(0,Math.min(t,b2)-b1)*0.40 + Math.max(0,t-Math.max(b2,b1))*0.45;
+  const n= Math.max(0,Math.min(salary,50270)-12570)*ni/100 + Math.max(0,salary-50270)*0.02;
+  return {it,ni:n};
+}
+function renderYou(r){
+  const s=Math.max(0,+document.getElementById("salary").value||0);
+  const cur=taxOn(s,20,8), sc=taxOn(s,state.v.income_tax_basic,state.v.nics_main);
+  const T=sc.it+sc.ni, T0=cur.it+cur.ni, diff=T-T0;
+  document.getElementById("paid").innerHTML=`<div><span>Income tax</span><span class="num">${money(sc.it)}</span></div><div><span>National Insurance</span><span class="num">${money(sc.ni)}</span></div><div class="tot"><span>You pay a year</span><span class="num">${money(T)}</span></div>${Math.abs(diff)>0.5?`<div><span>vs today</span><span class="num ${diff>0?"up":"down"}">${diff>0?"+":"−"}${money(Math.abs(diff))}</span></div>`:""}`;
+  const rows=PNL.spending.map(x=>({l:x.label,v:T*r.sp[x.id]/r.TME})).sort((a,b)=>b.v-a.v);
+  const borrowed=T*r.B/r.REC; const max=Math.max(...rows.map(x=>x.v),borrowed);
+  document.getElementById("bars").innerHTML=rows.map(x=>`<div class="bar"><span>${x.l}</span><div class="track"><div class="fill" style="width:${(x.v/max*100).toFixed(1)}%"></div></div><span class="amt">${money(x.v)}</span></div>`).join("")+
+   `<div class="bar debt" style="margin-top:6px"><span><b>Borrowed on top, in your name</b></span><div class="track"><div class="fill" style="width:${(borrowed/max*100).toFixed(1)}%"></div></div><span class="amt">${money(borrowed)}</span></div>`;
+}
+
+/* promises */
+const LADDER=["promised","in_plan","legislated","funded","delivering","delivered"];
+const STATUS_LABEL={promised:"Promised",in_plan:"In plan",legislated:"Legislated",funded:"Funded",delivering:"Delivering",delivered:"Delivered",failed:"Failed",quietly_dropped:"Quietly dropped",unscoreable:"Unscoreable"};
+let selected=PROM.promises[0].id, followOpen=false;
+const TODAY=new Date().toISOString().slice(0,10);
+function costText(p){ const c=p.parameters&&p.parameters.how_much_bn_per_year; if(c) return `£${c[0]}–${c[2]}bn/yr`; if(p.parameters&&p.parameters.note) return "cost pending editor"; return "cost not stated"; }
+function renderPromises(){
+  document.getElementById("plist").innerHTML=PROM.promises.map(p=>`<button type="button" class="panel pcard" aria-pressed="${p.id===selected}" data-id="${p.id}">
+    <div class="who"><span>${p.actor.name}, ${p.actor.role}</span><span>${new Date(p.made_on).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})}</span></div>
+    <div class="txt">“${p.text}”</div>
+    <div class="meta"><span class="pill st-${p.status}">${STATUS_LABEL[p.status]}</span><span class="tag">${costText(p)}</span>${p.deadline?`<span class="tag">due ${p.deadline.slice(0,7)}</span>`:""}${p.editor_check_required?`<span class="tag">needs editor check</span>`:""}</div></button>`).join("");
+  document.querySelectorAll(".pcard").forEach(b=>b.addEventListener("click",()=>{selected=b.dataset.id;followOpen=false;renderPromises();}));
+  const p=PROM.promises.find(x=>x.id===selected), today=TODAY;
+  const idx=LADDER.indexOf(p.status);
+  const ladder= p.status==="unscoreable" ? `<div class="ladder single"><span class="on">Unscoreable: no who, how much, when or from where. That makes it a slogan.</span></div>` :
+    `<div class="ladder">${LADDER.map((s,i)=>`<span class="${i===idx?"on":i<idx?"past":""}">${STATUS_LABEL[s]}</span>`).join("")}</div>`;
+  const tl=[...p.timeline]; tl.push({date:today,event:"Today",type:"today"}); tl.sort((a,b)=>a.date.localeCompare(b.date));
+  const c=p.parameters&&p.parameters.how_much_bn_per_year;
+  const tr= c? `<div class="translate"><div><div class="rl">Per year</div><div class="rv">£${c[1]}bn</div><div class="rr">range £${c[0]}–${c[2]}bn</div></div><div><div class="rl">Per household</div><div class="rv">${money(c[1]*1e9/(M.households_m*1e6))}</div><div class="rr">a year</div></div><div><div class="rl">Share of spending</div><div class="rv">${(c[1]/TME0*100).toFixed(2)}%</div><div class="rr">of £${fmtBn(TME0)}bn</div></div></div>` : "";
+  document.getElementById("pdetail").innerHTML=`
+    <div><div class="eyebrow">${p.actor.role}${p.actor.party?", "+p.actor.party:""}</div><h3 style="font-size:19px;margin-top:4px">${p.actor.name}: “${p.text}”</h3></div>
+    ${ladder}
+    ${tr}
+    ${p.parameters&&p.parameters.funded_by?`<div><div class="rl">Paid for by</div><div>${p.parameters.funded_by}</div></div>`:""}
+    <ol class="timeline">${tl.map(e=>`<li class="t-${e.type}"><span class="d">${e.type==="today"?"today":e.date.slice(0,7)}</span><span class="dot"></span><span>${e.event}</span></li>`).join("")}</ol>
+    ${p.status_note?`<p class="note" style="margin:0">${p.status_note}</p>`:""}
+    <div class="actions">
+      ${p.lever_id==="bus_cap_2"?`<button type="button" class="btn" id="run">Run in the sandbox</button>`:""}
+      <button type="button" class="btn secondary" id="follow" aria-expanded="${followOpen}">Follow this promise</button>
+      <button type="button" class="linkbtn" id="evidence">Add evidence</button>
+    </div>
+    <div class="follow" id="follow-panel" ${followOpen?"":"hidden"}>
+      <div class="rl">Get an alert when the status changes or the deadline passes. No account needed.</div>
+      <div class="opts"><button type="button" class="chip">RSS feed</button><button type="button" class="chip">Email alerts</button><button type="button" class="chip">Telegram bot</button></div>
+      <div class="rl">Prototype: alerts are not wired up. We never show who follows what.</div>
+    </div>
+    ${p.sources.length?`<div class="rl" style="display:grid;gap:4px"><span>Sources</span>${p.sources.map(s=>`<a href="${s.url}" target="_blank" rel="noopener">${s.title}</a>`).join("")}</div>`:`<div class="rl">Sources pending editor check.</div>`}`;
+  const run=document.getElementById("run"); if(run) run.addEventListener("click",()=>{applyPreset("bus");location.hash="#scenario";});
+  document.getElementById("follow").addEventListener("click",()=>{followOpen=!followOpen;renderPromises();});
+  document.getElementById("evidence").addEventListener("click",()=>{const k=document.getElementById("sub-kind");k.value="evidence";document.getElementById("sub-card").value=p.id;syncForm();location.hash="#contribute";document.getElementById("sub-url").focus();});
+}
+function renderCredit(){
+  const rows=[["Party A",58,14,19,6,13,6],["Party B",41,9,12,4,10,6],["Party C",23,2,6,1,4,10]];
+  const cols=[["Delivered","var(--good)"],["Delivering","var(--warn)"],["Failed","var(--bad)"],["Quietly dropped","var(--debt)"],["Unscoreable","var(--idle)"]];
+  document.getElementById("credit").innerHTML=`<thead><tr><th>Actor</th><th class="num">Promises</th>${cols.map(c=>`<th class="num">${c[0]}</th>`).join("")}<th>Mix</th></tr></thead><tbody>`+
+    rows.map(r=>`<tr><td>${r[0]}</td><td class="num">${r[1]}</td>${r.slice(2).map(v=>`<td class="num">${v}</td>`).join("")}<td><div class="stack">${r.slice(2).map((v,i)=>`<i style="width:${v/r[1]*100}%;background:${cols[i][1]}"></i>`).join("")}</div></td></tr>`).join("")+"</tbody>";
+}
+
+/* controls */
+function leverValueText(L,v){
+  if(L.unit==="pct_gdp") return v.toFixed(1)+"%";
+  if(L.unit==="pct") return (v>0?"+":"")+v+"%";
+  if(L.id==="bank_rate") return v.toFixed(2)+"%";
+  return v+"%";
+}
+function buildLevers(){
+  document.getElementById("levers").innerHTML=SLIDERS.map(id=>{const L=leverById[id];return `<div class="lever" id="lv-${id}"><div class="row"><label for="in-${id}">${L.label}</label><span class="num"><b id="val-${id}">${leverValueText(L,state.v[id])}</b> <span class="was">now ${leverValueText(L,L.base)}</span></span></div><input type="range" id="in-${id}" min="${L.min}" max="${L.max}" step="${L.step}" value="${state.v[id]}" aria-describedby="who-${id}"><div class="who" id="who-${id}">${L.owner?`<span>${L.owner}</span>`:""}<span class="badge ${L.quality==="training"?"training":L.quality==="sourced"?"sourced":"approx"}">${L.quality}</span></div></div>`}).join("");
+  SLIDERS.forEach(id=>document.getElementById("in-"+id).addEventListener("input",e=>{state.v[id]=+e.target.value;clearPreset();update();}));
+  const sel=document.getElementById("busfund");
+  sel.innerHTML=leverById.bus_cap_2.funding_options.map(o=>`<option value="${o.id}">${o.label}</option>`).join("");
+  sel.addEventListener("change",e=>{state.busFund=e.target.value;update();});
+  document.getElementById("bus").addEventListener("change",e=>{state.bus=e.target.checked;update();});
+  const presets=[["bus","£2 bus cap, as announced"],["nato","Defence to 3.5% of GDP"],["rates","Bank Rate back to 5.25%"],["vat","VAT to 22% for the NHS"]];
+  document.getElementById("presets").innerHTML=presets.map(([k,l])=>`<button type="button" class="chip" data-p="${k}" aria-pressed="false">${l}</button>`).join("");
+  document.querySelectorAll("[data-p]").forEach(b=>b.addEventListener("click",()=>applyPreset(b.dataset.p)));
+  document.getElementById("reset").addEventListener("click",()=>applyPreset("reset"));
+  [["u-bn","bn"],["u-hh","hh"],["u-p","p"]].forEach(([id,u])=>document.getElementById(id).addEventListener("click",()=>{state.unit=u;["u-bn","u-hh","u-p"].forEach(x=>document.getElementById(x).setAttribute("aria-pressed",x===id));update();}));
+  document.getElementById("salary").addEventListener("input",update);
+}
+let activePreset=null;
+function applyPreset(k){
+  activePreset=(k==="reset")?null:k;
+  SLIDERS.forEach(id=>state.v[id]=leverById[id].base); state.bus=false; state.busFund="borrow";
+  if(k==="bus"){state.bus=true;state.busFund="climate_loans";}
+  if(k==="nato"){state.v.defence_gdp=3.5;}
+  if(k==="rates"){state.v.bank_rate=5.25;}
+  if(k==="vat"){state.v.vat_standard=22;state.v.health_change=7;}
+  SLIDERS.forEach(id=>document.getElementById("in-"+id).value=state.v[id]);
+  document.getElementById("bus").checked=state.bus; document.getElementById("busfund").value=state.busFund;
+  update();
+  document.querySelectorAll("[data-p]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.p===activePreset));
+}
+function clearPreset(){activePreset=null;document.querySelectorAll("[data-p]").forEach(b=>b.setAttribute("aria-pressed","false"));}
+function update(){
+  SLIDERS.forEach(id=>{const L=leverById[id];document.getElementById("val-"+id).textContent=leverValueText(L,state.v[id]);document.getElementById("lv-"+id).classList.toggle("changed",Math.abs(state.v[id]-L.base)>1e-9);});
+  const r=compute(); renderKPIs(r); renderSankey(r); renderResult(r); renderFan(r); renderYou(r);
+}
+document.getElementById("sources").innerHTML=[...PNL.meta.sources,PNL.macro.baseline_source,...LEV.meta.sources].map(s=>`<li><a href="${s.url}" target="_blank" rel="noopener">${s.title}</a></li>`).join("");
+function syncForm(){const ev=document.getElementById("sub-kind").value==="evidence";document.getElementById("sub-card-row").hidden=!ev;document.getElementById("sub-ev-row").hidden=!ev;}
+document.getElementById("sub-card").innerHTML=PROM.promises.map(p=>`<option value="${p.id}">${p.actor.name}: ${p.text.slice(0,60)}${p.text.length>60?"…":""}</option>`).join("");
+document.getElementById("sub-kind").addEventListener("change",syncForm);
+document.getElementById("sub-form").addEventListener("submit",e=>{e.preventDefault();const u=document.getElementById("sub-url"),err=document.getElementById("sub-err");
+  if(!u.value||!/^https?:\/\//.test(u.value)){err.textContent="Add a link that starts with https://";u.focus();return;}
+  err.textContent="";document.getElementById("sub-ok").hidden=false;});
+document.getElementById("tbl-toggle").addEventListener("click",e=>{const t=document.getElementById("tbl"),open=t.hidden;t.hidden=!open;e.target.setAttribute("aria-expanded",open);e.target.textContent=open?"Hide table":"Show as table";});
+buildLevers(); renderPromises(); renderCredit(); update();
+</script>

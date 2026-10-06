@@ -1,0 +1,226 @@
+{
+ "meta": {
+  "country": "UK",
+  "fiscal_year": "2025-26",
+  "vintage": "OBR EFO March 2026 totals; function split scaled from HMT PESA (Public spending statistics May 2026, TES 2024-25)",
+  "quality": "illustrative",
+  "note": "Totals (receipts 1,235; TME 1,368; PSNB 133; debt interest 110) from OBR March 2026. Tax-by-tax split and function split are approximations to be replaced by the ingestion pipeline.",
+  "sources": [
+   {
+    "id": "obr_efo_2026_03",
+    "title": "OBR Economic and fiscal outlook, March 2026",
+    "url": "https://obr.uk/efo/economic-and-fiscal-outlook-march-2026/"
+   },
+   {
+    "id": "obr_guide",
+    "title": "OBR brief guide to the public finances",
+    "url": "https://obr.uk/forecasts-in-depth/brief-guides-and-explainers/public-finances/"
+   },
+   {
+    "id": "pesa_2026_05",
+    "title": "HMT Public spending statistics, May 2026",
+    "url": "https://www.gov.uk/government/statistics/public-spending-statistics-release-may-2026/public-spending-statistics-may-2026"
+   }
+  ],
+  "plugs": "other_taxes and non_tax split a £246.5bn residual 50/50; accounting_adj is the residual between TME 2025-26 and functions scaled from TES 2024-25. Both are placeholders — replace in ETL M1."
+ },
+ "macro": {
+  "nominal_gdp_bn": 3075,
+  "psnd_bn": 2900,
+  "psnd_pct_gdp": 94.3,
+  "bank_rate_pct": 3.75,
+  "bank_rate_date": "2026-09-18",
+  "households_m": 28.6,
+  "income_taxpayers_m": 38.0,
+  "population_m": 69.3,
+  "baseline_psnb_bn": {
+   "2025-26": 132.7,
+   "2026-27": 115.5,
+   "2027-28": 96.5,
+   "2028-29": 86.0,
+   "2029-30": 63.4,
+   "2030-31": 59.0
+  },
+  "baseline_nominal_growth_pct": 3.6,
+  "baseline_psnd_pct_gdp": {
+   "2025-26": 94.3,
+   "2026-27": 94.8,
+   "2027-28": 95.7,
+   "2028-29": 96.3,
+   "2029-30": 96.1,
+   "2030-31": 95.1
+  },
+  "baseline_source": {
+   "title": "House of Commons Library CBP-10495 (OBR March 2026 forecast)",
+   "url": "https://researchbriefings.files.parliament.uk/documents/CBP-10495/CBP-10495.pdf",
+   "quality": "sourced"
+  },
+  "quality_notes": {
+   "households_m": "training",
+   "income_taxpayers_m": "training",
+   "population_m": "training",
+   "baseline_nominal_growth_pct": "approx — used only to convert scenario debt to % GDP",
+   "nominal_gdp_bn": "approx — derived from PSND £2.9tn / 94.3%"
+  }
+ },
+ "receipts": [
+  {
+   "id": "income_tax",
+   "label": "Income tax",
+   "bn": 330,
+   "quality": "approx-sum-checked"
+  },
+  {
+   "id": "nics",
+   "label": "National Insurance",
+   "bn": 205,
+   "quality": "approx-sum-checked"
+  },
+  {
+   "id": "vat",
+   "label": "VAT",
+   "bn": 181,
+   "quality": "approx-sum-checked"
+  },
+  {
+   "id": "corp_tax",
+   "label": "Corporation tax",
+   "bn": 95,
+   "quality": "approx"
+  },
+  {
+   "id": "council_tax",
+   "label": "Council tax",
+   "bn": 52,
+   "quality": "approx"
+  },
+  {
+   "id": "business_rates",
+   "label": "Business rates",
+   "bn": 35,
+   "quality": "approx"
+  },
+  {
+   "id": "fuel_duty",
+   "label": "Fuel duty",
+   "bn": 24.5,
+   "quality": "approx"
+  },
+  {
+   "id": "stamp_duty",
+   "label": "Stamp duties",
+   "bn": 20,
+   "quality": "approx"
+  },
+  {
+   "id": "cgt",
+   "label": "Capital gains tax",
+   "bn": 17,
+   "quality": "approx"
+  },
+  {
+   "id": "alcohol_tobacco",
+   "label": "Alcohol & tobacco",
+   "bn": 20,
+   "quality": "approx"
+  },
+  {
+   "id": "iht",
+   "label": "Inheritance tax",
+   "bn": 9,
+   "quality": "approx"
+  },
+  {
+   "id": "other_taxes",
+   "label": "Other taxes",
+   "bn": 124,
+   "quality": "plug"
+  },
+  {
+   "id": "non_tax",
+   "label": "Non-tax income",
+   "bn": 122.5,
+   "quality": "plug"
+  }
+ ],
+ "borrowing_bn": 133.0,
+ "spending": [
+  {
+   "id": "social_protection",
+   "label": "Social protection",
+   "desc": "Pensions, benefits, social care",
+   "bn": 410.4,
+   "quality": "approx-scaled"
+  },
+  {
+   "id": "health",
+   "label": "Health",
+   "desc": "NHS and public health",
+   "bn": 256.9,
+   "quality": "approx-scaled"
+  },
+  {
+   "id": "education",
+   "label": "Education",
+   "desc": "Schools, colleges, universities",
+   "bn": 130.0,
+   "quality": "approx-scaled"
+  },
+  {
+   "id": "debt_interest",
+   "label": "Debt interest",
+   "desc": "Interest on £2.9tn of public debt",
+   "bn": 110.0,
+   "quality": "sourced"
+  },
+  {
+   "id": "economic_affairs",
+   "label": "Transport & economy",
+   "desc": "Roads, rail, buses, business support, R&D",
+   "bn": 93.1,
+   "quality": "approx-scaled"
+  },
+  {
+   "id": "defence",
+   "label": "Defence",
+   "desc": "Armed forces and equipment",
+   "bn": 67.5,
+   "quality": "approx-scaled"
+  },
+  {
+   "id": "public_order",
+   "label": "Police, courts, prisons",
+   "desc": "Public order and safety",
+   "bn": 54.8,
+   "quality": "approx-scaled"
+  },
+  {
+   "id": "general_services",
+   "label": "Running government",
+   "desc": "Tax collection, councils' admin, international",
+   "bn": 59.1,
+   "quality": "approx-scaled"
+  },
+  {
+   "id": "housing_env",
+   "label": "Housing & environment",
+   "desc": "Housing, local amenities, waste, flood defence",
+   "bn": 41.4,
+   "quality": "approx-scaled"
+  },
+  {
+   "id": "culture",
+   "label": "Culture & sport",
+   "desc": "Museums, BBC grant-in-aid, sport, libraries",
+   "bn": 14.4,
+   "quality": "approx-scaled"
+  },
+  {
+   "id": "accounting_adj",
+   "label": "Other & accounting",
+   "desc": "Public corporations, locally financed items and national-accounts adjustments",
+   "bn": 130.4,
+   "quality": "plug"
+  }
+ ]
+}
