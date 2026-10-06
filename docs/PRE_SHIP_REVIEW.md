@@ -65,6 +65,8 @@ Legend: ✅ fixed in this pass · 🔲 open. Owner: ENG, DATA, ED (editor), ECON
 | D7 | Defence lever started from COFOG defence (2.13% of GDP), so NATO-style targets overstated the cost | ✅ M2: starts from NATO's measure (2.32%, NATO estimate for 2025-26) |
 | D8 | Fuel duty's temporary 5p cut ends 31 Dec 2026 (55.95p from 1 Jan 2027, 57.95p from 1 Mar 2027) | ✅ shown in the lever note; 🔲 update after Budget 2026 confirms rates |
 | D9 | Brand colours as text failed AA in light mode (borrowing orange 3.3:1, amber pills 4.5:1) | ✅ text shade `--debt-ink`, amber darkened; Lighthouse accessibility 100 in both themes |
+| D10 | The bus-cap example used a press figure ("over £500m") and press sources; officially the cap has £400m for England, funded by switching climate finance to loans, so it nets to about zero | ✅ M3: card, lever, tests and README use GOV.UK figures |
+| D11 | Promise cards: 21 researched cards, every quote checked verbatim, every status with official evidence; all marked editor_check_required | 🔲 two-editor review and legal read of statuses (B6) before anything is public |
 
 ## Not a bug, but decide
 

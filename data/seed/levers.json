@@ -17,11 +17,20 @@
         "licence": "OGL v3"
       },
       {
-        "id": "itv_2026_07_22",
-        "title": "ITV News, 22 Jul 2026: Andy Burnham unveils £2 bus fare cap",
-        "publisher": "Media",
-        "url": "https://www.itv.com/news/2026-07-22/andy-burnham-unveils-2-bus-fare-cap-in-pledge-to-be-cost-of-living-government",
-        "published_on": "2026-07-22"
+        "id": "dft_bus_cap_2026_ws",
+        "title": "Written statement to Parliament: £2 bus fares from January 2027, 22 Jul 2026",
+        "publisher": "DfT",
+        "url": "https://www.gov.uk/government/speeches/2-bus-fares-from-january-2027",
+        "published_on": "2026-07-22",
+        "licence": "OGL v3"
+      },
+      {
+        "id": "gov_bus_cap_2026_pr",
+        "title": "Press release: Cheaper travel for millions with a third off fares, 22 Jul 2026",
+        "publisher": "HMG",
+        "url": "https://www.gov.uk/government/news/cheaper-travel-for-millions-with-a-third-off-fares",
+        "published_on": "2026-07-22",
+        "licence": "OGL v3"
       }
     ]
   },
@@ -341,15 +350,15 @@
         "target": "economic_affairs",
         "per_unit_bn": {
           "y1": [
-            0.45,
-            0.5,
-            0.6
+            0.36,
+            0.4,
+            0.44
           ]
         }
       },
       "quality": "sourced",
-      "source_id": "itv_2026_07_22",
-      "method_note": "Central from the announcement (over £500m a year). The low–high range is an editorial default.",
+      "source_id": "dft_bus_cap_2026_ws",
+      "method_note": "£400m of extra funding for the cap in England outside London in 2027 (written statement, 22 Jul 2026). Low–high is an editorial ±10% because the government gives one figure; it does not say whether £400m is the full cost or the extra over the £3 cap.",
       "promise_id": "uk-bus-cap-2-2026",
       "funding_options": [
         {
@@ -359,11 +368,12 @@
         },
         {
           "id": "climate_loans",
-          "label": "Turn £400m of climate aid into loans (government's choice)",
+          "label": "Switch climate aid to loans, as announced (£400m for England)",
           "offset_bn": 0.4,
           "target": "general_services",
           "quality": "sourced",
-          "source_id": "itv_2026_07_22"
+          "source_id": "gov_bus_cap_2026_pr",
+          "method_note": "The government names an extra £454m including the devolved governments' share, from reprioritising DESNZ's budget by switching international climate finance into loans; £400m of it is for England."
         },
         {
           "id": "fuel_duty",

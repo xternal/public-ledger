@@ -17,16 +17,16 @@ Promise (card)  →  parameters (who, how much, when, paid for by what)
                 →  delivery timeline (linked to budget, legislation and statistics)
 ```
 
-The worked example (real, autumn 2026):
+The worked example (real, autumn 2026; figures corrected against official sources in M3):
 
-* On 22 July 2026 Prime Minister Andy Burnham announced a return to a £2 single bus fare cap in England from January 2027, at a cost of over £500m a year.
-* There is no surplus. In 2025-26 income was £1,235bn, spending £1,368bn, borrowing £133bn.
-* Funding named: £400m from switching international climate finance from grants to loans, the rest from DESNZ savings and existing DfT bus money.
-* In the sandbox: +£0.5bn spending, −£0.4bn from international spending, so the net effect on borrowing is about +£0.1bn a year. The measure costs **£17 per household a year, 0.04% of spending**. Had no source been named, all of it would have been borrowed.
+* On 22 July 2026 Prime Minister Andy Burnham announced a return to a £2 single bus fare cap in England outside London for 2027, backed by £400m of extra funding (DfT written statement).
+* There is no surplus. In 2025-26 income was £1,231bn, spending £1,366bn, borrowing £134bn (ONS outturn).
+* Funding named: an extra £454m, including the devolved governments' share, from reprioritising DESNZ's budget by switching international climate finance into loans (No 10 press release).
+* In the sandbox: +£0.4bn spending, −£0.4bn from international spending, so the net effect on borrowing is about zero (range ±£0.04bn). The measure costs **£14 per household a year, 0.03% of spending**. Had no source been named, all of it would have been borrowed. (The first draft of this example used a press figure of "over £500m", which no official source gives.)
 
 That is the product: a headline phrase becomes three numbers a person understands and one line on what pays for it.
 
-Sources: ITV News (https://www.itv.com/news/2026-07-22/andy-burnham-unveils-2-bus-fare-cap-in-pledge-to-be-cost-of-living-government), OBR March 2026 (https://obr.uk/forecasts-in-depth/brief-guides-and-explainers/public-finances/).
+Sources: DfT written statement (https://www.gov.uk/government/speeches/2-bus-fares-from-january-2027), No 10 press release (https://www.gov.uk/government/news/cheaper-travel-for-millions-with-a-third-off-fares), ONS public sector finances.
 
 ## 3. Modules
 
