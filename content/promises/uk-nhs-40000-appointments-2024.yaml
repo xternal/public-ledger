@@ -8,7 +8,7 @@ status: delivering
 status_note: >-
   The government reported almost 2.2 million more elective appointments in England in July to November 2024 than a
   year earlier, and in July 2025 the UK Statistics Authority said its regulator had verified a figure of 3.6 million
-  extra. The pledge is for every year, so the card sits at Delivering rather than Delivered. The manifesto sets no
+  extra in the government's first eight months. The pledge is for every year, so the card sits at Delivering rather than Delivered. The manifesto sets no
   end date.
 origin: manual
 editor_check_required: true
@@ -39,8 +39,8 @@ versions:
       cost_note: >-
         Year used: 2028-29, the year Labour's costings use. Labour's own figure is £1,010m (manifesto page 127);
         central figure only. No independent costing of the pledge itself was found. For comparison, Autumn Budget 2024
-        gave an additional £1.8bn to support elective activity in 2024-25, within a £22.6bn rise in the health
-        department's day-to-day budget for 2025-26 compared with 2023-24.
+        included an additional £1.8bn to support elective activity since July 2024, and a £22.6bn rise in the health
+        department's day-to-day budget in 2025-26 compared with 2023-24.
         Low–high is an editorial ±10% because the source gives a central figure only.
       cost_sources:
         - title: "Labour Party: Change, 2024 manifesto (PDF), costings, page 127"
@@ -69,10 +69,41 @@ events:
     type: delivering
     text: >-
       UK Statistics Authority letter says the Office for Statistics Regulation has verified the government's figure of
-      3.6 million additional elective appointments
+      3.6 million additional elective appointments in its first eight months
     evidence_url: https://uksa.statisticsauthority.gov.uk/correspondence/letter-from-sir-robert-chote-to-helen-morgan-mp-nhs-appointment-statistics/
   - date: "2025-11-26"
     type: delivering
     text: Budget 2025 reports 5.2 million more appointments delivered since the start of the Parliament
     evidence_url: https://assets.publishing.service.gov.uk/media/6929b353345e31ab14ecf735/E03444720_Budget_2025_Web_Accessible.pdf
 replies: []
+corrections:
+  - date: "2026-10-06"
+    path: versions[0].parameters.cost_note
+    was: >-
+      Year used: 2028-29, the year Labour's costings use. Labour's own figure is £1,010m (manifesto page 127);
+      central figure only. No independent costing of the pledge itself was found. For comparison, Autumn Budget 2024
+      gave an additional £1.8bn to support elective activity in 2024-25, within a £22.6bn rise in the health
+      department's day-to-day budget for 2025-26 compared with 2023-24.
+      Low–high is an editorial ±10% because the source gives a central figure only.
+    now: >-
+      Year used: 2028-29, the year Labour's costings use. Labour's own figure is £1,010m (manifesto page 127);
+      central figure only. No independent costing of the pledge itself was found. For comparison, Autumn Budget 2024
+      included an additional £1.8bn to support elective activity since July 2024, and a £22.6bn rise in the health
+      department's day-to-day budget in 2025-26 compared with 2023-24.
+      Low–high is an editorial ±10% because the source gives a central figure only.
+    reason: >-
+      The note placed the £1.8bn inside the 2025-26 rise of £22.6bn. Autumn Budget 2024 gives the £1.8bn as 2024-25
+      money for elective activity since July 2024, so it is not part of the 2025-26 rise.
+    source_url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+  - date: "2026-10-06"
+    path: events[3].text
+    was: >-
+      UK Statistics Authority letter says the Office for Statistics Regulation has verified the government's figure of
+      3.6 million additional elective appointments
+    now: >-
+      UK Statistics Authority letter says the Office for Statistics Regulation has verified the government's figure of
+      3.6 million additional elective appointments in its first eight months
+    reason: >-
+      The entry left out the period. The verified 3.6 million covers the government's first eight months, as the
+      letter says.
+    source_url: https://uksa.statisticsauthority.gov.uk/correspondence/letter-from-sir-robert-chote-to-helen-morgan-mp-nhs-appointment-statistics/

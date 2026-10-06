@@ -7,8 +7,10 @@ policy_area: public_order
 status: delivering
 status_note: >-
   The Neighbourhood Policing Guarantee started in April 2025 with a £200m grant. Official statistics show 3,814 more
-  full-time-equivalent officers and PCSOs in neighbourhood roles at 31 March 2026 than a year earlier. The manifesto
-  text says "thousands"; its costings (page 129) and the government's milestone put the number at 13,000. The
+  full-time-equivalent officers and PCSOs in neighbourhood roles at 31 March 2026 than a year earlier. Over the same
+  year the total number of police officers fell by 566 FTE, PCSOs by 55 FTE and special constables by 324
+  (headcount); the neighbourhood measure counts officers and PCSOs, including those in training, but not special
+  constables (Home Office, Police workforce, 31 March 2026). The manifesto text says "thousands"; its costings (page 129) and the government's milestone put the number at 13,000. The
   manifesto gives no date; the government's milestone is this Parliament, taken as by 1 July 2029.
 deadline: "2029-07-01"
 origin: manual
@@ -80,8 +82,8 @@ events:
   - date: "2025-06-11"
     type: funded
     text: >-
-      Spending Review 2025 raises police spending power by an average 2.3% a year in real terms, citing the 13,000
-      commitment
+      Spending Review 2025 raises police spending power by an average 2.3% a year in real terms from 2023-24 to
+      2028-29, citing the 13,000 commitment
     evidence_url: https://assets.publishing.service.gov.uk/media/68627094354985706f111adc/E03349913_HMT_Spending_Review_June_2025_TEXT_CS_Accessible__002_.pdf
   - date: "2026-07-22"
     type: delivering
@@ -93,3 +95,16 @@ events:
     type: deadline
     text: End of the Parliament (editorial date)
 replies: []
+corrections:
+  - date: "2026-10-06"
+    path: events[5].text
+    was: >-
+      Spending Review 2025 raises police spending power by an average 2.3% a year in real terms, citing the 13,000
+      commitment
+    now: >-
+      Spending Review 2025 raises police spending power by an average 2.3% a year in real terms from 2023-24 to
+      2028-29, citing the 13,000 commitment
+    reason: >-
+      The entry left out the period the average covers. The Spending Review gives 2.3% a year in real terms from
+      2023-24 to 2028-29.
+    source_url: https://assets.publishing.service.gov.uk/media/68627094354985706f111adc/E03349913_HMT_Spending_Review_June_2025_TEXT_CS_Accessible__002_.pdf

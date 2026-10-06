@@ -6,8 +6,9 @@ policy_area: health
 status: delivering
 status_note: >-
   NHS England's plan sets March 2029 for the 92% standard, and the Spending Review 2025 ties the NHS
-  settlement to it. The share of patients waiting under 18 weeks met the interim 65% goal in March 2026
-  (65.3%) and stood at 65.4% in July 2026, still well short of 92%, so the card sits at Delivering.
+  settlement to it. The share of waiting-list pathways (cases) under 18 weeks met the interim 65% goal in
+  March 2026 (65.3%) and stood at 65.4% in July 2026, 26.6 percentage points below the 92% standard, so the
+  card sits at Delivering.
 deadline: "2029-03-31"
 origin: manual
 editor_check_required: true
@@ -58,9 +59,18 @@ events:
     evidence_url: https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html
   - date: "2026-05-14"
     type: delivering
-    text: "March 2026 figures: 65.3% of patients waiting under 18 weeks, meeting the interim 65% goal"
+    text: "March 2026 figures: 65.3% of waiting-list pathways (cases) under 18 weeks, meeting the interim 65% goal"
     evidence_url: https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2026/05/Mar26-RTT-statistical-press-notice-PDF-545K-Dc1i9U.pdf
   - date: "2029-03-31"
     type: deadline
     text: 92% of patients due to wait no longer than 18 weeks
 replies: []
+corrections:
+  - date: "2026-10-06"
+    path: events[3].text
+    was: "March 2026 figures: 65.3% of patients waiting under 18 weeks, meeting the interim 65% goal"
+    now: "March 2026 figures: 65.3% of waiting-list pathways (cases) under 18 weeks, meeting the interim 65% goal"
+    reason: >-
+      The statistic counts waiting-list pathways, not people; one patient can have more than one pathway. NHS
+      England reports it as 65.3% of cases.
+    source_url: https://www.england.nhs.uk/statistics/wp-content/uploads/sites/2/2026/05/Mar26-RTT-statistical-press-notice-PDF-545K-Dc1i9U.pdf

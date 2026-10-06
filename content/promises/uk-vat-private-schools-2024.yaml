@@ -9,7 +9,9 @@ status_note: >-
   VAT at 20% has applied to private school fees since 1 January 2025 (Finance Act 2025), and charitable business rates
   relief for private schools in England ended from the 2025-26 financial year (Non-Domestic Rating (Multipliers and
   Private Schools) Act 2025). Business rates are devolved outside England. The High Court dismissed a human rights
-  challenge to the VAT change on 13 June 2025. This card tracks the two tax changes, not how the money is spent.
+  challenge to the VAT change on 13 June 2025 and the Court of Appeal dismissed the appeals on 27 February 2026; the
+  Supreme Court gave permission to appeal on 22 May 2026 and has listed a hearing for 1–2 December 2026. This card
+  tracks the two tax changes, not how the money is spent.
 origin: manual
 editor_check_required: true
 sources:
@@ -23,6 +25,12 @@ sources:
     url: https://www.legislation.gov.uk/ukpga/2025/12/contents
   - title: "High Court press summary: R (ALR and others) v Chancellor of the Exchequer, 13 Jun 2025"
     url: https://www.judiciary.uk/wp-content/uploads/2025/06/ALR-and-others-v-Chancellor-of-the-Exchequer-private-schools-VAT-judgment-PRESS-SUMMARY.pdf
+  - title: "Court of Appeal judgment: R (BYL and another) v Chancellor of the Exchequer [2026] EWCA Civ 170, 27 Feb 2026"
+    url: https://caselaw.nationalarchives.gov.uk/ewca/civ/2026/170
+  - title: "UK Supreme Court: case UKSC 2026/0056, R (BYL and another) v Chancellor of the Exchequer and others"
+    url: https://www.supremecourt.uk/cases/uksc-2026-0056
+  - title: "UK Supreme Court: case UKSC 2026/0045, R (Emmanuel School (Derby) Ltd and others) v Chancellor of the Exchequer and others"
+    url: https://www.supremecourt.uk/cases/uksc-2026-0045
 versions:
   - version: 1
     text: >-
