@@ -1,6 +1,8 @@
 import json
+import re
 import shutil
 from dataclasses import replace
+from datetime import date
 
 import pytest
 
@@ -9,6 +11,7 @@ from etl.sources import govuk_tax_rates as m
 
 SEED = ROOT / "data" / "seed"
 SERIES = [f"tax.income_tax.{k}" for k in m.INCOME_TAX_KEYS] + [f"tax.ni.{k}" for k in m.NI_KEYS]
+FUEL = "tax.fuel_duty.main_rate"
 
 
 def _seed() -> tuple[str, dict]:
@@ -47,15 +50,20 @@ def test_contract(obs):
     keys = [(o.series_id, o.period) for o in obs]
     assert len(keys) == len(set(keys))
     for o in obs:
+        assert o.quality == "sourced" and o.source_id == m.SOURCE_ID and o.vintage
+        if o.series_id == FUEL:
+            assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", o.period) and o.unit == "pence_per_litre" and o.geography == "UK"
+            continue
         assert o.series_id in SERIES and FISCAL_YEAR.match(o.period)
-        assert o.quality == "sourced" and o.source_id == m.SOURCE_ID and o.geography == m.GEOGRAPHY
+        assert o.geography == ("UK" if o.series_id.startswith("tax.ni.") else "England, Wales and NI")
         assert o.unit == ("pct" if o.series_id.endswith("_rate") else "gbp")
-        assert o.vintage
 
 
 def test_all_thresholds_for_at_least_one_year(obs):
     by_year: dict[str, set] = {}
     for o in obs:
+        if o.series_id == FUEL:
+            continue
         by_year.setdefault(o.period, set()).add(o.series_id)
     complete = [y for y, s in by_year.items() if s == set(SERIES)]
     assert complete, f"no tax year has all {len(SERIES)} series: {by_year}"
@@ -63,7 +71,7 @@ def test_all_thresholds_for_at_least_one_year(obs):
 
 def test_values_next_to_seed(obs):
     seed_year, seed = _seed()
-    years = sorted({o.period for o in obs})
+    years = sorted({o.period for o in obs if o.series_id != FUEL})
     val = {(o.series_id, o.period): o.value for o in obs}
     lines = [f"{'series':42} {'seed ' + seed_year:>14} " + " ".join(f"{y:>10}" for y in years)]
     for s in SERIES:
@@ -72,6 +80,23 @@ def test_values_next_to_seed(obs):
     for s in SERIES:
         if (s, seed_year) in val:
             assert val[(s, seed_year)] == seed[s], f"{s} {seed_year}: GOV.UK {val[(s, seed_year)]} vs seed {seed[s]}"
+
+
+def test_fuel_duty(obs):
+    fuel = sorted((o for o in obs if o.series_id == FUEL), key=lambda o: o.period)
+    today = date.today().isoformat()
+    in_force = [o for o in fuel if o.period <= today]
+    assert in_force, "no fuel duty rate in force"
+    cur = in_force[-1]
+    assert cur.kind == "outturn" and 40 < cur.value < 80
+    for o in fuel:
+        assert o.kind == ("outturn" if o.period <= today else "forecast")
+        if o.kind == "forecast":
+            assert "Scheduled" in o.method_note
+    seed = next(lv for lv in json.loads((SEED / "levers.json").read_text())["levers"] if lv["id"] == "fuel_duty")
+    print(f"\nfuel duty main rate (seed lever base {seed['base']}p):")
+    for o in fuel:
+        print(f"  {o.period} {o.value:6.2f}p {o.kind:9} {o.method_note or ''}")
 
 
 def _tampered(raws, tmp_path, name: str, *edits: tuple[str, str]):
@@ -88,6 +113,7 @@ def _tampered(raws, tmp_path, name: str, *edits: tuple[str, str]):
             p.write_text(text, encoding="utf-8")
             r = replace(r, path=p)
         out.append(r)
+    assert any(r.path.parent == tmp_path for r in out), f"no raw file named {name}"
     return out
 
 
@@ -99,9 +125,17 @@ def test_parser_is_strict_on_missing_text(raws, tmp_path):
 
 def test_parser_is_strict_on_disagreement(raws, tmp_path):
     """HMRC PAYE bands that join up but disagree with income-tax-rates must stop the parse."""
-    year = sorted({o.period for o in m.parse(raws)})[-1]
+    year = sorted({o.period for o in m.parse(raws) if o.series_id != FUEL})[-1]
     start = int(year[:4])
     name = f"rates-and-thresholds-for-employers-{start}-to-{start + 1}.json"
     bad = _tampered(raws, tmp_path, name, ("Up to £37,700", "Up to £37,000"), ("From £37,701", "From £37,001"))
+    with pytest.raises(ValueError, match="disagree"):
+        m.parse(bad)
+
+
+def test_fuel_duty_is_strict_on_disagreement(raws, tmp_path):
+    """A rates-page start date the policy paper does not have must stop the parse."""
+    bad = _tampered(raws, tmp_path, "excise-duty-hydrocarbon-oils-rates.json",
+                    ("From 23 March 2022 (pounds per litre)", "From 1 April 2026 (pounds per litre)"))
     with pytest.raises(ValueError, match="disagree"):
         m.parse(bad)

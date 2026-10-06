@@ -70,3 +70,23 @@ def test_committed_bundle_matches_assembly(outputs):
     bundle = json.loads(path.read_text())
     assert bundle["base_year"] == outputs["base_year"]
     assert set(bundle["statements"]) == set(outputs["statements"])
+
+
+def test_defence_starts_from_nato_measure(outputs):
+    by_id = {l["id"]: l for l in outputs["levers"]["levers"]}
+    d = by_id["defence_gdp"]
+    assert d["source_id"] == "nato_defence"
+    assert d["quality"] == "sourced"
+    # 3.5% (NATO core target) and 2.5% must sit on the slider's grid
+    for target in (2.5, 3.5):
+        steps = (target - d["min"]) / d["step"]
+        assert abs(steps - round(steps)) < 1e-6
+
+
+def test_new_m2_levers_from_hmrc_and_govuk(outputs):
+    by_id = {l["id"]: l for l in outputs["levers"]["levers"]}
+    for lever_id in ("income_tax_higher", "income_tax_additional", "personal_allowance", "fuel_duty"):
+        assert by_id[lever_id]["source_id"] == "hmrc_reckoner"
+        assert by_id[lever_id]["quality"] in ("sourced", "approx")
+    assert by_id["personal_allowance"]["effect"]["per_unit_bn"]["y1"][1] < 0
+    assert outputs["tax"]["income_tax"]["personal_allowance_lever"] == "personal_allowance"

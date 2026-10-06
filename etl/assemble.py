@@ -384,20 +384,28 @@ def build_levers(store: Store, base_year: str, base_statement: dict, run: Run) -
     first = lambda s, src: (lambda ps: store.idx[(s, ps[0], src)] if ps else None)(store.periods(s, src))
     last = lambda s, src: (lambda ps: store.idx[(s, ps[-1], src)] if ps else None)(store.periods(s, src))
 
-    def from_hmrc(lever_id: str, slug: str, what: str) -> None:
+    def from_hmrc(lever_id: str, slug: str, what: str, per: float = 1.0) -> None:
+        """Set a lever from an HMRC reckoner row. `per` converts HMRC's step into the lever's unit (e.g. £100 to £1)."""
         y1, yn = first(f"reckoner.{slug}", "hmrc_reckoner"), last(f"reckoner.{slug}", "hmrc_reckoner")
-        if y1 is None:
-            run.add("coverage", "warning", f"lever {lever_id}", f"HMRC reckoner {slug} missing; keeping the training value")
+        if y1 is None or lever_id not in by_id:
+            run.add("coverage", "warning", f"lever {lever_id}", f"HMRC reckoner {slug} missing; keeping the template value")
             return
         l = by_id[lever_id]
-        l["effect"]["per_unit_bn"] = {"y1": ranged(y1.value, EDITORIAL_RANGE_HMRC), "y5": ranged(yn.value, EDITORIAL_RANGE_HMRC)}
-        l.update(quality="sourced", source_id="hmrc_reckoner",
-                 method_note=f"HMRC direct effect of {what}: {y1.value:.2f}bn in {y1.period}, {yn.value:.2f}bn by {yn.period} ({y1.vintage}). Low–high is an editorial ±{EDITORIAL_RANGE_HMRC:.0%} because HMRC publishes a central figure only. {HMRC_BEHAVIOUR}")
+        c1, cn = y1.value / per, yn.value / per
+        l["effect"]["per_unit_bn"] = {"y1": sorted_range(ranged(c1, EDITORIAL_RANGE_HMRC)), "y5": sorted_range(ranged(cn, EDITORIAL_RANGE_HMRC))}
+        step = f" per {per:g} of HMRC's step" if per != 1 else ""
+        own = f" {y1.method_note}" if y1.quality != "sourced" and y1.method_note else ""
+        l.update(quality=y1.quality, source_id="hmrc_reckoner",
+                 method_note=f"HMRC direct effect of {what}: {y1.value:.3g}bn in {y1.period}, {yn.value:.3g}bn by {yn.period} ({y1.vintage}){step}. Low–high is an editorial ±{EDITORIAL_RANGE_HMRC:.0%} because HMRC publishes a central figure only. {HMRC_BEHAVIOUR}{own}")
 
     from_hmrc("income_tax_basic", "income_tax_basic_rate_1p", "1p on the basic rate of income tax")
+    from_hmrc("income_tax_higher", "income_tax_higher_rate_1p", "1p on the higher rate of income tax")
+    from_hmrc("income_tax_additional", "income_tax_additional_rate_1p", "1p on the additional rate of income tax")
+    from_hmrc("personal_allowance", "personal_allowance_gbp100", "£100 on the personal allowance (shown per £1)", per=100)
     from_hmrc("nics_main", "nics_employee_main_rate_1pp", "1 point on the employee NICs main rate")
     from_hmrc("vat_standard", "vat_standard_rate_1pp", "1 point on the standard rate of VAT")
     from_hmrc("corp_tax", "corp_tax_main_rate_1pp", "1 point on the main rate of corporation tax")
+    from_hmrc("fuel_duty", "fuel_duty_1p", "1p a litre on the main rate of fuel duty")
 
     # Bank Rate: OBR debt-interest sensitivity to short rates; base from the BoE.
     rate = bank_rate_base(store)
@@ -411,24 +419,51 @@ def build_levers(store: Store, base_year: str, base_statement: dict, run: Run) -
 
     # Tax-rate bases from GOV.UK, where the lever matches a published rate.
     tax_year = latest_tax_year(store)
-    for lever_id, series in [("income_tax_basic", "tax.income_tax.basic_rate"), ("nics_main", "tax.ni.main_rate")]:
+    for lever_id, series in [
+        ("income_tax_basic", "tax.income_tax.basic_rate"),
+        ("income_tax_higher", "tax.income_tax.higher_rate"),
+        ("income_tax_additional", "tax.income_tax.additional_rate"),
+        ("personal_allowance", "tax.income_tax.personal_allowance"),
+        ("nics_main", "tax.ni.main_rate"),
+    ]:
         o = store.get(series, tax_year, ["govuk_tax_rates"]) if tax_year else None
-        if o:
-            by_id[lever_id]["base"] = o.value
+        if o and lever_id in by_id:
+            rebase(by_id[lever_id], o.value)
+    fuel_rate = current_fuel_duty(store)
+    if fuel_rate and "fuel_duty" in by_id:
+        rebase(by_id["fuel_duty"], fuel_rate.value)
+        scheduled = [store.idx[("tax.fuel_duty.main_rate", p, "govuk_tax_rates")] for p in store.periods("tax.fuel_duty.main_rate", "govuk_tax_rates") if p > date.today().isoformat()]
+        ahead = "; ".join(f"{o.value:g}p from {o.period}" for o in scheduled)
+        by_id["fuel_duty"]["method_note"] += f" Starting rate {fuel_rate.value:g}p a litre, in force since {fuel_rate.period} (GOV.UK)." + (f" Already scheduled: {ahead}." if ahead else "")
 
     # Spending levers: arithmetic on the base year's statement and GDP.
     lines = {l["id"]: l for l in base_statement["spending"]}
     gdp_bn = base_statement["macro"]["nominal_gdp_bn"]
     gdp_src = base_statement["macro"]["provenance"]["nominal_gdp_bn"]["source_id"]
     defence = by_id["defence_gdp"]
+    nato = store.get("defence.nato_pct_gdp", base_year, ["nato_defence"])
     if "defence" in lines:
-        share = lines["defence"]["bn"] / gdp_bn * 100
-        defence["base"] = round(share, 1)
-        defence["min"] = min(defence["min"], round(share - 0.3, 1))
         per = round(gdp_bn / 100, 3)
         defence["effect"]["per_unit_bn"] = {"y1": [per, per, per]}
-        defence.update(quality="approx", source_id=gdp_src,
-                       method_note=f"Arithmetic: 1 point of GDP is {per:.1f}bn ({base_year} nominal GDP, the same figure the Statement uses). Starting point is COFOG defence spending ({lines['defence']['bn']:.1f}bn, HMT PESA) as a share of GDP. The government's NATO measure counts more items and is higher, so a NATO-style target costs less than this lever suggests.")
+        cofog = lines["defence"]["bn"] / gdp_bn * 100
+        if nato is not None:
+            # Start from NATO's measure, the one politicians and NATO targets use (3.5% core defence).
+            rebase(defence, round(nato.value, 2))
+            # 0.01 steps so both today's figure (e.g. 2.32%) and round targets (2.5%, 3.5%) sit on the slider's grid.
+            defence["step"] = 0.01
+            estimate = " (a NATO estimate)" if nato.kind != "outturn" else ""
+            defence.update(
+                label="Defence, % of GDP (NATO measure)",
+                quality="sourced",
+                source_id="nato_defence",
+                method_note=f"Starting point: UK defence spending on NATO's definition, {nato.value:.2f}% of GDP in {base_year}{estimate}, {nato.vintage}. "
+                f"NATO counts more items than the UK's own COFOG figure ({lines['defence']['bn']:.1f}bn, {cofog:.2f}% of GDP). "
+                f"Each point of GDP is {per:.1f}bn ({base_year} nominal GDP, as in the Statement), added to defence spending.",
+            )
+        else:
+            rebase(defence, round(cofog, 1))
+            defence.update(quality="approx", source_id=gdp_src,
+                           method_note=f"Arithmetic: 1 point of GDP is {per:.1f}bn. Starting point is COFOG defence spending ({lines['defence']['bn']:.1f}bn) as a share of GDP; NATO's measure is not ingested, and it is higher.")
     if "health" in lines:
         per = round(lines["health"]["bn"] / 100, 3)
         by_id["health_change"]["effect"]["per_unit_bn"] = {"y1": [per, per, per]}
@@ -450,6 +485,25 @@ def build_levers(store: Store, base_year: str, base_statement: dict, run: Run) -
     seed["meta"]["note"] = "Sandbox coefficients built by etl/build.py from HMRC, OBR, HMT PESA and the base-year Statement. Ranges are editorial where the source gives a central figure only."
     seed["meta"]["sources"] = [s for s in seed["meta"]["sources"] if s["id"] not in ("hmrc_ready_reckoner", "obr_ready_reckoner")]
     return seed
+
+
+def sorted_range(r: list[float]) -> list[float]:
+    """A negative central figure (allowances) flips low and high; keep the range ordered."""
+    return [min(r), r[1], max(r)]
+
+
+def rebase(lever: dict, base: float) -> None:
+    """Move a lever's starting point to a published value, keeping its width and step grid."""
+    width_below, width_above = lever["base"] - lever["min"], lever["max"] - lever["base"]
+    lever["base"] = base
+    lever["min"] = round(base - width_below, 4)
+    lever["max"] = round(base + width_above, 4)
+
+
+def current_fuel_duty(store: Store):
+    """The fuel duty main rate in force today (GOV.UK), if ingested."""
+    periods = [p for p in store.periods("tax.fuel_duty.main_rate", "govuk_tax_rates") if p <= date.today().isoformat()]
+    return store.idx[("tax.fuel_duty.main_rate", periods[-1], "govuk_tax_rates")] if periods else None
 
 
 HMRC_BEHAVIOUR = "HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
@@ -476,6 +530,9 @@ def build_tax(store: Store, run: Run) -> dict:
         "basic_rate_lever": "income_tax_basic",
         "higher_rate_pct": g("tax.income_tax.higher_rate").value,
         "additional_rate_pct": g("tax.income_tax.additional_rate").value,
+        "higher_rate_lever": "income_tax_higher",
+        "additional_rate_lever": "income_tax_additional",
+        "personal_allowance_lever": "personal_allowance",
     }
     ni = {
         "primary_threshold_gbp": g("tax.ni.primary_threshold").value,

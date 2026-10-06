@@ -1,0 +1,2 @@
+series_id,period,geography,value,unit,kind,source_id,vintage,quality,method_note
+tax.fuel_duty.main_rate,2022-03-23,UK,52.95,pence_per_litre,outturn,govuk_tax_rates,excise-duty-hydrocarbon-oils-rates@2026-09-30,sourced,"HMRC 'Amended Fuel Duty rates: 2026 to 2027' (2026-05-22): a temporary cut of 5.00p from 57.95p, in force to 31 December 2026."

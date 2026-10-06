@@ -1,0 +1,3 @@
+series_id,period,geography,value,unit,kind,source_id,vintage,quality,method_note
+tax.fuel_duty.main_rate,2027-01-01,UK,55.95,pence_per_litre,forecast,govuk_tax_rates,amended-fuel-duty-rates-2026-to-2027@2026-09-30,sourced,Scheduled in HMRC 'Amended Fuel Duty rates: 2026 to 2027' (2026-05-22); the paper says the government will confirm final rates at Budget 2026.
+tax.fuel_duty.main_rate,2027-03-01,UK,57.95,pence_per_litre,forecast,govuk_tax_rates,amended-fuel-duty-rates-2026-to-2027@2026-09-30,sourced,Scheduled in HMRC 'Amended Fuel Duty rates: 2026 to 2027' (2026-05-22); the paper says the government will confirm final rates at Budget 2026.

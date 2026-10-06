@@ -38,7 +38,18 @@
       "step": 0.25,
       "effect": {
         "target": "debt_interest",
-        "per_unit_bn": { "y1": [6, 8, 10], "y5": [16, 20, 24] }
+        "per_unit_bn": {
+          "y1": [
+            6,
+            8,
+            10
+          ],
+          "y5": [
+            16,
+            20,
+            24
+          ]
+        }
       },
       "household": {
         "kind": "mortgage",
@@ -64,11 +75,86 @@
       "step": 1,
       "effect": {
         "target": "income_tax",
-        "per_unit_bn": { "y1": [6.8, 7.4, 8.0] }
+        "per_unit_bn": {
+          "y1": [
+            6.8,
+            7.4,
+            8.0
+          ]
+        }
       },
       "quality": "training",
       "source_id": "hmrc_ready_reckoner",
       "method_note": "TODO(source): from model memory of the HMRC ready reckoner. Static, before behaviour."
+    },
+    {
+      "group": "taxes",
+      "controlled_by": "government",
+      "quality": "training",
+      "method_note": "TODO(source): template value; etl/build.py replaces it with the HMRC reckoner and the GOV.UK rate.",
+      "id": "income_tax_higher",
+      "label": "Income tax higher rate",
+      "unit": "pp",
+      "base": 40,
+      "min": 35,
+      "max": 50,
+      "step": 1,
+      "effect": {
+        "target": "income_tax",
+        "per_unit_bn": {
+          "y1": [
+            1.44,
+            1.6,
+            1.76
+          ]
+        }
+      }
+    },
+    {
+      "group": "taxes",
+      "controlled_by": "government",
+      "quality": "training",
+      "method_note": "TODO(source): template value; etl/build.py replaces it with the HMRC reckoner and the GOV.UK rate.",
+      "id": "income_tax_additional",
+      "label": "Income tax additional rate",
+      "unit": "pp",
+      "base": 45,
+      "min": 40,
+      "max": 55,
+      "step": 1,
+      "effect": {
+        "target": "income_tax",
+        "per_unit_bn": {
+          "y1": [
+            0.13,
+            0.145,
+            0.16
+          ]
+        }
+      }
+    },
+    {
+      "group": "taxes",
+      "controlled_by": "government",
+      "quality": "training",
+      "method_note": "TODO(source): template value; etl/build.py replaces it with the HMRC reckoner and the GOV.UK rate.",
+      "id": "personal_allowance",
+      "label": "Personal allowance",
+      "unit": "gbp",
+      "base": 12570,
+      "min": 10570,
+      "max": 15570,
+      "step": 100,
+      "effect": {
+        "target": "income_tax",
+        "per_unit_bn": {
+          "y1": [
+            -0.0089,
+            -0.0081,
+            -0.0073
+          ]
+        }
+      }
     },
     {
       "id": "nics_main",
@@ -82,7 +168,13 @@
       "step": 1,
       "effect": {
         "target": "nics",
-        "per_unit_bn": { "y1": [4.6, 5.0, 5.4] }
+        "per_unit_bn": {
+          "y1": [
+            4.6,
+            5.0,
+            5.4
+          ]
+        }
       },
       "quality": "training",
       "source_id": "hmrc_ready_reckoner",
@@ -100,8 +192,18 @@
       "step": 1,
       "effect": {
         "target": "vat",
-        "per_unit_bn": { "y1": [7.8, 8.7, 9.4] },
-        "cpi_pp_per_unit": [0.4, 0.6, 0.8]
+        "per_unit_bn": {
+          "y1": [
+            7.8,
+            8.7,
+            9.4
+          ]
+        },
+        "cpi_pp_per_unit": [
+          0.4,
+          0.6,
+          0.8
+        ]
       },
       "quality": "training",
       "source_id": "hmrc_ready_reckoner",
@@ -119,11 +221,40 @@
       "step": 1,
       "effect": {
         "target": "corp_tax",
-        "per_unit_bn": { "y1": [2.6, 3.5, 4.2] }
+        "per_unit_bn": {
+          "y1": [
+            2.6,
+            3.5,
+            4.2
+          ]
+        }
       },
       "quality": "training",
       "source_id": "hmrc_ready_reckoner",
       "method_note": "TODO(source): from model memory of the HMRC ready reckoner. Static, before behaviour."
+    },
+    {
+      "group": "taxes",
+      "controlled_by": "government",
+      "quality": "training",
+      "method_note": "TODO(source): template value; etl/build.py replaces it with the HMRC reckoner and the GOV.UK rate.",
+      "id": "fuel_duty",
+      "label": "Fuel duty, main rate",
+      "unit": "pence",
+      "base": 52.95,
+      "min": 42.95,
+      "max": 62.95,
+      "step": 1,
+      "effect": {
+        "target": "fuel_duty",
+        "per_unit_bn": {
+          "y1": [
+            0.37,
+            0.414,
+            0.455
+          ]
+        }
+      }
     },
     {
       "id": "defence_gdp",
@@ -137,7 +268,13 @@
       "step": 0.1,
       "effect": {
         "target": "defence",
-        "per_unit_bn": { "y1": [30.75, 30.75, 30.75] }
+        "per_unit_bn": {
+          "y1": [
+            30.75,
+            30.75,
+            30.75
+          ]
+        }
       },
       "quality": "approx",
       "source_id": "obr_efo_2026_03",
@@ -155,7 +292,13 @@
       "step": 1,
       "effect": {
         "target": "health",
-        "per_unit_bn": { "y1": [2.57, 2.57, 2.57] }
+        "per_unit_bn": {
+          "y1": [
+            2.57,
+            2.57,
+            2.57
+          ]
+        }
       },
       "quality": "approx",
       "source_id": "pesa_2026_05",
@@ -173,7 +316,13 @@
       "step": 1,
       "effect": {
         "target": "social_protection",
-        "per_unit_bn": { "y1": [1.46, 1.46, 1.46] }
+        "per_unit_bn": {
+          "y1": [
+            1.46,
+            1.46,
+            1.46
+          ]
+        }
       },
       "quality": "training",
       "method_note": "TODO(source): 1% of state pension spending, taken as about £146bn in 2025-26 from model memory. Replace with DWP benefit expenditure tables."
@@ -190,7 +339,13 @@
       "step": 1,
       "effect": {
         "target": "economic_affairs",
-        "per_unit_bn": { "y1": [0.45, 0.5, 0.6] }
+        "per_unit_bn": {
+          "y1": [
+            0.45,
+            0.5,
+            0.6
+          ]
+        }
       },
       "quality": "sourced",
       "source_id": "itv_2026_07_22",
@@ -222,8 +377,16 @@
     }
   ],
   "macro_rules": {
-    "spending_multiplier": [0.4, 0.7, 1.0],
-    "tax_multiplier": [0.2, 0.4, 0.6],
+    "spending_multiplier": [
+      0.4,
+      0.7,
+      1.0
+    ],
+    "tax_multiplier": [
+      0.2,
+      0.4,
+      0.6
+    ],
     "quality": "training",
     "method_note": "TODO(source): rules of thumb from model memory, pending economist sign-off against OBR/BoE elasticities (review B3). Year-1 GDP effect = (spending multiplier × Δ non-interest spending − tax multiplier × Δ tax) / GDP. Ranges are deliberately wide."
   }

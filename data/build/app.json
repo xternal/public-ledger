@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-06T20:02:44Z",
+  "built_at": "2026-10-06T20:52:37Z",
   "base_year": "2025-26",
   "years": [
     {
@@ -4266,8 +4266,8 @@
         "controlled_by": "government",
         "unit": "pp",
         "base": 20.0,
-        "min": 15,
-        "max": 25,
+        "min": 15.0,
+        "max": 25.0,
         "step": 1,
         "effect": {
           "target": "income_tax",
@@ -4286,7 +4286,94 @@
         },
         "quality": "sourced",
         "source_id": "hmrc_reckoner",
-        "method_note": "HMRC direct effect of 1p on the basic rate of income tax: 6.90bn in 2026-27, 8.20bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
+        "method_note": "HMRC direct effect of 1p on the basic rate of income tax: 6.9bn in 2026-27, 8.2bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
+      },
+      {
+        "group": "taxes",
+        "controlled_by": "government",
+        "quality": "sourced",
+        "method_note": "HMRC direct effect of 1p on the higher rate of income tax: 1.6bn in 2026-27, 2.1bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects.",
+        "id": "income_tax_higher",
+        "label": "Income tax higher rate",
+        "unit": "pp",
+        "base": 40.0,
+        "min": 35.0,
+        "max": 50.0,
+        "step": 1,
+        "effect": {
+          "target": "income_tax",
+          "per_unit_bn": {
+            "y1": [
+              1.44,
+              1.6,
+              1.76
+            ],
+            "y5": [
+              1.89,
+              2.1,
+              2.31
+            ]
+          }
+        },
+        "source_id": "hmrc_reckoner"
+      },
+      {
+        "group": "taxes",
+        "controlled_by": "government",
+        "quality": "sourced",
+        "method_note": "HMRC direct effect of 1p on the additional rate of income tax: 0.145bn in 2026-27, 0.23bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects.",
+        "id": "income_tax_additional",
+        "label": "Income tax additional rate",
+        "unit": "pp",
+        "base": 45.0,
+        "min": 40.0,
+        "max": 55.0,
+        "step": 1,
+        "effect": {
+          "target": "income_tax",
+          "per_unit_bn": {
+            "y1": [
+              0.1305,
+              0.145,
+              0.1595
+            ],
+            "y5": [
+              0.207,
+              0.23,
+              0.253
+            ]
+          }
+        },
+        "source_id": "hmrc_reckoner"
+      },
+      {
+        "group": "taxes",
+        "controlled_by": "government",
+        "quality": "sourced",
+        "method_note": "HMRC direct effect of £100 on the personal allowance (shown per £1): -0.81bn in 2026-27, -1bn by 2028-29 (HMRC-DE-2025-06) per 100 of HMRC's step. Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects.",
+        "id": "personal_allowance",
+        "label": "Personal allowance",
+        "unit": "gbp",
+        "base": 12570.0,
+        "min": 10570.0,
+        "max": 15570.0,
+        "step": 100,
+        "effect": {
+          "target": "income_tax",
+          "per_unit_bn": {
+            "y1": [
+              -0.0089,
+              -0.0081,
+              -0.0073
+            ],
+            "y5": [
+              -0.011,
+              -0.01,
+              -0.009
+            ]
+          }
+        },
+        "source_id": "hmrc_reckoner"
       },
       {
         "id": "nics_main",
@@ -4295,8 +4382,8 @@
         "controlled_by": "government",
         "unit": "pp",
         "base": 8.0,
-        "min": 4,
-        "max": 12,
+        "min": 4.0,
+        "max": 12.0,
         "step": 1,
         "effect": {
           "target": "nics",
@@ -4315,7 +4402,7 @@
         },
         "quality": "sourced",
         "source_id": "hmrc_reckoner",
-        "method_note": "HMRC direct effect of 1 point on the employee NICs main rate: 5.35bn in 2026-27, 5.40bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
+        "method_note": "HMRC direct effect of 1 point on the employee NICs main rate: 5.35bn in 2026-27, 5.4bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
       },
       {
         "id": "vat_standard",
@@ -4349,7 +4436,7 @@
         },
         "quality": "sourced",
         "source_id": "hmrc_reckoner",
-        "method_note": "HMRC direct effect of 1 point on the standard rate of VAT: 8.80bn in 2026-27, 9.55bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
+        "method_note": "HMRC direct effect of 1 point on the standard rate of VAT: 8.8bn in 2026-27, 9.55bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
       },
       {
         "id": "corp_tax",
@@ -4378,18 +4465,47 @@
         },
         "quality": "sourced",
         "source_id": "hmrc_reckoner",
-        "method_note": "HMRC direct effect of 1 point on the main rate of corporation tax: 3.60bn in 2026-27, 4.00bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
+        "method_note": "HMRC direct effect of 1 point on the main rate of corporation tax: 3.6bn in 2026-27, 4bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
+      },
+      {
+        "group": "taxes",
+        "controlled_by": "government",
+        "quality": "approx",
+        "method_note": "HMRC direct effect of 1p a litre on the main rate of fuel duty: 0.414bn in 2026-27, 0.397bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects. Derived, not published: HMRC's 1% petrol + diesel rows (240m) divided by 1% of a 57.95p/litre main rate, so 1p/litre = 1% x 100/57.95. 57.95p is the bulletin's current rate plus the pence its notes say the baseline adds back. HMRC also uprates the baseline rate by forecast RPI each April, so this overstates 1p by roughly cumulative RPI (a few % in year one, more later). Includes behavioural response; no economy-wide effects. Starting rate 52.95p a litre, in force since 2022-03-23 (GOV.UK). Already scheduled: 55.95p from 2027-01-01; 57.95p from 2027-03-01.",
+        "id": "fuel_duty",
+        "label": "Fuel duty, main rate",
+        "unit": "pence",
+        "base": 52.95,
+        "min": 42.95,
+        "max": 62.95,
+        "step": 1,
+        "effect": {
+          "target": "fuel_duty",
+          "per_unit_bn": {
+            "y1": [
+              0.3728,
+              0.4142,
+              0.4556
+            ],
+            "y5": [
+              0.3572,
+              0.3969,
+              0.4366
+            ]
+          }
+        },
+        "source_id": "hmrc_reckoner"
       },
       {
         "id": "defence_gdp",
-        "label": "Defence, % of GDP",
+        "label": "Defence, % of GDP (NATO measure)",
         "group": "spending",
         "controlled_by": "government",
         "unit": "pct_gdp",
-        "base": 2.1,
-        "min": 1.8,
-        "max": 5.0,
-        "step": 0.1,
+        "base": 2.32,
+        "min": 2.02,
+        "max": 5.02,
+        "step": 0.01,
         "effect": {
           "target": "defence",
           "per_unit_bn": {
@@ -4400,9 +4516,9 @@
             ]
           }
         },
-        "quality": "approx",
-        "source_id": "obr_databank",
-        "method_note": "Arithmetic: 1 point of GDP is 30.7bn (2025-26 nominal GDP, the same figure the Statement uses). Starting point is COFOG defence spending (65.4bn, HMT PESA) as a share of GDP. The government's NATO measure counts more items and is higher, so a NATO-style target costs less than this lever suggests."
+        "quality": "sourced",
+        "source_id": "nato_defence",
+        "method_note": "Starting point: UK defence spending on NATO's definition, 2.32% of GDP in 2025-26 (a NATO estimate), NATO-DE-2026-07. NATO counts more items than the UK's own COFOG figure (65.4bn, 2.13% of GDP). Each point of GDP is 30.7bn (2025-26 nominal GDP, as in the Statement), added to defence spending."
       },
       {
         "id": "health_change",
@@ -4537,7 +4653,10 @@
       "additional_threshold_gbp": 125140.0,
       "basic_rate_lever": "income_tax_basic",
       "higher_rate_pct": 40.0,
-      "additional_rate_pct": 45.0
+      "additional_rate_pct": 45.0,
+      "higher_rate_lever": "income_tax_higher",
+      "additional_rate_lever": "income_tax_additional",
+      "personal_allowance_lever": "personal_allowance"
     },
     "employee_ni": {
       "primary_threshold_gbp": 12570.0,
@@ -4567,7 +4686,7 @@
     },
     {
       "id": "govuk_tax_rates",
-      "title": "Income Tax rates and Personal Allowances; National Insurance rates; HMRC rates and thresholds for employers",
+      "title": "Income Tax rates and Personal Allowances; National Insurance rates; HMRC rates and thresholds for employers; HMRC hydrocarbon oils (fuel duty) rates",
       "publisher": "GOV.UK / HM Revenue and Customs",
       "url": "https://www.gov.uk/income-tax-rates",
       "licence": "OGL v3"
@@ -4595,6 +4714,14 @@
       "url": "https://www.gov.uk/government/collections/public-expenditure-statistical-analyses-pesa",
       "licence": "OGL v3",
       "published_on": "2026-07-16"
+    },
+    {
+      "id": "nato_defence",
+      "title": "Defence Expenditure of NATO Countries, 2026 edition (tables in Excel format)",
+      "publisher": "NATO",
+      "url": "https://www.nato.int/en/what-we-do/introduction-to-nato/defence-expenditures-and-natos-5-commitment",
+      "licence": "NATO terms for external use of content: credit NATO; not to be sold or used for advertising (https://www.nato.int/en/about-us/official-texts-and-resources/use-of-nato-content-and-brand)",
+      "published_on": "2026-07-09"
     },
     {
       "id": "obr_databank",

@@ -1,6 +1,7 @@
 """
-Income tax and employee National Insurance rates and thresholds (England, Wales
-and Northern Ireland) from GOV.UK, read through the GOV.UK content API.
+Income tax (England, Wales and Northern Ireland), employee National Insurance
+(UK) and the main rate of fuel duty (UK) from GOV.UK, read through the GOV.UK
+content API.
 
 Documents (JSON from https://www.gov.uk/api/content/<path>):
   income-tax-rates                   current tax year + "Previous tax years" part
@@ -8,41 +9,57 @@ Documents (JSON from https://www.gov.uk/api/content/<path>):
   guidance/rates-and-thresholds-for-employers-YYYY-to-YYYY
                                      HMRC: annual NI thresholds, Class 1 rates, PAYE bands,
                                      one per tax year found on income-tax-rates
+  .../excise-duty-hydrocarbon-oils-rates
+                                     HMRC: fuel duty rates in force ("From 23 March 2022")
+  .../amended-fuel-duty-rates-2026-to-2027
+                                     HMRC policy paper: the temporary cut, its end date and
+                                     the scheduled rates after it (FUEL_SCHEDULE_PATH)
 
 Income tax comes from income-tax-rates and is cross-checked against the HMRC
 PAYE table (England and Northern Ireland). NI comes from the HMRC guidance
 (the GOV.UK NI page only gives weekly and monthly thresholds) and is
-cross-checked against the NI page for the current year. Any pattern that is
-not found, or any disagreement between documents, raises ValueError: nothing
-is guessed.
+cross-checked against the NI page for the current year. Fuel duty in force
+comes from the HMRC rates page and must equal the policy paper's rate for the
+same start date; the paper adds the dates the cut ends and the scheduled
+rates (kind "forecast" until they take effect). Petrol and diesel must carry
+the same rate. Any pattern that is not found, or any disagreement between
+documents, raises ValueError: nothing is guessed.
 
 Series (period = tax year "YYYY-YY"; gbp = £ a year; pct = 20.0 for 20%):
   tax.income_tax.personal_allowance, basic_rate, basic_band (width above the
   allowance), higher_rate, additional_threshold, additional_rate,
   allowance_taper_threshold; tax.ni.primary_threshold, upper_earnings_limit,
-  main_rate, upper_rate (employee, category A).
+  main_rate, upper_rate (employee, category A; geography UK).
+  tax.fuel_duty.main_rate: pence per litre on unleaded petrol and diesel,
+  period = date the rate took effect "YYYY-MM-DD", geography UK.
 """
 
 from __future__ import annotations
 
 import json
 import re
-from datetime import date
+from datetime import date, datetime, timedelta
 
 from bs4 import BeautifulSoup
 
 from etl.core import Observation, RawArtifact, Source, download, fiscal_year
 
 SOURCE_ID = "govuk_tax_rates"
-GEOGRAPHY = "England, Wales and NI"
+GEOGRAPHY = "England, Wales and NI"  # income tax: Scotland sets its own bands
+NI_GEOGRAPHY = "UK"
+FUEL_GEOGRAPHY = "UK"
 API = "https://www.gov.uk/api/content"
 INCOME_TAX_PATH = "income-tax-rates"
 NI_PATH = "national-insurance-rates-letters"
 HMRC_PATH = "guidance/rates-and-thresholds-for-employers-{start}-to-{end}"
+FUEL_RATES_PATH = "government/publications/rates-and-allowances-excise-duty-hydrocarbon-oils/excise-duty-hydrocarbon-oils-rates"
+# The latest HMRC policy paper on fuel duty rates. Replace it when a fiscal event publishes a newer one:
+# parse() fails if the rates page shows a start date this paper does not have.
+FUEL_SCHEDULE_PATH = "government/publications/amended-fuel-duty-rates-for-2026-to-2027/amended-fuel-duty-rates-2026-to-2027"
 
 SOURCE = Source(
     id=SOURCE_ID,
-    title="Income Tax rates and Personal Allowances; National Insurance rates; HMRC rates and thresholds for employers",
+    title="Income Tax rates and Personal Allowances; National Insurance rates; HMRC rates and thresholds for employers; HMRC hydrocarbon oils (fuel duty) rates",
     publisher="GOV.UK / HM Revenue and Customs",
     url="https://www.gov.uk/income-tax-rates",
     cadence_days=365,
@@ -281,6 +298,110 @@ def _ni_page(doc: dict) -> tuple[str, dict]:
     return year, {"main_rate": _pct(a[2], what), "upper_rate": _pct(a[3], what), "_weekly": (pt, uel)}
 
 
+# ---------------------------------------------------------------- fuel duty
+
+FUEL_ROWS = (("Light oils", r"Unleaded petrol$"), ("Heavy oils", r"Heavy oil \(diesel\)$"))
+
+
+def _date(s: str, what: str) -> date:
+    try:
+        return datetime.strptime(_norm(s), "%d %B %Y").date()
+    except ValueError:
+        raise ValueError(f"{SOURCE_ID}: {what}: cannot read date {s!r}") from None
+
+
+def _ppl(cell: str, what: str) -> float:
+    """'0.5295' (pounds per litre) -> 52.95 pence per litre."""
+    return round(float(_need(r"^(\d+\.\d{4})$", cell, what).group(1)) * 100, 2)
+
+
+def _fuel_rates_page(doc: dict) -> tuple[date, float]:
+    """(date in force from, pence per litre) for petrol and diesel on the HMRC rates page."""
+    soup = BeautifulSoup(_html(doc["details"]["body"]), "html.parser")
+    what = "excise-duty-hydrocarbon-oils-rates"
+    found = []
+    for heading, label in FUEL_ROWS:
+        rows = _rows(_table_after(soup, heading, what))
+        if len(rows[0]) != 2:
+            raise ValueError(f"{SOURCE_ID}: {what}: {heading} table has columns {rows[0]}, expected one rate column")
+        start = _date(_need(r"^From (\d{1,2} \w+ \d{4}) \(pounds per litre\)$", rows[0][1], what).group(1), what)
+        found.append((start, _ppl(_row(rows[1:], label, what)[1], what)))
+    if found[0] != found[1]:
+        raise ValueError(f"{SOURCE_ID}: {what}: petrol {found[0]} and diesel {found[1]} differ")
+    return found[0]
+
+
+def _fuel_schedule(doc: dict) -> dict:
+    """
+    The policy paper's petrol and diesel table, columns "Rates prior to D", "Rates to D",
+    "Rates from D": {"ranges": [(start, ppl, end or None)], "prior": ppl before the cut,
+    "caveat": sentence about final rates or None}.
+    """
+    soup = BeautifulSoup(_html(doc["details"]["body"]), "html.parser")
+    what = doc["base_path"].rsplit("/", 1)[-1]
+    tables = []
+    for heading, label in FUEL_ROWS:
+        rows = _rows(_table_after(soup, heading, what))
+        header, row = rows[0], _row(rows[1:], label, what)
+        if header[0] != "Type" or len(row) != len(header):
+            raise ValueError(f"{SOURCE_ID}: {what}: {heading} table header {header} / row {row}")
+        ranges, prior, start = [], None, None
+        for col, cell in zip(header[1:], row[1:]):
+            if m := re.fullmatch(r"Rates prior to (.+)", col):
+                prior, start = _ppl(cell, what), _date(m[1], what)
+            elif m := re.fullmatch(r"Rates to (.+)", col):
+                if start is None:
+                    raise ValueError(f"{SOURCE_ID}: {what}: column {col!r} has no start date before it")
+                end = _date(m[1], what)
+                ranges.append((start, _ppl(cell, what), end))
+                start = end + timedelta(days=1)
+            elif m := re.fullmatch(r"Rates from (.+)", col):
+                d = _date(m[1], what)
+                if ranges and ranges[-1][2] is not None and d != ranges[-1][2] + timedelta(days=1):
+                    raise ValueError(f"{SOURCE_ID}: {what}: {col!r} does not follow {ranges[-1][2]}")
+                if ranges and d <= ranges[-1][0]:
+                    raise ValueError(f"{SOURCE_ID}: {what}: {col!r} is not after {ranges[-1][0]}")
+                ranges.append((d, _ppl(cell, what), None))
+                start = None
+            else:
+                raise ValueError(f"{SOURCE_ID}: {what}: unknown column {col!r}")
+        if not ranges:
+            raise ValueError(f"{SOURCE_ID}: {what}: no dated rates in the {heading} table")
+        tables.append((ranges, prior))
+    if tables[0] != tables[1]:
+        raise ValueError(f"{SOURCE_ID}: {what}: petrol {tables[0]} and diesel {tables[1]} differ")
+    caveat = re.search(r"(the government will confirm final rates at [^.]+)\.", _norm(soup.get_text(" ")), re.I)
+    return {"ranges": tables[0][0], "prior": tables[0][1], "caveat": caveat.group(1) if caveat else None}
+
+
+def _fuel_observations(rates_doc: dict, paper_doc: dict, today: date) -> list[Observation]:
+    in_force_from, in_force = _fuel_rates_page(rates_doc)
+    sched = _fuel_schedule(paper_doc)
+    same = [r for r in sched["ranges"] if r[0] == in_force_from]
+    if not same or same[0][1] != in_force:
+        raise ValueError(
+            f"{SOURCE_ID}: fuel duty: rates page ({in_force}p from {in_force_from}) and policy paper "
+            f"{sched['ranges']} disagree; is FUEL_SCHEDULE_PATH the latest paper?"
+        )
+    title = _norm(paper_doc["title"])
+    cite = f"HMRC '{title}' ({paper_doc['public_updated_at'][:10]})"
+    out = []
+    for start, ppl, end in sched["ranges"]:
+        notes = []
+        if end is not None:
+            cut = f"a temporary cut of {sched['prior'] - ppl:.2f}p from {sched['prior']:.2f}p, " if sched["prior"] and ppl < sched["prior"] else ""
+            notes.append(f"{cite}: {cut}in force to {end.day} {end:%B %Y}.")
+        if start > today:
+            notes.append(f"Scheduled in {cite}" + (f"; the paper says {sched['caveat']}." if sched["caveat"] else "."))
+        out.append(Observation(
+            series_id="tax.fuel_duty.main_rate", period=start.isoformat(), geography=FUEL_GEOGRAPHY,
+            value=ppl, unit="pence_per_litre", kind="outturn" if start <= today else "forecast",
+            source_id=SOURCE_ID, vintage=_vintage(rates_doc if start == in_force_from else paper_doc),
+            quality="sourced", method_note=" ".join(notes) or None,
+        ))
+    return out
+
+
 # ---------------------------------------------------------------- contract
 
 def _url(path: str) -> str:
@@ -301,6 +422,8 @@ def fetch(since: date | None = None) -> list[RawArtifact]:
         start = int(y[:4])
         path = HMRC_PATH.format(start=start, end=start + 1)
         out.append(download(SOURCE_ID, _url(path), _filename(path)))
+    for path in (FUEL_RATES_PATH, FUEL_SCHEDULE_PATH):
+        out.append(download(SOURCE_ID, _url(path), _filename(path)))
     return out
 
 
@@ -313,8 +436,9 @@ def _check(year: str, a: dict, b: dict, keys, what: str) -> None:
 def parse(raws: list[RawArtifact]) -> list[Observation]:
     docs = [_doc(r) for r in raws]
     by_path = {d["base_path"].lstrip("/"): d for d in docs}
-    if INCOME_TAX_PATH not in by_path or NI_PATH not in by_path:
-        raise ValueError(f"{SOURCE_ID}: need {INCOME_TAX_PATH} and {NI_PATH}, got {sorted(by_path)}")
+    missing = [p for p in (INCOME_TAX_PATH, NI_PATH, FUEL_RATES_PATH, FUEL_SCHEDULE_PATH) if p not in by_path]
+    if missing:
+        raise ValueError(f"{SOURCE_ID}: missing documents {missing}, got {sorted(by_path)}")
     it_doc, ni_doc = by_path[INCOME_TAX_PATH], by_path[NI_PATH]
     hmrc = {}
     for path, doc in by_path.items():
@@ -331,23 +455,25 @@ def parse(raws: list[RawArtifact]) -> list[Observation]:
     out: list[Observation] = []
     today = date.today()
 
-    def emit(year: str, prefix: str, vals: dict, keys, vintage: str) -> None:
+    def emit(year: str, prefix: str, vals: dict, keys, vintage: str, geography: str) -> None:
         kind = "outturn" if date(int(year[:4]), 4, 6) <= today else "forecast"
         for k in keys:
             out.append(Observation(
-                series_id=f"tax.{prefix}.{k}", period=year, geography=GEOGRAPHY, value=vals[k],
+                series_id=f"tax.{prefix}.{k}", period=year, geography=geography, value=vals[k],
                 unit=UNITS[k], kind=kind, source_id=SOURCE_ID, vintage=vintage, quality="sourced",
             ))
 
     for year, vals in sorted(income_tax.items()):
         if year in hmrc:
             _check(year, vals, hmrc[year][0], hmrc[year][0].keys(), "income-tax-rates and HMRC PAYE bands")
-        emit(year, "income_tax", vals, INCOME_TAX_KEYS, _vintage(it_doc))
+        emit(year, "income_tax", vals, INCOME_TAX_KEYS, _vintage(it_doc), GEOGRAPHY)
 
     if ni_year not in hmrc:
         raise ValueError(f"{SOURCE_ID}: no HMRC employer rates for {ni_year}, the year on {NI_PATH}")
     for year, (_, ni, vintage) in sorted(hmrc.items()):
         if year == ni_year:
             _check(year, ni, ni_page, ["main_rate", "upper_rate", "_weekly"], f"{NI_PATH} and HMRC NI")
-        emit(year, "ni", ni, NI_KEYS, vintage)
+        emit(year, "ni", ni, NI_KEYS, vintage, NI_GEOGRAPHY)
+
+    out += _fuel_observations(by_path[FUEL_RATES_PATH], by_path[FUEL_SCHEDULE_PATH], today)
     return out
