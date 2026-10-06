@@ -1,12 +1,14 @@
 "use client";
 
-import type { PromiseCard } from "@ledger/schema";
+import { useEffect, useState } from "react";
+import type { CardView, Provenance } from "@ledger/schema";
 import { LADDER } from "@ledger/schema";
 import { EVENT_LABEL, STATUS_LABEL } from "@/lib/copy";
 import { fixed, gbp, gbpBn, longDate, monthYear, perHousehold, rangeText, shareOf } from "@/lib/format";
+import { AREA_LABEL, todayIso, whoLine } from "@/lib/promises";
 import { track } from "@/lib/analytics";
-import { useScenario } from "@/lib/scenario";
-import { QualityBadge, TextButton, WithProvenance } from "./ui";
+import { StatusPill } from "./PromiseList";
+import { QualityBadge, WithProvenance } from "./ui";
 
 const DOT: Record<string, string> = {
   promised: "bg-rec",
@@ -23,73 +25,80 @@ const DOT: Record<string, string> = {
   today: "rounded-[2px] bg-debt",
 };
 
-function Ladder({ card }: { card: PromiseCard }) {
-  if (card.status === "unscoreable") {
+/** Today's date, read on the client so a static page never freezes it (review M1). */
+function useToday(): string | null {
+  const [today, setToday] = useState<string | null>(null);
+  useEffect(() => setToday(todayIso()), []);
+  return today;
+}
+
+function Ladder({ card }: { card: CardView }) {
+  const status = card.file.status;
+  if (status === "unscoreable") {
     return (
       <p className="m-0 rounded-control bg-sunk px-3.5 py-2.5 text-sm">
         <b className="font-semibold">Unscoreable.</b> No who, how much, when or from where. That makes it a slogan, not a promise we can track.
       </p>
     );
   }
-  const idx = (LADDER as readonly string[]).indexOf(card.status);
-  const off = idx < 0;
+  const idx = (LADDER as readonly string[]).indexOf(status);
   return (
     <div>
-      <ol className="m-0 grid list-none grid-cols-6 gap-[3px] p-0" aria-label={`Status: ${STATUS_LABEL[card.status]}`}>
+      <ol className="m-0 grid list-none grid-cols-6 gap-[3px] p-0" aria-label={`Status: ${STATUS_LABEL[status]}`}>
         {LADDER.map((s, i) => (
           <li key={s} aria-current={i === idx ? "step" : undefined} className="grid gap-1.5">
             <span className={`h-1 rounded-full ${i === idx ? "bg-ink" : i < idx ? "bg-ink/35" : "bg-line"}`} />
-            <span
-              className={`text-[11.5px] ${i === idx ? "whitespace-nowrap font-semibold text-ink" : `hidden truncate sm:block ${i < idx ? "font-medium text-muted" : "text-muted"}`}`}
-            >
+            <span className={`text-[11.5px] ${i === idx ? "whitespace-nowrap font-semibold text-ink" : `hidden truncate text-muted sm:block ${i < idx ? "font-medium" : ""}`}`}>
               {STATUS_LABEL[s]}
             </span>
           </li>
         ))}
       </ol>
-      {off && (
-        <p className="mt-2 text-label font-semibold text-bad">
-          {STATUS_LABEL[card.status]}
-        </p>
-      )}
+      {idx < 0 && <p className="mt-2 text-label font-semibold text-bad">{STATUS_LABEL[status]}</p>}
     </div>
   );
 }
 
-export function PromiseDetail({
-  card,
-  today,
-  followOpen,
-  onToggleFollow,
-  onAddEvidence,
-}: {
-  card: PromiseCard;
-  today: string | null;
-  followOpen: boolean;
-  onToggleFollow: () => void;
-  onAddEvidence: () => void;
-}) {
-  const { seed, baseResult, applyPreset } = useScenario();
-  const { macro } = seed.statement;
-  const cost = card.parameters?.how_much_bn_per_year ?? null;
-  const preset = seed.presets.find((p) => p.promise_id === card.id);
-  const events = [...card.timeline.map((e) => ({ ...e, today: false })), ...(today ? [{ date: today, event: "Today", type: "deadline" as const, today: true }] : [])].sort(
-    (a, b) => a.date.localeCompare(b.date),
-  );
+export interface PromiseDetailProps {
+  card: CardView;
+  householdsM: number;
+  householdsP: Provenance;
+  spendingBn: number;
+  /** /?s=<code>#scenario for cards with lever settings. */
+  runHref: string | null;
+}
+
+/** The full promise card (PRD F4), for /promise/[id]. Props only, so it needs no sandbox state. */
+export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runHref }: PromiseDetailProps) {
+  const today = useToday();
+  const [followOpen, setFollowOpen] = useState(false);
+  const f = card.file;
+  const p = card.current.parameters;
+  const cost = p?.how_much_bn_per_year ?? null;
+  const events = [
+    ...f.events.map((e) => ({ ...e, today: false })),
+    ...(today ? [{ date: today, text: "We are here", type: "deadline" as const, today: true, evidence_url: undefined }] : []),
+  ].sort((a, b) => a.date.localeCompare(b.date));
 
   return (
-    <article className="grid gap-5 rounded-panel border border-line p-6 md:sticky md:top-[76px]" aria-labelledby={`card-${card.id}`}>
-      <header className="grid gap-1.5">
-        <span className="text-label text-muted">
-          {card.actor.role}
-          {card.actor.party ? `, ${card.actor.party}` : ""}
+    <article className="grid gap-7" aria-labelledby={`card-${f.id}`}>
+      <header className="grid gap-3">
+        <span className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-label text-muted">
+          <a href={`/actor/${card.actor.id}`}>{whoLine(card)}</a>
+          {card.party && card.party.id !== card.actor.id && <a href={`/actor/${card.party.id}`}>{card.party.name}</a>}
+          <span>{AREA_LABEL[f.policy_area]}</span>
         </span>
-        <h3 id={`card-${card.id}`} className="text-[20px] font-semibold leading-snug tracking-[-0.015em]">
-          {card.actor.name}: “{card.text}”
-        </h3>
-        <span className="text-label text-muted">
-          {card.venue_label ? `${card.venue_label}, ` : ""}
-          {longDate(card.made_on)}
+        <h1 id={`card-${f.id}`} className="m-0 max-w-[30ch] text-[clamp(26px,3.6vw,36px)] font-semibold leading-[1.15] tracking-[-0.025em]">
+          “{card.current.text}”
+        </h1>
+        <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-label text-muted">
+          <StatusPill status={f.status} />
+          <span>
+            {f.venue_label ? `${f.venue_label}, ` : ""}
+            {longDate(f.made_on)}
+          </span>
+          {f.editor_check_required && <span>Needs editor check</span>}
+          {!card.current.quote_checked_on && <span>Quote not yet checked against the source</span>}
         </span>
       </header>
 
@@ -104,78 +113,100 @@ export function PromiseDetail({
           </div>
           <div className="grid content-start gap-0.5">
             <dt className="text-label text-muted">Per household</dt>
-            <dd className="m-0 text-[24px] font-semibold tracking-[var(--tracking-figure)]">{gbp(perHousehold(cost[1], macro.households_m))}</dd>
+            <dd className="m-0 text-[24px] font-semibold tracking-[var(--tracking-figure)]">{gbp(perHousehold(cost[1], householdsM))}</dd>
             <dd className="m-0 flex flex-wrap items-center gap-2 text-[12.5px] text-muted">
-              range {rangeText(cost, (x) => gbp(perHousehold(x, macro.households_m)))}
-              <WithProvenance p={macro.provenance.households_m!}>
-                <QualityBadge quality={macro.provenance.households_m!.quality} />
+              range {rangeText(cost, (x) => gbp(perHousehold(x, householdsM)))}
+              <WithProvenance p={householdsP}>
+                <QualityBadge quality={householdsP.quality} />
               </WithProvenance>
             </dd>
           </div>
           <div className="grid content-start gap-0.5">
             <dt className="text-label text-muted">Share of spending</dt>
-            <dd className="m-0 text-[24px] font-semibold tracking-[var(--tracking-figure)]">{fixed(shareOf(cost[1], baseResult.totals.spending_bn), 2)}%</dd>
-            <dd className="m-0 text-[12.5px] text-muted">of {gbpBn(baseResult.totals.spending_bn)}</dd>
+            <dd className="m-0 text-[24px] font-semibold tracking-[var(--tracking-figure)]">{fixed(shareOf(cost[1], spendingBn), 2)}%</dd>
+            <dd className="m-0 text-[12.5px] text-muted">of {gbpBn(spendingBn)}</dd>
+          </div>
+        </dl>
+      )}
+      {p && !cost && <p className="m-0 border-y border-line py-4 text-sm text-muted">{p.cost_note ?? "No official costing yet."}</p>}
+      {cost && p?.cost_note && <p className="m-0 -mt-4 text-[12.5px] text-muted">{p.cost_note}</p>}
+
+      {p && (
+        <dl className="m-0 grid gap-4 text-sm sm:grid-cols-2">
+          {p.who && (
+            <div className="grid gap-0.5">
+              <dt className="text-label text-muted">Who</dt>
+              <dd className="m-0">{p.who}</dd>
+            </div>
+          )}
+          {p.when && (
+            <div className="grid gap-0.5">
+              <dt className="text-label text-muted">When</dt>
+              <dd className="m-0">{/^\d{4}-\d{2}-\d{2}$/.test(p.when) ? longDate(p.when) : p.when}</dd>
+            </div>
+          )}
+          <div className="grid gap-0.5 sm:col-span-2">
+            <dt className="text-label text-muted">Paid for by</dt>
+            <dd className="m-0">{p.funded_by ?? <b className="font-semibold">Funding not stated when it was announced.</b>}</dd>
           </div>
         </dl>
       )}
 
-      {card.parameters && (
-        <div className="grid gap-0.5">
-          <span className="text-label text-muted">Paid for by</span>
-          <span className="text-sm">{card.parameters.funded_by ?? "Not stated when it was announced. Unless a source is named, it is borrowed."}</span>
-        </div>
-      )}
-
       <ol className="m-0 grid list-none p-0" aria-label="Timeline">
         {events.map((e, i) => (
-          <li
-            key={`${e.date}-${i}`}
-            className={`relative grid grid-cols-[72px_14px_minmax(0,1fr)] items-start gap-2.5 pb-3.5 text-sm last:pb-0 ${e.today ? "font-semibold text-debt-ink" : ""}`}
-          >
+          <li key={`${e.date}-${i}`} className={`relative grid grid-cols-[72px_14px_minmax(0,1fr)] items-start gap-2.5 pb-3.5 text-sm last:pb-0 ${e.today ? "font-semibold text-debt-ink" : ""}`}>
             <span className="pt-px text-[12.5px] text-muted">{e.today ? "Today" : monthYear(e.date)}</span>
             <span className="relative flex justify-center pt-1.5">
-              <span className={`relative z-10 size-[9px] rounded-full ${e.today ? DOT.today : DOT[e.type] ?? "bg-ink"}`} />
+              <span className={`relative z-10 size-[9px] rounded-full ${e.today ? DOT.today : (DOT[e.type] ?? "bg-ink")}`} />
               {i < events.length - 1 && <span aria-hidden className="absolute bottom-[-18px] top-3 w-px bg-line-strong" />}
             </span>
             <span>
-              {e.today ? "We are here" : e.event}
+              {e.text}
               {!e.today && <span className="sr-only">, {EVENT_LABEL[e.type]}</span>}
+              {e.evidence_url && (
+                <>
+                  {" "}
+                  <a href={e.evidence_url} target="_blank" rel="noopener noreferrer" className="text-label">
+                    evidence
+                  </a>
+                </>
+              )}
             </span>
           </li>
         ))}
       </ol>
 
-      {card.status_note && <p className="m-0 text-[12.5px] leading-relaxed text-muted">{card.status_note}</p>}
+      {f.status_note && <p className="m-0 text-[12.5px] leading-relaxed text-muted">{f.status_note}</p>}
 
       <div className="flex flex-wrap items-center gap-2.5">
-        {preset && (
-          <button
-            type="button"
-            className="cursor-pointer rounded-control bg-ink px-4 py-2 text-sm font-semibold text-bg hover:opacity-90"
-            onClick={() => {
-              applyPreset(preset);
-              track("run_in_sandbox_clicked", { promise_id: card.id });
-              document.getElementById("scenario")?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
+        {runHref && (
+          <a
+            href={runHref}
+            onClick={() => track("run_in_sandbox_clicked", { promise_id: f.id })}
+            className="rounded-control bg-ink px-4 py-2 text-sm font-semibold text-bg no-underline hover:opacity-90"
           >
             Run in the sandbox
-          </button>
+          </a>
         )}
         <button
           type="button"
           aria-expanded={followOpen}
-          aria-controls="follow-panel"
-          onClick={onToggleFollow}
+          aria-controls={`follow-${f.id}`}
+          onClick={() => {
+            if (!followOpen) track("follow_panel_opened", { target_kind: "promise" });
+            setFollowOpen(!followOpen);
+          }}
           className="cursor-pointer rounded-control bg-bg px-4 py-2 text-sm font-semibold text-ink shadow-[inset_0_0_0_1px_var(--line-strong)] hover:shadow-[inset_0_0_0_1px_var(--ink)]"
         >
           Follow this promise
         </button>
-        <TextButton onClick={onAddEvidence}>Add evidence</TextButton>
+        <a href={`/?card=${f.id}#contribute`} className="text-label font-medium">
+          Add evidence
+        </a>
       </div>
 
       {followOpen && (
-        <div id="follow-panel" className="grid gap-2.5 rounded-control bg-sunk p-3.5">
+        <div id={`follow-${f.id}`} className="grid gap-2.5 rounded-control bg-sunk p-3.5">
           <p className="m-0 text-label text-muted">Get an alert when the status changes or the deadline passes. No account needed.</p>
           <div className="flex flex-wrap gap-1.5">
             {["RSS feed", "Email alerts", "Telegram bot"].map((c) => (
@@ -188,17 +219,57 @@ export function PromiseDetail({
         </div>
       )}
 
+      {f.versions.length > 1 && (
+        <section aria-labelledby={`versions-${f.id}`} className="grid gap-2">
+          <h2 id={`versions-${f.id}`} className="text-label font-medium text-muted">
+            Earlier wording
+          </h2>
+          <ol className="m-0 grid list-none gap-3 p-0 text-sm">
+            {[...f.versions].reverse().map((v) => (
+              <li key={v.version} className="grid gap-0.5 border-l-2 border-line-strong pl-3">
+                <span className="text-caption text-muted">
+                  Version {v.version}, {longDate(v.recorded_on)}
+                </span>
+                <span>“{v.text}”</span>
+                {v.parameters?.how_much_bn_per_year && <span className="text-caption text-muted">Cost then: {rangeText(v.parameters.how_much_bn_per_year, gbpBn)} a year</span>}
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      {f.replies.length > 0 && (
+        <section aria-labelledby={`replies-${f.id}`} className="grid gap-2">
+          <h2 id={`replies-${f.id}`} className="text-label font-medium text-muted">
+            Right of reply
+          </h2>
+          {f.replies.map((r, i) => (
+            <blockquote key={i} className="m-0 grid gap-1 rounded-control bg-sunk p-4 text-sm">
+              <span className="text-caption text-muted">{longDate(r.date)}</span>
+              <span>{r.text}</span>
+              {r.editor_response && <span className="text-label text-muted">Editors: {r.editor_response}</span>}
+            </blockquote>
+          ))}
+        </section>
+      )}
+
       <div className="grid gap-2.5 text-label">
         <span className="text-muted">Sources</span>
-        {card.sources.length ? (
-          card.sources.map((s) => (
-            <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer">
-              {s.title}
-            </a>
-          ))
-        ) : (
-          <span className="text-muted">Pending editor check.</span>
-        )}
+        {f.sources.map((s) => (
+          <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer">
+            {s.title}
+          </a>
+        ))}
+        {p?.cost_sources?.length ? (
+          <>
+            <span className="mt-1 text-muted">Costings</span>
+            {p.cost_sources.map((s) => (
+              <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer">
+                {s.title}
+              </a>
+            ))}
+          </>
+        ) : null}
       </div>
     </article>
   );

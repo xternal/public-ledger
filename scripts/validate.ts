@@ -3,10 +3,12 @@
  * lint that keeps data out of components. Exits non-zero on any error;
  * warnings (cards not yet publishable) are printed but do not fail.
  */
+import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
+import { parse as parseYaml } from "yaml";
 import { parseSeed } from "@ledger/schema/seed";
-import { BALANCE_TOLERANCE_BN } from "@ledger/schema";
+import { BALANCE_TOLERANCE_BN, appendOnlyIssues } from "@ledger/schema";
 import { baseSettings, compute, createModel } from "@ledger/engine";
 
 const root = join(import.meta.dirname, "..");
@@ -58,6 +60,32 @@ for (const file of files(join(root, "apps/web/components"))) {
       if (re.test(code)) errors.push(`${relative(root, file)}:${i + 1}: ${why} in a component; move it to data/seed`);
     }
   });
+}
+
+// 4. Promise history is append-only (invariant 5): compare every card with the base branch.
+const baseArg = process.argv.indexOf("--base");
+const baseRef = baseArg >= 0 ? process.argv[baseArg + 1] : null;
+if (baseRef) {
+  const git = (...args: string[]) => execFileSync("git", args, { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
+  let baseFiles: string[] = [];
+  try {
+    baseFiles = git("ls-tree", "--name-only", `${baseRef}:content/promises`).split("\n").filter((f) => f.endsWith(".yaml"));
+  } catch {
+    warnings.push(`append-only: ${baseRef} has no content/promises yet; nothing to compare`);
+  }
+  for (const name of baseFiles) {
+    const path = join(root, "content", "promises", name);
+    let now: unknown;
+    try {
+      now = parseYaml(readFileSync(path, "utf8"));
+    } catch {
+      errors.push(`content/promises/${name}: removed or unreadable; published cards cannot be deleted`);
+      continue;
+    }
+    const was = parseYaml(git("show", `${baseRef}:content/promises/${name}`));
+    for (const issue of appendOnlyIssues(was, now)) errors.push(`content/promises/${name}: ${issue}`);
+  }
+  console.log(`append-only check against ${baseRef}: ${baseFiles.length} published card(s)`);
 }
 
 for (const w of warnings) console.log(`warn   ${w}`);

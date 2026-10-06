@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { RAW_SEED, loadSeed, parseSeed, type RawSeed } from "../src/seed";
+import { rawSeed, loadSeed, parseSeed, type RawSeed } from "../src/seed";
 
-const clone = (): RawSeed => structuredClone(RAW_SEED) as RawSeed;
+const clone = (): RawSeed => structuredClone(rawSeed()) as RawSeed;
 const errorsOf = (raw: RawSeed) => parseSeed(raw).issues.filter((i) => i.level === "error");
 /** The base year's statement inside a cloned bundle, for mutation. */
 const baseStatement = (raw: RawSeed) => {
@@ -9,6 +9,7 @@ const baseStatement = (raw: RawSeed) => {
   return b.statements[b.base_year];
 };
 const levers = (raw: RawSeed) => (raw.bundle as any).levers;
+const bus = (raw: RawSeed) => raw.content.promises.find((f) => f.path.endsWith("uk-bus-cap-2-2026.yaml"))!.data as any;
 
 describe("build bundle and seed files", () => {
   it("parse and cross-check without errors", () => {
@@ -96,8 +97,40 @@ describe("validation rejects", () => {
 
   it("a scoreable card without parameters", () => {
     const raw = clone();
-    (raw.promises as any).promises[0].parameters = null;
-    expect(errorsOf(raw).length).toBeGreaterThan(0);
+    const card = bus(raw);
+    card.versions[card.versions.length - 1].parameters = null;
+    expect(errorsOf(raw).some((e) => e.message.includes("parameters are required"))).toBe(true);
+  });
+
+  it("a status event without evidence", () => {
+    const raw = clone();
+    const card = bus(raw);
+    card.events.push({ date: "2026-08-01", type: "funded", text: "Money found" });
+    expect(errorsOf(raw).some((e) => e.message.includes("needs an evidence_url"))).toBe(true);
+  });
+
+  it("versions out of order", () => {
+    const raw = clone();
+    bus(raw).versions[0].version = 2;
+    expect(errorsOf(raw).some((e) => e.message.includes("numbered"))).toBe(true);
+  });
+
+  it("a card without sources", () => {
+    const raw = clone();
+    bus(raw).sources = [];
+    expect(errorsOf(raw).some((e) => e.message.includes("at least one source"))).toBe(true);
+  });
+
+  it("a card whose actor does not exist", () => {
+    const raw = clone();
+    bus(raw).actor_id = "nobody";
+    expect(errorsOf(raw).some((e) => e.message.includes("unknown actor_id"))).toBe(true);
+  });
+
+  it("a card whose id does not match its file name", () => {
+    const raw = clone();
+    bus(raw).id = "something-else";
+    expect(errorsOf(raw).some((e) => e.message.includes("does not match the file name"))).toBe(true);
   });
 
   it("a lever pointing at a line that does not exist", () => {

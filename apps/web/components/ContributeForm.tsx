@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import type { PromiseCard } from "@ledger/schema";
+import type { CardView } from "@ledger/schema";
 import { EVIDENCE_OPTIONS } from "@/lib/copy";
 
 export type SubmissionKind = "new" | "evidence";
@@ -20,7 +20,7 @@ export function ContributeForm({
   onKind,
   onCard,
 }: {
-  promises: PromiseCard[];
+  promises: CardView[];
   kind: SubmissionKind;
   cardId: string;
   onKind: (k: SubmissionKind) => void;
@@ -82,7 +82,7 @@ export function ContributeForm({
               <select id="sub-card" className="select" value={cardId} onChange={(e) => onCard(e.target.value)}>
                 {promises.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.actor.name}: {p.text}
+                    {p.actor.name}: {p.current.text}
                   </option>
                 ))}
               </select>

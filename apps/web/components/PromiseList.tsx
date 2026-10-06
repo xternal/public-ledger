@@ -1,20 +1,7 @@
-"use client";
-
-import type { PromiseCard, Status } from "@ledger/schema";
+import type { CardView, Status } from "@ledger/schema";
 import { STATUS_LABEL } from "@/lib/copy";
-import { gbpBn, longDate, monthYear, rangeText } from "@/lib/format";
-
-const TERMINAL: Status[] = ["delivered", "failed", "quietly_dropped", "unscoreable"];
-
-export const isOverdue = (p: PromiseCard, today: string | null) =>
-  !!today && !!p.deadline && p.deadline < today && !TERMINAL.includes(p.status);
-
-export function costText(p: PromiseCard): string {
-  const c = p.parameters?.how_much_bn_per_year;
-  if (c) return `${rangeText(c, gbpBn)} a year`;
-  if (p.parameters?.note) return "Cost pending editor";
-  return "Cost not stated";
-}
+import { longDate, monthYear } from "@/lib/format";
+import { costText, isOverdue, whoLine } from "@/lib/promises";
 
 const PILL: Record<Status, string> = {
   promised: "bg-sunk text-muted shadow-[inset_0_0_0_1px_var(--line)]",
@@ -32,43 +19,31 @@ export function StatusPill({ status }: { status: Status }) {
   return <span className={`whitespace-nowrap rounded-full px-2 py-0.5 text-caption font-semibold ${PILL[status]}`}>{STATUS_LABEL[status]}</span>;
 }
 
-export function PromiseList({
-  promises,
-  selected,
-  onSelect,
-  today,
-}: {
-  promises: PromiseCard[];
-  selected: string;
-  onSelect: (id: string) => void;
-  today: string | null;
-}) {
+/** Cards as a list of links to their own pages. Server-safe. */
+export function PromiseList({ cards, today, empty }: { cards: CardView[]; today: string | null; empty?: string }) {
+  if (!cards.length) {
+    return <p className="m-0 border-y border-line py-6 text-muted">{empty ?? "No promises match."}</p>;
+  }
   return (
-    <div className="grid border-t border-line" role="group" aria-label="Promises">
-      {promises.map((p) => (
-        <button
-          key={p.id}
-          type="button"
-          aria-pressed={p.id === selected}
-          onClick={() => onSelect(p.id)}
-          className="grid w-full cursor-pointer gap-2 border-b border-line px-3 py-4 text-left transition-colors hover:bg-sunk aria-pressed:bg-sunk aria-pressed:shadow-[inset_2px_0_0_var(--ink)]"
-        >
-          <span className="flex flex-wrap justify-between gap-x-3 text-label text-muted">
-            <span>
-              {p.actor.name}, {p.actor.role}
+    <ul className="m-0 grid list-none border-t border-line p-0">
+      {cards.map((c) => (
+        <li key={c.id} className="border-b border-line">
+          <a href={`/promise/${c.id}`} className="grid gap-2 px-3 py-4 text-ink no-underline transition-colors hover:bg-sunk">
+            <span className="flex flex-wrap justify-between gap-x-3 text-label text-muted">
+              <span>{whoLine(c)}</span>
+              <span>{longDate(c.file.made_on)}</span>
             </span>
-            <span>{longDate(p.made_on)}</span>
-          </span>
-          <span className="text-[16px] font-[550] leading-snug tracking-[-0.01em]">“{p.text}”</span>
-          <span className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-[12.5px] text-muted">
-            <StatusPill status={p.status} />
-            <span>{costText(p)}</span>
-            {p.deadline && <span>Due {monthYear(p.deadline)}</span>}
-            {isOverdue(p, today) && <span className="font-medium text-debt-ink">Deadline passed</span>}
-            {p.editor_check_required && <span>Needs editor check</span>}
-          </span>
-        </button>
+            <span className="text-[16px] font-[550] leading-snug tracking-[-0.01em]">“{c.current.text}”</span>
+            <span className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-[12.5px] text-muted">
+              <StatusPill status={c.file.status} />
+              <span>{costText(c)}</span>
+              {c.file.deadline && <span>Due {monthYear(c.file.deadline)}</span>}
+              {isOverdue(c, today) && <span className="font-medium text-debt-ink">Deadline passed</span>}
+              {c.current.parameters?.funded_by === null && <span>Funding not stated</span>}
+            </span>
+          </a>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
