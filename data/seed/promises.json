@@ -84,7 +84,8 @@
       "lever_settings": {
         "bus_cap_2": 1,
         "bus_cap_2.funding": "climate_loans"
-      }
+      },
+      "preset_label": "£2 bus cap, as announced"
     },
     {
       "id": "uk-defence-25-2027",
