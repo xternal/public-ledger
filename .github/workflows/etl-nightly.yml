@@ -30,7 +30,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - run: corepack enable pnpm
+      # Node 22's bundled Corepack cannot run pnpm 12; use the version that works locally.
+      - run: npm install -g corepack@0.34.5 && corepack enable pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm test
       - run: pnpm validate
