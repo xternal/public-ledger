@@ -1,0 +1,83 @@
+id: uk-vat-private-schools-2024
+actor_id: labour
+made_on: "2024-06-13"
+venue: manifesto
+venue_label: 2024 manifesto, page 82
+policy_area: taxes
+status: delivered
+status_note: >-
+  VAT at 20% has applied to private school fees since 1 January 2025 (Finance Act 2025), and charitable business rates
+  relief for private schools in England ended from the 2025-26 financial year (Non-Domestic Rating (Multipliers and
+  Private Schools) Act 2025). Business rates are devolved outside England. The High Court dismissed a human rights
+  challenge to the VAT change on 13 June 2025. This card tracks the two tax changes, not how the money is spent.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Labour Party: Change, 2024 manifesto (PDF), page 82"
+    url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=82
+  - title: "HMRC: Private school fees, VAT measure (30 Oct 2024)"
+    url: https://www.gov.uk/government/publications/vat-on-private-school-fees/applying-vat-to-private-school-fees
+  - title: "Finance Act 2025, section 47: removal of exemption for private school fees"
+    url: https://www.legislation.gov.uk/ukpga/2025/8/section/47
+  - title: Non-Domestic Rating (Multipliers and Private Schools) Act 2025
+    url: https://www.legislation.gov.uk/ukpga/2025/12/contents
+  - title: "High Court press summary: R (ALR and others) v Chancellor of the Exchequer, 13 Jun 2025"
+    url: https://www.judiciary.uk/wp-content/uploads/2025/06/ALR-and-others-v-Chancellor-of-the-Exchequer-private-schools-VAT-judgment-PRESS-SUMMARY.pdf
+versions:
+  - version: 1
+    text: >-
+      Labour will end the VAT exemption and business rates relief for private schools to invest in our state schools.
+    recorded_on: "2024-06-13"
+    source_url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=82
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: Families paying private school fees and the schools (pay more); the stated aim is investment in state schools
+      how_much_bn_per_year: [-1.75, -1.75, -1.51]
+      cost_note: >-
+        Negative because the pledge raises money. Year used: 2028-29, the year Labour's costings use. Central is the
+        official figure from Autumn Budget 2024, certified by the OBR: £1,665m from VAT plus £85m from business rates
+        (£1.75bn). The other end of the range is Labour's own figure for the same year, £1,510m (manifesto page 127).
+        Official figures for other years: £460m VAT in 2024-25 (part year); £1,505m VAT and £70m rates in 2025-26;
+        £1,560m and £85m in 2026-27; £1,725m and £90m in 2029-30.
+      cost_sources:
+        - title: "Labour Party: Change, 2024 manifesto (PDF), costings, page 127"
+          url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=127
+        - title: "HMRC: Private school fees, VAT measure (Exchequer impact)"
+          url: https://www.gov.uk/government/publications/vat-on-private-school-fees/applying-vat-to-private-school-fees
+        - title: "HM Treasury: Autumn Budget 2024, Table 5.1, lines 22-23"
+          url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+      when: VAT from 1 January 2025; business rates relief removed from April 2025
+      funded_by: >-
+        Not a spending pledge; the manifesto says the change is "to invest in our state schools" (page 82), and its
+        costings count the revenue towards public service pledges including 6,500 new expert teachers (page 127)
+events:
+  - date: "2024-06-13"
+    type: promised
+    text: Labour manifesto pledges to end the VAT exemption and business rates relief for private schools
+  - date: "2024-10-30"
+    type: in_plan
+    text: >-
+      Autumn Budget 2024 confirms VAT on private school fees from 1 January 2025 and the end of charitable business
+      rates relief for private schools in England from April 2025
+    evidence_url: https://www.gov.uk/government/publications/vat-on-private-school-fees/applying-vat-to-private-school-fees
+  - date: "2025-01-01"
+    type: delivering
+    text: VAT at 20% applies to private school education and boarding provided from 1 January 2025
+    evidence_url: https://www.legislation.gov.uk/ukpga/2025/8/section/49
+  - date: "2025-03-20"
+    type: legislated
+    text: Finance Act 2025 (sections 47 to 49) receives Royal Assent
+    evidence_url: https://www.legislation.gov.uk/ukpga/2025/8/section/47
+  - date: "2025-04-03"
+    type: legislated
+    text: >-
+      Non-Domestic Rating (Multipliers and Private Schools) Act 2025 receives Royal Assent; section 5 removes
+      charitable rate relief from private schools in England
+    evidence_url: https://www.legislation.gov.uk/ukpga/2025/12/contents
+  - date: "2025-04-03"
+    type: delivered
+    text: >-
+      Both changes are in force: VAT since 1 January 2025, and the end of rates relief for the financial year from
+      1 April 2025
+    evidence_url: https://www.legislation.gov.uk/ukpga/2025/12/section/6/enacted
+replies: []

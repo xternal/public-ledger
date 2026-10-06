@@ -1,0 +1,68 @@
+id: uk-no-tax-rise-working-people-2024
+actor_id: labour
+made_on: "2024-06-13"
+venue: manifesto
+venue_label: 2024 manifesto, page 21
+policy_area: taxes
+status: in_plan
+status_note: >-
+  Budgets in October 2024 and November 2025 restated the commitment, and the main rates of income tax (20%, 40%,
+  45%), employee National Insurance and VAT have not risen since the election. Other changes affect the same taxes:
+  employer National Insurance rose to 15% from April 2025, income tax and National Insurance thresholds stay frozen to
+  April 2031, and tax rates on dividend, savings and property income rise by 2 points from 2026 and 2027. The card
+  stays at In plan until the pledge can be judged as a whole at the end of the Parliament, taken as 1 July 2029.
+deadline: "2029-07-01"
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Labour Party: Change, 2024 manifesto (PDF), page 21"
+    url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=21
+  - title: "HM Treasury: Autumn Budget 2024 (30 Oct 2024)"
+    url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+  - title: "HM Treasury: Budget 2025 (26 Nov 2025)"
+    url: https://assets.publishing.service.gov.uk/media/6929b353345e31ab14ecf735/E03444720_Budget_2025_Web_Accessible.pdf
+  - title: National Insurance Contributions (Secondary Class 1 Contributions) Act 2025
+    url: https://www.legislation.gov.uk/ukpga/2025/11
+  - title: Finance Act 2026 (main, dividend, savings and property income rates)
+    url: https://www.legislation.gov.uk/ukpga/2026/11/contents
+versions:
+  - version: 1
+    text: >-
+      Labour will not increase taxes on working people, which is why we will not increase National Insurance, the
+      basic, higher, or additional rates of Income Tax, or VAT.
+    recorded_on: "2024-06-13"
+    source_url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=21
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: People in work across the UK who pay income tax, National Insurance and VAT
+      how_much_bn_per_year: null
+      cost_note: >-
+        A pledge not to raise rates has no direct cost against existing plans, and no official costing of it exists.
+        Labour's fiscal plan says policies not listed in its costings are funded from existing budgets or have no cost.
+      cost_sources:
+        - title: "Labour Party: Change, 2024 manifesto (PDF), fiscal plan, page 126"
+          url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=126
+      when: For the Parliament (taken as to 1 July 2029)
+      funded_by: null
+events:
+  - date: "2024-06-13"
+    type: promised
+    text: Labour manifesto pledges not to raise National Insurance, the main rates of income tax or VAT
+  - date: "2024-10-30"
+    type: in_plan
+    text: >-
+      Autumn Budget 2024 says the government is not increasing the basic, higher or additional rates of income tax,
+      National Insurance contributions or VAT; the same Budget raises the employer National Insurance rate to 15% from
+      April 2025
+    evidence_url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+  - date: "2025-11-26"
+    type: in_plan
+    text: >-
+      Budget 2025 says the government is not increasing the headline rates of income tax, National Insurance
+      contributions or VAT; it extends the threshold freeze to April 2031 and raises tax rates on dividend, savings
+      and property income
+    evidence_url: https://assets.publishing.service.gov.uk/media/6929b353345e31ab14ecf735/E03444720_Budget_2025_Web_Accessible.pdf
+  - date: "2029-07-01"
+    type: deadline
+    text: End of the Parliament (editorial date)
+replies: []

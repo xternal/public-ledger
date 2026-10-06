@@ -1,0 +1,8 @@
+id: andy-burnham
+name: Andy Burnham
+kind: person
+party_id: labour
+roles:
+  - title: Prime Minister
+    # Source: https://www.gov.uk/government/ministers/prime-minister ("Andy Burnham became Prime Minister on 20 July 2026.")
+    from: "2026-07-20"

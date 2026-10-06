@@ -1,0 +1,58 @@
+id: uk-ld-free-personal-care-2024
+actor_id: liberal-democrats
+made_on: "2024-06-10"
+venue: manifesto
+venue_label: 2024 manifesto, page 37
+policy_area: social_protection
+status: promised
+status_note: >-
+  The Liberal Democrats are not in government, so the card stays at Promised. In July 2026 the party restated free
+  personal care as one of its three tests on social care for the new Prime Minister; this card has no evidence
+  that the UK Government has adopted it.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Liberal Democrats: For a Fair Deal, 2024 manifesto (PDF), page 37"
+    url: https://www.libdems.org.uk/fileadmin/groups/2_Federal_Party/Documents/PolicyPapers/Manifesto_2024/For_a_Fair_Deal_-_Liberal_Democrat_Manifesto_2024.pdf
+  - title: "Liberal Democrats: Ed Davey launches plan for free personal care, 8 Jun 2024"
+    url: https://www.libdems.org.uk/press/release/ed-davey-launches-plan-for-free-personal-care-to-end-hospital-crisis-and-help-people-stay-in-their-own-homes
+  - title: "Liberal Democrats: Funding a Fair Deal, manifesto costings 2024 (PDF)"
+    url: https://www.libdems.org.uk/fileadmin/groups/2_Federal_Party/Documents/PolicyPapers/Manifesto_2024/Funding_a_Fair_Deal_-_Liberal_Democrat_Manifesto_Costings_2024.pdf
+  - title: "Liberal Democrats: Davey calls on PM Burnham to end the social care catastrophe, 20 Jul 2026"
+    url: https://www.libdems.org.uk/press/release/davey-calls-on-pm-burnham-to-end-the-social-care-catastrophe-as-data-reveals-family-care-costs-have-soared-60-in-five-years
+  - title: "IFS: Liberal Democrat manifesto: a reaction, 10 Jun 2024"
+    url: https://ifs.org.uk/articles/liberal-democrat-manifesto-reaction
+versions:
+  - version: 1
+    text: >-
+      Introduce free personal care based on the model introduced by the Liberal Democrats in government in
+      Scotland in 2002, so that provision is based on need, not ability to pay.
+    recorded_on: "2024-06-10"
+    source_url: https://www.libdems.org.uk/fileadmin/groups/2_Federal_Party/Documents/PolicyPapers/Manifesto_2024/For_a_Fair_Deal_-_Liberal_Democrat_Manifesto_2024.pdf
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: >-
+        People in England who need personal care, at home or in a care home. Care home residents would still pay
+        for their accommodation.
+      how_much_bn_per_year: [2.7, 6.0, 7.0]
+      cost_note: >-
+        The party's own figure is £2.7bn a year by 2028-29 above existing social care plans (low). The Health
+        Foundation estimated in January 2024 that a Scottish-style free personal care model in England could cost
+        around £6bn extra in 2026/27 (central), rising to £7bn by 2035/36 (high). The IFS said the party's wider
+        £8.4bn for health and social care would not be nearly enough if it is on top of current spending.
+      cost_sources:
+        - title: "Liberal Democrats press release, 8 Jun 2024"
+          url: https://www.libdems.org.uk/press/release/ed-davey-launches-plan-for-free-personal-care-to-end-hospital-crisis-and-help-people-stay-in-their-own-homes
+        - title: "Health Foundation: response to Liberal Democrats' proposals for social care, 4 Jun 2024"
+          url: https://www.health.org.uk/media-office/press-releases/the-health-foundation-responds-to-liberal-democrats-proposals-for-social-care
+        - title: "IFS: Liberal Democrat manifesto: a reaction, 10 Jun 2024"
+          url: https://ifs.org.uk/articles/liberal-democrat-manifesto-reaction
+      when: Not stated; the party costed it for 2028-29
+      funded_by: >-
+        Reversing tax cuts given to the big banks by the Conservatives since 2016 (restoring Bank Surcharge and
+        Bank Levy revenues to 2016 levels in real terms), which the party says raises £4.3bn a year by 2028-29.
+events:
+  - date: "2024-06-10"
+    type: promised
+    text: Liberal Democrat manifesto pledges free personal care in England
+replies: []

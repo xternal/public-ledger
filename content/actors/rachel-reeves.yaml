@@ -1,0 +1,9 @@
+id: rachel-reeves
+name: Rachel Reeves
+kind: person
+party_id: labour
+roles:
+  - title: Chancellor of the Exchequer
+    # Source: https://www.gov.uk/government/people/rachel-reeves ("Chancellor of the Exchequer between 5 July 2024 and 20 July 2026.")
+    from: "2024-07-05"
+    to: "2026-07-20"

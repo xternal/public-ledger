@@ -1,0 +1,32 @@
+id: uk-plaid-cost-of-living-2024
+actor_id: plaid-cymru
+made_on: "2024-06-13"
+venue: manifesto
+venue_label: 2024 manifesto, introduction by Rhun ap Iorwerth, page 2
+policy_area: economic_affairs
+status: unscoreable
+status_note: >-
+  The sentence commits to addressing the cost of living crisis but names no measure, amount or date, so it cannot
+  be scored (Promise standard, section 2). The manifesto's specific pledges, such as the £4bn HS2 claim, would be
+  separate cards.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Plaid Cymru: For fairness, for ambition, for Wales, 2024 manifesto (PDF), page 2"
+    url: https://assets.nationbuilder.com/plaid2016/pages/13170/attachments/original/1721133624/Plaid_Cymru_Maniffesto_2024_ENGLISH.pdf?1721133624
+  - title: "Plaid Cymru: manifesto launch, 13 Jun 2024"
+    url: https://www.partyof.wales/lansio_maniffesto_2024
+versions:
+  - version: 1
+    text: >-
+      By supporting families and by devolving powers to ensure that more of the decisions that affect Wales are
+      made in Wales, we will address the cost of living crisis and provide Welsh solutions to Welsh problems.
+    recorded_on: "2024-06-13"
+    source_url: https://assets.nationbuilder.com/plaid2016/pages/13170/attachments/original/1721133624/Plaid_Cymru_Maniffesto_2024_ENGLISH.pdf?1721133624
+    quote_checked_on: "2026-10-06"
+    parameters: null
+events:
+  - date: "2024-06-13"
+    type: promised
+    text: Plaid Cymru manifesto introduction pledges to address the cost of living crisis
+replies: []

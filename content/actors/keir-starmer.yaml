@@ -1,0 +1,9 @@
+id: keir-starmer
+name: Keir Starmer
+kind: person
+party_id: labour
+roles:
+  - title: Prime Minister
+    # Source: https://www.gov.uk/government/people/keir-starmer ("Prime Minister from 5 July 2024 to 20 July 2026.")
+    from: "2024-07-05"
+    to: "2026-07-20"

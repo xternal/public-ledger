@@ -1,0 +1,78 @@
+id: uk-nhs-40000-appointments-2024
+actor_id: labour
+made_on: "2024-06-13"
+venue: manifesto
+venue_label: 2024 manifesto, page 95
+policy_area: health
+status: delivering
+status_note: >-
+  The government reported almost 2.2 million more elective appointments in England in July to November 2024 than a
+  year earlier, and in July 2025 the UK Statistics Authority said its regulator had verified a figure of 3.6 million
+  extra. The pledge is for every year, so the card sits at Delivering rather than Delivered. The manifesto sets no
+  end date.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Labour Party: Change, 2024 manifesto (PDF), page 95"
+    url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=95
+  - title: "DHSC press release: Over two million extra NHS appointments delivered early (16 Feb 2025)"
+    url: https://www.gov.uk/government/news/over-two-million-extra-nhs-appointments-delivered-early-as-trusts-handed-40-million-to-go-further-and-faster
+  - title: "UK Statistics Authority: letter from Sir Robert Chote to Helen Morgan MP (16 Jul 2025)"
+    url: https://uksa.statisticsauthority.gov.uk/correspondence/letter-from-sir-robert-chote-to-helen-morgan-mp-nhs-appointment-statistics/
+  - title: "UK Statistics Authority: letter from Helen Morgan MP to Sir Robert Chote (23 May 2025)"
+    url: https://uksa.statisticsauthority.gov.uk/correspondence/helen-morgan-mp-to-sir-robert-chote-nhs-appointment-statistics/
+  - title: "HM Treasury: Autumn Budget 2024 (30 Oct 2024)"
+    url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+  - title: "HM Treasury: Budget 2025 (26 Nov 2025)"
+    url: https://assets.publishing.service.gov.uk/media/6929b353345e31ab14ecf735/E03444720_Budget_2025_Web_Accessible.pdf
+versions:
+  - version: 1
+    text: >-
+      As a first step, in England we will deliver an extra two million NHS operations, scans, and appointments every
+      year; that is 40,000 more appointments every week.
+    recorded_on: "2024-06-13"
+    source_url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=95
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: NHS patients in England waiting for planned (elective) operations, scans and appointments
+      how_much_bn_per_year: [0.909, 1.01, 1.111]
+      cost_note: >-
+        Year used: 2028-29, the year Labour's costings use. Labour's own figure is £1,010m (manifesto page 127);
+        central figure only. No independent costing of the pledge itself was found. For comparison, Autumn Budget 2024
+        gave an additional £1.8bn to support elective activity in 2024-25, within a £22.6bn rise in the health
+        department's day-to-day budget for 2025-26 compared with 2023-24.
+        Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "Labour Party: Change, 2024 manifesto (PDF), costings, page 127"
+          url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=127
+        - title: "HM Treasury: Autumn Budget 2024"
+          url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+      when: Every year from the start of the Parliament; no end date stated
+      funded_by: Cracking down on tax avoidance and non-dom loopholes (manifesto page 10)
+events:
+  - date: "2024-06-13"
+    type: promised
+    text: Labour manifesto pledges two million extra NHS operations, scans and appointments a year in England
+  - date: "2024-10-30"
+    type: funded
+    text: >-
+      Autumn Budget 2024 funds the NHS in England to deliver 40,000 extra elective appointments a week, including an
+      additional £1.8bn for elective activity since July
+    evidence_url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+  - date: "2025-02-16"
+    type: delivering
+    text: >-
+      Government reports almost 2.2 million more elective appointments in July to November 2024 than in the same
+      months of 2023
+    evidence_url: https://www.gov.uk/government/news/over-two-million-extra-nhs-appointments-delivered-early-as-trusts-handed-40-million-to-go-further-and-faster
+  - date: "2025-07-16"
+    type: delivering
+    text: >-
+      UK Statistics Authority letter says the Office for Statistics Regulation has verified the government's figure of
+      3.6 million additional elective appointments
+    evidence_url: https://uksa.statisticsauthority.gov.uk/correspondence/letter-from-sir-robert-chote-to-helen-morgan-mp-nhs-appointment-statistics/
+  - date: "2025-11-26"
+    type: delivering
+    text: Budget 2025 reports 5.2 million more appointments delivered since the start of the Parliament
+    evidence_url: https://assets.publishing.service.gov.uk/media/6929b353345e31ab14ecf735/E03444720_Budget_2025_Web_Accessible.pdf
+replies: []

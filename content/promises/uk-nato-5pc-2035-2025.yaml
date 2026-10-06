@@ -1,0 +1,59 @@
+id: uk-nato-5pc-2035-2025
+actor_id: keir-starmer
+made_on: "2025-06-24"
+venue_label: National Security Strategy 2025, PM's foreword, page 5
+policy_area: defence
+status: in_plan
+status_note: >-
+  The National Security Strategy and the June 2026 Defence Investment Plan name the commitment (3.5% of GDP
+  on core defence and 1.5% on resilience and security by 2035), but money is set out only to 2029-30, at
+  2.7% of GDP on core defence. The deadline is taken as the end of 2035.
+deadline: "2035-12-31"
+lever_settings:
+  defence_gdp: 3.5
+preset_label: Core defence at 3.5% of GDP, the 2035 NATO pledge
+origin: manual
+editor_check_required: true
+sources:
+  - title: "National Security Strategy 2025: Security for the British People in a Dangerous World (PDF)"
+    url: https://assets.publishing.service.gov.uk/media/685ab0da72588f418862075c/E03360428_National_Security_Strategy_Accessible.pdf
+  - title: "No 10 press release, 24 Jun 2025: UK to deliver on 5% NATO pledge"
+    url: https://www.gov.uk/government/news/uk-to-deliver-on-5-nato-pledge-as-government-drives-greater-security-for-working-people
+  - title: "The Defence Investment Plan: funding explainer, 30 Jun 2026"
+    url: https://www.gov.uk/government/publications/the-defence-investment-plan/the-defence-investment-plan-funding-explainer
+  - title: "IFS Green Budget 2025: Honouring NATO defence spending commitment would reshape British state"
+    url: https://ifs.org.uk/news/honouring-nato-defence-spending-commitment-would-reshape-british-state
+versions:
+  - version: 1
+    text: >-
+      That is why, as part of this strategy, we make a historic commitment to spend 5% of our GDP on national
+      security by 2035.
+    recorded_on: "2025-06-24"
+    source_url: https://assets.publishing.service.gov.uk/media/685ab0da72588f418862075c/E03360428_National_Security_Strategy_Accessible.pdf
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: UK defence and national security (3.5% of GDP core defence, 1.5% resilience and security)
+      how_much_bn_per_year: [32.4, 36, 39.6]
+      cost_note: >-
+        Year shown: 2035, the target year, in today's terms; central figure only. The government gave no
+        cost. The IFS estimates that raising core defence from 2.3% of GDP to 3.5% equals about £36bn a year
+        in today's terms. There is no costing for the 1.5% on resilience and security, so the figure covers
+        the core defence part only.
+        Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "IFS Green Budget 2025: Honouring NATO defence spending commitment would reshape British state"
+          url: https://ifs.org.uk/news/honouring-nato-defence-spending-commitment-would-reshape-british-state
+      when: By 2035
+      funded_by: null
+events:
+  - date: "2025-06-24"
+    type: promised
+    text: PM commits to 5% of GDP on national security by 2035 in the National Security Strategy, ahead of the NATO summit
+  - date: "2026-06-30"
+    type: in_plan
+    text: Defence Investment Plan restates the 3.5% of GDP core defence commitment for 2035; funding set out to 2029-30 at 2.7%
+    evidence_url: https://www.gov.uk/government/publications/the-defence-investment-plan/the-defence-investment-plan-funding-explainer
+  - date: "2035-12-31"
+    type: deadline
+    text: 5% of GDP on national security due by 2035
+replies: []

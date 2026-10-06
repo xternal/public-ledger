@@ -1,0 +1,65 @@
+id: uk-corp-tax-cap-25-2024
+actor_id: labour
+made_on: "2024-06-13"
+venue: manifesto
+venue_label: 2024 manifesto, page 31
+policy_area: taxes
+status: legislated
+status_note: >-
+  The Corporate Tax Roadmap (October 2024) commits to the 25% cap for the Parliament, and Finance Acts have set the
+  main rate at 25% for the financial years starting April 2026 and April 2027. Later years are not yet set in law, so
+  the card sits at Legislated until the end of the Parliament, taken as 1 July 2029.
+deadline: "2029-07-01"
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Labour Party: Change, 2024 manifesto (PDF), page 31"
+    url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=31
+  - title: "HM Treasury: Corporate Tax Roadmap 2024 (30 Oct 2024)"
+    url: https://www.gov.uk/government/publications/corporate-tax-roadmap-2024
+  - title: "Finance Act 2025, section 13: main rate for financial year 2026"
+    url: https://www.legislation.gov.uk/ukpga/2025/8/section/13/enacted
+  - title: "Finance Act 2026, section 11: main rate for financial year 2027"
+    url: https://www.legislation.gov.uk/ukpga/2026/11/section/11/enacted
+  - title: "HM Treasury: Budget 2025 (26 Nov 2025)"
+    url: https://assets.publishing.service.gov.uk/media/6929b353345e31ab14ecf735/E03444720_Budget_2025_Web_Accessible.pdf
+versions:
+  - version: 1
+    text: >-
+      Labour will cap corporation tax at the current level of 25 per cent, the lowest in the G7, for the entire
+      parliament, and we will act if tax changes in other countries pose a risk to UK competitiveness.
+    recorded_on: "2024-06-13"
+    source_url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=31
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: Companies that pay the main rate of corporation tax
+      how_much_bn_per_year: null
+      cost_note: >-
+        Keeping the rate at its current level has no direct cost against existing plans, and no official costing of
+        the pledge exists. Labour's fiscal plan says policies not listed in its costings are funded from existing
+        budgets or have no cost.
+      cost_sources:
+        - title: "Labour Party: Change, 2024 manifesto (PDF), fiscal plan, page 126"
+          url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=126
+      when: For the whole Parliament (taken as to 1 July 2029)
+      funded_by: null
+events:
+  - date: "2024-06-13"
+    type: promised
+    text: Labour manifesto pledges to cap corporation tax at 25% for the whole Parliament
+  - date: "2024-10-30"
+    type: in_plan
+    text: Corporate Tax Roadmap commits to capping the main rate of corporation tax at 25% for the Parliament
+    evidence_url: https://www.gov.uk/government/publications/corporate-tax-roadmap-2024
+  - date: "2025-03-20"
+    type: legislated
+    text: Finance Act 2025 sets the main rate at 25% for the financial year 2026
+    evidence_url: https://www.legislation.gov.uk/ukpga/2025/8/section/13/enacted
+  - date: "2026-03-18"
+    type: legislated
+    text: Finance Act 2026 sets the main rate at 25% for the financial year 2027
+    evidence_url: https://www.legislation.gov.uk/ukpga/2026/11/section/11/enacted
+  - date: "2029-07-01"
+    type: deadline
+    text: End of the Parliament (editorial date)
+replies: []

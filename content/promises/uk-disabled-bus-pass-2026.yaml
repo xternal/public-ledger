@@ -1,0 +1,41 @@
+id: uk-disabled-bus-pass-2026
+actor_id: andy-burnham
+made_on: "2026-08-18"
+venue: press_release
+venue_label: No 10, DfT and DWP press release
+policy_area: economic_affairs
+status: promised
+status_note: >-
+  Announced with £60m from existing DWP and DfT budgets, to start on 1 April 2027. No plan, legislation or
+  funding allocation has been published since, so the card stays at Promised.
+deadline: "2027-04-01"
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Press release, 18 Aug 2026: Free bus travel 24/7 for disabled people"
+    url: https://www.gov.uk/government/news/free-bus-travel-247-for-disabled-people-as-prime-minister-takes-further-action-to-ease-cost-of-living
+versions:
+  - version: 1
+    text: Disabled people will now have unlimited free bus travel 24/7.
+    recorded_on: "2026-08-18"
+    source_url: https://www.gov.uk/government/news/free-bus-travel-247-for-disabled-people-as-prime-minister-takes-further-action-to-ease-cost-of-living
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: Holders of a disabled person's bus pass in England
+      how_much_bn_per_year: null
+      cost_note: >-
+        The announcement says the change is backed by £60m (£40m from DWP and £20m from DfT) but does not say
+        whether that is a one-off or a yearly sum. There is no independent costing.
+      cost_sources:
+        - title: "Press release, 18 Aug 2026: Free bus travel 24/7 for disabled people"
+          url: https://www.gov.uk/government/news/free-bus-travel-247-for-disabled-people-as-prime-minister-takes-further-action-to-ease-cost-of-living
+      when: "2027-04-01"
+      funded_by: £60m from existing DWP (£40m) and DfT (£20m) budgets
+events:
+  - date: "2026-08-18"
+    type: promised
+    text: PM announces that time limits on disabled people's bus passes in England will be lifted from 1 April 2027
+  - date: "2027-04-01"
+    type: deadline
+    text: Due to start
+replies: []

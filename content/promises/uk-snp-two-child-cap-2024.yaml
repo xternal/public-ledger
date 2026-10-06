@@ -1,0 +1,67 @@
+id: uk-snp-two-child-cap-2024
+actor_id: snp
+made_on: "2024-06-19"
+venue: manifesto
+venue_label: 2024 manifesto, page 5 (key pledges)
+policy_area: social_protection
+status: delivered
+status_note: >-
+  The SNP is not in government at Westminster. The UK Government adopted the policy: Budget 2025 funded it, the
+  Universal Credit (Removal of Two Child Limit) Act 2026 became law on 18 March 2026, and the limit stopped
+  applying from 6 April 2026. This card records that the change the SNP asked for happened, not who made it.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "SNP: A Future Made in Scotland, 2024 manifesto (PDF), page 5"
+    url: https://s3-eu-west-2.amazonaws.com/www.snp.org/uploads/2024/06/2024-06-20b-SNP-General-Election-Manifesto-2024_interactive.pdf
+  - title: "SNP: John Swinney's 2024 manifesto speech, 19 Jun 2024"
+    url: https://www.snp.org/snp-leader-john-swinneys-2024-manifesto-speech/
+  - title: "HM Treasury: Budget 2025, 26 Nov 2025"
+    url: https://www.gov.uk/government/publications/budget-2025-document/budget-2025-html
+  - title: "legislation.gov.uk: Universal Credit (Removal of Two Child Limit) Act 2026"
+    url: https://www.legislation.gov.uk/ukpga/2026/13/enacted
+  - title: "DWP: Two-child limit scrapped as historic Bill becomes law, 19 Mar 2026"
+    url: https://www.gov.uk/government/news/two-child-limit-scrapped-as-historic-bill-to-lift-450000-children-out-of-poverty-becomes-law
+  - title: "DWP: Plan to track progress on lifting 550,000 children out of poverty published, 9 Jul 2026"
+    url: https://www.gov.uk/government/news/plan-to-track-progress-on-lifting-550000-children-out-of-poverty-published
+versions:
+  - version: 1
+    text: >-
+      Scrap the two child benefit cap, ending the unnecessary suffering caused by both the benefit cap on children
+      and associated rape clause.
+    recorded_on: "2024-06-19"
+    source_url: https://s3-eu-west-2.amazonaws.com/www.snp.org/uploads/2024/06/2024-06-20b-SNP-General-Election-Manifesto-2024_interactive.pdf
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: Families with three or more children claiming Universal Credit or Child Tax Credit
+      how_much_bn_per_year: [2.53, 2.815, 3.1]
+      cost_note: >-
+        The SNP did not publish a cost. The UK Government's Budget 2025 scorecard puts removing the limit at
+        £2.365bn in 2026-27, £2.815bn in 2028-29 and £3.235bn in 2030-31. The card uses 2028-29, once the change
+        has bedded in; the low–high range is an editorial ±10% because the scorecard gives central figures only.
+      cost_sources:
+        - title: "HM Treasury: Budget 2025, Table 2.1, line 6"
+          url: https://www.gov.uk/government/publications/budget-2025-document/budget-2025-html
+      when: Not stated in the manifesto
+      funded_by: null
+events:
+  - date: "2024-06-19"
+    type: promised
+    text: SNP manifesto lists scrapping the two-child benefit cap among its key pledges
+  - date: "2025-11-26"
+    type: funded
+    text: >-
+      UK Government's Budget 2025 sets aside £2.4bn in 2026-27, rising to £3.2bn in 2030-31, to remove the limit
+      from April 2026
+    evidence_url: https://www.gov.uk/government/publications/budget-2025-document/budget-2025-html
+  - date: "2026-03-18"
+    type: legislated
+    text: Universal Credit (Removal of Two Child Limit) Act 2026 receives Royal Assent
+    evidence_url: https://www.legislation.gov.uk/ukpga/2026/13/enacted
+  - date: "2026-04-06"
+    type: delivered
+    text: >-
+      The limit stops applying for Universal Credit assessment periods starting on or after 6 April 2026; DWP
+      later reports the last statistics on families affected
+    evidence_url: https://www.gov.uk/government/news/plan-to-track-progress-on-lifting-550000-children-out-of-poverty-published
+replies: []

@@ -1,0 +1,54 @@
+id: uk-con-stamp-duty-abolition-2025
+actor_id: conservatives
+made_on: "2025-10-08"
+venue: speech
+venue_label: Leader's speech, Conservative Party Conference 2025
+policy_area: taxes
+status: promised
+status_note: >-
+  The Conservatives are not in government, so the card stays at Promised. Shadow Chancellor Andrew Griffith
+  restated the pledge at the party's 2026 conference on 5 October 2026.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Conservatives: Kemi Badenoch Announces Our Plan to Abolish Stamp Duty (speech text), 8 Oct 2025"
+    url: https://www.conservatives.com/news/kemi-badenoch-closes-conference
+  - title: "Conservatives: Our Plan To Get Britain's Economy Growing (Andrew Griffith speech), 5 Oct 2026"
+    url: https://www.conservatives.com/news/our-plan-to-get-britains-economy-growing
+  - title: "Conservatives: policy page (savings list and Golden Economic Rule)"
+    url: https://www.conservatives.com/policy
+  - title: "Institute for Government: stamp duty land tax explainer (Badenoch pledge section)"
+    url: https://www.instituteforgovernment.org.uk/explainer/stamp-duty-land-tax
+  - title: "Chartered Institute of Taxation: Conservative Party Conference 2025 report"
+    url: https://www.tax.org.uk/conservative-party-conference-2025-report
+versions:
+  - version: 1
+    text: Conference, the next Conservative Government will abolish stamp duty on your home. It will be gone.
+    recorded_on: "2025-10-08"
+    source_url: https://www.conservatives.com/news/kemi-badenoch-closes-conference
+    quote_checked_on: "2026-10-06"
+    parameters:
+      who: >-
+        UK residents buying a main home in England and Northern Ireland, at any price. Second and further homes,
+        purchases by companies and by non-UK residents would still pay. Stamp duty is devolved in Scotland and Wales.
+      how_much_bn_per_year: [4.5, 9.0, 9.0]
+      cost_note: >-
+        The party's own estimate is £9bn in 2029-30 (used as central and high); it notes the cost at today's
+        prices is about £4.5bn (low). The Institute for Government says these figures are roughly consistent with
+        forecasts: stamp duty raised just over £10bn in 2024-25, about half of it on additional homes. The party
+        says it has not counted any extra tax from more housing sales. No OBR or HMRC costing of this pledge.
+      cost_sources:
+        - title: "Institute for Government: stamp duty land tax explainer"
+          url: https://www.instituteforgovernment.org.uk/explainer/stamp-duty-land-tax
+        - title: "Chartered Institute of Taxation: Conservative Party Conference 2025 report"
+          url: https://www.tax.org.uk/conservative-party-conference-2025-report
+      when: Not stated ("the next Conservative Government"); the party costed it for 2029-30
+      funded_by: >-
+        From the £47bn of savings the party says it has identified (including £23bn from welfare, £8bn from
+        cutting the civil service and £7bn from overseas aid). Under its Golden Economic Rule at least half of
+        the savings go to cutting the deficit and the rest to tax cuts.
+events:
+  - date: "2025-10-08"
+    type: promised
+    text: Kemi Badenoch pledges to abolish stamp duty on main homes in her conference speech
+replies: []
