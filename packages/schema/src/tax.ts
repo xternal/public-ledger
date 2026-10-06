@@ -25,6 +25,10 @@ export const TaxSeed = z.object({
     basic_rate_lever: z.string(),
     higher_rate_pct: z.number(),
     additional_rate_pct: z.number(),
+    /** Levers that move these parameters in the sandbox (M2). Optional so older bundles still parse. */
+    higher_rate_lever: z.string().optional(),
+    additional_rate_lever: z.string().optional(),
+    personal_allowance_lever: z.string().optional(),
   }),
   employee_ni: z.object({
     primary_threshold_gbp: z.number().nonnegative(),

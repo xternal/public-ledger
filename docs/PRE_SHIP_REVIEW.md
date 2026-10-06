@@ -62,6 +62,9 @@ Legend: ✅ fixed in this pass · 🔲 open. Owner: ENG, DATA, ED (editor), ECON
 | D4 | PESA counts £19.4bn of notional pension interest as debt interest; OBR does not. The Statement uses OBR's measure and shows the difference inside the accounting line | ✅ explained in the line's note |
 | D5 | 2025-26 is still an OBR estimate in the Statement, while ONS outturn (borrowing £134.3bn vs £132.7bn) and PESA outturn exist | 🔲 decide once ONS tax-by-tax outturn is ingested |
 | D6 | State pension figures from DWP are Great Britain only | 🔲 accepted for v0; add NI if needed |
+| D7 | Defence lever started from COFOG defence (2.13% of GDP), so NATO-style targets overstated the cost | ✅ M2: starts from NATO's measure (2.32%, NATO estimate for 2025-26) |
+| D8 | Fuel duty's temporary 5p cut ends 31 Dec 2026 (55.95p from 1 Jan 2027, 57.95p from 1 Mar 2027) | ✅ shown in the lever note; 🔲 update after Budget 2026 confirms rates |
+| D9 | Brand colours as text failed AA in light mode (borrowing orange 3.3:1, amber pills 4.5:1) | ✅ text shade `--debt-ink`, amber darkened; Lighthouse accessibility 100 in both themes |
 
 ## Not a bug, but decide
 

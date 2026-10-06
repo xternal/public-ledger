@@ -57,7 +57,7 @@ export function Method() {
 export function Footer() {
   const { seed } = useScenario();
   return (
-    <footer className="mt-20 grid gap-1 border-t border-line pt-5 text-[12.5px] text-faint">
+    <footer className="mt-20 grid gap-1 border-t border-line pt-5 text-[12.5px] text-muted">
       <p className="m-0">
         Prototype for design handoff. Figures are for layout and interaction review; do not quote them until the data pipeline and editor checks are
         in place.

@@ -157,7 +157,7 @@ export function ContributeForm({
           )}
         </div>
         {sent && (
-          <p role="status" className="m-0 rounded-control bg-good/12 px-3 py-2.5 text-label font-medium text-good">
+          <p role="status" className="m-0 rounded-control bg-good/8 px-3 py-2.5 text-label font-medium text-good">
             Prototype: nothing was sent. In the product this goes to the editors' queue and you get a reference number.
           </p>
         )}

@@ -40,7 +40,7 @@ function Ladder({ card }: { card: PromiseCard }) {
           <li key={s} aria-current={i === idx ? "step" : undefined} className="grid gap-1.5">
             <span className={`h-1 rounded-full ${i === idx ? "bg-ink" : i < idx ? "bg-ink/35" : "bg-line"}`} />
             <span
-              className={`text-[11.5px] ${i === idx ? "whitespace-nowrap font-semibold text-ink" : `hidden truncate sm:block ${i < idx ? "font-medium text-muted" : "text-faint"}`}`}
+              className={`text-[11.5px] ${i === idx ? "whitespace-nowrap font-semibold text-ink" : `hidden truncate sm:block ${i < idx ? "font-medium text-muted" : "text-muted"}`}`}
             >
               {STATUS_LABEL[s]}
             </span>
@@ -131,7 +131,7 @@ export function PromiseDetail({
         {events.map((e, i) => (
           <li
             key={`${e.date}-${i}`}
-            className={`relative grid grid-cols-[72px_14px_minmax(0,1fr)] items-start gap-2.5 pb-3.5 text-sm last:pb-0 ${e.today ? "font-semibold text-debt" : ""}`}
+            className={`relative grid grid-cols-[72px_14px_minmax(0,1fr)] items-start gap-2.5 pb-3.5 text-sm last:pb-0 ${e.today ? "font-semibold text-debt-ink" : ""}`}
           >
             <span className="pt-px text-[12.5px] text-muted">{e.today ? "Today" : monthYear(e.date)}</span>
             <span className="relative flex justify-center pt-1.5">
@@ -188,7 +188,7 @@ export function PromiseDetail({
         </div>
       )}
 
-      <div className="grid gap-1 text-label">
+      <div className="grid gap-2.5 text-label">
         <span className="text-muted">Sources</span>
         {card.sources.length ? (
           card.sources.map((s) => (

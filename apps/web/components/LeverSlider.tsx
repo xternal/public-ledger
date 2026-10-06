@@ -3,28 +3,12 @@
 import type { CSSProperties } from "react";
 import type { Lever } from "@ledger/schema";
 import { CONTROLLED_BY_LABEL } from "@/lib/copy";
-import { MINUS, fixed } from "@/lib/format";
 import { track } from "@/lib/analytics";
+import { leverValueText } from "@/lib/levers";
+
+export { leverDeltaText, leverValueText } from "@/lib/levers";
 import { useScenario } from "@/lib/scenario";
 import { QualityBadge, WithProvenance, qualityKey } from "./ui";
-
-const decimalsOf = (step: number) => (Number.isInteger(step) ? 0 : (String(step).split(".")[1]?.length ?? 0));
-
-/** "20%", "2.3%", "3.75%", "+7%" */
-export function leverValueText(lever: Lever, v: number): string {
-  const s = fixed(v, decimalsOf(lever.step));
-  if (lever.unit === "pct") return `${v > 0 ? "+" : ""}${s}%`;
-  return `${s}%`;
-}
-
-/** "+2pp", "+1.2pp of GDP", "+7%" */
-export function leverDeltaText(lever: Lever, d: number): string {
-  const sign = d > 0 ? "+" : MINUS;
-  const s = fixed(Math.abs(d), decimalsOf(lever.step));
-  if (lever.unit === "pct") return `${sign}${s}%`;
-  if (lever.unit === "pct_gdp") return `${sign}${s}pp of GDP`;
-  return `${sign}${s}pp`;
-}
 
 const pct = (lever: Lever, v: number) => ((v - lever.min) / (lever.max - lever.min)) * 100;
 
@@ -46,12 +30,12 @@ export function LeverSlider({ lever }: { lever: Lever }) {
           {lever.label}
         </label>
         <span className="flex items-baseline gap-2 whitespace-nowrap">
-          <b className={`text-sm font-semibold ${changed ? "text-debt" : "text-ink"}`}>{leverValueText(lever, value)}</b>
+          <b className={`text-sm font-semibold ${changed ? "text-debt-ink" : "text-ink"}`}>{leverValueText(lever, value)}</b>
           {changed ? (
             <button
               type="button"
               onClick={() => setLever(lever.id, lever.base)}
-              className="cursor-pointer text-caption text-faint underline decoration-dotted underline-offset-2 hover:text-ink"
+              className="cursor-pointer text-caption text-muted underline decoration-dotted underline-offset-2 hover:text-ink"
               aria-label={`Reset ${lever.label} to today's ${leverValueText(lever, lever.base)}`}
             >
               today {leverValueText(lever, lever.base)}
@@ -79,7 +63,7 @@ export function LeverSlider({ lever }: { lever: Lever }) {
           onKeyUp={() => track("lever_changed", { lever_id: lever.id })}
         />
       </div>
-      <div id={`${id}-who`} className="-mt-0.5 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-caption text-faint">
+      <div id={`${id}-who`} className="-mt-0.5 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-caption text-muted">
         <span>{CONTROLLED_BY_LABEL[lever.controlled_by]}</span>
         <WithProvenance p={lever} align="end">
           <QualityBadge quality={qualityKey(lever)} />

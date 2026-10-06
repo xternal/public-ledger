@@ -20,8 +20,11 @@
   --spend-soft: rgba(82, 82, 91, 0.13);
   --debt: #f2600c;
   --debt-soft: rgba(242, 96, 12, 0.16);
+  /* Borrowing as text: --debt is for fills; this shade meets 4.5:1 on white (WCAG AA). */
+  --debt-ink: #c2410c;
   --good: #15803d;
-  --warn: #b45309;
+  /* Darkened from the handoff's #B45309 so amber text on amber tints meets 4.5:1 (M2 accessibility pass). */
+  --warn: #a3480a;
   --bad: #dc2626;
   --idle: #8b8b94;
   --focus: #2457f5;
@@ -46,6 +49,7 @@
     --spend-soft: rgba(161, 161, 170, 0.16);
     --debt: #ff7a2e;
     --debt-soft: rgba(255, 122, 46, 0.2);
+    --debt-ink: #ff7a2e;
     --good: #4ade80;
     --warn: #fbbf24;
     --bad: #f87171;
@@ -72,6 +76,7 @@
   --spend-soft: rgba(161, 161, 170, 0.16);
   --debt: #ff7a2e;
   --debt-soft: rgba(255, 122, 46, 0.2);
+  --debt-ink: #ff7a2e;
   --good: #4ade80;
   --warn: #fbbf24;
   --bad: #f87171;

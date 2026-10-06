@@ -19,13 +19,13 @@ export function costText(p: PromiseCard): string {
 const PILL: Record<Status, string> = {
   promised: "bg-sunk text-muted shadow-[inset_0_0_0_1px_var(--line)]",
   unscoreable: "bg-sunk text-muted shadow-[inset_0_0_0_1px_var(--line)]",
-  in_plan: "bg-rec/12 text-rec",
-  legislated: "bg-rec/12 text-rec",
-  funded: "bg-warn/13 text-warn",
-  delivering: "bg-warn/13 text-warn",
-  delivered: "bg-good/13 text-good",
-  failed: "bg-bad/12 text-bad",
-  quietly_dropped: "bg-bad/12 text-bad",
+  in_plan: "bg-rec/8 text-rec",
+  legislated: "bg-rec/8 text-rec",
+  funded: "bg-warn/8 text-warn",
+  delivering: "bg-warn/8 text-warn",
+  delivered: "bg-good/8 text-good",
+  failed: "bg-bad/8 text-bad",
+  quietly_dropped: "bg-bad/8 text-bad",
 };
 
 export function StatusPill({ status }: { status: Status }) {
@@ -64,7 +64,7 @@ export function PromiseList({
             <StatusPill status={p.status} />
             <span>{costText(p)}</span>
             {p.deadline && <span>Due {monthYear(p.deadline)}</span>}
-            {isOverdue(p, today) && <span className="font-medium text-debt">Deadline passed</span>}
+            {isOverdue(p, today) && <span className="font-medium text-debt-ink">Deadline passed</span>}
             {p.editor_check_required && <span>Needs editor check</span>}
           </span>
         </button>

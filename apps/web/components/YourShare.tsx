@@ -45,7 +45,7 @@ export function YourShare() {
                 className="w-full rounded-control border border-line-strong bg-bg py-2 pl-8 pr-3 text-[22px] font-semibold tracking-[-0.02em] text-ink"
               />
             </div>
-            <span className="text-caption text-faint">Stays on this device. We never see it.</span>
+            <span className="text-caption text-muted">Stays on this device. We never see it.</span>
           </div>
           <dl className="m-0 grid gap-2 text-sm">
             <div className="flex justify-between">
@@ -90,7 +90,7 @@ export function YourShare() {
             <span className="h-2 overflow-hidden rounded-full bg-sunk">
               <i className="hatch block h-full rounded-full" style={{ width: `${(share.borrowed_on_top_gbp / max) * 100}%` }} />
             </span>
-            <span className="text-right font-semibold text-debt">{gbp(share.borrowed_on_top_gbp)}</span>
+            <span className="text-right font-semibold text-debt-ink">{gbp(share.borrowed_on_top_gbp)}</span>
           </li>
         </ul>
       </div>

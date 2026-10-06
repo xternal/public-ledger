@@ -128,6 +128,9 @@ export function crossCheck(seed: Seed): SeedIssue[] {
 
   const { income_tax, employee_ni } = seed.tax;
   if (!leverById.has(income_tax.basic_rate_lever)) err("tax.income_tax", `unknown lever "${income_tax.basic_rate_lever}"`);
+  for (const id of [income_tax.higher_rate_lever, income_tax.additional_rate_lever, income_tax.personal_allowance_lever]) {
+    if (id && !leverById.has(id)) err("tax.income_tax", `unknown lever "${id}"`);
+  }
   if (!leverById.has(employee_ni.main_rate_lever)) err("tax.employee_ni", `unknown lever "${employee_ni.main_rate_lever}"`);
   return issues;
 }

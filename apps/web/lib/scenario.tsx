@@ -1,10 +1,10 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, useState, type ReactNode } from "react";
 import type { Preset, Settings, StatementSeed } from "@ledger/schema";
 import type { Seed } from "@ledger/schema";
 import { fundingKey } from "@ledger/schema";
-import { baseSettings, compute, createModel, debtFan, type DebtFan, type Model, type ScenarioResult } from "@ledger/engine";
+import { baseSettings, compute, createModel, debtFan, decodeScenario, encodeScenario, type DebtFan, type Model, type ScenarioResult } from "@ledger/engine";
 import type { Unit } from "./format";
 import { track } from "./analytics";
 
@@ -18,6 +18,7 @@ type Action =
   | { type: "lever"; id: string; value: number }
   | { type: "funding"; id: string; option: string }
   | { type: "preset"; preset: Preset | null; base: Settings }
+  | { type: "load"; settings: Settings }
   | { type: "unit"; unit: Unit };
 
 function reducer(state: State, action: Action): State {
@@ -32,6 +33,8 @@ function reducer(state: State, action: Action): State {
         settings: { ...action.base, ...(action.preset?.settings ?? {}) },
         presetId: action.preset?.id ?? null,
       };
+    case "load":
+      return { ...state, settings: action.settings, presetId: null };
     case "unit":
       return { ...state, unit: action.unit };
   }
@@ -85,7 +88,14 @@ interface ScenarioContextValue {
   setFunding: (id: string, option: string) => void;
   applyPreset: (preset: Preset | null) => void;
   setUnit: (unit: Unit) => void;
+  /** Code for the current scenario ("" when nothing has changed), for ?s= links and /s/<code>. */
+  code: string;
+  /** Set when a scenario link was opened that needed adjusting, or was built on another base year. */
+  linkNotice: string | null;
+  dismissLinkNotice: () => void;
 }
+
+export const SCENARIO_PARAM = "s";
 
 const ScenarioContext = createContext<ScenarioContextValue | null>(null);
 
@@ -120,6 +130,37 @@ export function ScenarioProvider({ seed, children }: { seed: Seed; children: Rea
     },
     [base],
   );
+  // Scenario links: read ?s= once on load, then keep the address bar in step with the sandbox.
+  const [linkNotice, setLinkNotice] = useState<string | null>(null);
+  const loaded = useRef(false);
+  useEffect(() => {
+    if (loaded.current) return;
+    loaded.current = true;
+    const raw = new URLSearchParams(window.location.search).get(SCENARIO_PARAM);
+    if (!raw) return;
+    const decoded = decodeScenario(model, raw);
+    if (!decoded) {
+      setLinkNotice("That scenario link could not be read, so the sandbox starts from today's settings.");
+      return;
+    }
+    dispatch({ type: "load", settings: decoded.settings });
+    const notes: string[] = [];
+    if (decoded.baseYear !== seed.baseYear) notes.push(`It was built on ${decoded.baseYear} figures and now runs on ${seed.baseYear}.`);
+    if (decoded.dropped.length) notes.push("Some settings no longer exist and were left out.");
+    if (decoded.adjusted.length) notes.push("Some values were moved back inside the range the sandbox allows.");
+    if (notes.length) setLinkNotice(`Opened a shared scenario. ${notes.join(" ")}`);
+  }, [model, seed.baseYear]);
+
+  const code = useMemo(() => encodeScenario(model, settled, seed.baseYear), [model, settled, seed.baseYear]);
+  useEffect(() => {
+    if (!loaded.current) return;
+    const url = new URL(window.location.href);
+    if (code) url.searchParams.set(SCENARIO_PARAM, code);
+    else url.searchParams.delete(SCENARIO_PARAM);
+    if (url.href !== window.location.href) window.history.replaceState(window.history.state, "", url);
+  }, [code]);
+  const dismissLinkNotice = useCallback(() => setLinkNotice(null), []);
+
   const setUnit = useCallback((unit: Unit) => {
     dispatch({ type: "unit", unit });
     track("unit_changed", { unit });
@@ -144,8 +185,11 @@ export function ScenarioProvider({ seed, children }: { seed: Seed; children: Rea
       setFunding,
       applyPreset,
       setUnit,
+      code,
+      linkNotice,
+      dismissLinkNotice,
     }),
-    [seed, model, base, state, result, baseResult, fan, year, isBaseYear, view, setLever, setFunding, applyPreset, setUnit],
+    [seed, model, base, state, result, baseResult, fan, year, isBaseYear, view, setLever, setFunding, applyPreset, setUnit, code, linkNotice, dismissLinkNotice],
   );
 
   return <ScenarioContext.Provider value={value}>{children}</ScenarioContext.Provider>;

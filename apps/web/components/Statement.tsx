@@ -57,7 +57,9 @@ function YearSelect() {
 
 export function StatementSection() {
   const { seed, unit, setUnit, view, year, isBaseYear } = useScenario();
-  const [active, setActive] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
+  const [pinned, setPinned] = useState<string | null>(null);
+  const active = hovered ?? pinned;
   const [tableOpen, setTableOpen] = useState(false);
   const { macro, receipts, spending, borrowing_provenance } = view.statement;
   const plugs = [...receipts, ...spending].filter((l) => l.plug).map((l) => `“${l.label}”`);
@@ -105,7 +107,7 @@ export function StatementSection() {
           )}
 
           <div className="hidden overflow-x-auto min-[720px]:block">
-            <Sankey active={active} onActive={setActive} />
+            <Sankey active={active} pinned={pinned} onActive={setHovered} onPin={setPinned} />
           </div>
           <div className="min-[720px]:hidden">
             <FlowList />
