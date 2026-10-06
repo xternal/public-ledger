@@ -1,0 +1,16 @@
+{
+  "name": "public-ledger",
+  "private": true,
+  "packageManager": "pnpm@12.9.1",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @ledger/web dev",
+    "build": "pnpm --filter @ledger/web build",
+    "test": "pnpm --filter \"./packages/*\" test",
+    "typecheck": "pnpm -r typecheck",
+    "validate": "tsx scripts/validate.ts"
+  },
+  "devDependencies": {}
+}
