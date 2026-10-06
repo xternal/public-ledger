@@ -1,0 +1,1 @@
+export { errorText } from "../log";

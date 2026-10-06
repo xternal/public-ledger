@@ -5,6 +5,10 @@ import { signedBn } from "@/lib/format";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PromiseList } from "@/components/PromiseList";
 import { CREDIT_COLUMNS, MixBar, creditRows } from "@/components/CreditTable";
+import { FollowButton } from "@/components/FollowPanel";
+import { followOptions } from "@/app/follow/targets";
+import { JsonLd } from "@/components/JsonLd";
+import { absolute, SITE_NAME } from "@/lib/site";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -26,7 +30,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const r = cardsFor(id);
   if (!r) return {};
-  return { title: `${r.actor.name}: promises and how they stand | Public Ledger`, description: `${r.cards.length} tracked ${r.cards.length === 1 ? "promise" : "promises"} by ${r.actor.name}, with costs, funding and status.` };
+  const title = `${r.actor.name}: promises and how they stand`;
+  const description = `${r.cards.length} tracked ${r.cards.length === 1 ? "promise" : "promises"} by ${r.actor.name}, with costs, funding and status.`;
+  return {
+    title: `${title} | Public Ledger`,
+    description,
+    alternates: { canonical: `/actor/${id}`, types: { "application/atom+xml": [{ url: `/feeds/actor/${id}.xml`, title: `Changes to ${r.actor.name}'s promises` }] } },
+    openGraph: { title, description, type: "profile", url: `/actor/${id}` },
+    twitter: { card: "summary_large_image", title, description },
+  };
 }
 
 export default async function ActorPage({ params }: Props) {
@@ -46,8 +58,33 @@ export default async function ActorPage({ params }: Props) {
     }),
     { counts: CREDIT_COLUMNS.map(() => 0), byOthers: CREDIT_COLUMNS.map(() => 0), costed: 0, pledgedBn: 0, fundingNamed: 0 },
   );
+  const about =
+    actor.kind === "party"
+      ? { "@type": "Organization", name: actor.name }
+      : { "@type": "Person", name: actor.name, ...(actor.roles[0] ? { jobTitle: actor.roles[0].title } : {}), ...(party ? { affiliation: { "@type": "Organization", name: party.name } } : {}) };
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      url: absolute(`/actor/${actor.id}`),
+      name: `${actor.name}: promises and how they stand`,
+      inLanguage: "en-GB",
+      isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absolute("/") },
+      mainEntity: about,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: SITE_NAME, item: absolute("/") },
+        { "@type": "ListItem", position: 2, name: "Promise ledger", item: absolute("/promises") },
+        { "@type": "ListItem", position: 3, name: actor.name, item: absolute(`/actor/${actor.id}`) },
+      ],
+    },
+  ];
   return (
     <>
+      <JsonLd data={structuredData} />
       <SiteHeader current="/promises" />
       <main className="mx-auto grid max-w-[1000px] gap-10 px-4 pb-20 pt-10 sm:px-6">
         <div className="grid gap-2">
@@ -59,6 +96,9 @@ export default async function ActorPage({ params }: Props) {
             {actor.kind === "party" ? "Party" : actor.roles.map((ro) => ro.title).join(", ") || "Person"}
             {party ? `, ${party.name}` : ""}
           </p>
+          <div className="mt-2">
+            <FollowButton label={`Follow ${actor.name}`} trackKind="actor" target={{ kind: "actor", id: actor.id }} options={followOptions()} />
+          </div>
         </div>
 
         <section aria-labelledby="record-h" className="grid gap-4">

@@ -68,6 +68,20 @@ Legend: ✅ fixed in this pass · 🔲 open. Owner: ENG, DATA, ED (editor), ECON
 | D10 | The bus-cap example used a press figure ("over £500m") and press sources; officially the cap has £400m for England, funded by switching climate finance to loans, so it nets to about zero | ✅ M3: card, lever, tests and README use GOV.UK figures |
 | D11 | Promise cards: 21 researched cards, every quote checked verbatim, every status with official evidence; all marked editor_check_required | 🔲 two-editor review and legal read of statuses (B6) before anything is public |
 
+## Found in M3b (follow and contribute)
+
+| # | Issue | Status |
+|---|---|---|
+| F1 | Two in-process databases on one folder corrupted local dev data (Next.js loads modules more than once) | ✅ one database per process (`globalThis`) |
+| F2 | Rotating the manage link in every email broke the unsubscribe link in older emails (PECR expects a simple opt-out in every message) | ✅ one signed link per subscription, revocable |
+| F3 | Reader links were checked for private addresses, then fetched with a fresh DNS lookup (DNS rebinding) | ✅ connections pinned to the checked address |
+| F4 | Provider errors can quote the recipient; some routes logged raw error text | ✅ all server logs go through `errorText`, which strips addresses and long numbers |
+| F5 | Manage, confirm and delete links carry their token in the query string, so it appears in host request logs | 🔲 accepted for v0 (pages are noindex, no-referrer); option: move the token into the URL fragment |
+| F6 | `/admin` uses interim basic auth | 🔲 put Cloudflare Access or Vercel Authentication in front before launch |
+| F7 | Follows are UK GDPR Article 9 data | 🔲 DPIA, legal read of the consent text, ICO fee before launch (docs/OPERATIONS.md §9) |
+| F8 | Alerts are diffed from `content/` only; data changes in `data/build` raise no alerts | 🔲 decide whether readers want data alerts |
+| F9 | "Deadline window" follows (PRD F7) not built | 🔲 v0.1 |
+
 ## Not a bug, but decide
 
 * **Neutral brand name** for the UK pilot (B5) before any domain or social handle is registered.
