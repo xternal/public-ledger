@@ -7,11 +7,11 @@ An ensemble of open models in tiers. Each tier is optional and labelled in the U
 **Static costing.** For lever `L` moved by `d` units: `Δ_target = d × per_unit_bn` (a Range). Tax levers change receipts; spending levers change spending. Point measures (bus cap) add a fixed cost with optional funding offsets.
 
 Source of `per_unit_bn`:
-- Tax rates: HMRC *Direct effects of illustrative tax changes* (static, pre-behaviour). Use the year-one and steady-state figures. https://www.gov.uk/government/statistics/direct-effects-of-illustrative-tax-changes
+- Tax rates: HMRC *Direct effects of illustrative tax changes*. Use the year-one and steady-state figures. Correction (M1): HMRC's figures are not static. Most include taxpayers' own behavioural response; IHT, VED and Child Benefit do not; none include economy-wide effects. The M1 build uses the June 2025 edition (the January 2026 edition was postponed by HMRC on 6 Jul 2026). https://www.gov.uk/government/statistics/direct-effects-of-illustrative-tax-changes
 - Bank Rate → debt interest: OBR EFO ready reckoner (sensitivity of debt interest to a 1pp rise in Bank Rate and gilt yields). Year one is smaller than year five because only short-dated debt, reserves (QE) and T-bills reprice immediately.
 - % of GDP targets: `d × nominal GDP / 100`.
 
-Static means before behavioural responses. Restrict slider ranges to the band where the source says linearity holds (typically a few pp), and label results "static, before behaviour".
+"Static" here means no economy-wide (macro) effects; HMRC costings may include taxpayers' own responses. Restrict slider ranges to the band where the source says linearity holds (typically a few pp), and label results "static, before behaviour".
 
 Ranges: v0 uses ±10–25% around central based on the source's own stated uncertainty, or a documented editorial default. Never a point.
 

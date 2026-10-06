@@ -11,8 +11,8 @@ Legend: ✅ fixed in this pass · 🔲 open. Owner: ENG, DATA, ED (editor), ECON
 
 | # | Issue | Why it matters | Fix | Owner | State |
 |---|---|---|---|---|---|
-| B1 | Three Sankey lines are balancing plugs: "Other taxes" £124bn and "Non-tax income" £122.5bn split a £246.5bn residual 50/50; "Other & accounting" £130bn is the gap between 2025-26 TME and functions scaled from 2024-25 TES | ~18% of income and ~10% of spending are not real breakdowns. "What are you hiding in 'other'?" is the first attack | ETL M1 from OBR receipts tables and PESA; decompose accounting adjustments (public corporations, locally financed, national-accounts adjustments). Plugs now carry a visible `plug` badge | DATA | 🔲 |
-| B2 | Lever coefficients (1p income tax ≈ £7.4bn, 1pp VAT ≈ £8.7bn, NICs, CT, Bank Rate → debt interest) are from model memory | Every sandbox result depends on them | Replace with HMRC "Direct effects of illustrative tax changes" and OBR ready reckoner; golden tests | DATA, ECON | 🔲 |
+| B1 | Three Sankey lines are balancing plugs: "Other taxes" £124bn and "Non-tax income" £122.5bn split a £246.5bn residual 50/50; "Other & accounting" £130bn is the gap between 2025-26 TME and functions scaled from 2024-25 TES | ~18% of income and ~10% of spending are not real breakdowns. "What are you hiding in 'other'?" is the first attack | ETL M1 from OBR receipts tables and PESA; decompose accounting adjustments (public corporations, locally financed, national-accounts adjustments). Plugs now carry a visible `plug` badge | DATA | ✅ M1: receipts by tax from OBR EFO TA.5 sum to the total; spending by function from HMT PESA 2026; the accounting line is broken down into published parts |
+| B2 | Lever coefficients (1p income tax ≈ £7.4bn, 1pp VAT ≈ £8.7bn, NICs, CT, Bank Rate → debt interest) are from model memory | Every sandbox result depends on them | Replace with HMRC "Direct effects of illustrative tax changes" and OBR ready reckoner; golden tests | DATA, ECON | ✅ M1: HMRC June 2025 edition and OBR debt-interest reckoner, golden tests · 🔲 HMRC's next edition is postponed (acknowledged until 31 Jan 2027) |
 | B3 | Macro rules of thumb (multipliers, VAT pass-through) unsigned | GDP/CPI tiles look authoritative | Economist sign-off against published OBR/BoE elasticities; tiles now carry a "rule of thumb" badge | ECON | ✅ badge · 🔲 sign-off |
 | B4 | Only the bus-cap card is sourced. Defence 2.5% and 1.5m homes have no sources; the defence cost range I had entered was an estimate; the credit-history table uses fictional "Party A/B/C" | Publishing an unsourced status about a named politician is a defamation and credibility risk | Defence cost removed ("cost pending editor"). Editors source every card; credit table only renders from real cards | ED | ✅ partly · 🔲 |
 | B5 | UK election law. Non-party campaigning that can reasonably be regarded as intended to influence voters is regulated; registration is needed above £20,000 (England) or £10,000 (Scotland, Wales, NI) in a regulated period. Foreign-linked bodies face tight limits (Elections Act 2022 cap for ineligible foreign campaigners, from model memory) | A promise tracker with status labels on parties may count; funding from a Russian party would be a problem | Legal advice before launch and before each regulated period; UK entity, UK funding, neutral brand; publish funding sources | LEGAL | 🔲 |
@@ -30,9 +30,9 @@ Legend: ✅ fixed in this pass · 🔲 open. Owner: ENG, DATA, ED (editor), ECON
 | H4 | Extra debt is charged at Bank Rate | Use effective interest rate on gilt stock (DMO/OBR) in v1 | ENG, ECON | 🔲 |
 | H5 | Static costings are linear across wide slider ranges (e.g. VAT 15–25%) | Restrict ranges to where the source holds; label "static, before behaviour" | ENG, ECON | 🔲 |
 | H6 | Sankey on phones scrolled sideways | Replaced below 720px by ranked bar lists; designer to refine tap-to-expand | DES | ✅ |
-| H7 | No table alternative for charts (a11y) | Prototype now has "Show as table" for the Sankey; fan chart still needs one | ENG | ✅ Sankey · 🔲 fan |
+| H7 | No table alternative for charts (a11y) | Prototype now has "Show as table" for the Sankey; fan chart still needs one | ENG | ✅ Sankey and fan chart tables (M0) |
 | H8 | Your share ignores Scottish rates, self-employed NI, pension contributions and all indirect taxes (VAT is a large share of tax paid by lower earners) | Labelled; v1 add VAT/indirect estimate from ONS "Effects of taxes and benefits on household income" and a Scotland toggle | ENG | 🔲 |
-| H9 | "Borrowed on top, in your name" may read as loaded | Test with users; alternative: "Plus borrowing on top: £X" | DES, ED | 🔲 |
+| H9 | "Borrowed on top, in your name" may read as loaded | Test with users; alternative: "Plus borrowing on top: £X" | DES, ED | ✅ wording changed to "Plus borrowing on top" (M0) · 🔲 user test |
 | H10 | LLM intake reads untrusted transcripts (prompt injection, invented quotes) | Exact-match rule on quotes (already specified), treat transcript text as data, no tool use in the extraction call, human merge only | ENG | ✅ spec |
 | H11 | Earlier conflicting fetch suggested 2026-27 PSNB £133bn; OBR guide and Commons Library put £132.7bn in 2025-26 and £115.5bn in 2026-27 | Resolved in favour of the Commons Library table; ETL should read OBR tables directly | DATA | ✅ |
 
@@ -45,12 +45,23 @@ Legend: ✅ fixed in this pass · 🔲 open. Owner: ENG, DATA, ED (editor), ECON
 | M3 | Promise list used `role="listbox"/"option"` without arrow-key handling | ✅ now buttons with `aria-pressed` |
 | M4 | Presets showed no active state | ✅ |
 | M5 | Dead code (`unitLabel`, `otherIdx`) | ✅ removed |
-| M6 | Google Fonts sends visitor IPs to Google | 🔲 self-host in the app |
-| M7 | Households (28.6m), taxpayers (38.0m), population (69.3m) from model memory | 🔲 ETL from ONS/HMRC; flagged in seed `quality_notes` |
-| M8 | Full d3 bundle (~280 KB) in prototype | 🔲 modular imports in the app |
+| M6 | Google Fonts sends visitor IPs to Google | ✅ Geist bundled with the app (M0) |
+| M7 | Households (28.6m), taxpayers (38.0m), population (69.3m) from model memory | ✅ M1: ONS households 29.0m (2025), ONS population 69.5m (mid-2025), HMRC taxpayers by year |
+| M8 | Full d3 bundle (~280 KB) in prototype | ✅ modular d3 imports (M0) |
 | M9 | Build-time estimate (6–8 weeks) is low-confidence | 🔲 re-estimate after M0 |
-| M10 | KPI "Debt £2.9tn" doesn't move with scenarios (year-one view) | 🔲 add scenario debt at horizon to KPI strip or label it "today" |
+| M10 | KPI "Debt £2.9tn" doesn't move with scenarios (year-one view) | ✅ labelled with its year (M0) · 🔲 scenario debt at horizon |
 | M11 | README and RUSSIA docs were in Russian | ✅ all handover docs now in English |
+
+## Found in M1 (data pipeline)
+
+| # | Issue | State |
+|---|---|---|
+| D1 | The seed overstated nominal GDP (3,075 vs OBR 3,054.7) and understated debt (2,900 vs 2,922.3) | ✅ build reads OBR directly |
+| D2 | HMRC costings were described as "static, before behaviour". Most include taxpayers' own response; none include economy-wide effects | ✅ copy and MODEL.md corrected |
+| D3 | Bank Rate hold was dated 18 Sep 2026; the MPC announced it on 17 Sep | ✅ corrected |
+| D4 | PESA counts £19.4bn of notional pension interest as debt interest; OBR does not. The Statement uses OBR's measure and shows the difference inside the accounting line | ✅ explained in the line's note |
+| D5 | 2025-26 is still an OBR estimate in the Statement, while ONS outturn (borrowing £134.3bn vs £132.7bn) and PESA outturn exist | 🔲 decide once ONS tax-by-tax outturn is ingested |
+| D6 | State pension figures from DWP are Great Britain only | 🔲 accepted for v0; add NI if needed |
 
 ## Not a bug, but decide
 

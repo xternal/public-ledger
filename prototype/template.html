@@ -512,7 +512,7 @@ function renderKPIs(r){
     ["Borrowed",`£${fmtBn(B)}bn`,`${(B/r.TME*100).toFixed(1)}p of every £1 spent`,"debt"],
     ["Debt",`£${(M.psnd_bn/1000).toFixed(1)}tn`,`${M.psnd_pct_gdp}% of GDP`],
     ["Debt interest",`£${fmtBn(r.sp.debt_interest)}bn`,`${(r.sp.debt_interest/r.TME*100).toFixed(1)}p of every £1`,"debt"],
-    ["Bank Rate",`${state.v.bank_rate.toFixed(2)}%`,state.v.bank_rate===M.bank_rate_pct?"held 18 Sep 2026":"scenario value"]
+    ["Bank Rate",`${state.v.bank_rate.toFixed(2)}%`,state.v.bank_rate===M.bank_rate_pct?"held 17 Sep 2026":"scenario value"]
   ];
   document.getElementById("kpis").innerHTML=k.map(([l,v,s,c])=>`<div class="kpi ${c||""}"><div class="eyebrow">${l}</div><div class="v">${v}</div><div class="s">${s}</div></div>`).join("");
 }
