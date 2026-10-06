@@ -1,6 +1,6 @@
 import "server-only";
 import type { PolicyArea, Seed } from "@ledger/schema";
-import { loadConfig } from "@ledger/server";
+import { loadConfig, errorText } from "@ledger/server";
 import { CONSENT_POINTS, CONSENT_VERSION, plainDescribe, type Target } from "@ledger/server/follow";
 import { getSeed } from "@/lib/data";
 import { AREA_LABEL } from "@/lib/promises";
@@ -18,7 +18,7 @@ function seed(): Seed | null {
   try {
     return getSeed();
   } catch (e) {
-    if (!warned) console.error("follow: content not readable, using plain names:", e instanceof Error ? e.message : "unknown error");
+    if (!warned) console.error("follow: content not readable, using plain names:", errorText(e));
     warned = true;
     return null;
   }

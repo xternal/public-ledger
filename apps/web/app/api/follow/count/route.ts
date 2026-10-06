@@ -1,6 +1,7 @@
 import { followerCount, parseTarget } from "@ledger/server/follow";
 import { getServer } from "@/lib/server";
 import { isKnownTarget } from "@/app/follow/targets";
+import { errorText } from "@ledger/server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -19,7 +20,7 @@ export async function GET(req: Request) {
       const { db, config } = await getServer();
       count = await followerCount(db, target.kind, target.id, config.followerCountThreshold);
     } catch (e) {
-      console.error("follower count failed:", e instanceof Error ? e.message : "unknown error");
+      console.error("follower count failed:", errorText(e));
     }
   }
   return Response.json({ count }, { headers: { "cache-control": "public, max-age=300" } });

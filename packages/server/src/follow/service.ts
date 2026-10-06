@@ -8,6 +8,7 @@ import { countUsage } from "../usage";
 import { CONSENT_VERSION } from "./consent";
 import { isTokenShape } from "./input";
 import { type Cadence, type DescribeTarget, type Target, type TargetKind, plainDescribe } from "./targets";
+import { errorText } from "../log";
 
 /**
  * Follow without an account (PRD F7, PRIVACY_AND_ACCOUNTS.md).
@@ -315,7 +316,7 @@ export async function confirmEmailFollow(ctx: FollowContext, token: unknown): Pr
     });
   } catch (e) {
     // The follow is confirmed either way; the page shows the manage link.
-    console.error("follow: welcome email failed:", e instanceof Error ? e.message : "unknown error");
+    console.error("follow: welcome email failed:", errorText(e));
   }
   return { ok: true, manageToken: result.manageToken };
 }

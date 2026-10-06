@@ -1,5 +1,5 @@
 import { after } from "next/server";
-import { clientKeyFrom } from "@ledger/server";
+import { clientKeyFrom, errorText } from "@ledger/server";
 import { receiveSubmission, runAutoChecks } from "@ledger/server/intake";
 import { getServer } from "@/lib/server";
 import { intake, readBody } from "./intake";
@@ -34,12 +34,12 @@ export async function POST(req: Request) {
       try {
         await runAutoChecks(db, config, result.reference, { content });
       } catch (e) {
-        console.error("submission auto-checks failed:", (e as Error).message);
+        console.error("submission auto-checks failed:", errorText(e));
       }
     });
     return Response.json({ reference: result.reference, receipt_sent: result.receiptSent }, { status: 201, headers: NO_STORE });
   } catch (e) {
-    console.error("submission failed:", (e as Error).message); // never the body: it is the reader's text
+    console.error("submission failed:", errorText(e)); // never the body: it is the reader's text
     return Response.json({ error: "server" }, { status: 500, headers: NO_STORE });
   }
 }

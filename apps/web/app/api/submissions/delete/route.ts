@@ -1,4 +1,4 @@
-import { clientKeyFrom, rateLimit } from "@ledger/server";
+import { clientKeyFrom, rateLimit, errorText } from "@ledger/server";
 import { deleteSubmitterEmail } from "@ledger/server/intake";
 import { getServer } from "@/lib/server";
 import { readBody } from "../intake";
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       if (res) ({ credit, reference } = res);
     }
   } catch (e) {
-    console.error("delete-my-email failed:", (e as Error).message);
+    console.error("delete-my-email failed:", errorText(e));
     outcome = "error";
   }
 

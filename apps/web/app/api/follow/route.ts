@@ -1,4 +1,4 @@
-import { clientKeyFrom, rateLimit, verifySpamCheck } from "@ledger/server";
+import { clientKeyFrom, rateLimit, verifySpamCheck, errorText } from "@ledger/server";
 import { CONFIRM_TTL_DAYS, parseFollowRequest, requestEmailFollow } from "@ledger/server/follow";
 import { followContext } from "@/app/follow/context";
 import { isKnownTarget } from "@/app/follow/targets";
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
   try {
     await requestEmailFollow(ctx, parsed.value);
   } catch (e) {
-    console.error("follow request failed:", e instanceof Error ? e.message : "unknown error");
+    console.error("follow request failed:", errorText(e));
     return fail(503, "unavailable", "We could not send the email just now. Please try again in a few minutes.");
   }
   return Response.json(

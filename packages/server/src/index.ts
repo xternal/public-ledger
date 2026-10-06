@@ -5,3 +5,4 @@ export * from "./usage";
 export * from "./mail";
 export * from "./telegram-api";
 export * from "./spam";
+export * from "./log";

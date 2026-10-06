@@ -1,4 +1,4 @@
-import { clientKeyFrom, rateLimit } from "@ledger/server";
+import { clientKeyFrom, rateLimit, errorText } from "@ledger/server";
 import { countFormOpened } from "@ledger/server/intake";
 import { getServer } from "@/lib/server";
 import { readBody } from "../intake";
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     // A cap per client per day keeps the funnel honest; nothing is stored about the client.
     if (await rateLimit(db, clientKeyFrom(req.headers), "submit_form_opened", 20)) await countFormOpened(db, kind);
   } catch (e) {
-    console.error("form-opened count failed:", (e as Error).message);
+    console.error("form-opened count failed:", errorText(e));
   }
   return new Response(null, { status: 204, headers: { "cache-control": "no-store" } });
 }

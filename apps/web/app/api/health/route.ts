@@ -1,3 +1,4 @@
+import { errorText } from "@ledger/server";
 import { getServer } from "@/lib/server";
 
 export const runtime = "nodejs";
@@ -10,7 +11,7 @@ export async function GET() {
     await db.query("SELECT 1");
     return Response.json({ ok: true });
   } catch (e) {
-    console.error("health check failed", e);
+    console.error("health check failed:", errorText(e));
     return Response.json({ ok: false }, { status: 503 });
   }
 }

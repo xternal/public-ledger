@@ -1,4 +1,4 @@
-import { telegramSender } from "@ledger/server";
+import { telegramSender, errorText } from "@ledger/server";
 import { handleTelegramUpdate, telegramBotApi, webhookAuth } from "@ledger/server/follow";
 import { getServer } from "@/lib/server";
 import { describeTarget, isKnownTarget } from "@/app/follow/targets";
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
       body,
     );
   } catch (e) {
-    console.error("telegram update failed:", e instanceof Error ? e.message : "unknown error");
+    console.error("telegram update failed:", errorText(e));
   }
   return Response.json({ ok: true });
 }

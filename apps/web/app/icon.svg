@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- The statement in one glyph: income (blue) plus borrowing (orange) on top equals spending below. -->
+  <rect width="64" height="64" rx="14" fill="#0b0b0d"/>
+  <rect x="13" y="19" width="27" height="11" rx="2" fill="#2457f5"/>
+  <rect x="41" y="19" width="10" height="11" rx="2" fill="#f2600c"/>
+  <rect x="13" y="34" width="38" height="11" rx="2" fill="#a1a1aa"/>
+</svg>
