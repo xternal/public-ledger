@@ -102,10 +102,23 @@ def write_observations(source_id: str, obs: list[Observation]) -> None:
                 w.writerow({k: ("" if d[k] is None else d[k]) for k in OBS_FIELDS})
 
 
+def manifest_sources() -> dict[str, dict]:
+    """Source metadata recorded by the last online build (edition titles and dates found while fetching)."""
+    path = BUILD_DIR / "manifest.json"
+    if not path.exists():
+        return {}
+    return {s["id"]: s for s in json.loads(path.read_text()).get("sources", [])}
+
+
 def collect(run: Run, offline: bool) -> dict[str, list[Observation]]:
     by_source: dict[str, list[Observation]] = {}
+    recorded = manifest_sources() if offline else {}
     for mod in discover():
         src: Source = mod.SOURCE
+        if offline and src.id in recorded:
+            # Modules learn the edition's title and date while fetching; offline, take them from the manifest.
+            fields = {k: recorded[src.id][k] for k in Source.model_fields if k in recorded[src.id]}
+            src = Source(**fields)
         run.sources[src.id] = src
         if offline:
             by_source[src.id] = read_committed(src.id)
@@ -199,7 +212,8 @@ def main(argv: list[str] | None = None) -> int:
     for noisy in ("httpx", "httpcore"):
         logging.getLogger(noisy).setLevel(logging.WARNING)
     now = datetime.now(timezone.utc)
-    run = Run(build_id=now.strftime("%Y-%m-%dT%H:%M:%SZ"), started_at=now.isoformat(timespec="seconds"), trigger=args.trigger)
+    trigger = "offline" if args.offline and args.trigger == "manual" else args.trigger
+    run = Run(build_id=now.strftime("%Y-%m-%dT%H:%M:%SZ"), started_at=now.isoformat(timespec="seconds"), trigger=trigger)
 
     by_source = collect(run, args.offline)
     store = Store(by_source)

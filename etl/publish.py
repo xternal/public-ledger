@@ -43,6 +43,17 @@ def publish(run: Run, store: Store, by_source: dict[str, list[Observation]], out
     status = "failed" if errors else "ok"
     n_obs = sum(len(v) for v in by_source.values())
 
+    # built_at changes only when the bundle's content does, so a nightly run with
+    # no new data leaves the committed files untouched (and opens no PR), and an
+    # offline CI rebuild must reproduce the committed bundle byte for byte.
+    content = {k: outputs.get(k) for k in ("base_year", "years", "statements", "levers", "tax", "sources")}
+    built_at = run.build_id
+    previous_path = BUILD_DIR / "app.json"
+    if previous_path.exists():
+        previous = json.loads(previous_path.read_text())
+        if {k: previous.get(k) for k in content} == json.loads(json.dumps(content)):
+            built_at = previous.get("built_at", built_at)
+
     if outputs.get("statements") and not errors:
         for year, s in outputs["statements"].items():
             write_json(BUILD_DIR / "statements" / f"{year}.json", s)
@@ -52,7 +63,7 @@ def publish(run: Run, store: Store, by_source: dict[str, list[Observation]], out
         write_json(
             BUILD_DIR / "app.json",
             {
-                "built_at": run.build_id,
+                "built_at": built_at,
                 "base_year": outputs["base_year"],
                 "years": outputs["years"],
                 "statements": outputs["statements"],
