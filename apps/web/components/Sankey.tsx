@@ -30,10 +30,12 @@ export interface FlowLine {
  * balancing figures last, borrowing after income.
  */
 export function useFlowLines() {
-  const { seed, result } = useScenario();
+  const {
+    view: { statement, result },
+  } = useScenario();
   return useMemo(() => {
     const rank = (a: FlowLine, b: FlowLine) => Number(!!a.line?.plug) - Number(!!b.line?.plug) || b.v - a.v;
-    const income: FlowLine[] = seed.statement.receipts
+    const income: FlowLine[] = statement.receipts
       .map((l) => ({ id: l.id, label: l.label, side: "income" as const, v: result.receipts[l.id] ?? 0, base: l.bn, debt: false, line: l }))
       .sort(rank);
     income.push({
@@ -41,10 +43,10 @@ export function useFlowLines() {
       label: "Borrowing",
       side: "income",
       v: Math.max(result.totals.borrowing_bn, 0),
-      base: seed.statement.borrowing_bn,
+      base: statement.borrowing_bn,
       debt: true,
     });
-    const spending: FlowLine[] = seed.statement.spending
+    const spending: FlowLine[] = statement.spending
       .map((l) => ({
         id: l.id,
         label: l.label,
@@ -56,7 +58,7 @@ export function useFlowLines() {
       }))
       .sort(rank);
     return { income, spending, total: result.totals.spending_bn };
-  }, [seed, result]);
+  }, [statement, result]);
 }
 
 /** Is a change to this line bad for the public purse? Only more borrowing or more spending counts. */
@@ -66,10 +68,10 @@ type N = FlowLine & { kind: "line" | "purse" };
 type L = { debt: boolean; inbound: boolean };
 
 export function Sankey({ active, onActive }: { active: string | null; onActive: (id: string | null) => void }) {
-  const { unit, seed } = useScenario();
+  const { unit, view } = useScenario();
   const { income, spending, total } = useFlowLines();
   const hatchId = `hatch-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
-  const ctx: UnitContext = { households_m: seed.statement.macro.households_m, total_bn: total };
+  const ctx: UnitContext = { households_m: view.statement.macro.households_m, total_bn: total };
 
   const graph = useMemo(() => {
     const purse: N = { id: PURSE_ID, label: "Public purse", side: "income", v: total, base: total, debt: false, kind: "purse" };
@@ -197,9 +199,9 @@ export function Sankey({ active, onActive }: { active: string | null; onActive: 
 
 /** Mobile: two ranked bar lists with the total between them (DESIGN_HANDOFF). */
 export function FlowList() {
-  const { unit, seed } = useScenario();
+  const { unit, view } = useScenario();
   const { income, spending, total } = useFlowLines();
-  const ctx: UnitContext = { households_m: seed.statement.macro.households_m, total_bn: total };
+  const ctx: UnitContext = { households_m: view.statement.macro.households_m, total_bn: total };
   const max = Math.max(...income.map((f) => f.v), ...spending.map((f) => f.v));
   const row = (f: FlowLine) => {
     const delta = f.v - f.base;
@@ -244,9 +246,9 @@ export function FlowList() {
 
 /** One line under the chart: what the hovered or focused line is and where its number comes from. */
 export function LineInspector({ active }: { active: string | null }) {
-  const { seed, unit } = useScenario();
+  const { view, unit } = useScenario();
   const { income, spending, total } = useFlowLines();
-  const ctx: UnitContext = { households_m: seed.statement.macro.households_m, total_bn: total };
+  const ctx: UnitContext = { households_m: view.statement.macro.households_m, total_bn: total };
   const f = [...income, ...spending].find((x) => x.id === active);
   return (
     <div className="min-h-[60px] rounded-control bg-sunk px-4 py-3 text-label text-muted" aria-live="polite">
@@ -258,7 +260,7 @@ export function LineInspector({ active }: { active: string | null }) {
           </span>
           {f.line?.desc && <span>{f.line.desc}</span>}
           <span className="basis-full">
-            <ProvenanceDetail p={f.line ?? seed.statement.borrowing_provenance} />
+            <ProvenanceDetail p={f.line ?? view.statement.borrowing_provenance} />
           </span>
         </div>
       ) : (

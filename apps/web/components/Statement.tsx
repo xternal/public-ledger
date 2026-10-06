@@ -17,12 +17,51 @@ const UNITS: { value: Unit; label: string }[] = [
   { value: "p", label: "Pence per £1" },
 ];
 
+const KIND_LABEL = { outturn: "Outturn", estimate: "OBR estimate", forecast: "OBR forecast" } as const;
+const KIND_HELP = {
+  outturn: "Final figures for a completed year.",
+  estimate: "The year has ended, but these are still the OBR's latest estimates until full outturn is published.",
+  forecast: "A forecast for a year that has not ended.",
+} as const;
+
+function YearSelect() {
+  const { seed, year, setYear, view } = useScenario();
+  const kind = view.statement.meta.kind ?? "outturn";
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <label htmlFor="year" className="text-label text-muted">
+        Year
+      </label>
+      <div className="relative">
+        <select id="year" className="select w-auto pr-8 font-medium" value={year} onChange={(e) => setYear(e.target.value)}>
+          {seed.years.map((y) => (
+            <option key={y.period} value={y.period}>
+              {y.period}
+              {y.kind === "outturn" ? "" : ` (${y.kind})`}
+            </option>
+          ))}
+        </select>
+        <svg aria-hidden viewBox="0 0 12 12" className="pointer-events-none absolute right-3 top-1/2 size-3 -translate-y-1/2 text-muted">
+          <path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+      <span
+        title={KIND_HELP[kind]}
+        className={`rounded-full px-2 py-0.5 text-caption font-medium ${kind === "outturn" ? "bg-sunk text-ink" : "text-muted shadow-[inset_0_0_0_1px_var(--line-strong)]"}`}
+      >
+        {KIND_LABEL[kind]}
+      </span>
+    </div>
+  );
+}
+
 export function StatementSection() {
-  const { seed, unit, setUnit } = useScenario();
+  const { seed, unit, setUnit, view, year, isBaseYear } = useScenario();
   const [active, setActive] = useState<string | null>(null);
   const [tableOpen, setTableOpen] = useState(false);
-  const { macro, receipts, spending, borrowing_provenance } = seed.statement;
+  const { macro, receipts, spending, borrowing_provenance } = view.statement;
   const plugs = [...receipts, ...spending].filter((l) => l.plug).map((l) => `“${l.label}”`);
+  const scaled = spending.find((l) => l.quality === "approx" && l.method_note?.startsWith("No function split"));
   const totalsSource = seed.sources.find((s) => s.id === borrowing_provenance.source_id);
 
   return (
@@ -30,7 +69,12 @@ export function StatementSection() {
       <SectionHeading
         id="statement-h"
         title="The statement"
-        intro="Income on the left, spending on the right. The hatched band is borrowing. Move any lever and the flows redraw."
+        intro={
+          isBaseYear
+            ? "Income on the left, spending on the right. The hatched band is borrowing. Move any lever and the flows redraw."
+            : `Income and spending in ${year}, as published. The sandbox runs on ${seed.baseYear}.`
+        }
+        aside={<YearSelect />}
       />
       <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="min-w-0">
@@ -77,7 +121,7 @@ export function StatementSection() {
             </span>
             <span className="inline-flex flex-wrap items-baseline gap-x-2">
               <QualityBadge quality="approx" />
-              Splits by tax and by function are scaled estimates.
+              {scaled ? scaled.method_note : "Accounting adjustments reconcile spending by function with total spending."}
             </span>
             {plugs.length > 0 && (
               <span className="inline-flex flex-wrap items-baseline gap-x-2">

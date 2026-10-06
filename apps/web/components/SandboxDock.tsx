@@ -7,7 +7,7 @@ import { LeverSlider } from "./LeverSlider";
 import { MeasureToggle } from "./MeasureToggle";
 
 export function SandboxDock() {
-  const { seed, model, presetId, applyPreset, result } = useScenario();
+  const { seed, model, presetId, applyPreset, result, isBaseYear, setYear } = useScenario();
   const d = result.y1.d_borrowing_bn;
   const any = result.changes.length > 0;
   const tone = direction(d[1]);
@@ -24,6 +24,21 @@ export function SandboxDock() {
         </h2>
         <p className="mt-0.5 text-label text-muted">Move a lever or pick a proposal.</p>
       </div>
+
+      {!isBaseYear && (
+        <div className="grid gap-2 rounded-control bg-bg px-3.5 py-3 text-label text-muted shadow-[var(--shadow-control)]">
+          <span>The sandbox runs on {seed.baseYear}, the latest full year, with today&apos;s tax and spending costings.</span>
+          <button
+            type="button"
+            onClick={() => setYear(seed.baseYear)}
+            className="cursor-pointer justify-self-start rounded-full bg-ink px-3 py-1 text-label font-semibold text-bg hover:opacity-90"
+          >
+            Back to {seed.baseYear}
+          </button>
+        </div>
+      )}
+
+      <fieldset disabled={!isBaseYear} className="m-0 grid min-w-0 gap-5 border-0 p-0 transition-opacity disabled:opacity-45">
 
       <div className="grid gap-0.5 rounded-control bg-bg px-3.5 py-3 shadow-[var(--shadow-control)]" aria-live="polite">
         <span className="text-caption text-muted">Borrowing, year one</span>
@@ -63,6 +78,7 @@ export function SandboxDock() {
           </fieldset>
         );
       })}
+      </fieldset>
     </aside>
   );
 }
