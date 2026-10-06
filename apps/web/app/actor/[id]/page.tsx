@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const r = cardsFor(id);
   if (!r) return {};
-  return { title: `${r.actor.name}: promises and how they stand | Public Ledger`, description: `${r.cards.length} tracked promises by ${r.actor.name}, with costs, funding and status.` };
+  return { title: `${r.actor.name}: promises and how they stand | Public Ledger`, description: `${r.cards.length} tracked ${r.cards.length === 1 ? "promise" : "promises"} by ${r.actor.name}, with costs, funding and status.` };
 }
 
 export default async function ActorPage({ params }: Props) {
@@ -36,8 +36,15 @@ export default async function ActorPage({ params }: Props) {
   const { actor, cards, seed } = r;
   const party = actor.party_id ? seed.actors.find((a) => a.id === actor.party_id) : null;
   const row = creditRows(cards, "actor").reduce(
-    (acc, x) => ({ ...acc, counts: acc.counts.map((n, i) => n + x.counts[i]!), costed: acc.costed + x.costed, pledgedBn: acc.pledgedBn + x.pledgedBn, fundingNamed: acc.fundingNamed + x.fundingNamed }),
-    { counts: CREDIT_COLUMNS.map(() => 0), costed: 0, pledgedBn: 0, fundingNamed: 0 },
+    (acc, x) => ({
+      ...acc,
+      counts: acc.counts.map((n, i) => n + x.counts[i]!),
+      byOthers: acc.byOthers.map((n, i) => n + x.byOthers[i]!),
+      costed: acc.costed + x.costed,
+      pledgedBn: acc.pledgedBn + x.pledgedBn,
+      fundingNamed: acc.fundingNamed + x.fundingNamed,
+    }),
+    { counts: CREDIT_COLUMNS.map(() => 0), byOthers: CREDIT_COLUMNS.map(() => 0), costed: 0, pledgedBn: 0, fundingNamed: 0 },
   );
   return (
     <>
@@ -88,6 +95,7 @@ export default async function ActorPage({ params }: Props) {
               <li key={c.label} className="inline-flex items-center gap-1.5">
                 <i className="size-2 rounded-full" style={{ background: c.color }} aria-hidden />
                 {c.label}: <b className="font-semibold text-ink">{row.counts[i]}</b>
+                {row.byOthers[i] ? ` (${row.byOthers[i]} by others)` : ""}
               </li>
             ))}
           </ul>

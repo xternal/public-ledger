@@ -20,6 +20,8 @@ export interface CreditRow {
   href: string;
   cards: CardView[];
   counts: number[];
+  /** Per column, how many of those outcomes someone else brought about (outcome_by). */
+  byOthers: number[];
   costed: number;
   pledgedBn: number;
   fundingNamed: number;
@@ -40,6 +42,7 @@ export function creditRows(cards: CardView[], by: "party" | "actor"): CreditRow[
       href: `/actor/${id}`,
       cards: g.cards,
       counts: CREDIT_COLUMNS.map((col) => g.cards.filter((c) => col.statuses.includes(c.file.status)).length),
+      byOthers: CREDIT_COLUMNS.map((col) => g.cards.filter((c) => col.statuses.includes(c.file.status) && c.outcomeBy).length),
       costed: g.cards.filter((c) => c.current.parameters?.how_much_bn_per_year).length,
       pledgedBn: g.cards.reduce((a, c) => a + (c.current.parameters?.how_much_bn_per_year?.[1] ?? 0), 0),
       fundingNamed: g.cards.filter((c) => c.current.parameters?.funded_by).length,
@@ -85,6 +88,7 @@ export function CreditTable({ cards, by, caption }: { cards: CardView[]; by: "pa
               {r.counts.map((n, i) => (
                 <td key={i} className={`py-2.5 pr-4 text-right ${n ? "" : "text-muted"}`}>
                   {n}
+                  {r.byOthers[i] ? <span className="block text-caption text-muted">{r.byOthers[i]} by others</span> : null}
                 </td>
               ))}
               <td className="py-2.5 pr-4 text-right">{r.costed ? signedBn(r.pledgedBn) : <span className="text-muted">not costed</span>}</td>

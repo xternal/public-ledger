@@ -36,6 +36,7 @@ export function PromiseList({ cards, today, empty }: { cards: CardView[]; today:
             <span className="text-[16px] font-[550] leading-snug tracking-[-0.01em]">“{c.current.text}”</span>
             <span className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-[12.5px] text-muted">
               <StatusPill status={c.file.status} />
+              {c.outcomeBy && <span className="font-medium text-ink">by {c.outcomeBy.name}</span>}
               <span>{costText(c)}</span>
               {c.file.deadline && <span>Due {monthYear(c.file.deadline)}</span>}
               {isOverdue(c, today) && <span className="font-medium text-debt-ink">Deadline passed</span>}

@@ -95,6 +95,11 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
         </h1>
         <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-label text-muted">
           <StatusPill status={f.status} />
+          {card.outcomeBy && (
+            <a href={`/actor/${card.outcomeBy.id}`} className="font-medium" title={f.outcome_by?.note}>
+              by {card.outcomeBy.name}
+            </a>
+          )}
           <span>
             {f.venue_label ? `${f.venue_label}, ` : ""}
             {longDate(f.made_on)}
