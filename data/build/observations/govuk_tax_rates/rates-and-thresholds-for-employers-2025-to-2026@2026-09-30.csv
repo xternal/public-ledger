@@ -1,0 +1,5 @@
+series_id,period,geography,value,unit,kind,source_id,vintage,quality,method_note
+tax.ni.main_rate,2025-26,"England, Wales and NI",8.0,pct,outturn,govuk_tax_rates,rates-and-thresholds-for-employers-2025-to-2026@2026-09-30,sourced,
+tax.ni.primary_threshold,2025-26,"England, Wales and NI",12570.0,gbp,outturn,govuk_tax_rates,rates-and-thresholds-for-employers-2025-to-2026@2026-09-30,sourced,
+tax.ni.upper_earnings_limit,2025-26,"England, Wales and NI",50270.0,gbp,outturn,govuk_tax_rates,rates-and-thresholds-for-employers-2025-to-2026@2026-09-30,sourced,
+tax.ni.upper_rate,2025-26,"England, Wales and NI",2.0,pct,outturn,govuk_tax_rates,rates-and-thresholds-for-employers-2025-to-2026@2026-09-30,sourced,

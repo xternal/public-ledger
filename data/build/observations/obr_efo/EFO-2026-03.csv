@@ -1,0 +1,448 @@
+series_id,period,geography,value,unit,kind,source_id,vintage,quality,method_note
+fiscal.psnb,2024-25,UK,152.742,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+fiscal.psnb,2025-26,UK,132.735076,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+fiscal.psnb,2026-27,UK,115.461424,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+fiscal.psnb,2027-28,UK,96.467368,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+fiscal.psnb,2028-29,UK,86.015634,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+fiscal.psnb,2029-30,UK,63.403443,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+fiscal.psnb,2030-31,UK,59.019911,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+fiscal.psnd,2024-25,UK,2804.675,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,End-March position.
+fiscal.psnd,2025-26,UK,2922.30734,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,End-March position.
+fiscal.psnd,2026-27,UK,3053.062047,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,End-March position.
+fiscal.psnd,2027-28,UK,3191.403919,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,End-March position.
+fiscal.psnd,2028-29,UK,3319.409838,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,End-March position.
+fiscal.psnd,2029-30,UK,3427.149365,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,End-March position.
+fiscal.psnd,2030-31,UK,3513.696013,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,End-March position.
+fiscal.psnd_pct_gdp,2024-25,UK,93.161363,pct_gdp,outturn,obr_efo,EFO-2026-03,sourced,End-March position over nominal GDP centred on end-March (A.9 footnote).
+fiscal.psnd_pct_gdp,2025-26,UK,94.309904,pct_gdp,forecast,obr_efo,EFO-2026-03,sourced,End-March position over nominal GDP centred on end-March (A.9 footnote).
+fiscal.psnd_pct_gdp,2026-27,UK,94.814987,pct_gdp,forecast,obr_efo,EFO-2026-03,sourced,End-March position over nominal GDP centred on end-March (A.9 footnote).
+fiscal.psnd_pct_gdp,2027-28,UK,95.738708,pct_gdp,forecast,obr_efo,EFO-2026-03,sourced,End-March position over nominal GDP centred on end-March (A.9 footnote).
+fiscal.psnd_pct_gdp,2028-29,UK,96.281069,pct_gdp,forecast,obr_efo,EFO-2026-03,sourced,End-March position over nominal GDP centred on end-March (A.9 footnote).
+fiscal.psnd_pct_gdp,2029-30,UK,96.065091,pct_gdp,forecast,obr_efo,EFO-2026-03,sourced,End-March position over nominal GDP centred on end-March (A.9 footnote).
+fiscal.psnd_pct_gdp,2030-31,UK,95.050964,pct_gdp,forecast,obr_efo,EFO-2026-03,sourced,End-March position over nominal GDP centred on end-March (A.9 footnote).
+macro.nominal_gdp,2024-25,UK,2934.021,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,"Fiscal-year nominal GDP, non-seasonally adjusted; OBR's denominator for receipts, spending and deficit ratios."
+macro.nominal_gdp,2025-26,UK,3054.666113,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Fiscal-year nominal GDP, non-seasonally adjusted; OBR's denominator for receipts, spending and deficit ratios."
+macro.nominal_gdp,2026-27,UK,3164.074069,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Fiscal-year nominal GDP, non-seasonally adjusted; OBR's denominator for receipts, spending and deficit ratios."
+macro.nominal_gdp,2027-28,UK,3277.008494,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Fiscal-year nominal GDP, non-seasonally adjusted; OBR's denominator for receipts, spending and deficit ratios."
+macro.nominal_gdp,2028-29,UK,3390.825258,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Fiscal-year nominal GDP, non-seasonally adjusted; OBR's denominator for receipts, spending and deficit ratios."
+macro.nominal_gdp,2029-30,UK,3506.678576,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Fiscal-year nominal GDP, non-seasonally adjusted; OBR's denominator for receipts, spending and deficit ratios."
+macro.nominal_gdp,2030-31,UK,3631.831465,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Fiscal-year nominal GDP, non-seasonally adjusted; OBR's denominator for receipts, spending and deficit ratios."
+macro.nominal_gdp_centred_end_march,2024-25,UK,3010.556,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,Nominal GDP centred on end-March; OBR's denominator for PSND as a share of GDP.
+macro.nominal_gdp_centred_end_march,2025-26,UK,3098.62191,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Nominal GDP centred on end-March; OBR's denominator for PSND as a share of GDP.
+macro.nominal_gdp_centred_end_march,2026-27,UK,3220.020545,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Nominal GDP centred on end-March; OBR's denominator for PSND as a share of GDP.
+macro.nominal_gdp_centred_end_march,2027-28,UK,3333.452043,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Nominal GDP centred on end-March; OBR's denominator for PSND as a share of GDP.
+macro.nominal_gdp_centred_end_march,2028-29,UK,3447.624631,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Nominal GDP centred on end-March; OBR's denominator for PSND as a share of GDP.
+macro.nominal_gdp_centred_end_march,2029-30,UK,3567.528358,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Nominal GDP centred on end-March; OBR's denominator for PSND as a share of GDP.
+macro.nominal_gdp_centred_end_march,2030-31,UK,3696.644257,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Nominal GDP centred on end-March; OBR's denominator for PSND as a share of GDP.
+receipts.alcohol_tobacco,2024-25,UK,20.454,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Alcohol duties + Tobacco duties.
+receipts.alcohol_tobacco,2025-26,UK,19.958188,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Alcohol duties + Tobacco duties.
+receipts.alcohol_tobacco,2026-27,UK,20.154396,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Alcohol duties + Tobacco duties.
+receipts.alcohol_tobacco,2027-28,UK,20.401418,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Alcohol duties + Tobacco duties.
+receipts.alcohol_tobacco,2028-29,UK,20.644172,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Alcohol duties + Tobacco duties.
+receipts.alcohol_tobacco,2029-30,UK,20.814164,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Alcohol duties + Tobacco duties.
+receipts.alcohol_tobacco,2030-31,UK,21.103859,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Alcohol duties + Tobacco duties.
+receipts.business_rates,2024-25,UK,32.056,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.business_rates,2025-26,UK,33.732516,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.business_rates,2026-27,UK,37.094587,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.business_rates,2027-28,UK,37.921931,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.business_rates,2028-29,UK,38.792851,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.business_rates,2029-30,UK,42.100068,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.business_rates,2030-31,UK,42.144194,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.cgt,2024-25,UK,13.686,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.cgt,2025-26,UK,21.801546,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.cgt,2026-27,UK,20.801165,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.cgt,2027-28,UK,25.469965,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.cgt,2028-29,UK,28.918403,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.cgt,2029-30,UK,31.956099,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.cgt,2030-31,UK,34.900715,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.corp_tax,2024-25,UK,93.238,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.corp_tax,2025-26,UK,98.797253,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.corp_tax,2026-27,UK,102.467456,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.corp_tax,2027-28,UK,109.114912,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.corp_tax,2028-29,UK,113.449757,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.corp_tax,2029-30,UK,117.762528,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.corp_tax,2030-31,UK,123.157459,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.council_tax,2024-25,UK,47.417,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.council_tax,2025-26,UK,50.925164,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.council_tax,2026-27,UK,53.66733,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.council_tax,2027-28,UK,56.846289,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.council_tax,2028-29,UK,60.723662,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.council_tax,2029-30,UK,64.08654,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.council_tax,2030-31,UK,67.576382,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.air_passenger_duty,2024-25,UK,4.131,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.air_passenger_duty,2025-26,UK,4.516589,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.air_passenger_duty,2026-27,UK,5.166416,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.air_passenger_duty,2027-28,UK,5.509317,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.air_passenger_duty,2028-29,UK,5.806519,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.air_passenger_duty,2029-30,UK,6.130929,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.air_passenger_duty,2030-31,UK,6.42934,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.alcohol_duties,2024-25,UK,12.545,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.alcohol_duties,2025-26,UK,12.296893,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.alcohol_duties,2026-27,UK,12.685895,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.alcohol_duties,2027-28,UK,13.121343,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.alcohol_duties,2028-29,UK,13.605948,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.alcohol_duties,2029-30,UK,14.091977,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.alcohol_duties,2030-31,UK,14.518351,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.apprenticeship_levy,2024-25,UK,4.135,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.apprenticeship_levy,2025-26,UK,4.372748,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.apprenticeship_levy,2026-27,UK,4.531097,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.apprenticeship_levy,2027-28,UK,4.679966,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.apprenticeship_levy,2028-29,UK,4.828075,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.apprenticeship_levy,2029-30,UK,4.982418,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.apprenticeship_levy,2030-31,UK,5.14626,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_levy,2024-25,UK,1.329,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_levy,2025-26,UK,1.501665,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_levy,2026-27,UK,1.482889,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_levy,2027-28,UK,1.47358,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_levy,2028-29,UK,1.46427,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_levy,2029-30,UK,1.454961,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_levy,2030-31,UK,1.445652,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_surcharge,2024-25,UK,0.975,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_surcharge,2025-26,UK,1.131032,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_surcharge,2026-27,UK,1.231203,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_surcharge,2027-28,UK,1.292746,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_surcharge,2028-29,UK,1.371677,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_surcharge,2029-30,UK,1.436591,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.bank_surcharge,2030-31,UK,1.500891,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.business_rates,2024-25,UK,32.056,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.business_rates,2025-26,UK,33.732516,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.business_rates,2026-27,UK,37.094587,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.business_rates,2027-28,UK,37.921931,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.business_rates,2028-29,UK,38.792851,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.business_rates,2029-30,UK,42.100068,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.business_rates,2030-31,UK,42.144194,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.capital_gains_tax,2024-25,UK,13.686,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.capital_gains_tax,2025-26,UK,21.801546,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.capital_gains_tax,2026-27,UK,20.801165,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.capital_gains_tax,2027-28,UK,25.469965,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.capital_gains_tax,2028-29,UK,28.918403,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.capital_gains_tax,2029-30,UK,31.956099,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.capital_gains_tax,2030-31,UK,34.900715,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.climate_change_levy,2024-25,UK,1.842,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.climate_change_levy,2025-26,UK,1.743487,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.climate_change_levy,2026-27,UK,1.75927,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.climate_change_levy,2027-28,UK,1.681919,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.climate_change_levy,2028-29,UK,1.634323,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.climate_change_levy,2029-30,UK,1.647467,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.climate_change_levy,2030-31,UK,1.696379,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.corporation_tax,2024-25,UK,93.238,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.corporation_tax,2025-26,UK,98.797253,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.corporation_tax,2026-27,UK,102.467456,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.corporation_tax,2027-28,UK,109.114912,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.corporation_tax,2028-29,UK,113.449757,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.corporation_tax,2029-30,UK,117.762528,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.corporation_tax,2030-31,UK,123.157459,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.corporation_tax_offshore,2024-25,UK,2.233,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_offshore,2025-26,UK,1.977242,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_offshore,2026-27,UK,1.031045,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_offshore,2027-28,UK,0.569195,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_offshore,2028-29,UK,0.318585,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_offshore,2029-30,UK,0.183771,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_offshore,2030-31,UK,0.15867,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_onshore,2024-25,UK,91.005,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_onshore,2025-26,UK,96.82001,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_onshore,2026-27,UK,101.43641,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_onshore,2027-28,UK,108.545716,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_onshore,2028-29,UK,113.131171,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_onshore,2029-30,UK,117.578757,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.corporation_tax_onshore,2030-31,UK,122.998789,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Corporation tax'; not additive with it.
+receipts.detail.council_tax,2024-25,UK,47.417,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.council_tax,2025-26,UK,50.925164,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.council_tax,2026-27,UK,53.66733,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.council_tax,2027-28,UK,56.846289,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.council_tax,2028-29,UK,60.723662,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.council_tax,2029-30,UK,64.08654,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.council_tax,2030-31,UK,67.576382,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.digital_services_tax,2024-25,UK,0.874,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.digital_services_tax,2025-26,UK,1.023064,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.digital_services_tax,2026-27,UK,1.111233,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.digital_services_tax,2027-28,UK,1.199248,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.digital_services_tax,2028-29,UK,1.285366,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.digital_services_tax,2029-30,UK,1.369395,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.digital_services_tax,2030-31,UK,1.454307,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.electricity_generator_levy,2024-25,UK,0.749,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.electricity_generator_levy,2025-26,UK,0.040703,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.electricity_generator_levy,2026-27,UK,0.0,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.electricity_generator_levy,2027-28,UK,0.0,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.electricity_generator_levy,2028-29,UK,0.0,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.electricity_generator_levy,2029-30,UK,0.0,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.electricity_generator_levy,2030-31,UK,0.0,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.emissions_trading_scheme,2024-25,UK,3.406,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.emissions_trading_scheme,2025-26,UK,2.578959,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.emissions_trading_scheme,2026-27,UK,3.043095,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.emissions_trading_scheme,2027-28,UK,3.428298,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.emissions_trading_scheme,2028-29,UK,3.232427,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.emissions_trading_scheme,2029-30,UK,3.05497,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.emissions_trading_scheme,2030-31,UK,2.900519,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.energy_profits_levy,2024-25,UK,2.499,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.energy_profits_levy,2025-26,UK,2.516657,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.energy_profits_levy,2026-27,UK,1.671618,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.energy_profits_levy,2027-28,UK,0.852067,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.energy_profits_levy,2028-29,UK,0.0,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.energy_profits_levy,2029-30,UK,0.0,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.energy_profits_levy,2030-31,UK,0.0,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.environmental_levies,2024-25,UK,10.517,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.environmental_levies,2025-26,UK,13.990946,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.environmental_levies,2026-27,UK,15.939066,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.environmental_levies,2027-28,UK,15.364226,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.environmental_levies,2028-29,UK,15.953343,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.environmental_levies,2029-30,UK,16.737708,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.environmental_levies,2030-31,UK,18.506722,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.fuel_duties,2024-25,UK,24.359,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.fuel_duties,2025-26,UK,24.241875,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.fuel_duties,2026-27,UK,24.628571,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.fuel_duties,2027-28,UK,26.545622,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.fuel_duties,2028-29,UK,26.635756,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.fuel_duties,2029-30,UK,26.382077,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.fuel_duties,2030-31,UK,25.740748,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.gross_operating_surplus,2024-25,UK,78.936,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.gross_operating_surplus,2025-26,UK,83.196836,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.gross_operating_surplus,2026-27,UK,87.328444,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.gross_operating_surplus,2027-28,UK,90.73703,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.gross_operating_surplus,2028-29,UK,93.960475,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.gross_operating_surplus,2029-30,UK,96.866296,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.gross_operating_surplus,2030-31,UK,100.023695,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.income_tax,2024-25,UK,305.905,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.income_tax,2025-26,UK,331.437583,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.income_tax,2026-27,UK,359.618867,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.income_tax,2027-28,UK,384.637785,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.income_tax,2028-29,UK,395.623096,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.income_tax,2029-30,UK,413.806564,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.income_tax,2030-31,UK,430.843588,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.income_tax_other_income_tax,2024-25,UK,-4.391,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_other_income_tax,2025-26,UK,-4.807657,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_other_income_tax,2026-27,UK,-1.046911,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_other_income_tax,2027-28,UK,3.355683,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_other_income_tax,2028-29,UK,-3.43024,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_other_income_tax,2029-30,UK,-6.011638,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_other_income_tax,2030-31,UK,-6.251357,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_pay_as_you_earn,2024-25,UK,262.131,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_pay_as_you_earn,2025-26,UK,280.375358,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_pay_as_you_earn,2026-27,UK,296.293048,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_pay_as_you_earn,2027-28,UK,310.190059,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_pay_as_you_earn,2028-29,UK,324.308954,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_pay_as_you_earn,2029-30,UK,343.512078,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_pay_as_you_earn,2030-31,UK,360.116653,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_self_assessment,2024-25,UK,48.165,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_self_assessment,2025-26,UK,55.869882,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_self_assessment,2026-27,UK,64.37273,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_self_assessment,2027-28,UK,71.092043,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_self_assessment,2028-29,UK,74.744382,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_self_assessment,2029-30,UK,76.306124,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.income_tax_self_assessment,2030-31,UK,76.978292,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,'Of which' component of the A.5 row 'Income tax'; not additive with it.
+receipts.detail.inheritance_tax,2024-25,UK,8.286,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.inheritance_tax,2025-26,UK,8.664849,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.inheritance_tax,2026-27,UK,9.498763,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.inheritance_tax,2027-28,UK,11.202354,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.inheritance_tax,2028-29,UK,12.794627,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.inheritance_tax,2029-30,UK,13.749447,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.inheritance_tax,2030-31,UK,14.705954,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.insurance_premium_tax,2024-25,UK,8.94,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.insurance_premium_tax,2025-26,UK,9.077924,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.insurance_premium_tax,2026-27,UK,9.272048,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.insurance_premium_tax,2027-28,UK,9.498216,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.insurance_premium_tax,2028-29,UK,9.744238,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.insurance_premium_tax,2029-30,UK,9.988819,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.insurance_premium_tax,2030-31,UK,10.202679,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.interest_and_dividends,2024-25,UK,44.327,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.interest_and_dividends,2025-26,UK,41.09044,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.interest_and_dividends,2026-27,UK,42.847671,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.interest_and_dividends,2027-28,UK,45.324692,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.interest_and_dividends,2028-29,UK,46.852908,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.interest_and_dividends,2029-30,UK,49.1074,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.interest_and_dividends,2030-31,UK,51.126313,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.licence_fee_receipts,2024-25,UK,3.819,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.licence_fee_receipts,2025-26,UK,3.872,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.licence_fee_receipts,2026-27,UK,3.951,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.licence_fee_receipts,2027-28,UK,3.982,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.licence_fee_receipts,2028-29,UK,3.982,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.licence_fee_receipts,2029-30,UK,3.982,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.licence_fee_receipts,2030-31,UK,4.054032,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.memo_uk_oil_and_gas_revenues,2024-25,UK,4.382,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,A.5 memo item; not part of current receipts.
+receipts.detail.memo_uk_oil_and_gas_revenues,2025-26,UK,4.14321,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 memo item; not part of current receipts.
+receipts.detail.memo_uk_oil_and_gas_revenues,2026-27,UK,2.51255,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 memo item; not part of current receipts.
+receipts.detail.memo_uk_oil_and_gas_revenues,2027-28,UK,1.247395,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 memo item; not part of current receipts.
+receipts.detail.memo_uk_oil_and_gas_revenues,2028-29,UK,0.187688,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 memo item; not part of current receipts.
+receipts.detail.memo_uk_oil_and_gas_revenues,2029-30,UK,0.112054,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 memo item; not part of current receipts.
+receipts.detail.memo_uk_oil_and_gas_revenues,2030-31,UK,0.068854,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 memo item; not part of current receipts.
+receipts.detail.national_accounts_taxes,2024-25,UK,1013.286,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,A.5 subtotal of all tax rows above it.
+receipts.detail.national_accounts_taxes,2025-26,UK,1108.04299,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 subtotal of all tax rows above it.
+receipts.detail.national_accounts_taxes,2026-27,UK,1170.575876,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 subtotal of all tax rows above it.
+receipts.detail.national_accounts_taxes,2027-28,UK,1236.16005,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 subtotal of all tax rows above it.
+receipts.detail.national_accounts_taxes,2028-29,UK,1283.286095,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 subtotal of all tax rows above it.
+receipts.detail.national_accounts_taxes,2029-30,UK,1342.686924,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 subtotal of all tax rows above it.
+receipts.detail.national_accounts_taxes,2030-31,UK,1396.890867,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,A.5 subtotal of all tax rows above it.
+receipts.detail.national_insurance_contributions,2024-25,UK,171.402,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.national_insurance_contributions,2025-26,UK,203.986467,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.national_insurance_contributions,2026-27,UK,211.594392,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.national_insurance_contributions,2027-28,UK,218.890531,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.national_insurance_contributions,2028-29,UK,226.535135,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.national_insurance_contributions,2029-30,UK,237.604716,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.national_insurance_contributions,2030-31,UK,245.753674,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_hmrc_taxes,2024-25,UK,10.168241,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_hmrc_taxes,2025-26,UK,10.961122,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_hmrc_taxes,2026-27,UK,11.349634,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_hmrc_taxes,2027-28,UK,12.404687,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_hmrc_taxes,2028-29,UK,13.059173,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_hmrc_taxes,2029-30,UK,13.937838,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_hmrc_taxes,2030-31,UK,14.41747,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_receipts,2024-25,UK,2.495,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_receipts,2025-26,UK,2.92297,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_receipts,2026-27,UK,3.041461,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_receipts,2027-28,UK,3.185777,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_receipts,2028-29,UK,3.338126,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_receipts,2029-30,UK,3.283795,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_receipts,2030-31,UK,3.443678,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_taxes,2024-25,UK,12.968759,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_taxes,2025-26,UK,15.347576,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_taxes,2026-27,UK,16.099866,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_taxes,2027-28,UK,16.159272,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_taxes,2028-29,UK,16.923418,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_taxes,2029-30,UK,17.358642,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.other_taxes,2030-31,UK,17.653595,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.petroleum_revenue_tax,2024-25,UK,-0.35,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.petroleum_revenue_tax,2025-26,UK,-0.350689,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.petroleum_revenue_tax,2026-27,UK,-0.190113,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.petroleum_revenue_tax,2027-28,UK,-0.173867,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.petroleum_revenue_tax,2028-29,UK,-0.130897,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.petroleum_revenue_tax,2029-30,UK,-0.071717,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.petroleum_revenue_tax,2030-31,UK,-0.089816,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.property_transaction_taxes,2024-25,UK,15.227,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.property_transaction_taxes,2025-26,UK,16.907276,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.property_transaction_taxes,2026-27,UK,19.709878,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.property_transaction_taxes,2027-28,UK,21.944607,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.property_transaction_taxes,2028-29,UK,24.299843,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.property_transaction_taxes,2029-30,UK,26.323982,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.property_transaction_taxes,2030-31,UK,28.08759,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.stamp_taxes_on_shares,2024-25,UK,4.322,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.stamp_taxes_on_shares,2025-26,UK,4.627509,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.stamp_taxes_on_shares,2026-27,UK,5.044926,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.stamp_taxes_on_shares,2027-28,UK,5.217098,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.stamp_taxes_on_shares,2028-29,UK,5.384541,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.stamp_taxes_on_shares,2029-30,UK,5.559986,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.stamp_taxes_on_shares,2030-31,UK,5.734776,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.tobacco_duties,2024-25,UK,7.909,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.tobacco_duties,2025-26,UK,7.661295,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.tobacco_duties,2026-27,UK,7.4685,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.tobacco_duties,2027-28,UK,7.280075,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.tobacco_duties,2028-29,UK,7.038224,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.tobacco_duties,2029-30,UK,6.722186,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.tobacco_duties,2030-31,UK,6.585508,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.value_added_tax,2024-25,UK,173.291,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.value_added_tax,2025-26,UK,180.942736,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.value_added_tax,2026-27,UK,188.697082,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.value_added_tax,2027-28,UK,197.847029,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.value_added_tax,2028-29,UK,205.77803,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.value_added_tax,2029-30,UK,214.685842,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.value_added_tax,2030-31,UK,223.779047,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vat_refunds,2024-25,UK,29.435,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vat_refunds,2025-26,UK,30.292556,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vat_refunds,2026-27,UK,31.256339,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vat_refunds,2027-28,UK,32.423354,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vat_refunds,2028-29,UK,32.710972,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vat_refunds,2029-30,UK,33.297786,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vat_refunds,2030-31,UK,34.702962,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vehicle_excise_duties,2024-25,UK,8.205,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vehicle_excise_duties,2025-26,UK,9.40369,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vehicle_excise_duties,2026-27,UK,9.923802,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vehicle_excise_duties,2027-28,UK,10.345479,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vehicle_excise_duties,2028-29,UK,11.841324,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vehicle_excise_duties,2029-30,UK,12.547108,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.detail.vehicle_excise_duties,2030-31,UK,13.341891,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.fuel_duty,2024-25,UK,24.359,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.fuel_duty,2025-26,UK,24.241875,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.fuel_duty,2026-27,UK,24.628571,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.fuel_duty,2027-28,UK,26.545622,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.fuel_duty,2028-29,UK,26.635756,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.fuel_duty,2029-30,UK,26.382077,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.fuel_duty,2030-31,UK,25.740748,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.iht,2024-25,UK,8.286,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.iht,2025-26,UK,8.664849,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.iht,2026-27,UK,9.498763,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.iht,2027-28,UK,11.202354,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.iht,2028-29,UK,12.794627,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.iht,2029-30,UK,13.749447,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.iht,2030-31,UK,14.705954,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.income_tax,2024-25,UK,305.905,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.income_tax,2025-26,UK,331.437583,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.income_tax,2026-27,UK,359.618867,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.income_tax,2027-28,UK,384.637785,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.income_tax,2028-29,UK,395.623096,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.income_tax,2029-30,UK,413.806564,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.income_tax,2030-31,UK,430.843588,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.nics,2024-25,UK,171.402,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.nics,2025-26,UK,203.986467,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.nics,2026-27,UK,211.594392,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.nics,2027-28,UK,218.890531,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.nics,2028-29,UK,226.535135,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.nics,2029-30,UK,237.604716,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.nics,2030-31,UK,245.753674,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.non_tax,2024-25,UK,125.758,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,"Sum of A.5 non-tax rows: Interest and dividends, Gross operating surplus, Other receipts."
+receipts.non_tax,2025-26,UK,127.210246,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of A.5 non-tax rows: Interest and dividends, Gross operating surplus, Other receipts."
+receipts.non_tax,2026-27,UK,133.217576,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of A.5 non-tax rows: Interest and dividends, Gross operating surplus, Other receipts."
+receipts.non_tax,2027-28,UK,139.247498,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of A.5 non-tax rows: Interest and dividends, Gross operating surplus, Other receipts."
+receipts.non_tax,2028-29,UK,144.15151,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of A.5 non-tax rows: Interest and dividends, Gross operating surplus, Other receipts."
+receipts.non_tax,2029-30,UK,149.257492,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of A.5 non-tax rows: Interest and dividends, Gross operating surplus, Other receipts."
+receipts.non_tax,2030-31,UK,154.593687,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of A.5 non-tax rows: Interest and dividends, Gross operating surplus, Other receipts."
+receipts.other_taxes,2024-25,UK,103.643,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,"Sum of the remaining A.5 tax rows: Petroleum revenue tax, VAT refunds, Air passenger duty, Insurance premium tax, Climate change levy, Bank levy, Bank surcharge, Apprenticeship levy, Digital services tax, Other HMRC taxes, Vehicle excise duties, Licence fee receipts, Environmental levies, Emissions trading scheme, Energy profits levy, Electricity generator levy, Other taxes."
+receipts.other_taxes,2025-26,UK,112.02003,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of the remaining A.5 tax rows: Petroleum revenue tax, VAT refunds, Air passenger duty, Insurance premium tax, Climate change levy, Bank levy, Bank surcharge, Apprenticeship levy, Digital services tax, Other HMRC taxes, Vehicle excise duties, Licence fee receipts, Environmental levies, Emissions trading scheme, Energy profits levy, Electricity generator levy, Other taxes."
+receipts.other_taxes,2026-27,UK,117.598462,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of the remaining A.5 tax rows: Petroleum revenue tax, VAT refunds, Air passenger duty, Insurance premium tax, Climate change levy, Bank levy, Bank surcharge, Apprenticeship levy, Digital services tax, Other HMRC taxes, Vehicle excise duties, Licence fee receipts, Environmental levies, Emissions trading scheme, Energy profits levy, Electricity generator levy, Other taxes."
+receipts.other_taxes,2027-28,UK,120.120508,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of the remaining A.5 tax rows: Petroleum revenue tax, VAT refunds, Air passenger duty, Insurance premium tax, Climate change levy, Bank levy, Bank surcharge, Apprenticeship levy, Digital services tax, Other HMRC taxes, Vehicle excise duties, Licence fee receipts, Environmental levies, Emissions trading scheme, Energy profits levy, Electricity generator levy, Other taxes."
+receipts.other_taxes,2028-29,UK,123.706224,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of the remaining A.5 tax rows: Petroleum revenue tax, VAT refunds, Air passenger duty, Insurance premium tax, Climate change levy, Bank levy, Bank surcharge, Apprenticeship levy, Digital services tax, Other HMRC taxes, Vehicle excise duties, Licence fee receipts, Environmental levies, Emissions trading scheme, Energy profits levy, Electricity generator levy, Other taxes."
+receipts.other_taxes,2029-30,UK,127.854913,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of the remaining A.5 tax rows: Petroleum revenue tax, VAT refunds, Air passenger duty, Insurance premium tax, Climate change levy, Bank levy, Bank surcharge, Apprenticeship levy, Digital services tax, Other HMRC taxes, Vehicle excise duties, Licence fee receipts, Environmental levies, Emissions trading scheme, Energy profits levy, Electricity generator levy, Other taxes."
+receipts.other_taxes,2030-31,UK,133.362883,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"Sum of the remaining A.5 tax rows: Petroleum revenue tax, VAT refunds, Air passenger duty, Insurance premium tax, Climate change levy, Bank levy, Bank surcharge, Apprenticeship levy, Digital services tax, Other HMRC taxes, Vehicle excise duties, Licence fee receipts, Environmental levies, Emissions trading scheme, Energy profits levy, Electricity generator levy, Other taxes."
+receipts.stamp_duty,2024-25,UK,19.549,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Property transaction taxes + Stamp taxes on shares.
+receipts.stamp_duty,2025-26,UK,21.534784,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Property transaction taxes + Stamp taxes on shares.
+receipts.stamp_duty,2026-27,UK,24.754804,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Property transaction taxes + Stamp taxes on shares.
+receipts.stamp_duty,2027-28,UK,27.161705,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Property transaction taxes + Stamp taxes on shares.
+receipts.stamp_duty,2028-29,UK,29.684383,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Property transaction taxes + Stamp taxes on shares.
+receipts.stamp_duty,2029-30,UK,31.883968,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Property transaction taxes + Stamp taxes on shares.
+receipts.stamp_duty,2030-31,UK,33.822366,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,Sum of A.5 rows: Property transaction taxes + Stamp taxes on shares.
+receipts.total,2024-25,UK,1139.044,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.total,2025-26,UK,1235.253237,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.total,2026-27,UK,1303.793452,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.total,2027-28,UK,1375.407548,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.total,2028-29,UK,1427.437605,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.total,2029-30,UK,1491.944415,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.total,2030-31,UK,1551.484554,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.vat,2024-25,UK,173.291,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+receipts.vat,2025-26,UK,180.942736,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.vat,2026-27,UK,188.697082,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.vat,2027-28,UK,197.847029,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.vat,2028-29,UK,205.77803,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.vat,2029-30,UK,214.685842,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+receipts.vat,2030-31,UK,223.779047,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+reckoner.debt_interest.cgncr_10bn,2026-27,UK,0.227009,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '£10bn increase in CGNCR', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.cgncr_10bn,2027-28,UK,0.679133,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '£10bn increase in CGNCR', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.cgncr_10bn,2028-29,UK,1.156037,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '£10bn increase in CGNCR', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.cgncr_10bn,2029-30,UK,1.654391,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '£10bn increase in CGNCR', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.cgncr_10bn,2030-31,UK,2.171918,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '£10bn increase in CGNCR', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.gilt_rates_1pp,2026-27,UK,1.226774,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in gilt rates', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.gilt_rates_1pp,2027-28,UK,3.710949,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in gilt rates', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.gilt_rates_1pp,2028-29,UK,6.23796,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in gilt rates', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.gilt_rates_1pp,2029-30,UK,8.385591,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in gilt rates', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.gilt_rates_1pp,2030-31,UK,10.358118,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in gilt rates', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.inflation_1pp,2026-27,UK,7.327483,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in inflation', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.inflation_1pp,2027-28,UK,8.476158,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in inflation', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.inflation_1pp,2028-29,UK,9.176793,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in inflation', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.inflation_1pp,2029-30,UK,9.596831,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in inflation', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.inflation_1pp,2030-31,UK,10.505453,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in inflation', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.short_rates_1pp,2026-27,UK,6.734458,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in short rates', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.short_rates_1pp,2027-28,UK,6.907575,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in short rates', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.short_rates_1pp,2028-29,UK,6.320619,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in short rates', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.short_rates_1pp,2029-30,UK,5.814416,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in short rates', assumed from the start of 2026-27 and sustained."
+reckoner.debt_interest.short_rates_1pp,2030-31,UK,5.042984,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,"OBR 5.1: change in central government debt interest net of APF from '1 percentage point increase in short rates', assumed from the start of 2026-27 and sustained."
+spending.debt_interest,2024-25,UK,105.695,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+spending.debt_interest,2025-26,UK,109.681582,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+spending.debt_interest,2026-27,UK,109.366036,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+spending.debt_interest,2027-28,UK,116.70904,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+spending.debt_interest,2028-29,UK,125.923112,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+spending.debt_interest,2029-30,UK,134.704204,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+spending.debt_interest,2030-31,UK,137.11141,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+spending.tme,2024-25,UK,1291.786,gbp_bn,outturn,obr_efo,EFO-2026-03,sourced,
+spending.tme,2025-26,UK,1367.988313,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+spending.tme,2026-27,UK,1419.254876,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+spending.tme,2027-28,UK,1471.874916,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+spending.tme,2028-29,UK,1513.453239,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+spending.tme,2029-30,UK,1555.347859,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
+spending.tme,2030-31,UK,1610.504465,gbp_bn,forecast,obr_efo,EFO-2026-03,sourced,
