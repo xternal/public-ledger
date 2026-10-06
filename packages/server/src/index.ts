@@ -4,3 +4,4 @@ export * from "./crypto";
 export * from "./usage";
 export * from "./mail";
 export * from "./telegram-api";
+export * from "./spam";

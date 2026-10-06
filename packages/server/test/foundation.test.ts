@@ -91,3 +91,44 @@ describe("mail", () => {
     await db.close();
   });
 });
+
+describe("spam controls", () => {
+  it("allows up to the limit per client per day and stores no IP", async () => {
+    const { rateLimit } = await import("../src/spam");
+    const db = await testDb();
+    const now = new Date("2026-10-06T10:00:00Z");
+    const results = [];
+    for (let i = 0; i < 4; i++) results.push(await rateLimit(db, "203.0.113.9", "submit", 3, now));
+    expect(results).toEqual([true, true, true, false]);
+    expect(await rateLimit(db, "198.51.100.1", "submit", 3, now)).toBe(true);
+    const dump = JSON.stringify(await db.query("SELECT * FROM rate_bucket"));
+    expect(dump).not.toContain("203.0.113.9");
+    await db.close();
+  });
+
+  it("forgets yesterday: salts and buckets are pruned", async () => {
+    const { rateLimit, pruneSpamState } = await import("../src/spam");
+    const db = await testDb();
+    await rateLimit(db, "203.0.113.9", "submit", 3, new Date("2026-10-05T23:00:00Z"));
+    await pruneSpamState(db, new Date("2026-10-06T00:30:00Z"));
+    expect(await db.query("SELECT * FROM daily_salt")).toEqual([]);
+    expect(await db.query("SELECT * FROM rate_bucket")).toEqual([]);
+    await db.close();
+  });
+
+  it("accepts a solved ALTCHA challenge once and rejects tampering", async () => {
+    const { createSpamChallenge, verifySpamCheck } = await import("../src/spam");
+    const { solveChallenge } = await import("altcha-lib");
+    const { deriveKey } = await import("altcha-lib/algorithms/pbkdf2");
+    const db = await testDb();
+    const config = loadConfig({});
+    const challenge = await createSpamChallenge(config, { cost: 10, counter: [1, 20] });
+    const solution = await solveChallenge({ challenge, deriveKey } as never);
+    const payload = Buffer.from(JSON.stringify({ challenge, solution })).toString("base64");
+    expect(await verifySpamCheck(db, config, payload)).toBe(true);
+    expect(await verifySpamCheck(db, config, payload)).toBe(false); // replay
+    expect(await verifySpamCheck(db, config, "bm90IGpzb24=")).toBe(false);
+    expect(await verifySpamCheck(db, loadConfig({ ALTCHA_HMAC_KEY: "other" }), payload)).toBe(false);
+    await db.close();
+  });
+});

@@ -7,7 +7,8 @@
     ".": "./src/index.ts",
     "./follow": "./src/follow/index.ts",
     "./intake": "./src/intake/index.ts",
-    "./alerts": "./src/alerts/index.ts"
+    "./alerts": "./src/alerts/index.ts",
+    "./triage": "./src/triage/index.ts"
   },
   "scripts": {
     "test": "vitest run",
