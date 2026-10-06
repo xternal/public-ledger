@@ -10,7 +10,8 @@
     "build": "pnpm --filter @ledger/web build",
     "test": "pnpm --filter \"./packages/*\" test",
     "typecheck": "pnpm -r typecheck",
-    "validate": "tsx scripts/validate.ts"
+    "validate": "tsx scripts/validate.ts",
+    "journeys": "python3 scripts/journeys/build.py docs/CUSTOMER_JOURNEYS.md out/journey-maps.html"
   },
   "devDependencies": {
     "@ledger/engine": "workspace:*",

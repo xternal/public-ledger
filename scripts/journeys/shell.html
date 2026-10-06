@@ -1,0 +1,247 @@
+<title>Public Ledger Journey Maps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a team reference page in the product's own system. Sticky persona rail on wide screens,
+   one column on phones; every journey map is a wide table that scrolls inside its own frame. */
+:root{
+  --bg:#FFFFFF; --sunk:#F5F5F6; --line:#E7E7EA; --line-strong:#D4D4D8;
+  --ink:#0B0B0D; --muted:#61616B; --faint:#9A9AA3;
+  --accent:#2457F5; --accent-soft:rgba(36,87,245,.10);
+  --debt:#F2600C; --debt-soft:rgba(242,96,12,.10);
+  --good:#15803D; --good-soft:rgba(21,128,61,.10);
+  --bad:#DC2626; --bad-soft:rgba(220,38,38,.08);
+  --f-sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#09090B; --sunk:#141417; --line:#232328; --line-strong:#33333A;
+  --ink:#F4F4F5; --muted:#A1A1AA; --faint:#6B6B74;
+  --accent:#6F93FF; --accent-soft:rgba(111,147,255,.16);
+  --debt:#FF7A2E; --debt-soft:rgba(255,122,46,.14);
+  --good:#4ADE80; --good-soft:rgba(74,222,128,.12);
+  --bad:#F87171; --bad-soft:rgba(248,113,113,.10);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#09090B; --sunk:#141417; --line:#232328; --line-strong:#33333A;
+  --ink:#F4F4F5; --muted:#A1A1AA; --faint:#6B6B74;
+  --accent:#6F93FF; --accent-soft:rgba(111,147,255,.16);
+  --debt:#FF7A2E; --debt-soft:rgba(255,122,46,.14);
+  --good:#4ADE80; --good-soft:rgba(74,222,128,.12);
+  --bad:#F87171; --bad-soft:rgba(248,113,113,.10);
+  color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:72px}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-sans);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:var(--accent);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+code{font:500 12.5px var(--f-mono);background:var(--sunk);padding:1px 5px;border-radius:4px;white-space:nowrap}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+b{font-weight:600}
+
+/* Top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1320px;margin:0 auto;padding-inline:24px;min-height:56px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-block:8px}
+.mark{display:flex;align-items:center;gap:8px;font-weight:650;font-size:15px;letter-spacing:-.01em;color:var(--ink);text-decoration:none;white-space:nowrap}
+.mark i{width:14px;height:14px;border-radius:3px;background:linear-gradient(90deg,var(--accent) 0 55%,var(--debt) 55% 100%);display:inline-block}
+.mark span{color:var(--muted);font-weight:500}
+.hl{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hl-label{font-size:13px;color:var(--muted)}
+.seg{display:inline-flex;background:var(--sunk);border-radius:8px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--muted);font:500 13px var(--f-sans);padding:5px 10px;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--bg);color:var(--ink);box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(0,0,0,.06)}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.dot[data-k="now"]{background:var(--good)} .dot[data-k="next"]{background:var(--accent)} .dot[data-k="later"]{background:var(--faint)} .dot[data-k="gap"]{border:1.5px dashed var(--bad);width:6px;height:6px}
+@media (max-width:640px){.top-in{padding-inline:16px}.hl-label{display:none}.hl{margin-left:0;width:100%}}
+
+.wrap{max-width:1320px;margin:0 auto;padding-inline:24px;padding-block:0 96px}
+@media (max-width:640px){.wrap{padding-inline:16px}}
+.hero{padding-block:48px 8px;max-width:880px}
+.kicker{font-size:13px;color:var(--muted);margin:0 0 12px}
+h1{font-size:clamp(30px,4.2vw,44px);font-weight:600;line-height:1.08;letter-spacing:-.03em;margin:0;text-wrap:balance}
+
+.layout{display:grid;grid-template-columns:200px minmax(0,1fr);gap:48px;align-items:start;margin-top:32px}
+@media (max-width:1000px){.layout{grid-template-columns:minmax(0,1fr);gap:0}}
+.rail{position:sticky;top:80px;display:grid;gap:2px;font-size:14px}
+.rail a{color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px;display:block}
+.rail a:hover{background:var(--sunk);color:var(--ink)}
+.rail a.p{color:var(--ink);font-weight:500}
+.rail a.on{background:var(--sunk);color:var(--ink);box-shadow:inset 2px 0 0 var(--ink)}
+@media (max-width:1000px){
+  .rail{position:static;display:flex;overflow-x:auto;gap:4px;padding-block:4px 16px;margin-bottom:8px;border-bottom:1px solid var(--line);scrollbar-width:none}
+  .rail::-webkit-scrollbar{display:none}
+  .rail a{white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+  .rail a.on{box-shadow:none;border-color:var(--ink)}
+}
+main{min-width:0}
+
+/* Text */
+.lede{font-size:17px;line-height:1.55;color:var(--muted);max-width:72ch;margin:0}
+.refs,.para{font-size:14px;color:var(--muted);max-width:80ch;margin:0}
+.intro{display:grid;gap:24px}
+.h-small{font-size:13px;font-weight:500;color:var(--muted);margin:0 0 10px}
+.legend-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px 32px;margin:0}
+.legend-row{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;align-items:baseline;font-size:13.5px;padding-block:6px;border-bottom:1px solid var(--line)}
+.legend-row dt{margin:0} .legend-row dd{margin:0;color:var(--muted)}
+
+section.block,section.persona{padding-top:64px;display:grid;gap:16px}
+section.sub{padding-top:36px;display:grid;gap:14px}
+.h-section{font-size:24px;font-weight:600;letter-spacing:-.02em;margin:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;text-wrap:balance}
+.h-persona{font-size:24px;font-weight:600;letter-spacing:-.02em;margin:0;display:flex;align-items:center;gap:12px;text-wrap:balance}
+.pnum{font-size:13px;font-weight:600;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);display:inline-grid;place-items:center;flex:none;letter-spacing:0}
+.h-sub{font-size:17px;font-weight:600;margin:0;letter-spacing:-.01em}
+
+/* Availability tags */
+.tag{display:inline-flex;align-items:center;font:500 11.5px var(--f-sans);padding:1px 7px;border-radius:999px;white-space:nowrap;vertical-align:1px;transition:opacity .15s ease}
+.tag[data-k="now"]{background:var(--good-soft);color:var(--good)}
+.tag[data-k="next"]{background:var(--accent-soft);color:var(--accent)}
+.tag[data-k="later"]{background:var(--sunk);color:var(--muted)}
+.tag[data-k="gap"]{color:var(--bad);box-shadow:inset 0 0 0 1px var(--bad);background:transparent;border-radius:999px;outline:1px dashed transparent}
+.tag[data-k="gap"]{box-shadow:none;border:1px dashed var(--bad);padding:0 6px}
+body[data-hl="now"] .tag:not([data-k="now"]),
+body[data-hl="next"] .tag:not([data-k="next"]),
+body[data-hl="later"] .tag:not([data-k="later"]),
+body[data-hl="gap"] .tag:not([data-k="gap"]){opacity:.22}
+body[data-hl]:not([data-hl="all"]) .tag{font-weight:600}
+@media (prefers-reduced-motion:reduce){.tag{transition:none}}
+
+/* Tables */
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.tbl{border-collapse:separate;border-spacing:0;width:100%;font-size:13.5px;line-height:1.45}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+.tbl tbody tr:last-child th,.tbl tbody tr:last-child td{border-bottom:0}
+.tbl thead th{font-weight:500;color:var(--muted);font-size:12.5px;background:var(--sunk);white-space:nowrap}
+.tbl td{min-width:150px}
+.tbl tbody th{font-weight:600}
+.tbl .arr{color:var(--faint);margin-inline:3px}
+
+.journey thead th:first-child,.journey tbody th{position:sticky;left:0;z-index:1;background:var(--bg);min-width:128px;width:128px;box-shadow:inset -1px 0 0 var(--line)}
+.journey thead th:first-child{background:var(--sunk)}
+.journey thead th{color:var(--ink);font-weight:600;font-size:13px}
+.journey td{min-width:188px}
+.journey tbody tr:nth-child(5) th{color:var(--debt)}
+.journey tbody tr:nth-child(5) td{background:var(--debt-soft)}
+.journey tbody tr:last-child td code{font-size:11.5px}
+@media (max-width:640px){.journey thead th:first-child,.journey tbody th{min-width:96px;width:96px;font-size:12.5px}.journey td{min-width:200px}}
+
+.events td{min-width:120px}
+.events tbody th{white-space:nowrap}
+.gaps td:first-child{min-width:32px;color:var(--muted)}
+.gaps td:nth-child(2){min-width:320px}
+
+/* Moments and never */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.pair{grid-template-columns:minmax(0,1fr)}}
+.callout{padding:16px 18px;border-radius:12px;background:var(--sunk);min-width:0}
+.callout h4{margin:0 0 8px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+.callout h4::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--good)}
+.callout[data-tone="never"]{background:var(--bad-soft)}
+.callout[data-tone="never"] h4::before{background:var(--bad)}
+.callout ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:14px}
+.list{margin:0;padding-left:20px;display:grid;gap:6px;font-size:14px;color:var(--muted);max-width:80ch}
+
+/* Funnels */
+.funnels{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.funnel{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:10px}
+.funnel-h{font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:10px}
+.fl{width:24px;height:24px;border-radius:6px;background:var(--ink);color:var(--bg);display:inline-grid;place-items:center;font-size:12.5px;flex:none}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 0;align-items:center;font-size:13px}
+.steps li{display:inline-flex;align-items:center}
+.steps li + li::before{content:"→";color:var(--faint);margin-inline:8px}
+.funnel-note{margin:0;font-size:13px;color:var(--muted)}
+
+.rules{margin:0;padding-left:22px;display:grid;gap:10px;font-size:14px;max-width:88ch}
+.rules li::marker{color:var(--muted);font-weight:600}
+
+.filter{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);display:grid;gap:4px}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <a class="mark" href="#top"><i aria-hidden="true"></i>Public Ledger <span>Journey maps</span></a>
+    <div class="hl">
+      <span class="hl-label" id="hl-label">Highlight capabilities</span>
+      <div class="seg" role="group" aria-labelledby="hl-label">
+        <button type="button" id="hl-all" data-hl="all" aria-pressed="true">All</button>
+        <button type="button" id="hl-now" data-hl="now" aria-pressed="false"><i class="dot" data-k="now"></i>Built now</button>
+        <button type="button" id="hl-next" data-hl="next" aria-pressed="false"><i class="dot" data-k="next"></i>M1 to M3b</button>
+        <button type="button" id="hl-later" data-hl="later" aria-pressed="false"><i class="dot" data-k="later"></i>Later</button>
+        <button type="button" id="hl-gap" data-hl="gap" aria-pressed="false"><i class="dot" data-k="gap"></i>Gaps</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap" id="top">
+  <div class="hero">
+    <p class="kicker">UK pilot, team reference. {{PERSONAS}} journeys, mapped from the PRD, the promise standard and the privacy rules.</p>
+    <h1>Who uses Public Ledger, and what we want each of them to do</h1>
+  </div>
+  <div class="layout">
+    <nav class="rail" aria-label="Sections">{{NAV}}</nav>
+    <main>
+{{BODY}}
+      <footer>
+        <span>Source of truth: docs/CUSTOMER_JOURNEYS.md in the repo. Edit there; this page is regenerated from it.</span>
+        <span>Statuses and cards shown in examples are sample data until editors have checked them.</span>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KEY = "pl-journeys-hl";
+  var buttons = Array.prototype.slice.call(document.querySelectorAll(".seg button[data-hl]"));
+  function set(v){
+    document.body.setAttribute("data-hl", v);
+    buttons.forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-hl") === v)); });
+    try { localStorage.setItem(KEY, v); } catch (e) {}
+  }
+  buttons.forEach(function(b){ b.addEventListener("click", function(){ set(b.getAttribute("data-hl")); }); });
+  var saved = "all";
+  try { saved = localStorage.getItem(KEY) || "all"; } catch (e) {}
+  set(saved);
+
+  // Funnel filter for the event catalogue
+  var events = document.querySelector("table.events");
+  if (events) {
+    var wrap = events.closest(".scroll");
+    var bar = document.createElement("div");
+    bar.className = "filter";
+    bar.innerHTML = '<span id="fn-label">Show funnel</span><div class="seg" role="group" aria-labelledby="fn-label">' +
+      ["All","A","B","C","D","E"].map(function(f){ return '<button type="button" id="fn-' + f + '" data-f="' + f + '" aria-pressed="' + (f === "All") + '">' + f + '</button>'; }).join("") + "</div>";
+    wrap.parentNode.insertBefore(bar, wrap);
+    var fb = Array.prototype.slice.call(bar.querySelectorAll("button"));
+    fb.forEach(function(b){
+      b.addEventListener("click", function(){
+        var f = b.getAttribute("data-f");
+        fb.forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+        events.querySelectorAll("tbody tr").forEach(function(tr){
+          var fs = (tr.getAttribute("data-funnels") || "").split(" ");
+          tr.hidden = !(f === "All" || fs.indexOf(f) >= 0);
+        });
+      });
+    });
+  }
+
+  // Rail: mark the section in view
+  var links = Array.prototype.slice.call(document.querySelectorAll(".rail a"));
+  if ("IntersectionObserver" in window) {
+    var map = {};
+    links.forEach(function(a){ map[a.getAttribute("href").slice(1)] = a; });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          links.forEach(function(a){ a.classList.remove("on"); });
+          var a = map[e.target.id]; if (a) a.classList.add("on");
+        }
+      });
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    Object.keys(map).forEach(function(id){ var el = document.getElementById(id); if (el) io.observe(el); });
+  }
+})();
+</script>
