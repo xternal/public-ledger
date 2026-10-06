@@ -8,7 +8,7 @@ export type ControlledBy = z.infer<typeof ControlledBy>;
 export const LeverGroup = z.enum(["taxes", "spending", "rates", "measures"]);
 export type LeverGroup = z.infer<typeof LeverGroup>;
 
-export const LeverUnit = z.enum(["pp", "pct", "pct_gdp", "toggle", "gbp"]);
+export const LeverUnit = z.enum(["pp", "pct", "pct_gdp", "toggle", "gbp", "pence"]);
 export type LeverUnit = z.infer<typeof LeverUnit>;
 
 export const FundingOption = z

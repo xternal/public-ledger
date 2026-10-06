@@ -14,18 +14,30 @@ const MONTHS_PER_YEAR = 12;
  * Income tax and employee NI on a salary (England, Wales and NI rules).
  * Runs client-side only; the salary is never sent or stored (invariant 7).
  */
-export function taxOn(tax: TaxSeed, salary: number, basicRatePct: number, niMainRatePct: number): TaxPaid {
+export interface TaxRates {
+  basicRatePct: number;
+  niMainRatePct: number;
+  higherRatePct?: number;
+  additionalRatePct?: number;
+  personalAllowanceGbp?: number;
+}
+
+export function taxOn(tax: TaxSeed, salary: number, rates: TaxRates): TaxPaid {
   const it = tax.income_tax;
   const ni = tax.employee_ni;
+  const basicRatePct = rates.basicRatePct;
+  const niMainRatePct = rates.niMainRatePct;
+  const higherRatePct = rates.higherRatePct ?? it.higher_rate_pct;
+  const additionalRatePct = rates.additionalRatePct ?? it.additional_rate_pct;
   const over = Math.max(0, salary - it.allowance_taper_threshold_gbp);
-  const allowance = Math.max(0, it.personal_allowance_gbp - over * it.allowance_taper_rate);
+  const allowance = Math.max(0, (rates.personalAllowanceGbp ?? it.personal_allowance_gbp) - over * it.allowance_taper_rate);
   const taxable = Math.max(0, salary - allowance);
   const basicTop = it.basic_band_gbp;
   const higherTop = it.additional_threshold_gbp - allowance;
   const incomeTax =
     (Math.min(taxable, basicTop) * basicRatePct) / 100 +
-    (Math.max(0, Math.min(taxable, higherTop) - basicTop) * it.higher_rate_pct) / 100 +
-    (Math.max(0, taxable - Math.max(higherTop, basicTop)) * it.additional_rate_pct) / 100;
+    (Math.max(0, Math.min(taxable, higherTop) - basicTop) * higherRatePct) / 100 +
+    (Math.max(0, taxable - Math.max(higherTop, basicTop)) * additionalRatePct) / 100;
   const niPaid =
     (Math.max(0, Math.min(salary, ni.upper_earnings_limit_gbp) - ni.primary_threshold_gbp) * niMainRatePct) / 100 +
     (Math.max(0, salary - ni.upper_earnings_limit_gbp) * ni.upper_rate_pct) / 100;
@@ -44,15 +56,22 @@ export interface YourShare {
 }
 
 export function yourShare(model: Model, tax: TaxSeed, r: ScenarioResult, settings: Settings, salary: number): YourShare {
-  const basic = model.leverById.get(tax.income_tax.basic_rate_lever)!;
-  const niMain = model.leverById.get(tax.employee_ni.main_rate_lever)!;
-  const today = taxOn(tax, salary, basic.base, niMain.base);
-  const scenario = taxOn(
-    tax,
-    salary,
-    numberSetting(settings, basic.id, basic.base),
-    numberSetting(settings, niMain.id, niMain.base),
-  );
+  const ratesFor = (s: Settings | null): TaxRates => {
+    const pick = (leverId: string | undefined): number | undefined => {
+      const lever = leverId ? model.leverById.get(leverId) : undefined;
+      if (!lever) return undefined;
+      return s ? numberSetting(s, lever.id, lever.base) : lever.base;
+    };
+    return {
+      basicRatePct: pick(tax.income_tax.basic_rate_lever)!,
+      niMainRatePct: pick(tax.employee_ni.main_rate_lever)!,
+      higherRatePct: pick(tax.income_tax.higher_rate_lever),
+      additionalRatePct: pick(tax.income_tax.additional_rate_lever),
+      personalAllowanceGbp: pick(tax.income_tax.personal_allowance_lever),
+    };
+  };
+  const today = taxOn(tax, salary, ratesFor(null));
+  const scenario = taxOn(tax, salary, ratesFor(settings));
   const { spending_bn, receipts_bn, borrowing_bn } = r.totals;
   const by_line = Object.entries(r.spending)
     .map(([id, bn]) => ({ id, gbp: (scenario.total * bn) / spending_bn }))

@@ -7,6 +7,8 @@ import {
   compute,
   createModel,
   debtFan,
+  decodeScenario,
+  encodeScenario,
   mortgageDelta,
   taxOn,
   yourShare,
@@ -126,13 +128,14 @@ describe("debt path", () => {
 
 describe("your share and mortgage", () => {
   it("computes income tax and NI below the higher-rate threshold", () => {
-    const paid = taxOn(seed.tax, 38000, 20, 8);
+    const paid = taxOn(seed.tax, 38000, { basicRatePct: 20, niMainRatePct: 8 });
     expect(paid.income_tax).toBeCloseTo((38000 - 12570) * 0.2, 6);
     expect(paid.ni).toBeCloseTo((38000 - 12570) * 0.08, 6);
   });
 
   it("tapers the personal allowance above £100k", () => {
-    expect(taxOn(seed.tax, 125140, 20, 8).income_tax).toBeGreaterThan(taxOn(seed.tax, 100000, 20, 8).income_tax);
+    const r = { basicRatePct: 20, niMainRatePct: 8 };
+    expect(taxOn(seed.tax, 125140, r).income_tax).toBeGreaterThan(taxOn(seed.tax, 100000, r).income_tax);
   });
 
   it("splits the bill in proportion to spending and adds borrowing on top", () => {
@@ -165,5 +168,63 @@ describe("speed (CLAUDE.md: T0 returns in < 50 ms)", () => {
     const runs = 100;
     for (let i = 0; i < runs; i++) debtFan(model, compute(model, s));
     expect((performance.now() - t0) / runs).toBeLessThan(50);
+  });
+});
+
+describe("scenario links (M2)", () => {
+  const year = seed.baseYear;
+
+  it("round-trip 20 random scenarios to the same settings and the same result", () => {
+    const rand = rng(424242);
+    for (let i = 0; i < 20; i++) {
+      const s = randomSettings(model, rand);
+      const code = encodeScenario(model, s, year);
+      const decoded = decodeScenario(model, code)!;
+      expect(decoded.dropped).toEqual([]);
+      expect(decoded.adjusted).toEqual([]);
+      const want = changedSettings(model, s);
+      const got = changedSettings(model, decoded.settings);
+      expect(Object.keys(got).sort()).toEqual(Object.keys(want).sort());
+      for (const [k, v] of Object.entries(want)) {
+        if (typeof v === "number") expect(got[k] as number).toBeCloseTo(v, 9);
+        else expect(got[k]).toBe(v);
+      }
+      expect(compute(model, decoded.settings).y1.d_borrowing_bn[1]).toBeCloseTo(compute(model, s).y1.d_borrowing_bn[1], 9);
+    }
+  });
+
+  it("give the same code for the same scenario, whatever the key order", () => {
+    const a = { ...baseSettings(model), vat_standard: 22, bank_rate: 5.25 };
+    const b = { ...baseSettings(model), bank_rate: 5.25, vat_standard: 22 };
+    expect(encodeScenario(model, a, year)).toBe(encodeScenario(model, b, year));
+    expect(encodeScenario(model, baseSettings(model), year)).toBe("");
+  });
+
+  it("stay short enough for a URL", () => {
+    const code = encodeScenario(model, { ...baseSettings(model), bus_cap_2: 1, [fundingKey("bus_cap_2")]: "climate_loans", vat_standard: 22 }, year);
+    expect(code).toMatch(/^[A-Za-z0-9_-]+$/);
+    expect(code.length).toBeLessThan(160);
+  });
+
+  it("carry the base year", () => {
+    const code = encodeScenario(model, { ...baseSettings(model), vat_standard: 21 }, "2025-26");
+    expect(decodeScenario(model, code)!.baseYear).toBe("2025-26");
+  });
+
+  it("reject codes that are not scenarios", () => {
+    for (const bad of ["", "%%%", "bm90IGpzb24", btoa('{"v":99,"y":"2025-26","s":{}}'), btoa("[1,2,3]")]) {
+      expect(decodeScenario(model, bad.replace(/=+$/, ""))).toBeNull();
+    }
+  });
+
+  it("drop unknown levers and bad options, and pull values back into range", () => {
+    const payload = { v: 1, y: year, s: { nonsense_lever: 3, vat_standard: 99, "bus_cap_2.funding": "magic_money", bank_rate: 4.1 } };
+    const code = btoa(JSON.stringify(payload)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+    const d = decodeScenario(model, code)!;
+    const vat = model.leverById.get("vat_standard")!;
+    expect(d.dropped.sort()).toEqual(["bus_cap_2.funding", "nonsense_lever"]);
+    expect(d.settings.vat_standard).toBe(vat.max);
+    expect(d.adjusted).toContain("vat_standard");
+    expect(d.adjusted).toContain("bank_rate"); // 4.1 is off the 0.25 step grid
   });
 });
