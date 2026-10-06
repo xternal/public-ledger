@@ -69,3 +69,13 @@ export const EVIDENCE_OPTIONS = [
   { id: "delivered", label: "It was delivered" },
   { id: "failed", label: "It was dropped or failed" },
 ] as const;
+
+/**
+ * Method notes are written for editors ("TODO(source): …", "(review B1)").
+ * Readers see the same note without the internal markers.
+ */
+export const readerNote = (note: string) =>
+  note
+    .replace(/TODO\(source\):\s*/g, "")
+    .replace(/\s*\((?:review|see review)[^)]*\)/gi, "")
+    .replace(/^./, (c) => c.toUpperCase());

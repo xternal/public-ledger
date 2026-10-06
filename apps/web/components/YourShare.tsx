@@ -78,7 +78,7 @@ export function YourShare() {
         <ul className="m-0 grid list-none gap-3 p-0" aria-label="Your tax split by what it pays for">
           {share.by_line.map((l) => (
             <li key={l.id} className="grid grid-cols-[112px_minmax(0,1fr)_64px] items-center gap-3 text-[13px] sm:grid-cols-[190px_minmax(0,1fr)_80px] sm:gap-4 sm:text-sm">
-              <span className="truncate">{labelOf(l.id)}</span>
+              <span className="leading-tight">{labelOf(l.id)}</span>
               <span className="h-2 overflow-hidden rounded-full bg-sunk">
                 <i className="block h-full rounded-full bg-spend" style={{ width: `${(l.gbp / max) * 100}%` }} />
               </span>

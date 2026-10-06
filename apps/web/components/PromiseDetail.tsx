@@ -39,7 +39,9 @@ function Ladder({ card }: { card: PromiseCard }) {
         {LADDER.map((s, i) => (
           <li key={s} aria-current={i === idx ? "step" : undefined} className="grid gap-1.5">
             <span className={`h-1 rounded-full ${i === idx ? "bg-ink" : i < idx ? "bg-ink/35" : "bg-line"}`} />
-            <span className={`truncate text-[11.5px] ${i === idx ? "font-semibold text-ink" : i < idx ? "font-medium text-muted" : "text-faint"}`}>
+            <span
+              className={`text-[11.5px] ${i === idx ? "whitespace-nowrap font-semibold text-ink" : `hidden truncate sm:block ${i < idx ? "font-medium text-muted" : "text-faint"}`}`}
+            >
               {STATUS_LABEL[s]}
             </span>
           </li>

@@ -2,7 +2,7 @@
 
 import { useId, type ReactNode } from "react";
 import type { Provenance as ProvenanceT, Quality, Range } from "@ledger/schema";
-import { QUALITY_HELP, QUALITY_LABEL } from "@/lib/copy";
+import { QUALITY_HELP, QUALITY_LABEL, readerNote } from "@/lib/copy";
 import { useScenario } from "@/lib/scenario";
 
 type QualityKey = Quality | "plug";
@@ -30,7 +30,7 @@ export function ProvenanceDetail({ p }: { p: Partial<ProvenanceT> & { quality: Q
   return (
     <span className="grid gap-1">
       <QualityBadge quality={q} />
-      <span>{p.method_note ?? QUALITY_HELP[q]}</span>
+      <span>{p.method_note ? readerNote(p.method_note) : QUALITY_HELP[q]}</span>
       {source && (
         <a href={source.url} target="_blank" rel="noopener noreferrer" className="font-medium">
           {source.title}

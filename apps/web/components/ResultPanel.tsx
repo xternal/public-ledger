@@ -131,7 +131,7 @@ export function ResultPanel() {
           label="Prices (CPI), one-off"
           value={`${signed(y1.cpi_pp[1], (a) => fixed(a, 1))}pp`}
           range={y1.cpi_pp}
-          rangeLabel={y1.cpi_pp[1] !== 0 ? `range ${fixed(y1.cpi_pp[0], 1)} to ${fixed(y1.cpi_pp[2], 1)}pp` : "no change"}
+          rangeLabel={y1.cpi_pp[1] !== 0 ? `range ${rangeText(y1.cpi_pp, (x) => signed(x, (a) => fixed(a, 1)))}pp` : "no change"}
           tone={direction(y1.cpi_pp[1])}
           note={ruleOfThumb}
         />
@@ -139,7 +139,7 @@ export function ResultPanel() {
           label="GDP, year one"
           value={`${signed(y1.gdp_pct[1], (a) => fixed(a, 2))}%`}
           range={y1.gdp_pct}
-          rangeLabel={any ? `range ${fixed(y1.gdp_pct[0], 2)} to ${fixed(y1.gdp_pct[2], 2)}%` : "no change"}
+          rangeLabel={any ? `range ${rangeText(y1.gdp_pct, (x) => signed(x, (a) => fixed(a, 2)))}%` : "no change"}
           tone="flat"
           note={ruleOfThumb}
         />

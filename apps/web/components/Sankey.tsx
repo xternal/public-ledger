@@ -253,8 +253,8 @@ export function LineInspector({ active }: { active: string | null }) {
       {f ? (
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
           <span className="font-semibold text-ink">
-            {f.label}
-            <span className="ml-2 font-medium">{inUnit(f.v, unit, ctx)}</span>
+            {f.label}{" "}
+            <span className="ml-1 font-medium">{inUnit(f.v, unit, ctx)}</span>
           </span>
           {f.line?.desc && <span>{f.line.desc}</span>}
           <span className="basis-full">

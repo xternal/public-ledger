@@ -267,6 +267,10 @@
     font-size: 11px;
     fill: var(--muted);
   }
+  /* The fan chart scales down on phones; keep its labels readable. */
+  @media (max-width: 640px) {
+    .fan text { font-size: 16px; }
+  }
 
   /* Hide scrollbars on the section nav */
   .no-scrollbar { scrollbar-width: none; }
