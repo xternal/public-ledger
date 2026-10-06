@@ -4,7 +4,7 @@ import type { Db } from "../db";
 import type { Mailer } from "../mail";
 import type { TelegramSender } from "../telegram-api";
 import { countUsage } from "../usage";
-import { rotateManageToken } from "../follow";
+import { manageToken } from "../follow";
 import type { ChangeEvent } from "./diff";
 import { errorText } from "./log";
 import { alertEmail, digestEmail, manageLinks, submitterEmail, telegramText, type MessageEvent } from "./messages";
@@ -79,7 +79,7 @@ export async function matchingSubscriptions(db: Db, e: Pick<ChangeEvent, "promis
   );
 }
 
-/** Send one message to one subscription. Email gets a fresh manage link (the Follow service rotates it). */
+/** Send one message to one subscription. Email carries the subscription's manage and one-click unsubscribe links. */
 export async function deliver(
   ctx: Pick<AlertContext, "db" | "config" | "mailer" | "telegram">,
   sub: { id: string; channel: "email" | "telegram" },
@@ -94,7 +94,7 @@ export async function deliver(
     await ctx.telegram.send(address, telegramText(events, { digest: mode === "digest", now }));
     return;
   }
-  const links = manageLinks(ctx.config.siteUrl, await rotateManageToken(ctx.db, sub.id));
+  const links = manageLinks(ctx.config.siteUrl, await manageToken(ctx.db, ctx.config, sub.id));
   const { subject, text } = mode === "digest" ? digestEmail(events, links, now) : alertEmail(events, links);
   await ctx.mailer.send({ to: address, subject, text, unsubscribeUrl: links.unsubscribeUrl });
 }

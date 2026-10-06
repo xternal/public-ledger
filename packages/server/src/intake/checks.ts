@@ -112,7 +112,8 @@ export async function runAutoChecks(db: Db, config: Config, reference: string, d
   const doFetch = deps.fetch ?? fetch;
   const userAgent = `Mozilla/5.0 (compatible; PublicLedgerBot/1.0; +${config.siteUrl})`;
   const headers = { "user-agent": userAgent, "accept-language": "en-GB,en;q=0.8" };
-  const get = (url: string) => safeFetch(url, { fetch: doFetch, lookup: deps.lookup, headers });
+  // Reader-supplied links go through safeFetch, which pins each connection to the checked address.
+  const get = (url: string) => safeFetch(url, { fetch: deps.fetch, lookup: deps.lookup, headers });
   const videoTime = row.video_time === null ? null : Number(row.video_time);
   const youtube = normaliseUrl(row.url_normalised).youtubeId !== null;
 

@@ -9,10 +9,11 @@ import { isIP } from "node:net";
  * are followed by hand (at most 3), the whole fetch has a 10 s budget and the
  * body is cut at 2 MB.
  *
- * Known limit: the address is checked, then fetch() resolves the name again,
- * so a host that changes its DNS answer between the two (DNS rebinding) could
- * slip through. We only GET, never send credentials, and nothing fetched is
- * shown to the submitter; the result goes to editors only.
+ * DNS rebinding: unless a fetch is injected (tests), each hop connects to the
+ * exact address that was just checked (pinnedFetch), so a host cannot pass the
+ * check with a public address and then answer the connection with a private one.
+ * We only GET, never send credentials, and nothing fetched is shown to the
+ * submitter; the result goes to editors only.
  */
 
 export type Fetch = (input: string, init?: RequestInit) => Promise<Response>;
@@ -222,16 +223,65 @@ function decode(bytes: Uint8Array, contentType: string): string {
   }
 }
 
+/**
+ * A fetch that connects only to `address` (already checked by assertPublicUrl),
+ * whatever the host name resolves to now. TLS still verifies the certificate
+ * against the host name. Decompresses gzip, deflate and brotli bodies.
+ */
+export function pinnedFetch(address: string): Fetch {
+  return async (input, init = {}) => {
+    const url = new URL(input);
+    const [{ request: httpRequest }, { request: httpsRequest }, zlib, { Readable }] = await Promise.all([
+      import("node:http"),
+      import("node:https"),
+      import("node:zlib"),
+      import("node:stream"),
+    ]);
+    const family = isIP(address) === 6 ? 6 : 4;
+    const request = url.protocol === "https:" ? httpsRequest : httpRequest;
+    const headers = { "accept-encoding": "gzip, deflate, br", ...(init.headers as Record<string, string> | undefined) };
+    return new Promise<Response>((resolve, reject) => {
+      const req = request(
+        url,
+        {
+          method: "GET",
+          headers,
+          signal: init.signal ?? undefined,
+          lookup: ((_host: string, opts: { all?: boolean }, cb: (...args: unknown[]) => void) =>
+            opts?.all ? cb(null, [{ address, family }]) : cb(null, address, family)) as unknown as import("node:net").LookupFunction,
+        },
+        (res) => {
+          const status = res.statusCode ?? 502;
+          const h = new Headers();
+          for (const [k, v] of Object.entries(res.headers)) {
+            if (v === undefined) continue;
+            for (const one of Array.isArray(v) ? v : [v]) h.append(k, one);
+          }
+          const encoding = String(res.headers["content-encoding"] ?? "").toLowerCase();
+          const decoded =
+            encoding === "gzip" ? res.pipe(zlib.createGunzip()) : encoding === "deflate" ? res.pipe(zlib.createInflate()) : encoding === "br" ? res.pipe(zlib.createBrotliDecompress()) : res;
+          if (encoding) h.delete("content-encoding");
+          const noBody = [101, 204, 205, 304].includes(status) || status < 200;
+          if (noBody) res.resume();
+          resolve(new Response(noBody ? null : (Readable.toWeb(decoded) as ReadableStream), { status: Math.min(Math.max(status, 200), 599), headers: h }));
+        },
+      );
+      req.on("error", reject);
+      req.end();
+    });
+  };
+}
+
 /** GET a reader-supplied URL with the guard applied on every hop. Throws BlockedUrlError or a network error. */
 export async function safeFetch(url: string, opts: SafeFetchOptions = {}): Promise<SafeResponse> {
-  const doFetch = opts.fetch ?? fetch;
   const lookup = opts.lookup ?? systemLookup;
   const maxRedirects = opts.maxRedirects ?? FETCH_LIMITS.maxRedirects;
   const maxBytes = opts.maxBytes ?? FETCH_LIMITS.maxBytes;
   const signal = AbortSignal.timeout(opts.timeoutMs ?? FETCH_LIMITS.timeoutMs);
   let current = new URL(url);
   for (let hop = 0; ; hop++) {
-    await assertPublicUrl(current, lookup);
+    const addresses = await assertPublicUrl(current, lookup);
+    const doFetch = opts.fetch ?? pinnedFetch(addresses[0]!);
     const res = await doFetch(current.href, { method: "GET", redirect: "manual", signal, headers: opts.headers });
     const location = res.headers.get("location");
     if (res.status >= 300 && res.status < 400 && location) {

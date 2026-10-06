@@ -57,7 +57,7 @@ function footer(links: ManageLinks): string {
     "Stop all alerts with one click:",
     links.unsubscribeUrl,
     "",
-    "Each email has fresh links; links in older emails stop working.",
+    "Keep these links to yourself: anyone who has them can change your alerts.",
     "Public Ledger sends plain-text email with no tracking, never shows who follows what, and never shares or sells its lists.",
   ].join("\n");
 }

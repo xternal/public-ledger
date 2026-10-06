@@ -51,10 +51,8 @@ export default async function ManagePage({ searchParams }: Props) {
             </>
           ) : (
             <>
-              <h1 className={h1}>This link does not work any more</h1>
-              <p className="m-0 text-lead text-muted">
-                Each email we send has a fresh link, and links in older emails stop working. Use the link in your latest email from us.
-              </p>
+              <h1 className={h1}>This link does not work</h1>
+              <p className="m-0 text-lead text-muted">Check that the whole link was copied from the email.</p>
               <p className="m-0 text-sm text-muted">If you have unsubscribed or deleted your data, there is nothing left to manage.</p>
             </>
           )}
@@ -143,7 +141,7 @@ export default async function ManagePage({ searchParams }: Props) {
         </section>
 
         <p className="m-0 border-t border-line pt-5 text-[12.5px] text-muted">
-          Use the link in your latest email: each email has a fresh one, and links in older emails stop working. We never show who follows what, and never share or sell our lists.
+          Keep this link to yourself: anyone who has it can change your alerts. We never show who follows what, and never share or sell our lists.
         </p>
       </main>
     </>

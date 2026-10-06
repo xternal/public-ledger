@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: absolute("/"), lastModified: built, changeFrequency: "daily", priority: 1 },
     { url: absolute("/promises"), lastModified: latest, changeFrequency: "daily", priority: 0.9 },
+    { url: absolute("/follow"), lastModified: built, changeFrequency: "monthly", priority: 0.4 },
+    { url: absolute("/feeds"), lastModified: latest, changeFrequency: "daily", priority: 0.4 },
     ...seed.cards.map((c) => ({ url: absolute(`/promise/${c.id}`), lastModified: lastEvent(c.id), changeFrequency: "weekly" as const, priority: 0.7 })),
     ...actorIds.map((id) => ({
       url: absolute(`/actor/${id}`),

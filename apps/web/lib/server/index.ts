@@ -12,16 +12,17 @@ export interface Server {
   mail: Mailer;
 }
 
-let server: Promise<Server> | null = null;
+// On globalThis for the same reason as getDb: Next.js may load this module more than once.
+const g = globalThis as typeof globalThis & { __ledgerServer?: Promise<Server> | null };
 
 export function getServer(): Promise<Server> {
-  server ??= (async () => {
+  g.__ledgerServer ??= (async () => {
     const config = loadConfig();
     const db = await getDb(config);
     return { config, db, mail: mailerFor(config, db) };
   })().catch((e) => {
-    server = null; // try again on the next request rather than caching the failure
+    g.__ledgerServer = null; // try again on the next request rather than caching the failure
     throw e;
   });
-  return server;
+  return g.__ledgerServer;
 }

@@ -15,7 +15,8 @@ import {
   pruneUnconfirmed,
   removeTarget,
   requestEmailFollow,
-  rotateManageToken,
+  manageToken,
+  revokeManageLinks,
   setCadence,
   telegramFollow,
   type FollowContext,
@@ -34,7 +35,7 @@ function captureMailer(): Mailer & { sent: MailMessage[] } {
   return { sent, send: async (m) => void sent.push(m) };
 }
 
-const tokenIn = (text: string, path: string) => new RegExp(`${path.replace(/[/?]/g, "\\$&")}\\?t=([A-Za-z0-9_-]+)`).exec(text)?.[1];
+const tokenIn = (text: string, path: string) => new RegExp(`${path.replace(/[/?]/g, "\\$&")}\\?t=([A-Za-z0-9_.-]+)`).exec(text)?.[1];
 
 let db: Db;
 let mail: ReturnType<typeof captureMailer>;
@@ -91,7 +92,7 @@ describe("email follow: start → confirm → manage → unsubscribe → delete"
     const added = mail.sent[2]!;
     expect(added.subject).toMatch(/now also follow/);
     const manage2 = tokenIn(added.text, "/follow/manage")!;
-    expect(await manageView({ db, config }, res.manageToken)).toBeNull(); // the older link stops working
+    expect(manage2).toBe(res.manageToken); // the same link in every email, so any email's link keeps working
     view = await manageView({ db, config }, manage2);
     expect(view!.targets).toEqual([BUS, BURNHAM]);
     expect(view!.cadence).toBe("weekly"); // an unverified request never changes a confirmed choice
@@ -130,15 +131,26 @@ describe("email follow: start → confirm → manage → unsubscribe → delete"
     expect(await db.query("SELECT 1 FROM subscription")).toHaveLength(0);
   });
 
-  it("rotateManageToken issues a working token and retires the old one", async () => {
+  it("manage links are stable, unforgeable and revocable", async () => {
     await requestEmailFollow(ctx(), { email: EMAIL, targets: [BUS], cadence: "instant" });
     const res = await confirmEmailFollow(ctx(), tokenIn(mail.sent[0]!.text, "/follow/confirm"));
     if (!res.ok) throw new Error("confirm failed");
     const [{ id }] = (await db.query<{ id: string }>("SELECT id FROM subscription")) as [{ id: string }];
-    const fresh = await rotateManageToken(db, id);
-    expect(await manageView({ db, config }, fresh)).not.toBeNull();
+    expect(await manageToken(db, config, id)).toBe(res.manageToken);
+
+    // Another subscription's id with this mac, a changed mac, or another server's key: all refused.
+    const mac = res.manageToken.split(".")[1]!;
+    expect(await manageView({ db, config }, `00000000-0000-4000-8000-000000000000.${mac}`)).toBeNull();
+    expect(await manageView({ db, config }, `${id}.${mac.slice(0, -1)}${mac.endsWith("A") ? "B" : "A"}`)).toBeNull();
+    const otherServer = loadConfig({ LEDGER_LOOKUP_PEPPER: Buffer.alloc(32, 9).toString("base64") });
+    expect(await manageView({ db, config: otherServer }, res.manageToken)).toBeNull();
+
+    await revokeManageLinks(db, id);
     expect(await manageView({ db, config }, res.manageToken)).toBeNull();
-    await expect(rotateManageToken(db, "00000000-0000-4000-8000-000000000000")).rejects.toThrow();
+    const fresh = await manageToken(db, config, id);
+    expect(fresh).not.toBe(res.manageToken);
+    expect(await manageView({ db, config }, fresh)).not.toBeNull();
+    await expect(manageToken(db, config, "00000000-0000-4000-8000-000000000000")).rejects.toThrow();
   });
 });
 

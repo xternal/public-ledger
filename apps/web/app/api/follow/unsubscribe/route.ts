@@ -16,7 +16,7 @@ export async function POST(req: Request) {
   const ctx = await followContext();
   return (await deleteByManageToken(ctx, token, "unsubscribe"))
     ? text("You are unsubscribed. We deleted your address and everything you followed.")
-    : text("This link no longer works. Each email has a fresh link: use the one in your latest email.", 404);
+    : text("This link no longer works. You may have unsubscribed already.", 404);
 }
 
 /** Opening the link in a browser never unsubscribes (scanners prefetch links); it shows the manage page, which has the button. */

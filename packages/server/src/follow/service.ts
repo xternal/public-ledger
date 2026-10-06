@@ -1,8 +1,8 @@
-import { randomUUID } from "node:crypto";
+import { createHmac, randomUUID } from "node:crypto";
 import type { Config } from "../config";
 import type { Db } from "../db";
 import type { Mailer } from "../mail";
-import { decrypt, encrypt, hashToken, lookupHash, newToken, normaliseEmail } from "../crypto";
+import { decrypt, encrypt, hashToken, lookupHash, newToken, normaliseEmail, sameHash } from "../crypto";
 import { rateLimit } from "../spam";
 import { countUsage } from "../usage";
 import { CONSENT_VERSION } from "./consent";
@@ -18,9 +18,12 @@ import { type Cadence, type DescribeTarget, type Target, type TargetKind, plainD
  * are deleted after 7 days. Telegram: the person presses "Follow" in the bot
  * after reading the consent text, so the subscription is confirmed at once.
  *
- * Manage links: only a hash of the manage token is stored, so a link cannot be
- * rebuilt later. Every email that carries a manage link gets a fresh token
- * (rotateManageToken); older links stop working. The manage page says so.
+ * Manage links: one token per subscription, the same in every email, so the
+ * unsubscribe link in any email keeps working (RFC 8058; PECR expects a simple
+ * opt-out in every message). The token is `<id>.<mac>`, mac = HMAC(lookup
+ * pepper, id + the subscription's random link secret, stored in the
+ * manage_token_hash column). Only the server can mint one; a database leak
+ * alone cannot. revokeManageLinks replaces the secret and retires them all.
  *
  * Addresses are stored only encrypted plus a lookup hash; nothing here logs or
  * returns an address, a token or what someone follows to anyone but the holder
@@ -69,21 +72,36 @@ export function unsubscribeUrl(config: Config, token: string): string {
   return `${config.siteUrl}/api/follow/unsubscribe?t=${encodeURIComponent(token)}`;
 }
 
-/**
- * Issue a fresh manage token for a subscription, store its hash and return the
- * token. Call once per email that carries a manage or unsubscribe link (alerts,
- * digests). The previous token stops working.
- */
-export async function rotateManageToken(db: Db, subscriptionId: string): Promise<string> {
-  const { token, hash } = newToken();
-  const rows = await db.query("UPDATE subscription SET manage_token_hash = $2 WHERE id = $1 RETURNING id", [subscriptionId, hash]);
-  if (rows.length !== 1) throw new Error("rotateManageToken: no such subscription");
-  return token;
+const MANAGE_TOKEN = /^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\.([A-Za-z0-9_-]{43})$/;
+
+function manageMac(config: Config, subscriptionId: string, linkSecret: string): string {
+  return createHmac("sha256", config.lookupPepper).update(`manage:${subscriptionId}:${linkSecret}`).digest("base64url");
 }
 
-/** Rotate and build both links for one outgoing email. */
-export async function freshLinks(db: Db, config: Config, subscriptionId: string): Promise<{ manageUrl: string; unsubscribeUrl: string }> {
-  const token = await rotateManageToken(db, subscriptionId);
+/** The manage token for a subscription: the same in every email until revoked. */
+export async function manageToken(db: Db, config: Config, subscriptionId: string): Promise<string> {
+  const [row] = await db.query<{ manage_token_hash: string }>("SELECT manage_token_hash FROM subscription WHERE id = $1", [subscriptionId]);
+  if (!row) throw new Error("manageToken: no such subscription");
+  return `${subscriptionId}.${manageMac(config, subscriptionId, row.manage_token_hash)}`;
+}
+
+/** Replace the link secret: every manage and unsubscribe link sent so far stops working. */
+export async function revokeManageLinks(db: Db, subscriptionId: string): Promise<void> {
+  await db.query("UPDATE subscription SET manage_token_hash = $2 WHERE id = $1", [subscriptionId, newToken().hash]);
+}
+
+/** The subscription id a manage token belongs to, or null. Constant-time on the mac. */
+async function subscriptionForManageToken(db: Db, config: Config, token: unknown): Promise<string | null> {
+  const m = typeof token === "string" ? MANAGE_TOKEN.exec(token) : null;
+  if (!m) return null;
+  const [, id, mac] = m;
+  const [row] = await db.query<{ manage_token_hash: string }>("SELECT manage_token_hash FROM subscription WHERE id = $1", [id]);
+  return row && sameHash(manageMac(config, id!, row.manage_token_hash), mac!) ? id! : null;
+}
+
+/** Both links for one outgoing email. */
+export async function linksFor(db: Db, config: Config, subscriptionId: string): Promise<{ manageUrl: string; unsubscribeUrl: string }> {
+  const token = await manageToken(db, config, subscriptionId);
   return { manageUrl: manageUrl(config, token), unsubscribeUrl: unsubscribeUrl(config, token) };
 }
 
@@ -94,7 +112,7 @@ export function mailFooter(manage: string): string {
     "Change what you follow, switch to a weekly digest, or stop all alerts and delete your address:",
     manage,
     "",
-    "Each email has a fresh link; links in older emails stop working.",
+    "Keep this link to yourself: anyone who has it can change your alerts.",
     "Public Ledger never shows who follows what, and never shares or sells its lists.",
   ].join("\n");
 }
@@ -199,7 +217,7 @@ export async function requestEmailFollow(ctx: FollowContext, input: { email: str
     // Confirmed already: add the targets and tell the address, with a link to undo. The request is not
     // verified, so the recorded consent (what the owner confirmed) and the cadence stay as they were.
     await addTargets(tx, existing.id, input.targets, now);
-    return { kind: "added", manageToken: await rotateManageToken(tx, existing.id), targets: input.targets };
+    return { kind: "added", manageToken: await manageToken(tx, ctx.config, existing.id), targets: input.targets };
   });
 
   const names = plan.targets.map(describe);
@@ -282,7 +300,7 @@ export async function confirmEmailFollow(ctx: FollowContext, token: unknown): Pr
     if (!row) return { ok: false as const, reason: "invalid" as const };
     if (expired(row, now)) return { ok: false as const, reason: "expired" as const };
     await tx.query("UPDATE subscription SET confirmed_at = $2, confirm_token_hash = NULL WHERE id = $1", [row.id, now.toISOString()]);
-    return { ok: true as const, row, manageToken: await rotateManageToken(tx, row.id), targets: await targetsOf(tx, row.id) };
+    return { ok: true as const, row, manageToken: await manageToken(tx, config, row.id), targets: await targetsOf(tx, row.id) };
   });
   if (!result.ok) return result;
 
@@ -311,11 +329,12 @@ export async function pruneUnconfirmed(db: Db, now = new Date()): Promise<number
 
 // ------------------------------------------------------------------ manage (email)
 
-async function byManageToken(db: Db, token: unknown): Promise<SubscriptionRow | null> {
-  if (!isTokenShape(token)) return null;
+async function byManageToken(db: Db, config: Config, token: unknown): Promise<SubscriptionRow | null> {
+  const id = await subscriptionForManageToken(db, config, token);
+  if (!id) return null;
   const [row] = await db.query<SubscriptionRow>(
-    "SELECT id, channel, address_enc, cadence, confirmed_at, created_at FROM subscription WHERE manage_token_hash = $1 AND confirmed_at IS NOT NULL",
-    [hashToken(token)],
+    "SELECT id, channel, address_enc, cadence, confirmed_at, created_at FROM subscription WHERE id = $1 AND confirmed_at IS NOT NULL",
+    [id],
   );
   return row ?? null;
 }
@@ -330,7 +349,7 @@ export interface ManageView {
 
 /** What the holder of a manage link sees. Null if the link is not (or no longer) valid. */
 export async function manageView(ctx: Pick<FollowContext, "db" | "config">, token: unknown): Promise<ManageView | null> {
-  const row = await byManageToken(ctx.db, token);
+  const row = await byManageToken(ctx.db, ctx.config, token);
   if (!row) return null;
   let addressHint = "your address";
   try {
@@ -341,8 +360,8 @@ export async function manageView(ctx: Pick<FollowContext, "db" | "config">, toke
   return { channel: row.channel, cadence: row.cadence, addressHint, targets: await targetsOf(ctx.db, row.id) };
 }
 
-export async function setCadence(ctx: Pick<FollowContext, "db" | "now">, token: unknown, cadence: Cadence): Promise<boolean> {
-  const row = await byManageToken(ctx.db, token);
+export async function setCadence(ctx: Pick<FollowContext, "db" | "config" | "now">, token: unknown, cadence: Cadence): Promise<boolean> {
+  const row = await byManageToken(ctx.db, ctx.config, token);
   if (!row || row.channel !== "email") return false;
   if (row.cadence !== cadence) {
     await ctx.db.query("UPDATE subscription SET cadence = $2 WHERE id = $1", [row.id, cadence]);
@@ -354,8 +373,8 @@ export async function setCadence(ctx: Pick<FollowContext, "db" | "now">, token: 
 export type RemoveResult = "removed" | "deleted" | "not_following" | "invalid";
 
 /** Stop following one thing. Removing the last one deletes the subscription and the address. */
-export async function removeTarget(ctx: Pick<FollowContext, "db" | "now">, token: unknown, target: Target): Promise<RemoveResult> {
-  const row = await byManageToken(ctx.db, token);
+export async function removeTarget(ctx: Pick<FollowContext, "db" | "config" | "now">, token: unknown, target: Target): Promise<RemoveResult> {
+  const row = await byManageToken(ctx.db, ctx.config, token);
   if (!row) return "invalid";
   const r = await removeTargetFrom(ctx.db, row.id, target);
   if (r === "deleted") await countUsage(ctx.db, { event: "unsubscribe_completed", props: { channel: row.channel } }, 1, nowOf(ctx));
@@ -367,9 +386,10 @@ export async function removeTarget(ctx: Pick<FollowContext, "db" | "now">, token
  * record and everything followed (ON DELETE CASCADE). `how` only decides what
  * is counted: one-click "unsubscribe" or "delete my data".
  */
-export async function deleteByManageToken(ctx: Pick<FollowContext, "db" | "now">, token: unknown, how: "unsubscribe" | "delete"): Promise<boolean> {
-  if (!isTokenShape(token)) return false;
-  const rows = await ctx.db.query<{ channel: "email" | "telegram" }>("DELETE FROM subscription WHERE manage_token_hash = $1 RETURNING channel", [hashToken(token)]);
+export async function deleteByManageToken(ctx: Pick<FollowContext, "db" | "config" | "now">, token: unknown, how: "unsubscribe" | "delete"): Promise<boolean> {
+  const id = await subscriptionForManageToken(ctx.db, ctx.config, token);
+  if (!id) return false;
+  const rows = await ctx.db.query<{ channel: "email" | "telegram" }>("DELETE FROM subscription WHERE id = $1 RETURNING channel", [id]);
   const row = rows[0];
   if (!row) return false;
   const now = nowOf(ctx);

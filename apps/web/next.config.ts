@@ -8,6 +8,8 @@ const config: NextConfig = {
   transpilePackages: ["@ledger/engine", "@ledger/schema", "@ledger/server"],
   // Node-only server dependencies (database, mail, Claude API) load at runtime, not bundled.
   serverExternalPackages: ["@electric-sql/pglite", "pg", "@aws-sdk/client-sesv2", "@anthropic-ai/sdk"],
+  // Server routes (follow, submissions, triage) read content/*.yaml at runtime; ship it with them.
+  outputFileTracingIncludes: { "/**": ["../../content/**/*", "../../pnpm-workspace.yaml"] },
   turbopack: { root },
   outputFileTracingRoot: root,
   poweredByHeader: false,

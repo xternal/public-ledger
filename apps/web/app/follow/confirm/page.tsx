@@ -67,7 +67,7 @@ export default async function ConfirmPage({ searchParams }: Props) {
           <>
             <h1 className="m-0 text-[clamp(26px,3.6vw,34px)] font-semibold leading-[1.15] tracking-[-0.025em]">This link does not work</h1>
             <p className="m-0 text-lead text-muted">
-              It may have been used already, or replaced by a newer email. If you have already confirmed, use the link in your latest email from us to manage your alerts.
+              It may have been used already or replaced by a newer email. If you have already confirmed, use the manage link in any email from us.
             </p>
             <a href="/follow" className="justify-self-start text-label font-medium">
               About alerts

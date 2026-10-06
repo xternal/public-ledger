@@ -268,7 +268,7 @@ describe("fan-out", () => {
       expect(m.subject).toBe("2 changes: Andy Burnham: “A £2 cap on bus fares for millions across the country.”");
       expect(m.text).toContain("  - Status changed: In plan → Funded\n  - Funded, 5 October 2026: Autumn Budget allocates £400m in the Estimates\n  https://ledger.test/promise/uk-bus-cap-2-2026");
       expect(m.text).toMatch(/https:\/\/ledger\.test\/follow\/manage\?t=[A-Za-z0-9_-]+/);
-      expect(m.headers["List-Unsubscribe"]).toMatch(/^<https:\/\/ledger\.test\/api\/follow\/unsubscribe\?t=[A-Za-z0-9_-]+>$/);
+      expect(m.headers["List-Unsubscribe"]).toMatch(/^<https:\/\/ledger\.test\/api\/follow\/unsubscribe\?t=[A-Za-z0-9_.-]+>$/);
       expect(m.headers["List-Unsubscribe-Post"]).toBe("List-Unsubscribe=One-Click");
     }
     expect(telegrams).toHaveLength(1);
@@ -319,15 +319,15 @@ describe("fan-out", () => {
     expect(mail.sent[0]!.unsubscribeUrl).toMatch(/\/api\/follow\/unsubscribe\?t=/);
   });
 
-  it("rotates the manage link in every email: the link it carries is the one that works", async () => {
+  it("carries the subscription's own manage link, which opens its manage page", async () => {
     const id = await subscribe({ address: "promise@example.org", targets: [["promise", "uk-bus-cap-2-2026"]] });
     const { before, after } = statusChange();
     await fanOut(diff(before, after), ctx());
     const [m] = await outbox();
-    const token = /manage\?t=([A-Za-z0-9_-]+)/.exec(m!.text)![1]!;
-    const { hashToken } = await import("../src/crypto");
-    const [row] = await db.query<{ manage_token_hash: string }>("SELECT manage_token_hash FROM subscription WHERE id = $1", [id]);
-    expect(row!.manage_token_hash).toBe(hashToken(token));
+    const token = /manage\?t=([A-Za-z0-9_.-]+)/.exec(m!.text)![1]!;
+    const { manageToken, manageView } = await import("../src/follow");
+    expect(token).toBe(await manageToken(db, ctx().config, id));
+    expect(await manageView({ db, config: ctx().config }, token)).not.toBeNull();
   });
 });
 

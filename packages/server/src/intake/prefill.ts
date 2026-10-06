@@ -1,5 +1,5 @@
 import type Anthropic from "@anthropic-ai/sdk";
-import { z } from "./zod";
+import { z } from "zod";
 import type { IntakeContent } from "./content";
 import { normaliseForMatch } from "./text";
 

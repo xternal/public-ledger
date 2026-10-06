@@ -90,19 +90,23 @@ export async function postgresDb(url: string): Promise<Db> {
   return db;
 }
 
-let shared: Promise<Db> | null = null;
+/**
+ * One database per process, migrated on first use. Kept on globalThis because
+ * Next.js can load this module more than once (pages, route handlers, env
+ * reloads), and two PGlite instances on one folder corrupt it.
+ */
+const g = globalThis as typeof globalThis & { __ledgerDb?: Promise<Db> | null };
 
-/** One database per process, migrated on first use. */
 export function getDb(config: Config): Promise<Db> {
-  shared ??= (async () => {
+  g.__ledgerDb ??= (async () => {
     const db = config.databaseUrl ? await postgresDb(config.databaseUrl) : await pgliteDb(config.pgliteDir);
     await migrate(db);
     return db;
   })().catch((e) => {
-    shared = null; // try again on the next call rather than caching the failure
+    g.__ledgerDb = null; // try again on the next call rather than caching the failure
     throw e;
   });
-  return shared;
+  return g.__ledgerDb;
 }
 
 /** A fresh, migrated in-memory database for tests. */
