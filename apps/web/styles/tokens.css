@@ -1,0 +1,82 @@
+/*
+ * Public Ledger design tokens (docs/DESIGN_HANDOFF.md "Tokens").
+ * White page, one neutral grey scale, three data colours:
+ * income blue, spending grey, borrowing & debt interest orange.
+ * Red and green appear only on deltas and statuses.
+ */
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --sunk: #f5f5f6;
+  --line: #e7e7ea;
+  --line-strong: #d4d4d8;
+  --ink: #0b0b0d;
+  --muted: #61616b;
+  --faint: #9a9aa3;
+  --accent: #2457f5;
+  --rec: #2457f5;
+  --rec-soft: rgba(36, 87, 245, 0.16);
+  --spend: #52525b;
+  --spend-soft: rgba(82, 82, 91, 0.13);
+  --debt: #f2600c;
+  --debt-soft: rgba(242, 96, 12, 0.16);
+  --good: #15803d;
+  --warn: #b45309;
+  --bad: #dc2626;
+  --idle: #8b8b94;
+  --focus: #2457f5;
+  --shadow-control: 0 0 0 1px var(--line), 0 1px 2px rgba(0, 0, 0, 0.06);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09090b;
+    --surface: #09090b;
+    --sunk: #141417;
+    --line: #232328;
+    --line-strong: #33333a;
+    --ink: #f4f4f5;
+    --muted: #a1a1aa;
+    --faint: #6b6b74;
+    --accent: #6f93ff;
+    --rec: #6f93ff;
+    --rec-soft: rgba(111, 147, 255, 0.22);
+    --spend: #a1a1aa;
+    --spend-soft: rgba(161, 161, 170, 0.16);
+    --debt: #ff7a2e;
+    --debt-soft: rgba(255, 122, 46, 0.2);
+    --good: #4ade80;
+    --warn: #fbbf24;
+    --bad: #f87171;
+    --idle: #71717a;
+    --focus: #6f93ff;
+    --shadow-control: 0 0 0 1px var(--line);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #09090b;
+  --surface: #09090b;
+  --sunk: #141417;
+  --line: #232328;
+  --line-strong: #33333a;
+  --ink: #f4f4f5;
+  --muted: #a1a1aa;
+  --faint: #6b6b74;
+  --accent: #6f93ff;
+  --rec: #6f93ff;
+  --rec-soft: rgba(111, 147, 255, 0.22);
+  --spend: #a1a1aa;
+  --spend-soft: rgba(161, 161, 170, 0.16);
+  --debt: #ff7a2e;
+  --debt-soft: rgba(255, 122, 46, 0.2);
+  --good: #4ade80;
+  --warn: #fbbf24;
+  --bad: #f87171;
+  --idle: #71717a;
+  --focus: #6f93ff;
+  --shadow-control: 0 0 0 1px var(--line);
+  color-scheme: dark;
+}

@@ -79,7 +79,7 @@
         }
       ],
       "right_of_reply": null,
-      "status_note": "Funding source named by government on announcement, but not yet in an Estimates line. Under PROMISE_STANDARD.md 'funded' requires a Budget/SR/Estimates allocation, so the card stays at in_plan until then.",
+      "status_note": "Funding was named when it was announced, but it is not yet in an Estimates line. A promise counts as funded only once a Budget, Spending Review or Estimates allocates the money, so this card stays at In plan.",
       "venue_label": "Government announcement",
       "lever_settings": {
         "bus_cap_2": 1,

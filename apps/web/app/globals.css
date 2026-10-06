@@ -1,0 +1,274 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sunk: var(--sunk);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-rec: var(--rec);
+  --color-rec-soft: var(--rec-soft);
+  --color-spend: var(--spend);
+  --color-spend-soft: var(--spend-soft);
+  --color-debt: var(--debt);
+  --color-debt-soft: var(--debt-soft);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --color-idle: var(--idle);
+  --color-focus: var(--focus);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Type scale from DESIGN_HANDOFF: 46 / 28 / 22 / 17 / 15 / 13 / 12 */
+  --text-caption: 12px;
+  --text-caption--line-height: 1.4;
+  --text-label: 13px;
+  --text-label--line-height: 1.45;
+  --text-body: 15px;
+  --text-body--line-height: 1.55;
+  --text-lead: 17px;
+  --text-lead--line-height: 1.5;
+  --text-title: 22px;
+  --text-title--line-height: 1.25;
+  --text-figure: 28px;
+  --text-figure--line-height: 1.1;
+  --text-display: 46px;
+  --text-display--line-height: 1.06;
+
+  --radius-control: 8px;
+  --radius-panel: 12px;
+  --tracking-figure: -0.03em;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    scroll-padding-top: 72px;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "tnum" 1;
+    font-variant-numeric: tabular-nums;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+  }
+  a {
+    color: var(--accent);
+    text-underline-offset: 2px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: var(--rec-soft);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      animation: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Borrowing is hatched as well as orange: colour is never the only signal. */
+  .hatch {
+    background: repeating-linear-gradient(45deg, var(--debt) 0 3px, var(--debt-soft) 3px 6px);
+  }
+
+  /* Quality dot: sourced green, estimate amber, placeholder red, plug dashed. */
+  .q-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex: none;
+    background: var(--idle);
+  }
+  .q-dot[data-q="sourced"] { background: var(--good); }
+  .q-dot[data-q="approx"] { background: var(--warn); }
+  .q-dot[data-q="modelled"] { background: var(--accent); }
+  .q-dot[data-q="training"] { background: var(--bad); }
+  .q-dot[data-q="plug"] {
+    background: transparent;
+    border: 1.5px dashed var(--bad);
+  }
+
+  /* Provenance tip: one glance away on hover or keyboard focus. */
+  .tip-host { position: relative; }
+  .tip {
+    position: absolute;
+    z-index: 30;
+    left: 0;
+    top: calc(100% + 6px);
+    width: max-content;
+    max-width: 300px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--bg);
+    box-shadow: 0 0 0 1px var(--line-strong), 0 8px 24px rgba(0, 0, 0, 0.08);
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--muted);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 0.12s ease, transform 0.12s ease, visibility 0s linear 0.12s;
+  }
+  .tip[data-align="end"] {
+    left: auto;
+    right: 0;
+  }
+  .tip-host:hover > .tip,
+  .tip-host:focus-within > .tip {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  /* Lever slider: hairline track, filled from today's value to the scenario. */
+  .lever-range {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 22px;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .lever-range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--track, var(--line-strong));
+  }
+  .lever-range::-moz-range-track {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--track, var(--line-strong));
+  }
+  .lever-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    margin-top: -6px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--ink);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+    transition: transform 0.1s ease;
+  }
+  .lever-range::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--ink);
+  }
+  .lever-range:active::-webkit-slider-thumb { transform: scale(1.12); }
+  .lever-range:focus-visible { outline: none; }
+  .lever-range:focus-visible::-webkit-slider-thumb {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+  .lever-range:focus-visible::-moz-range-thumb {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  /* Switch for announced measures: a real checkbox, styled. */
+  .switch {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    flex: none;
+    width: 32px;
+    height: 18px;
+    border-radius: 999px;
+    background: var(--line-strong);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .switch::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease;
+  }
+  .switch:checked { background: var(--ink); }
+  .switch:checked::after { transform: translateX(14px); }
+
+  .select {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    font: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-control);
+    padding: 8px 32px 8px 10px;
+  }
+
+  .field-input {
+    width: 100%;
+    font: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-control);
+    padding: 9px 12px;
+  }
+  .field-input::placeholder { color: var(--faint); }
+
+  /* Sankey text */
+  .sankey text {
+    font-family: var(--font-sans);
+    fill: var(--ink);
+  }
+  .sankey .lbl { font-size: 15px; font-weight: 500; }
+  .sankey .val { font-size: 13.5px; fill: var(--muted); }
+  .sankey .up { fill: var(--bad); }
+  .sankey .down { fill: var(--good); }
+  .sankey .flow { transition: opacity 0.15s ease; }
+  .sankey .node { cursor: default; outline: none; }
+  .sankey .node:focus-visible rect { outline: 2px solid var(--focus); outline-offset: 3px; }
+
+  .fan text {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    fill: var(--muted);
+  }
+
+  /* Hide scrollbars on the section nav */
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}

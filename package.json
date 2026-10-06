@@ -12,5 +12,10 @@
     "typecheck": "pnpm -r typecheck",
     "validate": "tsx scripts/validate.ts"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@ledger/engine": "workspace:*",
+    "@ledger/schema": "workspace:*",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
 }

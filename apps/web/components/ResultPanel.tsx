@@ -1,0 +1,184 @@
+"use client";
+
+import type { Range } from "@ledger/schema";
+import { mortgageDelta, type Change } from "@ledger/engine";
+import { direction, fixed, gbp, gbpBn, millions, rangeText, signed, signedBn } from "@/lib/format";
+import { useScenario } from "@/lib/scenario";
+import { FanChart } from "./FanChart";
+import { leverDeltaText } from "./LeverSlider";
+import { QualityBadge, RangeStrip, WithProvenance } from "./ui";
+
+const RANGE_HEADROOM = 1.15;
+const scaleFor = (r: Range) => Math.max(Math.abs(r[0]), Math.abs(r[2])) * RANGE_HEADROOM;
+
+function Tile({
+  label,
+  value,
+  range,
+  rangeLabel,
+  tone,
+  note,
+}: {
+  label: string;
+  value: string;
+  range: Range;
+  rangeLabel: string;
+  tone: "up" | "down" | "flat";
+  note?: React.ReactNode;
+}) {
+  return (
+    <div className="grid min-w-0 content-start gap-1.5">
+      <div className="text-label text-muted">{label}</div>
+      <div
+        className={`whitespace-nowrap text-[26px] font-semibold leading-[1.15] tracking-[var(--tracking-figure)] ${tone === "up" ? "text-bad" : tone === "down" ? "text-good" : ""}`}
+      >
+        {value}
+      </div>
+      <RangeStrip range={range} scale={scaleFor(range)} tone={tone} />
+      <div className="text-[12.5px] text-muted">{rangeLabel}</div>
+      {note && <div className="text-[12.5px] text-muted">{note}</div>}
+    </div>
+  );
+}
+
+function useChangeLabel() {
+  const { model } = useScenario();
+  return (c: Change) => {
+    const lever = model.leverById.get(c.lever_id)!;
+    if (c.kind === "measure") return lever.label;
+    if (c.kind === "funding") {
+      const option = lever.funding_options?.find((f) => f.id === c.funding_id);
+      return `Paid for by: ${option?.label.replace(/ \(.*\)$/, "") ?? ""}`;
+    }
+    return `${lever.label} ${leverDeltaText(lever, c.delta ?? 0)}`;
+  };
+}
+
+export function ResultPanel() {
+  const { seed, result, settings, model, applyPreset } = useScenario();
+  const { macro, macro: { provenance } } = seed.statement;
+  const rules = seed.levers.macro_rules;
+  const y1 = result.y1;
+  const d = y1.d_borrowing_bn;
+  const any = result.changes.length > 0;
+  const tone = direction(d[1]);
+  const changeLabel = useChangeLabel();
+
+  const heading = !any
+    ? "No changes yet"
+    : tone === "up"
+      ? `Borrowing up ${gbpBn(d[1])} a year`
+      : tone === "down"
+        ? `Borrowing down ${gbpBn(-d[1])} a year`
+        : "Borrowing unchanged";
+
+  const rate = model.rateLever;
+  const mortgage = rate?.household;
+  const rateNow = rate ? (settings[rate.id] as number) : macro.bank_rate_pct;
+  const rateMoved = rate && Math.abs(rateNow - rate.base) > 1e-9;
+  const dm = mortgage && rate && rateMoved ? mortgageDelta(mortgage, rate.base, rateNow) : 0;
+
+  const ruleOfThumb = (
+    <WithProvenance p={rules}>
+      <QualityBadge quality="training">Rule of thumb</QualityBadge>
+    </WithProvenance>
+  );
+
+  return (
+    <div id="scenario" className="mt-12 grid scroll-mt-20 gap-8 border-t border-line pt-8">
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <div className="text-label text-muted">Your scenario against today, year one</div>
+          <h2 className="mt-1 text-title font-semibold" aria-live="polite">
+            {heading}
+          </h2>
+        </div>
+        {any && (
+          <button
+            type="button"
+            onClick={() => applyPreset(null)}
+            className="cursor-pointer rounded-full border border-line-strong px-3 py-1 text-label font-medium text-muted hover:border-ink hover:text-ink"
+          >
+            Reset all levers
+          </button>
+        )}
+      </div>
+
+      <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
+        <Tile
+          label="Borrowing, per year"
+          value={signedBn(d[1])}
+          range={d}
+          rangeLabel={any ? `range ${rangeText(d, signedBn)}` : "no change"}
+          tone={tone}
+        />
+        <Tile
+          label="Per household, per year"
+          value={signed(y1.per_household_gbp[1], gbp, 0.5)}
+          range={y1.per_household_gbp}
+          rangeLabel={any ? `range ${rangeText(y1.per_household_gbp, (x) => signed(x, gbp, 0.5))}` : "no change"}
+          tone={direction(y1.per_household_gbp[1], 0.5)}
+          note={
+            <span className="inline-flex flex-wrap items-center gap-2">
+              {millions(macro.households_m)} households
+              <WithProvenance p={provenance.households_m!}>
+                <QualityBadge quality={provenance.households_m!.quality} />
+              </WithProvenance>
+            </span>
+          }
+        />
+        <Tile
+          label="Prices (CPI), one-off"
+          value={`${signed(y1.cpi_pp[1], (a) => fixed(a, 1))}pp`}
+          range={y1.cpi_pp}
+          rangeLabel={y1.cpi_pp[1] !== 0 ? `range ${fixed(y1.cpi_pp[0], 1)} to ${fixed(y1.cpi_pp[2], 1)}pp` : "no change"}
+          tone={direction(y1.cpi_pp[1])}
+          note={ruleOfThumb}
+        />
+        <Tile
+          label="GDP, year one"
+          value={`${signed(y1.gdp_pct[1], (a) => fixed(a, 2))}%`}
+          range={y1.gdp_pct}
+          rangeLabel={any ? `range ${fixed(y1.gdp_pct[0], 2)} to ${fixed(y1.gdp_pct[2], 2)}%` : "no change"}
+          tone="flat"
+          note={ruleOfThumb}
+        />
+      </div>
+
+      <div className="grid items-start gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+        <FanChart />
+        <div>
+          <p className="mb-2 text-label text-muted">What moved</p>
+          <ul className="m-0 grid list-none p-0 text-sm">
+            {any ? (
+              result.changes.map((c, i) => {
+                const t = direction(c.d_borrowing_bn[1]);
+                return (
+                  <li key={i} className="flex justify-between gap-3 border-b border-line py-2.5">
+                    <span>{changeLabel(c)}</span>
+                    <span className="grid shrink-0 justify-items-end">
+                      <span className={`font-medium ${t === "up" ? "text-bad" : t === "down" ? "text-good" : ""}`}>{signedBn(c.d_borrowing_bn[1])} borrowing</span>
+                      {c.d_borrowing_bn[0] !== c.d_borrowing_bn[2] && (
+                        <span className="text-caption text-muted">{rangeText(c.d_borrowing_bn, signedBn)}</span>
+                      )}
+                    </span>
+                  </li>
+                );
+              })
+            ) : (
+              <li className="border-b border-line py-2.5 text-muted">Move a lever or pick a proposal. Every result shows a low–high range.</li>
+            )}
+          </ul>
+          {mortgage && rateMoved && (
+            <p className="mt-3 text-[12.5px] leading-relaxed text-muted">
+              A {gbp(mortgage.reference_loan_gbp)} repayment mortgage over {mortgage.term_years} years on a tracker at Bank Rate plus{" "}
+              {fixed(mortgage.spread_over_bank_rate_pp, 0)}pp:{" "}
+              <b className={`font-semibold ${dm > 0 ? "text-bad" : "text-good"}`}>{signed(dm, gbp, 0.5)} a month</b>. Most UK borrowers are on fixed
+              rates and feel this when they remortgage. Bank Rate is set by the Bank of England, not the government.
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
