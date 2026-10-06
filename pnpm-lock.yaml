@@ -166,6 +166,19 @@ importers:
 
   .: {}
 
+  packages/engine:
+    dependencies:
+      '@ledger/schema':
+        specifier: workspace:*
+        version: link:../schema
+    devDependencies:
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vitest:
+        specifier: ^5.0.3
+        version: 5.0.3(vite@8.3.2)
+
   packages/schema:
     dependencies:
       zod:
