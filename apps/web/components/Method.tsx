@@ -19,7 +19,7 @@ export function Method() {
           <h3 className="mb-2 text-body font-semibold text-ink">Ranges, not points</h3>
           <ul className="m-0 grid gap-1.5 pl-4">
             <li>Every result shows low, central and high.</li>
-            <li>Tax levers use static costings, before people change what they do.</li>
+            <li>Tax levers use HMRC&apos;s costings, which include how taxpayers respond but not knock-on effects on the wider economy.</li>
             <li>
               GDP effects use spending multipliers of {range(ms)} and tax multipliers of {range(mt)}.
             </li>

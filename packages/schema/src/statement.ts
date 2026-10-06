@@ -64,6 +64,8 @@ export const StatementSeed = z
       note: z.string(),
       sources: z.array(Source).min(1),
       plugs: z.string().optional(),
+      /** Set by the ETL build: whether the year is outturn or forecast. */
+      kind: z.enum(["outturn", "estimate", "forecast"]).optional(),
     }),
     macro: Macro,
     receipts: z.array(StatementLine).min(1),

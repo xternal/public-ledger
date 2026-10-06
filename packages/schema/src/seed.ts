@@ -1,18 +1,27 @@
 import type { z } from "zod";
-import statementRaw from "../../../data/seed/uk_fy2025-26_pnl.json";
-import leversRaw from "../../../data/seed/levers.json";
+import bundleRaw from "../../../data/build/app.json";
 import promisesRaw from "../../../data/seed/promises.json";
 import presetsRaw from "../../../data/seed/presets.json";
-import taxRaw from "../../../data/seed/uk_tax_2025-26.json";
-import { StatementSeed } from "./statement";
-import { LeversSeed, fundingKey, type Lever, type Settings } from "./levers";
+import type { StatementSeed } from "./statement";
+import { fundingKey, type Lever, type LeversSeed, type Settings } from "./levers";
 import { PromisesSeed } from "./promises";
 import { PresetsSeed, type Preset } from "./presets";
-import { TaxSeed } from "./tax";
+import type { TaxSeed } from "./tax";
 import type { Source } from "./provenance";
+import { AppBundle } from "./bundle";
 
+/**
+ * What the app reads. Numbers come from data/build/app.json (the ETL build,
+ * M1); promise cards and editorial presets are still seed files until M3.
+ */
 export interface Seed {
+  /** The base year's Statement: the year the sandbox runs on. */
   statement: StatementSeed;
+  /** Every year with a Statement, for the year selector. */
+  statements: Record<string, StatementSeed>;
+  years: { period: string; kind: "outturn" | "estimate" | "forecast" }[];
+  baseYear: string;
+  builtAt: string;
   levers: LeversSeed;
   promises: PromisesSeed;
   /** Editorial presets followed by one preset per promise card that has lever settings. */
@@ -28,19 +37,15 @@ export interface SeedIssue {
 }
 
 export interface RawSeed {
-  statement: unknown;
-  levers: unknown;
+  bundle: unknown;
   promises: unknown;
   presets: unknown;
-  tax: unknown;
 }
 
 export const RAW_SEED: RawSeed = {
-  statement: statementRaw,
-  levers: leversRaw,
+  bundle: bundleRaw,
   promises: promisesRaw,
   presets: presetsRaw,
-  tax: taxRaw,
 };
 
 function zodIssues(file: string, error: z.ZodError): SeedIssue[] {
@@ -73,10 +78,12 @@ export function crossCheck(seed: Seed): SeedIssue[] {
   };
 
   const { statement, levers, promises } = seed;
-  statement.receipts.forEach((l) => checkSource(`receipts.${l.id}`, l.source_id));
-  statement.spending.forEach((l) => checkSource(`spending.${l.id}`, l.source_id));
-  checkSource("borrowing_provenance", statement.borrowing_provenance.source_id);
-  for (const [key, p] of Object.entries(statement.macro.provenance)) checkSource(`macro.${key}`, p.source_id);
+  for (const [year, s] of Object.entries(seed.statements)) {
+    s.receipts.forEach((l) => checkSource(`${year}.receipts.${l.id}`, l.source_id));
+    s.spending.forEach((l) => checkSource(`${year}.spending.${l.id}`, l.source_id));
+    checkSource(`${year}.borrowing_provenance`, s.borrowing_provenance.source_id);
+    for (const [key, p] of Object.entries(s.macro.provenance)) checkSource(`${year}.macro.${key}`, p.source_id);
+  }
 
   const lineIds = new Set([...statement.receipts, ...statement.spending].map((l) => l.id));
   const leverById = new Map(levers.levers.map((l) => [l.id, l]));
@@ -126,33 +133,34 @@ export function crossCheck(seed: Seed): SeedIssue[] {
 }
 
 export function parseSeed(raw: RawSeed = RAW_SEED): { seed: Seed | null; issues: SeedIssue[] } {
-  const statement = StatementSeed.safeParse(raw.statement);
-  const levers = LeversSeed.safeParse(raw.levers);
+  const bundle = AppBundle.safeParse(raw.bundle);
   const promises = PromisesSeed.safeParse(raw.promises);
   const presets = PresetsSeed.safeParse(raw.presets);
-  const tax = TaxSeed.safeParse(raw.tax);
   const issues: SeedIssue[] = [
-    ...(statement.error ? zodIssues("uk_fy2025-26_pnl.json", statement.error) : []),
-    ...(levers.error ? zodIssues("levers.json", levers.error) : []),
+    ...(bundle.error ? zodIssues("data/build/app.json", bundle.error) : []),
     ...(promises.error ? zodIssues("promises.json", promises.error) : []),
     ...(presets.error ? zodIssues("presets.json", presets.error) : []),
-    ...(tax.error ? zodIssues("uk_tax_2025-26.json", tax.error) : []),
   ];
-  if (!statement.success || !levers.success || !promises.success || !presets.success || !tax.success) {
+  if (!bundle.success || !promises.success || !presets.success) {
     return { seed: null, issues };
   }
+  const b = bundle.data;
   const seed: Seed = {
-    statement: statement.data,
-    levers: levers.data,
+    statement: b.statements[b.base_year]!,
+    statements: b.statements,
+    years: b.years,
+    baseYear: b.base_year,
+    builtAt: b.built_at,
+    levers: b.levers,
     promises: promises.data,
     presets: [...presets.data.presets, ...promisePresets(promises.data)],
-    tax: tax.data,
-    sources: [...statement.data.meta.sources, ...levers.data.meta.sources],
+    tax: b.tax,
+    sources: b.sources,
   };
   return { seed, issues: [...issues, ...crossCheck(seed)] };
 }
 
-/** Parse and cross-check the seed files. Throws on any error; warnings are left to `pnpm validate`. */
+/** Parse and cross-check the build bundle and seed files. Throws on any error; warnings are left to `pnpm validate`. */
 export function loadSeed(raw: RawSeed = RAW_SEED): Seed {
   const { seed, issues } = parseSeed(raw);
   const errors = issues.filter((i) => i.level === "error");

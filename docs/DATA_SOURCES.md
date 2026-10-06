@@ -24,7 +24,7 @@ Most UK government data is under the Open Government Licence v3. URLs verified o
 | BoE MPC decisions | Decision dates, votes, minutes | ✓ https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate |
 | UK Debt Management Office | Gilt portfolio, maturity, index-linked share | https://www.dmo.gov.uk/data/ |
 
-Current state at time of writing: Bank Rate 3.75%, held 18 Sep 2026, next decision 5 Nov 2026 (source: BoE page above and press coverage).
+Current state at time of writing: Bank Rate 3.75%, held 17 Sep 2026 (BoE IADB series IUDBEDR; corrected from 18 Sep in M1), next decision 5 Nov 2026 (source: BoE page above and press coverage).
 
 ## People
 

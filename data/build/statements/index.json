@@ -1,0 +1,53 @@
+{
+  "base_year": "2025-26",
+  "years": [
+    {
+      "period": "2019-20",
+      "kind": "outturn"
+    },
+    {
+      "period": "2020-21",
+      "kind": "outturn"
+    },
+    {
+      "period": "2021-22",
+      "kind": "outturn"
+    },
+    {
+      "period": "2022-23",
+      "kind": "outturn"
+    },
+    {
+      "period": "2023-24",
+      "kind": "outturn"
+    },
+    {
+      "period": "2024-25",
+      "kind": "outturn"
+    },
+    {
+      "period": "2025-26",
+      "kind": "outturn"
+    },
+    {
+      "period": "2026-27",
+      "kind": "forecast"
+    },
+    {
+      "period": "2027-28",
+      "kind": "forecast"
+    },
+    {
+      "period": "2028-29",
+      "kind": "forecast"
+    },
+    {
+      "period": "2029-30",
+      "kind": "forecast"
+    },
+    {
+      "period": "2030-31",
+      "kind": "forecast"
+    }
+  ]
+}

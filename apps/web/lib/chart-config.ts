@@ -35,3 +35,6 @@ export const MOBILE_BREAKPOINT_PX = 720;
 
 /** Changes smaller than this (£bn) are not labelled on charts. */
 export const LABEL_DELTA_MIN_BN = 0.05;
+
+/** Catch-all lines sit at the bottom of their side, below the named taxes and functions. */
+export const CATCH_ALL_LINES = new Set(["other_taxes", "non_tax", "accounting_adj"]);

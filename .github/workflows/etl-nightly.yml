@@ -1,0 +1,55 @@
+name: Nightly data refresh
+
+on:
+  schedule:
+    # 04:30 UTC every day (05:30 BST, 04:30 GMT in winter)
+    - cron: "30 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: etl-nightly
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: etl/requirements.txt
+      - run: pip install -r etl/requirements.txt
+      # Fetch every source, normalise, check. A balance, coverage or staleness error fails the run.
+      - run: python -m etl.build --trigger nightly
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      # Node 22's bundled Corepack cannot run pnpm 12; use the version that works locally.
+      - run: npm install -g corepack@0.34.5 && corepack enable pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm validate
+      - name: Open a pull request when the data changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # The run log and manifest change every night; only a change in the data itself opens a PR.
+          if [ -z "$(git status --porcelain -- data/build/observations data/build/statements data/build/app.json data/build/levers.json data/build/tax.json)" ]; then
+            echo "No data changes."
+            exit 0
+          fi
+          branch="data/refresh-$(date -u +%Y-%m-%d)"
+          git config user.name "public-ledger-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add data/build
+          git commit -m "Data refresh $(date -u +%Y-%m-%d)"
+          git push --force-with-lease origin "$branch"
+          summary=$(python -m etl.summary)
+          gh pr create --base main --head "$branch" --title "Data refresh $(date -u +%Y-%m-%d)" --body "$summary" || gh pr edit "$branch" --body "$summary"

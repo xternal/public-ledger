@@ -1,0 +1,341 @@
+{
+  "meta": {
+    "country": "UK",
+    "fiscal_year": "2030-31",
+    "vintage": "EFO-2026-03",
+    "vintage_label": "OBR forecast, March 2026",
+    "note": "Receipts from OBR EFO; spending by function from HMT PESA (scaled from 2025-26); debt interest and totals as published.",
+    "sources": [
+      {
+        "id": "hmt_pesa",
+        "title": "HM Treasury Public Expenditure Statistical Analyses (PESA) / Public Spending Statistics",
+        "publisher": "HM Treasury",
+        "url": "https://www.gov.uk/government/collections/public-expenditure-statistical-analyses-pesa",
+        "licence": "OGL v3",
+        "published_on": "2026-07-16"
+      },
+      {
+        "id": "obr_efo",
+        "title": "OBR Economic and fiscal outlook – March 2026",
+        "publisher": "Office for Budget Responsibility",
+        "url": "https://obr.uk/efo/economic-and-fiscal-outlook-march-2026/",
+        "licence": "OGL v3",
+        "published_on": "2026-03-03"
+      },
+      {
+        "id": "boe_bank_rate",
+        "title": "Official Bank Rate (IADB series IUDBEDR) and MPC dates",
+        "publisher": "Bank of England",
+        "url": "https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp",
+        "licence": "Bank of England terms of use (https://www.bankofengland.co.uk/legal)"
+      },
+      {
+        "id": "ons_households",
+        "title": "ONS Families and households in the UK",
+        "publisher": "ONS",
+        "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/families/datasets/familiesandhouseholdsfamiliesandhouseholds",
+        "licence": "OGL v3",
+        "published_on": "2026-04-17"
+      },
+      {
+        "id": "ons_population",
+        "title": "ONS Population estimates for the UK, England, Wales, Scotland and Northern Ireland (UKPOP)",
+        "publisher": "ONS",
+        "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/ukpop/pop",
+        "licence": "OGL v3",
+        "published_on": "2026-10-01"
+      },
+      {
+        "id": "hmrc_taxpayers",
+        "title": "HMRC: Income Tax liabilities statistics, Table 2.1 Number of individual Income Tax payers",
+        "publisher": "HMRC",
+        "url": "https://www.gov.uk/government/statistics/number-of-individual-income-taxpayers-by-marginal-rate-gender-and-age",
+        "licence": "OGL v3",
+        "published_on": "2026-07-15"
+      }
+    ],
+    "kind": "forecast"
+  },
+  "macro": {
+    "nominal_gdp_bn": 3631.831,
+    "psnd_bn": 3513.696,
+    "psnd_pct_gdp": 95.051,
+    "bank_rate_pct": 3.75,
+    "bank_rate_date": "2026-09-17",
+    "households_m": 29.003,
+    "income_taxpayers_m": 40.8,
+    "population_m": 69.484,
+    "baseline_psnb_bn": {
+      "2025-26": 134.286,
+      "2026-27": 115.461,
+      "2027-28": 96.467,
+      "2028-29": 86.016,
+      "2029-30": 63.403,
+      "2030-31": 59.02
+    },
+    "baseline_nominal_growth_pct": 3.522,
+    "baseline_psnd_pct_gdp": {
+      "2025-26": 93.3,
+      "2026-27": 94.815,
+      "2027-28": 95.739,
+      "2028-29": 96.281,
+      "2029-30": 96.065,
+      "2030-31": 95.051
+    },
+    "provenance": {
+      "nominal_gdp_bn": {
+        "quality": "sourced",
+        "source_id": "obr_efo",
+        "method_note": "Fiscal-year nominal GDP, non-seasonally adjusted; OBR's denominator for receipts, spending and deficit ratios."
+      },
+      "psnd_bn": {
+        "quality": "sourced",
+        "source_id": "obr_efo",
+        "method_note": "End-March position."
+      },
+      "psnd_pct_gdp": {
+        "quality": "sourced",
+        "source_id": "obr_efo",
+        "method_note": "End-March position over nominal GDP centred on end-March (A.9 footnote)."
+      },
+      "bank_rate_pct": {
+        "quality": "sourced",
+        "source_id": "boe_bank_rate",
+        "method_note": "MPC decision date: Bank Rate held (not a change)."
+      },
+      "households_m": {
+        "quality": "sourced",
+        "source_id": "ons_households",
+        "method_note": "ONS Families and households, UK, 2025 (FH-2026-04)."
+      },
+      "income_taxpayers_m": {
+        "quality": "sourced",
+        "source_id": "hmrc_taxpayers",
+        "method_note": "HMRC individual income taxpayers, 2026-27 (projected) (HMRC-ITLS-2026-07)."
+      },
+      "population_m": {
+        "quality": "sourced",
+        "source_id": "ons_population",
+        "method_note": "ONS mid-year population estimate, UK, 2025 (MYE-2026-10)."
+      },
+      "baseline_psnb_bn": {
+        "quality": "sourced",
+        "source_id": "obr_efo",
+        "method_note": "2025-26: outturn (ons_psf, ons_psf); later years: OBR forecast."
+      },
+      "baseline_psnd_pct_gdp": {
+        "quality": "sourced",
+        "source_id": "obr_efo",
+        "method_note": "2025-26: outturn (ons_psf, ons_psf); later years: OBR forecast."
+      },
+      "baseline_nominal_growth_pct": {
+        "quality": "approx",
+        "source_id": "obr_efo",
+        "method_note": "Average annual growth of OBR nominal GDP, 2025-26 to 2030-31 (EFO-2026-03)."
+      }
+    }
+  },
+  "receipts": [
+    {
+      "id": "income_tax",
+      "label": "Income tax",
+      "bn": 430.844,
+      "quality": "sourced",
+      "source_id": "obr_efo"
+    },
+    {
+      "id": "nics",
+      "label": "National Insurance",
+      "bn": 245.754,
+      "quality": "sourced",
+      "source_id": "obr_efo"
+    },
+    {
+      "id": "vat",
+      "label": "VAT",
+      "bn": 223.779,
+      "quality": "sourced",
+      "source_id": "obr_efo"
+    },
+    {
+      "id": "corp_tax",
+      "label": "Corporation tax",
+      "bn": 123.157,
+      "quality": "sourced",
+      "source_id": "obr_efo"
+    },
+    {
+      "id": "council_tax",
+      "label": "Council tax",
+      "bn": 67.576,
+      "quality": "sourced",
+      "source_id": "obr_efo"
+    },
+    {
+      "id": "business_rates",
+      "label": "Business rates",
+      "bn": 42.144,
+      "quality": "sourced",
+      "source_id": "obr_efo"
+    },
+    {
+      "id": "fuel_duty",
+      "label": "Fuel duty",
+      "bn": 25.741,
+      "quality": "sourced",
+      "source_id": "obr_efo"
+    },
+    {
+      "id": "stamp_duty",
+      "label": "Stamp duties",
+      "bn": 33.822,
+      "quality": "sourced",
+      "source_id": "obr_efo",
+      "method_note": "Sum of A.5 rows: Property transaction taxes + Stamp taxes on shares."
+    },
+    {
+      "id": "cgt",
+      "label": "Capital gains tax",
+      "bn": 34.901,
+      "quality": "sourced",
+      "source_id": "obr_efo"
+    },
+    {
+      "id": "alcohol_tobacco",
+      "label": "Alcohol & tobacco",
+      "bn": 21.104,
+      "quality": "sourced",
+      "source_id": "obr_efo",
+      "method_note": "Sum of A.5 rows: Alcohol duties + Tobacco duties."
+    },
+    {
+      "id": "iht",
+      "label": "Inheritance tax",
+      "bn": 14.706,
+      "quality": "sourced",
+      "source_id": "obr_efo"
+    },
+    {
+      "id": "other_taxes",
+      "label": "Other taxes",
+      "bn": 133.363,
+      "quality": "sourced",
+      "source_id": "obr_efo",
+      "method_note": "Sum of the remaining A.5 tax rows: Petroleum revenue tax, VAT refunds, Air passenger duty, Insurance premium tax, Climate change levy, Bank levy, Bank surcharge, Apprenticeship levy, Digital services tax, Other HMRC taxes, Vehicle excise duties, Licence fee receipts, Environmental levies, Emissions trading scheme, Energy profits levy, Electricity generator levy, Other taxes."
+    },
+    {
+      "id": "non_tax",
+      "label": "Non-tax income",
+      "bn": 154.594,
+      "quality": "sourced",
+      "source_id": "obr_efo",
+      "method_note": "Sum of A.5 non-tax rows: Interest and dividends, Gross operating surplus, Other receipts."
+    }
+  ],
+  "borrowing_bn": 59.019,
+  "borrowing_provenance": {
+    "quality": "sourced",
+    "source_id": "obr_efo",
+    "method_note": "Total spending minus receipts (EFO-2026-03). Published borrowing for 2030-31: 59.0bn."
+  },
+  "spending": [
+    {
+      "id": "social_protection",
+      "label": "Social protection",
+      "desc": "Pensions, benefits, social care",
+      "bn": 488.62,
+      "quality": "approx",
+      "source_id": "hmt_pesa",
+      "method_note": "No function split is published for 2030-31. Each function keeps its 2025-26 share (HMT PESA) of OBR EFO total spending less debt interest and accounting adjustments."
+    },
+    {
+      "id": "health",
+      "label": "Health",
+      "desc": "NHS and public health",
+      "bn": 308.985,
+      "quality": "approx",
+      "source_id": "hmt_pesa",
+      "method_note": "No function split is published for 2030-31. Each function keeps its 2025-26 share (HMT PESA) of OBR EFO total spending less debt interest and accounting adjustments."
+    },
+    {
+      "id": "education",
+      "label": "Education",
+      "desc": "Schools, colleges, universities",
+      "bn": 150.833,
+      "quality": "approx",
+      "source_id": "hmt_pesa",
+      "method_note": "No function split is published for 2030-31. Each function keeps its 2025-26 share (HMT PESA) of OBR EFO total spending less debt interest and accounting adjustments."
+    },
+    {
+      "id": "economic_affairs",
+      "label": "Transport & economy",
+      "desc": "Roads, rail, buses, business support, R&D",
+      "bn": 112.727,
+      "quality": "approx",
+      "source_id": "hmt_pesa",
+      "method_note": "No function split is published for 2030-31. Each function keeps its 2025-26 share (HMT PESA) of OBR EFO total spending less debt interest and accounting adjustments."
+    },
+    {
+      "id": "defence",
+      "label": "Defence",
+      "desc": "Armed forces and equipment",
+      "bn": 78.485,
+      "quality": "approx",
+      "source_id": "hmt_pesa",
+      "method_note": "No function split is published for 2030-31. Each function keeps its 2025-26 share (HMT PESA) of OBR EFO total spending less debt interest and accounting adjustments."
+    },
+    {
+      "id": "public_order",
+      "label": "Police, courts, prisons",
+      "desc": "Public order and safety",
+      "bn": 66.85,
+      "quality": "approx",
+      "source_id": "hmt_pesa",
+      "method_note": "No function split is published for 2030-31. Each function keeps its 2025-26 share (HMT PESA) of OBR EFO total spending less debt interest and accounting adjustments."
+    },
+    {
+      "id": "general_services",
+      "label": "Running government",
+      "desc": "Tax collection, councils' admin, international",
+      "bn": 42.031,
+      "quality": "approx",
+      "source_id": "hmt_pesa",
+      "method_note": "No function split is published for 2030-31. Each function keeps its 2025-26 share (HMT PESA) of OBR EFO total spending less debt interest and accounting adjustments."
+    },
+    {
+      "id": "housing_env",
+      "label": "Housing & environment",
+      "desc": "Housing, local amenities, waste, flood defence",
+      "bn": 49.942,
+      "quality": "approx",
+      "source_id": "hmt_pesa",
+      "method_note": "No function split is published for 2030-31. Each function keeps its 2025-26 share (HMT PESA) of OBR EFO total spending less debt interest and accounting adjustments."
+    },
+    {
+      "id": "culture",
+      "label": "Culture & sport",
+      "desc": "Museums, BBC grant-in-aid, sport, libraries",
+      "bn": 18.06,
+      "quality": "approx",
+      "source_id": "hmt_pesa",
+      "method_note": "No function split is published for 2030-31. Each function keeps its 2025-26 share (HMT PESA) of OBR EFO total spending less debt interest and accounting adjustments."
+    },
+    {
+      "id": "debt_interest",
+      "label": "Debt interest",
+      "desc": "Interest on public debt, net of the Bank of England's asset purchases",
+      "bn": 137.111,
+      "quality": "sourced",
+      "source_id": "obr_efo"
+    },
+    {
+      "id": "accounting_adj",
+      "label": "Accounting adjustments",
+      "desc": "Items in total spending that are not spending on services: public corporations, locally financed items and national-accounts adjustments",
+      "bn": 156.86,
+      "quality": "approx",
+      "source_id": "obr_efo",
+      "method_note": "Accounting adjustments kept at their 2025-26 share of total spending (HMT PESA PESA-2026: 132.5bn in 2025-26). Includes items such as public corporations' capital spending, locally financed spending and national-accounts adjustments."
+    }
+  ]
+}

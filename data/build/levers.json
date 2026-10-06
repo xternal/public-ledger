@@ -1,0 +1,309 @@
+{
+  "meta": {
+    "note": "Sandbox coefficients built by etl/build.py from HMRC, OBR, HMT PESA and the base-year Statement. Ranges are editorial where the source gives a central figure only.",
+    "sources": [
+      {
+        "id": "itv_2026_07_22",
+        "title": "ITV News, 22 Jul 2026: Andy Burnham unveils £2 bus fare cap",
+        "publisher": "Media",
+        "url": "https://www.itv.com/news/2026-07-22/andy-burnham-unveils-2-bus-fare-cap-in-pledge-to-be-cost-of-living-government",
+        "published_on": "2026-07-22"
+      }
+    ]
+  },
+  "levers": [
+    {
+      "id": "bank_rate",
+      "label": "Bank Rate",
+      "group": "rates",
+      "controlled_by": "central_bank",
+      "unit": "pp",
+      "base": 3.75,
+      "min": 1.0,
+      "max": 7.0,
+      "step": 0.25,
+      "effect": {
+        "target": "debt_interest",
+        "per_unit_bn": {
+          "y1": [
+            5.3876,
+            6.7345,
+            8.0813
+          ],
+          "y5": [
+            4.0344,
+            5.043,
+            6.0516
+          ]
+        }
+      },
+      "household": {
+        "kind": "mortgage",
+        "reference_loan_gbp": 200000,
+        "term_years": 25,
+        "spread_over_bank_rate_pp": 1.0,
+        "quality": "approx",
+        "method_note": "Illustrative tracker mortgage at Bank Rate plus 1pp. Most UK borrowers are on fixed rates and feel a change at remortgage (review H3)."
+      },
+      "quality": "sourced",
+      "source_id": "obr_efo",
+      "method_note": "OBR ready reckoner: a 1 point rise in short-term interest rates adds 6.73bn to debt interest in 2026-27 and 5.04bn in 2030-31 (EFO-2026-03). Gilt yields are held fixed. Low–high is an editorial ±20%."
+    },
+    {
+      "id": "income_tax_basic",
+      "label": "Income tax basic rate",
+      "group": "taxes",
+      "controlled_by": "government",
+      "unit": "pp",
+      "base": 20.0,
+      "min": 15,
+      "max": 25,
+      "step": 1,
+      "effect": {
+        "target": "income_tax",
+        "per_unit_bn": {
+          "y1": [
+            6.21,
+            6.9,
+            7.59
+          ],
+          "y5": [
+            7.38,
+            8.2,
+            9.02
+          ]
+        }
+      },
+      "quality": "sourced",
+      "source_id": "hmrc_reckoner",
+      "method_note": "HMRC direct effect of 1p on the basic rate of income tax: 6.90bn in 2026-27, 8.20bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
+    },
+    {
+      "id": "nics_main",
+      "label": "Employee NI main rate",
+      "group": "taxes",
+      "controlled_by": "government",
+      "unit": "pp",
+      "base": 8.0,
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "effect": {
+        "target": "nics",
+        "per_unit_bn": {
+          "y1": [
+            4.815,
+            5.35,
+            5.885
+          ],
+          "y5": [
+            4.86,
+            5.4,
+            5.94
+          ]
+        }
+      },
+      "quality": "sourced",
+      "source_id": "hmrc_reckoner",
+      "method_note": "HMRC direct effect of 1 point on the employee NICs main rate: 5.35bn in 2026-27, 5.40bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
+    },
+    {
+      "id": "vat_standard",
+      "label": "VAT standard rate",
+      "group": "taxes",
+      "controlled_by": "government",
+      "unit": "pp",
+      "base": 20,
+      "min": 15,
+      "max": 25,
+      "step": 1,
+      "effect": {
+        "target": "vat",
+        "per_unit_bn": {
+          "y1": [
+            7.92,
+            8.8,
+            9.68
+          ],
+          "y5": [
+            8.595,
+            9.55,
+            10.505
+          ]
+        },
+        "cpi_pp_per_unit": [
+          0.4,
+          0.6,
+          0.8
+        ]
+      },
+      "quality": "sourced",
+      "source_id": "hmrc_reckoner",
+      "method_note": "HMRC direct effect of 1 point on the standard rate of VAT: 8.80bn in 2026-27, 9.55bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
+    },
+    {
+      "id": "corp_tax",
+      "label": "Corporation tax main rate",
+      "group": "taxes",
+      "controlled_by": "government",
+      "unit": "pp",
+      "base": 25,
+      "min": 19,
+      "max": 30,
+      "step": 1,
+      "effect": {
+        "target": "corp_tax",
+        "per_unit_bn": {
+          "y1": [
+            3.24,
+            3.6,
+            3.96
+          ],
+          "y5": [
+            3.6,
+            4.0,
+            4.4
+          ]
+        }
+      },
+      "quality": "sourced",
+      "source_id": "hmrc_reckoner",
+      "method_note": "HMRC direct effect of 1 point on the main rate of corporation tax: 3.60bn in 2026-27, 4.00bn by 2028-29 (HMRC-DE-2025-06). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
+    },
+    {
+      "id": "defence_gdp",
+      "label": "Defence, % of GDP",
+      "group": "spending",
+      "controlled_by": "government",
+      "unit": "pct_gdp",
+      "base": 2.1,
+      "min": 1.8,
+      "max": 5.0,
+      "step": 0.1,
+      "effect": {
+        "target": "defence",
+        "per_unit_bn": {
+          "y1": [
+            30.698,
+            30.698,
+            30.698
+          ]
+        }
+      },
+      "quality": "approx",
+      "source_id": "obr_databank",
+      "method_note": "Arithmetic: 1 point of GDP is 30.7bn (2025-26 nominal GDP, the same figure the Statement uses). Starting point is COFOG defence spending (65.4bn, HMT PESA) as a share of GDP. The government's NATO measure counts more items and is higher, so a NATO-style target costs less than this lever suggests."
+    },
+    {
+      "id": "health_change",
+      "label": "NHS budget change",
+      "group": "spending",
+      "controlled_by": "government",
+      "unit": "pct",
+      "base": 0,
+      "min": -10,
+      "max": 20,
+      "step": 1,
+      "effect": {
+        "target": "health",
+        "per_unit_bn": {
+          "y1": [
+            2.575,
+            2.575,
+            2.575
+          ]
+        }
+      },
+      "quality": "sourced",
+      "source_id": "hmt_pesa",
+      "method_note": "Arithmetic: 1% of the 2025-26 health line (257.5bn, HMT PESA)."
+    },
+    {
+      "id": "state_pension_change",
+      "label": "State pension level",
+      "group": "spending",
+      "controlled_by": "government",
+      "unit": "pct",
+      "base": 0,
+      "min": -10,
+      "max": 15,
+      "step": 1,
+      "effect": {
+        "target": "social_protection",
+        "per_unit_bn": {
+          "y1": [
+            1.461,
+            1.461,
+            1.461
+          ]
+        }
+      },
+      "quality": "sourced",
+      "method_note": "Arithmetic: 1% of state pension spending in 2025-26 (146.1bn, DWP-SF-2026).",
+      "source_id": "dwp_benefits"
+    },
+    {
+      "id": "bus_cap_2",
+      "label": "£2 bus fare cap (England)",
+      "group": "measures",
+      "controlled_by": "government",
+      "unit": "toggle",
+      "base": 0,
+      "min": 0,
+      "max": 1,
+      "step": 1,
+      "effect": {
+        "target": "economic_affairs",
+        "per_unit_bn": {
+          "y1": [
+            0.45,
+            0.5,
+            0.6
+          ]
+        }
+      },
+      "quality": "sourced",
+      "source_id": "itv_2026_07_22",
+      "method_note": "Central from the announcement (over £500m a year). The low–high range is an editorial default.",
+      "promise_id": "uk-bus-cap-2-2026",
+      "funding_options": [
+        {
+          "id": "borrow",
+          "label": "Borrow it",
+          "offset_bn": 0
+        },
+        {
+          "id": "climate_loans",
+          "label": "Turn £400m of climate aid into loans (government's choice)",
+          "offset_bn": 0.4,
+          "target": "general_services",
+          "quality": "sourced",
+          "source_id": "itv_2026_07_22"
+        },
+        {
+          "id": "fuel_duty",
+          "label": "Raise fuel duty by 1p",
+          "offset_bn": 0.414,
+          "target": "fuel_duty",
+          "quality": "approx",
+          "method_note": "Derived, not published: HMRC's 1% petrol + diesel rows (240m) divided by 1% of a 57.95p/litre main rate, so 1p/litre = 1% x 100/57.95. 57.95p is the bulletin's current rate plus the pence its notes say the baseline adds back. HMRC also uprates the baseline rate by forecast RPI each April, so this overstates 1p by roughly cumulative RPI (a few % in year one, more later). Includes behavioural response; no economy-wide effects.",
+          "source_id": "hmrc_reckoner"
+        }
+      ]
+    }
+  ],
+  "macro_rules": {
+    "spending_multiplier": [
+      0.4,
+      0.7,
+      1.0
+    ],
+    "tax_multiplier": [
+      0.2,
+      0.4,
+      0.6
+    ],
+    "quality": "training",
+    "method_note": "TODO(source): rules of thumb from model memory, pending economist sign-off against OBR/BoE elasticities (review B3). Year-1 GDP effect = (spending multiplier × Δ non-interest spending − tax multiplier × Δ tax) / GDP. Ranges are deliberately wide."
+  }
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useState, type ReactNode } from "react";
-import type { Preset, Settings } from "@ledger/schema";
+import type { Preset, Settings, StatementSeed } from "@ledger/schema";
 import type { Seed } from "@ledger/schema";
 import { fundingKey } from "@ledger/schema";
 import { baseSettings, compute, createModel, debtFan, type DebtFan, type Model, type ScenarioResult } from "@ledger/engine";
@@ -37,6 +37,8 @@ function reducer(state: State, action: Action): State {
   }
 }
 
+const FRAME_FALLBACK_MS = 100;
+
 /**
  * Hold a value back to the next animation frame. Sliders update their own
  * label at once; charts recompute at most once per frame (CLAUDE.md).
@@ -44,8 +46,19 @@ function reducer(state: State, action: Action): State {
 function useFrameValue<T>(value: T): T {
   const [settled, setSettled] = useState(value);
   useEffect(() => {
-    const id = requestAnimationFrame(() => setSettled(value));
-    return () => cancelAnimationFrame(id);
+    // Hidden tabs pause animation frames; the timer makes sure the update still lands.
+    let done = false;
+    const settle = () => {
+      if (done) return;
+      done = true;
+      setSettled(value);
+    };
+    const frame = requestAnimationFrame(settle);
+    const timer = setTimeout(settle, FRAME_FALLBACK_MS);
+    return () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(timer);
+    };
   }, [value]);
   return settled;
 }
@@ -62,6 +75,12 @@ interface ScenarioContextValue {
   result: ScenarioResult;
   baseResult: ScenarioResult;
   fan: DebtFan;
+  /** The year the Statement section shows. The sandbox always runs on seed.baseYear. */
+  year: string;
+  setYear: (year: string) => void;
+  isBaseYear: boolean;
+  /** What the Statement and the key figures show: the scenario in the base year, published figures otherwise. */
+  view: { statement: StatementSeed; result: ScenarioResult };
   setLever: (id: string, value: number) => void;
   setFunding: (id: string, option: string) => void;
   applyPreset: (preset: Preset | null) => void;
@@ -79,6 +98,18 @@ export function ScenarioProvider({ seed, children }: { seed: Seed; children: Rea
   const result = useMemo(() => compute(model, settled), [model, settled]);
   const baseResult = useMemo(() => compute(model, base), [model, base]);
   const fan = useMemo(() => debtFan(model, result), [model, result]);
+
+  const [year, setYear] = useState(seed.baseYear);
+  const isBaseYear = year === seed.baseYear;
+  const yearStatement = seed.statements[year] ?? seed.statement;
+  const yearResult = useMemo(() => {
+    const m = createModel(yearStatement, seed.levers);
+    return compute(m, baseSettings(m));
+  }, [yearStatement, seed.levers]);
+  const view = useMemo(
+    () => (isBaseYear ? { statement: seed.statement, result } : { statement: yearStatement, result: yearResult }),
+    [isBaseYear, seed.statement, result, yearStatement, yearResult],
+  );
 
   const setLever = useCallback((id: string, value: number) => dispatch({ type: "lever", id, value }), []);
   const setFunding = useCallback((id: string, option: string) => dispatch({ type: "funding", id, option }), []);
@@ -105,12 +136,16 @@ export function ScenarioProvider({ seed, children }: { seed: Seed; children: Rea
       result,
       baseResult,
       fan,
+      year,
+      setYear,
+      isBaseYear,
+      view,
       setLever,
       setFunding,
       applyPreset,
       setUnit,
     }),
-    [seed, model, base, state, result, baseResult, fan, setLever, setFunding, applyPreset, setUnit],
+    [seed, model, base, state, result, baseResult, fan, year, isBaseYear, view, setLever, setFunding, applyPreset, setUnit],
   );
 
   return <ScenarioContext.Provider value={value}>{children}</ScenarioContext.Provider>;

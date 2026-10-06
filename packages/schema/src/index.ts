@@ -4,4 +4,5 @@ export * from "./levers";
 export * from "./promises";
 export * from "./presets";
 export * from "./tax";
+export * from "./bundle";
 export type { Seed, SeedIssue, RawSeed } from "./seed";

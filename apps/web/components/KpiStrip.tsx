@@ -16,11 +16,12 @@ interface Kpi {
   p: Partial<Provenance> & { quality: Provenance["quality"] };
 }
 
-const SCENARIO_NOTE = "Scenario value: static costing, before behaviour. The range is shown underneath.";
+const SCENARIO_NOTE = "Scenario value from the sandbox: official costings per unit of change, with no knock-on effects on the wider economy. The range is shown underneath.";
 
 export function KpiStrip() {
-  const { seed, result, settings, model } = useScenario();
-  const { macro, borrowing_provenance } = seed.statement;
+  const { settings, model, view, isBaseYear } = useScenario();
+  const { result, statement } = view;
+  const { macro, borrowing_provenance } = statement;
   const { receipts_bn, spending_bn, borrowing_bn } = result.totals;
   const debtInterest = result.spending[DEBT_INTEREST_LINE] ?? 0;
   const raw = result.raw;
@@ -33,7 +34,7 @@ export function KpiStrip() {
   const scenarioP = { quality: "modelled" as const, method_note: SCENARIO_NOTE };
 
   const rateLever = model.rateLever;
-  const rate = rateLever ? (settings[rateLever.id] as number) : macro.bank_rate_pct;
+  const rate = rateLever && isBaseYear ? (settings[rateLever.id] as number) : macro.bank_rate_pct;
   const rateChanged = Math.abs(rate - macro.bank_rate_pct) > 1e-9;
 
   const items: Kpi[] = [
@@ -62,7 +63,7 @@ export function KpiStrip() {
     {
       label: "Debt",
       value: gbpTn(macro.psnd_bn),
-      sub: `${fixed(macro.psnd_pct_gdp, 1)}% of GDP in\u00a0${seed.statement.meta.fiscal_year}`,
+      sub: `${fixed(macro.psnd_pct_gdp, 1)}% of GDP in\u00a0${statement.meta.fiscal_year}`,
       p: macro.provenance.psnd_bn!,
     },
     {
@@ -71,12 +72,12 @@ export function KpiStrip() {
       sub: `${fixed(shareOf(debtInterest, spending_bn), 1)}p of every £1 spent`,
       debt: true,
       change: dInterest,
-      p: direction(dInterest[1]) === "flat" ? (seed.statement.spending.find((l) => l.id === DEBT_INTEREST_LINE) ?? totalP) : scenarioP,
+      p: direction(dInterest[1]) === "flat" ? (statement.spending.find((l) => l.id === DEBT_INTEREST_LINE) ?? totalP) : scenarioP,
     },
     {
       label: "Bank Rate",
       value: `${fixed(rate, 2)}%`,
-      sub: rateChanged ? "scenario value, set by the Bank of England" : `held ${longDate(macro.bank_rate_date)}`,
+      sub: rateChanged ? "scenario value, set by the Bank of England" : `since ${longDate(macro.bank_rate_date)}`,
       p: rateChanged ? { quality: "modelled", method_note: "A value you set in the sandbox. The Bank of England sets Bank Rate, not the government." } : macro.provenance.bank_rate_pct!,
     },
   ];

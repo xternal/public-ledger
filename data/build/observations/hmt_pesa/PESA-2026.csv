@@ -1,0 +1,867 @@
+series_id,period,geography,value,unit,kind,source_id,vintage,quality,method_note
+spending.accounting_adjustments,2003-04,UK,45.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2004-05,UK,52.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2005-06,UK,51.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2006-07,UK,55.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2007-08,UK,59.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2008-09,UK,67.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2009-10,UK,65.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2010-11,UK,67.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2011-12,UK,67.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2012-13,UK,78.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2013-14,UK,72.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2014-15,UK,81.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2015-16,UK,74.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2016-17,UK,84.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2017-18,UK,88.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2018-19,UK,83.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2019-20,UK,85.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2020-21,UK,91.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.accounting_adjustments,2021-22,UK,88.943,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.accounting_adjustments,2022-23,UK,83.69,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.accounting_adjustments,2023-24,UK,115.83,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.accounting_adjustments,2024-25,UK,123.56,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.accounting_adjustments,2025-26,UK,132.474,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence,2003-04,UK,28.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2004-05,UK,29.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2005-06,UK,31.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2006-07,UK,32.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2007-08,UK,33.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2008-09,UK,36.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2009-10,UK,37.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2010-11,UK,39.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2011-12,UK,38.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2012-13,UK,36.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2013-14,UK,36.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2014-15,UK,36.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2015-16,UK,36.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2016-17,UK,37.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2017-18,UK,38.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2018-19,UK,40.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2019-20,UK,42.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2020-21,UK,44.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.defence,2021-22,UK,48.681,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence,2022-23,UK,55.55,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence,2023-24,UK,56.78,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence,2024-25,UK,63.701,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence,2025-26,UK,65.418,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.civil_defence,2021-22,UK,0.125,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.civil_defence,2022-23,UK,0.09,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.civil_defence,2023-24,UK,0.069,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.civil_defence,2024-25,UK,0.072,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.civil_defence,2025-26,UK,0.064,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.foreign_military_aid,2021-22,UK,0.509,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.foreign_military_aid,2022-23,UK,2.618,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.foreign_military_aid,2023-24,UK,2.522,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.foreign_military_aid,2024-25,UK,3.485,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.foreign_military_aid,2025-26,UK,3.999,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.military_defence,2021-22,UK,45.766,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.military_defence,2022-23,UK,50.375,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.military_defence,2023-24,UK,51.524,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.military_defence,2024-25,UK,57.073,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.military_defence,2025-26,UK,58.171,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.nec,2021-22,UK,0.221,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.nec,2022-23,UK,0.215,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.nec,2023-24,UK,0.227,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.nec,2024-25,UK,0.262,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.nec,2025-26,UK,0.245,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.r_and_d,2021-22,UK,2.061,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.r_and_d,2022-23,UK,2.253,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.r_and_d,2023-24,UK,2.439,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.r_and_d,2024-25,UK,2.809,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.defence.r_and_d,2025-26,UK,2.939,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs,2003-04,UK,33.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2004-05,UK,33.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2005-06,UK,35.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2006-07,UK,37.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2007-08,UK,37.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2008-09,UK,49.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2009-10,UK,48.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2010-11,UK,39.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2011-12,UK,37.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2012-13,UK,36.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2013-14,UK,40.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2014-15,UK,41.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2015-16,UK,46.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2016-17,UK,49.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2017-18,UK,53.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2018-19,UK,60.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2019-20,UK,66.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2020-21,UK,196.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.economic_affairs,2021-22,UK,97.734,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs,2022-23,UK,124.545,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs,2023-24,UK,94.408,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs,2024-25,UK,87.956,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs,2025-26,UK,93.959,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing,2021-22,UK,5.902,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing,2022-23,UK,6.038,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing,2023-24,UK,6.907,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing,2024-25,UK,6.012,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing,2025-26,UK,6.598,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.forestry,2021-22,UK,0.12,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.forestry,2022-23,UK,0.158,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.forestry,2023-24,UK,0.188,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.forestry,2024-25,UK,0.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.forestry,2025-26,UK,0.281,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.market_support,2021-22,UK,2.615,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.market_support,2022-23,UK,2.59,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.market_support,2023-24,UK,3.534,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.market_support,2024-25,UK,2.507,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.market_support,2025-26,UK,2.593,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.other_agriculture_food_fisheries,2021-22,UK,3.167,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.other_agriculture_food_fisheries,2022-23,UK,3.289,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.other_agriculture_food_fisheries,2023-24,UK,3.186,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.other_agriculture_food_fisheries,2024-25,UK,3.306,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.agriculture_forestry_fishing.other_agriculture_food_fisheries,2025-26,UK,3.724,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.communication,2021-22,UK,0.412,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.communication,2022-23,UK,0.482,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.communication,2023-24,UK,0.744,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.communication,2024-25,UK,0.978,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.communication,2025-26,UK,1.195,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.fuel_and_energy,2021-22,UK,2.697,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.fuel_and_energy,2022-23,UK,41.715,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.fuel_and_energy,2023-24,UK,6.987,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.fuel_and_energy,2024-25,UK,3.821,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.fuel_and_energy,2025-26,UK,6.564,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.general_economic_commercial_labour,2021-22,UK,35.038,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.general_economic_commercial_labour,2022-23,UK,22.035,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.general_economic_commercial_labour,2023-24,UK,20.214,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.general_economic_commercial_labour,2024-25,UK,18.498,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.general_economic_commercial_labour,2025-26,UK,17.878,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.mining_manufacturing_construction,2021-22,UK,0.965,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.mining_manufacturing_construction,2022-23,UK,0.651,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.mining_manufacturing_construction,2023-24,UK,0.423,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.mining_manufacturing_construction,2024-25,UK,0.428,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.mining_manufacturing_construction,2025-26,UK,0.312,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.nec,2021-22,UK,1.102,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.nec,2022-23,UK,0.759,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.nec,2023-24,UK,0.838,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.nec,2024-25,UK,0.886,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.nec,2025-26,UK,0.918,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.other_industries,2021-22,UK,0.351,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.other_industries,2022-23,UK,0.318,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.other_industries,2023-24,UK,0.29,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.other_industries,2024-25,UK,0.277,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.other_industries,2025-26,UK,0.302,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.r_and_d,2021-22,UK,6.638,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.r_and_d,2022-23,UK,7.365,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.r_and_d,2023-24,UK,9.727,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.r_and_d,2024-25,UK,9.682,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.r_and_d,2025-26,UK,11.268,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport,2021-22,UK,44.628,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport,2022-23,UK,45.185,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport,2023-24,UK,48.277,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport,2024-25,UK,47.373,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport,2025-26,UK,48.923,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.local_public_transport,2021-22,UK,4.983,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.local_public_transport,2022-23,UK,4.161,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.local_public_transport,2023-24,UK,4.463,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.local_public_transport,2024-25,UK,5.078,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.local_public_transport,2025-26,UK,5.552,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.local_roads,2021-22,UK,5.811,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.local_roads,2022-23,UK,6.103,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.local_roads,2023-24,UK,6.982,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.local_roads,2024-25,UK,7.139,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.local_roads,2025-26,UK,8.111,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.national_roads,2021-22,UK,5.438,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.national_roads,2022-23,UK,5.667,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.national_roads,2023-24,UK,6.119,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.national_roads,2024-25,UK,6.475,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.national_roads,2025-26,UK,6.128,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.other_transport,2021-22,UK,2.535,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.other_transport,2022-23,UK,2.153,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.other_transport,2023-24,UK,2.05,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.other_transport,2024-25,UK,2.43,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.other_transport,2025-26,UK,2.653,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.railway,2021-22,UK,25.862,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.railway,2022-23,UK,27.101,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.railway,2023-24,UK,28.663,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.railway,2024-25,UK,26.251,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.economic_affairs.transport.railway,2025-26,UK,26.479,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education,2003-04,UK,61.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2004-05,UK,65.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2005-06,UK,69.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2006-07,UK,73.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2007-08,UK,78.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2008-09,UK,83.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2009-10,UK,88.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2010-11,UK,91.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2011-12,UK,86.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2012-13,UK,84.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2013-14,UK,84.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2014-15,UK,85.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2015-16,UK,84.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2016-17,UK,84.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2017-18,UK,86.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2018-19,UK,88.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2019-20,UK,90.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2020-21,UK,95.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.education,2021-22,UK,100.148,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education,2022-23,UK,107.346,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education,2023-24,UK,114.208,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education,2024-25,UK,122.968,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education,2025-26,UK,125.721,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.nec,2021-22,UK,4.553,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.nec,2022-23,UK,5.483,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.nec,2023-24,UK,4.839,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.nec,2024-25,UK,5.123,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.nec,2025-26,UK,4.87,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.not_definable_by_level,2021-22,UK,1.532,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.not_definable_by_level,2022-23,UK,1.822,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.not_definable_by_level,2023-24,UK,1.188,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.not_definable_by_level,2024-25,UK,1.421,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.not_definable_by_level,2025-26,UK,1.275,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.post_secondary_non_tertiary,2021-22,UK,0.634,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.post_secondary_non_tertiary,2022-23,UK,0.73,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.post_secondary_non_tertiary,2023-24,UK,0.873,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.post_secondary_non_tertiary,2024-25,UK,1.045,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.post_secondary_non_tertiary,2025-26,UK,1.078,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary,2021-22,UK,33.327,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary,2022-23,UK,35.212,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary,2023-24,UK,38.029,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary,2024-25,UK,42.107,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary,2025-26,UK,43.429,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary.primary_education,2021-22,UK,28.704,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary.primary_education,2022-23,UK,30.456,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary.primary_education,2023-24,UK,32.816,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary.primary_education,2024-25,UK,34.582,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary.primary_education,2025-26,UK,33.808,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary.under_fives,2021-22,UK,4.623,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary.under_fives,2022-23,UK,4.756,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary.under_fives,2023-24,UK,5.213,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary.under_fives,2024-25,UK,7.525,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.pre_primary_and_primary.under_fives,2025-26,UK,9.621,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.r_and_d,2021-22,UK,2.608,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.r_and_d,2022-23,UK,2.972,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.r_and_d,2023-24,UK,2.754,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.r_and_d,2024-25,UK,2.824,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.r_and_d,2025-26,UK,2.626,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.secondary_education,2021-22,UK,47.756,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.secondary_education,2022-23,UK,50.941,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.secondary_education,2023-24,UK,53.386,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.secondary_education,2024-25,UK,58.949,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.secondary_education,2025-26,UK,60.842,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.subsidiary_services,2021-22,UK,5.017,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.subsidiary_services,2022-23,UK,5.628,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.subsidiary_services,2023-24,UK,5.983,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.subsidiary_services,2024-25,UK,6.708,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.subsidiary_services,2025-26,UK,6.96,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.tertiary_education,2021-22,UK,4.72,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.tertiary_education,2022-23,UK,4.558,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.tertiary_education,2023-24,UK,7.157,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.tertiary_education,2024-25,UK,4.79,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.education.tertiary_education,2025-26,UK,4.641,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection,2003-04,UK,6.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2004-05,UK,7.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2005-06,UK,8.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2006-07,UK,9.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2007-08,UK,9.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2008-09,UK,9.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2009-10,UK,10.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2010-11,UK,10.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2011-12,UK,10.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2012-13,UK,10.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2013-14,UK,11.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2014-15,UK,11.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2015-16,UK,11.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2016-17,UK,11.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2017-18,UK,11.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2018-19,UK,11.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2019-20,UK,11.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2020-21,UK,13.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.environment_protection,2021-22,UK,13.785,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection,2022-23,UK,14.355,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection,2023-24,UK,15.952,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection,2024-25,UK,17.253,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection,2025-26,UK,19.157,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.biodiversity_landscape,2021-22,UK,0.433,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.biodiversity_landscape,2022-23,UK,0.495,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.biodiversity_landscape,2023-24,UK,0.583,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.biodiversity_landscape,2024-25,UK,0.616,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.biodiversity_landscape,2025-26,UK,0.606,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.nec,2021-22,UK,2.879,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.nec,2022-23,UK,3.092,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.nec,2023-24,UK,3.403,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.nec,2024-25,UK,3.819,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.nec,2025-26,UK,4.002,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.pollution_abatement,2021-22,UK,0.838,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.pollution_abatement,2022-23,UK,0.452,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.pollution_abatement,2023-24,UK,0.761,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.pollution_abatement,2024-25,UK,1.358,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.pollution_abatement,2025-26,UK,2.196,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.r_and_d,2021-22,UK,0.103,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.r_and_d,2022-23,UK,0.199,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.r_and_d,2023-24,UK,0.266,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.r_and_d,2024-25,UK,0.314,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.r_and_d,2025-26,UK,0.484,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.waste_management,2021-22,UK,9.532,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.waste_management,2022-23,UK,10.117,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.waste_management,2023-24,UK,10.939,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.waste_management,2024-25,UK,11.146,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.waste_management,2025-26,UK,11.869,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.waste_water_management,2021-22,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.waste_water_management,2022-23,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.waste_water_management,2023-24,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.waste_water_management,2024-25,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.environment_protection.waste_water_management,2025-26,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions,2003-04,UK,-2.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2004-05,UK,-0.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2005-06,UK,-0.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2006-07,UK,-1.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2007-08,UK,-1.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2008-09,UK,-2.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2009-10,UK,0.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2010-11,UK,5.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2011-12,UK,4.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2012-13,UK,6.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2013-14,UK,7.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2014-15,UK,6.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2015-16,UK,7.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2016-17,UK,4.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2017-18,UK,5.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2018-19,UK,7.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2019-20,UK,5.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2020-21,UK,7.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.eu_transactions,2021-22,UK,-1.946,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions,2022-23,UK,-2.055,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions,2023-24,UK,0.042,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions,2024-25,UK,-1.412,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions,2025-26,UK,-0.166,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net,2021-22,UK,0.301,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net,2022-23,UK,-0.397,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net,2023-24,UK,0.896,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net,2024-25,UK,-1.193,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net,2025-26,UK,-0.11,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.gross_contribution,2021-22,UK,0.169,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.gross_contribution,2022-23,UK,0.081,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.gross_contribution,2023-24,UK,0.917,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.gross_contribution,2024-25,UK,-1.168,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.gross_contribution,2025-26,UK,-0.105,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.traditional_own_resources,2021-22,UK,-0.049,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.traditional_own_resources,2022-23,UK,-0.05,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.traditional_own_resources,2023-24,UK,-0.031,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.traditional_own_resources,2024-25,UK,-0.024,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.traditional_own_resources,2025-26,UK,-0.005,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.uk_abatement,2021-22,UK,0.181,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.uk_abatement,2022-23,UK,-0.428,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.uk_abatement,2023-24,UK,0.01,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.uk_abatement,2024-25,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.contributions_net.uk_abatement,2025-26,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.eu_receipts,2021-22,UK,-2.248,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.eu_receipts,2022-23,UK,-1.659,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.eu_receipts,2023-24,UK,-0.854,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.eu_receipts,2024-25,UK,-0.219,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.eu_receipts,2025-26,UK,-0.057,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.other_attributed_costs,2021-22,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.other_attributed_costs,2022-23,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.other_attributed_costs,2023-24,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.other_attributed_costs,2024-25,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.eu_transactions.other_attributed_costs,2025-26,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services,2003-04,UK,48.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2004-05,UK,54.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2005-06,UK,58.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2006-07,UK,61.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2007-08,UK,65.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2008-09,UK,69.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2009-10,UK,65.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2010-11,UK,77.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2011-12,UK,79.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2012-13,UK,74.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2013-14,UK,76.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2014-15,UK,75.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2015-16,UK,76.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2016-17,UK,80.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2017-18,UK,84.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2018-19,UK,80.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2019-20,UK,81.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2020-21,UK,72.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services,2021-22,UK,109.222,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services,2022-23,UK,166.204,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services,2023-24,UK,163.818,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services,2024-25,UK,160.23,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services,2025-26,UK,165.504,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.basic_research,2021-22,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.basic_research,2022-23,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.basic_research,2023-24,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.basic_research,2024-25,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.basic_research,2025-26,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest,2003-04,UK,32.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2004-05,UK,36.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2005-06,UK,39.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2006-07,UK,42.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2007-08,UK,46.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2008-09,UK,49.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2009-10,UK,44.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2010-11,UK,57.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2011-12,UK,60.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2012-13,UK,55.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2013-14,UK,55.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2014-15,UK,53.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2015-16,UK,54.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2016-17,UK,56.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2017-18,UK,61.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2018-19,UK,56.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2019-20,UK,55.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2020-21,UK,42.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.general_public_services.debt_interest,2021-22,UK,72.703,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest,2022-23,UK,130.374,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest,2023-24,UK,127.255,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest,2024-25,UK,126.492,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest,2025-26,UK,130.305,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.bank_of_england,2021-22,UK,-15.518,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.bank_of_england,2022-23,UK,4.049,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.bank_of_england,2023-24,UK,24.368,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.bank_of_england,2024-25,UK,20.82,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.bank_of_england,2025-26,UK,12.344,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.central_government,2021-22,UK,70.892,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.central_government,2022-23,UK,108.063,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.central_government,2023-24,UK,83.213,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.central_government,2024-25,UK,85.386,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.central_government,2025-26,UK,96.946,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.local_government,2021-22,UK,0.802,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.local_government,2022-23,UK,0.87,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.local_government,2023-24,UK,1.105,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.local_government,2024-25,UK,1.098,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.local_government,2025-26,UK,1.132,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.public_corporations,2021-22,UK,0.455,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.public_corporations,2022-23,UK,0.463,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.public_corporations,2023-24,UK,0.471,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.public_corporations,2024-25,UK,0.479,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.public_corporations,2025-26,UK,0.502,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.public_sector_pensions,2021-22,UK,16.072,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.public_sector_pensions,2022-23,UK,16.929,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.public_sector_pensions,2023-24,UK,18.098,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.public_sector_pensions,2024-25,UK,18.709,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.debt_interest.public_sector_pensions,2025-26,UK,19.381,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.executive_legislative_fiscal_external,2021-22,UK,22.838,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.executive_legislative_fiscal_external,2022-23,UK,24.649,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.executive_legislative_fiscal_external,2023-24,UK,21.91,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.executive_legislative_fiscal_external,2024-25,UK,18.061,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.executive_legislative_fiscal_external,2025-26,UK,19.872,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.foreign_economic_aid,2021-22,UK,5.797,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.foreign_economic_aid,2022-23,UK,5.182,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.foreign_economic_aid,2023-24,UK,7.294,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.foreign_economic_aid,2024-25,UK,7.669,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.foreign_economic_aid,2025-26,UK,7.189,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.general_services,2021-22,UK,3.444,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.general_services,2022-23,UK,2.629,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.general_services,2023-24,UK,3.078,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.general_services,2024-25,UK,2.866,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.general_services,2025-26,UK,2.35,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.nec,2021-22,UK,4.397,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.nec,2022-23,UK,3.026,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.nec,2023-24,UK,3.926,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.nec,2024-25,UK,4.583,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.nec,2025-26,UK,5.279,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.r_and_d,2021-22,UK,0.043,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.r_and_d,2022-23,UK,0.344,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.r_and_d,2023-24,UK,0.356,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.r_and_d,2024-25,UK,0.558,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.general_public_services.r_and_d,2025-26,UK,0.51,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health,2003-04,UK,74.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2004-05,UK,82.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2005-06,UK,89.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2006-07,UK,94.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2007-08,UK,101.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2008-09,UK,108.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2009-10,UK,116.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2010-11,UK,119.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2011-12,UK,121.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2012-13,UK,124.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2013-14,UK,129.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2014-15,UK,134.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2015-16,UK,138.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2016-17,UK,142.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2017-18,UK,147.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2018-19,UK,152.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2019-20,UK,164.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2020-21,UK,218.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.health,2021-22,UK,216.237,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health,2022-23,UK,212.676,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health,2023-24,UK,221.973,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health,2024-25,UK,242.429,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health,2025-26,UK,257.542,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.central_and_other_health_services,2021-22,UK,21.093,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.central_and_other_health_services,2022-23,UK,11.656,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.central_and_other_health_services,2023-24,UK,6.834,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.central_and_other_health_services,2024-25,UK,7.841,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.central_and_other_health_services,2025-26,UK,7.311,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.medical_research,2021-22,UK,1.829,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.medical_research,2022-23,UK,1.918,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.medical_research,2023-24,UK,2.088,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.medical_research,2024-25,UK,2.49,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.medical_research,2025-26,UK,2.871,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.medical_services,2021-22,UK,193.314,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.medical_services,2022-23,UK,199.101,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.medical_services,2023-24,UK,213.052,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.medical_services,2024-25,UK,232.098,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.health.medical_services,2025-26,UK,247.359,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities,2003-04,UK,6.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2004-05,UK,8.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2005-06,UK,10.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2006-07,UK,11.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2007-08,UK,13.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2008-09,UK,15.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2009-10,UK,16.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2010-11,UK,13.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2011-12,UK,10.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2012-13,UK,10.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2013-14,UK,10.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2014-15,UK,10.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2015-16,UK,9.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2016-17,UK,10.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2017-18,UK,11.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2018-19,UK,12.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2019-20,UK,14.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2020-21,UK,13.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.housing_amenities,2021-22,UK,15.273,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities,2022-23,UK,17.404,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities,2023-24,UK,20.908,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities,2024-25,UK,21.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities,2025-26,UK,22.47,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.community_development,2021-22,UK,3.473,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.community_development,2022-23,UK,3.516,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.community_development,2023-24,UK,4.231,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.community_development,2024-25,UK,4.164,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.community_development,2025-26,UK,4.655,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development,2021-22,UK,9.412,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development,2022-23,UK,11.301,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development,2023-24,UK,13.933,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development,2024-25,UK,14.624,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development,2025-26,UK,14.866,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development.local_authority_housing,2021-22,UK,7.449,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development.local_authority_housing,2022-23,UK,9.074,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development.local_authority_housing,2023-24,UK,11.065,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development.local_authority_housing,2024-25,UK,11.544,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development.local_authority_housing,2025-26,UK,11.991,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development.other_social_housing,2021-22,UK,1.963,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development.other_social_housing,2022-23,UK,2.227,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development.other_social_housing,2023-24,UK,2.868,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development.other_social_housing,2024-25,UK,3.08,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.housing_development.other_social_housing,2025-26,UK,2.876,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.nec,2021-22,UK,0.541,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.nec,2022-23,UK,0.469,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.nec,2023-24,UK,0.616,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.nec,2024-25,UK,0.825,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.nec,2025-26,UK,1.331,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.r_and_d,2021-22,UK,0.002,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.r_and_d,2022-23,UK,0.003,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.r_and_d,2023-24,UK,0.008,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.r_and_d,2024-25,UK,0.006,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.r_and_d,2025-26,UK,0.009,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.street_lighting,2021-22,UK,0.877,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.street_lighting,2022-23,UK,0.988,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.street_lighting,2023-24,UK,1.078,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.street_lighting,2024-25,UK,0.978,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.street_lighting,2025-26,UK,1.075,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.water_supply,2021-22,UK,0.968,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.water_supply,2022-23,UK,1.126,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.water_supply,2023-24,UK,1.042,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.water_supply,2024-25,UK,1.105,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.housing_amenities.water_supply,2025-26,UK,0.534,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order,2003-04,UK,26.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2004-05,UK,28.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2005-06,UK,29.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2006-07,UK,30.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2007-08,UK,31.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2008-09,UK,33.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2009-10,UK,34.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2010-11,UK,33.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2011-12,UK,32.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2012-13,UK,31.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2013-14,UK,29.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2014-15,UK,30.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2015-16,UK,30.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2016-17,UK,30.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2017-18,UK,31.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2018-19,UK,32.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2019-20,UK,34.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2020-21,UK,38.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.public_order,2021-22,UK,39.756,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order,2022-23,UK,44.213,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order,2023-24,UK,48.716,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order,2024-25,UK,51.75,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order,2025-26,UK,55.72,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.fire_protection_services,2021-22,UK,3.11,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.fire_protection_services,2022-23,UK,3.418,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.fire_protection_services,2023-24,UK,3.681,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.fire_protection_services,2024-25,UK,3.956,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.fire_protection_services,2025-26,UK,4.166,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.law_courts,2021-22,UK,7.838,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.law_courts,2022-23,UK,8.053,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.law_courts,2023-24,UK,8.949,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.law_courts,2024-25,UK,9.252,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.law_courts,2025-26,UK,10.029,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.nec,2021-22,UK,0.912,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.nec,2022-23,UK,1.119,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.nec,2023-24,UK,1.326,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.nec,2024-25,UK,2.016,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.nec,2025-26,UK,1.556,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services,2021-22,UK,22.507,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services,2022-23,UK,25.508,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services,2023-24,UK,28.146,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services,2024-25,UK,29.121,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services,2025-26,UK,31.557,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services.immigration_and_citizenship,2021-22,UK,1.845,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services.immigration_and_citizenship,2022-23,UK,3.55,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services.immigration_and_citizenship,2023-24,UK,4.758,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services.immigration_and_citizenship,2024-25,UK,3.692,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services.immigration_and_citizenship,2025-26,UK,4.781,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services.other_police_services,2021-22,UK,20.662,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services.other_police_services,2022-23,UK,21.957,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services.other_police_services,2023-24,UK,23.388,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services.other_police_services,2024-25,UK,25.428,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.police_services.other_police_services,2025-26,UK,26.776,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.prisons,2021-22,UK,5.388,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.prisons,2022-23,UK,6.115,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.prisons,2023-24,UK,6.614,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.prisons,2024-25,UK,7.405,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.prisons,2025-26,UK,8.411,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.r_and_d,2021-22,UK,0.001,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.r_and_d,2022-23,UK,0.001,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.r_and_d,2023-24,UK,0.001,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.r_and_d,2024-25,UK,0.001,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.public_order.r_and_d,2025-26,UK,0.001,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture,2003-04,UK,9.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2004-05,UK,10.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2005-06,UK,10.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2006-07,UK,11.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2007-08,UK,11.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2008-09,UK,12.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2009-10,UK,13.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2010-11,UK,13.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2011-12,UK,12.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2012-13,UK,12.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2013-14,UK,11.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2014-15,UK,12.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2015-16,UK,11.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2016-17,UK,11.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2017-18,UK,11.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2018-19,UK,11.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2019-20,UK,12.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2020-21,UK,12.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.recreation_culture,2021-22,UK,12.762,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture,2022-23,UK,14.529,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture,2023-24,UK,12.96,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture,2024-25,UK,13.61,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture,2025-26,UK,15.053,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.broadcasting_and_publishing_services,2021-22,UK,4.008,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.broadcasting_and_publishing_services,2022-23,UK,5.444,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.broadcasting_and_publishing_services,2023-24,UK,4.066,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.broadcasting_and_publishing_services,2024-25,UK,4.441,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.broadcasting_and_publishing_services,2025-26,UK,5.312,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.cultural_services,2021-22,UK,4.533,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.cultural_services,2022-23,UK,4.519,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.cultural_services,2023-24,UK,4.585,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.cultural_services,2024-25,UK,4.71,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.cultural_services,2025-26,UK,5.364,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.nec,2021-22,UK,0.088,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.nec,2022-23,UK,0.169,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.nec,2023-24,UK,0.15,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.nec,2024-25,UK,0.159,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.nec,2025-26,UK,0.257,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.r_and_d,2021-22,UK,0.074,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.r_and_d,2022-23,UK,0.097,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.r_and_d,2023-24,UK,0.07,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.r_and_d,2024-25,UK,0.108,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.r_and_d,2025-26,UK,0.107,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.recreational_and_sporting_services,2021-22,UK,3.987,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.recreational_and_sporting_services,2022-23,UK,4.11,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.recreational_and_sporting_services,2023-24,UK,3.884,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.recreational_and_sporting_services,2024-25,UK,4.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.recreational_and_sporting_services,2025-26,UK,3.869,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.religious_and_other_community_services,2021-22,UK,0.073,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.religious_and_other_community_services,2022-23,UK,0.191,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.religious_and_other_community_services,2023-24,UK,0.205,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.religious_and_other_community_services,2024-25,UK,0.191,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.recreation_culture.religious_and_other_community_services,2025-26,UK,0.144,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection,2003-04,UK,155.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2004-05,UK,164.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2005-06,UK,171.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2006-07,UK,177.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2007-08,UK,188.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2008-09,UK,203.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2009-10,UK,223.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2010-11,UK,230.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2011-12,UK,244.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2012-13,UK,253.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2013-14,UK,254.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2014-15,UK,261.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2015-16,UK,264.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2016-17,UK,265.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2017-18,UK,268.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2018-19,UK,274.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2019-20,UK,275.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2020-21,UK,299.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.cofog.social_protection,2021-22,UK,300.292,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection,2022-23,UK,322.235,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection,2023-24,UK,365.211,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection,2024-25,UK,386.267,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection,2025-26,UK,407.27,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children,2021-22,UK,27.606,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children,2022-23,UK,29.644,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children,2023-24,UK,32.922,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children,2024-25,UK,34.792,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children,2025-26,UK,35.543,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children.family_benefits_income_support_tax_credits,2021-22,UK,14.33,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children.family_benefits_income_support_tax_credits,2022-23,UK,14.631,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children.family_benefits_income_support_tax_credits,2023-24,UK,15.908,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children.family_benefits_income_support_tax_credits,2024-25,UK,16.953,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children.family_benefits_income_support_tax_credits,2025-26,UK,17.291,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children.personal_social_services,2021-22,UK,13.276,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children.personal_social_services,2022-23,UK,15.013,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children.personal_social_services,2023-24,UK,17.014,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children.personal_social_services,2024-25,UK,17.839,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.family_and_children.personal_social_services,2025-26,UK,18.253,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.housing,2021-22,UK,17.649,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.housing,2022-23,UK,17.149,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.housing,2023-24,UK,17.39,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.housing,2024-25,UK,17.039,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.housing,2025-26,UK,14.462,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.nec,2021-22,UK,6.302,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.nec,2022-23,UK,11.966,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.nec,2023-24,UK,14.079,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.nec,2024-25,UK,8.323,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.nec,2025-26,UK,11.201,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age,2021-22,UK,128.578,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age,2022-23,UK,137.493,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age,2023-24,UK,155.941,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age,2024-25,UK,162.908,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age,2025-26,UK,172.18,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age.pensions,2021-22,UK,115.829,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age.pensions,2022-23,UK,123.816,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age.pensions,2023-24,UK,140.539,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age.pensions,2024-25,UK,146.444,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age.pensions,2025-26,UK,154.858,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age.personal_social_services,2021-22,UK,12.749,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age.personal_social_services,2022-23,UK,13.677,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age.personal_social_services,2023-24,UK,15.402,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age.personal_social_services,2024-25,UK,16.464,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.old_age.personal_social_services,2025-26,UK,17.322,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.personal_social_services,2021-22,UK,40.127,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"Memo 'of which' row spanning several sub-functions; it is not additive with its siblings. PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.personal_social_services,2022-23,UK,44.205,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"Memo 'of which' row spanning several sub-functions; it is not additive with its siblings. PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.personal_social_services,2023-24,UK,50.141,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"Memo 'of which' row spanning several sub-functions; it is not additive with its siblings. PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.personal_social_services,2024-25,UK,54.019,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"Memo 'of which' row spanning several sub-functions; it is not additive with its siblings. PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.personal_social_services,2025-26,UK,56.135,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"Memo 'of which' row spanning several sub-functions; it is not additive with its siblings. PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.r_and_d,2021-22,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.r_and_d,2022-23,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.r_and_d,2023-24,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.r_and_d,2024-25,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.r_and_d,2025-26,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability,2021-22,UK,61.589,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability,2022-23,UK,65.832,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability,2023-24,UK,75.862,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability,2024-25,UK,83.997,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability,2025-26,UK,84.33,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability.incapacity_disability_injury_benefits,2021-22,UK,48.884,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability.incapacity_disability_injury_benefits,2022-23,UK,52.065,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability.incapacity_disability_injury_benefits,2023-24,UK,60.365,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability.incapacity_disability_injury_benefits,2024-25,UK,67.213,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability.incapacity_disability_injury_benefits,2025-26,UK,66.272,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability.personal_social_services,2021-22,UK,12.705,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability.personal_social_services,2022-23,UK,13.767,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability.personal_social_services,2023-24,UK,15.497,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability.personal_social_services,2024-25,UK,16.785,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.sickness_and_disability.personal_social_services,2025-26,UK,18.059,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec,2021-22,UK,56.137,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec,2022-23,UK,57.754,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec,2023-24,UK,66.397,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec,2024-25,UK,76.556,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec,2025-26,UK,86.773,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec.family_benefits_income_support_uc_tax_credits,2021-22,UK,54.74,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec.family_benefits_income_support_uc_tax_credits,2022-23,UK,56.007,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec.family_benefits_income_support_uc_tax_credits,2023-24,UK,64.169,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec.family_benefits_income_support_uc_tax_credits,2024-25,UK,73.624,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec.family_benefits_income_support_uc_tax_credits,2025-26,UK,84.272,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec.personal_social_services,2021-22,UK,1.397,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec.personal_social_services,2022-23,UK,1.748,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec.personal_social_services,2023-24,UK,2.228,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec.personal_social_services,2024-25,UK,2.932,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.social_exclusion_nec.personal_social_services,2025-26,UK,2.501,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.survivors,2021-22,UK,1.213,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.survivors,2022-23,UK,1.343,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.survivors,2023-24,UK,1.364,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.survivors,2024-25,UK,1.348,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.survivors,2025-26,UK,1.383,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment,2021-22,UK,1.219,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment,2022-23,UK,1.054,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment,2023-24,UK,1.255,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment,2024-25,UK,1.303,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment,2025-26,UK,1.396,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment.other_unemployment_benefits,2021-22,UK,1.219,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment.other_unemployment_benefits,2022-23,UK,1.054,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment.other_unemployment_benefits,2023-24,UK,1.255,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment.other_unemployment_benefits,2024-25,UK,1.303,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment.other_unemployment_benefits,2025-26,UK,1.396,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment.personal_social_services,2021-22,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment.personal_social_services,2022-23,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment.personal_social_services,2023-24,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment.personal_social_services,2024-25,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.cofog.social_protection.unemployment.personal_social_services,2025-26,UK,0.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.tes.total,2003-04,UK,449.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2004-05,UK,482.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2005-06,UK,513.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2006-07,UK,536.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2007-08,UK,569.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2008-09,UK,618.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2009-10,UK,654.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2010-11,UK,675.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2011-12,UK,678.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2012-13,UK,681.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2013-14,UK,692.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2014-15,UK,704.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2015-16,UK,719.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2016-17,UK,727.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2017-18,UK,749.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2018-19,UK,772.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2019-20,UK,799.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2020-21,UK,1011.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tes.total,2021-22,UK,951.945,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.tes.total,2022-23,UK,1077.002,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.tes.total,2023-24,UK,1114.977,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.tes.total,2024-25,UK,1166.452,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.tes.total,2025-26,UK,1227.648,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.tme,1985-86,UK,171.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1986-87,UK,179.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1987-88,UK,190.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1988-89,UK,197.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1989-90,UK,218.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1990-91,UK,237.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1991-92,UK,263.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1992-93,UK,283.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1993-94,UK,295.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1994-95,UK,308.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1995-96,UK,322.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1996-97,UK,328.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1997-98,UK,344.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1998-99,UK,354.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,1999-00,UK,367.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,2000-01,UK,390.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,2001-02,UK,418.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,2002-03,UK,452.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME."
+spending.tme,2003-04,UK,494.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2004-05,UK,534.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2005-06,UK,565.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2006-07,UK,592.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2007-08,UK,629.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2008-09,UK,685.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2009-10,UK,720.3,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2010-11,UK,743.0,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2011-12,UK,745.5,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2012-13,UK,759.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2013-14,UK,764.6,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2014-15,UK,786.2,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2015-16,UK,793.7,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2016-17,UK,811.4,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2017-18,UK,838.8,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2018-19,UK,856.1,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2019-20,UK,884.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2020-21,UK,1102.9,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,PESA 2026 Table 4.2.
+spending.tme,2021-22,UK,1040.888,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.tme,2022-23,UK,1160.692,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.tme,2023-24,UK,1230.807,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.tme,2024-25,UK,1290.012,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.tme,2025-26,UK,1360.122,gbp_bn,outturn,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 5.2, £ million / 1000."
+spending.tme,2026-27,UK,1419.3,gbp_bn,forecast,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME. Plan year: not yet outturn."
+spending.tme,2027-28,UK,1471.9,gbp_bn,forecast,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME. Plan year: not yet outturn."
+spending.tme,2028-29,UK,1513.5,gbp_bn,forecast,hmt_pesa,PESA-2026,sourced,"PESA 2026 Table 4.1, nominal TME. Plan year: not yet outturn."
