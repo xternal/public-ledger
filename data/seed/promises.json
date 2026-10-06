@@ -1,176 +1,186 @@
 {
- "meta": {
-  "note": "Seed cards. Only 'uk-bus-cap-2-2026' is fully sourced. The others are structural examples: statuses and dates must be checked by an editor before publication.",
-  "status_ladder": [
-   "promised",
-   "in_plan",
-   "legislated",
-   "funded",
-   "delivering",
-   "delivered",
-   "failed",
-   "quietly_dropped",
-   "unscoreable"
+  "meta": {
+    "note": "Seed cards. Only 'uk-bus-cap-2-2026' is fully sourced. The others are structural examples: statuses and dates must be checked by an editor before publication.",
+    "status_ladder": [
+      "promised",
+      "in_plan",
+      "legislated",
+      "funded",
+      "delivering",
+      "delivered",
+      "failed",
+      "quietly_dropped",
+      "unscoreable"
+    ]
+  },
+  "promises": [
+    {
+      "id": "uk-bus-cap-2-2026",
+      "actor": {
+        "name": "Andy Burnham",
+        "role": "Prime Minister",
+        "party": "Labour"
+      },
+      "made_on": "2026-07-22",
+      "text": "A £2 cap on single bus fares across England from January 2027.",
+      "parameters": {
+        "who": "Bus passengers in England outside areas with lower caps",
+        "how_much_bn_per_year": [
+          0.45,
+          0.5,
+          0.6
+        ],
+        "when": "2027-01-01",
+        "funded_by": "£400m from switching international climate finance to loans; rest from DESNZ savings and existing DfT bus money"
+      },
+      "status": "in_plan",
+      "deadline": "2027-01-01",
+      "lever_id": "bus_cap_2",
+      "sources": [
+        {
+          "title": "ITV News, 22 Jul 2026",
+          "url": "https://www.itv.com/news/2026-07-22/andy-burnham-unveils-2-bus-fare-cap-in-pledge-to-be-cost-of-living-government"
+        },
+        {
+          "title": "Coach and Bus Week: £3 cap extended to March 2027",
+          "url": "https://cbwmagazine.com/3-fare-cap-extended-to-march-2027/"
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2023-01-01",
+          "event": "£2 cap introduced in England (previous government)",
+          "type": "delivered"
+        },
+        {
+          "date": "2025-01-01",
+          "event": "Cap raised to £3",
+          "type": "reworded"
+        },
+        {
+          "date": "2025-06-17",
+          "event": "Spending Review keeps £3 cap to March 2027",
+          "type": "funded"
+        },
+        {
+          "date": "2026-07-22",
+          "event": "PM announces return to £2 from January 2027, >£500m",
+          "type": "promised"
+        },
+        {
+          "date": "2026-07-22",
+          "event": "Funding named: £400m climate finance switched to loans + DESNZ savings",
+          "type": "in_plan"
+        },
+        {
+          "date": "2027-01-01",
+          "event": "Due to start",
+          "type": "deadline"
+        }
+      ],
+      "right_of_reply": null,
+      "status_note": "Funding source named by government on announcement, but not yet in an Estimates line. Under PROMISE_STANDARD.md 'funded' requires a Budget/SR/Estimates allocation, so the card stays at in_plan until then.",
+      "venue_label": "Government announcement",
+      "lever_settings": {
+        "bus_cap_2": 1,
+        "bus_cap_2.funding": "climate_loans"
+      }
+    },
+    {
+      "id": "uk-defence-25-2027",
+      "actor": {
+        "name": "Keir Starmer",
+        "role": "Prime Minister (at the time)",
+        "party": "Labour"
+      },
+      "made_on": "2025-02-25",
+      "text": "Raise defence spending to 2.5% of GDP by 2027.",
+      "parameters": {
+        "how_much_bn_per_year": null,
+        "when": "2027-04",
+        "funded_by": "Cut aid from 0.5% to 0.3% of GNI",
+        "note": "Cost range to be taken from the Spending Review 2025 document by an editor."
+      },
+      "status": "delivering",
+      "deadline": "2027-04-01",
+      "lever_id": "defence_gdp",
+      "sources": [],
+      "timeline": [
+        {
+          "date": "2025-02-25",
+          "event": "Announced in Commons statement",
+          "type": "promised"
+        },
+        {
+          "date": "2025-06-11",
+          "event": "Spending Review allocations",
+          "type": "funded"
+        },
+        {
+          "date": "2027-04-01",
+          "event": "Deadline",
+          "type": "deadline"
+        }
+      ],
+      "editor_check_required": true,
+      "venue": "parliament",
+      "venue_label": "Commons statement"
+    },
+    {
+      "id": "uk-homes-15m",
+      "actor": {
+        "name": "Labour Party",
+        "role": "2024 manifesto",
+        "party": "Labour"
+      },
+      "made_on": "2024-06-13",
+      "text": "Build 1.5 million new homes in England over the Parliament.",
+      "parameters": {
+        "how_much_bn_per_year": null,
+        "when": "2029",
+        "funded_by": "Mostly private; planning reform"
+      },
+      "status": "delivering",
+      "deadline": "2029-07-01",
+      "sources": [],
+      "timeline": [
+        {
+          "date": "2024-06-13",
+          "event": "Manifesto pledge",
+          "type": "promised"
+        },
+        {
+          "date": "2029-07-01",
+          "event": "Deadline",
+          "type": "deadline"
+        }
+      ],
+      "editor_check_required": true,
+      "venue": "manifesto",
+      "venue_label": "2024 manifesto"
+    },
+    {
+      "id": "example-slogan",
+      "actor": {
+        "name": "Example",
+        "role": "Illustration of the 'unscoreable' status",
+        "party": null
+      },
+      "made_on": "2026-05-01",
+      "text": "We will stand up for hard-working families.",
+      "parameters": null,
+      "status": "unscoreable",
+      "deadline": null,
+      "sources": [],
+      "timeline": [
+        {
+          "date": "2026-05-01",
+          "event": "Said on TV. No who, how much, when or from where.",
+          "type": "promised"
+        }
+      ],
+      "venue": "tv",
+      "venue_label": "TV interview"
+    }
   ]
- },
- "promises": [
-  {
-   "id": "uk-bus-cap-2-2026",
-   "actor": {
-    "name": "Andy Burnham",
-    "role": "Prime Minister",
-    "party": "Labour"
-   },
-   "made_on": "2026-07-22",
-   "venue": "Government announcement",
-   "text": "A £2 cap on single bus fares across England from January 2027.",
-   "parameters": {
-    "who": "Bus passengers in England outside areas with lower caps",
-    "how_much_bn_per_year": [
-     0.45,
-     0.5,
-     0.6
-    ],
-    "when": "2027-01-01",
-    "funded_by": "£400m from switching international climate finance to loans; rest from DESNZ savings and existing DfT bus money"
-   },
-   "status": "in_plan",
-   "deadline": "2027-01-01",
-   "lever_id": "bus_cap_2",
-   "sources": [
-    {
-     "title": "ITV News, 22 Jul 2026",
-     "url": "https://www.itv.com/news/2026-07-22/andy-burnham-unveils-2-bus-fare-cap-in-pledge-to-be-cost-of-living-government"
-    },
-    {
-     "title": "Coach and Bus Week: £3 cap extended to March 2027",
-     "url": "https://cbwmagazine.com/3-fare-cap-extended-to-march-2027/"
-    }
-   ],
-   "timeline": [
-    {
-     "date": "2023-01-01",
-     "event": "£2 cap introduced in England (previous government)",
-     "type": "delivered"
-    },
-    {
-     "date": "2025-01-01",
-     "event": "Cap raised to £3",
-     "type": "reworded"
-    },
-    {
-     "date": "2025-06-17",
-     "event": "Spending Review keeps £3 cap to March 2027",
-     "type": "funded"
-    },
-    {
-     "date": "2026-07-22",
-     "event": "PM announces return to £2 from January 2027, >£500m",
-     "type": "promised"
-    },
-    {
-     "date": "2026-07-22",
-     "event": "Funding named: £400m climate finance switched to loans + DESNZ savings",
-     "type": "in_plan"
-    },
-    {
-     "date": "2027-01-01",
-     "event": "Due to start",
-     "type": "deadline"
-    }
-   ],
-   "right_of_reply": null,
-   "status_note": "Funding source named by government on announcement, but not yet in an Estimates line. Under PROMISE_STANDARD.md 'funded' requires a Budget/SR/Estimates allocation, so the card stays at in_plan until then."
-  },
-  {
-   "id": "uk-defence-25-2027",
-   "actor": {
-    "name": "Keir Starmer",
-    "role": "Prime Minister (at the time)",
-    "party": "Labour"
-   },
-   "made_on": "2025-02-25",
-   "text": "Raise defence spending to 2.5% of GDP by 2027.",
-   "parameters": {
-    "how_much_bn_per_year": null,
-    "when": "2027-04",
-    "funded_by": "Cut aid from 0.5% to 0.3% of GNI",
-    "note": "Cost range to be taken from the Spending Review 2025 document by an editor."
-   },
-   "status": "delivering",
-   "deadline": "2027-04-01",
-   "lever_id": "defence_gdp",
-   "sources": [],
-   "timeline": [
-    {
-     "date": "2025-02-25",
-     "event": "Announced in Commons statement",
-     "type": "promised"
-    },
-    {
-     "date": "2025-06-11",
-     "event": "Spending Review allocations",
-     "type": "funded"
-    },
-    {
-     "date": "2027-04-01",
-     "event": "Deadline",
-     "type": "deadline"
-    }
-   ],
-   "editor_check_required": true
-  },
-  {
-   "id": "uk-homes-15m",
-   "actor": {
-    "name": "Labour Party",
-    "role": "2024 manifesto",
-    "party": "Labour"
-   },
-   "made_on": "2024-06-13",
-   "text": "Build 1.5 million new homes in England over the Parliament.",
-   "parameters": {
-    "how_much_bn_per_year": null,
-    "when": "2029",
-    "funded_by": "Mostly private; planning reform"
-   },
-   "status": "delivering",
-   "deadline": "2029-07-01",
-   "sources": [],
-   "timeline": [
-    {
-     "date": "2024-06-13",
-     "event": "Manifesto pledge",
-     "type": "promised"
-    },
-    {
-     "date": "2029-07-01",
-     "event": "Deadline",
-     "type": "deadline"
-    }
-   ],
-   "editor_check_required": true
-  },
-  {
-   "id": "example-slogan",
-   "actor": {
-    "name": "Example",
-    "role": "Illustration of the 'unscoreable' status",
-    "party": null
-   },
-   "made_on": "2026-05-01",
-   "text": "We will stand up for hard-working families.",
-   "parameters": null,
-   "status": "unscoreable",
-   "deadline": null,
-   "sources": [],
-   "timeline": [
-    {
-     "date": "2026-05-01",
-     "event": "Said on TV. No who, how much, when or from where.",
-     "type": "promised"
-    }
-   ]
-  }
- ]
 }

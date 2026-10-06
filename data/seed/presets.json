@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "note": "Editorial presets for the sandbox. Promise presets are not listed here: every promise card with lever_settings becomes a preset automatically (PRD F2)."
+  },
+  "presets": [
+    {
+      "id": "nato",
+      "label": "Defence to 3.5% of GDP",
+      "kind": "editorial",
+      "settings": { "defence_gdp": 3.5 }
+    },
+    {
+      "id": "rates",
+      "label": "Bank Rate back to 5.25%",
+      "kind": "editorial",
+      "settings": { "bank_rate": 5.25 }
+    },
+    {
+      "id": "vat",
+      "label": "VAT to 22% for the NHS",
+      "kind": "editorial",
+      "settings": { "vat_standard": 22, "health_change": 7 }
+    }
+  ]
+}

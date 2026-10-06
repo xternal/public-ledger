@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "country": "UK",
+    "tax_year": "2025-26",
+    "geography": "England, Wales and Northern Ireland",
+    "quality": "training",
+    "method_note": "TODO(source): thresholds and rates from model memory. Replace with GOV.UK 'Income Tax rates and Personal Allowances' and 'National Insurance rates and thresholds' for 2025-26. Scotland has its own income tax bands (review H8).",
+    "intended_sources": [
+      "https://www.gov.uk/income-tax-rates",
+      "https://www.gov.uk/national-insurance-rates-letters"
+    ]
+  },
+  "income_tax": {
+    "personal_allowance_gbp": 12570,
+    "allowance_taper_threshold_gbp": 100000,
+    "allowance_taper_rate": 0.5,
+    "basic_band_gbp": 37700,
+    "additional_threshold_gbp": 125140,
+    "basic_rate_lever": "income_tax_basic",
+    "higher_rate_pct": 40,
+    "additional_rate_pct": 45
+  },
+  "employee_ni": {
+    "primary_threshold_gbp": 12570,
+    "upper_earnings_limit_gbp": 50270,
+    "main_rate_lever": "nics_main",
+    "upper_rate_pct": 2
+  },
+  "your_share_defaults": {
+    "salary_gbp": 38000
+  }
+}

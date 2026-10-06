@@ -678,7 +678,7 @@ function leverValueText(L,v){
   return v+"%";
 }
 function buildLevers(){
-  document.getElementById("levers").innerHTML=SLIDERS.map(id=>{const L=leverById[id];return `<div class="lever" id="lv-${id}"><div class="row"><label for="in-${id}">${L.label}</label><span class="num"><b id="val-${id}">${leverValueText(L,state.v[id])}</b> <span class="was">now ${leverValueText(L,L.base)}</span></span></div><input type="range" id="in-${id}" min="${L.min}" max="${L.max}" step="${L.step}" value="${state.v[id]}" aria-describedby="who-${id}"><div class="who" id="who-${id}">${L.owner?`<span>${L.owner}</span>`:""}<span class="badge ${L.quality==="training"?"training":L.quality==="sourced"?"sourced":"approx"}">${L.quality}</span></div></div>`}).join("");
+  document.getElementById("levers").innerHTML=SLIDERS.map(id=>{const L=leverById[id];return `<div class="lever" id="lv-${id}"><div class="row"><label for="in-${id}">${L.label}</label><span class="num"><b id="val-${id}">${leverValueText(L,state.v[id])}</b> <span class="was">now ${leverValueText(L,L.base)}</span></span></div><input type="range" id="in-${id}" min="${L.min}" max="${L.max}" step="${L.step}" value="${state.v[id]}" aria-describedby="who-${id}"><div class="who" id="who-${id}">${L.controlled_by==="central_bank"?`<span>Bank of England MPC (not government)</span>`:""}<span class="badge ${L.quality==="training"?"training":L.quality==="sourced"?"sourced":"approx"}">${L.quality}</span></div></div>`}).join("");
   SLIDERS.forEach(id=>document.getElementById("in-"+id).addEventListener("input",e=>{state.v[id]=+e.target.value;clearPreset();update();}));
   const sel=document.getElementById("busfund");
   sel.innerHTML=leverById.bus_cap_2.funding_options.map(o=>`<option value="${o.id}">${o.label}</option>`).join("");
@@ -709,7 +709,7 @@ function update(){
   SLIDERS.forEach(id=>{const L=leverById[id];document.getElementById("val-"+id).textContent=leverValueText(L,state.v[id]);document.getElementById("lv-"+id).classList.toggle("changed",Math.abs(state.v[id]-L.base)>1e-9);});
   const r=compute(); renderKPIs(r); renderSankey(r); renderResult(r); renderFan(r); renderYou(r);
 }
-document.getElementById("sources").innerHTML=[...PNL.meta.sources,PNL.macro.baseline_source,...LEV.meta.sources].map(s=>`<li><a href="${s.url}" target="_blank" rel="noopener">${s.title}</a></li>`).join("");
+document.getElementById("sources").innerHTML=[...PNL.meta.sources,...LEV.meta.sources].map(s=>`<li><a href="${s.url}" target="_blank" rel="noopener">${s.title}</a></li>`).join("");
 function syncForm(){const ev=document.getElementById("sub-kind").value==="evidence";document.getElementById("sub-card-row").hidden=!ev;document.getElementById("sub-ev-row").hidden=!ev;}
 document.getElementById("sub-card").innerHTML=PROM.promises.map(p=>`<option value="${p.id}">${p.actor.name}: ${p.text.slice(0,60)}${p.text.length>60?"…":""}</option>`).join("");
 document.getElementById("sub-kind").addEventListener("change",syncForm);
