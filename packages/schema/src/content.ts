@@ -99,8 +99,16 @@ export const PromiseFile = z
     versions: z.array(PromiseVersion).min(1),
     events: z.array(PromiseEvent).min(1),
     replies: z.array(Reply).default([]),
+    /**
+     * Who made the outcome happen when it was not the card's own actor, e.g. an
+     * opposition pledge the government carried out. Shown next to the status
+     * and in the track record, so credit is not given for someone else's action.
+     */
+    outcome_by: z.object({ actor_id: z.string(), note: z.string().optional() }).optional(),
   })
   .superRefine((p, ctx) => {
+    if (p.outcome_by && !["legislated", "funded", "delivering", "delivered"].includes(p.status))
+      ctx.addIssue({ code: "custom", path: ["outcome_by"], message: "outcome_by only applies once something has happened (legislated, funded, delivering or delivered)" });
     p.versions.forEach((v, i) => {
       if (v.version !== i + 1) ctx.addIssue({ code: "custom", path: ["versions", i, "version"], message: "versions must be numbered 1, 2, 3… in order" });
     });
@@ -133,6 +141,8 @@ export interface CardView {
   file: PromiseFile;
   actor: ActorFile;
   party: ActorFile | null;
+  /** Set when someone other than the actor brought about the current status. */
+  outcomeBy: ActorFile | null;
   current: PromiseVersion;
   /** Role of the actor on the day the promise was made, if known. */
   role: string | null;
@@ -146,7 +156,8 @@ export function cardViews(promises: PromiseFile[], actors: ActorFile[]): CardVie
       const party = actor.kind === "party" ? actor : actor.party_id ? (byId.get(actor.party_id) ?? null) : null;
       const role =
         actor.roles.find((r) => (!r.from || r.from <= file.made_on) && (!r.to || r.to >= file.made_on))?.title ?? actor.roles[0]?.title ?? null;
-      return { id: file.id, file, actor, party, current: file.versions[file.versions.length - 1]!, role };
+      const outcomeBy = file.outcome_by ? (byId.get(file.outcome_by.actor_id) ?? null) : null;
+      return { id: file.id, file, actor, party, outcomeBy, current: file.versions[file.versions.length - 1]!, role };
     })
     .sort((a, b) => b.file.made_on.localeCompare(a.file.made_on) || a.id.localeCompare(b.id));
 }

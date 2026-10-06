@@ -165,6 +165,8 @@ export function parseSeed(raw: RawSeed = rawSeed()): { seed: Seed | null; issues
     if (r.error) issues.push(...zodIssues(f.path, r.error));
     else if (r.data.id !== fileName(f.path)) issues.push({ level: "error", where: f.path, message: `id "${r.data.id}" does not match the file name` });
     else if (!actorIds.has(r.data.actor_id)) issues.push({ level: "error", where: f.path, message: `unknown actor_id "${r.data.actor_id}"` });
+    else if (r.data.outcome_by && !actorIds.has(r.data.outcome_by.actor_id))
+      issues.push({ level: "error", where: f.path, message: `unknown outcome_by actor "${r.data.outcome_by.actor_id}"` });
     else promises.push(r.data);
   }
   if (!bundle.success || !presets.success || issues.some((i) => i.level === "error")) {
