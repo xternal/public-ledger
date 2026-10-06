@@ -5,6 +5,8 @@ import { signedBn } from "@/lib/format";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PromiseList } from "@/components/PromiseList";
 import { CREDIT_COLUMNS, MixBar, creditRows } from "@/components/CreditTable";
+import { FollowButton } from "@/components/FollowPanel";
+import { followOptions } from "@/app/follow/targets";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -52,6 +54,9 @@ export default async function ActorPage({ params }: Props) {
             {actor.kind === "party" ? "Party" : actor.roles.map((ro) => ro.title).join(", ") || "Person"}
             {party ? `, ${party.name}` : ""}
           </p>
+          <div className="mt-2">
+            <FollowButton label={`Follow ${actor.name}`} trackKind="actor" target={{ kind: "actor", id: actor.id }} options={followOptions()} />
+          </div>
         </div>
 
         <section aria-labelledby="record-h" className="grid gap-4">

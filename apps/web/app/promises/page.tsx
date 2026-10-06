@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { getSeed } from "@/lib/data";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PromiseIndex } from "@/components/PromiseIndex";
+import { FollowButton } from "@/components/FollowPanel";
+import { AREA_LABEL } from "@/lib/promises";
+import { followOptions } from "@/app/follow/targets";
 
 export const metadata: Metadata = {
   title: "Promise ledger | Public Ledger",
@@ -20,6 +23,12 @@ export default function PromisesPage() {
             Every card follows one published standard, the same for every party: the promise in the speaker&apos;s own words, its cost and who pays,
             and a timeline that ends in delivery or in silence.
           </p>
+          <FollowButton
+            label="Follow a policy area or everything"
+            trackKind="area"
+            areas={Object.entries(AREA_LABEL).map(([id, label]) => ({ id, label }))}
+            options={followOptions()}
+          />
         </div>
         <PromiseIndex cards={seed.cards} />
       </main>

@@ -1,0 +1,101 @@
+name: Alerts
+
+# Follow alerts (PRD F7, docs/OPERATIONS.md §8):
+# - every push to main that changes content/ → detect changes, send instant alerts,
+#   queue weekly digests, tell submitters their submission is now a card;
+# - the weekly digest and daily maintenance on a schedule.
+# Without the DATABASE_URL secret the job prints "Alerts not configured: skipping" and succeeds.
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/**"]
+  schedule:
+    # Weekly digest: Mondays 07:00 UTC = 08:00 BST (07:00 GMT once the clocks go back on 2026-10-25).
+    - cron: "0 7 * * 1"
+    # Daily maintenance: 03:30 UTC = 04:30 BST (03:30 GMT after 2026-10-25).
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+    inputs:
+      task:
+        description: What to run
+        type: choice
+        options: [diff, digest, maintain]
+        default: diff
+      before:
+        description: "diff: the commit before the change (empty = the parent of 'after')"
+        required: false
+      after:
+        description: "diff: the commit after the change (empty = the tip of main)"
+        required: false
+      dry_run:
+        description: Print what would happen without sending anything
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+# One alerts run at a time, never cancelled half-way, so two quick pushes cannot race.
+concurrency:
+  group: alerts
+  cancel-in-progress: false
+
+jobs:
+  alerts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      LEDGER_ENV: production
+      MAIL_PROVIDER: ses
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      LEDGER_ENCRYPTION_KEY: ${{ secrets.LEDGER_ENCRYPTION_KEY }}
+      LEDGER_LOOKUP_PEPPER: ${{ secrets.LEDGER_LOOKUP_PEPPER }}
+      ALTCHA_HMAC_KEY: ${{ secrets.ALTCHA_HMAC_KEY }}
+      MAIL_FROM: ${{ secrets.MAIL_FROM }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_BOT_USERNAME: ${{ secrets.TELEGRAM_BOT_USERNAME }}
+      SITE_URL: ${{ secrets.SITE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      # Node 22's bundled Corepack cannot run pnpm 12; use the version that works locally.
+      - run: npm install -g corepack@0.34.5 && corepack enable pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Detect changes and send instant alerts
+        if: github.event_name == 'push'
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.event.after }}
+        run: pnpm alerts -- diff --before "$BEFORE" --after "$AFTER"
+
+      - name: Weekly digest
+        if: github.event_name == 'schedule' && github.event.schedule == '0 7 * * 1'
+        run: pnpm alerts -- digest
+
+      - name: Daily maintenance
+        if: github.event_name == 'schedule' && github.event.schedule == '30 3 * * *'
+        run: pnpm alerts -- maintain
+
+      - name: Manual run
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          TASK: ${{ inputs.task }}
+          BEFORE: ${{ inputs.before }}
+          AFTER: ${{ inputs.after }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -- "$TASK"
+          if [ "$TASK" = "diff" ]; then
+            set -- "$@" --after "${AFTER:-HEAD}"
+            if [ -n "$BEFORE" ]; then set -- "$@" --before "$BEFORE"; fi
+          fi
+          if [ "$DRY_RUN" = "true" ]; then set -- "$@" --dry-run; fi
+          pnpm alerts -- "$@"

@@ -1,2 +1,51 @@
-// Filled in by the M3b follow work.
-export {};
+// Follow (M3b): email double opt-in, manage links, Telegram bot, follower counts.
+export { CONSENT_POINTS, CONSENT_TEXT, CONSENT_VERSION } from "./consent";
+export {
+  CADENCES,
+  TARGET_KINDS,
+  feedPath,
+  isCadence,
+  isTargetKind,
+  parseTarget,
+  parseTelegramPayload,
+  plainDescribe,
+  sameTarget,
+  telegramPayload,
+  type Cadence,
+  type DescribeTarget,
+  type KnownTarget,
+  type Target,
+  type TargetKind,
+} from "./targets";
+export { isEmail, isTokenShape, parseFollowRequest, type FollowRequest, type ParseResult } from "./input";
+export {
+  ADDRESS_DAILY_LIMIT,
+  CONFIRM_TTL_DAYS,
+  confirmEmailFollow,
+  confirmTokenState,
+  confirmUrl,
+  deleteByManageToken,
+  followerCount,
+  freshLinks,
+  mailFooter,
+  manageUrl,
+  manageView,
+  maskEmail,
+  pendingTargets,
+  pruneUnconfirmed,
+  removeTarget,
+  requestEmailFollow,
+  rotateManageToken,
+  setCadence,
+  telegramFollow,
+  telegramStop,
+  telegramTargets,
+  telegramUnfollow,
+  unsubscribeUrl,
+  type ConfirmResult,
+  type ConfirmTokenState,
+  type FollowContext,
+  type ManageView,
+  type RemoveResult,
+} from "./service";
+export { handleTelegramUpdate, parseUpdate, telegramBotApi, webhookAuth, type BotApi, type BotCall, type BotContext, type BotInput, type InlineButton } from "./telegram";

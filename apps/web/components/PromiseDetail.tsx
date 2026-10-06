@@ -7,6 +7,7 @@ import { EVENT_LABEL, STATUS_LABEL } from "@/lib/copy";
 import { fixed, gbp, gbpBn, longDate, monthYear, perHousehold, rangeText, shareOf } from "@/lib/format";
 import { AREA_LABEL, costSense, todayIso, whoLine } from "@/lib/promises";
 import { track } from "@/lib/analytics";
+import { FollowPanel } from "./FollowPanel";
 import { StatusPill } from "./PromiseList";
 import { QualityBadge, WithProvenance } from "./ui";
 
@@ -207,19 +208,7 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
         </a>
       </div>
 
-      {followOpen && (
-        <div id={`follow-${f.id}`} className="grid gap-2.5 rounded-control bg-sunk p-3.5">
-          <p className="m-0 text-label text-muted">Get an alert when the status changes or the deadline passes. No account needed.</p>
-          <div className="flex flex-wrap gap-1.5">
-            {["RSS feed", "Email alerts", "Telegram bot"].map((c) => (
-              <button key={c} type="button" disabled className="cursor-not-allowed rounded-full border border-line-strong bg-bg px-2.5 py-1 text-label font-medium text-muted">
-                {c}
-              </button>
-            ))}
-          </div>
-          <p className="m-0 text-caption text-muted">Coming soon: alerts are not wired up yet. We never show who follows what.</p>
-        </div>
-      )}
+      {followOpen && <FollowPanel id={`follow-${f.id}`} target={{ kind: "promise", id: f.id }} />}
 
       {f.versions.length > 1 && (
         <section aria-labelledby={`versions-${f.id}`} className="grid gap-2">

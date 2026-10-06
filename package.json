@@ -12,7 +12,8 @@
     "typecheck": "pnpm -r typecheck",
     "validate": "tsx scripts/validate.ts",
     "journeys": "python3 scripts/journeys/build.py docs/CUSTOMER_JOURNEYS.md out/journey-maps.html",
-    "deadlines": "tsx scripts/deadlines.ts"
+    "deadlines": "tsx scripts/deadlines.ts",
+    "alerts": "tsx scripts/alerts.ts"
   },
   "devDependencies": {
     "@ledger/engine": "workspace:*",
