@@ -91,7 +91,7 @@ export function KpiStrip() {
             <dt className="text-label text-muted">{k.label}</dt>
             <dd className="m-0">
               <WithProvenance p={k.p}>
-                <span className={`whitespace-nowrap text-[clamp(22px,2.2vw,var(--text-figure))] font-semibold leading-[1.1] tracking-[var(--tracking-figure)] ${k.debt ? "text-debt" : ""}`}>
+                <span className={`whitespace-nowrap text-[clamp(22px,2.2vw,var(--text-figure))] font-semibold leading-[1.1] tracking-[var(--tracking-figure)] ${k.debt ? "text-debt-ink" : ""}`}>
                   {k.value}
                 </span>
               </WithProvenance>

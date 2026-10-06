@@ -17,6 +17,7 @@
   --color-spend-soft: var(--spend-soft);
   --color-debt: var(--debt);
   --color-debt-soft: var(--debt-soft);
+  --color-debt-ink: var(--debt-ink);
   --color-good: var(--good);
   --color-warn: var(--warn);
   --color-bad: var(--bad);
@@ -67,8 +68,11 @@
     text-wrap: balance;
     letter-spacing: -0.015em;
   }
+  /* Links are underlined as well as coloured, so colour is never the only signal (WCAG 1.4.1). */
   a {
     color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: from-font;
     text-underline-offset: 2px;
   }
   :focus-visible {
@@ -259,7 +263,7 @@
   .sankey .up { fill: var(--bad); }
   .sankey .down { fill: var(--good); }
   .sankey .flow { transition: opacity 0.15s ease; }
-  .sankey .node { cursor: default; outline: none; }
+  .sankey .node { cursor: pointer; outline: none; }
   .sankey .node:focus-visible rect { outline: 2px solid var(--focus); outline-offset: 3px; }
 
   .fan text {

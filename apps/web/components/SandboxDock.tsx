@@ -50,7 +50,7 @@ export function SandboxDock() {
             <span className="text-caption text-muted">range {rangeText(d, signedBn)}</span>
           </>
         ) : (
-          <span className="text-[20px] font-semibold tracking-[-0.02em] text-faint">No change</span>
+          <span className="text-[20px] font-semibold tracking-[-0.02em] text-muted">No change</span>
         )}
       </div>
 

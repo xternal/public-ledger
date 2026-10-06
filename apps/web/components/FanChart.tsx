@@ -69,7 +69,7 @@ export function FanChart() {
         <path d={geo.baseline} style={{ fill: "none", stroke: "var(--muted)", strokeWidth: 1.5, strokeDasharray: "4 3" }} />
         <path d={geo.central} style={{ fill: "none", stroke: "var(--debt)", strokeWidth: 2.2, strokeLinejoin: "round" }} />
         <circle cx={endX} cy={geo.y(lastC.pct_gdp)} r={FAN.dotRadius} style={{ fill: "var(--debt)" }} />
-        <text x={endX + 8} y={geo.y(lastC.pct_gdp) + (same ? 4 : above ? -2 : 10)} style={{ fill: "var(--debt)", fontWeight: 600, fontSize: 12 }}>
+        <text x={endX + 8} y={geo.y(lastC.pct_gdp) + (same ? 4 : above ? -2 : 10)} style={{ fill: "var(--debt-ink)", fontWeight: 600, fontSize: 12 }}>
           {fixed(lastC.pct_gdp, 1)}%
         </text>
         {!same && (

@@ -68,7 +68,19 @@ export const isWorse = (f: FlowLine, delta: number) => (f.side === "income" ? f.
 type N = FlowLine & { kind: "line" | "purse" };
 type L = { debt: boolean; inbound: boolean };
 
-export function Sankey({ active, onActive }: { active: string | null; onActive: (id: string | null) => void }) {
+export function Sankey({
+  active,
+  pinned,
+  onActive,
+  onPin,
+}: {
+  active: string | null;
+  pinned: string | null;
+  /** Hover or focus: show a line in the inspector while the pointer or focus is on it. */
+  onActive: (id: string | null) => void;
+  /** Click or Enter: keep a line in the inspector; Escape clears it. */
+  onPin: (id: string | null) => void;
+}) {
   const { unit, view } = useScenario();
   const { income, spending, total } = useFlowLines();
   const hatchId = `hatch-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
@@ -161,7 +173,16 @@ export function Sankey({ active, onActive }: { active: string | null; onActive: 
             className="node"
             tabIndex={0}
             role="button"
-            aria-label={`${n.label}: ${inUnit(n.v, unit, ctx)}${showDelta ? `, change ${deltaInUnit(delta, unit, ctx)}` : ""}`}
+            aria-pressed={pinned === n.id}
+            aria-label={`${n.label}: ${inUnit(n.v, unit, ctx)}${showDelta ? `, change ${deltaInUnit(delta, unit, ctx)}` : ""}. Press to keep its source on screen.`}
+            onClick={() => onPin(pinned === n.id ? null : n.id)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onPin(pinned === n.id ? null : n.id);
+              }
+              if (e.key === "Escape") onPin(null);
+            }}
             onMouseEnter={() => onActive(n.id)}
             onFocus={() => {
               onActive(n.id);
@@ -265,7 +286,7 @@ export function LineInspector({ active }: { active: string | null }) {
           </span>
         </div>
       ) : (
-        <span>Hover or tab to any line to see what it covers and where the number comes from.</span>
+        <span>Hover, tab to or press any line to see what it covers and where the number comes from.</span>
       )}
     </div>
   );

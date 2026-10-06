@@ -26,7 +26,8 @@ export type AnalyticsEvent =
   | { name: "preset_applied"; props: { preset_id: string } }
   | { name: "promise_card_viewed"; props: { promise_id: string; status: string } }
   | { name: "run_in_sandbox_clicked"; props: { promise_id: string } }
-  | { name: "follow_panel_opened"; props: { target_kind: "promise" | "actor" | "area" } };
+  | { name: "follow_panel_opened"; props: { target_kind: "promise" | "actor" | "area" } }
+  | { name: "scenario_shared"; props: { method: "copy" } };
 
 type Sink = (event: AnalyticsEvent) => void;
 

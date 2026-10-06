@@ -62,7 +62,7 @@ export function MeasureToggle({ lever }: { lever: Lever }) {
             </svg>
           </div>
           {on && fundingOption?.quality && (
-            <span className="text-caption text-faint">
+            <span className="text-caption text-muted">
               <WithProvenance p={{ quality: fundingOption.quality, source_id: fundingOption.source_id, method_note: fundingOption.method_note }}>
                 <QualityBadge quality={fundingOption.quality} />
               </WithProvenance>
@@ -70,7 +70,7 @@ export function MeasureToggle({ lever }: { lever: Lever }) {
           )}
         </div>
       )}
-      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-caption text-faint">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-caption text-muted">
         <span>{CONTROLLED_BY_LABEL[lever.controlled_by]}</span>
         <WithProvenance p={lever} align="end">
           <QualityBadge quality={qualityKey(lever)} />

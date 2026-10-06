@@ -59,12 +59,12 @@ export function CreditTable({ promises }: { promises: PromiseCard[] }) {
                 <td className="py-2.5 pr-4">{r.name}</td>
                 <td className="py-2.5 pr-4 text-right">{r.cards.length}</td>
                 {r.counts.map((n, i) => (
-                  <td key={i} className={`py-2.5 pr-4 text-right ${n ? "" : "text-faint"}`}>
+                  <td key={i} className={`py-2.5 pr-4 text-right ${n ? "" : "text-muted"}`}>
                     {n}
                   </td>
                 ))}
                 <td className="py-2.5 pr-4 text-right">
-                  {r.costed ? gbpBn(r.pledged) : <span className="text-faint">not costed</span>}
+                  {r.costed ? gbpBn(r.pledged) : <span className="text-muted">not costed</span>}
                 </td>
                 <td className="py-2.5">
                   <div className="flex h-2 min-w-[140px] gap-0.5 overflow-hidden rounded-full bg-sunk" aria-hidden>

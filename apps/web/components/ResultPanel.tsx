@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import type { Range } from "@ledger/schema";
 import { mortgageDelta, type Change } from "@ledger/engine";
 import { direction, fixed, gbp, gbpBn, millions, rangeText, signed, signedBn } from "@/lib/format";
 import { useScenario } from "@/lib/scenario";
+import { track } from "@/lib/analytics";
 import { FanChart } from "./FanChart";
-import { leverDeltaText } from "./LeverSlider";
+import { changeLabel } from "@/lib/levers";
 import { QualityBadge, RangeStrip, WithProvenance } from "./ui";
 
 const RANGE_HEADROOM = 1.15;
@@ -43,15 +45,55 @@ function Tile({
 
 function useChangeLabel() {
   const { model } = useScenario();
-  return (c: Change) => {
-    const lever = model.leverById.get(c.lever_id)!;
-    if (c.kind === "measure") return lever.label;
-    if (c.kind === "funding") {
-      const option = lever.funding_options?.find((f) => f.id === c.funding_id);
-      return `Paid for by: ${option?.label.replace(/ \(.*\)$/, "") ?? ""}`;
+  return (c: Change) => changeLabel(model, c);
+}
+
+function ShareActions() {
+  const { code } = useScenario();
+  const [copied, setCopied] = useState(false);
+  if (!code) return null;
+  const href = `/s/${code}`;
+  const copy = async () => {
+    const url = new URL(href, window.location.href).href;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      track("scenario_shared", { method: "copy" });
+      setTimeout(() => setCopied(false), COPIED_MS);
+    } catch {
+      window.prompt("Copy this link", url);
     }
-    return `${lever.label} ${leverDeltaText(lever, c.delta ?? 0)}`;
   };
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <button
+        type="button"
+        onClick={copy}
+        className="cursor-pointer rounded-full bg-ink px-3 py-1 text-label font-semibold text-bg hover:opacity-90"
+        aria-live="polite"
+      >
+        {copied ? "Link copied" : "Copy link"}
+      </button>
+      <a href={href} className="rounded-full border border-line-strong px-3 py-1 text-label font-medium text-muted no-underline hover:border-ink hover:text-ink">
+        Share page
+      </a>
+    </div>
+  );
+}
+
+const COPIED_MS = 2000;
+
+function LinkNotice() {
+  const { linkNotice, dismissLinkNotice } = useScenario();
+  if (!linkNotice) return null;
+  return (
+    <div role="status" className="flex flex-wrap items-start justify-between gap-3 rounded-control bg-sunk px-4 py-3 text-label text-muted">
+      <span>{linkNotice}</span>
+      <button type="button" onClick={dismissLinkNotice} className="cursor-pointer font-medium text-ink underline underline-offset-2">
+        Dismiss
+      </button>
+    </div>
+  );
 }
 
 export function ResultPanel() {
@@ -89,20 +131,24 @@ export function ResultPanel() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <div className="text-label text-muted">Your scenario against today, year one</div>
-          <h2 className="mt-1 text-title font-semibold" aria-live="polite">
+          <h2 className="mt-1 text-title font-semibold">
             {heading}
           </h2>
         </div>
         {any && (
-          <button
-            type="button"
-            onClick={() => applyPreset(null)}
-            className="cursor-pointer rounded-full border border-line-strong px-3 py-1 text-label font-medium text-muted hover:border-ink hover:text-ink"
-          >
-            Reset all levers
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <ShareActions />
+            <button
+              type="button"
+              onClick={() => applyPreset(null)}
+              className="cursor-pointer rounded-full border border-line-strong px-3 py-1 text-label font-medium text-muted hover:border-ink hover:text-ink"
+            >
+              Reset all levers
+            </button>
+          </div>
         )}
       </div>
+      <LinkNotice />
 
       <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
         <Tile
