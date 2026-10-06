@@ -114,7 +114,7 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
             <dd className="m-0 text-[12.5px] text-muted">range {rangeText(cost, gbpBn)}</dd>
           </div>
           <div className="grid content-start gap-0.5">
-            <dt className="text-label text-muted">{sense?.raises ? "Raised per household" : "Per household"}</dt>
+            <dt className="text-label text-muted">{sense?.raises ? "Per household, on average" : "Per household"}</dt>
             <dd className="m-0 text-[24px] font-semibold tracking-[var(--tracking-figure)]">{gbp(perHousehold(cost[1], householdsM))}</dd>
             <dd className="m-0 flex flex-wrap items-center gap-2 text-[12.5px] text-muted">
               range {rangeText(cost, (x) => gbp(perHousehold(x, householdsM)))}

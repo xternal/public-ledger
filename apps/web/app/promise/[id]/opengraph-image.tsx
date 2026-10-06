@@ -64,7 +64,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
       {cost ? (
         <div style={{ display: "flex", gap: 36, marginTop: "auto", paddingTop: 24, borderTop: `2px solid ${OG.line}` }}>
           {stat(sense?.raises ? "Raises a year" : "Costs a year", gbpBn(cost[1]), `range ${rangeText(cost, gbpBn)}`)}
-          {stat(sense?.raises ? "Raised per household" : "Per household", hh(cost[1]), `range ${rangeText(cost, hh)}`)}
+          {stat(sense?.raises ? "Per household, on average" : "Per household", hh(cost[1]), `range ${rangeText(cost, hh)}`)}
           {stat("Share of spending", `${fixed(shareOf(cost[1], spending), 2)}%`, `of ${gbpBn(spending)}`)}
         </div>
       ) : (
