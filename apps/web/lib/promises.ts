@@ -1,4 +1,4 @@
-import type { CardView, PolicyArea, Status } from "@ledger/schema";
+import type { CardView, PolicyArea, Range, Status } from "@ledger/schema";
 import { gbpBn, rangeText } from "./format";
 
 /** Shared, server-safe helpers for promise cards. */
@@ -8,10 +8,24 @@ export const TERMINAL: Status[] = ["delivered", "failed", "quietly_dropped", "un
 export const isOverdue = (c: CardView, today: string | null) =>
   !!today && !!c.file.deadline && c.file.deadline < today && !TERMINAL.includes(c.file.status);
 
+/**
+ * Cards store cost to the public purse: positive costs money, negative raises
+ * it (a wealth tax). Readers see "Costs £0.5bn" or "Raises £15bn", never a
+ * negative cost.
+ */
+export function costSense(r: Range): { raises: boolean; abs: Range } {
+  const raises = r[1] < 0;
+  const abs = r.map(Math.abs).sort((a, b) => a - b) as Range;
+  return { raises, abs: [abs[0], Math.abs(r[1]), abs[2]] };
+}
+
 export function costText(c: CardView): string {
   const p = c.current.parameters;
   const r = p?.how_much_bn_per_year;
-  if (r) return `${rangeText(r, gbpBn)} a year`;
+  if (r) {
+    const { raises, abs } = costSense(r);
+    return `${raises ? "Raises" : "Costs"} ${rangeText(abs, gbpBn)} a year`;
+  }
   if (p === null) return "Not costable";
   return "Cost not stated";
 }

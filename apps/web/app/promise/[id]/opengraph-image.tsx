@@ -3,7 +3,7 @@ import { getSeed } from "@/lib/data";
 import { OG, ogFonts } from "@/lib/og";
 import { STATUS_LABEL } from "@/lib/copy";
 import { fixed, gbp, gbpBn, longDate, perHousehold, rangeText, shareOf } from "@/lib/format";
-import { whoLine } from "@/lib/promises";
+import { costSense, whoLine } from "@/lib/promises";
 
 export const alt = "A Public Ledger promise card: the quote, its status, cost, per household and who pays";
 export const size = OG.size;
@@ -32,7 +32,8 @@ export default async function Image({ params }: { params: Promise<{ id: string }
   const card = seed.cards.find((c) => c.id === id)!;
   const fonts = await ogFonts();
   const p = card.current.parameters;
-  const cost = p?.how_much_bn_per_year ?? null;
+  const sense = p?.how_much_bn_per_year ? costSense(p.how_much_bn_per_year) : null;
+  const cost = sense?.abs ?? null;
   const spending = seed.statement.spending.reduce((a, l) => a + l.bn, 0);
   const hh = (x: number) => gbp(perHousehold(x, seed.statement.macro.households_m));
   const quote = card.current.text.length > MAX_QUOTE_CHARS ? `${card.current.text.slice(0, MAX_QUOTE_CHARS - 1).trimEnd()}…` : card.current.text;
@@ -62,8 +63,8 @@ export default async function Image({ params }: { params: Promise<{ id: string }
       <div style={{ display: "flex", fontSize: 46, fontWeight: 600, letterSpacing: -1.4, lineHeight: 1.15, marginTop: 10 }}>{`“${quote}”`}</div>
       {cost ? (
         <div style={{ display: "flex", gap: 36, marginTop: "auto", paddingTop: 24, borderTop: `2px solid ${OG.line}` }}>
-          {stat("A year", gbpBn(cost[1]), `range ${rangeText(cost, gbpBn)}`)}
-          {stat("Per household", hh(cost[1]), `range ${rangeText(cost, hh)}`)}
+          {stat(sense?.raises ? "Raises a year" : "Costs a year", gbpBn(cost[1]), `range ${rangeText(cost, gbpBn)}`)}
+          {stat(sense?.raises ? "Raised per household" : "Per household", hh(cost[1]), `range ${rangeText(cost, hh)}`)}
           {stat("Share of spending", `${fixed(shareOf(cost[1], spending), 2)}%`, `of ${gbpBn(spending)}`)}
         </div>
       ) : (

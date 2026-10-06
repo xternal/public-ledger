@@ -5,7 +5,7 @@ import type { CardView, Provenance } from "@ledger/schema";
 import { LADDER } from "@ledger/schema";
 import { EVENT_LABEL, STATUS_LABEL } from "@/lib/copy";
 import { fixed, gbp, gbpBn, longDate, monthYear, perHousehold, rangeText, shareOf } from "@/lib/format";
-import { AREA_LABEL, todayIso, whoLine } from "@/lib/promises";
+import { AREA_LABEL, costSense, todayIso, whoLine } from "@/lib/promises";
 import { track } from "@/lib/analytics";
 import { StatusPill } from "./PromiseList";
 import { QualityBadge, WithProvenance } from "./ui";
@@ -74,7 +74,9 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
   const [followOpen, setFollowOpen] = useState(false);
   const f = card.file;
   const p = card.current.parameters;
-  const cost = p?.how_much_bn_per_year ?? null;
+  const raw = p?.how_much_bn_per_year ?? null;
+  const sense = raw ? costSense(raw) : null;
+  const cost = sense?.abs ?? null;
   const events = [
     ...f.events.map((e) => ({ ...e, today: false })),
     ...(today ? [{ date: today, text: "We are here", type: "deadline" as const, today: true, evidence_url: undefined }] : []),
@@ -107,12 +109,12 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
       {cost && (
         <dl className="m-0 grid grid-cols-1 gap-5 border-y border-line py-4 sm:grid-cols-3">
           <div className="grid content-start gap-0.5">
-            <dt className="text-label text-muted">Per year</dt>
+            <dt className="text-label text-muted">{sense?.raises ? "Raises a year" : "Costs a year"}</dt>
             <dd className="m-0 text-[24px] font-semibold tracking-[var(--tracking-figure)]">{gbpBn(cost[1])}</dd>
             <dd className="m-0 text-[12.5px] text-muted">range {rangeText(cost, gbpBn)}</dd>
           </div>
           <div className="grid content-start gap-0.5">
-            <dt className="text-label text-muted">Per household</dt>
+            <dt className="text-label text-muted">{sense?.raises ? "Raised per household" : "Per household"}</dt>
             <dd className="m-0 text-[24px] font-semibold tracking-[var(--tracking-figure)]">{gbp(perHousehold(cost[1], householdsM))}</dd>
             <dd className="m-0 flex flex-wrap items-center gap-2 text-[12.5px] text-muted">
               range {rangeText(cost, (x) => gbp(perHousehold(x, householdsM)))}

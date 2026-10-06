@@ -109,6 +109,15 @@ export const PromiseFile = z
       ctx.addIssue({ code: "custom", path: ["versions"], message: "parameters are required unless the card is unscoreable" });
     if (current.parameters !== null && p.status === "unscoreable")
       ctx.addIssue({ code: "custom", path: ["status"], message: "an unscoreable card has no parameters" });
+    p.versions.forEach((v, i) => {
+      const r = v.parameters?.how_much_bn_per_year;
+      if (r && r[0] === r[2])
+        ctx.addIssue({
+          code: "custom",
+          path: ["versions", i, "parameters", "how_much_bn_per_year"],
+          message: "a cost needs a low–high range (invariant 2); if the source gives a central figure only, use the editorial ±10% and say so in cost_note",
+        });
+    });
     p.events.forEach((e, i) => {
       if (EVIDENCE_REQUIRED.includes(e.type) && !e.evidence_url)
         ctx.addIssue({ code: "custom", path: ["events", i, "evidence_url"], message: `a "${e.type}" event needs an evidence_url` });

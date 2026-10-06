@@ -1,5 +1,5 @@
 import type { CardView, Status } from "@ledger/schema";
-import { gbpBn } from "@/lib/format";
+import { signedBn } from "@/lib/format";
 
 /**
  * Track record computed only from cards (review B4). No composite score in
@@ -70,7 +70,7 @@ export function CreditTable({ cards, by, caption }: { cards: CardView[]; by: "pa
                 {c.label}
               </th>
             ))}
-            <th className="py-2.5 pr-4 text-right font-medium">Costed, a year</th>
+            <th className="py-2.5 pr-4 text-right font-medium">Net cost of costed cards, a year</th>
             <th className="py-2.5 pr-4 text-right font-medium">Funding named</th>
             <th className="py-2.5 text-left font-medium">Mix</th>
           </tr>
@@ -87,7 +87,7 @@ export function CreditTable({ cards, by, caption }: { cards: CardView[]; by: "pa
                   {n}
                 </td>
               ))}
-              <td className="py-2.5 pr-4 text-right">{r.costed ? gbpBn(r.pledgedBn) : <span className="text-muted">not costed</span>}</td>
+              <td className="py-2.5 pr-4 text-right">{r.costed ? signedBn(r.pledgedBn) : <span className="text-muted">not costed</span>}</td>
               <td className="py-2.5 pr-4 text-right">
                 {r.fundingNamed} of {r.cards.length}
               </td>

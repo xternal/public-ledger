@@ -115,6 +115,13 @@ describe("validation rejects", () => {
     expect(errorsOf(raw).some((e) => e.message.includes("numbered"))).toBe(true);
   });
 
+  it("a cost given as a single point", () => {
+    const raw = clone();
+    const card = bus(raw);
+    card.versions[card.versions.length - 1].parameters.how_much_bn_per_year = [0.5, 0.5, 0.5];
+    expect(errorsOf(raw).some((e) => e.message.includes("low–high range"))).toBe(true);
+  });
+
   it("a card without sources", () => {
     const raw = clone();
     bus(raw).sources = [];

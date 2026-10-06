@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getSeed } from "@/lib/data";
-import { gbpBn } from "@/lib/format";
+import { signedBn } from "@/lib/format";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PromiseList } from "@/components/PromiseList";
 import { CREDIT_COLUMNS, MixBar, creditRows } from "@/components/CreditTable";
@@ -64,8 +64,8 @@ export default async function ActorPage({ params }: Props) {
               <dd className="m-0 text-[26px] font-semibold tracking-[var(--tracking-figure)]">{cards.length}</dd>
             </div>
             <div className="grid gap-0.5">
-              <dt className="text-label text-muted">Costed, a year</dt>
-              <dd className="m-0 text-[26px] font-semibold tracking-[var(--tracking-figure)]">{row.costed ? gbpBn(row.pledgedBn) : "none"}</dd>
+              <dt className="text-label text-muted">Net cost of costed cards, a year</dt>
+              <dd className="m-0 text-[26px] font-semibold tracking-[var(--tracking-figure)]">{row.costed ? signedBn(row.pledgedBn) : "none"}</dd>
               <dd className="m-0 text-[12.5px] text-muted">
                 {row.costed} of {cards.length} cards costed
               </dd>

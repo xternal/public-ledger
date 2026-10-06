@@ -36,18 +36,22 @@ function readFilters(): Filters {
 export function PromiseIndex({ cards }: { cards: CardView[] }) {
   const [f, setF] = useState<Filters>(EMPTY);
   const [today, setToday] = useState<string | null>(null);
+  // Filters come from the URL once; only after that does the URL follow the filters.
+  const [ready, setReady] = useState(false);
   useEffect(() => {
     setToday(todayIso());
     setF(readFilters());
+    setReady(true);
   }, []);
   useEffect(() => {
+    if (!ready) return;
     const url = new URL(window.location.href);
     for (const [k, v] of Object.entries(f)) {
       if (v === EMPTY[k as keyof Filters] || v === false || v === "") url.searchParams.delete(k);
       else url.searchParams.set(k, v === true ? "1" : String(v));
     }
     if (url.href !== window.location.href) window.history.replaceState(null, "", url);
-  }, [f]);
+  }, [f, ready]);
 
   const parties = useMemo(() => uniq(cards.map((c) => c.party ?? c.actor)), [cards]);
   const actors = useMemo(() => uniq(cards.map((c) => c.actor)), [cards]);
