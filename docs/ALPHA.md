@@ -13,13 +13,13 @@ Everything the site stores (submissions, follows later, T1 cache) goes to a Neon
 
 ## Steps (about 15 minutes)
 
-1. **Neon** (neon.tech, sign in with GitHub): create a project in **AWS Europe West 2 (London)**. Copy the **pooled** connection string (its host contains `-pooler`). Tables are created on first use.
-2. **Vercel** (vercel.com, sign in with GitHub): *Add New → Project → Import* `xternal/public-ledger` (allow Vercel's GitHub app to see this private repository). Set **Root Directory** to `apps/web`; leave everything else as detected (the install and build commands come from `apps/web/vercel.json`). Press **Deploy**. This first deploy has no settings yet, so its server features will not work; the next step fixes that. Note the project name (default `public-ledger`) and the domain Vercel shows (default `public-ledger.vercel.app`, or a variant if taken).
+1. **Vercel** (vercel.com, sign in with GitHub): *Add New → Project → Import* `xternal/public-ledger` (allow Vercel's GitHub app to see this private repository). Set **Root Directory** to `apps/web`; leave everything else as detected (the install and build commands come from `apps/web/vercel.json`). Press **Deploy**. This first deploy has no settings yet, so its server features will not work; the next steps fix that. Note the project name (default `public-ledger`) and the domain Vercel shows (default `public-ledger.vercel.app`, or a variant if taken).
+2. **Database (Neon, through Vercel)**: in the project, *Storage → Create Database → Neon*, region **London (AWS eu-west-2)**, free plan; connect it to the project for **Production** (and Preview if you like). Vercel then sets `DATABASE_URL` for you, and tables are created on first use. (A Neon account managed by Vercel can only create projects this way. With a standalone Neon account, create a London project in Neon and copy its pooled connection string instead.)
 3. **Settings and deploy**, in your own terminal, from the repository folder:
    ```bash
    scripts/alpha-setup.sh
    ```
-   It signs you in to Vercel, links the folder to the project, asks for the site address and the Neon connection string (and, optionally, an Anthropic key for submission pre-fill), generates the keys and the editors' password on your machine, stores everything as Vercel environment variables, keeps a copy in `.env.alpha.local` (git-ignored; put it in your password manager), deploys, and prints the URL. If your project is not called `public-ledger`, run `VERCEL_PROJECT=<name> scripts/alpha-setup.sh`.
+   It signs you in to Vercel, links the folder to the project, asks for the site address and the Neon connection string (press Enter if step 2 set it through Vercel; optionally, an Anthropic key for submission pre-fill), generates the keys and the editors' password on your machine, stores everything as Vercel environment variables, keeps a copy in `.env.alpha.local` (git-ignored; put it in your password manager), deploys, and prints the URL. If your project is not called `public-ledger`, run `VERCEL_PROJECT=<name> scripts/alpha-setup.sh`.
 4. **Open the URL.** `/api/health` should answer `{"ok":true}`.
 
 From then on every merge to `main` redeploys the alpha.

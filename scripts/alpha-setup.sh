@@ -27,8 +27,10 @@ $VERCEL link --yes --project "$PROJECT"
 echo "3/5  Settings"
 read -r -p "     Site address [https://$PROJECT.vercel.app]: " SITE_URL
 SITE_URL="${SITE_URL:-https://$PROJECT.vercel.app}"
-read -r -s -p "     Neon connection string (pooled, starts with postgres://; input hidden): " DATABASE_URL; echo
-case "$DATABASE_URL" in postgres://*|postgresql://*) ;; *) echo "     That does not look like a Postgres connection string."; exit 1 ;; esac
+read -r -s -p "     Neon connection string (press Enter if Vercel's Neon integration already set DATABASE_URL; input hidden): " DATABASE_URL; echo
+if [ -n "$DATABASE_URL" ]; then
+  case "$DATABASE_URL" in postgres://*|postgresql://*) ;; *) echo "     That does not look like a Postgres connection string."; exit 1 ;; esac
+fi
 read -r -s -p "     Anthropic API key for submission pre-fill (optional, Enter to skip; input hidden): " ANTHROPIC_API_KEY; echo
 
 if [ -f "$SECRETS" ]; then
@@ -52,15 +54,19 @@ fi
 echo "4/5  Saving settings in Vercel (production)"
 setenv() {
   $VERCEL env rm "$1" production --yes >/dev/null 2>&1 || true
-  printf '%s' "$2" | $VERCEL env add "$1" production >/dev/null
-  echo "     $1"
+  if printf '%s' "$2" | $VERCEL env add "$1" production >/dev/null 2>&1; then
+    echo "     $1"
+  else
+    echo "     $1: Vercel did not accept it. Set it in Vercel (Project → Settings → Environment Variables, Production), then run this again."
+    exit 1
+  fi
 }
 setenv LEDGER_ENV production
 setenv SITE_STAGE alpha
 setenv SITE_URL "$SITE_URL"
 setenv MAIL_PROVIDER off
 setenv GITHUB_REPOSITORY xternal/public-ledger
-setenv DATABASE_URL "$DATABASE_URL"
+if [ -n "$DATABASE_URL" ]; then setenv DATABASE_URL "$DATABASE_URL"; else echo "     DATABASE_URL: kept (set by Vercel's Neon integration)"; fi
 setenv LEDGER_ENCRYPTION_KEY "$LEDGER_ENCRYPTION_KEY"
 setenv LEDGER_LOOKUP_PEPPER "$LEDGER_LOOKUP_PEPPER"
 setenv ALTCHA_HMAC_KEY "$ALTCHA_HMAC_KEY"
