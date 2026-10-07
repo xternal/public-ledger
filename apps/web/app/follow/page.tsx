@@ -16,7 +16,7 @@ export default function FollowPage() {
   const areas = Object.entries(AREA_LABEL).map(([id, label]) => ({ id, label }));
   return (
     <>
-      <SiteHeader />
+      <SiteHeader current="/promises" />
       <main className="mx-auto grid max-w-[720px] gap-8 px-4 pb-20 pt-12 sm:px-6">
         <div className="grid gap-3">
           <h1 className="m-0 text-[clamp(30px,4.4vw,44px)] font-semibold leading-[1.06] tracking-[-0.035em]">Alerts</h1>

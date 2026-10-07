@@ -41,6 +41,11 @@ export function PromiseList({ cards, today, empty }: { cards: CardView[]; today:
               {c.file.deadline && <span>Due {monthYear(c.file.deadline)}</span>}
               {isOverdue(c, today) && <span className="font-medium text-debt-ink">Deadline passed</span>}
               {c.current.parameters?.funded_by === null && <span>Funding not stated</span>}
+              {c.file.reviews.length > 0 && (
+                <span>
+                  <span aria-hidden className="text-good">✓ </span>Reviewed by {c.file.reviews.at(-1)!.by}
+                </span>
+              )}
             </span>
           </a>
         </li>

@@ -34,7 +34,7 @@ export default async function DeleteEmailPage({ searchParams }: Props) {
 
   return (
     <>
-      <SiteHeader />
+      <SiteHeader current="/#contribute" />
       <main className="mx-auto grid max-w-[640px] gap-5 px-4 pb-20 pt-12 sm:px-6">
         {done ? (
           <>

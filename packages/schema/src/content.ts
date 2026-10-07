@@ -134,6 +134,20 @@ function stable(v: unknown): string {
   return JSON.stringify(v ?? null);
 }
 
+/**
+ * A review of the whole card, shown on it. "automated" is Junior Editor, the
+ * automated second check (every quote word for word at its source, dates,
+ * evidence, status, cost, neutral wording, legal risk); "editor" and "legal" are
+ * people. Reviews are append-only: a later review is added, never edited in.
+ */
+export const Review = z.object({
+  by: z.string().min(1),
+  kind: z.enum(["automated", "editor", "legal"]),
+  on: IsoDate,
+  note: z.string().optional(),
+});
+export type Review = z.infer<typeof Review>;
+
 export const PromiseFile = z
   .object({
     id: z.string().regex(/^[a-z0-9-]+$/),
@@ -164,6 +178,7 @@ export const PromiseFile = z
      */
     outcome_by: z.object({ actor_id: z.string(), note: z.string().optional() }).optional(),
     corrections: z.array(Correction).default([]),
+    reviews: z.array(Review).default([]),
   })
   .superRefine((p, ctx) => {
     if (p.outcome_by && !["legislated", "funded", "delivering", "delivered"].includes(p.status))
@@ -248,6 +263,9 @@ export function appendOnlyIssues(before: unknown, after: unknown): string[] {
   const allCorrections = list(a, "corrections");
   oldCorrections.forEach((c, i) => {
     if (stable(c) !== stable(allCorrections[i])) issues.push(`corrections[${i}] was changed or removed; corrections are append-only too`);
+  });
+  list(b, "reviews").forEach((r, i) => {
+    if (stable(r) !== stable(list(a, "reviews")[i])) issues.push(`reviews[${i}] was changed or removed; reviews are append-only (add a new review instead)`);
   });
   const fresh = allCorrections.slice(oldCorrections.length) as { path?: string; was?: unknown }[];
   for (const key of ["versions", "events", "replies"] as const) {

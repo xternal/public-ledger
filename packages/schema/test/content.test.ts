@@ -64,4 +64,13 @@ describe("append-only promise history (invariant 5)", () => {
     tampered.corrections[0]!.reason = "changed";
     expect(appendOnlyIssues(before, tampered)).toEqual(["corrections[0] was changed or removed; corrections are append-only too"]);
   });
+
+  it("keeps reviews append-only: a new review is added, an old one never edited", () => {
+    const review = { by: "Junior Editor", kind: "automated", on: "2026-10-06" };
+    const before = { ...card(), reviews: [review] };
+    const added = { ...card(), reviews: [review, { by: "A. Editor", kind: "editor", on: "2026-10-20" }] };
+    expect(appendOnlyIssues(before, added)).toEqual([]);
+    const edited = { ...card(), reviews: [{ ...review, on: "2026-10-07" }] };
+    expect(appendOnlyIssues(before, edited)).toEqual(["reviews[0] was changed or removed; reviews are append-only (add a new review instead)"]);
+  });
 });

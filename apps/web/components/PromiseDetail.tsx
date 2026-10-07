@@ -8,6 +8,7 @@ import { fixed, gbp, gbpBn, longDate, monthYear, perHousehold, rangeText, shareO
 import { AREA_LABEL, costSense, todayIso, whoLine } from "@/lib/promises";
 import { track } from "@/lib/analytics";
 import { correctionTarget, correctionValue } from "@/lib/corrections";
+import { JUNIOR_EDITOR_NOTE, latestReview, reviewerLabel } from "@/lib/reviews";
 import { FollowPanel } from "./FollowPanel";
 import { StatusPill } from "./PromiseList";
 import { QualityBadge, WithProvenance } from "./ui";
@@ -106,7 +107,7 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
             {f.venue_label ? `${f.venue_label}, ` : ""}
             {longDate(f.made_on)}
           </span>
-          {f.editor_check_required && <span>Needs editor check</span>}
+          {f.editor_check_required && <span>{f.reviews.some((r) => r.kind === "automated") ? "Checked by Junior Editor; human editor review to come" : "Needs editor check"}</span>}
           {!card.current.quote_checked_on && <span>Quote not yet checked against the source</span>}
         </span>
       </header>
@@ -279,6 +280,16 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
       )}
 
       <div className="grid gap-2.5 text-label">
+        {(() => {
+          const r = latestReview(f);
+          return r ? (
+            <p className="m-0 text-muted" title={r.kind === "automated" ? JUNIOR_EDITOR_NOTE : undefined}>
+              <span aria-hidden className="text-good">✓ </span>
+              Reviewed by <b className="font-semibold text-ink">{reviewerLabel(r)}</b> on {longDate(r.on)}.{" "}
+              <a href="/#reviews">What that means</a>
+            </p>
+          ) : null;
+        })()}
         {f.origin === "reader_submission" && (
           <p className="m-0 text-muted">
             Started from a reader submission{f.credit ? `, sent by ${f.credit}` : ""}.
