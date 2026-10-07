@@ -14,6 +14,8 @@ export const ActorKind = z.enum(["person", "party", "government"]);
 export const ActorFile = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   name: z.string().min(1),
+  /** A short form for tight spaces (filter chips, list lines): "Labour" for "Labour Party". */
+  short_name: z.string().min(1).optional(),
   kind: ActorKind,
   party_id: z.string().optional(),
   roles: z.array(z.object({ title: z.string().min(1), from: IsoDate.optional(), to: IsoDate.optional() })),

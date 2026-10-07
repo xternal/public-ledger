@@ -208,7 +208,7 @@ export function ContributeForm({
   });
 
   return (
-    <div id="contribute" className="mt-16 grid scroll-mt-16 items-start gap-10 border-t border-line pt-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
+    <div id="contribute" className="mt-16 grid items-start gap-10 border-t border-line pt-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
       <div>
         <h2 className="text-title font-semibold">Seen a promise? Send it in.</h2>
         <p className="mt-2 max-w-[48ch] text-lead text-muted">No account needed. Editors check every submission against the original source before it becomes a card.</p>

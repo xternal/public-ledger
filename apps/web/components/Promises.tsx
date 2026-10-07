@@ -36,7 +36,7 @@ export function PromisesSection() {
   const unchecked = cards.filter((c) => c.file.editor_check_required).length;
 
   return (
-    <section id="promises" aria-labelledby="promises-h" className="scroll-mt-16 pt-20">
+    <section id="promises" aria-labelledby="promises-h" className="pt-20">
       <SectionHeading
         id="promises-h"
         title="Promise ledger"

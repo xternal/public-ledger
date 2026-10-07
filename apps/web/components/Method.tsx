@@ -14,7 +14,7 @@ export function Method() {
   const range = (r: readonly number[]) => `${fixed(r[0]!, 1)}–${fixed(r[2]!, 1)}`;
 
   return (
-    <section id="method" aria-labelledby="method-h" className="scroll-mt-16 pt-20">
+    <section id="method" aria-labelledby="method-h" className="pt-20">
       <SectionHeading id="method-h" title="How the numbers work" />
       <div className="grid gap-10 text-sm text-muted md:grid-cols-3">
         <div>
@@ -62,7 +62,7 @@ export function Method() {
           ))}
         </div>
       </div>
-      <div id="reviews" className="mt-10 grid max-w-[72ch] scroll-mt-20 gap-2 text-sm text-muted">
+      <div id="reviews" className="mt-10 grid max-w-[72ch] gap-2 text-sm text-muted">
         <h3 className="m-0 text-body font-semibold text-ink">Who checks the cards</h3>
         <p className="m-0 leading-relaxed">{JUNIOR_EDITOR_NOTE}</p>
         <p className="m-0 leading-relaxed">

@@ -129,7 +129,7 @@ export function ResultPanel() {
   );
 
   return (
-    <div id="scenario" className="mt-12 grid scroll-mt-20 gap-8 border-t border-line pt-8">
+    <div id="scenario" className="mt-12 grid gap-8 border-t border-line pt-8">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <div className="text-label text-muted">Your scenario against today, year one</div>

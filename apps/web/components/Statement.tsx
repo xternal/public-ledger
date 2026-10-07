@@ -67,7 +67,7 @@ export function StatementSection() {
   const totalsSource = seed.sources.find((s) => s.id === borrowing_provenance.source_id);
 
   return (
-    <section id="statement" aria-labelledby="statement-h" className="scroll-mt-16 pt-16">
+    <section id="statement" aria-labelledby="statement-h" className="pt-16">
       <SectionHeading
         id="statement-h"
         title="The statement"

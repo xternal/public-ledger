@@ -98,7 +98,7 @@ interface ScenarioResult {
 type Status = "promised" | "in_plan" | "legislated" | "funded" | "delivering"
             | "delivered" | "failed" | "quietly_dropped" | "unscoreable";
 
-interface Actor { id: string; name: string; kind: "person" | "party" | "government"; party_id?: string; roles: { title: string; from: string; to?: string }[] }
+interface Actor { id: string; name: string; short_name?: string /* "Labour" for tight spaces */; kind: "person" | "party" | "government"; party_id?: string; roles: { title: string; from: string; to?: string }[] }
 
 interface Promise {
   id: string;                 // "uk-bus-cap-2-2026"

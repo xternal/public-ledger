@@ -23,7 +23,7 @@ export function YourShare() {
   const taxP = { quality: seed.tax.meta.quality, method_note: seed.tax.meta.method_note };
 
   return (
-    <section id="you" aria-labelledby="you-h" className="scroll-mt-16 pt-20">
+    <section id="you" aria-labelledby="you-h" className="pt-20">
       <SectionHeading
         id="you-h"
         title="Your share of the bill"
