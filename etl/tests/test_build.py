@@ -90,3 +90,26 @@ def test_new_m2_levers_from_hmrc_and_govuk(outputs):
         assert by_id[lever_id]["quality"] in ("sourced", "approx")
     assert by_id["personal_allowance"]["effect"]["per_unit_bn"]["y1"][1] < 0
     assert outputs["tax"]["income_tax"]["personal_allowance_lever"] == "personal_allowance"
+
+
+def test_failed_fetch_keeps_the_recorded_edition(monkeypatch):
+    """A source that cannot be fetched (OBR refuses GitHub's servers) keeps its committed data and its recorded title and date."""
+    import types
+
+    import etl.build as build
+    from etl.core import Source
+
+    declared = Source(id="obr_databank", title="OBR Public finances databank", publisher="Office for Budget Responsibility", url="https://obr.uk/data/", cadence_days=180)
+
+    def refuse(_):
+        raise RuntimeError("403 Forbidden")
+
+    mod = types.SimpleNamespace(SOURCE=declared, fetch=refuse, parse=lambda raws: [])
+    monkeypatch.setattr(build, "discover", lambda: [mod])
+    recorded = build.manifest_sources()["obr_databank"]
+    run = Run(build_id="test", started_at="2026-10-07T00:00:00Z", trigger="test")
+    by_source = build.collect(run, offline=False)
+    assert by_source["obr_databank"] == read_committed("obr_databank")
+    assert run.sources["obr_databank"].published_on is not None
+    assert str(run.sources["obr_databank"].published_on) == str(recorded["published_on"])
+    assert any(c.level == "warning" and "403" in c.message for c in run.checks)

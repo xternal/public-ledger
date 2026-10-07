@@ -110,15 +110,21 @@ def manifest_sources() -> dict[str, dict]:
     return {s["id"]: s for s in json.loads(path.read_text()).get("sources", [])}
 
 
+def recorded_source(src: Source, recorded: dict[str, dict]) -> Source:
+    """The source as the last online build recorded it (edition title and publication date), else as declared."""
+    if src.id not in recorded:
+        return src
+    return Source(**{k: recorded[src.id][k] for k in Source.model_fields if k in recorded[src.id]})
+
+
 def collect(run: Run, offline: bool) -> dict[str, list[Observation]]:
     by_source: dict[str, list[Observation]] = {}
-    recorded = manifest_sources() if offline else {}
+    recorded = manifest_sources()
     for mod in discover():
         src: Source = mod.SOURCE
-        if offline and src.id in recorded:
+        if offline:
             # Modules learn the edition's title and date while fetching; offline, take them from the manifest.
-            fields = {k: recorded[src.id][k] for k in Source.model_fields if k in recorded[src.id]}
-            src = Source(**fields)
+            src = recorded_source(src, recorded)
         run.sources[src.id] = src
         if offline:
             by_source[src.id] = read_committed(src.id)
@@ -136,6 +142,8 @@ def collect(run: Run, offline: bool) -> dict[str, list[Observation]]:
             run.add("fetch", level, src.id, f"{type(e).__name__}: {e}; using {len(committed)} committed observations")
             traceback.print_exc(file=sys.stderr)
             by_source[src.id] = committed
+            # The committed observations come from the recorded edition, so keep its title and date too.
+            run.sources[src.id] = recorded_source(mod.SOURCE, recorded)
     return by_source
 
 
