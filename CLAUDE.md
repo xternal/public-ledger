@@ -24,7 +24,7 @@ The clickable reference for look and behaviour is `prototype/index.html` (built 
 - **Data:** Python ETL in `etl/` (pandas, httpx). Output: versioned, normalised JSON/Parquet in `data/build/` + a manifest. Committed to git so every change in data is a reviewable diff. DuckDB for local querying.
 - **Promises v0:** YAML files in `content/promises/*.yaml`, validated by a Zod schema at build. Editorial workflow = pull requests. Git history = public change log. Move to Postgres only when volume demands it (>2,000 cards or non-technical editors).
 - **Follow/Contribute (M3b):** small Postgres (e.g. Supabase or Neon) holding only subscriptions and submissions; transactional email via a provider with tracking disabled; Telegram bot. Accounts in v1 via passkeys (WebAuthn) with magic-link fallback.
-- **Hosting:** Vercel for the app; the Python model service on a container host. Nightly ETL via GitHub Actions.
+- **Hosting:** Vercel for the app (functions in London, `lhr1`); Neon Postgres (London). Nightly ETL, daily promise intake and alerts via GitHub Actions. No model service to host while T1 uses the PolicyEngine API.
 
 ## Repo layout (target)
 
