@@ -91,7 +91,7 @@ describe("extractFromSources", () => {
           // Opposition promise, attributed by Hansard; the actor falls back to the party.
           proposal({ quote: "A Conservative government will abolish stamp duty on main homes in its first Budget.", speaker_name: "Kemi Badenoch", confidence: 0.9 }),
           // Low confidence.
-          proposal({ quote: "That is a promise to every passenger.", speaker_name: "Andy Burnham", confidence: 0.1 }),
+          proposal({ quote: "That is a promise to every passenger.", speaker_name: "Andy Burnham", confidence: 0.45 }),
           // Crosses from one speaker into the next.
           proposal({ quote: "That is a promise to every passenger. Madam Deputy Speaker (Ms Nusrat Ghani) Order.", speaker_name: "Andy Burnham" }),
         ],
