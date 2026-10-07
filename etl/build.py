@@ -38,6 +38,12 @@ HISTORY_DIR = BUILD_DIR / "history"
 SEED_DIR = ROOT / "data" / "seed"
 OBS_FIELDS = ["series_id", "period", "geography", "value", "unit", "kind", "source_id", "vintage", "quality", "method_note"]
 
+# Sources whose publisher refuses GitHub's servers. They read through the Internet Archive
+# (etl/wayback.py); when that fails too, a person refreshes them from a normal connection.
+_BY_HAND = ("OBR refuses GitHub's servers, so if the Internet Archive cannot supply the new edition either, run "
+            "`pnpm etl` on your own machine and open the data pull request from there (docs/OPERATIONS.md, \"11. OBR data by hand\")")
+MANUAL_REFRESH = {"obr_databank": _BY_HAND, "obr_efo": _BY_HAND}
+
 
 @dataclass
 class Check:
@@ -139,7 +145,8 @@ def collect(run: Run, offline: bool) -> dict[str, list[Observation]]:
         except Exception as e:  # keep building from the last committed edition
             committed = read_committed(src.id)
             level = "error" if not committed else "warning"
-            run.add("fetch", level, src.id, f"{type(e).__name__}: {e}; using {len(committed)} committed observations")
+            hint = f". {MANUAL_REFRESH[src.id]}" if src.id in MANUAL_REFRESH else ""
+            run.add("fetch", level, src.id, f"{type(e).__name__}: {e}; using {len(committed)} committed observations{hint}")
             traceback.print_exc(file=sys.stderr)
             by_source[src.id] = committed
             # The committed observations come from the recorded edition, so keep its title and date too.

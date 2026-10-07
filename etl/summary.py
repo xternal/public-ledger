@@ -24,6 +24,10 @@ def main() -> None:
     for s in m["sources"]:
         f = s.get("freshness") or {}
         lines.append(f"| {s['title']} | {f.get('vintage', '')} | {f.get('age_days', '')} | {f.get('overdue_days', '')} |")
+    archived = [(s["id"], f) for s in m["sources"] for f in s.get("files", []) if f.get("archived_at")]
+    if archived:
+        lines += ["", "**Read through the Internet Archive** (the publisher refused GitHub's servers; these are the archive's unmodified copies of its files)", ""]
+        lines += [f"- {sid}: {f['url']} (captured {f['archived_at']}, read from {f['fetched_url']})" for sid, f in archived]
     if m["checks"]:
         lines += ["", "**Checks**", *[f"- {c['level']}: {c['check_id']} {c['subject']}: {c['message']}" for c in m["checks"]]]
     lines += ["", "Review the Statement diffs in `data/build/statements/` before merging. Nothing merges without a human review."]

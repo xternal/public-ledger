@@ -37,7 +37,9 @@ CREATE TABLE IF NOT EXISTS etl_artifact (
   bytes         BIGINT,
   fetched_at    TIMESTAMPTZ NOT NULL,
   vintage       VARCHAR,
-  changed       BOOLEAN                   -- sha differs from the previous build's file for this URL
+  changed       BOOLEAN,                  -- sha differs from the previous build's file for this URL
+  fetched_url   VARCHAR,                  -- where the bytes came from: url after redirects, or an Internet Archive copy
+  archived_at   TIMESTAMPTZ               -- set when read through the Internet Archive: when it captured the file
 );
 
 CREATE TABLE IF NOT EXISTS etl_check (

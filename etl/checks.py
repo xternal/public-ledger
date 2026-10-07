@@ -12,7 +12,7 @@ from __future__ import annotations
 import re
 from datetime import date
 
-from etl.build import Run, Store
+from etl.build import MANUAL_REFRESH, Run, Store
 
 BALANCE_TOLERANCE_BN = 0.1
 
@@ -61,6 +61,8 @@ def staleness(store: Store, run: Run, today: date) -> dict[str, dict]:
         ack = ACKNOWLEDGED_DELAYS.get(sid)
         if level == "error" and ack and today <= ack[0]:
             level, message = "warning", f"{message}. Acknowledged until {ack[0].isoformat()}: {ack[1]}"
+        if level and sid in MANUAL_REFRESH:
+            message = f"{message}. {MANUAL_REFRESH[sid]}"
         if level:
             run.add("staleness", level, sid, message, overdue)
         report[sid] = {"vintage": latest, "published_on": published.isoformat(), "age_days": age, "cadence_days": src.cadence_days, "grace_days": src.grace_days, "overdue_days": max(0, overdue)}
