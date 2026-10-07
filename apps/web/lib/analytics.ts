@@ -20,14 +20,27 @@ import type { Unit } from "./format";
  */
 export type AnalyticsEvent =
   | { name: "unit_changed"; props: { unit: Unit } }
-  | { name: "chart_table_opened"; props: { chart_id: "statement" | "debt_fan" } }
+  | { name: "chart_table_opened"; props: { chart_id: "statement" | "debt_fan" | "t1_deciles" | "t1_winners" | "t1_regions" } }
   | { name: "quality_badge_opened"; props: { quality: string } }
   | { name: "lever_changed"; props: { lever_id: string } }
   | { name: "preset_applied"; props: { preset_id: string } }
   | { name: "promise_card_viewed"; props: { promise_id: string; status: string } }
   | { name: "run_in_sandbox_clicked"; props: { promise_id: string } }
   | { name: "follow_panel_opened"; props: { target_kind: "promise" | "actor" | "area" } }
-  | { name: "scenario_shared"; props: { method: "copy" } };
+  | { name: "scenario_shared"; props: { method: "copy" } }
+  /**
+   * T1 (PolicyEngine microsimulation). Counts and buckets only: no scenario
+   * code, no lever ids, and never the household or region a reader picks in
+   * "People like me".
+   */
+  | { name: "t1_requested"; props: { levers_count: T1LeversBucket } }
+  | { name: "t1_ready"; props: { seconds: T1SecondsBucket } }
+  | { name: "t1_failed"; props: { reason: "timeout" | "network" | "server" | "busy" | "invalid" } };
+
+/** How many T1 levers the scenario moved. */
+export type T1LeversBucket = "1" | "2" | "3+";
+/** Seconds from asking to PolicyEngine's answer. */
+export type T1SecondsBucket = "0-5" | "5-30" | "30-60" | "60-120" | "120+";
 
 type Sink = (event: AnalyticsEvent) => void;
 
