@@ -1,0 +1,43 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-uk-to-have-worlds-strongest-online-child-safety-laws-as-gove.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-09-09"
+source:
+  id: govuk-uk-to-have-worlds-strongest-online-child-safety-laws-as-gove
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/uk-to-have-worlds-strongest-online-child-safety-laws-as-government-prepares-legislation-on-nude-images
+  title: >-
+    UK to have world's strongest online child safety laws as government prepares legislation on nude
+    images
+  date: "2026-09-09"
+  venue_label: Press release (Department for Digital, Culture, Media and Sport)
+quote: >-
+  The protection will be built into the device and switched on by default. It will be for the
+  companies to prove a user is an adult, not for a child to keep themselves out of harm’s way.
+source_span: [3105, 3289]
+speaker:
+  name: Andy Burnham
+  role: null
+  party: null
+  member_id: null
+  actor_id: andy-burnham
+  check: nearby # the name is printed just before the quote; check it
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: public_order
+  who: Technology companies; children
+  how_much: null
+  when: null
+  funded_by: null
+  deadline: null
+why: >-
+  The planned law will require nude-image protections to be built into devices, switched on by
+  default, with companies required to verify that a user is an adult.
+confidence: 0.6
+model: claude-opus-5-5
+status: to_review

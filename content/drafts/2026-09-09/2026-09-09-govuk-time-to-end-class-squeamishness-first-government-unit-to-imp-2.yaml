@@ -1,0 +1,44 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-time-to-end-class-squeamishness-first-government-unit-to-imp.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-09-09"
+source:
+  id: govuk-time-to-end-class-squeamishness-first-government-unit-to-imp
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/time-to-end-class-squeamishness-first-government-unit-to-improve-life-chances-for-working-class
+  title: >-
+    Time to end class squeamishness: first government unit to improve life chances for working class
+  date: "2026-09-09"
+  venue_label: Press release (Office for Equality and Opportunity)
+quote: >-
+  One of the unit’s early priorities will be the introduction of the socio-economic duty – a new
+  power in the Equality Act that will legally require public bodies to consider how to improve the
+  lives of lower-income families as part of decisions around issues like transport, services and
+  budgets.
+source_span: [1204, 1499]
+speaker:
+  name: HM Government
+  role: Office for Equality and Opportunity
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: social_protection
+  who: Public bodies; lower-income families
+  how_much: null
+  when: An early priority of the new Class Unit
+  funded_by: null
+  deadline: null
+why: >-
+  The government commits to bringing in the Equality Act socio-economic duty, legally requiring
+  public bodies to consider how their decisions can improve the lives of lower-income families.
+confidence: 0.75
+model: claude-opus-5-5
+status: to_review

@@ -1,0 +1,41 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/wms-hcws324.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-09-09"
+source:
+  id: wms-hcws324
+  kind: hansard_wms
+  url: https://questions-statements.parliament.uk/written-statements/detail/2026-09-09/HCWS324
+  title: Civil Service Pension Scheme
+  date: "2026-09-09"
+  venue_label: Written ministerial statement
+quote: >-
+  I intend to provide the House with a substantive update in October following the conclusion of the
+  technical audit and report from the Remedial Adviser.
+source_span: [1134, 1286]
+speaker:
+  name: Sally Jameson
+  role: Parliamentary Secretary in the Cabinet Office
+  party: Labour
+  member_id: 5178
+  actor_id: labour
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: general_services
+  who: Civil Service Pension Scheme members; the House
+  how_much: null
+  when: October
+  funded_by: null
+  deadline: "2026-10-31"
+why: >-
+  The minister commits to giving Parliament a substantive update on Civil Service Pension Scheme
+  administration in October 2026, after the technical audit and the Remedial Adviser's report.
+confidence: 0.55
+model: claude-opus-5-5
+status: to_review

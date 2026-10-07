@@ -1,0 +1,43 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-time-to-end-class-squeamishness-first-government-unit-to-imp.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-09-09"
+source:
+  id: govuk-time-to-end-class-squeamishness-first-government-unit-to-imp
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/time-to-end-class-squeamishness-first-government-unit-to-improve-life-chances-for-working-class
+  title: >-
+    Time to end class squeamishness: first government unit to improve life chances for working class
+  date: "2026-09-09"
+  venue_label: Press release (Office for Equality and Opportunity)
+quote: >-
+  The new unit will bring social mobility work into the heart of government, with the Social
+  Mobility Commission (SMC) closing as part of the government’s wider review of arm’s length bodies
+  to ensure work is delivered as effectively as possible.
+source_span: [616, 860]
+speaker:
+  name: HM Government
+  role: Office for Equality and Opportunity
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: general_services
+  who: Social Mobility Commission
+  how_much: null
+  when: null
+  funded_by: null
+  deadline: null
+why: >-
+  The government commits to closing the Social Mobility Commission and moving its work into a new
+  Class Unit inside government.
+confidence: 0.7
+model: claude-opus-5-5
+status: to_review
