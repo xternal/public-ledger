@@ -20,6 +20,10 @@ export const FAQ: { q: string; a: string }[] = [
     a: "By one published standard, the same for every party. A status changes only on evidence: a plan, a bill, money in a budget, or delivery. The full history of each card is kept, including any rewording of the promise.",
   },
   {
+    q: "Who checks the cards?",
+    a: "Every card is re-read against its live sources by Junior Editor, our automated reviewer: the quote word for word, the dates, the evidence, the status, the cost, neutral wording and legal risk. Anything it finds is fixed in public as a dated correction on the card. Human editors review each card next; nothing a reader sends in is published until two editors agree.",
+  },
+  {
     q: "Do I need an account?",
     a: "No. Reading, using the sandbox and sharing a scenario never need an account. You can follow a promise by RSS, email or Telegram without one.",
   },

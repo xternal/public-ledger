@@ -73,3 +73,8 @@ corrections:
       small businesses that are not registered for VAT and qualify for domestic energy VAT relief, which the entry
       left out.
     source_url: https://www.gov.uk/government/news/new-pm-cuts-tax-on-household-electricity-bills-to-give-breathing-space-on-cost-of-living
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-06"
+    note: Second check of every quote, date, evidence link, status, cost, wording and legal risk against the live sources; fixes applied as corrections.

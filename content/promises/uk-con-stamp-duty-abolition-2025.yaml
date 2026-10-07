@@ -95,3 +95,8 @@ corrections:
       The entry shortened the party's wording. Its policy page says the rest goes to "tax cuts and pro-growth
       measures".
     source_url: https://www.conservatives.com/policy
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-06"
+    note: Second check of every quote, date, evidence link, status, cost, wording and legal risk against the live sources; fixes applied as corrections.

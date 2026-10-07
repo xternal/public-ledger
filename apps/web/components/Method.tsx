@@ -6,6 +6,7 @@ import { T1_METHOD } from "@/lib/t1-copy";
 import { fixed } from "@/lib/format";
 import { useScenario } from "@/lib/scenario";
 import { QualityBadge, SectionHeading } from "./ui";
+import { JUNIOR_EDITOR_NOTE } from "@/lib/reviews";
 
 export function Method() {
   const { seed } = useScenario();
@@ -60,6 +61,13 @@ export function Method() {
             </p>
           ))}
         </div>
+      </div>
+      <div id="reviews" className="mt-10 grid max-w-[72ch] scroll-mt-20 gap-2 text-sm text-muted">
+        <h3 className="m-0 text-body font-semibold text-ink">Who checks the cards</h3>
+        <p className="m-0 leading-relaxed">{JUNIOR_EDITOR_NOTE}</p>
+        <p className="m-0 leading-relaxed">
+          Whatever a review finds is fixed in public: the card shows a dated correction with the old and new value. Every party&apos;s cards get the same checks.
+        </p>
       </div>
     </section>
   );

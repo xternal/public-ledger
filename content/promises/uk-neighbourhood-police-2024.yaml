@@ -108,3 +108,8 @@ corrections:
       The entry left out the period the average covers. The Spending Review gives 2.3% a year in real terms from
       2023-24 to 2028-29.
     source_url: https://assets.publishing.service.gov.uk/media/68627094354985706f111adc/E03349913_HMT_Spending_Review_June_2025_TEXT_CS_Accessible__002_.pdf
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-06"
+    note: Second check of every quote, date, evidence link, status, cost, wording and legal risk against the live sources; fixes applied as corrections.

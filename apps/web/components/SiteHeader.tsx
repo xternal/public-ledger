@@ -1,3 +1,5 @@
+import { NavLinks } from "./NavLinks";
+
 const LINKS = [
   { href: "/#statement", label: "Statement" },
   { href: "/#scenario", label: "Scenario" },
@@ -16,18 +18,7 @@ export function SiteHeader({ current }: { current?: string }) {
           <i aria-hidden className="inline-block size-3.5 rounded-[3px] bg-[linear-gradient(90deg,var(--rec)_0_55%,var(--debt)_55%_100%)]" />
           Public Ledger
         </a>
-        <nav aria-label="Sections" className="no-scrollbar flex min-w-0 flex-1 gap-0.5 overflow-x-auto">
-          {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              aria-current={current === l.href ? "page" : undefined}
-              className="whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-medium text-muted no-underline hover:bg-sunk hover:text-ink aria-[current=page]:text-ink"
-            >
-              {l.label}
-            </a>
-          ))}
-        </nav>
+        <NavLinks links={LINKS} current={current} />
       </div>
     </header>
   );
