@@ -113,3 +113,101 @@ def test_failed_fetch_keeps_the_recorded_edition(monkeypatch):
     assert run.sources["obr_databank"].published_on is not None
     assert str(run.sources["obr_databank"].published_on) == str(recorded["published_on"])
     assert any(c.level == "warning" and "403" in c.message for c in run.checks)
+
+
+# ---------------------------------------------------------------- editions on disk (network-free)
+
+
+def _edition(vintage: str, values: dict[str, float], source_id: str = "toy") -> list:
+    from etl.core import Observation
+
+    return [Observation(series_id="macro.toy", period=p, value=v, unit="pct", kind="outturn", source_id=source_id, vintage=vintage, quality="sourced")
+            for p, v in values.items()]
+
+
+@pytest.fixture
+def obs_dir(monkeypatch, tmp_path):
+    import etl.build as build
+
+    monkeypatch.setattr(build, "OBS_DIR", tmp_path)
+    return tmp_path / "toy"
+
+
+def test_a_relabelled_edition_is_not_written(obs_dir):
+    """Same numbers under a new label (a technical republish, a label dated by the fetch) add no file."""
+    from etl.build import write_observations
+
+    assert write_observations("toy", _edition("TOY-2026-09-17", {"2025": 1.0, "2026": 2.0})) == {}
+    assert write_observations("toy", _edition("TOY-2026-10-06", {"2025": 1.0, "2026": 2.0})) == {"TOY-2026-10-06": "TOY-2026-09-17"}
+    assert sorted(p.name for p in obs_dir.iterdir()) == ["TOY-2026-09-17.csv"]
+
+    assert write_observations("toy", _edition("TOY-2026-11-05", {"2025": 1.0, "2026": 2.5})) == {}
+    assert sorted(p.name for p in obs_dir.iterdir()) == ["TOY-2026-09-17.csv", "TOY-2026-11-05.csv"]
+
+
+def test_numbers_going_back_to_an_older_edition_are_written(obs_dir):
+    """Only the newest edition holding the rows counts: A, B, then A's numbers again is a real change."""
+    from etl.build import Store, read_committed, write_observations
+
+    write_observations("toy", _edition("TOY-2026-01", {"2025": 1.0}))
+    write_observations("toy", _edition("TOY-2026-02", {"2025": 1.1}))
+    assert write_observations("toy", _edition("TOY-2026-03", {"2025": 1.0})) == {}
+    assert Store({"toy": read_committed("toy")}).get("macro.toy", "2025", ["toy"]).vintage == "TOY-2026-03"
+
+
+def test_a_revision_under_the_same_label_is_rewritten_in_place(obs_dir):
+    from etl.build import read_committed, write_observations
+
+    write_observations("toy", _edition("TOY-2026-09", {"2025": 1.0}))
+    assert write_observations("toy", _edition("TOY-2026-09", {"2025": 1.2})) == {}
+    assert [(o.vintage, o.value) for o in read_committed("toy")] == [("TOY-2026-09", 1.2)]
+
+
+def test_several_files_per_source_are_matched_one_by_one(obs_dir):
+    """GOV.UK-style: one file per page; a republished page with the same rates keeps its file, a changed page gets one."""
+    from etl.build import write_observations
+
+    pages = lambda fuel_date, it_date, it_rate: [
+        *[o.model_copy(update={"series_id": "tax.fuel"}) for o in _edition(f"fuel@{fuel_date}", {"2026-27": 52.95})],
+        *_edition(f"income-tax@{it_date}", {"2026-27": it_rate}),
+    ]
+    write_observations("toy", pages("2026-09-30", "2026-10-01", 20.0))
+    assert write_observations("toy", pages("2026-11-12", "2026-11-12", 21.0)) == {"fuel@2026-11-12": "fuel@2026-09-30"}
+    assert sorted(p.name for p in obs_dir.iterdir()) == ["fuel@2026-09-30.csv", "income-tax@2026-10-01.csv", "income-tax@2026-11-12.csv"]
+
+
+def test_online_build_assembles_what_the_offline_rebuild_will(obs_dir, monkeypatch):
+    """The nightly build reads back the committed editions, so CI's offline rebuild reproduces its output exactly."""
+    import types
+
+    import etl.build as build
+    from etl.core import Source
+
+    src = Source(id="toy", title="Toy", publisher="Nobody", url="https://example.org/", cadence_days=49)
+    # An older edition holds a point the new one no longer carries (Bank Rate: the previous hold).
+    build.write_observations("toy", _edition("TOY as of 2026-09-17", {"2025-12-18": 3.75, "2026-09-17": 3.75}))
+    new = _edition("TOY as of 2026-11-05", {"2025-12-18": 3.75, "2026-11-05": 3.5})
+    monkeypatch.setattr(build, "discover", lambda: [types.SimpleNamespace(SOURCE=src, fetch=lambda since: [], parse=lambda raws: new)])
+
+    online = build.collect(Run(build_id="test", started_at="test", trigger="test"), offline=False)
+    offline = build.collect(Run(build_id="test", started_at="test", trigger="test"), offline=True)
+    assert online == offline
+    assert {o.period for o in online["toy"]} == {"2025-12-18", "2026-09-17", "2026-11-05"}
+
+    # The next night brings the same numbers under a later label: nothing is written, an info check says why.
+    relabelled = [o.model_copy(update={"vintage": "TOY as of 2026-11-06"}) for o in new]
+    monkeypatch.setattr(build, "discover", lambda: [types.SimpleNamespace(SOURCE=src, fetch=lambda since: [], parse=lambda raws: relabelled)])
+    run = Run(build_id="test", started_at="test", trigger="test")
+    assert build.collect(run, offline=False) == offline
+    assert [(c.check_id, c.level) for c in run.checks] == [("edition", "info")]
+    assert "kept TOY as of 2026-11-05" in run.checks[0].message
+
+
+def test_offline_takes_the_edition_from_the_manifest_and_the_cadence_from_the_module():
+    from etl.build import recorded_source
+    from etl.core import Source
+
+    declared = Source(id="toy", title="Toy", publisher="Nobody", url="https://example.org/", cadence_days=49, grace_days=14)
+    recorded = {"toy": {**declared.model_dump(mode="json"), "title": "Toy, 2026 edition", "published_on": "2026-09-17", "cadence_days": 45}}
+    src = recorded_source(declared, recorded)
+    assert (src.title, str(src.published_on), src.cadence_days, src.grace_days) == ("Toy, 2026 edition", "2026-09-17", 49, 14)

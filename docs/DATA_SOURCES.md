@@ -34,6 +34,7 @@ Current state at time of writing: Bank Rate 3.75%, held 17 Sep 2026 (BoE IADB se
 | ONS births, deaths | TFR, births, deaths | https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages |
 | ONS families and households | Number of households (per-household translation) | https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/families |
 | ONS labour market | Employment, earnings (for "what it means for me") | https://www.ons.gov.uk/employmentandlabourmarket |
+| ONS Family spending in the UK | Weekly spending by household type and income (COICOP groups, motor fuel) for the T1 example households (`data/seed/archetype_spending.json`, `python -m etl.archetype_spending`, each June) | ✓ https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/expenditure/bulletins/familyspendingintheuk/april2024tomarch2025 |
 | ONS API | Programmatic access to many of the above | https://developer.ons.gov.uk/ |
 
 ## Promises and their execution
@@ -73,3 +74,7 @@ def parse(raw: RawArtifact) -> list[Observation]      # normalise to Observation
 SOURCE: Source                                        # metadata
 ```
 `etl/build.py` runs all, validates with schemas, runs the balance check, writes `data/build/` + `manifest.json` (source, vintage, hash, fetched_at). CI fails if a source is staler than its cadence + grace period.
+
+A vintage names an edition, so it must change only when the data does: take it from the publisher (release date, edition name) or from the data itself (Bank Rate: "IADB IUDBEDR as of <latest decision>"), never from the day of the fetch. The nightly opens a pull request whenever a file under `data/build/observations` changes, so a label that moves on its own opens one every night. As a backstop, the build does not write an edition whose rows repeat the newest committed edition holding them under a new label (GOV.UK's `updated_at` moves on technical republishes); it keeps the committed file and logs an `edition` info check. After fetching, the build assembles from the committed editions, exactly as the offline rebuild in CI does.
+
+A publisher that refuses GitHub's servers (OBR's Cloudflare answers 403) is read through the Internet Archive: the module passes `archive=True` to `core.download()` (see `etl/wayback.py` for the freshness rules). The `RawArtifact` keeps the publisher URL it asked for in `url` and records where the bytes came from in `fetched_url` and, for an archive copy, `archived_at`; both go into the manifest, `history/artifacts.csv` and the nightly pull request. If the archive has no fresh copy, the build keeps the committed edition and says how to refresh it by hand (`docs/OPERATIONS.md`, section 11).

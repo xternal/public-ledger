@@ -30,3 +30,8 @@ events:
     type: promised
     text: Plaid Cymru manifesto introduction pledges to address the cost of living crisis
 replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-06"
+    note: Second check of every quote, date, evidence link, status, cost, wording and legal risk against the live sources; fixes applied as corrections.

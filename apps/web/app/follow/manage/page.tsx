@@ -40,7 +40,7 @@ export default async function ManagePage({ searchParams }: Props) {
   if (!view) {
     return (
       <>
-        <SiteHeader />
+        <SiteHeader current="/promises" />
         <main className="mx-auto grid max-w-[640px] gap-5 px-4 pb-20 pt-12 sm:px-6">
           {m === "deleted" ? (
             <>
@@ -67,7 +67,7 @@ export default async function ManagePage({ searchParams }: Props) {
   const weekly = view.cadence === "weekly";
   return (
     <>
-      <SiteHeader />
+      <SiteHeader current="/promises" />
       <main className="mx-auto grid max-w-[720px] gap-8 px-4 pb-20 pt-12 sm:px-6">
         <div className="grid gap-2">
           <h1 className={h1}>Your alerts</h1>

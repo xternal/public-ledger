@@ -39,7 +39,18 @@ v0 uses Bank Rate for `i_t`; v1 should use the effective interest rate on the gi
 - distribution by income decile, region, household type;
 - "people like me" results for the Your share page.
 
-Contract: `POST /simulate {scenario}` → `ScenarioResult` with `distribution`. Cache by scenario hash. Timeout 20 s; the UI shows T0 instantly and fills T1 when ready.
+Contract: `GET /api/t1?s=<scenario code>` → `T1Response` (`packages/schema/src/t1.ts`). Cache by scenario code and year. The UI shows T0 instantly and fills T1 when ready.
+
+**Where it runs (decided in M5, 7 Oct 2026):** PolicyEngine's public API (`api.policyengine.org`), behind a `T1Provider` interface in `packages/server/src/model/`. Why not a self-hosted `services/model` yet:
+- UK population microdata (the enhanced Family Resources Survey) sits in a private repository that needs PolicyEngine's approval; the public API runs on it for us.
+- No container host to run and pay for; PolicyEngine maintains the model and data.
+- PolicyEngine's packages are AGPL-3.0; calling the API keeps that code out of our deployment.
+
+Costs: a dependency on a free public service (be a good citizen: compute only when a reader asks, cache, rate-limit), about a minute for a new scenario, and model or data versions that change over time (every result records them). If microdata access is granted, a self-hosted provider can replace the API without changing the contract.
+
+**Ranges:** PolicyEngine gives single estimates; T1 shows them with the project's editorial ±10% (invariant 2) and says so.
+
+**Example households ("people like me"):** six fixed households (`ARCHETYPES`), computed with `/uk/calculate` under current law and the reform (`packages/server/src/model/households.ts`). Their spending is ONS's average for the closest household type in *Family spending in the UK* (`data/seed/archetype_spending.json`, built by `python -m etl.archetype_spending`, which records the table, row and quality of every value), so VAT and fuel duty reach them. PolicyEngine charges VAT at the standard rate on half of spending and scales it up to national VAT receipts (÷0.38): a 1-point rise costs a household about 1.3% of its spending on the twelve COICOP groups. Its net income takes off all fuel duty paid but only a change in VAT. A change to these inputs or to the reform mapping bumps `T1_CACHE_VERSION` (`service.ts`), so cached results computed with the old inputs are worked out again.
 
 ## T2 — Macro (v2)
 

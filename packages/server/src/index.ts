@@ -6,3 +6,4 @@ export * from "./mail";
 export * from "./telegram-api";
 export * from "./spam";
 export * from "./log";
+export * from "./alpha";

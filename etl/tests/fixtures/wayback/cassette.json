@@ -1,0 +1,131 @@
+{
+  "recorded_at": "2026-10-07T12:43:11+00:00",
+  "note": "Real responses from web.archive.org, recorded on 2026-10-07 from a home connection: Save Page Now (GET /save/<url>) and the raw replay (/web/<timestamp>id_/<url>) for the OBR data page, the September 2026 databank and the March 2026 EFO page and workbooks. Only these headers were kept: location, content-type, memento-datetime, x-archive-src. Bodies are the replayed bytes; the workbooks are byte-identical to OBR's files (sha256 checked against direct downloads), and the two HTML pages are trimmed to verbatim slices of the elements the parsers read. obr.uk itself is not recorded: the tests answer it with the 403 GitHub's runners get.",
+  "interactions": [
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/save/https://obr.uk/data/",
+      "status": 302,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": "https://web.archive.org/web/20261007123327/https://obr.uk/data/"
+      },
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/web/20261007123327id_/https://obr.uk/data/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=UTF-8",
+        "memento-datetime": "Wed, 07 Oct 2026 12:33:27 GMT",
+        "x-archive-src": "spn2-20261007115638-wwwb-spn08.us.archive.org-8003.warc.gz"
+      },
+      "body": "obr_data.html"
+    },
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/save/https://obr.uk/download/public-finances-databank-september-2026/",
+      "status": 302,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": "https://web.archive.org/web/20261007123409/https://obr.uk/docs/dlm_uploads/PSF_aggregates_databank_Sep-3.xlsx"
+      },
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/web/20261007123409id_/https://obr.uk/docs/dlm_uploads/PSF_aggregates_databank_Sep-3.xlsx",
+      "status": 302,
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "location": "https://web.archive.org/web/20261005094056id_/https://obr.uk/docs/dlm_uploads/PSF_aggregates_databank_Sep-3.xlsx"
+      },
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/web/20261005094056id_/https://obr.uk/docs/dlm_uploads/PSF_aggregates_databank_Sep-3.xlsx",
+      "status": 200,
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "memento-datetime": "Mon, 05 Oct 2026 09:40:56 GMT",
+        "x-archive-src": "archiveteam_urls_20261005094359_33999e08/urls_20261005094359_33999e08.1791133436.megawarc.warc.zst"
+      },
+      "body": "obr_databank.xlsx"
+    },
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/save/https://obr.uk/efo/",
+      "status": 302,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": "https://web.archive.org/web/20261007124202/https://obr.uk/efo/economic-and-fiscal-outlook-march-2026/"
+      },
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/web/20261007124202id_/https://obr.uk/efo/economic-and-fiscal-outlook-march-2026/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=UTF-8",
+        "memento-datetime": "Wed, 07 Oct 2026 12:42:02 GMT",
+        "x-archive-src": "spn2-20261007122539-wwwb-spn17.us.archive.org-8006.warc.gz"
+      },
+      "body": "efo_index.html"
+    },
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/save/https://obr.uk/download/march-2026-economic-and-fiscal-outlook-charts-and-tables-annex-tables/",
+      "status": 302,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": "https://web.archive.org/web/20261007124236/https://obr.uk/docs/d055fbf02d5b3g6jq8l2/efo-march-2026-charts-and-tables-annex-tables.xlsx"
+      },
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/web/20261007124236id_/https://obr.uk/docs/d055fbf02d5b3g6jq8l2/efo-march-2026-charts-and-tables-annex-tables.xlsx",
+      "status": 302,
+      "headers": {
+        "content-type": "text/plain; charset=utf-8",
+        "location": "https://web.archive.org/web/20260512224307id_/https://obr.uk/docs/d055fbf02d5b3g6jq8l2/efo-march-2026-charts-and-tables-annex-tables.xlsx"
+      },
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/web/20260512224307id_/https://obr.uk/docs/d055fbf02d5b3g6jq8l2/efo-march-2026-charts-and-tables-annex-tables.xlsx",
+      "status": 200,
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "memento-datetime": "Tue, 12 May 2026 22:43:07 GMT",
+        "x-archive-src": "archiveteam_urls_20260512224549_ef4b3cba/urls_20260512224549_ef4b3cba.1762161290.megawarc.warc.zst"
+      },
+      "body": "efo_annex.xlsx"
+    },
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/save/https://obr.uk/download/march-2026-economic-and-fiscal-outlook-detailed-forecast-tables-debt-interest-ready-reckoner/",
+      "status": 302,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": "https://web.archive.org/web/20261007124255/https://obr.uk/docs/d055fbf02d5b3g6jq8l2/efo-march-2026-detailed-forecast-tables-debt-interest.xlsx"
+      },
+      "body": null
+    },
+    {
+      "method": "GET",
+      "url": "https://web.archive.org/web/20261007124255id_/https://obr.uk/docs/d055fbf02d5b3g6jq8l2/efo-march-2026-detailed-forecast-tables-debt-interest.xlsx",
+      "status": 200,
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "memento-datetime": "Wed, 07 Oct 2026 12:42:55 GMT",
+        "x-archive-src": "spn2-20261007110527-wwwb-spn11.us.archive.org-8005.warc.gz"
+      },
+      "body": "efo_rr.xlsx"
+    }
+  ]
+}

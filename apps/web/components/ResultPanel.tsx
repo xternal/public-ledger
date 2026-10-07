@@ -9,6 +9,7 @@ import { track } from "@/lib/analytics";
 import { FanChart } from "./FanChart";
 import { changeLabel } from "@/lib/levers";
 import { QualityBadge, RangeStrip, WithProvenance } from "./ui";
+import { WhoGains } from "./WhoGains";
 
 const RANGE_HEADROOM = 1.15;
 const scaleFor = (r: Range) => Math.max(Math.abs(r[0]), Math.abs(r[2])) * RANGE_HEADROOM;
@@ -120,8 +121,9 @@ export function ResultPanel() {
   const rateMoved = rate && Math.abs(rateNow - rate.base) > 1e-9;
   const dm = mortgage && rate && rateMoved ? mortgageDelta(mortgage, rate.base, rateNow) : 0;
 
-  const ruleOfThumb = (
-    <WithProvenance p={rules}>
+  // Tiles in the right-hand column on phones open their tip leftwards, so it stays on screen (no sideways scroll at 390px).
+  const ruleOfThumb = (align: "start" | "end") => (
+    <WithProvenance p={rules} align={align} className={align === "end" ? "w-full" : ""}>
       <QualityBadge quality="training">Rule of thumb</QualityBadge>
     </WithProvenance>
   );
@@ -165,9 +167,9 @@ export function ResultPanel() {
           rangeLabel={any ? `range ${rangeText(y1.per_household_gbp, (x) => signed(x, gbp, 0.5))}` : "no change"}
           tone={direction(y1.per_household_gbp[1], 0.5)}
           note={
-            <span className="inline-flex flex-wrap items-center gap-2">
+            <span className="flex flex-wrap items-center gap-2">
               {millions(macro.households_m)} households
-              <WithProvenance p={provenance.households_m!}>
+              <WithProvenance p={provenance.households_m!} align="end" className="grow">
                 <QualityBadge quality={provenance.households_m!.quality} />
               </WithProvenance>
             </span>
@@ -179,7 +181,7 @@ export function ResultPanel() {
           range={y1.cpi_pp}
           rangeLabel={y1.cpi_pp[1] !== 0 ? `range ${rangeText(y1.cpi_pp, (x) => signed(x, (a) => fixed(a, 1)))}pp` : "no change"}
           tone={direction(y1.cpi_pp[1])}
-          note={ruleOfThumb}
+          note={ruleOfThumb("start")}
         />
         <Tile
           label="GDP, year one"
@@ -187,7 +189,7 @@ export function ResultPanel() {
           range={y1.gdp_pct}
           rangeLabel={any ? `range ${rangeText(y1.gdp_pct, (x) => signed(x, (a) => fixed(a, 2)))}%` : "no change"}
           tone="flat"
-          note={ruleOfThumb}
+          note={ruleOfThumb("end")}
         />
       </div>
 
@@ -225,6 +227,8 @@ export function ResultPanel() {
           )}
         </div>
       </div>
+
+      <WhoGains />
     </div>
   );
 }

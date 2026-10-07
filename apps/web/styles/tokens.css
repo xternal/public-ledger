@@ -32,56 +32,57 @@
   color-scheme: light;
 }
 
+/* Dark mode: deep navy slate (#101820, the owner's choice), not black; every text colour passes WCAG AA on bg, surface and sunk. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #09090b;
-    --surface: #09090b;
-    --sunk: #141417;
-    --line: #232328;
-    --line-strong: #33333a;
-    --ink: #f4f4f5;
-    --muted: #a1a1aa;
-    --faint: #6b6b74;
-    --accent: #6f93ff;
-    --rec: #6f93ff;
-    --rec-soft: rgba(111, 147, 255, 0.22);
-    --spend: #a1a1aa;
-    --spend-soft: rgba(161, 161, 170, 0.16);
+    --bg: #101820;
+    --surface: #131d27;
+    --sunk: #1a2531;
+    --line: #26323f;
+    --line-strong: #364657;
+    --ink: #e7edf3;
+    --muted: #a3b0bd;
+    --faint: #7d8b99;
+    --accent: #7b9dff;
+    --rec: #7b9dff;
+    --rec-soft: rgba(123, 157, 255, 0.22);
+    --spend: #a3b0bd;
+    --spend-soft: rgba(163, 176, 189, 0.16);
     --debt: #ff7a2e;
     --debt-soft: rgba(255, 122, 46, 0.2);
-    --debt-ink: #ff7a2e;
+    --debt-ink: #ff8a45;
     --good: #4ade80;
     --warn: #fbbf24;
     --bad: #f87171;
-    --idle: #71717a;
-    --focus: #6f93ff;
+    --idle: #8291a0;
+    --focus: #7b9dff;
     --shadow-control: 0 0 0 1px var(--line);
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #09090b;
-  --surface: #09090b;
-  --sunk: #141417;
-  --line: #232328;
-  --line-strong: #33333a;
-  --ink: #f4f4f5;
-  --muted: #a1a1aa;
-  --faint: #6b6b74;
-  --accent: #6f93ff;
-  --rec: #6f93ff;
-  --rec-soft: rgba(111, 147, 255, 0.22);
-  --spend: #a1a1aa;
-  --spend-soft: rgba(161, 161, 170, 0.16);
+  --bg: #101820;
+  --surface: #131d27;
+  --sunk: #1a2531;
+  --line: #26323f;
+  --line-strong: #364657;
+  --ink: #e7edf3;
+  --muted: #a3b0bd;
+  --faint: #7d8b99;
+  --accent: #7b9dff;
+  --rec: #7b9dff;
+  --rec-soft: rgba(123, 157, 255, 0.22);
+  --spend: #a3b0bd;
+  --spend-soft: rgba(163, 176, 189, 0.16);
   --debt: #ff7a2e;
   --debt-soft: rgba(255, 122, 46, 0.2);
-  --debt-ink: #ff7a2e;
+  --debt-ink: #ff8a45;
   --good: #4ade80;
   --warn: #fbbf24;
   --bad: #f87171;
-  --idle: #71717a;
-  --focus: #6f93ff;
+  --idle: #8291a0;
+  --focus: #7b9dff;
   --shadow-control: 0 0 0 1px var(--line);
   color-scheme: dark;
 }

@@ -132,3 +132,28 @@ describe("spam controls", () => {
     await db.close();
   });
 });
+
+describe("alpha stage and email off", () => {
+  const prod = { LEDGER_ENV: "production", SITE_URL: "https://alpha.example", DATABASE_URL: "postgres://x", LEDGER_ENCRYPTION_KEY: Buffer.alloc(32, 1).toString("base64"), LEDGER_LOOKUP_PEPPER: Buffer.alloc(32, 2).toString("base64"), ALTCHA_HMAC_KEY: "k" };
+
+  it("runs in production with email off and no MAIL_FROM, but never without a database", () => {
+    const c = loadConfig({ ...prod, MAIL_PROVIDER: "off" });
+    expect(c.mail.provider).toBe("off");
+    expect(c.stage).toBe("live");
+    expect(() => loadConfig({ ...prod, MAIL_PROVIDER: "off", DATABASE_URL: "" })).toThrow(/DATABASE_URL/);
+    expect(() => loadConfig({ ...prod })).toThrow(/MAIL_FROM/);
+  });
+
+  it("runs a public alpha without a password, and refuses a weak one when given", () => {
+    const open = loadConfig({ ...prod, MAIL_PROVIDER: "off", SITE_STAGE: "alpha" });
+    expect(open.stage).toBe("alpha");
+    expect(open.alphaPassword).toBeNull();
+    expect(() => loadConfig({ ...prod, MAIL_PROVIDER: "off", SITE_STAGE: "alpha", ALPHA_PASSWORD: "short" })).toThrow(/ALPHA_PASSWORD/);
+    expect(loadConfig({ ...prod, MAIL_PROVIDER: "off", SITE_STAGE: "alpha", ALPHA_PASSWORD: "correct horse battery" }).alphaPassword).toBe("correct horse battery");
+  });
+
+  it("an off mailer refuses to send", async () => {
+    const { offMailer, MailDisabledError } = await import("../src/mail");
+    await expect(offMailer().send({ to: "a@b.c", subject: "s", text: "t" })).rejects.toBeInstanceOf(MailDisabledError);
+  });
+});

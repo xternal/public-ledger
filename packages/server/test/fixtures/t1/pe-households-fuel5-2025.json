@@ -1,0 +1,914 @@
+{
+ "request": {
+  "household": {
+   "people": {
+    "single_25k_1": {
+     "age": {
+      "2025": 40
+     },
+     "employment_income": {
+      "2025": 25000
+     }
+    },
+    "single_45k_1": {
+     "age": {
+      "2025": 40
+     },
+     "employment_income": {
+      "2025": 45000
+     }
+    },
+    "single_120k_1": {
+     "age": {
+      "2025": 40
+     },
+     "employment_income": {
+      "2025": 120000
+     }
+    },
+    "couple_two_children_1": {
+     "age": {
+      "2025": 40
+     },
+     "employment_income": {
+      "2025": 35000
+     }
+    },
+    "couple_two_children_2": {
+     "age": {
+      "2025": 38
+     },
+     "employment_income": {
+      "2025": 15000
+     }
+    },
+    "couple_two_children_3": {
+     "age": {
+      "2025": 9
+     }
+    },
+    "couple_two_children_4": {
+     "age": {
+      "2025": 6
+     }
+    },
+    "lone_parent_1": {
+     "age": {
+      "2025": 32
+     },
+     "employment_income": {
+      "2025": 18000
+     }
+    },
+    "lone_parent_2": {
+     "age": {
+      "2025": 5
+     }
+    },
+    "pensioner_couple_1": {
+     "age": {
+      "2025": 72
+     },
+     "state_pension_type": {
+      "2025": "NEW"
+     },
+     "state_pension_reported": {
+      "2025": 11973
+     }
+    },
+    "pensioner_couple_2": {
+     "age": {
+      "2025": 70
+     },
+     "state_pension_type": {
+      "2025": "NEW"
+     },
+     "state_pension_reported": {
+      "2025": 11973
+     }
+    }
+   },
+   "benunits": {
+    "single_25k": {
+     "members": [
+      "single_25k_1"
+     ]
+    },
+    "single_45k": {
+     "members": [
+      "single_45k_1"
+     ]
+    },
+    "single_120k": {
+     "members": [
+      "single_120k_1"
+     ]
+    },
+    "couple_two_children": {
+     "members": [
+      "couple_two_children_1",
+      "couple_two_children_2",
+      "couple_two_children_3",
+      "couple_two_children_4"
+     ]
+    },
+    "lone_parent": {
+     "members": [
+      "lone_parent_1",
+      "lone_parent_2"
+     ]
+    },
+    "pensioner_couple": {
+     "members": [
+      "pensioner_couple_1",
+      "pensioner_couple_2"
+     ]
+    }
+   },
+   "households": {
+    "single_25k": {
+     "members": [
+      "single_25k_1"
+     ],
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 1846
+     },
+     "alcohol_and_tobacco_consumption": {
+      "2025": 416
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 499.2
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 5647.2
+     },
+     "household_furnishings_consumption": {
+      "2025": 1242.8
+     },
+     "health_consumption": {
+      "2025": 143
+     },
+     "transport_consumption": {
+      "2025": 2542.8
+     },
+     "communication_consumption": {
+      "2025": 842.4
+     },
+     "recreation_consumption": {
+      "2025": 1690
+     },
+     "education_consumption": {
+      "2025": 106.6
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 1180.4
+     },
+     "miscellaneous_consumption": {
+      "2025": 1206.4
+     },
+     "petrol_spending": {
+      "2025": 426.92
+     },
+     "diesel_spending": {
+      "2025": 233.48
+     },
+     "household_net_income": {
+      "2025": null
+     }
+    },
+    "single_45k": {
+     "members": [
+      "single_45k_1"
+     ],
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 2132
+     },
+     "alcohol_and_tobacco_consumption": {
+      "2025": 457.6
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 556.4
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 5262.4
+     },
+     "household_furnishings_consumption": {
+      "2025": 1357.2
+     },
+     "health_consumption": {
+      "2025": 274.04
+     },
+     "transport_consumption": {
+      "2025": 3328
+     },
+     "communication_consumption": {
+      "2025": 774.8
+     },
+     "recreation_consumption": {
+      "2025": 2407.6
+     },
+     "education_consumption": {
+      "2025": 204.36
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 1825.2
+     },
+     "miscellaneous_consumption": {
+      "2025": 1731.6
+     },
+     "petrol_spending": {
+      "2025": 522.08
+     },
+     "diesel_spending": {
+      "2025": 284.96
+     },
+     "household_net_income": {
+      "2025": null
+     }
+    },
+    "single_120k": {
+     "members": [
+      "single_120k_1"
+     ],
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 2641.6
+     },
+     "alcohol_and_tobacco_consumption": {
+      "2025": 457.6
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 832
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 8294
+     },
+     "household_furnishings_consumption": {
+      "2025": 2932.8
+     },
+     "health_consumption": {
+      "2025": 613.6
+     },
+     "transport_consumption": {
+      "2025": 5626.4
+     },
+     "communication_consumption": {
+      "2025": 1112.8
+     },
+     "recreation_consumption": {
+      "2025": 3369.6
+     },
+     "education_consumption": {
+      "2025": 457.6
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 3567.2
+     },
+     "miscellaneous_consumption": {
+      "2025": 3042
+     },
+     "petrol_spending": {
+      "2025": 419.64
+     },
+     "diesel_spending": {
+      "2025": 229.32
+     },
+     "household_net_income": {
+      "2025": null
+     }
+    },
+    "couple_two_children": {
+     "members": [
+      "couple_two_children_1",
+      "couple_two_children_2",
+      "couple_two_children_3",
+      "couple_two_children_4"
+     ],
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 5111.6
+     },
+     "alcohol_and_tobacco_consumption": {
+      "2025": 509.6
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 1336.4
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 6229.6
+     },
+     "household_furnishings_consumption": {
+      "2025": 2880.8
+     },
+     "health_consumption": {
+      "2025": 736.84
+     },
+     "transport_consumption": {
+      "2025": 6921.2
+     },
+     "communication_consumption": {
+      "2025": 1414.4
+     },
+     "recreation_consumption": {
+      "2025": 6073.6
+     },
+     "education_consumption": {
+      "2025": 1291.16
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 2932.8
+     },
+     "miscellaneous_consumption": {
+      "2025": 3000.4
+     },
+     "petrol_spending": {
+      "2025": 1054.04
+     },
+     "diesel_spending": {
+      "2025": 575.64
+     },
+     "household_net_income": {
+      "2025": null
+     }
+    },
+    "lone_parent": {
+     "members": [
+      "lone_parent_1",
+      "lone_parent_2"
+     ],
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 2860
+     },
+     "alcohol_and_tobacco_consumption": {
+      "2025": 213.2
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 530.4
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 7508.8
+     },
+     "household_furnishings_consumption": {
+      "2025": 1601.6
+     },
+     "health_consumption": {
+      "2025": 432.64
+     },
+     "transport_consumption": {
+      "2025": 2230.8
+     },
+     "communication_consumption": {
+      "2025": 1060.8
+     },
+     "recreation_consumption": {
+      "2025": 3733.6
+     },
+     "education_consumption": {
+      "2025": 758.16
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 1128.4
+     },
+     "miscellaneous_consumption": {
+      "2025": 1586
+     },
+     "petrol_spending": {
+      "2025": 327.08
+     },
+     "diesel_spending": {
+      "2025": 178.36
+     },
+     "household_net_income": {
+      "2025": null
+     }
+    },
+    "pensioner_couple": {
+     "members": [
+      "pensioner_couple_1",
+      "pensioner_couple_2"
+     ],
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 3822
+     },
+     "alcohol_and_tobacco_consumption": {
+      "2025": 499.2
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 696.8
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 4472
+     },
+     "household_furnishings_consumption": {
+      "2025": 1674.4
+     },
+     "health_consumption": {
+      "2025": 707.2
+     },
+     "transport_consumption": {
+      "2025": 2724.8
+     },
+     "communication_consumption": {
+      "2025": 925.6
+     },
+     "recreation_consumption": {
+      "2025": 4071.6
+     },
+     "education_consumption": {
+      "2025": 0
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 1497.6
+     },
+     "miscellaneous_consumption": {
+      "2025": 1976
+     },
+     "petrol_spending": {
+      "2025": 399.36
+     },
+     "diesel_spending": {
+      "2025": 217.88
+     },
+     "household_net_income": {
+      "2025": null
+     }
+    }
+   }
+  },
+  "policy": {
+   "gov.hmrc.fuel_duty.petrol_and_diesel": {
+    "2025-01-01.2100-12-31": 0.5795
+   }
+  }
+ },
+ "response": {
+  "status": "ok",
+  "result": {
+   "benunits": {
+    "couple_two_children": {
+     "members": [
+      "couple_two_children_1",
+      "couple_two_children_2",
+      "couple_two_children_3",
+      "couple_two_children_4"
+     ]
+    },
+    "lone_parent": {
+     "members": [
+      "lone_parent_1",
+      "lone_parent_2"
+     ]
+    },
+    "pensioner_couple": {
+     "members": [
+      "pensioner_couple_1",
+      "pensioner_couple_2"
+     ]
+    },
+    "single_120k": {
+     "members": [
+      "single_120k_1"
+     ]
+    },
+    "single_25k": {
+     "members": [
+      "single_25k_1"
+     ]
+    },
+    "single_45k": {
+     "members": [
+      "single_45k_1"
+     ]
+    }
+   },
+   "households": {
+    "couple_two_children": {
+     "alcohol_and_tobacco_consumption": {
+      "2025": 509.6
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 1336.4
+     },
+     "communication_consumption": {
+      "2025": 1414.4
+     },
+     "diesel_spending": {
+      "2025": 575.64
+     },
+     "education_consumption": {
+      "2025": 1291.16
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 5111.6
+     },
+     "health_consumption": {
+      "2025": 736.84
+     },
+     "household_furnishings_consumption": {
+      "2025": 2880.8
+     },
+     "household_net_income": {
+      "2025": 44472.61
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 6229.6
+     },
+     "members": [
+      "couple_two_children_1",
+      "couple_two_children_2",
+      "couple_two_children_3",
+      "couple_two_children_4"
+     ],
+     "miscellaneous_consumption": {
+      "2025": 3000.4
+     },
+     "petrol_spending": {
+      "2025": 1054.04
+     },
+     "recreation_consumption": {
+      "2025": 6073.6
+     },
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 2932.8
+     },
+     "transport_consumption": {
+      "2025": 6921.2
+     }
+    },
+    "lone_parent": {
+     "alcohol_and_tobacco_consumption": {
+      "2025": 213.2
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 530.4
+     },
+     "communication_consumption": {
+      "2025": 1060.8
+     },
+     "diesel_spending": {
+      "2025": 178.36
+     },
+     "education_consumption": {
+      "2025": 758.16
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 2860
+     },
+     "health_consumption": {
+      "2025": 432.64
+     },
+     "household_furnishings_consumption": {
+      "2025": 1601.6
+     },
+     "household_net_income": {
+      "2025": 21226.047
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 7508.8
+     },
+     "members": [
+      "lone_parent_1",
+      "lone_parent_2"
+     ],
+     "miscellaneous_consumption": {
+      "2025": 1586
+     },
+     "petrol_spending": {
+      "2025": 327.08
+     },
+     "recreation_consumption": {
+      "2025": 3733.6
+     },
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 1128.4
+     },
+     "transport_consumption": {
+      "2025": 2230.8
+     }
+    },
+    "pensioner_couple": {
+     "alcohol_and_tobacco_consumption": {
+      "2025": 499.2
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 696.8
+     },
+     "communication_consumption": {
+      "2025": 925.6
+     },
+     "diesel_spending": {
+      "2025": 217.88
+     },
+     "education_consumption": {
+      "2025": 0
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 3822
+     },
+     "health_consumption": {
+      "2025": 707.2
+     },
+     "household_furnishings_consumption": {
+      "2025": 1674.4
+     },
+     "household_net_income": {
+      "2025": 23727.674
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 4472
+     },
+     "members": [
+      "pensioner_couple_1",
+      "pensioner_couple_2"
+     ],
+     "miscellaneous_consumption": {
+      "2025": 1976
+     },
+     "petrol_spending": {
+      "2025": 399.36
+     },
+     "recreation_consumption": {
+      "2025": 4071.6
+     },
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 1497.6
+     },
+     "transport_consumption": {
+      "2025": 2724.8
+     }
+    },
+    "single_120k": {
+     "alcohol_and_tobacco_consumption": {
+      "2025": 457.6
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 832
+     },
+     "communication_consumption": {
+      "2025": 1112.8
+     },
+     "diesel_spending": {
+      "2025": 229.32
+     },
+     "education_consumption": {
+      "2025": 457.6
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 2641.6
+     },
+     "health_consumption": {
+      "2025": 613.6
+     },
+     "household_furnishings_consumption": {
+      "2025": 2932.8
+     },
+     "household_net_income": {
+      "2025": 75726.55
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 8294
+     },
+     "members": [
+      "single_120k_1"
+     ],
+     "miscellaneous_consumption": {
+      "2025": 3042
+     },
+     "petrol_spending": {
+      "2025": 419.64
+     },
+     "recreation_consumption": {
+      "2025": 3369.6
+     },
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 3567.2
+     },
+     "transport_consumption": {
+      "2025": 5626.4
+     }
+    },
+    "single_25k": {
+     "alcohol_and_tobacco_consumption": {
+      "2025": 416
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 499.2
+     },
+     "communication_consumption": {
+      "2025": 842.4
+     },
+     "diesel_spending": {
+      "2025": 233.48
+     },
+     "education_consumption": {
+      "2025": 106.6
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 1846
+     },
+     "health_consumption": {
+      "2025": 143
+     },
+     "household_furnishings_consumption": {
+      "2025": 1242.8
+     },
+     "household_net_income": {
+      "2025": 21084.232
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 5647.2
+     },
+     "members": [
+      "single_25k_1"
+     ],
+     "miscellaneous_consumption": {
+      "2025": 1206.4
+     },
+     "petrol_spending": {
+      "2025": 426.92
+     },
+     "recreation_consumption": {
+      "2025": 1690
+     },
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 1180.4
+     },
+     "transport_consumption": {
+      "2025": 2542.8
+     }
+    },
+    "single_45k": {
+     "alcohol_and_tobacco_consumption": {
+      "2025": 457.6
+     },
+     "clothing_and_footwear_consumption": {
+      "2025": 556.4
+     },
+     "communication_consumption": {
+      "2025": 774.8
+     },
+     "diesel_spending": {
+      "2025": 284.96
+     },
+     "education_consumption": {
+      "2025": 204.36
+     },
+     "food_and_non_alcoholic_beverages_consumption": {
+      "2025": 2132
+     },
+     "health_consumption": {
+      "2025": 274.04
+     },
+     "household_furnishings_consumption": {
+      "2025": 1357.2
+     },
+     "household_net_income": {
+      "2025": 35426.31
+     },
+     "housing_water_and_electricity_consumption": {
+      "2025": 5262.4
+     },
+     "members": [
+      "single_45k_1"
+     ],
+     "miscellaneous_consumption": {
+      "2025": 1731.6
+     },
+     "petrol_spending": {
+      "2025": 522.08
+     },
+     "recreation_consumption": {
+      "2025": 2407.6
+     },
+     "region": {
+      "2025": "EAST_MIDLANDS"
+     },
+     "restaurants_and_hotels_consumption": {
+      "2025": 1825.2
+     },
+     "transport_consumption": {
+      "2025": 3328
+     }
+    }
+   },
+   "people": {
+    "couple_two_children_1": {
+     "age": {
+      "2025": 40
+     },
+     "employment_income": {
+      "2025": 35000
+     }
+    },
+    "couple_two_children_2": {
+     "age": {
+      "2025": 38
+     },
+     "employment_income": {
+      "2025": 15000
+     }
+    },
+    "couple_two_children_3": {
+     "age": {
+      "2025": 9
+     }
+    },
+    "couple_two_children_4": {
+     "age": {
+      "2025": 6
+     }
+    },
+    "lone_parent_1": {
+     "age": {
+      "2025": 32
+     },
+     "employment_income": {
+      "2025": 18000
+     }
+    },
+    "lone_parent_2": {
+     "age": {
+      "2025": 5
+     }
+    },
+    "pensioner_couple_1": {
+     "age": {
+      "2025": 72
+     },
+     "state_pension_reported": {
+      "2025": 11973
+     },
+     "state_pension_type": {
+      "2025": "NEW"
+     }
+    },
+    "pensioner_couple_2": {
+     "age": {
+      "2025": 70
+     },
+     "state_pension_reported": {
+      "2025": 11973
+     },
+     "state_pension_type": {
+      "2025": "NEW"
+     }
+    },
+    "single_120k_1": {
+     "age": {
+      "2025": 40
+     },
+     "employment_income": {
+      "2025": 120000
+     }
+    },
+    "single_25k_1": {
+     "age": {
+      "2025": 40
+     },
+     "employment_income": {
+      "2025": 25000
+     }
+    },
+    "single_45k_1": {
+     "age": {
+      "2025": 40
+     },
+     "employment_income": {
+      "2025": 45000
+     }
+    }
+   }
+  }
+ }
+}

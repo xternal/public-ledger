@@ -18,8 +18,12 @@ export const DEFAULT_INTAKE_MODEL = "claude-opus-5-5";
 const FALLBACK_MODELS = new Set(["claude-sonnet-5-5", "claude-opus-5-5", "claude-opus-5", "claude-fable-5-1"]);
 const FALLBACK_BETA = "server-side-fallback-2026-07-01";
 
-/** Below this the model itself doubts an editor would accept it; not worth an editor's time. */
-export const MIN_CONFIDENCE = 0.3;
+/**
+ * Below this the model itself doubts an editor would accept it. Set from the first
+ * live run (9 Sep 2026: 46 candidates; the 6 under 0.5 were procedural, such as
+ * chairing a summit or "will perhaps talk to the Treasury").
+ */
+export const MIN_CONFIDENCE = 0.5;
 export const MIN_QUOTE_WORDS = 6;
 const MAX_CANDIDATES_PER_CALL = 8;
 /** Longer sources are read in parts split at paragraph breaks (a long debate day). */

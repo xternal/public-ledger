@@ -37,6 +37,8 @@ jobs:
           cache: pip
           cache-dependency-path: etl/requirements.txt
       - run: pip install -r etl/requirements.txt
+      # Network-free: recorded fixtures (the Internet Archive fallback) and committed data; tests that need downloads skip.
+      - run: python -m pytest etl/tests -q --offline
       # Rebuild from the committed observations: balance, coverage and staleness checks fail the job.
       - run: python -m etl.build --offline --trigger ci
       - name: Committed build output is up to date

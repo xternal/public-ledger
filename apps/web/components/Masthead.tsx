@@ -2,6 +2,7 @@
 
 import { useScenario } from "@/lib/scenario";
 import { gbpBn } from "@/lib/format";
+import { NavLinks } from "./NavLinks";
 
 const SECTIONS = [
   { href: "#statement", label: "Statement" },
@@ -22,17 +23,7 @@ export function TopBar() {
           <i aria-hidden className="inline-block size-3.5 rounded-[3px] bg-[linear-gradient(90deg,var(--rec)_0_55%,var(--debt)_55%_100%)]" />
           Public Ledger
         </a>
-        <nav aria-label="Sections" className="no-scrollbar flex min-w-0 flex-1 gap-0.5 overflow-x-auto">
-          {SECTIONS.map((s) => (
-            <a
-              key={s.href}
-              href={s.href}
-              className="whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm font-medium text-muted no-underline hover:bg-sunk hover:text-ink"
-            >
-              {s.label}
-            </a>
-          ))}
-        </nav>
+        <NavLinks links={SECTIONS} spy />
         <span className="hidden whitespace-nowrap text-label text-muted md:inline">
           {meta.country}, {meta.fiscal_year}
         </span>
@@ -51,7 +42,7 @@ export function Hero() {
         <span>
           Annual statement for {meta.fiscal_year}, based on the {meta.vintage_label}
         </span>
-        <span className="rounded-full bg-warn/8 px-2 py-0.5 text-caption font-medium text-warn">Early version: promise cards await editor review</span>
+        <span className="rounded-full bg-warn/8 px-2 py-0.5 text-caption font-medium text-warn">Early version: cards checked by Junior Editor, human review to come</span>
       </p>
       <h1 className="max-w-[20ch] text-[clamp(32px,4.4vw,var(--text-display))] font-semibold leading-[1.06] tracking-[-0.035em]">
         Where {gbpBn(spending_bn)} of public money went, and where it came from

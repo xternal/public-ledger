@@ -107,3 +107,8 @@ corrections:
       The entry left out the period. The verified 3.6 million covers the government's first eight months, as the
       letter says.
     source_url: https://uksa.statisticsauthority.gov.uk/correspondence/letter-from-sir-robert-chote-to-helen-morgan-mp-nhs-appointment-statistics/
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-06"
+    note: Second check of every quote, date, evidence link, status, cost, wording and legal risk against the live sources; fixes applied as corrections.

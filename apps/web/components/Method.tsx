@@ -2,9 +2,11 @@
 
 import { ENGINE_VERSION } from "@ledger/engine";
 import { QUALITY_HELP } from "@/lib/copy";
+import { T1_METHOD } from "@/lib/t1-copy";
 import { fixed } from "@/lib/format";
 import { useScenario } from "@/lib/scenario";
 import { QualityBadge, SectionHeading } from "./ui";
+import { JUNIOR_EDITOR_NOTE } from "@/lib/reviews";
 
 export function Method() {
   const { seed } = useScenario();
@@ -29,10 +31,10 @@ export function Method() {
         <div>
           <h3 className="mb-2 text-body font-semibold text-ink">Every number has a label</h3>
           <ul className="m-0 grid list-none gap-2.5 p-0">
-            {(["sourced", "approx", "training", "plug"] as const).map((q) => (
+            {(["sourced", "approx", "modelled", "training", "plug"] as const).map((q) => (
               <li key={q} className="grid gap-0.5">
                 <QualityBadge quality={q} />
-                <span>{QUALITY_HELP[q]}</span>
+                <span>{q === "modelled" ? T1_METHOD.modelledHelp : QUALITY_HELP[q]}</span>
               </li>
             ))}
           </ul>
@@ -49,6 +51,23 @@ export function Method() {
             ))}
           </ul>
         </div>
+      </div>
+      <div className="mt-10 max-w-[72ch] text-sm text-muted">
+        <h3 className="mb-2 text-body font-semibold text-ink">{T1_METHOD.heading}</h3>
+        <div className="grid gap-2.5">
+          {T1_METHOD.paragraphs.map((p) => (
+            <p key={p} className="m-0 leading-relaxed">
+              {p}
+            </p>
+          ))}
+        </div>
+      </div>
+      <div id="reviews" className="mt-10 grid max-w-[72ch] scroll-mt-20 gap-2 text-sm text-muted">
+        <h3 className="m-0 text-body font-semibold text-ink">Who checks the cards</h3>
+        <p className="m-0 leading-relaxed">{JUNIOR_EDITOR_NOTE}</p>
+        <p className="m-0 leading-relaxed">
+          Whatever a review finds is fixed in public: the card shows a dated correction with the old and new value. Every party&apos;s cards get the same checks.
+        </p>
       </div>
     </section>
   );

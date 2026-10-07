@@ -84,13 +84,14 @@ export function KpiStrip() {
 
   return (
     <dl className="grid grid-cols-2 gap-x-4 gap-y-6 border-y border-line py-6 sm:grid-cols-3 lg:grid-cols-6 lg:gap-0 lg:divide-x lg:divide-line">
-      {items.map((k) => {
+      {items.map((k, i) => {
         const tone = k.change ? direction(k.change[1]) : "flat";
         return (
           <div key={k.label} className="grid min-w-0 content-start gap-1 lg:px-5 lg:first:pl-0 lg:last:pr-0">
             <dt className="text-label text-muted">{k.label}</dt>
             <dd className="m-0">
-              <WithProvenance p={k.p}>
+              {/* Right-hand column on phones (and the last figure): open the source tip leftwards so it stays on screen. */}
+              <WithProvenance p={k.p} align={i % 2 === 1 || i === items.length - 1 ? "end" : "start"}>
                 <span className={`whitespace-nowrap text-[clamp(22px,2.2vw,var(--text-figure))] font-semibold leading-[1.1] tracking-[var(--tracking-figure)] ${k.debt ? "text-debt-ink" : ""}`}>
                   {k.value}
                 </span>

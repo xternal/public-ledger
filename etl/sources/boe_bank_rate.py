@@ -15,6 +15,12 @@ Decision dates come from the BoE "Monetary Policy Committee dates" page, which
 lists the confirmed dates for the current and the next year only, so holds
 before that are not recorded: older history is changes only.
 
+The edition is named after its newest point, "IADB IUDBEDR as of 2026-09-17"
+(the latest decision, or the latest change), not after the last day of the
+daily series: the label then moves only when the data does, so a nightly run
+with nothing new writes nothing and opens no pull request. Staleness counts
+from that date, so it measures the time since the last decision we have.
+
 Raw files:
   IUDBEDR.csv              IADB CSV export, daily, from 1 Jan 2018 to today
   upcoming-mpc-dates.html  MPC announcement dates (also shows current rate and next due date)
@@ -51,7 +57,8 @@ SOURCE = Source(
     publisher="Bank of England",
     url="https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp",
     licence="Bank of England terms of use (https://www.bankofengland.co.uk/legal)",
-    cadence_days=45,  # MPC meets eight times a year, about every six weeks
+    # MPC decisions are six or seven weeks apart (at most 49 days), and the edition is dated by the latest one.
+    cadence_days=49,
     grace_days=14,
 )
 
@@ -146,31 +153,35 @@ def parse(raws: list[RawArtifact]) -> list[Observation]:
     mpc_raw = _pick(raws, "upcoming-mpc-dates")
     daily = daily_rates(csv_raw)
     last_day = daily[-1][0]
-    vintage = f"IADB {SERIES_CODE} to {last_day.isoformat()}"
-
-    def obs(d: date, v: float, note: str | None = None) -> Observation:
-        return Observation(
-            series_id="macro.bank_rate", period=d.isoformat(), geography="UK", value=v,
-            unit="rate_pct", kind="outturn", source_id=SOURCE_ID, vintage=vintage,
-            quality="sourced", method_note=note,
-        )
 
     all_changes = changes(daily)
     before = [c for c in all_changes if c[0] < HISTORY_START]
     after = [c for c in all_changes if c[0] >= HISTORY_START]
-    out: list[Observation] = []
+    points: list[tuple[date, float, str | None]] = []
     if before:
         d, v = before[-1]
-        out.append(obs(d, v, f"Change in force on {HISTORY_START.isoformat()} (opening level of the series)."))
-    out += [obs(d, v) for d, v in after]
+        points.append((d, v, f"Change in force on {HISTORY_START.isoformat()} (opening level of the series)."))
+    points += [(d, v, None) for d, v in after]
 
     decided = [d for d in mpc_calendar(mpc_raw)["dates"] if d <= last_day]
     if not decided:
         warnings.warn(f"{SOURCE_ID}: no MPC decision on the dates page falls on or before {last_day}; only changes recorded")
     else:
         latest = decided[-1]
-        if latest.isoformat() not in {o.period for o in out}:
+        if latest not in {d for d, _, _ in points}:
             rate = [v for d, v in daily if d <= latest][-1]
-            out.append(obs(latest, rate, "MPC decision date: Bank Rate held (not a change)."))
-    out.sort(key=lambda o: o.period)
-    return out
+            points.append((latest, rate, "MPC decision date: Bank Rate held (not a change)."))
+    if not points:
+        raise ValueError(f"{SOURCE_ID}: no change of Bank Rate in the IADB export")
+    points.sort(key=lambda p: p[0])
+
+    # Named after the newest point, not last_day: the daily series grows every business day with the same rate.
+    vintage = f"IADB {SERIES_CODE} as of {points[-1][0].isoformat()}"
+    return [
+        Observation(
+            series_id="macro.bank_rate", period=d.isoformat(), geography="UK", value=v,
+            unit="rate_pct", kind="outturn", source_id=SOURCE_ID, vintage=vintage,
+            quality="sourced", method_note=note,
+        )
+        for d, v, note in points
+    ]

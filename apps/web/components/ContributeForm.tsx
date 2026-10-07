@@ -60,6 +60,22 @@ type Outcome = { reference: string; receipt: boolean | null } | null;
  * /api/submissions, which puts it in the editors' queue, never on a card
  * (invariant 8). No client analytics on this form (rule 4): the server counts.
  */
+/** Whether this site sends email at all (false in an alpha before SES). Hidden until known, so no address is asked for in vain. */
+function useEmailEnabled(): boolean {
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    let off = false;
+    fetch("/api/follow/options")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { email?: boolean } | null) => !off && setEnabled(d?.email !== false))
+      .catch(() => undefined);
+    return () => {
+      off = true;
+    };
+  }, []);
+  return enabled;
+}
+
 export function ContributeForm({
   promises,
   kind,
@@ -73,6 +89,7 @@ export function ContributeForm({
   onKind: (k: SubmissionKind) => void;
   onCard: (id: string) => void;
 }) {
+  const emailEnabled = useEmailEnabled();
   const [values, setValues] = useState(EMPTY);
   const [evidenceType, setEvidenceType] = useState<string>(EVIDENCE_OPTIONS[0].id);
   const [errors, setErrors] = useState<Errors>({});
@@ -315,6 +332,7 @@ export function ContributeForm({
           />
           {err("claimed_quote")}
         </div>
+        {emailEnabled && (
         <div className={field}>
           <label htmlFor="sub-email" className={label}>
             Email, if you want a receipt and an update (optional)
@@ -335,6 +353,7 @@ export function ContributeForm({
           </p>
           {err("contact_email")}
         </div>
+        )}
         <div className={field}>
           <label htmlFor="sub-handle" className={label}>
             Credit me on the card as… (optional)

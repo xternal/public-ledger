@@ -26,6 +26,8 @@ export async function POST(req: Request) {
   try {
     const { config, db, mail } = await getServer();
     const { content, rules } = intake();
+    // With email switched off the form hides the email field; never store an address we cannot use.
+    if (config.mail.provider === "off" && body && typeof body === "object") delete (body as Record<string, unknown>).contact_email;
     const result = await receiveSubmission(body, { db, config, mail, rules, clientKey: clientKeyFrom(req.headers) });
     if (!result.ok) {
       return Response.json({ error: result.error, fields: result.fields }, { status: result.httpStatus, headers: NO_STORE });
