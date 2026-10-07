@@ -1,0 +1,53 @@
+id: uk-con-zev-mandate-abolition-2026
+actor_id: conservatives
+made_on: "2026-09-09"
+venue: parliament
+venue_label: Commons statement (Julia Lopez, for the Conservatives)
+policy_area: economic_affairs
+status: promised
+status_note: >-
+  The Conservatives are not in government, so the card stays at Promised; the party's policy pages say the next
+  Conservative Government will completely abolish the Zero Emission Vehicle (ZEV) mandate. Filed under economic
+  affairs, not housing and environment, because the mandate regulates car and van makers' sales (transport and
+  manufacturing are economic affairs in the COFOG classification the ledger uses) and the pledge was made in a
+  statement on car-industry job losses.
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "Hansard, House of Commons, 9 Sep 2026: Jaguar Land Rover: Redundancies (statement)"
+    url: https://hansard.parliament.uk/Commons/2026-09-09/debates/CAB0EF73-A8DD-4708-AF57-2221AD011A5A/JaguarLandRoverRedundancies
+  - title: "Conservatives: Our new plan for drivers, 24 Apr 2026"
+    url: https://www.conservatives.com/news/our-new-plan-for-drivers
+  - title: "Conservatives: Our Plan for Britain (policy page)"
+    url: https://www.conservatives.com/our-plan-for-britain
+  - title: "FleetPoint, 15 Dec 2025: Conservatives to rip up electric vehicle rules (reports the party's announcement)"
+    url: https://www.fleetpoint.org/environment-news/zero-emission-vehicle-mandate/conservatives-to-rip-up-electric-vehicle-rules/
+versions:
+  - version: 1
+    text: The Conservatives would abolish the ZEV mandate.
+    recorded_on: "2026-09-09"
+    source_url: https://hansard.parliament.uk/Commons/2026-09-09/debates/CAB0EF73-A8DD-4708-AF57-2221AD011A5A/JaguarLandRoverRedundancies
+    quote_checked_on: "2026-10-07"
+    parameters:
+      who: >-
+        Car and van manufacturers, which would no longer have to meet the mandate's yearly targets for
+        zero-emission sales; the party also says it would end the 2030 ban on new petrol and diesel cars
+      cost_note: >-
+        No costing published for abolishing the mandate itself. In December 2025 the party said that scrapping the
+        non-research and development subsidy programmes linked to the mandate, a separate measure, would save
+        £3.8bn over the next decade; that is a ten-year total, so no yearly figure is shown.
+      cost_sources:
+        - title: "FleetPoint, 15 Dec 2025: Conservatives to rip up electric vehicle rules (reports the party's announcement)"
+          url: https://www.fleetpoint.org/environment-news/zero-emission-vehicle-mandate/conservatives-to-rip-up-electric-vehicle-rules/
+      when: Not stated; the party says the next Conservative Government would act
+      funded_by: null
+events:
+  - date: "2026-09-09"
+    type: promised
+    text: Conservative frontbencher Julia Lopez tells the Commons the Conservatives would abolish the ZEV mandate
+replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-07"
+    note: Second check of the quote at its live source, date and venue, evidence, status, cost and funding, wording and legal risk; fixes made before publication.

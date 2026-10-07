@@ -1,0 +1,51 @@
+id: uk-socio-economic-duty-2026
+actor_id: bridget-phillipson
+made_on: "2026-09-09"
+venue: parliament
+venue_label: Written ministerial statement
+policy_area: social_protection
+status: promised
+status_note: >-
+  The duty is section 1 of the Equality Act 2010, in force in Scotland since 1 April 2018 and in Wales since 31 March
+  2021 but never commenced in England; legislation.gov.uk lists no commencement for England, and no date had been
+  announced by 7 October 2026. The same statement announced the closure of the Social Mobility Commission, to be
+  achieved through primary legislation "when Parliamentary time and consideration allows".
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "Written ministerial statement HCWS322, 9 Sep 2026: Driving Opportunity in Every Postcode"
+    url: https://questions-statements.parliament.uk/written-statements/detail/2026-09-09/HCWS322
+  - title: "Office for Equality and Opportunity press release, 9 Sep 2026: Time to end class squeamishness"
+    url: https://www.gov.uk/government/news/time-to-end-class-squeamishness-first-government-unit-to-improve-life-chances-for-working-class
+  - title: "Equality Act 2010, section 1 (public sector duty regarding socio-economic inequalities), legislation.gov.uk"
+    url: https://www.legislation.gov.uk/ukpga/2010/15/section/1
+versions:
+  - version: 1
+    text: >-
+      Crucially, the unit will lead the enactment of the Socio-Economic Duty, a new power in the Equality Act that
+      will legally require public bodies to consider how to improve the lives of lower-income families as part of
+      decisions around issues like transport, services and budgets.
+    recorded_on: "2026-09-09"
+    source_url: https://questions-statements.parliament.uk/written-statements/detail/2026-09-09/HCWS322
+    quote_checked_on: "2026-10-07"
+    parameters:
+      who: >-
+        Public bodies in England covered by section 1 of the Equality Act 2010, which would have to consider
+        reducing inequalities of outcome from socio-economic disadvantage in strategic decisions; lower-income
+        families
+      cost_note: No costing published.
+      when: >-
+        Not stated. A government press release the same day calls it one of the new Class Unit's early priorities.
+      funded_by: null
+events:
+  - date: "2026-09-09"
+    type: promised
+    text: >-
+      Bridget Phillipson tells Parliament a new Class Unit will lead the enactment of the socio-economic duty in the
+      Equality Act 2010
+replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-07"
+    note: Second check of the quote at its live source, date and venue, evidence, status, cost and funding, wording and legal risk; fixes made before publication.

@@ -1,0 +1,12 @@
+id: bridget-phillipson
+name: Bridget Phillipson
+kind: person
+party_id: labour
+roles:
+  - title: Minister for Women and Equalities
+    # Source: https://www.gov.uk/government/people/bridget-phillipson ("Bridget Phillipson was appointed Minister for Women and Equalities on 8 July 2024.")
+    from: "2024-07-08"
+  - title: Secretary of State for Education
+    # Source: https://www.gov.uk/government/people/bridget-phillipson ("She was previously Secretary of State for Education from 5 July 2024 to 20 July 2026.")
+    from: "2024-07-05"
+    to: "2026-07-20"

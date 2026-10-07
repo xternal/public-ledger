@@ -1,0 +1,56 @@
+id: uk-mayors-16-19-budget-2026
+actor_id: lucy-powell
+made_on: "2026-09-09"
+venue: parliament
+venue_label: Commons statement
+policy_area: education
+status: promised
+status_note: >-
+  No start date was given in the statement. The Cabinet's Rewiring the State statement (31 July 2026) lists
+  mayors' control of the budget for 16- to 19-year-olds among the agreed reforms and says a white paper this
+  autumn will set out a timetable for implementation.
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "Hansard, House of Commons, 9 Sep 2026: Education and Skills Reform"
+    url: https://hansard.parliament.uk/Commons/2026-09-09/debates/5464194E-3C69-4173-B4BA-5F57B9F7B471/EducationAndSkillsReform
+  - title: "Cabinet Office, 31 Jul 2026: Rewiring the State – Cabinet Statement"
+    url: https://www.gov.uk/government/publications/rewiring-the-state-cabinet-statement/rewiring-the-state-cabinet-statement-html
+  - title: "No 10 press release, 30 Jul 2026: PM hands mayors share of income tax to make lives better in every postcode"
+    url: https://www.gov.uk/government/news/pm-hands-mayors-share-of-income-tax-to-make-lives-better-in-every-postcode
+  - title: "DfE press release, 10 Sep 2026: Local leaders have say on reforms to prepare youngsters for work"
+    url: https://www.gov.uk/government/news/local-leaders-have-say-on-reforms-to-prepare-youngsters-for-work
+versions:
+  - version: 1
+    text: "For the first time, mayors will have control of the 16-19 education budget, and I know that, in respect of early years and early intervention, we can transform outcomes through the power of place."
+    recorded_on: "2026-09-09"
+    source_url: https://hansard.parliament.uk/Commons/2026-09-09/debates/5464194E-3C69-4173-B4BA-5F57B9F7B471/EducationAndSkillsReform
+    quote_checked_on: "2026-10-07"
+    parameters:
+      who: >-
+        Mayors of strategic authorities in England, who would control 16-19 education funding in their areas,
+        and 16- to 19-year-olds in education there
+      cost_note: >-
+        No costing published. The pledge moves control of existing 16-19 education funding from central
+        government to mayors. No official figure has been published for how much of that budget would be
+        devolved, or for any change in total spending. DfE describes it as the devolution of "billions of pounds
+        of funding for 16 to 19-year-olds".
+      cost_sources:
+        - title: "DfE press release, 10 Sep 2026: Local leaders have say on reforms to prepare youngsters for work"
+          url: https://www.gov.uk/government/news/local-leaders-have-say-on-reforms-to-prepare-youngsters-for-work
+        - title: "Cabinet Office, 31 Jul 2026: Rewiring the State – Cabinet Statement"
+          url: https://www.gov.uk/government/publications/rewiring-the-state-cabinet-statement/rewiring-the-state-cabinet-statement-html
+      when: >-
+        Not stated. The Cabinet's Rewiring the State statement says a white paper in autumn 2026 will set out
+        the timetable.
+      funded_by: null
+events:
+  - date: "2026-09-09"
+    type: promised
+    text: Lucy Powell tells the Commons that mayors will control the 16-19 education budget for the first time
+replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-07"
+    note: Second check of the quote at its live source, date and venue, evidence, status, cost and funding, wording and legal risk; fixes made before publication.

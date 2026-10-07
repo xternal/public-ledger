@@ -1,0 +1,71 @@
+id: uk-nhs-capital-1-5bn-2026
+actor_id: hm-government
+made_on: "2026-09-09"
+venue: press_release
+venue_label: Press release (DHSC)
+policy_area: health
+status: in_plan
+status_note: >-
+  On 11 September 2026 DHSC published the initial Estates Safety Fund allocations for 2026-27 to 2029-30, listed
+  by NHS trust with the number of schemes and sites (about £1.3bn for more than 950 schemes). DHSC says these
+  schemes are approved to proceed to detailed design and that final cost and scope are subject to business case
+  approvals. The list gives totals by trust, not by project, so the 10 major projects (over £200m) named in the
+  9 September press release cannot be matched to it: Bristol Royal Infirmary (£41m), Royal Free Hospital, London
+  (£32m), Stepping Hill Hospital, Stockport (£26m), Wycombe Hospital (£25m), St George’s Hospital, Stafford (£25m), John
+  Howard Centre, London (£25m), Crystal Centre and Linden Centre, Essex (£15m), Queen Elizabeth Hospital, Gateshead
+  (£12m), Lister Hospital, Hertfordshire (£11m) and Southend Hospital (£1m, to begin planning a replacement tower).
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "DHSC press release, 9 Sep 2026: Over £1.5 billion to help NHS withstand year-round pressure"
+    url: https://www.gov.uk/government/news/over-15-billion-to-help-nhs-withstand-year-round-pressure
+  - title: "DHSC, 11 Sep 2026: Estates Safety Fund: initial schemes and associated funding allocations, 2026 to 2030"
+    url: https://www.gov.uk/government/publications/estates-safety-fund-initial-schemes-and-associated-funding-allocations-2026-to-2030
+versions:
+  - version: 1
+    text: >-
+      Over £200 million will fund 10 major hospital projects, while over £1.3 billion will go towards maintenance,
+      safety and resilience improvements.
+    recorded_on: "2026-09-09"
+    source_url: https://www.gov.uk/government/news/over-15-billion-to-help-nhs-withstand-year-round-pressure
+    quote_checked_on: "2026-10-07"
+    parameters:
+      who: >-
+        NHS hospitals and other NHS facilities in England, and their patients and staff: 10 major projects and more
+        than 950 maintenance, safety and resilience schemes
+      how_much_bn_per_year: null
+      cost_note: >-
+        The release gives more than £1.5bn in total: over £200m for 10 major projects and over £1.3bn for
+        maintenance, safety and resilience projects across the NHS estate, including more than £32m for cooling,
+        ventilation and overheating. The release gives no figure for a single year, and the DHSC list it links to
+        covers allocations across the financial years 2026-27 to 2029-30, so no yearly range is shown. The money
+        comes from the £6.75bn Estates Safety Fund, which DHSC describes as equivalent to £750m a year over 9 years.
+        Final scheme costs are subject to future business case approvals.
+      cost_sources:
+        - title: "DHSC press release, 9 Sep 2026: Over £1.5 billion to help NHS withstand year-round pressure"
+          url: https://www.gov.uk/government/news/over-15-billion-to-help-nhs-withstand-year-round-pressure
+        - title: "DHSC, 11 Sep 2026: Estates Safety Fund: initial schemes and associated funding allocations, 2026 to 2030"
+          url: https://www.gov.uk/government/publications/estates-safety-fund-initial-schemes-and-associated-funding-allocations-2026-to-2030
+      when: >-
+        Allocations cover the financial years 2026-27 to 2029-30; no completion dates are given for the projects
+      funded_by: >-
+        The £6.75 billion Estates Safety Fund, which DHSC describes as "part of the government’s record capital
+        budget for health"
+events:
+  - date: "2026-09-09"
+    type: promised
+    text: >-
+      DHSC announces over £1.5bn for NHS buildings: over £200m for 10 major hospital projects and over £1.3bn for
+      maintenance, safety and resilience improvements
+  - date: "2026-09-11"
+    type: in_plan
+    text: >-
+      DHSC publishes the initial Estates Safety Fund allocations for 2026-27 to 2029-30: about £1.3bn for more than
+      950 schemes, given as totals by NHS trust rather than by project
+    evidence_url: https://www.gov.uk/government/publications/estates-safety-fund-initial-schemes-and-associated-funding-allocations-2026-to-2030
+replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-07"
+    note: Second check of the quote at its live source, date and venue, evidence, status, cost and funding, wording and legal risk; fixes made before publication.

@@ -1,0 +1,67 @@
+id: uk-con-cheap-power-plan-2026
+actor_id: conservatives
+made_on: "2026-09-09"
+venue: parliament
+venue_label: Commons statement (Julia Lopez, for the Conservatives)
+policy_area: economic_affairs
+status: promised
+status_note: >-
+  The Conservatives are not in government, so the card stays at Promised. Claire Coutinho, then Shadow Energy
+  Secretary, announced the repeal of the Climate Change Act and the first Cheap Power Plan policies (to "axe the
+  Carbon Tax on electricity generation" and to scrap old wind farm subsidies) at the party's 2025 conference, and
+  the party's policy page lists repealing the Act and axing the "Carbon Tax".
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "Hansard, House of Commons, 9 Sep 2026: Jaguar Land Rover: Redundancies (statement)"
+    url: https://hansard.parliament.uk/Commons/2026-09-09/debates/CAB0EF73-A8DD-4708-AF57-2221AD011A5A/JaguarLandRoverRedundancies
+  - title: "Conservatives: Energy is prosperity (Claire Coutinho conference speech), 6 Oct 2025"
+    url: https://www.conservatives.com/news/energy-is-prosperity
+  - title: "Conservatives: The Hidden Cost of Net Zero (Claire Coutinho speech and Onward report), 19 Aug 2026"
+    url: https://www.conservatives.com/news/the-hidden-cost-of-net-zero
+  - title: "Conservatives: Our Plan for Britain (policy page)"
+    url: https://www.conservatives.com/our-plan-for-britain
+  - title: "Conservatives: New Conservative Broadcast: Cut Britain's Bills, 8 Apr 2026"
+    url: https://www.conservatives.com/news/cut-britains-bills-broadcast
+versions:
+  - version: 1
+    text: >-
+      The Conservatives have a cheap power plan to slash energy costs for the entire economy. It involves
+      hard-nosed choices: repealing the Climate Change Act 2008, axing the emissions trading scheme, scrapping wind
+      and solar subsidies, investing in nuclear and getting the North sea drilling again.
+    recorded_on: "2026-09-09"
+    source_url: https://hansard.parliament.uk/Commons/2026-09-09/debates/CAB0EF73-A8DD-4708-AF57-2221AD011A5A/JaguarLandRoverRedundancies
+    quote_checked_on: "2026-10-07"
+    parameters:
+      who: >-
+        Electricity bill payers, households and businesses (the party says the Cheap Power Plan would save the
+        average family £200 a year on electricity bills); wind and solar generators that receive subsidies
+      cost_note: >-
+        No costing of the effect on the public finances published. The party's figures are savings on bills, not
+        public-finance figures: it says axing the carbon tax would cut bills by almost £8bn a year (6 October 2025
+        speech) and that the plan would save households £200 a year, and a report by Onward that the party
+        published on 19 August 2026 puts savings on electricity bills at over £320bn by 2050. The party's savings
+        list includes £1.6bn from scrapping "green subsidies", with no year and no list of which subsidies.
+      cost_sources:
+        - title: "Conservatives: Energy is prosperity (Claire Coutinho conference speech), 6 Oct 2025"
+          url: https://www.conservatives.com/news/energy-is-prosperity
+        - title: "Conservatives: The Hidden Cost of Net Zero, 19 Aug 2026"
+          url: https://www.conservatives.com/news/the-hidden-cost-of-net-zero
+        - title: "Conservatives: Our Plan for Britain (policy page)"
+          url: https://www.conservatives.com/our-plan-for-britain
+      when: Not stated; the party says the next Conservative Government would act
+      funded_by: >-
+        The party says its plan to cut bills "would be paid for by getting Britain drilling" (party broadcast,
+        8 April 2026). No other funding is stated on its policy pages.
+events:
+  - date: "2026-09-09"
+    type: promised
+    text: >-
+      Conservative frontbencher Julia Lopez tells the Commons the Conservatives' cheap power plan involves repealing
+      the Climate Change Act 2008, axing the emissions trading scheme and scrapping wind and solar subsidies
+replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-07"
+    note: Second check of the quote at its live source, date and venue, evidence, status, cost and funding, wording and legal risk; fixes made before publication.
