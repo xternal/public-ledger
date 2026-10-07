@@ -222,3 +222,11 @@ git push -u origin HEAD && gh pr create --base main --title "Data refresh: OBR, 
 Review the Statement diffs as for a nightly pull request. CI rebuilds from
 the committed observations and fails if they don't reproduce the committed
 bundle.
+
+## 11. Merging when CI is green
+
+The repository is private on GitHub's free plan, so `main` cannot require checks. Instead, label a pull request **`merge-when-green`**: `.github/workflows/merge-when-green.yml` merges it once the CI checks `app` and `data` are both green on its latest commit (never a newer, unchecked commit), and starts the alerts run when content changed. Vercel deploys the merge as usual. Intake pull requests follow their own rule (approvals plus green CI, `.github/workflows/intake-merge.yml`).
+
+```bash
+gh pr edit <number> --repo xternal/public-ledger --add-label merge-when-green
+```
