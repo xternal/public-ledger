@@ -61,6 +61,13 @@ Run milestones in order. Each has a ready prompt. Start every session with: *"Re
 **Prompt**
 > Add ONS population projections (principal + variants) and OBR Fiscal risks and sustainability long-term projections. New page /people: old-age dependency ratio, workers per pensioner, births/deaths trend, age-related spending % GDP to 2075 as fans across variants. Assumption levers (fertility, net migration, life expectancy, state pension age) switch between published variants; we do not compute our own projections.
 
+## M6b — Contracts behind delivery (2–3 days)
+
+**Prompt**
+> Add `ContractLink` to docs/DATA_MODEL.md and packages/schema: {id, promise_id, source: 'find_a_tender' | 'contracts_finder' | 'zakupki', ocid, notice_url, archived_url, supplier: {name, companies_house_number?}, awarded_on, bids_received?, snapshots: [{fetched_at, value: Money, end_date_planned, end_date_actual?}]}. Snapshots are append-only like PromiseEvent: a change in value or dates is a new snapshot, never an edit. Editors link contracts to a promise by hand (`contracts: [ocid]` in its YAML); no automatic matching of contracts to promises. Build `etl/contracts`: for every linked contract, fetch its OCDS release package from Find a Tender (the Central Digital Platform, where every notice under the Procurement Act 2023 has gone since 24 Feb 2025; ocids look like `ocds-h6vhtk-…`) or, for procurements started before that date, from Contracts Finder; refresh nightly, and open a PR when the value or dates change. On a promise card at `funded`, `delivering` or `delivered`, show a Contracts strip: supplier (linked to Companies House, which lists beneficial owners; we link to them, we don't store them), bids received, first vs latest value (Δ in £ and %), planned vs actual end (months late), link to the notice. On the actor page, show total Δ value and median delay across the actor's linked contracts. Keep `zakupki` in the source enum for M8; don't build it now.
+
+**Done when:** three real cards at `delivering` or later show linked contracts fetched from OCDS; a changed value in the source produces a PR with a new snapshot; CI rejects an edited (not appended) snapshot.
+
 ## M7 — Backtest, API, method (4 days)
 
 **Prompt**
