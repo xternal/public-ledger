@@ -6,9 +6,11 @@ venue_label: 2024 manifesto, page 37
 policy_area: social_protection
 status: promised
 status_note: >-
-  The Liberal Democrats are not in government, so the card stays at Promised. In July 2026 the party restated free
-  personal care as one of its three tests on social care for the new Prime Minister; this card has no evidence
-  that the UK Government has adopted it.
+  The Liberal Democrats are not in government. In July 2026 the party restated free personal care as one of its
+  three tests on social care for the new Prime Minister. On 29 September 2026 Prime Minister Andy Burnham promised
+  free personal care for people over 65 through a National Care Service in the next parliament; it does not cover
+  working-age adults, and no detailed plan, legislation or funding has been published, so the card stays at
+  Promised.
 origin: manual
 editor_check_required: true
 sources:
@@ -22,6 +24,12 @@ sources:
     url: https://www.libdems.org.uk/press/release/davey-calls-on-pm-burnham-to-end-the-social-care-catastrophe-as-data-reveals-family-care-costs-have-soared-60-in-five-years
   - title: "IFS: Liberal Democrat manifesto: a reaction, 10 Jun 2024"
     url: https://ifs.org.uk/articles/liberal-democrat-manifesto-reaction
+  - title: "Labour Party: Six things Andy Burnham announced today at Labour Party Conference, 29 Sep 2026"
+    url: https://labour.org.uk/updates/stories/six-things-andy-burnham-announced-today-at-labour-party-conference/
+  - title: "No 10 press release, 29 Sep 2026: Prime Minister Andy Burnham sets out plans for a new National Care Service"
+    url: https://www.gov.uk/government/news/prime-minister-andy-burnham-sets-out-plans-for-a-new-national-care-service
+  - title: "Disability News Service: Free social care is coming… but only if you're over 65, government confirms after Burnham speech, 1 Oct 2026"
+    url: https://www.disabilitynewsservice.com/free-social-care-is-coming-but-only-if-youre-over-65-government-confirms-after-burnham-speech/
 versions:
   - version: 1
     text: >-
@@ -34,12 +42,14 @@ versions:
       who: >-
         People in England who need personal care, at home or in a care home. Care home residents would still pay
         for their accommodation.
-      how_much_bn_per_year: [2.7, 6.0, 7.0]
+      how_much_bn_per_year: [2.7, 6.0, 6.6]
       cost_note: >-
-        The party's own figure is £2.7bn a year by 2028-29 above existing social care plans (low). The Health
-        Foundation estimated in January 2024 that a Scottish-style free personal care model in England could cost
-        around £6bn extra in 2026/27 (central), rising to £7bn by 2035/36 (high). The IFS said the party's wider
-        £8.4bn for health and social care would not be nearly enough if it is on top of current spending.
+        Years shown: 2028-29 for the party's own figure and 2026/27 for the independent estimate, the years each
+        source costs. The party's own figure is £2.7bn a year by 2028-29 above existing social care plans (low). The
+        Health Foundation estimated in January 2024 that a Scottish-style free personal care model in England could
+        cost around £6bn extra in 2026/27 (central), rising to £7bn by 2035/36. The high end is an editorial +10% on
+        the Health Foundation's 2026/27 figure, because it gives a central figure only. The IFS said the party's
+        wider £8.4bn for health and social care would not be nearly enough if it is on top of current spending.
       cost_sources:
         - title: "Liberal Democrats press release, 8 Jun 2024"
           url: https://www.libdems.org.uk/press/release/ed-davey-launches-plan-for-free-personal-care-to-end-hospital-crisis-and-help-people-stay-in-their-own-homes
@@ -56,3 +66,30 @@ events:
     type: promised
     text: Liberal Democrat manifesto pledges free personal care in England
 replies: []
+corrections:
+  - date: "2026-10-06"
+    path: versions[0].parameters.how_much_bn_per_year
+    was: [2.7, 6.0, 7.0]
+    now: [2.7, 6.0, 6.6]
+    reason: >-
+      The high end was the Health Foundation's 2035/36 figure, a later year than the rest of the range (a time
+      profile). It is now an editorial +10% on the Health Foundation's 2026/27 figure.
+    source_url: https://www.health.org.uk/media-office/press-releases/the-health-foundation-responds-to-liberal-democrats-proposals-for-social-care
+  - date: "2026-10-06"
+    path: versions[0].parameters.cost_note
+    was: >-
+      The party's own figure is £2.7bn a year by 2028-29 above existing social care plans (low). The Health
+      Foundation estimated in January 2024 that a Scottish-style free personal care model in England could cost
+      around £6bn extra in 2026/27 (central), rising to £7bn by 2035/36 (high). The IFS said the party's wider
+      £8.4bn for health and social care would not be nearly enough if it is on top of current spending.
+    now: >-
+      Years shown: 2028-29 for the party's own figure and 2026/27 for the independent estimate, the years each
+      source costs. The party's own figure is £2.7bn a year by 2028-29 above existing social care plans (low). The
+      Health Foundation estimated in January 2024 that a Scottish-style free personal care model in England could
+      cost around £6bn extra in 2026/27 (central), rising to £7bn by 2035/36. The high end is an editorial +10% on
+      the Health Foundation's 2026/27 figure, because it gives a central figure only. The IFS said the party's
+      wider £8.4bn for health and social care would not be nearly enough if it is on top of current spending.
+    reason: >-
+      The note used the 2035/36 figure as the high end of the range. The £7bn is now shown as growth over time, and
+      the note gives the years shown and the editorial +10%.
+    source_url: https://www.health.org.uk/media-office/press-releases/the-health-foundation-responds-to-liberal-democrats-proposals-for-social-care

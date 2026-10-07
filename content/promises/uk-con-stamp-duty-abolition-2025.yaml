@@ -31,12 +31,14 @@ versions:
       who: >-
         UK residents buying a main home in England and Northern Ireland, at any price. Second and further homes,
         purchases by companies and by non-UK residents would still pay. Stamp duty is devolved in Scotland and Wales.
-      how_much_bn_per_year: [4.5, 9.0, 9.0]
+      how_much_bn_per_year: [8.1, 9.0, 9.9]
       cost_note: >-
-        The party's own estimate is £9bn in 2029-30 (used as central and high); it notes the cost at today's
-        prices is about £4.5bn (low). The Institute for Government says these figures are roughly consistent with
-        forecasts: stamp duty raised just over £10bn in 2024-25, about half of it on additional homes. The party
-        says it has not counted any extra tax from more housing sales. No OBR or HMRC costing of this pledge.
+        Year shown: 2029-30, the year the party costed. The party's own estimate is £9bn in 2029-30 (central); it
+        says the current cost is about £4.5bn, so the yearly cost rises over time. The Institute for Government says
+        these figures are roughly consistent with forecasts: stamp duty raised just over £10bn in 2024-25, about half
+        of it on additional homes. The party says it has not counted any extra tax from more housing sales. No OBR or
+        HMRC costing of this pledge.
+        Low–high is an editorial ±10% because the source gives a central figure only.
       cost_sources:
         - title: "Institute for Government: stamp duty land tax explainer"
           url: https://www.instituteforgovernment.org.uk/explainer/stamp-duty-land-tax
@@ -46,9 +48,50 @@ versions:
       funded_by: >-
         From the £47bn of savings the party says it has identified (including £23bn from welfare, £8bn from
         cutting the civil service and £7bn from overseas aid). Under its Golden Economic Rule at least half of
-        the savings go to cutting the deficit and the rest to tax cuts.
+        the savings go to cutting the deficit and the rest to tax cuts and pro-growth measures.
 events:
   - date: "2025-10-08"
     type: promised
     text: Kemi Badenoch pledges to abolish stamp duty on main homes in her conference speech
 replies: []
+corrections:
+  - date: "2026-10-06"
+    path: versions[0].parameters.how_much_bn_per_year
+    was: [4.5, 9.0, 9.0]
+    now: [8.1, 9.0, 9.9]
+    reason: >-
+      The range mixed the current cost with the 2029-30 cost (a time profile). Cards show one year: the
+      party's 2029-30 figure, with an editorial ±10% because the party gives a central figure only.
+    source_url: https://www.instituteforgovernment.org.uk/explainer/stamp-duty-land-tax
+  - date: "2026-10-06"
+    path: versions[0].parameters.cost_note
+    was: >-
+      The party's own estimate is £9bn in 2029-30 (used as central and high); it notes the cost at today's
+      prices is about £4.5bn (low). The Institute for Government says these figures are roughly consistent with
+      forecasts: stamp duty raised just over £10bn in 2024-25, about half of it on additional homes. The party
+      says it has not counted any extra tax from more housing sales. No OBR or HMRC costing of this pledge.
+    now: >-
+      Year shown: 2029-30, the year the party costed. The party's own estimate is £9bn in 2029-30 (central); it
+      says the current cost is about £4.5bn, so the yearly cost rises over time. The Institute for Government says
+      these figures are roughly consistent with forecasts: stamp duty raised just over £10bn in 2024-25, about half
+      of it on additional homes. The party says it has not counted any extra tax from more housing sales. No OBR or
+      HMRC costing of this pledge.
+      Low–high is an editorial ±10% because the source gives a central figure only.
+    reason: >-
+      The £4.5bn is the current cost, not the 2029-30 cost at today's prices, so it cannot be the low end of a
+      2029-30 range. The note now gives the year shown, the editorial ±10% and the two costs as a time profile.
+    source_url: https://www.tax.org.uk/conservative-party-conference-2025-report
+  - date: "2026-10-06"
+    path: versions[0].parameters.funded_by
+    was: >-
+      From the £47bn of savings the party says it has identified (including £23bn from welfare, £8bn from
+      cutting the civil service and £7bn from overseas aid). Under its Golden Economic Rule at least half of
+      the savings go to cutting the deficit and the rest to tax cuts.
+    now: >-
+      From the £47bn of savings the party says it has identified (including £23bn from welfare, £8bn from
+      cutting the civil service and £7bn from overseas aid). Under its Golden Economic Rule at least half of
+      the savings go to cutting the deficit and the rest to tax cuts and pro-growth measures.
+    reason: >-
+      The entry shortened the party's wording. Its policy page says the rest goes to "tax cuts and pro-growth
+      measures".
+    source_url: https://www.conservatives.com/policy

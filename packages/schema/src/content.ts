@@ -80,6 +80,60 @@ export const Reply = z.object({
   editor_response: z.string().optional(),
 });
 
+/**
+ * A visible correction of a fact in a card's history (PROMISE_STANDARD §9).
+ * History is append-only (invariant 5), so a wrong date, figure or note in a
+ * version, event or reply is fixed by changing it *and* appending a correction
+ * that records the old value, the new value and why. The card shows every
+ * correction; nothing is overwritten silently.
+ */
+export const CORRECTION_PATH = /^(versions|events|replies)\[(\d+)\]((?:\.[a-z_]+)+)$/;
+export const Correction = z.object({
+  date: IsoDate,
+  /** The corrected field, e.g. "versions[0].parameters.how_much_bn_per_year" or "events[3].date". */
+  path: z.string().regex(CORRECTION_PATH, 'a correction path looks like "events[3].date" or "versions[0].parameters.cost_note"'),
+  /** The old value; null when the field was absent. */
+  was: z.unknown(),
+  /** The new value, as it now stands in the card; null when the field was removed. */
+  now: z.unknown(),
+  reason: z.string().min(1),
+  source_url: z.url().optional(),
+});
+export type Correction = z.infer<typeof Correction>;
+
+/** Read a field by a correction path's tail (".parameters.cost_note") inside one entry. */
+export function fieldAt(entry: unknown, tail: string): unknown {
+  let v: unknown = entry;
+  for (const k of tail.split(".").filter(Boolean)) v = v && typeof v === "object" ? (v as Record<string, unknown>)[k] : undefined;
+  return v === undefined ? null : v;
+}
+
+function withField(entry: unknown, tail: string, value: unknown): unknown {
+  const keys = tail.split(".").filter(Boolean);
+  const copy = structuredClone(entry) as Record<string, unknown>;
+  let o = copy;
+  keys.slice(0, -1).forEach((k) => {
+    if (!o[k] || typeof o[k] !== "object") o[k] = {};
+    o = o[k] as Record<string, unknown>;
+  });
+  const last = keys.at(-1)!;
+  if (value === null) delete o[last];
+  else o[last] = value;
+  return copy;
+}
+
+/** JSON with sorted keys, so two objects compare equal whatever order their keys were written in. */
+function stable(v: unknown): string {
+  if (Array.isArray(v)) return `[${v.map(stable).join(",")}]`;
+  if (v && typeof v === "object")
+    return `{${Object.keys(v)
+      .sort()
+      .filter((k) => (v as Record<string, unknown>)[k] !== undefined)
+      .map((k) => `${JSON.stringify(k)}:${stable((v as Record<string, unknown>)[k])}`)
+      .join(",")}}`;
+  return JSON.stringify(v ?? null);
+}
+
 export const PromiseFile = z
   .object({
     id: z.string().regex(/^[a-z0-9-]+$/),
@@ -109,6 +163,7 @@ export const PromiseFile = z
      * and in the track record, so credit is not given for someone else's action.
      */
     outcome_by: z.object({ actor_id: z.string(), note: z.string().optional() }).optional(),
+    corrections: z.array(Correction).default([]),
   })
   .superRefine((p, ctx) => {
     if (p.outcome_by && !["legislated", "funded", "delivering", "delivered"].includes(p.status))
@@ -133,6 +188,16 @@ export const PromiseFile = z
     p.events.forEach((e, i) => {
       if (EVIDENCE_REQUIRED.includes(e.type) && !e.evidence_url)
         ctx.addIssue({ code: "custom", path: ["events", i, "evidence_url"], message: `a "${e.type}" event needs an evidence_url` });
+    });
+    // Each correction must describe the card as it now stands: the last correction of a field holds its current value.
+    const lastByPath = new Map(p.corrections.map((c, i) => [c.path, i]));
+    p.corrections.forEach((c, i) => {
+      const m = CORRECTION_PATH.exec(c.path);
+      if (!m) return;
+      const entry = (p[m[1] as "versions" | "events" | "replies"] as unknown[])[Number(m[2])];
+      if (entry === undefined) ctx.addIssue({ code: "custom", path: ["corrections", i, "path"], message: `${c.path} does not exist in this card` });
+      else if (lastByPath.get(c.path) === i && stable(fieldAt(entry, m[3]!)) !== stable(c.now ?? null))
+        ctx.addIssue({ code: "custom", path: ["corrections", i, "now"], message: `the card's ${c.path} does not match this correction's "now" value` });
     });
     if ((p.submission_ref || p.credit) && p.origin !== "reader_submission")
       ctx.addIssue({ code: "custom", path: ["origin"], message: "submission_ref and credit belong to cards with origin: reader_submission" });
@@ -170,19 +235,31 @@ export function cardViews(promises: PromiseFile[], actors: ActorFile[]): CardVie
 
 /**
  * Invariant 5: a card's history only grows. Every entry that existed in the
- * published card must still be there, unchanged and in the same place.
+ * published card must still be there, in the same place, and unchanged unless
+ * a correction appended in this change records exactly what changed
+ * (PROMISE_STANDARD §9). Existing corrections never change either.
  */
 export function appendOnlyIssues(before: unknown, after: unknown): string[] {
   const b = (before ?? {}) as Record<string, unknown>;
   const a = (after ?? {}) as Record<string, unknown>;
+  const list = (o: Record<string, unknown>, k: string) => (Array.isArray(o[k]) ? (o[k] as unknown[]) : []);
   const issues: string[] = [];
+  const oldCorrections = list(b, "corrections");
+  const allCorrections = list(a, "corrections");
+  oldCorrections.forEach((c, i) => {
+    if (stable(c) !== stable(allCorrections[i])) issues.push(`corrections[${i}] was changed or removed; corrections are append-only too`);
+  });
+  const fresh = allCorrections.slice(oldCorrections.length) as { path?: string; was?: unknown }[];
   for (const key of ["versions", "events", "replies"] as const) {
-    const was = Array.isArray(b[key]) ? (b[key] as unknown[]) : [];
-    const now = Array.isArray(a[key]) ? (a[key] as unknown[]) : [];
+    const was = list(b, key);
+    const now = list(a, key);
     was.forEach((item, i) => {
-      if (JSON.stringify(item) !== JSON.stringify(now[i])) {
-        issues.push(`${key}[${i}] was changed or removed; history is append-only (add a new entry instead)`);
-      }
+      if (stable(item) === stable(now[i])) return;
+      const fixes = fresh.filter((c) => typeof c.path === "string" && c.path.startsWith(`${key}[${i}].`));
+      // Undo the recorded corrections, newest first; what is left must be the published entry.
+      const undone = now[i] === undefined ? undefined : fixes.reduceRight<unknown>((e, c) => withField(e, c.path!.slice(`${key}[${i}]`.length), c.was ?? null), now[i]);
+      if (!fixes.length || undone === undefined) issues.push(`${key}[${i}] was changed or removed; history is append-only (add a new entry, or record a correction)`);
+      else if (stable(undone) !== stable(item)) issues.push(`${key}[${i}] changed in ways its corrections do not record`);
     });
   }
   return issues;

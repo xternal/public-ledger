@@ -22,7 +22,7 @@ sources:
     url: https://assets.publishing.service.gov.uk/media/682b504a8999f671f3c2443a/GBE-designation-letter.pdf
   - title: "HM Treasury: Spending Review 2025 (11 Jun 2025)"
     url: https://assets.publishing.service.gov.uk/media/68627094354985706f111adc/E03349913_HMT_Spending_Review_June_2025_TEXT_CS_Accessible__002_.pdf
-  - title: "Great British Energy: Annual report and accounts 2025 to 2026 (30 Sep 2026)"
+  - title: "Great British Energy: Annual report and accounts 2025 to 2026 (14 Sep 2026)"
     url: https://www.gov.uk/government/publications/great-british-energy-annual-report-and-accounts-2025-to-2026/gbe-annual-report-and-accounts-2025-to-2026-html
 versions:
   - version: 1
@@ -77,7 +77,7 @@ events:
       Spending Review 2025 says Great British Energy and Great British Energy–Nuclear will together invest more than
       £8.3bn over the Parliament
     evidence_url: https://assets.publishing.service.gov.uk/media/68627094354985706f111adc/E03349913_HMT_Spending_Review_June_2025_TEXT_CS_Accessible__002_.pdf
-  - date: "2026-09-30"
+  - date: "2026-09-14"
     type: delivering
     text: >-
       First annual report: £255m invested (via DESNZ) in solar for 250 schools, 260 NHS sites and military sites in the
@@ -87,3 +87,12 @@ events:
     type: deadline
     text: End of the Parliament, when the £8.3bn capitalisation period ends (editorial date)
 replies: []
+corrections:
+  - date: "2026-10-06"
+    path: events[5].date
+    was: "2026-09-30"
+    now: "2026-09-14"
+    reason: >-
+      The annual report was published on 14 September 2026. 30 September 2026 is a later update to the web version,
+      not the publication date.
+    source_url: https://www.gov.uk/government/publications/great-british-energy-annual-report-and-accounts-2025-to-2026/gbe-annual-report-and-accounts-2025-to-2026-html

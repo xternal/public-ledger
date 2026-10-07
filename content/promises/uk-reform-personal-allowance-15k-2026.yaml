@@ -29,11 +29,13 @@ versions:
       who: >-
         Income taxpayers earning under £100,000 (the party says about 40 million, with 2.9 million taken out of
         income tax). The higher-rate threshold stays at £50,270 and the taper above £100,000 is kept.
-      how_much_bn_per_year: [17.7, 17.7, 21.1]
+      how_much_bn_per_year: [19.0, 21.1, 23.2]
       cost_note: >-
-        Reform UK's own costing: £17.7bn in the first year (low and central) and £21.1bn by the fifth year (high),
-        including a behavioural adjustment. No independent costing of the £15,000 pledge was found on 6 Oct 2026;
-        an editor should add one when published.
+        Year shown: the fifth year, the latest year Reform UK costed. The party's own costing, including a
+        behavioural adjustment, is £17.7bn in the first year (2026-27 incomes), rising to £21.1bn by the fifth year
+        (central). No independent costing of the £15,000 pledge was found on 6 Oct 2026; an editor should add one
+        when published.
+        Low–high is an editorial ±10% because the source gives a central figure only.
       cost_sources:
         - title: "Reform UK: The First 100 Days, Costings (pages 13-14)"
           url: https://www.reformparty.uk/policies/the-first-100-days-our-pledges-to-you/pdf
@@ -41,12 +43,53 @@ versions:
           url: https://www.bbc.co.uk/news/articles/cgk5g51xk57o
       when: In the first Budget of a Reform government, pledged within its first 100 days; takes effect at the start of the next tax year
       funded_by: >-
-        Previously announced savings: £52bn a year from the Making Welfare Work programme, £7bn from eliminating
-        most foreign aid, £10bn from cutting net zero programmes and £7bn from shrinking the government, plus
-        immigration-related savings (the party lists £91bn of itemised savings and new revenue against £58bn of
-        costs).
+        Previously announced savings: £52bn a year from the Making Welfare Work programme by the end of the next
+        Parliament, £7bn from eliminating most foreign aid, £10bn from cutting net zero programmes and £7bn from
+        shrinking the government by the end of the next Parliament, plus immigration-related savings (the party lists
+        £91bn of itemised savings and new revenue against £58bn of costs).
 events:
   - date: "2026-09-05"
     type: promised
     text: Robert Jenrick announces the £15,000 allowance at Reform UK's conference; the party publishes its First 100 Days document
 replies: []
+corrections:
+  - date: "2026-10-06"
+    path: versions[0].parameters.how_much_bn_per_year
+    was: [17.7, 17.7, 21.1]
+    now: [19.0, 21.1, 23.2]
+    reason: >-
+      The range ran from the first-year cost to the fifth-year cost (a time profile). Cards show one year: the
+      party's fifth-year figure, with an editorial ±10% because the party gives a central figure only.
+    source_url: https://www.reformparty.uk/policies/the-first-100-days-our-pledges-to-you/pdf
+  - date: "2026-10-06"
+    path: versions[0].parameters.cost_note
+    was: >-
+      Reform UK's own costing: £17.7bn in the first year (low and central) and £21.1bn by the fifth year (high),
+      including a behavioural adjustment. No independent costing of the £15,000 pledge was found on 6 Oct 2026;
+      an editor should add one when published.
+    now: >-
+      Year shown: the fifth year, the latest year Reform UK costed. The party's own costing, including a
+      behavioural adjustment, is £17.7bn in the first year (2026-27 incomes), rising to £21.1bn by the fifth year
+      (central). No independent costing of the £15,000 pledge was found on 6 Oct 2026; an editor should add one
+      when published.
+      Low–high is an editorial ±10% because the source gives a central figure only.
+    reason: >-
+      The note used the first-year and fifth-year costs as the ends of a range. It now gives the year shown, the
+      editorial ±10% and the two costs as a time profile.
+    source_url: https://www.reformparty.uk/policies/the-first-100-days-our-pledges-to-you/pdf
+  - date: "2026-10-06"
+    path: versions[0].parameters.funded_by
+    was: >-
+      Previously announced savings: £52bn a year from the Making Welfare Work programme, £7bn from eliminating
+      most foreign aid, £10bn from cutting net zero programmes and £7bn from shrinking the government, plus
+      immigration-related savings (the party lists £91bn of itemised savings and new revenue against £58bn of
+      costs).
+    now: >-
+      Previously announced savings: £52bn a year from the Making Welfare Work programme by the end of the next
+      Parliament, £7bn from eliminating most foreign aid, £10bn from cutting net zero programmes and £7bn from
+      shrinking the government by the end of the next Parliament, plus immigration-related savings (the party lists
+      £91bn of itemised savings and new revenue against £58bn of costs).
+    reason: >-
+      The entry left out when the savings arrive. The party's costings give the £52bn welfare and £7bn
+      government savings as amounts by the end of the next Parliament.
+    source_url: https://www.reformparty.uk/policies/the-first-100-days-our-pledges-to-you/pdf

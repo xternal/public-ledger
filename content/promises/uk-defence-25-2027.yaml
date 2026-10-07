@@ -8,8 +8,8 @@ status: funded
 status_note: >-
   The Spending Review 2025 set the defence budget on a path to 2.6% of GDP on NATO's measure by 2027 (2.5% on
   the older measure plus intelligence spending), and the June 2026 Defence Investment Plan plans 2.6% in 2026-27
-  and 2.7% from 2027-28. Whether the level is reached can only be checked against 2027-28 spending, so the card
-  stays at Funded.
+  and 2.7% from 2027-28. Money is allocated to 2029-30; the card will move to Delivering when a source confirms
+  spending at the higher level and to Delivered when 2027-28 outturn shows 2.5%.
 deadline: "2027-04-01"
 lever_settings:
   defence_gdp: 2.6

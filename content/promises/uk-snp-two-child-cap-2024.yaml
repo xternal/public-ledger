@@ -27,6 +27,8 @@ sources:
     url: https://www.gov.uk/government/news/two-child-limit-scrapped-as-historic-bill-to-lift-450000-children-out-of-poverty-becomes-law
   - title: "DWP: Plan to track progress on lifting 550,000 children out of poverty published, 9 Jul 2026"
     url: https://www.gov.uk/government/news/plan-to-track-progress-on-lifting-550000-children-out-of-poverty-published
+  - title: "DWP: Universal Credit claimants statistics on the two child limit policy, April 2026, 8 Jul 2026"
+    url: https://www.gov.uk/government/statistics/universal-credit-claimants-statistics-on-the-two-child-limit-policy-april-2026/universal-credit-claimants-statistics-on-the-two-child-limit-policy-april-2026
 versions:
   - version: 1
     text: >-
@@ -43,7 +45,7 @@ versions:
         £2.365bn in 2026-27, £2.815bn in 2028-29 and £3.235bn in 2030-31. The card uses 2028-29, once the change
         has bedded in; the low–high range is an editorial ±10% because the scorecard gives central figures only.
       cost_sources:
-        - title: "HM Treasury: Budget 2025, Table 2.1, line 6"
+        - title: "HM Treasury: Budget 2025, Table 4.1, line 6"
           url: https://www.gov.uk/government/publications/budget-2025-document/budget-2025-html
       when: Not stated in the manifesto
       funded_by: null
@@ -68,3 +70,16 @@ events:
       later reports the last statistics on families affected
     evidence_url: https://www.gov.uk/government/news/plan-to-track-progress-on-lifting-550000-children-out-of-poverty-published
 replies: []
+corrections:
+  - date: "2026-10-06"
+    path: versions[0].parameters.cost_sources
+    was:
+      - title: "HM Treasury: Budget 2025, Table 2.1, line 6"
+        url: https://www.gov.uk/government/publications/budget-2025-document/budget-2025-html
+    now:
+      - title: "HM Treasury: Budget 2025, Table 4.1, line 6"
+        url: https://www.gov.uk/government/publications/budget-2025-document/budget-2025-html
+    reason: >-
+      The source title gave the wrong table number. The figures are in Table 4.1 (Budget 2025 policy decisions),
+      line 6.
+    source_url: https://www.gov.uk/government/publications/budget-2025-document/budget-2025-html

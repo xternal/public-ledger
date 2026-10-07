@@ -130,6 +130,15 @@ describe("validation rejects", () => {
     expect(errorsOf(raw).some((e) => e.message.includes("origin: reader_submission"))).toBe(true);
   });
 
+  it("a correction that does not match the card", () => {
+    const raw = clone();
+    const card = bus(raw);
+    card.corrections = [{ date: "2026-10-07", path: "events[0].date", was: "2000-01-01", now: "1999-12-31", reason: "test" }];
+    expect(errorsOf(raw).some((e) => e.message.includes("does not match this correction"))).toBe(true);
+    card.corrections = [{ date: "2026-10-07", path: "events[99].date", was: null, now: null, reason: "test" }];
+    expect(errorsOf(raw).some((e) => e.message.includes("does not exist in this card"))).toBe(true);
+  });
+
   it("a card without sources", () => {
     const raw = clone();
     bus(raw).sources = [];

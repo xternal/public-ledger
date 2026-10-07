@@ -33,13 +33,15 @@ versions:
       who: >-
         Individual UK-resident taxpayers with net assets above £10m (the party estimates about 22,000 people), with
         a higher rate above £1bn.
-      how_much_bn_per_year: [-16.0, -15.0, -15.0]
+      how_much_bn_per_year: [-16.0, -15.0, -14.0]
       cost_note: >-
-        Negative because the pledge raises money rather than costing it. Party figures only: around £16bn a year by
-        the end of the Parliament (June 2024 budget paper) and around £15bn a year (Zack Polanski, March 2026).
-        No official or independent costing of this design was found. Tax Policy Associates notes that Spain's
-        similar tax raised €632m in 2023 and that the 2020 Wealth Tax Commission advised against an annual wealth
-        tax, so the yield is highly uncertain.
+        Negative because the pledge raises money rather than costing it. Year shown: a full year of the tax, as the
+        party's figures are yearly amounts (the £16bn is for the end of the Parliament). Party figures only: around
+        £16bn a year by the end of the Parliament (June 2024 budget paper), around £15bn a year (Zack Polanski, March
+        2026; central) and £14bn in the party's 2024 breakdown, as cited by Tax Policy Associates. No official or
+        independent costing of this design was found. Tax Policy Associates notes that Spain's similar tax raised
+        €632m in 2023 and that the 2020 Wealth Tax Commission advised against an annual wealth tax, and questions
+        whether the yield can be achieved.
       cost_sources:
         - title: "Green Party: Investing in Hope, budget background paper (PDF)"
           url: https://greenparty.org.uk/app/uploads/2024/06/budget-background-v3.pdf
@@ -54,3 +56,32 @@ events:
     type: promised
     text: Green Party manifesto pledges to push for an annual wealth tax
 replies: []
+corrections:
+  - date: "2026-10-06"
+    path: versions[0].parameters.how_much_bn_per_year
+    was: [-16.0, -15.0, -15.0]
+    now: [-16.0, -15.0, -14.0]
+    reason: >-
+      The range left out the party's own £14bn figure, so the central and one end were the same. All three
+      values are now party figures: £16bn, £15bn and £14bn a year.
+    source_url: https://taxpolicy.org.uk/2024/06/13/our-take-on-the-green-manifesto/
+  - date: "2026-10-06"
+    path: versions[0].parameters.cost_note
+    was: >-
+      Negative because the pledge raises money rather than costing it. Party figures only: around £16bn a year by
+      the end of the Parliament (June 2024 budget paper) and around £15bn a year (Zack Polanski, March 2026).
+      No official or independent costing of this design was found. Tax Policy Associates notes that Spain's
+      similar tax raised €632m in 2023 and that the 2020 Wealth Tax Commission advised against an annual wealth
+      tax, so the yield is highly uncertain.
+    now: >-
+      Negative because the pledge raises money rather than costing it. Year shown: a full year of the tax, as the
+      party's figures are yearly amounts (the £16bn is for the end of the Parliament). Party figures only: around
+      £16bn a year by the end of the Parliament (June 2024 budget paper), around £15bn a year (Zack Polanski, March
+      2026; central) and £14bn in the party's 2024 breakdown, as cited by Tax Policy Associates. No official or
+      independent costing of this design was found. Tax Policy Associates notes that Spain's similar tax raised
+      €632m in 2023 and that the 2020 Wealth Tax Commission advised against an annual wealth tax, and questions
+      whether the yield can be achieved.
+    reason: >-
+      The note left out the party's £14bn figure, and "highly uncertain" read as the card's own view. The doubt
+      about the yield is Tax Policy Associates', and the note now says so.
+    source_url: https://taxpolicy.org.uk/2024/06/13/our-take-on-the-green-manifesto/

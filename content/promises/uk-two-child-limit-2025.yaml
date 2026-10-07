@@ -12,6 +12,8 @@ deadline: "2026-04-06"
 origin: manual
 editor_check_required: true
 sources:
+  - title: "Hansard, House of Commons, 26 Nov 2025: Financial Statement and Budget Report"
+    url: https://hansard.parliament.uk/commons/2025-11-26/debates/0FD15A2E-84B6-49F0-939A-24B7AABFB798/FinancialStatementAndBudgetReport
   - title: "Hansard, House of Commons, 26 Nov 2025: Financial Statement and Budget Report (official report, Hansard API)"
     url: https://hansard-api.parliament.uk/debates/debate/0FD15A2E-84B6-49F0-939A-24B7AABFB798.json
   - title: Budget 2025 (HM Treasury)
@@ -45,7 +47,7 @@ versions:
         - title: OBR Economic and fiscal outlook, November 2025
           url: https://obr.uk/efo/economic-and-fiscal-outlook-november-2025/
       when: "2026-04-06"
-      funded_by: Tackling fraud and error in the welfare system, cracking down on tax avoidance and reforming gambling taxation
+      funded_by: Tackling fraud and error in our welfare system, cracking down on tax avoidance and reforming gambling taxation
 events:
   - date: "2025-11-26"
     type: promised
@@ -66,3 +68,12 @@ events:
     text: Two-child limit removed for Universal Credit assessment periods starting on or after 6 April 2026
     evidence_url: https://www.gov.uk/government/statistics/universal-credit-claimants-statistics-on-the-two-child-limit-policy-april-2026/universal-credit-claimants-statistics-on-the-two-child-limit-policy-april-2026
 replies: []
+corrections:
+  - date: "2026-10-06"
+    path: versions[0].parameters.funded_by
+    was: Tackling fraud and error in the welfare system, cracking down on tax avoidance and reforming gambling taxation
+    now: Tackling fraud and error in our welfare system, cracking down on tax avoidance and reforming gambling taxation
+    reason: >-
+      Funding is recorded exactly as stated (Promise standard, section 2). The Chancellor said "our welfare
+      system", not "the welfare system".
+    source_url: https://hansard-api.parliament.uk/debates/debate/0FD15A2E-84B6-49F0-939A-24B7AABFB798.json
