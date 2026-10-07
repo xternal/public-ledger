@@ -1,0 +1,1616 @@
+{
+  "meta": {
+    "description": "Local authority district (LAD) code to ONS region code, used to aggregate PolicyEngine UK's local authority results to the 12 regions and nations of REGIONS (packages/schema/src/t1.ts). England only: Scottish (S…), Welsh (W…) and Northern Irish (N…) codes map to their nation by their first letter (see `nations`).",
+    "built": "2026-10-07",
+    "method": "Every LAD in the latest ONS edition (April 2025, V2), plus the districts from the April 2021 edition that the 2025 edition no longer has. PolicyEngine UK reports results on April 2021 boundaries, so it still uses 19 codes the 2025 edition no longer has: the 17 districts abolished on 1 April 2023 (Cumbria, North Yorkshire and Somerset reorganisations) and the old codes of Barnsley (E08000016) and Sheffield (E08000019), recoded after a 2023 boundary change. None of them changed region. Region codes are ONS RGN codes (E12…).",
+    "sources": [
+      {
+        "title": "Local Authority District to Region (April 2025) Lookup in EN (V2)",
+        "publisher": "Office for National Statistics (Open Geography Portal)",
+        "url": "https://geoportal.statistics.gov.uk/datasets/1c17a07ff8fc44218883049f0afa3de1",
+        "api": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LAD25_RGN25_EN_LU_v2/FeatureServer/0",
+        "edition": "April 2025 (V2)",
+        "published_on": "2025-07-23",
+        "modified_on": "2025-08-11",
+        "retrieved_on": "2026-10-07",
+        "rows": 296,
+        "licence": "Open Government Licence v3.0 (https://www.ons.gov.uk/methodology/geography/licences). Source: Office for National Statistics licensed under the Open Government Licence v.3.0."
+      },
+      {
+        "title": "Local Authority District to Region (April 2021) Lookup in EN",
+        "publisher": "Office for National Statistics (Open Geography Portal)",
+        "url": "https://geoportal.statistics.gov.uk/datasets/94f38d2d8e7540bcafcfb86e08b18a1c",
+        "api": "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/LAD21_RGN21_EN_LU_e39114ca0d934551b012bba304cdd11f/FeatureServer/0",
+        "edition": "April 2021",
+        "published_on": "2022-07-22",
+        "modified_on": "2025-08-11",
+        "retrieved_on": "2026-10-07",
+        "rows": 309,
+        "used_for": "19 codes no longer in the 2025 edition (edition \"2021-04\" below)",
+        "licence": "Open Government Licence v3.0 (https://www.ons.gov.uk/methodology/geography/licences). Source: Office for National Statistics licensed under the Open Government Licence v.3.0."
+      }
+    ],
+    "nations": {
+      "S": "S92000003",
+      "W": "W92000004",
+      "N": "N92000002"
+    }
+  },
+  "lad": {
+    "E06000001": {
+      "name": "Hartlepool",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E06000002": {
+      "name": "Middlesbrough",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E06000003": {
+      "name": "Redcar and Cleveland",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E06000004": {
+      "name": "Stockton-on-Tees",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E06000005": {
+      "name": "Darlington",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E06000006": {
+      "name": "Halton",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E06000007": {
+      "name": "Warrington",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E06000008": {
+      "name": "Blackburn with Darwen",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E06000009": {
+      "name": "Blackpool",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E06000010": {
+      "name": "Kingston upon Hull, City of",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E06000011": {
+      "name": "East Riding of Yorkshire",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E06000012": {
+      "name": "North East Lincolnshire",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E06000013": {
+      "name": "North Lincolnshire",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E06000014": {
+      "name": "York",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E06000015": {
+      "name": "Derby",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E06000016": {
+      "name": "Leicester",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E06000017": {
+      "name": "Rutland",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E06000018": {
+      "name": "Nottingham",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E06000019": {
+      "name": "Herefordshire, County of",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E06000020": {
+      "name": "Telford and Wrekin",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E06000021": {
+      "name": "Stoke-on-Trent",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E06000022": {
+      "name": "Bath and North East Somerset",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000023": {
+      "name": "Bristol, City of",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000024": {
+      "name": "North Somerset",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000025": {
+      "name": "South Gloucestershire",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000026": {
+      "name": "Plymouth",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000027": {
+      "name": "Torbay",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000030": {
+      "name": "Swindon",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000031": {
+      "name": "Peterborough",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E06000032": {
+      "name": "Luton",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E06000033": {
+      "name": "Southend-on-Sea",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E06000034": {
+      "name": "Thurrock",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E06000035": {
+      "name": "Medway",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000036": {
+      "name": "Bracknell Forest",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000037": {
+      "name": "West Berkshire",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000038": {
+      "name": "Reading",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000039": {
+      "name": "Slough",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000040": {
+      "name": "Windsor and Maidenhead",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000041": {
+      "name": "Wokingham",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000042": {
+      "name": "Milton Keynes",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000043": {
+      "name": "Brighton and Hove",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000044": {
+      "name": "Portsmouth",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000045": {
+      "name": "Southampton",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000046": {
+      "name": "Isle of Wight",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000047": {
+      "name": "County Durham",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E06000049": {
+      "name": "Cheshire East",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E06000050": {
+      "name": "Cheshire West and Chester",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E06000051": {
+      "name": "Shropshire",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E06000052": {
+      "name": "Cornwall",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000053": {
+      "name": "Isles of Scilly",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000054": {
+      "name": "Wiltshire",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000055": {
+      "name": "Bedford",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E06000056": {
+      "name": "Central Bedfordshire",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E06000057": {
+      "name": "Northumberland",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E06000058": {
+      "name": "Bournemouth, Christchurch and Poole",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000059": {
+      "name": "Dorset",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E06000060": {
+      "name": "Buckinghamshire",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E06000061": {
+      "name": "North Northamptonshire",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E06000062": {
+      "name": "West Northamptonshire",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E06000063": {
+      "name": "Cumberland",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E06000064": {
+      "name": "Westmorland and Furness",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E06000065": {
+      "name": "North Yorkshire",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E06000066": {
+      "name": "Somerset",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000008": {
+      "name": "Cambridge",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000009": {
+      "name": "East Cambridgeshire",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000010": {
+      "name": "Fenland",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000011": {
+      "name": "Huntingdonshire",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000012": {
+      "name": "South Cambridgeshire",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000026": {
+      "name": "Allerdale",
+      "region": "E12000002",
+      "edition": "2021-04"
+    },
+    "E07000027": {
+      "name": "Barrow-in-Furness",
+      "region": "E12000002",
+      "edition": "2021-04"
+    },
+    "E07000028": {
+      "name": "Carlisle",
+      "region": "E12000002",
+      "edition": "2021-04"
+    },
+    "E07000029": {
+      "name": "Copeland",
+      "region": "E12000002",
+      "edition": "2021-04"
+    },
+    "E07000030": {
+      "name": "Eden",
+      "region": "E12000002",
+      "edition": "2021-04"
+    },
+    "E07000031": {
+      "name": "South Lakeland",
+      "region": "E12000002",
+      "edition": "2021-04"
+    },
+    "E07000032": {
+      "name": "Amber Valley",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000033": {
+      "name": "Bolsover",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000034": {
+      "name": "Chesterfield",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000035": {
+      "name": "Derbyshire Dales",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000036": {
+      "name": "Erewash",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000037": {
+      "name": "High Peak",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000038": {
+      "name": "North East Derbyshire",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000039": {
+      "name": "South Derbyshire",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000040": {
+      "name": "East Devon",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000041": {
+      "name": "Exeter",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000042": {
+      "name": "Mid Devon",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000043": {
+      "name": "North Devon",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000044": {
+      "name": "South Hams",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000045": {
+      "name": "Teignbridge",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000046": {
+      "name": "Torridge",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000047": {
+      "name": "West Devon",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000061": {
+      "name": "Eastbourne",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000062": {
+      "name": "Hastings",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000063": {
+      "name": "Lewes",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000064": {
+      "name": "Rother",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000065": {
+      "name": "Wealden",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000066": {
+      "name": "Basildon",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000067": {
+      "name": "Braintree",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000068": {
+      "name": "Brentwood",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000069": {
+      "name": "Castle Point",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000070": {
+      "name": "Chelmsford",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000071": {
+      "name": "Colchester",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000072": {
+      "name": "Epping Forest",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000073": {
+      "name": "Harlow",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000074": {
+      "name": "Maldon",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000075": {
+      "name": "Rochford",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000076": {
+      "name": "Tendring",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000077": {
+      "name": "Uttlesford",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000078": {
+      "name": "Cheltenham",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000079": {
+      "name": "Cotswold",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000080": {
+      "name": "Forest of Dean",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000081": {
+      "name": "Gloucester",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000082": {
+      "name": "Stroud",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000083": {
+      "name": "Tewkesbury",
+      "region": "E12000009",
+      "edition": "2025-04"
+    },
+    "E07000084": {
+      "name": "Basingstoke and Deane",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000085": {
+      "name": "East Hampshire",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000086": {
+      "name": "Eastleigh",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000087": {
+      "name": "Fareham",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000088": {
+      "name": "Gosport",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000089": {
+      "name": "Hart",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000090": {
+      "name": "Havant",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000091": {
+      "name": "New Forest",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000092": {
+      "name": "Rushmoor",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000093": {
+      "name": "Test Valley",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000094": {
+      "name": "Winchester",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000095": {
+      "name": "Broxbourne",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000096": {
+      "name": "Dacorum",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000098": {
+      "name": "Hertsmere",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000099": {
+      "name": "North Hertfordshire",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000102": {
+      "name": "Three Rivers",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000103": {
+      "name": "Watford",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000105": {
+      "name": "Ashford",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000106": {
+      "name": "Canterbury",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000107": {
+      "name": "Dartford",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000108": {
+      "name": "Dover",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000109": {
+      "name": "Gravesham",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000110": {
+      "name": "Maidstone",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000111": {
+      "name": "Sevenoaks",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000112": {
+      "name": "Folkestone and Hythe",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000113": {
+      "name": "Swale",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000114": {
+      "name": "Thanet",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000115": {
+      "name": "Tonbridge and Malling",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000116": {
+      "name": "Tunbridge Wells",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000117": {
+      "name": "Burnley",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000118": {
+      "name": "Chorley",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000119": {
+      "name": "Fylde",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000120": {
+      "name": "Hyndburn",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000121": {
+      "name": "Lancaster",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000122": {
+      "name": "Pendle",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000123": {
+      "name": "Preston",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000124": {
+      "name": "Ribble Valley",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000125": {
+      "name": "Rossendale",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000126": {
+      "name": "South Ribble",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000127": {
+      "name": "West Lancashire",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000128": {
+      "name": "Wyre",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E07000129": {
+      "name": "Blaby",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000130": {
+      "name": "Charnwood",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000131": {
+      "name": "Harborough",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000132": {
+      "name": "Hinckley and Bosworth",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000133": {
+      "name": "Melton",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000134": {
+      "name": "North West Leicestershire",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000135": {
+      "name": "Oadby and Wigston",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000136": {
+      "name": "Boston",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000137": {
+      "name": "East Lindsey",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000138": {
+      "name": "Lincoln",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000139": {
+      "name": "North Kesteven",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000140": {
+      "name": "South Holland",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000141": {
+      "name": "South Kesteven",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000142": {
+      "name": "West Lindsey",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000143": {
+      "name": "Breckland",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000144": {
+      "name": "Broadland",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000145": {
+      "name": "Great Yarmouth",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000146": {
+      "name": "King's Lynn and West Norfolk",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000147": {
+      "name": "North Norfolk",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000148": {
+      "name": "Norwich",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000149": {
+      "name": "South Norfolk",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000163": {
+      "name": "Craven",
+      "region": "E12000003",
+      "edition": "2021-04"
+    },
+    "E07000164": {
+      "name": "Hambleton",
+      "region": "E12000003",
+      "edition": "2021-04"
+    },
+    "E07000165": {
+      "name": "Harrogate",
+      "region": "E12000003",
+      "edition": "2021-04"
+    },
+    "E07000166": {
+      "name": "Richmondshire",
+      "region": "E12000003",
+      "edition": "2021-04"
+    },
+    "E07000167": {
+      "name": "Ryedale",
+      "region": "E12000003",
+      "edition": "2021-04"
+    },
+    "E07000168": {
+      "name": "Scarborough",
+      "region": "E12000003",
+      "edition": "2021-04"
+    },
+    "E07000169": {
+      "name": "Selby",
+      "region": "E12000003",
+      "edition": "2021-04"
+    },
+    "E07000170": {
+      "name": "Ashfield",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000171": {
+      "name": "Bassetlaw",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000172": {
+      "name": "Broxtowe",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000173": {
+      "name": "Gedling",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000174": {
+      "name": "Mansfield",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000175": {
+      "name": "Newark and Sherwood",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000176": {
+      "name": "Rushcliffe",
+      "region": "E12000004",
+      "edition": "2025-04"
+    },
+    "E07000177": {
+      "name": "Cherwell",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000178": {
+      "name": "Oxford",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000179": {
+      "name": "South Oxfordshire",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000180": {
+      "name": "Vale of White Horse",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000181": {
+      "name": "West Oxfordshire",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000187": {
+      "name": "Mendip",
+      "region": "E12000009",
+      "edition": "2021-04"
+    },
+    "E07000188": {
+      "name": "Sedgemoor",
+      "region": "E12000009",
+      "edition": "2021-04"
+    },
+    "E07000189": {
+      "name": "South Somerset",
+      "region": "E12000009",
+      "edition": "2021-04"
+    },
+    "E07000192": {
+      "name": "Cannock Chase",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000193": {
+      "name": "East Staffordshire",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000194": {
+      "name": "Lichfield",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000195": {
+      "name": "Newcastle-under-Lyme",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000196": {
+      "name": "South Staffordshire",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000197": {
+      "name": "Stafford",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000198": {
+      "name": "Staffordshire Moorlands",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000199": {
+      "name": "Tamworth",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000200": {
+      "name": "Babergh",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000202": {
+      "name": "Ipswich",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000203": {
+      "name": "Mid Suffolk",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000207": {
+      "name": "Elmbridge",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000208": {
+      "name": "Epsom and Ewell",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000209": {
+      "name": "Guildford",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000210": {
+      "name": "Mole Valley",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000211": {
+      "name": "Reigate and Banstead",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000212": {
+      "name": "Runnymede",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000213": {
+      "name": "Spelthorne",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000214": {
+      "name": "Surrey Heath",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000215": {
+      "name": "Tandridge",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000216": {
+      "name": "Waverley",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000217": {
+      "name": "Woking",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000218": {
+      "name": "North Warwickshire",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000219": {
+      "name": "Nuneaton and Bedworth",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000220": {
+      "name": "Rugby",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000221": {
+      "name": "Stratford-on-Avon",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000222": {
+      "name": "Warwick",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000223": {
+      "name": "Adur",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000224": {
+      "name": "Arun",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000225": {
+      "name": "Chichester",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000226": {
+      "name": "Crawley",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000227": {
+      "name": "Horsham",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000228": {
+      "name": "Mid Sussex",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000229": {
+      "name": "Worthing",
+      "region": "E12000008",
+      "edition": "2025-04"
+    },
+    "E07000234": {
+      "name": "Bromsgrove",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000235": {
+      "name": "Malvern Hills",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000236": {
+      "name": "Redditch",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000237": {
+      "name": "Worcester",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000238": {
+      "name": "Wychavon",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000239": {
+      "name": "Wyre Forest",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E07000240": {
+      "name": "St Albans",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000241": {
+      "name": "Welwyn Hatfield",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000242": {
+      "name": "East Hertfordshire",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000243": {
+      "name": "Stevenage",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000244": {
+      "name": "East Suffolk",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000245": {
+      "name": "West Suffolk",
+      "region": "E12000006",
+      "edition": "2025-04"
+    },
+    "E07000246": {
+      "name": "Somerset West and Taunton",
+      "region": "E12000009",
+      "edition": "2021-04"
+    },
+    "E08000001": {
+      "name": "Bolton",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000002": {
+      "name": "Bury",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000003": {
+      "name": "Manchester",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000004": {
+      "name": "Oldham",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000005": {
+      "name": "Rochdale",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000006": {
+      "name": "Salford",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000007": {
+      "name": "Stockport",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000008": {
+      "name": "Tameside",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000009": {
+      "name": "Trafford",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000010": {
+      "name": "Wigan",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000011": {
+      "name": "Knowsley",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000012": {
+      "name": "Liverpool",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000013": {
+      "name": "St. Helens",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000014": {
+      "name": "Sefton",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000015": {
+      "name": "Wirral",
+      "region": "E12000002",
+      "edition": "2025-04"
+    },
+    "E08000016": {
+      "name": "Barnsley",
+      "region": "E12000003",
+      "edition": "2021-04"
+    },
+    "E08000017": {
+      "name": "Doncaster",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E08000018": {
+      "name": "Rotherham",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E08000019": {
+      "name": "Sheffield",
+      "region": "E12000003",
+      "edition": "2021-04"
+    },
+    "E08000021": {
+      "name": "Newcastle upon Tyne",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E08000022": {
+      "name": "North Tyneside",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E08000023": {
+      "name": "South Tyneside",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E08000024": {
+      "name": "Sunderland",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E08000025": {
+      "name": "Birmingham",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E08000026": {
+      "name": "Coventry",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E08000027": {
+      "name": "Dudley",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E08000028": {
+      "name": "Sandwell",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E08000029": {
+      "name": "Solihull",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E08000030": {
+      "name": "Walsall",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E08000031": {
+      "name": "Wolverhampton",
+      "region": "E12000005",
+      "edition": "2025-04"
+    },
+    "E08000032": {
+      "name": "Bradford",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E08000033": {
+      "name": "Calderdale",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E08000034": {
+      "name": "Kirklees",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E08000035": {
+      "name": "Leeds",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E08000036": {
+      "name": "Wakefield",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E08000037": {
+      "name": "Gateshead",
+      "region": "E12000001",
+      "edition": "2025-04"
+    },
+    "E08000038": {
+      "name": "Barnsley",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E08000039": {
+      "name": "Sheffield",
+      "region": "E12000003",
+      "edition": "2025-04"
+    },
+    "E09000001": {
+      "name": "City of London",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000002": {
+      "name": "Barking and Dagenham",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000003": {
+      "name": "Barnet",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000004": {
+      "name": "Bexley",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000005": {
+      "name": "Brent",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000006": {
+      "name": "Bromley",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000007": {
+      "name": "Camden",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000008": {
+      "name": "Croydon",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000009": {
+      "name": "Ealing",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000010": {
+      "name": "Enfield",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000011": {
+      "name": "Greenwich",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000012": {
+      "name": "Hackney",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000013": {
+      "name": "Hammersmith and Fulham",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000014": {
+      "name": "Haringey",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000015": {
+      "name": "Harrow",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000016": {
+      "name": "Havering",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000017": {
+      "name": "Hillingdon",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000018": {
+      "name": "Hounslow",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000019": {
+      "name": "Islington",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000020": {
+      "name": "Kensington and Chelsea",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000021": {
+      "name": "Kingston upon Thames",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000022": {
+      "name": "Lambeth",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000023": {
+      "name": "Lewisham",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000024": {
+      "name": "Merton",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000025": {
+      "name": "Newham",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000026": {
+      "name": "Redbridge",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000027": {
+      "name": "Richmond upon Thames",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000028": {
+      "name": "Southwark",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000029": {
+      "name": "Sutton",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000030": {
+      "name": "Tower Hamlets",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000031": {
+      "name": "Waltham Forest",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000032": {
+      "name": "Wandsworth",
+      "region": "E12000007",
+      "edition": "2025-04"
+    },
+    "E09000033": {
+      "name": "Westminster",
+      "region": "E12000007",
+      "edition": "2025-04"
+    }
+  }
+}
