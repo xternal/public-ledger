@@ -1,2 +1,4 @@
-// Public API of promise intake (M4). Filled in by sources, extract and drafts.
+// Public API of promise intake (M4).
 export * from "./types";
+export * from "./sources";
+export * from "./extract";
