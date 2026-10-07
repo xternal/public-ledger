@@ -75,7 +75,16 @@ setenv ADMIN_PASSWORD "$ADMIN_PASSWORD"
 [ -n "$ANTHROPIC_API_KEY" ] && setenv ANTHROPIC_API_KEY "$ANTHROPIC_API_KEY"
 
 echo "5/5  Deploying (a few minutes)"
-$VERCEL deploy --prod --yes >/dev/null
+out="$($VERCEL deploy --prod --yes 2>&1)" || { echo "$out" | tail -25; exit 1; }
+# Vercel may give the project another address (e.g. public-ledger-gray.vercel.app when the plain name is taken):
+# use the one it reports, so canonical links and the sitemap point at this site.
+prod="$(printf '%s' "$out" | grep -o 'Production URL: https://[^ "]*' | head -1 | sed 's/^Production URL: //')"
+if [ -n "$prod" ] && [ "$prod" != "$SITE_URL" ]; then
+  echo "     Vercel's address is $prod: updating SITE_URL and deploying again"
+  SITE_URL="$prod"
+  setenv SITE_URL "$SITE_URL"
+  out="$($VERCEL deploy --prod --yes 2>&1)" || { echo "$out" | tail -25; exit 1; }
+fi
 
 echo
 echo "Done. Public Ledger alpha:"
