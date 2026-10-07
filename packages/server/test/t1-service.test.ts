@@ -6,6 +6,7 @@ import {
   ERROR_RETRY_MS,
   PENDING_LIMIT_MS,
   PolicyEngineError,
+  T1_CACHE_VERSION,
   getT1,
   householdRows,
   readNetIncomes,
@@ -137,6 +138,20 @@ describe("T1 service", () => {
     const stale = await getT1(db, req(), deps(at(31 * 86_400_000)));
     expect(stale.response.status).toBe("pending");
     expect(fake.state.simulate).toEqual([null, 93107, null]);
+  });
+
+  it("computes again, at any age, a result stored by an older version of the inputs", async () => {
+    fake.state.ready = true;
+    await getT1(db, req(), deps(T0));
+    await getT1(db, req(), deps(at(5_000)));
+    expect(await db.query("SELECT version FROM t1_result")).toEqual([{ version: T1_CACHE_VERSION }]);
+    // A row from before the example households had spending inputs (migration 004 marks those version 1).
+    await db.query("UPDATE t1_result SET version = 1");
+    const again = await getT1(db, req(), deps(at(10_000)));
+    expect(again.outcome).toBe("started");
+    expect(fake.state.simulate).toEqual([null, 93107, null]);
+    expect(fake.state.households).toBe(2);
+    expect(await db.query("SELECT version, status FROM t1_result")).toEqual([{ version: T1_CACHE_VERSION, status: "pending" }]);
   });
 
   it("stores an error, answers it for a while, then tries again", async () => {

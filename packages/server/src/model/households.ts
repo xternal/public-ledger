@@ -1,4 +1,6 @@
+import { z } from "zod";
 import { ARCHETYPES, type ArchetypeId } from "@ledger/schema";
+import seed from "../../../../data/seed/archetype_spending.json";
 import type { T1Household } from "./provider";
 import { TransformError } from "./transform";
 
@@ -14,12 +16,22 @@ import { TransformError } from "./transform";
  *   parent receives Universal Credit and both families Child Benefit;
  * - the pensioners each get the full new State Pension for the year, as a
  *   reported amount: PolicyEngine UK takes State Pension from what a pensioner
- *   reports, so without it their pension would be zero.
+ *   reports, so without it their pension would be zero;
+ * - spending is ONS's average for the closest household type (Family spending
+ *   in the UK, data/seed/archetype_spending.json, which records the table, row
+ *   and quality of every value): the twelve COICOP groups VAT falls on, and the
+ *   petrol and diesel fuel duty falls on. Held at the edition's cash level for
+ *   every year, like the earnings.
  *
- * Known gap: no spending inputs (PolicyEngine's consumption variables and
- * petrol_spending), so VAT and fuel duty changes leave these households
- * unchanged. Adding sourced spending per household fixes it (checked 7 Oct
- * 2026: with spending given, VAT at 21% and fuel duty +1p move net income).
+ * How PolicyEngine UK (2.102) taxes that spending, checked 7 Oct 2026:
+ * - VAT: the standard rate on half of spending (its default
+ *   full_rate_vat_expenditure_rate) and the reduced rate on 2.5%, divided by
+ *   0.38 (gov.simulation.microdata_vat_coverage) so survey spending adds up to
+ *   national VAT receipts. A 1-point rise therefore costs a household spending
+ *   £C a year C × 0.5 × 0.01 / 0.38, about 1.3% of C.
+ * - Net income takes off only a change in VAT (vat_change), but all fuel duty
+ *   paid: litres (spending ÷ PolicyEngine's pump price) × the duty rate. So the
+ *   current-law net incomes are lower by each household's fuel duty and no more.
  */
 export type Situation = {
   people: Record<string, Record<string, Record<string, number | string | null>>>;
@@ -74,6 +86,55 @@ export function fullNewStatePension(startYear: number): number {
   return Math.round(NEW_STATE_PENSION_WEEKLY[latest]! * 52 * 100) / 100;
 }
 
+/** PolicyEngine UK's household spending inputs (£ a year): the twelve COICOP groups VAT falls on, then the motor fuel fuel duty falls on. */
+export const SPENDING_VARIABLES = [
+  "food_and_non_alcoholic_beverages_consumption",
+  "alcohol_and_tobacco_consumption",
+  "clothing_and_footwear_consumption",
+  "housing_water_and_electricity_consumption",
+  "household_furnishings_consumption",
+  "health_consumption",
+  "transport_consumption",
+  "communication_consumption",
+  "recreation_consumption",
+  "education_consumption",
+  "restaurants_and_hotels_consumption",
+  "miscellaneous_consumption",
+  "petrol_spending",
+  "diesel_spending",
+] as const;
+export type SpendingVariable = (typeof SPENDING_VARIABLES)[number];
+
+const ArchetypeSpending = z.object({
+  row: z.object({ source: z.string(), table: z.string(), title: z.string(), column: z.string(), years: z.string() }),
+  gross_income_week: z.number().positive(),
+  income: z.string(),
+  income_decile: z.number().int().min(1).max(10),
+  /** ONS's published total of groups 1 to 12 for the row: the twelve inputs add up to it. */
+  total_1_12_week: z.number().positive(),
+  weekly: z.record(
+    z.enum(SPENDING_VARIABLES),
+    z.object({ gbp: z.number().min(0), quality: z.enum(["sourced", "approx"]), note: z.string().optional() }),
+  ),
+});
+
+/** The spending seed, checked when the module loads: every archetype has every input, with its quality. */
+export const ARCHETYPE_SPENDING = z
+  .object({
+    meta: z.object({ edition: z.string(), published_on: z.iso.date(), sources: z.array(z.object({ id: z.string(), url: z.url() })).min(1) }),
+    archetypes: z.record(z.enum(ARCHETYPES.map((a) => a.id) as [ArchetypeId, ...ArchetypeId[]]), ArchetypeSpending),
+  })
+  .parse(seed);
+
+const WEEKS_PER_YEAR = 52;
+const pennies = (v: number) => Math.round(v * 100) / 100;
+
+/** £ a year of each spending input: ONS's weekly average × 52. */
+export function annualSpending(id: ArchetypeId): Record<SpendingVariable, number> {
+  const weekly = ARCHETYPE_SPENDING.archetypes[id].weekly;
+  return Object.fromEntries(SPENDING_VARIABLES.map((v) => [v, pennies(weekly[v].gbp * WEEKS_PER_YEAR)])) as Record<SpendingVariable, number>;
+}
+
 /** One PolicyEngine situation holding every archetype as its own household, so one request computes them all. */
 export function archetypeSituation(startYear: number): Situation {
   const y = String(startYear);
@@ -92,7 +153,8 @@ export function archetypeSituation(startYear: number): Situation {
       };
     });
     situation.benunits[id] = { members };
-    situation.households[id] = { members, region: at(ARCHETYPE_REGION), household_net_income: at(null) };
+    const spending = Object.fromEntries(Object.entries(annualSpending(id)).map(([v, gbp]) => [v, at(gbp)]));
+    situation.households[id] = { members, region: at(ARCHETYPE_REGION), ...spending, household_net_income: at(null) };
   }
   return situation;
 }
@@ -108,8 +170,6 @@ export function readNetIncomes(result: unknown, startYear: number): Record<Arche
   }
   return out;
 }
-
-const pennies = (v: number) => Math.round(v * 100) / 100;
 
 export function householdRows(baseline: Record<ArchetypeId, number>, reform: Record<ArchetypeId, number>): T1Household[] {
   return ARCHETYPES.map(({ id, label }) => ({

@@ -19,6 +19,14 @@ export const T1_CACHE_DAYS = 30;
 export const RETRY_AFTER_S = 5;
 /** New computations per client per day (an answer from the cache does not count). */
 export const T1_DAILY_LIMIT = 30;
+/**
+ * The version of our own T1 inputs (the example households, the reform mapping).
+ * Bump it when a change alters what a stored result would be: rows of another
+ * version are computed again on the next request instead of being served for
+ * the rest of their 30 days (column t1_result.version, migration 004).
+ * 1: M5. 2: the example households spend (ONS Family spending), so VAT and fuel duty reach them.
+ */
+export const T1_CACHE_VERSION = 2;
 /** PolicyEngine takes about a minute for a new reform; give up after this. */
 export const PENDING_LIMIT_MS = 10 * 60_000;
 /** An error is answered from the cache for this long, then a new request tries again. */
@@ -52,6 +60,7 @@ export interface T1Answer {
 }
 
 interface Row {
+  version: number;
   status: "pending" | "ok" | "error";
   policy_id: number | null;
   result: unknown;
@@ -85,10 +94,12 @@ async function answerT1(db: Db, req: T1Request, deps: T1Deps): Promise<T1Answer>
     return { response: { status: "not_applicable", not_modelled: mapping.not_modelled }, httpStatus: 200, outcome: "not_applicable" };
   }
 
-  const [row] = await db.query<Row>(
-    "SELECT status, policy_id, result, error, requested_at, updated_at FROM t1_result WHERE scenario = $1 AND year = $2",
+  const [found] = await db.query<Row>(
+    "SELECT version, status, policy_id, result, error, requested_at, updated_at FROM t1_result WHERE scenario = $1 AND year = $2",
     [req.scenario, req.year],
   );
+  // A row from another version of our inputs is stale whatever its age: compute again.
+  const row = found?.version === T1_CACHE_VERSION ? found : undefined;
   const t = now.getTime();
 
   if (row?.status === "ok" && t - ms(row.updated_at) < T1_CACHE_DAYS * DAY_MS) {
@@ -135,11 +146,11 @@ async function start(
   }
   if (step.status === "ok") return finish(db, req, mapping, step, households, now, log);
   await db.query(
-    `INSERT INTO t1_result (scenario, year, status, policy_id, result, error, polls, requested_at, updated_at, completed_at)
-     VALUES ($1, $2, 'pending', $3, $4::jsonb, NULL, 0, $5, $5, NULL)
-     ON CONFLICT (scenario, year) DO UPDATE SET status = 'pending', policy_id = EXCLUDED.policy_id, result = EXCLUDED.result,
+    `INSERT INTO t1_result (scenario, year, version, status, policy_id, result, error, polls, requested_at, updated_at, completed_at)
+     VALUES ($1, $2, $6, 'pending', $3, $4::jsonb, NULL, 0, $5, $5, NULL)
+     ON CONFLICT (scenario, year) DO UPDATE SET version = EXCLUDED.version, status = 'pending', policy_id = EXCLUDED.policy_id, result = EXCLUDED.result,
        error = NULL, polls = 0, requested_at = EXCLUDED.requested_at, updated_at = EXCLUDED.updated_at, completed_at = NULL`,
-    [req.scenario, req.year, step.handle, JSON.stringify({ households }), now.toISOString()],
+    [req.scenario, req.year, step.handle, JSON.stringify({ households }), now.toISOString(), T1_CACHE_VERSION],
   );
   return pending("started");
 }
@@ -205,21 +216,21 @@ async function finish(
     return upstreamError();
   }
   await db.query(
-    `INSERT INTO t1_result (scenario, year, status, policy_id, result, error, polls, requested_at, updated_at, completed_at)
-     VALUES ($1, $2, 'ok', $3, $4::jsonb, NULL, 1, $5, $5, $5)
-     ON CONFLICT (scenario, year) DO UPDATE SET status = 'ok', policy_id = EXCLUDED.policy_id, result = EXCLUDED.result,
+    `INSERT INTO t1_result (scenario, year, version, status, policy_id, result, error, polls, requested_at, updated_at, completed_at)
+     VALUES ($1, $2, $6, 'ok', $3, $4::jsonb, NULL, 1, $5, $5, $5)
+     ON CONFLICT (scenario, year) DO UPDATE SET version = EXCLUDED.version, status = 'ok', policy_id = EXCLUDED.policy_id, result = EXCLUDED.result,
        error = NULL, polls = t1_result.polls + 1, updated_at = EXCLUDED.updated_at, completed_at = EXCLUDED.completed_at`,
-    [req.scenario, req.year, step.handle, JSON.stringify(parsed.data), now.toISOString()],
+    [req.scenario, req.year, step.handle, JSON.stringify(parsed.data), now.toISOString(), T1_CACHE_VERSION],
   );
   return { response: { status: "ok", result: parsed.data }, httpStatus: 200, outcome: "ready" };
 }
 
 async function saveError(db: Db, req: T1Request, code: string, now: Date): Promise<void> {
   await db.query(
-    `INSERT INTO t1_result (scenario, year, status, error, requested_at, updated_at)
-     VALUES ($1, $2, 'error', $3, $4, $4)
-     ON CONFLICT (scenario, year) DO UPDATE SET status = 'error', error = EXCLUDED.error, result = NULL, updated_at = EXCLUDED.updated_at`,
-    [req.scenario, req.year, code, now.toISOString()],
+    `INSERT INTO t1_result (scenario, year, version, status, error, requested_at, updated_at)
+     VALUES ($1, $2, $5, 'error', $3, $4, $4)
+     ON CONFLICT (scenario, year) DO UPDATE SET version = EXCLUDED.version, status = 'error', error = EXCLUDED.error, result = NULL, updated_at = EXCLUDED.updated_at`,
+    [req.scenario, req.year, code, now.toISOString(), T1_CACHE_VERSION],
   );
 }
 

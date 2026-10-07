@@ -1,0 +1,573 @@
+{
+  "meta": {
+    "description": "Average weekly spending for each T1 example household (ARCHETYPES in packages/schema/src/t1.ts), from ONS Family spending in the UK. PolicyEngine UK charges VAT on the twelve COICOP groups and fuel duty on petrol and diesel, so these inputs let a VAT or fuel duty change reach the example households.",
+    "built": "2026-10-07",
+    "built_by": "python -m etl.archetype_spending",
+    "edition": "Family spending in the UK: April 2024 to March 2025",
+    "published_on": "2026-06-11",
+    "bulletin": "https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/expenditure/bulletins/familyspendingintheuk/april2024tomarch2025",
+    "sources": [
+      {
+        "id": "ons_fs_wb1",
+        "title": "Family spending workbook 1: detailed expenditure and trends",
+        "publisher": "Office for National Statistics",
+        "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/expenditure/datasets/familyspendingworkbook1detailedexpenditureandtrends",
+        "file": "fye2025/workbook1detailedexpenditureandtrends.xlsx",
+        "licence": "OGL v3"
+      },
+      {
+        "id": "ons_fs_wb2",
+        "title": "Family spending workbook 2: expenditure by income",
+        "publisher": "Office for National Statistics",
+        "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/expenditure/datasets/familyspendingworkbook2expenditurebyincome",
+        "file": "fye2025/workbook2expenditurebyincome.xlsx",
+        "licence": "OGL v3"
+      },
+      {
+        "id": "ons_fs_wb4",
+        "title": "Family spending workbook 4: expenditure by household characteristic",
+        "publisher": "Office for National Statistics",
+        "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/expenditure/datasets/familyspendingworkbook4expenditurebyhouseholdcharacteristic",
+        "file": "fye2025/workbook4expenditurebyhouseholdcharacteristics.xlsx",
+        "licence": "OGL v3"
+      }
+    ],
+    "units": "£ per household per week, as ONS publishes them (to 10p; derived values to 1p). PolicyEngine takes £ a year: weekly × 52.",
+    "prices": "Cash prices of the table's years. Held fixed for every simulated year, like the archetypes' earnings.",
+    "quality": "sourced: the published cell of the row chosen for the household. approx: derived where ONS publishes no such cell (the note says how).",
+    "row_choice": "The ONS household composition closest to the archetype (A23). One adult not retired is also split by gross income quintile (A26), so the three singles use the quintile of their earnings. ONS publishes no income split for families with children or pensioners by composition, so their rows cover all incomes in that composition. A23 is one year (FYE 2025); A26 averages FYE 2023 to FYE 2025.",
+    "income": "Gross weekly household income in 2025-26 (earnings plus benefits, PolicyEngine's current-law answers for the same households), used to pick income groups.",
+    "symbols": {
+      "..": "suppressed: fewer than 10 reporting households",
+      ":": "no reporting households"
+    },
+    "variables": {
+      "food_and_non_alcoholic_beverages_consumption": "COICOP 1",
+      "alcohol_and_tobacco_consumption": "COICOP 2",
+      "clothing_and_footwear_consumption": "COICOP 3",
+      "housing_water_and_electricity_consumption": "COICOP 4",
+      "household_furnishings_consumption": "COICOP 5",
+      "health_consumption": "COICOP 6",
+      "transport_consumption": "COICOP 7",
+      "communication_consumption": "COICOP 8",
+      "recreation_consumption": "COICOP 9",
+      "education_consumption": "COICOP 10",
+      "restaurants_and_hotels_consumption": "COICOP 11",
+      "miscellaneous_consumption": "COICOP 12",
+      "petrol_spending": "COICOP 7.2.2.1",
+      "diesel_spending": "COICOP 7.2.2.2"
+    }
+  },
+  "fuel": {
+    "method": "Motor fuel (COICOP 7.2.2) is published by income, not household composition: motor fuel's share of transport (COICOP 7) in the archetype's gross income decile (A6), applied to the archetype's transport spending, then split into petrol and diesel as all households split it (A1).",
+    "decile_lower_bounds_week": [
+      304.0,
+      471.0,
+      620.0,
+      772.0,
+      940.0,
+      1122.0,
+      1359.0,
+      1669.0,
+      2280.0
+    ],
+    "by_decile_week": {
+      "1": {
+        "fuel": 6.1,
+        "transport": 22.0
+      },
+      "2": {
+        "fuel": 8.2,
+        "transport": 36.2
+      },
+      "3": {
+        "fuel": 12.6,
+        "transport": 48.5
+      },
+      "4": {
+        "fuel": 17.6,
+        "transport": 74.2
+      },
+      "5": {
+        "fuel": 18.7,
+        "transport": 77.1
+      },
+      "6": {
+        "fuel": 20.7,
+        "transport": 87.9
+      },
+      "7": {
+        "fuel": 23.1,
+        "transport": 110.3
+      },
+      "8": {
+        "fuel": 25.9,
+        "transport": 133.4
+      },
+      "9": {
+        "fuel": 25.4,
+        "transport": 148.7
+      },
+      "10": {
+        "fuel": 26.1,
+        "transport": 226.3
+      }
+    },
+    "all_households_week": {
+      "petrol": 11.9,
+      "diesel": 6.5
+    }
+  },
+  "archetypes": {
+    "single_25k": {
+      "row": {
+        "source": "ons_fs_wb2",
+        "table": "A26",
+        "title": "Expenditure of one adult non-retired households by gross income quintile group",
+        "column": "Second quintile group",
+        "years": "financial year ending 2023 to financial year ending 2025"
+      },
+      "gross_income_week": 480.77,
+      "income": "£25,000 earnings",
+      "income_decile": 3,
+      "total_1_12_week": 333.9,
+      "weekly": {
+        "food_and_non_alcoholic_beverages_consumption": {
+          "gbp": 35.5,
+          "quality": "sourced"
+        },
+        "alcohol_and_tobacco_consumption": {
+          "gbp": 8.0,
+          "quality": "sourced"
+        },
+        "clothing_and_footwear_consumption": {
+          "gbp": 9.6,
+          "quality": "sourced"
+        },
+        "housing_water_and_electricity_consumption": {
+          "gbp": 108.6,
+          "quality": "sourced"
+        },
+        "household_furnishings_consumption": {
+          "gbp": 23.9,
+          "quality": "sourced"
+        },
+        "health_consumption": {
+          "gbp": 2.75,
+          "quality": "approx",
+          "note": "ONS '..' (suppressed: fewer than 10 households). Health and education together are the row's 1-12 total less its other groups (£4.80), split 5.90 : 4.40 as in A26, All households."
+        },
+        "transport_consumption": {
+          "gbp": 48.9,
+          "quality": "sourced"
+        },
+        "communication_consumption": {
+          "gbp": 16.2,
+          "quality": "sourced"
+        },
+        "recreation_consumption": {
+          "gbp": 32.5,
+          "quality": "sourced"
+        },
+        "education_consumption": {
+          "gbp": 2.05,
+          "quality": "approx",
+          "note": "ONS '..' (suppressed: fewer than 10 households). Health and education together are the row's 1-12 total less its other groups (£4.80), split 5.90 : 4.40 as in A26, All households."
+        },
+        "restaurants_and_hotels_consumption": {
+          "gbp": 22.7,
+          "quality": "sourced"
+        },
+        "miscellaneous_consumption": {
+          "gbp": 23.2,
+          "quality": "sourced"
+        },
+        "petrol_spending": {
+          "gbp": 8.21,
+          "quality": "approx",
+          "note": "Transport £48.90 × 0.2598 (motor fuel's share of transport in gross income decile 3: £12.60 of £48.50, A6) = £12.70 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        },
+        "diesel_spending": {
+          "gbp": 4.49,
+          "quality": "approx",
+          "note": "Transport £48.90 × 0.2598 (motor fuel's share of transport in gross income decile 3: £12.60 of £48.50, A6) = £12.70 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        }
+      }
+    },
+    "single_45k": {
+      "row": {
+        "source": "ons_fs_wb2",
+        "table": "A26",
+        "title": "Expenditure of one adult non-retired households by gross income quintile group",
+        "column": "Third quintile group",
+        "years": "financial year ending 2023 to financial year ending 2025"
+      },
+      "gross_income_week": 865.38,
+      "income": "£45,000 earnings",
+      "income_decile": 5,
+      "total_1_12_week": 390.6,
+      "weekly": {
+        "food_and_non_alcoholic_beverages_consumption": {
+          "gbp": 41.0,
+          "quality": "sourced"
+        },
+        "alcohol_and_tobacco_consumption": {
+          "gbp": 8.8,
+          "quality": "sourced"
+        },
+        "clothing_and_footwear_consumption": {
+          "gbp": 10.7,
+          "quality": "sourced"
+        },
+        "housing_water_and_electricity_consumption": {
+          "gbp": 101.2,
+          "quality": "sourced"
+        },
+        "household_furnishings_consumption": {
+          "gbp": 26.1,
+          "quality": "sourced"
+        },
+        "health_consumption": {
+          "gbp": 5.27,
+          "quality": "approx",
+          "note": "ONS '..' (suppressed: fewer than 10 households). Health and education together are the row's 1-12 total less its other groups (£9.20), split 5.90 : 4.40 as in A26, All households."
+        },
+        "transport_consumption": {
+          "gbp": 64.0,
+          "quality": "sourced"
+        },
+        "communication_consumption": {
+          "gbp": 14.9,
+          "quality": "sourced"
+        },
+        "recreation_consumption": {
+          "gbp": 46.3,
+          "quality": "sourced"
+        },
+        "education_consumption": {
+          "gbp": 3.93,
+          "quality": "approx",
+          "note": "ONS '..' (suppressed: fewer than 10 households). Health and education together are the row's 1-12 total less its other groups (£9.20), split 5.90 : 4.40 as in A26, All households."
+        },
+        "restaurants_and_hotels_consumption": {
+          "gbp": 35.1,
+          "quality": "sourced"
+        },
+        "miscellaneous_consumption": {
+          "gbp": 33.3,
+          "quality": "sourced"
+        },
+        "petrol_spending": {
+          "gbp": 10.04,
+          "quality": "approx",
+          "note": "Transport £64.00 × 0.2425 (motor fuel's share of transport in gross income decile 5: £18.70 of £77.10, A6) = £15.52 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        },
+        "diesel_spending": {
+          "gbp": 5.48,
+          "quality": "approx",
+          "note": "Transport £64.00 × 0.2425 (motor fuel's share of transport in gross income decile 5: £18.70 of £77.10, A6) = £15.52 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        }
+      }
+    },
+    "single_120k": {
+      "row": {
+        "source": "ons_fs_wb2",
+        "table": "A26",
+        "title": "Expenditure of one adult non-retired households by gross income quintile group",
+        "column": "Highest twenty per cent",
+        "years": "financial year ending 2023 to financial year ending 2025"
+      },
+      "gross_income_week": 2307.69,
+      "income": "£120,000 earnings",
+      "income_decile": 10,
+      "total_1_12_week": 633.6,
+      "weekly": {
+        "food_and_non_alcoholic_beverages_consumption": {
+          "gbp": 50.8,
+          "quality": "sourced"
+        },
+        "alcohol_and_tobacco_consumption": {
+          "gbp": 8.8,
+          "quality": "sourced"
+        },
+        "clothing_and_footwear_consumption": {
+          "gbp": 16.0,
+          "quality": "sourced"
+        },
+        "housing_water_and_electricity_consumption": {
+          "gbp": 159.5,
+          "quality": "sourced"
+        },
+        "household_furnishings_consumption": {
+          "gbp": 56.4,
+          "quality": "sourced"
+        },
+        "health_consumption": {
+          "gbp": 11.8,
+          "quality": "approx",
+          "note": "ONS '..' (suppressed: fewer than 10 households). Health and education together are the row's 1-12 total less its other groups (£20.60), split 5.90 : 4.40 as in A26, All households."
+        },
+        "transport_consumption": {
+          "gbp": 108.2,
+          "quality": "sourced"
+        },
+        "communication_consumption": {
+          "gbp": 21.4,
+          "quality": "sourced"
+        },
+        "recreation_consumption": {
+          "gbp": 64.8,
+          "quality": "sourced"
+        },
+        "education_consumption": {
+          "gbp": 8.8,
+          "quality": "approx",
+          "note": "ONS '..' (suppressed: fewer than 10 households). Health and education together are the row's 1-12 total less its other groups (£20.60), split 5.90 : 4.40 as in A26, All households."
+        },
+        "restaurants_and_hotels_consumption": {
+          "gbp": 68.6,
+          "quality": "sourced"
+        },
+        "miscellaneous_consumption": {
+          "gbp": 58.5,
+          "quality": "sourced"
+        },
+        "petrol_spending": {
+          "gbp": 8.07,
+          "quality": "approx",
+          "note": "Transport £108.20 × 0.1153 (motor fuel's share of transport in gross income decile 10: £26.10 of £226.30, A6) = £12.48 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        },
+        "diesel_spending": {
+          "gbp": 4.41,
+          "quality": "approx",
+          "note": "Transport £108.20 × 0.1153 (motor fuel's share of transport in gross income decile 10: £26.10 of £226.30, A6) = £12.48 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        }
+      }
+    },
+    "couple_two_children": {
+      "row": {
+        "source": "ons_fs_wb2",
+        "table": "A23",
+        "title": "High level expenditure by household composition",
+        "column": "Two adults with two children",
+        "years": "financial year ending 2025"
+      },
+      "gross_income_week": 1004.84,
+      "income": "£50,000 earnings and £2,251.60 Child Benefit",
+      "income_decile": 6,
+      "total_1_12_week": 739.2,
+      "weekly": {
+        "food_and_non_alcoholic_beverages_consumption": {
+          "gbp": 98.3,
+          "quality": "sourced"
+        },
+        "alcohol_and_tobacco_consumption": {
+          "gbp": 9.8,
+          "quality": "sourced"
+        },
+        "clothing_and_footwear_consumption": {
+          "gbp": 25.7,
+          "quality": "sourced"
+        },
+        "housing_water_and_electricity_consumption": {
+          "gbp": 119.8,
+          "quality": "sourced"
+        },
+        "household_furnishings_consumption": {
+          "gbp": 55.4,
+          "quality": "sourced"
+        },
+        "health_consumption": {
+          "gbp": 14.17,
+          "quality": "approx",
+          "note": "ONS '..' (suppressed: fewer than 10 households). Health and education together are the row's 1-12 total less its other groups (£39.00), split 8.10 : 14.20 as in A56, All households."
+        },
+        "transport_consumption": {
+          "gbp": 133.1,
+          "quality": "sourced"
+        },
+        "communication_consumption": {
+          "gbp": 27.2,
+          "quality": "sourced"
+        },
+        "recreation_consumption": {
+          "gbp": 116.8,
+          "quality": "sourced"
+        },
+        "education_consumption": {
+          "gbp": 24.83,
+          "quality": "approx",
+          "note": "ONS '..' (suppressed: fewer than 10 households). Health and education together are the row's 1-12 total less its other groups (£39.00), split 8.10 : 14.20 as in A56, All households."
+        },
+        "restaurants_and_hotels_consumption": {
+          "gbp": 56.4,
+          "quality": "sourced"
+        },
+        "miscellaneous_consumption": {
+          "gbp": 57.7,
+          "quality": "sourced"
+        },
+        "petrol_spending": {
+          "gbp": 20.27,
+          "quality": "approx",
+          "note": "Transport £133.10 × 0.2355 (motor fuel's share of transport in gross income decile 6: £20.70 of £87.90, A6) = £31.34 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        },
+        "diesel_spending": {
+          "gbp": 11.07,
+          "quality": "approx",
+          "note": "Transport £133.10 × 0.2355 (motor fuel's share of transport in gross income decile 6: £20.70 of £87.90, A6) = £31.34 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        }
+      }
+    },
+    "lone_parent": {
+      "row": {
+        "source": "ons_fs_wb2",
+        "table": "A23",
+        "title": "High level expenditure by household composition",
+        "column": "One adult with one child",
+        "years": "financial year ending 2025"
+      },
+      "gross_income_week": 444.63,
+      "income": "£18,000 earnings and £5,120.57 Universal Credit and Child Benefit",
+      "income_decile": 2,
+      "total_1_12_week": 454.7,
+      "weekly": {
+        "food_and_non_alcoholic_beverages_consumption": {
+          "gbp": 55.0,
+          "quality": "sourced"
+        },
+        "alcohol_and_tobacco_consumption": {
+          "gbp": 4.1,
+          "quality": "sourced"
+        },
+        "clothing_and_footwear_consumption": {
+          "gbp": 10.2,
+          "quality": "sourced"
+        },
+        "housing_water_and_electricity_consumption": {
+          "gbp": 144.4,
+          "quality": "sourced"
+        },
+        "household_furnishings_consumption": {
+          "gbp": 30.8,
+          "quality": "sourced"
+        },
+        "health_consumption": {
+          "gbp": 8.32,
+          "quality": "approx",
+          "note": "ONS '..' (suppressed: fewer than 10 households). Health and education together are the row's 1-12 total less its other groups (£22.90), split 8.10 : 14.20 as in A56, All households."
+        },
+        "transport_consumption": {
+          "gbp": 42.9,
+          "quality": "sourced"
+        },
+        "communication_consumption": {
+          "gbp": 20.4,
+          "quality": "sourced"
+        },
+        "recreation_consumption": {
+          "gbp": 71.8,
+          "quality": "sourced"
+        },
+        "education_consumption": {
+          "gbp": 14.58,
+          "quality": "approx",
+          "note": "ONS '..' (suppressed: fewer than 10 households). Health and education together are the row's 1-12 total less its other groups (£22.90), split 8.10 : 14.20 as in A56, All households."
+        },
+        "restaurants_and_hotels_consumption": {
+          "gbp": 21.7,
+          "quality": "sourced"
+        },
+        "miscellaneous_consumption": {
+          "gbp": 30.5,
+          "quality": "sourced"
+        },
+        "petrol_spending": {
+          "gbp": 6.29,
+          "quality": "approx",
+          "note": "Transport £42.90 × 0.2265 (motor fuel's share of transport in gross income decile 2: £8.20 of £36.20, A6) = £9.72 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        },
+        "diesel_spending": {
+          "gbp": 3.43,
+          "quality": "approx",
+          "note": "Transport £42.90 × 0.2265 (motor fuel's share of transport in gross income decile 2: £8.20 of £36.20, A6) = £9.72 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        }
+      }
+    },
+    "pensioner_couple": {
+      "row": {
+        "source": "ons_fs_wb2",
+        "table": "A23",
+        "title": "High level expenditure by household composition",
+        "column": "Retired, mainly dependent on state pensions: two adults",
+        "years": "financial year ending 2025"
+      },
+      "gross_income_week": 464.35,
+      "income": "two full new State Pensions (£11,973 each) and £199.96 Winter Fuel Payment",
+      "income_decile": 2,
+      "total_1_12_week": 443.6,
+      "weekly": {
+        "food_and_non_alcoholic_beverages_consumption": {
+          "gbp": 73.5,
+          "quality": "sourced"
+        },
+        "alcohol_and_tobacco_consumption": {
+          "gbp": 9.6,
+          "quality": "sourced"
+        },
+        "clothing_and_footwear_consumption": {
+          "gbp": 13.4,
+          "quality": "sourced"
+        },
+        "housing_water_and_electricity_consumption": {
+          "gbp": 86.0,
+          "quality": "sourced"
+        },
+        "household_furnishings_consumption": {
+          "gbp": 32.2,
+          "quality": "sourced"
+        },
+        "health_consumption": {
+          "gbp": 13.6,
+          "quality": "approx",
+          "note": "ONS '..' (suppressed: fewer than 10 households). Health is the row's 1-12 total less its other groups."
+        },
+        "transport_consumption": {
+          "gbp": 52.4,
+          "quality": "sourced"
+        },
+        "communication_consumption": {
+          "gbp": 17.8,
+          "quality": "sourced"
+        },
+        "recreation_consumption": {
+          "gbp": 78.3,
+          "quality": "sourced"
+        },
+        "education_consumption": {
+          "gbp": 0.0,
+          "quality": "sourced",
+          "note": "ONS ':' (no household in the row recorded any)."
+        },
+        "restaurants_and_hotels_consumption": {
+          "gbp": 28.8,
+          "quality": "sourced"
+        },
+        "miscellaneous_consumption": {
+          "gbp": 38.0,
+          "quality": "sourced"
+        },
+        "petrol_spending": {
+          "gbp": 7.68,
+          "quality": "approx",
+          "note": "Transport £52.40 × 0.2265 (motor fuel's share of transport in gross income decile 2: £8.20 of £36.20, A6) = £11.87 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        },
+        "diesel_spending": {
+          "gbp": 4.19,
+          "quality": "approx",
+          "note": "Transport £52.40 × 0.2265 (motor fuel's share of transport in gross income decile 2: £8.20 of £36.20, A6) = £11.87 a week, split 64.67% petrol and 35.33% diesel as all households split it (A1: £11.90 and £6.50)."
+        }
+      }
+    }
+  }
+}

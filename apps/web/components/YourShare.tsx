@@ -5,7 +5,7 @@ import { yourShare } from "@ledger/engine";
 import { ARCHETYPES, REGIONS, t1Range, type ArchetypeId, type RegionId, type T1Result } from "@ledger/schema";
 import { gbp, grouped, rangeText, signed } from "@/lib/format";
 import { useScenario } from "@/lib/scenario";
-import { INDIRECT_TAX_LEVERS, useT1 } from "@/lib/t1";
+import { useT1 } from "@/lib/t1";
 import { LIKE_ME_COPY, gbpChange, provenanceText } from "@/lib/t1-copy";
 import { QualityBadge, SectionHeading, WithProvenance } from "./ui";
 
@@ -165,27 +165,15 @@ function LikeMeResult({ result, choice }: { result: T1Result; choice: LikeMe }) 
   const household = result.households.find((h) => h.id === choice.archetype);
   const region = result.regions.find((r) => r.id === choice.region);
   const regionName = REGIONS.find((r) => r.id === choice.region)!.name;
-  // The example households have no spending inputs yet, so VAT and fuel duty do not reach them.
-  const indirect = result.modelled.filter((id) => INDIRECT_TAX_LEVERS.has(id));
-  const onlyIndirect = indirect.length > 0 && indirect.length === result.modelled.length;
-  const indirectNote = <p className="m-0 text-[12.5px] leading-relaxed text-muted">{LIKE_ME_COPY.indirectNote}</p>;
   return (
     <div className="grid gap-5">
       <div className="grid gap-6 sm:grid-cols-2">
-        {onlyIndirect ? (
-          <div className="grid content-start gap-1">
-            <div className="text-label text-muted">{LIKE_ME_COPY.householdResult}</div>
-            {indirectNote}
-          </div>
-        ) : household ? (
-          <div className="grid content-start gap-2">
-            <LikeMeFigure
-              label={LIKE_ME_COPY.householdResult}
-              gbpYear={household.change_gbp}
-              sub={`${LIKE_ME_COPY.netIncome}: ${gbp(household.baseline_net_gbp)} → ${gbp(household.reform_net_gbp)}`}
-            />
-            {indirect.length > 0 && indirectNote}
-          </div>
+        {household ? (
+          <LikeMeFigure
+            label={LIKE_ME_COPY.householdResult}
+            gbpYear={household.change_gbp}
+            sub={`${LIKE_ME_COPY.netIncome}: ${gbp(household.baseline_net_gbp)} → ${gbp(household.reform_net_gbp)}`}
+          />
         ) : (
           <p className="m-0 text-sm text-muted">{LIKE_ME_COPY.noHousehold}</p>
         )}
@@ -199,7 +187,7 @@ function LikeMeResult({ result, choice }: { result: T1Result; choice: LikeMe }) 
         )}
       </div>
       <p className="m-0 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12.5px] text-muted">
-        <WithProvenance p={{ quality: "modelled", method_note: provenanceText(result.provenance) }}>
+        <WithProvenance p={{ quality: "modelled", method_note: `${provenanceText(result.provenance)} ${LIKE_ME_COPY.spending}` }}>
           <QualityBadge quality="modelled" />
         </WithProvenance>
         <span>PolicyEngine UK {result.provenance.model_version}. Static: no change in behaviour.</span>

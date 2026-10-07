@@ -50,6 +50,8 @@ Costs: a dependency on a free public service (be a good citizen: compute only wh
 
 **Ranges:** PolicyEngine gives single estimates; T1 shows them with the project's editorial ±10% (invariant 2) and says so.
 
+**Example households ("people like me"):** six fixed households (`ARCHETYPES`), computed with `/uk/calculate` under current law and the reform (`packages/server/src/model/households.ts`). Their spending is ONS's average for the closest household type in *Family spending in the UK* (`data/seed/archetype_spending.json`, built by `python -m etl.archetype_spending`, which records the table, row and quality of every value), so VAT and fuel duty reach them. PolicyEngine charges VAT at the standard rate on half of spending and scales it up to national VAT receipts (÷0.38): a 1-point rise costs a household about 1.3% of its spending on the twelve COICOP groups. Its net income takes off all fuel duty paid but only a change in VAT. A change to these inputs or to the reform mapping bumps `T1_CACHE_VERSION` (`service.ts`), so cached results computed with the old inputs are worked out again.
+
 ## T2 — Macro (v2)
 
 Options, in order of preference:

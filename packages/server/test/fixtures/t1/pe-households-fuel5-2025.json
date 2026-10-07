@@ -452,8 +452,8 @@
    }
   },
   "policy": {
-   "gov.contrib.cec.state_pension_increase": {
-    "2025-01-01.2100-12-31": 0.05
+   "gov.hmrc.fuel_duty.petrol_and_diesel": {
+    "2025-01-01.2100-12-31": 0.5795
    }
   }
  },
@@ -524,7 +524,7 @@
       "2025": 2880.8
      },
      "household_net_income": {
-      "2025": 44528.145
+      "2025": 44472.61
      },
      "housing_water_and_electricity_consumption": {
       "2025": 6229.6
@@ -580,7 +580,7 @@
       "2025": 1601.6
      },
      "household_net_income": {
-      "2025": 21243.27
+      "2025": 21226.047
      },
      "housing_water_and_electricity_consumption": {
       "2025": 7508.8
@@ -634,7 +634,7 @@
       "2025": 1674.4
      },
      "household_net_income": {
-      "2025": 24945.346
+      "2025": 23727.674
      },
      "housing_water_and_electricity_consumption": {
       "2025": 4472
@@ -688,7 +688,7 @@
       "2025": 2932.8
      },
      "household_net_income": {
-      "2025": 75748.664
+      "2025": 75726.55
      },
      "housing_water_and_electricity_consumption": {
       "2025": 8294
@@ -741,7 +741,7 @@
       "2025": 1242.8
      },
      "household_net_income": {
-      "2025": 21106.736
+      "2025": 21084.232
      },
      "housing_water_and_electricity_consumption": {
       "2025": 5647.2
@@ -794,7 +794,7 @@
       "2025": 1357.2
      },
      "household_net_income": {
-      "2025": 35453.812
+      "2025": 35426.31
      },
      "housing_water_and_electricity_consumption": {
       "2025": 5262.4
