@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-06T21:23:58Z",
+  "built_at": "2026-10-07T11:16:53Z",
   "base_year": "2025-26",
   "years": [
     {
@@ -4738,8 +4738,7 @@
       "title": "OBR Public finances databank",
       "publisher": "Office for Budget Responsibility",
       "url": "https://obr.uk/data/",
-      "licence": "OGL v3",
-      "published_on": "2026-09-24"
+      "licence": "OGL v3"
     },
     {
       "id": "obr_efo",
