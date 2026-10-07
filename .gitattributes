@@ -1,0 +1,2 @@
+# Stored source texts are byte-exact: intake quotes are checked against their offsets.
+content/drafts/**/sources/*.txt -text

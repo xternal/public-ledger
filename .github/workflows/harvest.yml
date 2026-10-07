@@ -1,0 +1,138 @@
+name: Promise intake
+
+# Daily promise intake (docs/BUILD_PLAN.md M4, docs/OPERATIONS.md §10):
+# fetch a day's Commons statements, PMQs, written ministerial statements and
+# GOV.UK press releases; Claude proposes candidate promises; only quotes found
+# verbatim in the source are kept; one draft per candidate in
+# content/drafts/<date>/; one draft pull request per day, labelled `intake`.
+# Never merged automatically: two editors turn each draft into a card or delete it.
+# Without the ANTHROPIC_API_KEY secret the run logs "Intake not configured" and succeeds.
+
+on:
+  schedule:
+    # 06:15 UTC every day = 07:15 BST (06:15 GMT once the clocks go back on 2026-10-25).
+    # Hansard for the previous sitting day is complete by then.
+    - cron: "15 6 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "UK date to read, YYYY-MM-DD (empty = yesterday, UK time)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+# One intake at a time, never cancelled half-way.
+concurrency:
+  group: harvest
+  cancel-in-progress: false
+
+jobs:
+  configured:
+    runs-on: ubuntu-latest
+    outputs:
+      ok: ${{ steps.key.outputs.ok }}
+    steps:
+      - id: key
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "Intake not configured: the ANTHROPIC_API_KEY secret is not set. Skipping."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  intake:
+    needs: configured
+    if: needs.configured.outputs.ok == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # origin/main for the append-only check in pnpm validate.
+          fetch-depth: 0
+
+      - name: Pick the day
+        id: day
+        env:
+          INPUT_DATE: ${{ inputs.date }}
+        run: |
+          DATE="${INPUT_DATE:-$(TZ=Europe/London date -d '12:00 yesterday' +%F)}"
+          if ! [[ "$DATE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+            echo "Not a date: $DATE (expected YYYY-MM-DD)"
+            exit 1
+          fi
+          echo "date=$DATE" >> "$GITHUB_OUTPUT"
+          # An existing branch may hold editors' work: never overwrite it.
+          if git ls-remote --exit-code --heads origin "intake/$DATE" > /dev/null; then
+            echo "intake/$DATE already exists, so this day was read before. Nothing to do; delete the branch to read the day again."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.day.outputs.skip == 'false'
+        with:
+          node-version-file: .nvmrc
+      # Node 22's bundled Corepack cannot run pnpm 12; use the version that works locally.
+      - if: steps.day.outputs.skip == 'false'
+        run: npm install -g corepack@0.34.5 && corepack enable pnpm
+      - if: steps.day.outputs.skip == 'false'
+        run: pnpm install --frozen-lockfile
+
+      - name: Read the day and write drafts
+        if: steps.day.outputs.skip == 'false'
+        env:
+          DATE: ${{ steps.day.outputs.date }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Optional repository variable; empty uses the default model in packages/server/src/harvest/extract.ts.
+          INTAKE_MODEL: ${{ vars.INTAKE_MODEL }}
+        run: pnpm harvest -- day --date "$DATE"
+
+      # The exact-match gate: every draft's quote must be exactly its span of the
+      # stored source text (plus schemas, balance and append-only). Must pass.
+      # Pull requests opened with the workflow's token do not trigger other
+      # workflows (GitHub's rule against recursive runs), so CI does not start on
+      # the intake PR by itself: this step is its check. Editors' pushes to the
+      # branch run CI as usual.
+      - name: Validate
+        if: steps.day.outputs.skip == 'false'
+        run: pnpm validate -- --base origin/main --allow-drafts
+
+      - name: Open a draft pull request
+        if: steps.day.outputs.skip == 'false'
+        env:
+          DATE: ${{ steps.day.outputs.date }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          dir="content/drafts/$DATE"
+          n=$(find "$dir" -maxdepth 1 -name '*.yaml' 2> /dev/null | wc -l | tr -d ' ')
+          if [ "$n" = "0" ]; then
+            echo "No candidate promises for $DATE. No pull request."
+            exit 0
+          fi
+          # Intake writes only its own day's folder; anything else changed is a bug.
+          other=$(git status --porcelain -- . ":(exclude)$dir")
+          if [ -n "$other" ]; then
+            echo "Unexpected changes outside $dir:"
+            echo "$other"
+            exit 1
+          fi
+          if [ "$n" = "1" ]; then title="Intake $DATE: 1 candidate promise"; else title="Intake $DATE: $n candidate promises"; fi
+          branch="intake/$DATE"
+          git config user.name "public-ledger-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          # The drafts and their source texts; PR.md is git-ignored.
+          git add -- "$dir"
+          git commit -m "$title"
+          git push origin "$branch"
+          gh label create intake --color 5319e7 --description "Automatic promise intake (drafts)" || true
+          # A draft PR for editors. Never --auto, never merged here.
+          gh pr create --draft --base main --head "$branch" --label intake --title "$title" --body-file "$dir/PR.md"
