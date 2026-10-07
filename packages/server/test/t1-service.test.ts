@@ -79,7 +79,7 @@ describe("T1 service", () => {
 
   it("answers not_applicable, without calling the provider, when no T1 lever changed", async () => {
     const a = await getT1(db, req({ ...base(), bank_rate: 4.5 }), deps(T0));
-    expect(a).toEqual({ response: { status: "not_applicable", not_modelled: ["bank_rate"] }, httpStatus: 200 });
+    expect(a).toEqual({ response: { status: "not_applicable", not_modelled: ["bank_rate"] }, httpStatus: 200, outcome: "not_applicable" });
     expect(fake.state.simulate).toEqual([]);
     expect(await row()).toBeUndefined();
   });
@@ -87,7 +87,7 @@ describe("T1 service", () => {
   it("goes pending, then ok, then answers from the cache", async () => {
     // 1. First request: register the reform and compute the households, in one round.
     const first = await getT1(db, req(), deps(T0));
-    expect(first).toEqual({ response: { status: "pending", retry_after_s: 5 }, httpStatus: 202 });
+    expect(first).toEqual({ response: { status: "pending", retry_after_s: 5 }, httpStatus: 202, outcome: "started" });
     expect(fake.state.simulate).toEqual([null]);
     expect(fake.state.households).toBe(1);
     expect(await row()).toMatchObject({ status: "pending", policy_id: 93107, polls: 0 });
@@ -95,6 +95,7 @@ describe("T1 service", () => {
     // 2. PolicyEngine still computing: one check, still pending.
     const second = await getT1(db, req(), deps(at(5_000)));
     expect(second.response.status).toBe("pending");
+    expect(second.outcome).toBe("pending");
     expect(fake.state.simulate).toEqual([null, 93107]);
     expect(await row()).toMatchObject({ status: "pending", polls: 1 });
 
@@ -102,6 +103,7 @@ describe("T1 service", () => {
     fake.state.ready = true;
     const third = await getT1(db, req(), deps(at(70_000)));
     expect(third.httpStatus).toBe(200);
+    expect(third.outcome).toBe("ready");
     const parsed = T1Response.parse(third.response);
     if (parsed.status !== "ok") throw new Error("expected ok");
     expect(parsed.result.scenario).toBe("vat21");
@@ -115,8 +117,16 @@ describe("T1 service", () => {
 
     // 4. Cached: no provider call, same answer.
     const fourth = await getT1(db, req(), deps(at(86_400_000)));
-    expect(fourth).toEqual(third);
+    expect(fourth.response).toEqual(third.response);
+    expect(fourth.outcome).toBe("cached");
     expect(fake.state.simulate).toHaveLength(3);
+
+    // Aggregate counts only: one row per outcome, no scenario or client in them.
+    const usage = await db.query<{ prop_value: string; count: string }>(
+      "SELECT prop_value, sum(count) AS count FROM usage_daily WHERE event = 't1_requested' AND prop_key = 'outcome' GROUP BY prop_value ORDER BY prop_value",
+    );
+    expect(usage.map((u) => [u.prop_value, Number(u.count)])).toEqual([["cached", 1], ["pending", 1], ["ready", 1], ["started", 1]]);
+    expect(JSON.stringify(await db.query("SELECT * FROM usage_daily"))).not.toContain("vat21");
   });
 
   it("starts again once a cached result is 30 days old", async () => {
