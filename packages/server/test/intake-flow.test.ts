@@ -315,7 +315,7 @@ describe("Claude pre-fill", () => {
     if (out.status !== "done") return;
     expect(out.suggestion).toMatchObject({ actor_id: "keir-starmer", policy_area: "housing_env", possible_duplicate_of: ["bus-fare-cap"], verbatim_found_in_source: true });
     const body = client.bodies[0] as Record<string, unknown> & { output_config: { format: { type: string } }; messages: { content: string }[] };
-    expect(body.model).toBe("claude-sonnet-5-5");
+    expect(body.model).toBe("claude-opus-5-5");
     expect(body.output_config.format.type).toBe("json_schema");
     expect(body.fallbacks).toBe("default");
     expect(body.messages[0]!.content).toContain("<source_text kind=\"transcript\">");

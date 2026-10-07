@@ -52,7 +52,7 @@ export interface AutoCheckDeps {
   lookup?: Lookup;
   /** Claude client; null means no pre-fill. Defaults to one built from config.anthropicApiKey. */
   anthropic?: PrefillClient | null;
-  /** Defaults to env PREFILL_MODEL, else claude-sonnet-5-5. */
+  /** Defaults to env PREFILL_MODEL, else claude-opus-5-5. */
   prefillModel?: string;
   content?: IntakeContent;
   now?: Date;
