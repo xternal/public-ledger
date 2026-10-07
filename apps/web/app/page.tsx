@@ -1,6 +1,6 @@
 import { getSeed } from "@/lib/data";
 import { FAQ } from "@/lib/faq";
-import { absolute, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { absolute, MAKER, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { Ledger } from "@/components/Ledger";
 
@@ -10,7 +10,16 @@ function structuredData() {
   const [start] = meta.fiscal_year.split("-");
   const org = { "@type": "Organization", "@id": absolute("/#org"), name: SITE_NAME, url: absolute("/") };
   return [
-    { "@context": "https://schema.org", "@type": "WebSite", name: SITE_NAME, url: absolute("/"), description: SITE_DESCRIPTION, inLanguage: "en-GB", publisher: org },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: absolute("/"),
+      description: SITE_DESCRIPTION,
+      inLanguage: "en-GB",
+      publisher: org,
+      creator: { "@type": "Person", name: MAKER.name, url: MAKER.url },
+    },
     {
       "@context": "https://schema.org",
       "@type": "Dataset",

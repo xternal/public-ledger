@@ -65,6 +65,23 @@ export function sesMailer(config: Config): Mailer {
   };
 }
 
+/** Email switched off (MAIL_PROVIDER=off): every send fails loudly, and the site hides its email options. */
+export class MailDisabledError extends Error {
+  constructor() {
+    super("email is switched off on this site (MAIL_PROVIDER=off)");
+    this.name = "MailDisabledError";
+  }
+}
+
+export function offMailer(): Mailer {
+  return {
+    async send() {
+      throw new MailDisabledError();
+    },
+  };
+}
+
 export function mailerFor(config: Config, db: Db): Mailer {
+  if (config.mail.provider === "off") return offMailer();
   return config.mail.provider === "ses" ? sesMailer(config) : outboxMailer(db, config);
 }

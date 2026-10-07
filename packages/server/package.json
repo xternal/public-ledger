@@ -10,7 +10,8 @@
     "./alerts": "./src/alerts/index.ts",
     "./triage": "./src/triage/index.ts",
     "./harvest": "./src/harvest/index.ts",
-    "./model": "./src/model/index.ts"
+    "./model": "./src/model/index.ts",
+    "./alpha": "./src/alpha.ts"
   },
   "scripts": {
     "test": "vitest run",
