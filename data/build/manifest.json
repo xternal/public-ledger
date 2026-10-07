@@ -1,6 +1,6 @@
 {
-  "build_id": "2026-10-06T21:23:58Z",
-  "git_sha": "90c9021",
+  "build_id": "2026-10-07T13:14:31Z",
+  "git_sha": "70161e0",
   "status": "ok",
   "base_year": "2025-26",
   "observations": 3940,
@@ -15,8 +15,8 @@
       "cadence_days": 45,
       "grace_days": 14,
       "freshness": {
-        "vintage": "IADB IUDBEDR to 2026-10-05",
-        "published_on": "2026-10-05",
+        "vintage": "IADB IUDBEDR to 2026-10-06",
+        "published_on": "2026-10-06",
         "age_days": 1,
         "cadence_days": 45,
         "grace_days": 14,
@@ -24,9 +24,32 @@
       },
       "observations": 24,
       "vintages": [
-        "IADB IUDBEDR to 2026-10-05"
+        "IADB IUDBEDR to 2026-10-06"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "boe_bank_rate",
+          "url": "https://www.bankofengland.co.uk/boeapps/database/_iadb-fromshowcolumns.asp?csv.x=yes&Datefrom=01/Jan/2018&Dateto=now&SeriesCodes=IUDBEDR&CSVF=TN&UsingCodes=Y&VPD=Y&VFD=N",
+          "path": "data/raw/boe_bank_rate/IUDBEDR.csv",
+          "sha256": "f418007046088da0b3d5ae6e8fcd6cecc61ff28ff65fc1081f25f8de7248ba41",
+          "fetched_at": "2026-10-07T13:14:33+00:00",
+          "content_type": "application/csv",
+          "vintage": null,
+          "fetched_url": "https://www.bankofengland.co.uk/boeapps/database/_iadb-fromshowcolumns.asp?csv.x=yes&Datefrom=01/Jan/2018&Dateto=now&SeriesCodes=IUDBEDR&CSVF=TN&UsingCodes=Y&VPD=Y&VFD=N",
+          "archived_at": null
+        },
+        {
+          "source_id": "boe_bank_rate",
+          "url": "https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates",
+          "path": "data/raw/boe_bank_rate/upcoming-mpc-dates.html",
+          "sha256": "15c325fe57e554b15b373a7e56cbc9f2bb282a26d5e70c79a155fe23169b7b8d",
+          "fetched_at": "2026-10-07T13:14:33+00:00",
+          "content_type": "text/html; charset=utf-8",
+          "vintage": null,
+          "fetched_url": "https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates",
+          "archived_at": null
+        }
+      ]
     },
     {
       "id": "dwp_benefits",
@@ -40,7 +63,7 @@
       "freshness": {
         "vintage": "DWP-SF-2026",
         "published_on": "2026-04-14",
-        "age_days": 175,
+        "age_days": 176,
         "cadence_days": 200,
         "grace_days": 60,
         "overdue_days": 0
@@ -49,7 +72,19 @@
       "vintages": [
         "DWP-SF-2026"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "dwp_benefits",
+          "url": "https://assets.publishing.service.gov.uk/media/69dcdc8c6b695d635c34dcc4/outturn-and-forecast-tables-spring-forecast-2026.xlsx",
+          "path": "data/raw/dwp_benefits/outturn-and-forecast-tables-spring-forecast-2026.xlsx",
+          "sha256": "11a591e4a2144ed6a686be6a9ded4e5d5b3b8d4887bd57c1ff0632bd251009de",
+          "fetched_at": "2026-10-07T13:14:36+00:00",
+          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "vintage": "DWP-SF-2026",
+          "fetched_url": "https://assets.publishing.service.gov.uk/media/69dcdc8c6b695d635c34dcc4/outturn-and-forecast-tables-spring-forecast-2026.xlsx",
+          "archived_at": null
+        }
+      ]
     },
     {
       "id": "govuk_tax_rates",
@@ -63,7 +98,7 @@
       "freshness": {
         "vintage": "income-tax-rates@2026-10-01",
         "published_on": "2026-10-01",
-        "age_days": 5,
+        "age_days": 6,
         "cadence_days": 365,
         "grace_days": 60,
         "overdue_days": 0
@@ -76,7 +111,74 @@
         "rates-and-thresholds-for-employers-2025-to-2026@2026-09-30",
         "rates-and-thresholds-for-employers-2026-to-2027@2026-09-30"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "govuk_tax_rates",
+          "url": "https://www.gov.uk/api/content/income-tax-rates",
+          "path": "data/raw/govuk_tax_rates/income-tax-rates.json",
+          "sha256": "e6fc3c984516087c06d91b775e3dc15da24491b0e636858fd5f11cef75668c91",
+          "fetched_at": "2026-10-07T13:14:37+00:00",
+          "content_type": "application/json; charset=utf-8",
+          "vintage": null,
+          "fetched_url": "https://www.gov.uk/api/content/income-tax-rates",
+          "archived_at": null
+        },
+        {
+          "source_id": "govuk_tax_rates",
+          "url": "https://www.gov.uk/api/content/national-insurance-rates-letters",
+          "path": "data/raw/govuk_tax_rates/national-insurance-rates-letters.json",
+          "sha256": "49e729ac415cfae319e7b1f006658177b1418a5214f467aac25cced0110f116d",
+          "fetched_at": "2026-10-07T13:14:37+00:00",
+          "content_type": "application/json; charset=utf-8",
+          "vintage": null,
+          "fetched_url": "https://www.gov.uk/api/content/national-insurance-rates-letters",
+          "archived_at": null
+        },
+        {
+          "source_id": "govuk_tax_rates",
+          "url": "https://www.gov.uk/api/content/guidance/rates-and-thresholds-for-employers-2026-to-2027",
+          "path": "data/raw/govuk_tax_rates/rates-and-thresholds-for-employers-2026-to-2027.json",
+          "sha256": "aaa2e36fbe3668b61363362250a4697273a7b8394bcdfa6109e1c434c0da9e70",
+          "fetched_at": "2026-10-07T13:14:38+00:00",
+          "content_type": "application/json; charset=utf-8",
+          "vintage": null,
+          "fetched_url": "https://www.gov.uk/api/content/guidance/rates-and-thresholds-for-employers-2026-to-2027",
+          "archived_at": null
+        },
+        {
+          "source_id": "govuk_tax_rates",
+          "url": "https://www.gov.uk/api/content/guidance/rates-and-thresholds-for-employers-2025-to-2026",
+          "path": "data/raw/govuk_tax_rates/rates-and-thresholds-for-employers-2025-to-2026.json",
+          "sha256": "4d0c1e0e82ef4174e6d3a66d35d18a6c0c4565f033db5c37803cf972e26e3ea1",
+          "fetched_at": "2026-10-07T13:14:38+00:00",
+          "content_type": "application/json; charset=utf-8",
+          "vintage": null,
+          "fetched_url": "https://www.gov.uk/api/content/guidance/rates-and-thresholds-for-employers-2025-to-2026",
+          "archived_at": null
+        },
+        {
+          "source_id": "govuk_tax_rates",
+          "url": "https://www.gov.uk/api/content/government/publications/rates-and-allowances-excise-duty-hydrocarbon-oils/excise-duty-hydrocarbon-oils-rates",
+          "path": "data/raw/govuk_tax_rates/excise-duty-hydrocarbon-oils-rates.json",
+          "sha256": "2076a211e1a3588adff123c6e9fabbe3b3bf9de9b47999192137d21faa794b1e",
+          "fetched_at": "2026-10-07T13:14:39+00:00",
+          "content_type": "application/json; charset=utf-8",
+          "vintage": null,
+          "fetched_url": "https://www.gov.uk/api/content/government/publications/rates-and-allowances-excise-duty-hydrocarbon-oils/excise-duty-hydrocarbon-oils-rates",
+          "archived_at": null
+        },
+        {
+          "source_id": "govuk_tax_rates",
+          "url": "https://www.gov.uk/api/content/government/publications/amended-fuel-duty-rates-for-2026-to-2027/amended-fuel-duty-rates-2026-to-2027",
+          "path": "data/raw/govuk_tax_rates/amended-fuel-duty-rates-2026-to-2027.json",
+          "sha256": "88adb5e8312eb2f366d4f93265181196c377a9b7cac425702441bbb51c730afb",
+          "fetched_at": "2026-10-07T13:14:39+00:00",
+          "content_type": "application/json; charset=utf-8",
+          "vintage": null,
+          "fetched_url": "https://www.gov.uk/api/content/government/publications/amended-fuel-duty-rates-for-2026-to-2027/amended-fuel-duty-rates-2026-to-2027",
+          "archived_at": null
+        }
+      ]
     },
     {
       "id": "hmrc_reckoner",
@@ -90,16 +192,50 @@
       "freshness": {
         "vintage": "HMRC-DE-2025-06",
         "published_on": "2025-06-24",
-        "age_days": 469,
+        "age_days": 470,
         "cadence_days": 365,
         "grace_days": 60,
-        "overdue_days": 104
+        "overdue_days": 105
       },
       "observations": 228,
       "vintages": [
         "HMRC-DE-2025-06"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "hmrc_reckoner",
+          "url": "https://www.gov.uk/api/content/government/statistics/direct-effects-of-illustrative-tax-changes",
+          "path": "data/raw/hmrc_reckoner/content.json",
+          "sha256": "d7e14de1cfe9ae36a9fc074c92e3c21cc4329664bb5eda64e7c38ea6f5aad11f",
+          "fetched_at": "2026-10-07T13:14:39+00:00",
+          "content_type": "application/json; charset=utf-8",
+          "vintage": "HMRC-DE-2025-06",
+          "fetched_url": "https://www.gov.uk/api/content/government/statistics/direct-effects-of-illustrative-tax-changes",
+          "archived_at": null
+        },
+        {
+          "source_id": "hmrc_reckoner",
+          "url": "https://assets.publishing.service.gov.uk/media/68552862b46781eacfd71d71/June_2025_TRR_ODS__1_.ods",
+          "path": "data/raw/hmrc_reckoner/June_2025_TRR_ODS__1_.ods",
+          "sha256": "1201953391d6201d1df8df4d60288c9094b43e0679ebf285e82ad3c912d476c1",
+          "fetched_at": "2026-10-07T13:14:40+00:00",
+          "content_type": "application/vnd.oasis.opendocument.spreadsheet",
+          "vintage": "HMRC-DE-2025-06",
+          "fetched_url": "https://assets.publishing.service.gov.uk/media/68552862b46781eacfd71d71/June_2025_TRR_ODS__1_.ods",
+          "archived_at": null
+        },
+        {
+          "source_id": "hmrc_reckoner",
+          "url": "https://www.gov.uk/api/content/government/statistics/direct-effects-of-illustrative-tax-changes/direct-effects-of-illustrative-tax-changes-bulletin-january-2025",
+          "path": "data/raw/hmrc_reckoner/bulletin.json",
+          "sha256": "118963ba2fdd037c98048cb9e7e3da9c2f64860e2aad42ab5b8f27d0b66c0e3c",
+          "fetched_at": "2026-10-07T13:14:41+00:00",
+          "content_type": "application/json; charset=utf-8",
+          "vintage": "HMRC-DE-2025-06",
+          "fetched_url": "https://www.gov.uk/api/content/government/statistics/direct-effects-of-illustrative-tax-changes/direct-effects-of-illustrative-tax-changes-bulletin-january-2025",
+          "archived_at": null
+        }
+      ]
     },
     {
       "id": "hmrc_taxpayers",
@@ -113,7 +249,7 @@
       "freshness": {
         "vintage": "HMRC-ITLS-2026-07",
         "published_on": "2026-07-15",
-        "age_days": 83,
+        "age_days": 84,
         "cadence_days": 365,
         "grace_days": 60,
         "overdue_days": 0
@@ -122,7 +258,30 @@
       "vintages": [
         "HMRC-ITLS-2026-07"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "hmrc_taxpayers",
+          "url": "https://www.gov.uk/api/content/government/statistics/number-of-individual-income-taxpayers-by-marginal-rate-gender-and-age",
+          "path": "data/raw/hmrc_taxpayers/table_2_1.json",
+          "sha256": "56fcd24e7509df907f1e45e0e940cfc4fcc733b7cee1cedb3809f690c62b5f40",
+          "fetched_at": "2026-10-07T13:14:42+00:00",
+          "content_type": "application/json; charset=utf-8",
+          "vintage": "HMRC-ITLS-2026-07",
+          "fetched_url": "https://www.gov.uk/api/content/government/statistics/number-of-individual-income-taxpayers-by-marginal-rate-gender-and-age",
+          "archived_at": null
+        },
+        {
+          "source_id": "hmrc_taxpayers",
+          "url": "https://assets.publishing.service.gov.uk/media/6a54e2a9a4890e65cce64dd3/Table_2.1_Number_of_individual_Income_Tax_Payers.ods",
+          "path": "data/raw/hmrc_taxpayers/Table_2.1_Number_of_individual_Income_Tax_Payers.ods",
+          "sha256": "caca39aca5c041081a56cf685a438769a6fbcbfe5b3f8ec8d498ec0afc2c9ed1",
+          "fetched_at": "2026-10-07T13:14:42+00:00",
+          "content_type": "application/vnd.oasis.opendocument.spreadsheet",
+          "vintage": "HMRC-ITLS-2026-07",
+          "fetched_url": "https://assets.publishing.service.gov.uk/media/6a54e2a9a4890e65cce64dd3/Table_2.1_Number_of_individual_Income_Tax_Payers.ods",
+          "archived_at": null
+        }
+      ]
     },
     {
       "id": "hmt_pesa",
@@ -136,7 +295,7 @@
       "freshness": {
         "vintage": "PESA-2026",
         "published_on": "2026-07-16",
-        "age_days": 82,
+        "age_days": 83,
         "cadence_days": 120,
         "grace_days": 45,
         "overdue_days": 0
@@ -145,7 +304,30 @@
       "vintages": [
         "PESA-2026"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "hmt_pesa",
+          "url": "https://assets.publishing.service.gov.uk/media/6a5772e09e63154454413700/PESA_2026_CP_Chapter_4_tables.xlsx",
+          "path": "data/raw/hmt_pesa/PESA_2026_CP_Chapter_4_tables.xlsx",
+          "sha256": "50ae80d95c4e542c34a17dfa8bc302858ca6508b6753e27bb31920cec9bb75c4",
+          "fetched_at": "2026-10-07T13:14:44+00:00",
+          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "vintage": "PESA-2026",
+          "fetched_url": "https://assets.publishing.service.gov.uk/media/6a5772e09e63154454413700/PESA_2026_CP_Chapter_4_tables.xlsx",
+          "archived_at": null
+        },
+        {
+          "source_id": "hmt_pesa",
+          "url": "https://assets.publishing.service.gov.uk/media/6a5772f59e63154454413701/PESA_2026_CP_Chapter_5_tables.xlsx",
+          "path": "data/raw/hmt_pesa/PESA_2026_CP_Chapter_5_tables.xlsx",
+          "sha256": "ccb4539bb837c2b6a7f9509da49bd409eb9e5a910f3332311b494291fbd33107",
+          "fetched_at": "2026-10-07T13:14:45+00:00",
+          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "vintage": "PESA-2026",
+          "fetched_url": "https://assets.publishing.service.gov.uk/media/6a5772f59e63154454413701/PESA_2026_CP_Chapter_5_tables.xlsx",
+          "archived_at": null
+        }
+      ]
     },
     {
       "id": "nato_defence",
@@ -159,7 +341,7 @@
       "freshness": {
         "vintage": "NATO-DE-2026-07",
         "published_on": "2026-07-09",
-        "age_days": 89,
+        "age_days": 90,
         "cadence_days": 365,
         "grace_days": 60,
         "overdue_days": 0
@@ -168,7 +350,30 @@
       "vintages": [
         "NATO-DE-2026-07"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "nato_defence",
+          "url": "https://www.nato.int/en/what-we-do/introduction-to-nato/defence-expenditures-and-natos-5-commitment",
+          "path": "data/raw/nato_defence/topic.html",
+          "sha256": "b616804b106f2de6f5592a025dfd499004b881773eb8b78d9cced498e7696886",
+          "fetched_at": "2026-10-07T13:14:45+00:00",
+          "content_type": "text/html;charset=utf-8",
+          "vintage": null,
+          "fetched_url": "https://www.nato.int/en/what-we-do/introduction-to-nato/defence-expenditures-and-natos-5-commitment",
+          "archived_at": null
+        },
+        {
+          "source_id": "nato_defence",
+          "url": "https://www.nato.int/content/dam/nato/webready/documents/finance/def-exp-2026-en.xlsx",
+          "path": "data/raw/nato_defence/def-exp-2026-en.xlsx",
+          "sha256": "11e302d3f556b6df87b05413654714b0fcbb9a47ebfadfc92caed76e6a4e0988",
+          "fetched_at": "2026-10-07T13:14:46+00:00",
+          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "vintage": "NATO-DE-2026-07",
+          "fetched_url": "https://www.nato.int/content/dam/nato/webready/documents/finance/def-exp-2026-en.xlsx",
+          "archived_at": null
+        }
+      ]
     },
     {
       "id": "obr_databank",
@@ -182,7 +387,7 @@
       "freshness": {
         "vintage": "OBR-PFD-2026-09",
         "published_on": "2026-09-24",
-        "age_days": 12,
+        "age_days": 13,
         "cadence_days": 31,
         "grace_days": 21,
         "overdue_days": 0
@@ -191,7 +396,19 @@
       "vintages": [
         "OBR-PFD-2026-09"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "obr_databank",
+          "url": "https://obr.uk/download/public-finances-databank-september-2026/",
+          "path": "data/raw/obr_databank/public_finances_databank.xlsx",
+          "sha256": "9f3c513a6940e6f75dbcc768bc95cdb5dec78fe6d49fdf3662a019645d1a88ed",
+          "fetched_at": "2026-10-07T13:15:00+00:00",
+          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "vintage": "OBR-PFD-2026-09",
+          "fetched_url": "https://web.archive.org/web/20261005094056id_/https://obr.uk/docs/dlm_uploads/PSF_aggregates_databank_Sep-3.xlsx",
+          "archived_at": "2026-10-05T09:40:56+00:00"
+        }
+      ]
     },
     {
       "id": "obr_efo",
@@ -205,7 +422,7 @@
       "freshness": {
         "vintage": "EFO-2026-03",
         "published_on": "2026-03-03",
-        "age_days": 217,
+        "age_days": 218,
         "cadence_days": 245,
         "grace_days": 30,
         "overdue_days": 0
@@ -214,7 +431,30 @@
       "vintages": [
         "EFO-2026-03"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "obr_efo",
+          "url": "https://obr.uk/download/march-2026-economic-and-fiscal-outlook-charts-and-tables-annex-tables/",
+          "path": "data/raw/obr_efo/efo_2026_03_annex_tables.xlsx",
+          "sha256": "58a0c59cac93651a477f2c097b0f99b1dbcee417e9b54e0be3c6f92294ba0ad8",
+          "fetched_at": "2026-10-07T13:15:18+00:00",
+          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "vintage": "EFO-2026-03",
+          "fetched_url": "https://web.archive.org/web/20260512224307id_/https://obr.uk/docs/d055fbf02d5b3g6jq8l2/efo-march-2026-charts-and-tables-annex-tables.xlsx",
+          "archived_at": "2026-05-12T22:43:07+00:00"
+        },
+        {
+          "source_id": "obr_efo",
+          "url": "https://obr.uk/download/march-2026-economic-and-fiscal-outlook-detailed-forecast-tables-debt-interest-ready-reckoner/",
+          "path": "data/raw/obr_efo/efo_2026_03_debt_interest_ready_reckoner.xlsx",
+          "sha256": "4686d4f77ccba84fa895858e45756bb0d8ed647d9f230a7fa4890c51ef9ee27f",
+          "fetched_at": "2026-10-07T13:15:24+00:00",
+          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "vintage": "EFO-2026-03",
+          "fetched_url": "https://web.archive.org/web/20261007124255id_/https://obr.uk/docs/d055fbf02d5b3g6jq8l2/efo-march-2026-detailed-forecast-tables-debt-interest.xlsx",
+          "archived_at": "2026-10-07T12:42:55+00:00"
+        }
+      ]
     },
     {
       "id": "ons_households",
@@ -228,7 +468,7 @@
       "freshness": {
         "vintage": "FH-2026-04",
         "published_on": "2026-04-17",
-        "age_days": 172,
+        "age_days": 173,
         "cadence_days": 365,
         "grace_days": 90,
         "overdue_days": 0
@@ -237,7 +477,19 @@
       "vintages": [
         "FH-2026-04"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "ons_households",
+          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/birthsdeathsandmarriages/families/datasets/familiesandhouseholdsfamiliesandhouseholds/current/familiesandhouseholdsuk2025.xlsx",
+          "path": "data/raw/ons_households/familiesandhouseholdsuk2025.xlsx",
+          "sha256": "a89eaa3d7f519bfa949c7cfa12f531b8c7a86c704adcb70e81f49567ae724a91",
+          "fetched_at": "2026-10-07T13:15:25+00:00",
+          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
+          "vintage": "FH-2026-04",
+          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/birthsdeathsandmarriages/families/datasets/familiesandhouseholdsfamiliesandhouseholds/current/familiesandhouseholdsuk2025.xlsx",
+          "archived_at": null
+        }
+      ]
     },
     {
       "id": "ons_population",
@@ -251,7 +503,7 @@
       "freshness": {
         "vintage": "MYE-2026-10",
         "published_on": "2026-10-01",
-        "age_days": 5,
+        "age_days": 6,
         "cadence_days": 365,
         "grace_days": 90,
         "overdue_days": 0
@@ -260,7 +512,19 @@
       "vintages": [
         "MYE-2026-10"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "ons_population",
+          "url": "https://www.ons.gov.uk/generator?format=csv&uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/ukpop/pop",
+          "path": "data/raw/ons_population/ukpop.csv",
+          "sha256": "7bd9900dd34fc939775472a48b38f3bf65b510a68fe26265952f05182e558342",
+          "fetched_at": "2026-10-07T13:15:26+00:00",
+          "content_type": "application/octet-stream;charset=utf-8",
+          "vintage": "MYE-2026-10",
+          "fetched_url": "https://www.ons.gov.uk/generator?format=csv&uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/timeseries/ukpop/pop",
+          "archived_at": null
+        }
+      ]
     },
     {
       "id": "ons_psf",
@@ -274,7 +538,7 @@
       "freshness": {
         "vintage": "PSF-2026-09",
         "published_on": "2026-09-22",
-        "age_days": 14,
+        "age_days": 15,
         "cadence_days": 31,
         "grace_days": 10,
         "overdue_days": 0
@@ -283,7 +547,19 @@
       "vintages": [
         "PSF-2026-09"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "ons_psf",
+          "url": "https://www.ons.gov.uk/file?uri=/economy/governmentpublicsectorandtaxes/publicsectorfinance/datasets/publicsectorfinances/current/pusf.csv",
+          "path": "data/raw/ons_psf/pusf.csv",
+          "sha256": "541a0c2d740188d37c33bd2b23c4979907c7a9388ce9988a00d520f12ff77dbb",
+          "fetched_at": "2026-10-07T13:15:26+00:00",
+          "content_type": "text/csv;charset=utf-8",
+          "vintage": "PSF-2026-09",
+          "fetched_url": "https://www.ons.gov.uk/file?uri=/economy/governmentpublicsectorandtaxes/publicsectorfinance/datasets/publicsectorfinances/current/pusf.csv",
+          "archived_at": null
+        }
+      ]
     },
     {
       "id": "ons_psf_receipts",
@@ -297,7 +573,7 @@
       "freshness": {
         "vintage": "PSF-2026-09",
         "published_on": "2026-09-22",
-        "age_days": 14,
+        "age_days": 15,
         "cadence_days": 31,
         "grace_days": 14,
         "overdue_days": 0
@@ -306,7 +582,19 @@
       "vintages": [
         "PSF-2026-09"
       ],
-      "files": []
+      "files": [
+        {
+          "source_id": "ons_psf_receipts",
+          "url": "https://www.ons.gov.uk/file?uri=/economy/governmentpublicsectorandtaxes/publicsectorfinance/datasets/appendixdpublicsectorcurrentreceipts/current/publicsectorcurrentreceiptsappendixdfinal.xlsx",
+          "path": "data/raw/ons_psf_receipts/appendix_d.xlsx",
+          "sha256": "9c2c639268cc36d57fd4cdf9e53901e403c376a6402249d938700a0c94d402a4",
+          "fetched_at": "2026-10-07T13:15:27+00:00",
+          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
+          "vintage": "PSF-2026-09",
+          "fetched_url": "https://www.ons.gov.uk/file?uri=/economy/governmentpublicsectorandtaxes/publicsectorfinance/datasets/appendixdpublicsectorcurrentreceipts/current/publicsectorcurrentreceiptsappendixdfinal.xlsx",
+          "archived_at": null
+        }
+      ]
     }
   ],
   "checks": [
@@ -314,8 +602,8 @@
       "check_id": "staleness",
       "level": "warning",
       "subject": "hmrc_reckoner",
-      "message": "HMRC-DE-2025-06 is 469 days old; a new edition was due 104 days ago (grace 60). Acknowledged until 2027-01-31: HMRC postponed the January 2026 edition of 'Direct effects of illustrative tax changes' (notice of 6 Jul 2026, no new date).",
-      "value": 104
+      "message": "HMRC-DE-2025-06 is 470 days old; a new edition was due 105 days ago (grace 60). Acknowledged until 2027-01-31: HMRC postponed the January 2026 edition of 'Direct effects of illustrative tax changes' (notice of 6 Jul 2026, no new date).",
+      "value": 105
     }
   ],
   "identity": [
