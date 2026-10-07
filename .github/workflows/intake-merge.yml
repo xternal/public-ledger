@@ -1,0 +1,75 @@
+name: Merge intake when editors are done
+
+# An intake pull request (label `intake`, opened by .github/workflows/harvest.yml)
+# merges by itself once its editors are done, and not before:
+# - enough different people have approved it: two by default (the two-editor
+#   rule, invariant 8); a repository variable INTAKE_APPROVALS can change it;
+# - CI is green on its latest commit. `pnpm validate` fails while any draft is
+#   left in content/drafts/, so green means every draft became a card or was
+#   deleted, and every new card passed the schema and the append-only check.
+# Nothing else merges here, and a commit pushed after the checks is never merged
+# unchecked (--match-head-commit). Merges made with the workflow token do not
+# start other workflows, so this job starts the alerts run for the merged cards.
+
+on:
+  pull_request_review:
+    types: [submitted]
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: Intake pull request number to check now
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+concurrency:
+  group: intake-merge
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge intake pull requests whose editors are done
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          NEEDED: ${{ vars.INTAKE_APPROVALS || '2' }}
+          EVENT_PR: ${{ github.event.pull_request.number || inputs.pr || '' }}
+          RUN_PRS: ${{ toJSON(github.event.workflow_run.pull_requests) }}
+        run: |
+          set -euo pipefail
+          prs="$EVENT_PR"
+          if [ -z "$prs" ] && [ -n "$RUN_PRS" ] && [ "$RUN_PRS" != "null" ]; then
+            prs=$(echo "$RUN_PRS" | jq -r '.[].number')
+          fi
+          [ -z "$prs" ] && { echo "No pull request in this event."; exit 0; }
+          for pr in $prs; do
+            info=$(gh pr view "$pr" --repo "$REPO" --json state,labels,headRefOid,isDraft,baseRefName)
+            if [ "$(echo "$info" | jq -r '.state')" != "OPEN" ] || [ "$(echo "$info" | jq -r '.baseRefName')" != "main" ] \
+               || ! echo "$info" | jq -e '.labels | map(.name) | index("intake")' > /dev/null; then
+              echo "#$pr: not an open intake pull request into main; nothing to do."; continue
+            fi
+            head=$(echo "$info" | jq -r '.headRefOid')
+            # Each reviewer's latest review counts; a later "changes requested" cancels an earlier approval.
+            approvals=$(gh api "repos/$REPO/pulls/$pr/reviews" --paginate | jq -s 'add | group_by(.user.login) | map(sort_by(.submitted_at) | last | select(.state == "APPROVED")) | length')
+            checks=$(gh api "repos/$REPO/commits/$head/check-runs?per_page=100" | jq '[.check_runs[] | select(.name == "app" or .name == "data")] | group_by(.name) | map(sort_by(.started_at) | last)')
+            green=$(echo "$checks" | jq '[.[] | select(.conclusion == "success")] | length')
+            drafts=$(gh api "repos/$REPO/git/trees/$head?recursive=1" | jq '[.tree[].path | select(startswith("content/drafts/") and endswith(".yaml"))] | length')
+            echo "#$pr at ${head:0:7}: $approvals of $NEEDED approvals, $green of 2 CI checks green, $drafts draft(s) left."
+            if [ "$approvals" -lt "$NEEDED" ] || [ "$green" -lt 2 ] || [ "$drafts" -gt 0 ]; then
+              echo "#$pr: editors are not done yet; leaving it open."; continue
+            fi
+            [ "$(echo "$info" | jq -r '.isDraft')" = "true" ] && gh pr ready "$pr" --repo "$REPO"
+            before=$(gh api "repos/$REPO/git/ref/heads/main" --jq '.object.sha')
+            gh pr merge "$pr" --repo "$REPO" --merge --delete-branch --match-head-commit "$head"
+            after=$(gh pr view "$pr" --repo "$REPO" --json mergeCommit --jq '.mergeCommit.oid')
+            echo "#$pr merged as ${after:0:7}; starting alerts for ${before:0:7}..${after:0:7}."
+            gh workflow run alerts.yml --repo "$REPO" -f task=diff -f before="$before" -f after="$after" -f dry_run=false
+          done
