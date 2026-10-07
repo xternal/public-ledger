@@ -1,0 +1,88 @@
+id: uk-bics-electricity-2026
+actor_id: blair-mcdougall
+made_on: "2026-09-09"
+venue: parliament
+venue_label: Commons statement
+policy_area: economic_affairs
+status: in_plan
+status_note: >-
+  The scheme is in the government's plans (Modern Industrial Strategy, June 2025; consultation responses of
+  16 April and July 2026), and applications opened on 1 October 2026 and close on 30 November 2026. Exemptions
+  on bills start in April 2027. Draft regulations amending the Renewables Obligation and Capacity Market rules
+  were laid on 7 September 2026 and need approval by both Houses; none had been made by 7 October 2026. The
+  Exchequer funding is due to be scored at Budget 2026, so the card stays at In plan.
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "Hansard, House of Commons, 9 Sep 2026: Jaguar Land Rover: Redundancies (statement)"
+    url: https://hansard.parliament.uk/Commons/2026-09-09/debates/CAB0EF73-A8DD-4708-AF57-2221AD011A5A/JaguarLandRoverRedundancies
+  - title: "The UK's Modern Industrial Strategy, 23 Jun 2025 (DBT)"
+    url: https://www.gov.uk/government/publications/industrial-strategy
+  - title: "Government response: BICS consultation on scheme eligibility and approach, 16 Apr 2026"
+    url: https://assets.publishing.service.gov.uk/media/69dfe1fdf5069cdc548688aa/british-industrial-competitiveness-scheme-consultation-on-scheme-eligibility-approach-government-response.pdf
+  - title: "DBT and HM Treasury press release, 16 Apr 2026: Government cuts electricity bill for 10,000 manufacturers"
+    url: https://www.gov.uk/government/news/government-cuts-electricity-bill-for-10000-manufacturers-in-boost-for-uk-competitiveness
+  - title: "BICS consultation on regulatory changes and scheme delivery: government response, Jul 2026"
+    url: https://www.gov.uk/government/consultations/british-industrial-competitiveness-scheme-consultation-on-regulatory-changes-and-scheme-delivery
+  - title: "BIST press release, 1 Oct 2026: Applications open for scheme to slash electricity bills for over 10,000 manufacturers"
+    url: https://www.gov.uk/government/news/applications-open-for-scheme-to-slash-electricity-bills-for-over-10000-manufacturers
+  - title: "GOV.UK collection: British Industrial Competitiveness Scheme"
+    url: https://www.gov.uk/government/collections/british-industrial-competitiveness-scheme
+  - title: "Draft Renewables Obligation and Electricity Capacity (Amendment) (British Industrial Competitiveness Scheme Excluded Electricity) Regulations 2026 (laid 7 Sep 2026), legislation.gov.uk"
+    url: https://www.legislation.gov.uk/ukdsi/2026/9780348286762/contents
+  - title: "BIST impact assessment: British Industrial Competitiveness Scheme (final stage, 7 Sep 2026)"
+    url: https://www.legislation.gov.uk/ukia/2026/149/pdfs/ukia_20260149_en.pdf
+versions:
+  - version: 1
+    text: "When it comes to energy costs, our British industrial competitiveness scheme will save more than 10,000 manufacturers up to 25% of their electricity bills."
+    recorded_on: "2026-09-09"
+    source_url: https://hansard.parliament.uk/Commons/2026-09-09/debates/CAB0EF73-A8DD-4708-AF57-2221AD011A5A/JaguarLandRoverRedundancies
+    quote_checked_on: "2026-10-07"
+    parameters:
+      who: >-
+        Manufacturers in Great Britain in eligible frontier and foundational sectors, such as automotive, aerospace
+        and chemicals, that meet the electricity-use threshold (government estimate: over 10,000 businesses).
+        They stop paying the indirect costs of the Renewables Obligation, Feed-in Tariffs and the Capacity Market.
+        The Northern Ireland Executive is to get funding for an equivalent programme, subject to a business case.
+      how_much_bn_per_year: [0.54, 0.6, 0.66]
+      cost_note: >-
+        Year shown: a typical year of the scheme from April 2027; the government gives an average yearly figure,
+        not one for a named year. Its estimate is "around £600 million on average p.a." (government response,
+        16 April 2026); its press release the same day says "up to £600 million per year from April 2027". Central
+        figure only, subject to final scheme design and consumption forecasts. Neither source says whether this
+        includes the one-off additional payment in 2027, worth around a year's relief, for businesses that apply
+        in the first window. The final impact assessment (7 September 2026), published with the draft regulations,
+        puts the cost of BICS support at £3.8bn in present value over 2027-28 to 2034-35 (2025 prices), including
+        the additional payment, or £3.2bn without it; that is a discounted eight-year total, not a yearly figure,
+        so it is not used for the range. No independent costing has been published.
+        Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "Government response: BICS consultation on scheme eligibility and approach, 16 Apr 2026"
+          url: https://assets.publishing.service.gov.uk/media/69dfe1fdf5069cdc548688aa/british-industrial-competitiveness-scheme-consultation-on-scheme-eligibility-approach-government-response.pdf
+        - title: "DBT and HM Treasury press release, 16 Apr 2026: Government cuts electricity bill for 10,000 manufacturers"
+          url: https://www.gov.uk/government/news/government-cuts-electricity-bill-for-10000-manufacturers-in-boost-for-uk-competitiveness
+        - title: "BIST impact assessment: British Industrial Competitiveness Scheme (final stage, 7 Sep 2026)"
+          url: https://www.legislation.gov.uk/ukia/2026/149/pdfs/ukia_20260149_en.pdf
+      when: >-
+        Applications 1 October to 30 November 2026; exemptions on bills from April 2027 (Renewables Obligation and
+        Feed-in Tariffs) and October 2027 (Capacity Market); a one-off payment in 2027 covers the support firms
+        would have received had the scheme run from April 2026
+      funded_by: >-
+        A combination of changes within the energy system (such as those recently made to inflation indexation of
+        RO/FITs), removal of Carbon Price Support from April 2028 and Exchequer funding, so that domestic and
+        non-domestic electricity consumers do not see an increase in their bills; the one-off 2027 payment is
+        funded by the Exchequer
+events:
+  - date: "2026-09-09"
+    type: promised
+    text: Minister for Reindustrialisation Blair McDougall tells the Commons the scheme will save more than 10,000 manufacturers up to 25% of their electricity bills
+  - date: "2026-10-01"
+    type: in_plan
+    text: Applications open until 30 November 2026; the government says eligible firms receive support from April 2027
+    evidence_url: https://www.gov.uk/government/news/applications-open-for-scheme-to-slash-electricity-bills-for-over-10000-manufacturers
+replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-07"
+    note: Second check of the quote at its live source, date and venue, evidence, status, cost and funding, wording and legal risk; fixes made before publication.

@@ -1,0 +1,45 @@
+id: uk-mental-health-strategy-2026
+actor_id: andy-burnham
+made_on: "2026-09-09"
+venue: parliament
+venue_label: Prime Minister's Questions
+policy_area: health
+status: promised
+status_note: >-
+  "Before Christmas" is recorded as a deadline of 24 December 2026. DHSC opened a call for evidence for a
+  cross-government mental health strategy for England on 15 May 2026; no strategy had been published by 7 October 2026.
+deadline: "2026-12-24"
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "Hansard, House of Commons, 9 Sep 2026: Engagements (Prime Minister's Questions)"
+    url: https://hansard.parliament.uk/Commons/2026-09-09/debates/C226C460-61AA-49F3-BBE8-1219B334BEDC/Engagements
+  - title: "DHSC call for evidence, 15 May 2026: Informing the mental health strategy for England"
+    url: https://www.gov.uk/government/calls-for-evidence/informing-the-mental-health-strategy-for-england
+versions:
+  - version: 1
+    text: This will all be considered as part of a mental health strategy that will come before this House before Christmas.
+    recorded_on: "2026-09-09"
+    source_url: https://hansard.parliament.uk/Commons/2026-09-09/debates/C226C460-61AA-49F3-BBE8-1219B334BEDC/Engagements
+    quote_checked_on: "2026-10-07"
+    parameters:
+      who: >-
+        Children and adults in England who need mental health support (DHSC's May 2026 call for evidence is for a
+        mental health strategy for England). The question was about mental health in-patient beds in
+        Hertfordshire and patients sent far from home.
+      cost_note: No costing published.
+      when: Before Christmas 2026
+      funded_by: null
+events:
+  - date: "2026-09-09"
+    type: promised
+    text: The Prime Minister tells the Commons a mental health strategy will come before the House before Christmas
+  - date: "2026-12-24"
+    type: deadline
+    text: Strategy due before the House before Christmas (editorial date)
+replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-07"
+    note: Second check of the quote at its live source, date and venue, evidence, status, cost and funding, wording and legal risk; fixes made before publication.

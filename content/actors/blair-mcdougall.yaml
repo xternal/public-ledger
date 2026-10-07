@@ -1,0 +1,13 @@
+id: blair-mcdougall
+name: Blair McDougall
+kind: person
+party_id: labour
+roles:
+  - title: Parliamentary Under-Secretary of State (Minister for Reindustrialisation), Department for Business, Innovation, Science and Trade and Department for Energy Security and Net Zero
+    # Source: https://www.gov.uk/government/people/blair-mcdougall ("appointed Parliamentary Under-Secretary of State (Minister for Reindustrialisation) jointly in the Department for Business, Innovation, Science and Trade (BIST) and the Department for Energy Security and Net Zero (DESNZ) on 22 July 2026")
+    from: "2026-07-22"
+  - title: Parliamentary Under-Secretary of State, Department for Business and Trade
+    # Source: https://www.gov.uk/government/people/blair-mcdougall ("Parliamentary Under-Secretary of State in the Department for Business and Trade between 7 September 2025 and 22 July 2026")
+    # Party: Labour, MP for East Renfrewshire since July 2024 (https://members.parliament.uk/member/5076)
+    from: "2025-09-07"
+    to: "2026-07-22"

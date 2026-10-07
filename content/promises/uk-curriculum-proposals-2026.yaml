@@ -1,0 +1,41 @@
+id: uk-curriculum-proposals-2026
+actor_id: lucy-powell
+made_on: "2026-09-09"
+venue: parliament
+venue_label: Commons statement
+policy_area: education
+status: promised
+status_note: >-
+  No date was given ("soon"), so the card has no deadline. The independent Curriculum and Assessment Review,
+  chaired by Professor Becky Francis, published its final report on 5 November 2025, alongside a government
+  response.
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "Hansard, House of Commons, 9 Sep 2026: Education and Skills Reform"
+    url: https://hansard.parliament.uk/Commons/2026-09-09/debates/5464194E-3C69-4173-B4BA-5F57B9F7B471/EducationAndSkillsReform
+  - title: "DfE, 5 Nov 2025: Curriculum and Assessment Review Final Report"
+    url: https://www.gov.uk/government/publications/curriculum-and-assessment-review-final-report
+  - title: "DfE, 5 Nov 2025: Curriculum and Assessment Review Final Report: government response"
+    url: https://www.gov.uk/government/publications/curriculum-and-assessment-review-final-report-government-response
+versions:
+  - version: 1
+    text: "Our curriculum and assessment reform will go hand in hand with that ambition, and we will soon publish proposals building on the Becky Francis review."
+    recorded_on: "2026-09-09"
+    source_url: https://hansard.parliament.uk/Commons/2026-09-09/debates/5464194E-3C69-4173-B4BA-5F57B9F7B471/EducationAndSkillsReform
+    quote_checked_on: "2026-10-07"
+    parameters:
+      who: Pupils and students in England, and the schools and colleges that teach and assess them
+      cost_note: No costing published.
+      when: Not stated ("soon")
+      funded_by: null
+events:
+  - date: "2026-09-09"
+    type: promised
+    text: Lucy Powell tells the Commons that proposals for curriculum and assessment reform building on the Becky Francis review will be published soon
+replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-07"
+    note: Second check of the quote at its live source, date and venue, evidence, status, cost and funding, wording and legal risk; fixes made before publication.

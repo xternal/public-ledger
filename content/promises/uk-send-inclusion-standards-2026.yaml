@@ -1,0 +1,50 @@
+id: uk-send-inclusion-standards-2026
+actor_id: lucy-powell
+made_on: "2026-09-09"
+venue: parliament
+venue_label: Commons statement
+policy_area: education
+status: promised
+status_note: >-
+  No date was given: the standards are to be published alongside any SEND legislation or further steps, and in
+  the same statement Lucy Powell said the government will introduce SEND legislation "in due course". The schools
+  white paper Every child achieving and thriving (23 February 2026) sets out National Inclusion Standards and
+  says they should guide how schools meet children's needs by 2028.
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "Hansard, House of Commons, 9 Sep 2026: Education and Skills Reform"
+    url: https://hansard.parliament.uk/Commons/2026-09-09/debates/5464194E-3C69-4173-B4BA-5F57B9F7B471/EducationAndSkillsReform
+  - title: "DfE schools white paper, 23 Feb 2026: Every child achieving and thriving"
+    url: https://www.gov.uk/government/publications/every-child-achieving-and-thriving/every-child-achieving-and-thriving-html-version
+versions:
+  - version: 1
+    text: "We are developing national inclusion standards, which we will publish alongside any legislation or further steps we take on SEND."
+    recorded_on: "2026-09-09"
+    source_url: https://hansard.parliament.uk/Commons/2026-09-09/debates/5464194E-3C69-4173-B4BA-5F57B9F7B471/EducationAndSkillsReform
+    quote_checked_on: "2026-10-07"
+    parameters:
+      who: >-
+        Children and young people with special educational needs and disabilities (SEND) in England, their
+        families, and the schools that support them
+      cost_note: >-
+        No one-year costing published. The schools white paper (February 2026) says up to £15 million will be
+        invested by 2028 to build the evidence base for, and then provide, the National Inclusion Standards. It
+        does not split this by year, so no yearly figure is shown.
+      cost_sources:
+        - title: "DfE schools white paper, 23 Feb 2026: Every child achieving and thriving"
+          url: https://www.gov.uk/government/publications/every-child-achieving-and-thriving/every-child-achieving-and-thriving-html-version
+      when: >-
+        Not stated; alongside any SEND legislation or further steps on SEND. The schools white paper says the
+        standards should guide schools by 2028.
+      funded_by: null
+events:
+  - date: "2026-09-09"
+    type: promised
+    text: Lucy Powell tells the Commons that national inclusion standards will be published alongside any SEND legislation or further steps
+replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-07"
+    note: Second check of the quote at its live source, date and venue, evidence, status, cost and funding, wording and legal risk; fixes made before publication.

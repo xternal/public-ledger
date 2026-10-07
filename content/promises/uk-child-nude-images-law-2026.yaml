@@ -1,0 +1,42 @@
+id: uk-child-nude-images-law-2026
+actor_id: hm-government
+made_on: "2026-09-09"
+venue: press_release
+venue_label: Press release (DCMS)
+policy_area: public_order
+status: promised
+status_note: >-
+  No date was given: the government says it will introduce the legislation as soon as possible, and will
+  reassess whether it is needed if companies put solutions in place themselves. The same press release says
+  features that keep users scrolling for longer, such as videos that play one after another and personalised
+  feeds, will also be switched off by default for 16 and 17-year-olds; no date is given for this either.
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "DCMS press release, 9 Sep 2026: UK to have world's strongest online child safety laws as government prepares legislation on nude images"
+    url: https://www.gov.uk/government/news/uk-to-have-worlds-strongest-online-child-safety-laws-as-government-prepares-legislation-on-nude-images
+versions:
+  - version: 1
+    text: "New legislation will be prepared by the government to force tech companies to make it impossible for children to take, share or view naked pictures."
+    recorded_on: "2026-09-09"
+    source_url: https://www.gov.uk/government/news/uk-to-have-worlds-strongest-online-child-safety-laws-as-government-prepares-legislation-on-nude-images
+    quote_checked_on: "2026-10-07"
+    parameters:
+      who: >-
+        Children under 18 in the UK; technology companies, which would be legally required to build protections
+        into their devices
+      cost_note: No costing published.
+      when: Not stated; the government says it will introduce the legislation "as soon as possible"
+      funded_by: null
+events:
+  - date: "2026-09-09"
+    type: promised
+    text: >-
+      Government announces it will bring forward legislation requiring technology companies to stop under-18s
+      taking, sharing or viewing nude images on their devices
+replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-07"
+    note: Second check of the quote at its live source, date and venue, evidence, status, cost and funding, wording and legal risk; fixes made before publication.

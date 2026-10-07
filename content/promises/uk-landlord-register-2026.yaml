@@ -1,0 +1,67 @@
+id: uk-landlord-register-2026
+actor_id: hm-government
+made_on: "2026-09-09"
+venue: press_release
+venue_label: Press release (MHCLG)
+policy_area: housing_env
+status: in_plan
+status_note: >-
+  The register is due to launch on 15 December 2026 in the West Midlands and reach other regions over 12 months;
+  the Private Rented Sector Database Regulations 2026 were laid in draft on 9 September 2026 and need approval by
+  both Houses, and section 75 of the Renters’ Rights Act 2025, which creates the database, is not yet in force.
+  The same release says HMRC’s Valuation Office will take over decisions on challenges to rent increases in
+  England; until then renters apply to the First-tier Tribunal.
+deadline: "2027-11-14"
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "MHCLG press release, 9 Sep 2026: Stronger protections and greater confidence for renters"
+    url: https://www.gov.uk/government/news/stronger-protections-and-greater-confidence-for-renters
+  - title: "Draft Private Rented Sector Database Regulations 2026 (laid 9 Sep 2026), legislation.gov.uk"
+    url: https://www.legislation.gov.uk/ukdsi/2026/9780348286861/contents
+  - title: "Renters’ Rights Act 2025, section 75 (The database), legislation.gov.uk"
+    url: https://www.legislation.gov.uk/ukpga/2025/26/section/75
+versions:
+  - version: 1
+    text: All landlords actively letting property will need to have registered by 14 November 2027.
+    recorded_on: "2026-09-09"
+    source_url: https://www.gov.uk/government/news/stronger-protections-and-greater-confidence-for-renters
+    quote_checked_on: "2026-10-07"
+    parameters:
+      who: >-
+        Landlords in England with properties under let, who must register; their tenants; and councils, which get
+        access to the information (the government says this will help them "spot rogue landlords and take quicker
+        action")
+      cost_note: >-
+        No costing published. Under the draft regulations, a fee must be paid to make or renew (every 12 months) each
+        dwelling entry, and in some cases to reactivate one; the database operator sets the fee by reference to its relevant costs (draft
+        regulations 6(5), 10(2), 12(5) and 14).
+      cost_sources:
+        - title: "Draft Private Rented Sector Database Regulations 2026, legislation.gov.uk"
+          url: https://www.legislation.gov.uk/ukdsi/2026/9780348286861/contents
+      when: >-
+        Launch on 15 December 2026 in the West Midlands, then other regions over 12 months; landlords in each region
+        get three months to sign up once it is called forward, and all landlords actively letting must be registered
+        by 14 November 2027
+      funded_by: null
+events:
+  - date: "2026-09-09"
+    type: promised
+    text: >-
+      MHCLG announces the national landlord register will launch on 15 December 2026 in the West Midlands, with all
+      landlords actively letting property registered by 14 November 2027
+  - date: "2026-09-09"
+    type: in_plan
+    text: >-
+      Draft Private Rented Sector Database Regulations 2026 laid before Parliament, setting regional start dates
+      from 15 December 2026 (West Midlands) to 15 August 2027 (South West)
+    evidence_url: https://www.legislation.gov.uk/ukdsi/2026/9780348286861/contents
+  - date: "2027-11-14"
+    type: deadline
+    text: All landlords actively letting property due to be registered
+replies: []
+reviews:
+  - by: Junior Editor
+    kind: automated
+    on: "2026-10-07"
+    note: Second check of the quote at its live source, date and venue, evidence, status, cost and funding, wording and legal risk; fixes made before publication.

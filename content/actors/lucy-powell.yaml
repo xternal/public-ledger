@@ -1,0 +1,9 @@
+id: lucy-powell
+name: Lucy Powell
+kind: person
+party_id: labour
+roles:
+  - title: Secretary of State for Education
+    # Source: https://www.gov.uk/government/people/lucy-powell ("Lucy Powell was appointed Secretary of State for Education on 20 July 2026.")
+    # Also: https://members.parliament.uk/member/4263/career (government post from 20 July 2026)
+    from: "2026-07-20"
