@@ -35,9 +35,10 @@ export function LeverSlider({ lever }: { lever: Lever }) {
             <button
               type="button"
               onClick={() => setLever(lever.id, lever.base)}
-              className="cursor-pointer text-caption text-muted underline decoration-dotted underline-offset-2 hover:text-ink"
-              aria-label={`Reset ${lever.label} to today's ${leverValueText(lever, lever.base)}`}
+              className="inline-flex min-h-6 cursor-pointer items-center text-caption text-muted underline decoration-dotted underline-offset-2 hover:text-ink"
             >
+              {/* The spoken name contains the visible words (WCAG 2.5.3, label in name). */}
+              <span className="sr-only">Reset {lever.label} to </span>
               today {leverValueText(lever, lever.base)}
             </button>
           ) : null}

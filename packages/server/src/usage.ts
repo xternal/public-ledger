@@ -17,7 +17,11 @@ export type UsageEvent =
   | { event: "submission_blocked"; props: { reason: "invalid_url" | "rate_limited" | "spam_check" } }
   | { event: "submission_auto_checked"; props: { archived: "yes" | "no"; quote_matched: "yes" | "no" | "na"; duplicate: "yes" | "no" } }
   | { event: "submission_triaged"; props: { outcome: "accepted" | "rejected" | "duplicate"; reason_code: string } }
-  | { event: "alert_sent"; props: { channel: "email" | "telegram"; change_type: string } };
+  | { event: "alert_sent"; props: { channel: "email" | "telegram"; change_type: string } }
+  | { event: "t1_requested"; props: { outcome: T1Outcome } };
+
+/** What a request for "who gains and loses" came to: for cache-hit and failure rates. */
+export type T1Outcome = "cached" | "started" | "pending" | "ready" | "not_applicable" | "error" | "rate_limited";
 
 export async function countUsage(db: Db, e: UsageEvent, n = 1, day = new Date()): Promise<void> {
   const d = day.toISOString().slice(0, 10);

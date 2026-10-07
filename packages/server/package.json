@@ -9,7 +9,8 @@
     "./intake": "./src/intake/index.ts",
     "./alerts": "./src/alerts/index.ts",
     "./triage": "./src/triage/index.ts",
-    "./harvest": "./src/harvest/index.ts"
+    "./harvest": "./src/harvest/index.ts",
+    "./model": "./src/model/index.ts"
   },
   "scripts": {
     "test": "vitest run",

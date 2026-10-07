@@ -1,0 +1,372 @@
+{
+  "scenario": "eyJ2IjoxLCJ5IjoiMjAyNS0yNiIsInMiOnsidmF0X3N0YW5kYXJkIjoyMX19",
+  "year": "2025-26",
+  "provenance": {
+    "provider": "policyengine_api",
+    "model_version": "2.102.3",
+    "data_version": "policyengine-uk-data-1.56.16",
+    "dataset": "gs://policyengine-uk-data-private/enhanced_frs_2024_25.h5@1.56.16",
+    "policy_id": 93107,
+    "url": "https://policyengine.org/uk/policy?reform=93107&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025",
+    "fetched_at": "2026-10-07T12:57:05.817Z"
+  },
+  "quality": "modelled",
+  "modelled": [
+    "vat_standard"
+  ],
+  "not_modelled": [],
+  "budget": {
+    "net_bn": 14.99026692525272,
+    "tax_bn": 14.99026692525272,
+    "benefits_bn": 0,
+    "by_programme": {
+      "vat": {
+        "baseline_bn": 304.2195438593112,
+        "reform_bn": 319.2098093163412,
+        "change_bn": 14.990265457029968
+      },
+      "fuel_duty": {
+        "baseline_bn": 24.041874053019136,
+        "reform_bn": 24.041874053019136,
+        "change_bn": 0
+      },
+      "income_tax": {
+        "baseline_bn": 293.0161698689612,
+        "reform_bn": 293.0161698689612,
+        "change_bn": 0
+      },
+      "council_tax": {
+        "baseline_bn": 49.56974868795668,
+        "reform_bn": 49.56974868795668,
+        "change_bn": 0
+      },
+      "ni_employer": {
+        "baseline_bn": 148.0971077639379,
+        "reform_bn": 148.0971077639379,
+        "change_bn": 0
+      },
+      "tax_credits": {
+        "baseline_bn": 0,
+        "reform_bn": 0,
+        "change_bn": 0
+      },
+      "child_benefit": {
+        "baseline_bn": 16.984426742179313,
+        "reform_bn": 16.984426742179313,
+        "change_bn": 0
+      },
+      "state_pension": {
+        "baseline_bn": 124.16305111850251,
+        "reform_bn": 124.16305111850251,
+        "change_bn": 0
+      },
+      "income_support": {
+        "baseline_bn": 0.6554034002762334,
+        "reform_bn": 0.6554034002762334,
+        "change_bn": 0
+      },
+      "pension_credit": {
+        "baseline_bn": 6.339030961421517,
+        "reform_bn": 6.339030961421517,
+        "change_bn": 0
+      },
+      "child_tax_credit": {
+        "baseline_bn": 0,
+        "reform_bn": 0,
+        "change_bn": 0
+      },
+      "universal_credit": {
+        "baseline_bn": 75.26436381746298,
+        "reform_bn": 75.26436381746298,
+        "change_bn": 0
+      },
+      "national_insurance": {
+        "baseline_bn": 51.67286251956401,
+        "reform_bn": 51.67286251956401,
+        "change_bn": 0
+      },
+      "working_tax_credit": {
+        "baseline_bn": 0,
+        "reform_bn": 0,
+        "change_bn": 0
+      }
+    }
+  },
+  "deciles": [
+    {
+      "decile": 1,
+      "avg_change_gbp": -468.0156872263651,
+      "rel_change_pct": -2.9934315745020346
+    },
+    {
+      "decile": 2,
+      "avg_change_gbp": -333.4595504334211,
+      "rel_change_pct": -1.1687130231631846
+    },
+    {
+      "decile": 3,
+      "avg_change_gbp": -308.095673065538,
+      "rel_change_pct": -0.8370548519704669
+    },
+    {
+      "decile": 4,
+      "avg_change_gbp": -353.821400660956,
+      "rel_change_pct": -0.7922385190368041
+    },
+    {
+      "decile": 5,
+      "avg_change_gbp": -411.16645108260855,
+      "rel_change_pct": -0.7987688375721052
+    },
+    {
+      "decile": 6,
+      "avg_change_gbp": -498.58307177236566,
+      "rel_change_pct": -0.8417415898371017
+    },
+    {
+      "decile": 7,
+      "avg_change_gbp": -557.0115772307327,
+      "rel_change_pct": -0.8043059976600017
+    },
+    {
+      "decile": 8,
+      "avg_change_gbp": -547.1218034373451,
+      "rel_change_pct": -0.6644604922401631
+    },
+    {
+      "decile": 9,
+      "avg_change_gbp": -875.206154444968,
+      "rel_change_pct": -0.8660460772792128
+    },
+    {
+      "decile": 10,
+      "avg_change_gbp": -727.4698892291053,
+      "rel_change_pct": -0.40362104664055226
+    }
+  ],
+  "winners": {
+    "all": {
+      "gain_more_5": 0,
+      "gain_less_5": 0.00017059415356389528,
+      "no_change": 0.24057026796335418,
+      "lose_less_5": 0.7199682504398336,
+      "lose_more_5": 0.03929088744324839
+    },
+    "by_decile": [
+      {
+        "gain_more_5": 0,
+        "gain_less_5": 0.00021174476141867294,
+        "no_change": 0.0964139858867272,
+        "lose_less_5": 0.6907969591193396,
+        "lose_more_5": 0.2125773102325145
+      },
+      {
+        "gain_more_5": 0,
+        "gain_less_5": 0.0007431016903735782,
+        "no_change": 0.14752458373269534,
+        "lose_less_5": 0.7955635358054456,
+        "lose_more_5": 0.05616877877148545
+      },
+      {
+        "gain_more_5": 0,
+        "gain_less_5": 0.0005150422980123393,
+        "no_change": 0.1833494762000282,
+        "lose_less_5": 0.790724697528294,
+        "lose_more_5": 0.025410783973665453
+      },
+      {
+        "gain_more_5": 0,
+        "gain_less_5": 0.00020983235589252616,
+        "no_change": 0.201303496401712,
+        "lose_less_5": 0.7847833635732888,
+        "lose_more_5": 0.01370330766910668
+      },
+      {
+        "gain_more_5": 0,
+        "gain_less_5": 9.56719245618643e-7,
+        "no_change": 0.26758824231987116,
+        "lose_less_5": 0.7205403898992713,
+        "lose_more_5": 0.011870411061611972
+      },
+      {
+        "gain_more_5": 0,
+        "gain_less_5": 0.000012378794154390714,
+        "no_change": 0.24369673930407543,
+        "lose_less_5": 0.7381668790705159,
+        "lose_more_5": 0.01812400283125426
+      },
+      {
+        "gain_more_5": 0,
+        "gain_less_5": 0.000009861409505865869,
+        "no_change": 0.26773348890595233,
+        "lose_less_5": 0.7168697079658001,
+        "lose_more_5": 0.015386941718741743
+      },
+      {
+        "gain_more_5": 0,
+        "gain_less_5": 0,
+        "no_change": 0.33964889694230327,
+        "lose_less_5": 0.6549820715077754,
+        "lose_more_5": 0.005369031549921304
+      },
+      {
+        "gain_more_5": 0,
+        "gain_less_5": 0.000003023507035960872,
+        "no_change": 0.24988599175301068,
+        "lose_less_5": 0.7184313597644143,
+        "lose_more_5": 0.03167962497553907
+      },
+      {
+        "gain_more_5": 0,
+        "gain_less_5": 0,
+        "no_change": 0.40855777818716615,
+        "lose_less_5": 0.5888235401641904,
+        "lose_more_5": 0.002618681648643469
+      }
+    ]
+  },
+  "regions": [
+    {
+      "id": "E12000001",
+      "name": "North East",
+      "avg_change_gbp": -426.3707299427548,
+      "rel_change_pct": -0.6641760491336034
+    },
+    {
+      "id": "E12000002",
+      "name": "North West",
+      "avg_change_gbp": -461.3607120467849,
+      "rel_change_pct": -1.2640292482887534
+    },
+    {
+      "id": "E12000003",
+      "name": "Yorkshire and The Humber",
+      "avg_change_gbp": -507.76094257926695,
+      "rel_change_pct": -1.1620187030685518
+    },
+    {
+      "id": "E12000004",
+      "name": "East Midlands",
+      "avg_change_gbp": -556.0021223969691,
+      "rel_change_pct": -1.0291073091570286
+    },
+    {
+      "id": "E12000005",
+      "name": "West Midlands",
+      "avg_change_gbp": -443.37403310733345,
+      "rel_change_pct": -0.8834689530405981
+    },
+    {
+      "id": "E12000006",
+      "name": "East of England",
+      "avg_change_gbp": -457.2866898940438,
+      "rel_change_pct": -0.7791875363946502
+    },
+    {
+      "id": "E12000007",
+      "name": "London",
+      "avg_change_gbp": -516.7217252303175,
+      "rel_change_pct": -1.0153056362801947
+    },
+    {
+      "id": "E12000008",
+      "name": "South East",
+      "avg_change_gbp": -455.33673933050517,
+      "rel_change_pct": -0.9287705465171205
+    },
+    {
+      "id": "E12000009",
+      "name": "South West",
+      "avg_change_gbp": -525.1805424973035,
+      "rel_change_pct": -1.0684567597837844
+    },
+    {
+      "id": "W92000004",
+      "name": "Wales",
+      "avg_change_gbp": -510.5181842052137,
+      "rel_change_pct": -1.0330651439449658
+    },
+    {
+      "id": "S92000003",
+      "name": "Scotland",
+      "avg_change_gbp": -423.86296423961943,
+      "rel_change_pct": -0.8776491973646345
+    }
+  ],
+  "households": [
+    {
+      "id": "single_25k",
+      "label": "Single adult earning £25,000",
+      "baseline_net_gbp": 21345.05,
+      "reform_net_gbp": 21345.05,
+      "change_gbp": 0
+    },
+    {
+      "id": "single_45k",
+      "label": "Single adult earning £45,000",
+      "baseline_net_gbp": 35745.05,
+      "reform_net_gbp": 35745.05,
+      "change_gbp": 0
+    },
+    {
+      "id": "single_120k",
+      "label": "Single adult earning £120,000",
+      "baseline_net_gbp": 75982.86,
+      "reform_net_gbp": 75982.86,
+      "change_gbp": 0
+    },
+    {
+      "id": "couple_two_children",
+      "label": "Couple earning £35,000 and £15,000, two children",
+      "baseline_net_gbp": 45116.25,
+      "reform_net_gbp": 45116.25,
+      "change_gbp": 0
+    },
+    {
+      "id": "lone_parent",
+      "label": "Lone parent earning £18,000, one child",
+      "baseline_net_gbp": 21425.67,
+      "reform_net_gbp": 21425.67,
+      "change_gbp": 0
+    },
+    {
+      "id": "pensioner_couple",
+      "label": "Pensioner couple on the state pension",
+      "baseline_net_gbp": 23971.46,
+      "reform_net_gbp": 23971.46,
+      "change_gbp": 0
+    }
+  ],
+  "poverty": {
+    "all": {
+      "baseline": 0.19704537994576704,
+      "reform": 0.19704537994576704
+    },
+    "child": {
+      "baseline": 0.24915652821201514,
+      "reform": 0.24915652821201514
+    },
+    "adult": {
+      "baseline": 0.17010958576453444,
+      "reform": 0.17010958576453444
+    },
+    "senior": {
+      "baseline": 0.22040302512858592,
+      "reform": 0.22040302512858592
+    }
+  },
+  "inequality": {
+    "gini": {
+      "baseline": 0.32112459757665734,
+      "reform": 0.32112459757665734
+    },
+    "top_10_pct_share": {
+      "baseline": 0.23986046895083935,
+      "reform": 0.23986046895083935
+    },
+    "top_1_pct_share": {
+      "baseline": 0.0488860241718208,
+      "reform": 0.0488860241718208
+    }
+  }
+}
