@@ -19,6 +19,8 @@ export interface FollowTarget {
 export interface FollowOptions {
   /** Bot username; null hides the Telegram option. */
   telegramBot: string | null;
+  /** False when the site sends no email (MAIL_PROVIDER=off, e.g. an alpha before SES): the Email option is hidden. */
+  email: boolean;
   consent: { version: string; points: string[] };
 }
 
@@ -88,8 +90,9 @@ export function FollowPanel({ id, target, areas, options }: FollowPanelProps) {
   const [channel, setChannel] = useState<Channel>("email");
   const count = useFollowerCount(t);
   const bot = typeof opts === "object" ? opts.telegramBot : null;
-  const channels: Channel[] = bot ? ["email", "telegram", "rss"] : ["email", "rss"];
-  const active = channels.includes(channel) ? channel : "email";
+  const email = typeof opts === "object" ? opts.email : true;
+  const channels: Channel[] = [...(email ? (["email"] as const) : []), ...(bot ? (["telegram"] as const) : []), "rss"];
+  const active = channels.includes(channel) ? channel : channels[0]!;
 
   return (
     <div id={id} className="grid gap-4 rounded-control bg-sunk p-3.5 sm:p-4">

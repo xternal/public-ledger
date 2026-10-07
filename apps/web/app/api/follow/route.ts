@@ -41,6 +41,7 @@ export async function POST(req: Request) {
   if (!parsed.value.targets.every(isKnownTarget)) return fail(400, "invalid", FIELD_MESSAGE.targets!, "targets");
 
   const ctx = await followContext();
+  if (ctx.config.mail.provider === "off") return fail(503, "email_off", "Email alerts start at launch. Use the RSS feed for now.");
   if (!(await verifySpamCheck(ctx.db, ctx.config, parsed.value.altcha))) return fail(400, "spam_check", FIELD_MESSAGE.altcha!, "altcha");
   if (!(await rateLimit(ctx.db, clientKeyFrom(req.headers), "follow", DAILY_LIMIT)))
     return fail(429, "rate_limited", "Too many sign-ups from this connection today. Please try again tomorrow.");

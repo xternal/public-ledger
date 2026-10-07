@@ -72,13 +72,17 @@ export function targetHref(t: Target): string {
 /** What the follow panel needs from the server: the consent text and the bot's username (Telegram is hidden without it). */
 export function followOptions(): FollowOptions {
   let bot: string | null = null;
+  let email = false;
   try {
-    bot = loadConfig().telegram.botUsername;
+    const config = loadConfig();
+    bot = config.telegram.botUsername;
+    email = config.mail.provider !== "off";
   } catch {
-    bot = null; // misconfigured production: hide Telegram rather than break the page
+    bot = null; // misconfigured production: hide Telegram and email rather than break the page
   }
   return {
     telegramBot: bot && /^[A-Za-z0-9_]{5,32}$/.test(bot) ? bot : null,
+    email,
     consent: { version: CONSENT_VERSION, points: [...CONSENT_POINTS] },
   };
 }

@@ -10,6 +10,10 @@
 
 export interface Config {
   production: boolean;
+  /** "alpha": an early version, labelled on every page. "live": launched. */
+  stage: "alpha" | "live";
+  /** Optional shared password that closes an alpha to testers only (null: public). */
+  alphaPassword: string | null;
   /** Public origin used in links in emails and Telegram messages, e.g. https://publicledger.example */
   siteUrl: string;
   /** Postgres connection string; unset in development means PGlite. */
@@ -22,7 +26,8 @@ export interface Config {
   lookupPepper: Buffer;
   /** HMAC key for ALTCHA challenges. */
   altchaKey: string;
-  mail: { provider: "ses" | "outbox"; from: string; replyTo?: string; sesRegion: string };
+  /** "off": no email at all (e.g. an alpha before SES is set up); the site hides email options. */
+  mail: { provider: "ses" | "outbox" | "off"; from: string; replyTo?: string; sesRegion: string };
   telegram: { botToken: string | null; botUsername: string | null; webhookSecret: string | null };
   /** Claude API key for pre-filling submissions; unset means no pre-fill. */
   anthropicApiKey: string | null;
@@ -54,8 +59,14 @@ function key(name: string, value: string | undefined, production: boolean): Buff
 
 export function loadConfig(env: Record<string, string | undefined> = process.env): Config {
   const production = env.LEDGER_ENV === "production";
+  const stage = env.SITE_STAGE === "alpha" ? "alpha" : "live";
+  const provider = env.MAIL_PROVIDER === "off" ? "off" : env.MAIL_PROVIDER === "ses" || production ? "ses" : "outbox";
+  if (production && !env.DATABASE_URL) throw new Error("DATABASE_URL must be set in production (the local database cannot run on a serverless host)");
+  if (env.ALPHA_PASSWORD && env.ALPHA_PASSWORD.length < 12) throw new Error("ALPHA_PASSWORD, when set, must be 12 characters or more");
   return {
     production,
+    stage,
+    alphaPassword: stage === "alpha" && env.ALPHA_PASSWORD ? env.ALPHA_PASSWORD : null,
     siteUrl: required("SITE_URL", env.SITE_URL, production, "http://localhost:3000").replace(/\/$/, ""),
     databaseUrl: env.DATABASE_URL || null,
     pgliteDir: env.PGLITE_DIR || ".data/pglite",
@@ -63,8 +74,8 @@ export function loadConfig(env: Record<string, string | undefined> = process.env
     lookupPepper: key("LEDGER_LOOKUP_PEPPER", env.LEDGER_LOOKUP_PEPPER, production),
     altchaKey: required("ALTCHA_HMAC_KEY", env.ALTCHA_HMAC_KEY, production, "dev-altcha-key"),
     mail: {
-      provider: env.MAIL_PROVIDER === "ses" ? "ses" : production ? "ses" : "outbox",
-      from: required("MAIL_FROM", env.MAIL_FROM, production, "Public Ledger <alerts@localhost>"),
+      provider,
+      from: required("MAIL_FROM", env.MAIL_FROM, production && provider === "ses", "Public Ledger <alerts@localhost>"),
       replyTo: env.MAIL_REPLY_TO || undefined,
       sesRegion: env.SES_REGION || "eu-west-2",
     },
