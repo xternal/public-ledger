@@ -50,9 +50,12 @@ export function NavLinks({ links, current, spy = false }: { links: NavLink[]; cu
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    // A jump to an anchor that is already in place scrolls nothing, so no scroll event comes.
+    window.addEventListener("hashchange", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("hashchange", onScroll);
       if (frame) cancelAnimationFrame(frame);
       clearTimeout(timer);
     };
