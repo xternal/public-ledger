@@ -108,8 +108,9 @@ export const LIKE_ME_COPY = {
   regionResult: (name: string) => `Average in ${name}`,
   netIncome: "Income after tax and benefits",
   noRegion: (name: string) => `${name}: not available in this model.`,
-  indirectNote:
-    "Example households leave out VAT and fuel duty for now (they depend on what a household buys); the decile and region figures include them.",
+  // The edition of data/seed/archetype_spending.json (etl/archetype_spending.py): update both together.
+  spending:
+    "Each example household spends what the ONS finds a similar household spends (Family spending in the UK, April 2024 to March 2025), so VAT and fuel duty reach it.",
   noHousehold: "PolicyEngine has no figure for this household in this result.",
   idle: "Move a tax or benefit lever in the sandbox, such as VAT or income tax, then choose “Show who gains and loses” under your scenario.",
   idleLink: "Go to the sandbox",
@@ -140,6 +141,7 @@ export const T1_METHOD = {
     "The “Who gains and loses” panel uses PolicyEngine UK, an open-source model of the UK tax and benefit system. It applies your tax and benefit changes to every household in a large survey that represents the country (the Family Resources Survey, reweighted by PolicyEngine), works out each household's income before and after, and adds them up by income decile and region.",
     `This is a static microsimulation: everyone keeps the same job, hours and spending, so nobody changes their behaviour. PolicyEngine gives one figure for each result; we show it with a ±${BAND_PCT}% range, labelled Modelled, and name the model and data versions it came from.`,
     "Our quick estimate and PolicyEngine can differ. The quick estimate uses HMRC's costings, which include how taxpayers respond; PolicyEngine's is static and starts from survey data a year or two old, projected forward. When the two are more than 15% apart, the panel shows both and says why. Disagreement is information, not an error.",
+    "The example households in “People like me” are the same for everyone. Their earnings and spending are fixed: spending is the Office for National Statistics' average for a similar household (Family spending in the UK, April 2024 to March 2025), so changes to VAT and fuel duty reach them. PolicyEngine charges VAT at the standard rate on half of that spending and scales it up to match total VAT receipts, which counts VAT that businesses pass on in prices.",
     "It runs on PolicyEngine's free public service, only when you ask. Only the scenario is sent; your salary, household and region stay on your device.",
   ],
   modelledHelp: "Produced by a model, ours or PolicyEngine's, and shown as a range.",

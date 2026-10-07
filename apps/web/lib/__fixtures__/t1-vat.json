@@ -297,44 +297,44 @@
     {
       "id": "single_25k",
       "label": "Single adult earning £25,000",
-      "baseline_net_gbp": 21345.05,
-      "reform_net_gbp": 21345.05,
-      "change_gbp": 0
+      "baseline_net_gbp": 21106.74,
+      "reform_net_gbp": 20878.28,
+      "change_gbp": -228.46
     },
     {
       "id": "single_45k",
       "label": "Single adult earning £45,000",
-      "baseline_net_gbp": 35745.05,
-      "reform_net_gbp": 35745.05,
-      "change_gbp": 0
+      "baseline_net_gbp": 35453.81,
+      "reform_net_gbp": 35186.56,
+      "change_gbp": -267.25
     },
     {
       "id": "single_120k",
       "label": "Single adult earning £120,000",
-      "baseline_net_gbp": 75982.86,
-      "reform_net_gbp": 75982.86,
-      "change_gbp": 0
+      "baseline_net_gbp": 75748.66,
+      "reform_net_gbp": 75315.15,
+      "change_gbp": -433.51
     },
     {
       "id": "couple_two_children",
       "label": "Couple earning £35,000 and £15,000, two children",
-      "baseline_net_gbp": 45116.25,
-      "reform_net_gbp": 45116.25,
-      "change_gbp": 0
+      "baseline_net_gbp": 44528.15,
+      "reform_net_gbp": 44022.38,
+      "change_gbp": -505.77
     },
     {
       "id": "lone_parent",
       "label": "Lone parent earning £18,000, one child",
-      "baseline_net_gbp": 21425.67,
-      "reform_net_gbp": 21425.67,
-      "change_gbp": 0
+      "baseline_net_gbp": 21243.27,
+      "reform_net_gbp": 20932.16,
+      "change_gbp": -311.11
     },
     {
       "id": "pensioner_couple",
       "label": "Pensioner couple on the state pension",
-      "baseline_net_gbp": 23971.46,
-      "reform_net_gbp": 23971.46,
-      "change_gbp": 0
+      "baseline_net_gbp": 23748.71,
+      "reform_net_gbp": 23445.19,
+      "change_gbp": -303.52
     }
   ],
   "poverty": {

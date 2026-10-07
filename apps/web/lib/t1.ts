@@ -44,9 +44,9 @@ const T1_SET: ReadonlySet<string> = new Set(T1_LEVERS);
 export const isT1Lever = (id: string) => T1_SET.has(id);
 
 /**
- * Taxes on spending. PolicyEngine's decile and region figures include them, but
- * the example households ("people like me") have no spending inputs yet, so
- * their figures leave these out.
+ * Taxes on spending. They reach every household's net income, including the
+ * example households ("people like me"), but not the official poverty measure,
+ * which counts income before them.
  */
 export const INDIRECT_TAX_LEVERS: ReadonlySet<string> = new Set(["vat_standard", "fuel_duty"]);
 

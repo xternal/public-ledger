@@ -34,6 +34,7 @@ Current state at time of writing: Bank Rate 3.75%, held 17 Sep 2026 (BoE IADB se
 | ONS births, deaths | TFR, births, deaths | https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages |
 | ONS families and households | Number of households (per-household translation) | https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/families |
 | ONS labour market | Employment, earnings (for "what it means for me") | https://www.ons.gov.uk/employmentandlabourmarket |
+| ONS Family spending in the UK | Weekly spending by household type and income (COICOP groups, motor fuel) for the T1 example households (`data/seed/archetype_spending.json`, `python -m etl.archetype_spending`, each June) | ✓ https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/expenditure/bulletins/familyspendingintheuk/april2024tomarch2025 |
 | ONS API | Programmatic access to many of the above | https://developer.ons.gov.uk/ |
 
 ## Promises and their execution

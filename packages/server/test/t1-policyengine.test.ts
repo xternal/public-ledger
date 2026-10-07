@@ -119,6 +119,6 @@ describe("PolicyEngine provider", () => {
     const rows = await policyEngineProvider({ fetch: f.fetch }).households(REFORM, 2025);
     expect(f.calls.map((c) => (c.body as { policy: unknown }).policy)).toEqual([{}, REFORM]);
     expect(rows).toHaveLength(6);
-    expect(rows[0]).toEqual({ id: "single_25k", label: "Single adult earning £25,000", baseline_net_gbp: 21_345.05, reform_net_gbp: 21_345.05, change_gbp: 0 });
+    expect(rows[0]).toEqual({ id: "single_25k", label: "Single adult earning £25,000", baseline_net_gbp: 21_106.74, reform_net_gbp: 20_878.28, change_gbp: -228.46 });
   });
 });
