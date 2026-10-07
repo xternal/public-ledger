@@ -166,3 +166,59 @@ on a branch `intake/<date>`, with one YAML per candidate in
   `content/drafts/<date>/PR.md` (the pull request text, not committed).
   `pnpm harvest -- upload …` does the same for a transcript or a YouTube
   video's captions.
+
+## 11. OBR data by hand
+
+OBR's website refuses GitHub's servers (its Cloudflare answers 403), so
+the nightly data job reads OBR's pages and workbooks through the Internet
+Archive instead (`etl/wayback.py`). It asks the
+archive to capture each OBR address now ("Save Page Now") and reads the
+archive's unmodified copy. Nothing changes for readers: the numbers still
+cite obr.uk. The data pull request lists every file read this way, with the
+time the archive captured it and the archive address it came from, under
+**Read through the Internet Archive**. A landing page (where new editions are
+found) must have been captured in the last 20 hours, so an old copy can never
+hide a new edition.
+
+The archive is not always available. When it can't supply a fresh copy, the
+run keeps the committed OBR data and says so: a `fetch` warning on
+`obr_databank` or `obr_efo` ending "run `pnpm etl` on your own machine…", and,
+once the edition is overdue, a staleness warning and then an error. Then
+refresh OBR from your own connection after each OBR release: the EFO arrives
+with each Budget and Spring Statement (next: the Budget, expected November
+2026); the databank about two working days after each monthly public sector
+finances release.
+
+1. Once per machine, set up the ETL environment (Python 3.14):
+
+```bash
+python3.14 -m venv etl/.venv && etl/.venv/bin/pip install -r etl/requirements.txt
+```
+
+2. Start from an up-to-date `main` on a new branch (use today's date):
+
+```bash
+git switch main && git pull --ff-only && git switch -c data/obr-2026-11-26
+```
+
+3. Run every source. OBR answers a home connection, so no archive is involved:
+
+```bash
+pnpm etl
+```
+
+4. Check that the run ends with `ok` and no `fetch` warnings for OBR, and that
+   `data/build/observations/obr_efo/` (or `obr_databank/`) has the new
+   edition's file. Then commit and open the pull request:
+
+```bash
+git add data/build && git commit -m "Data refresh: OBR, new edition"
+```
+
+```bash
+git push -u origin HEAD && gh pr create --base main --title "Data refresh: OBR, new edition" --body "$(etl/.venv/bin/python -m etl.summary)"
+```
+
+Review the Statement diffs as for a nightly pull request. CI rebuilds from
+the committed observations and fails if they don't reproduce the committed
+bundle.

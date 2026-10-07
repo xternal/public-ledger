@@ -10,12 +10,31 @@ from etl.build import BUILD_DIR, HISTORY_DIR, Run, Store
 from etl.core import ROOT, Observation, write_json
 
 RUN_FIELDS = ["build_id", "started_at", "finished_at", "git_sha", "trigger", "status", "observations", "errors", "warnings"]
-ARTIFACT_FIELDS = ["build_id", "source_id", "url", "sha256", "bytes", "fetched_at", "vintage", "changed"]
+ARTIFACT_FIELDS = ["build_id", "source_id", "url", "sha256", "bytes", "fetched_at", "vintage", "changed", "fetched_url", "archived_at"]
 CHECK_FIELDS = ["build_id", "check_id", "level", "subject", "message", "value"]
+
+
+def _add_columns(path, fields) -> None:
+    """A log written before `fields` gained trailing columns: rewrite it with them, empty in old rows. Values never change."""
+    with path.open(newline="") as fh:
+        header = next(csv.reader(fh), None)
+    if header is None or header == fields:
+        return
+    with path.open(newline="") as fh:
+        rows = list(csv.reader(fh))
+    if fields[: len(rows[0])] != rows[0]:
+        raise ValueError(f"{path}: columns {rows[0]} are not a prefix of {fields}")
+    pad = [""] * (len(fields) - len(rows[0]))
+    with path.open("w", newline="") as fh:
+        w = csv.writer(fh, lineterminator="\n")
+        w.writerow(fields)
+        w.writerows(r + pad for r in rows[1:])
 
 
 def _append(path, fields, rows) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists():
+        _add_columns(path, fields)
     new = not path.exists()
     with path.open("a", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=fields, lineterminator="\n")
@@ -103,6 +122,7 @@ def publish(run: Run, store: Store, by_source: dict[str, list[Observation]], out
         "build_id": run.build_id, "source_id": a.source_id, "url": a.url, "sha256": a.sha256,
         "bytes": a.path.stat().st_size if a.path.exists() else None, "fetched_at": a.fetched_at,
         "vintage": a.vintage, "changed": previous.get(a.url) not in (None, a.sha256),
+        "fetched_url": a.fetched_url, "archived_at": a.archived_at,
     } for a in run.artifacts])
     _append(HISTORY_DIR / "checks.csv", CHECK_FIELDS, [{"build_id": run.build_id, **c.__dict__} for c in run.checks])
 

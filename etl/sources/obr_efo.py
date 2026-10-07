@@ -9,6 +9,11 @@ read from that page. If discovery fails, the March 2026 EFO is used and a
 warning is logged; the edition used is always logged (logger "etl.sources.obr_efo")
 and kept in EDITION, and SOURCE is updated in place to describe it.
 
+OBR refuses GitHub's servers (403); every request then goes through the Internet
+Archive (etl/wayback.py). If the archive has no fresh copy either, the ArchiveError
+is not caught here: falling back to March 2026 could replace a newer committed
+edition, so fetch() fails and the build keeps the committed one.
+
 Workbooks used (found on the edition page by link pattern):
 
   * "Charts and tables: annex tables"
@@ -204,7 +209,7 @@ def edition_from_page(url: str, html: str, discovered: bool = True) -> Edition:
 
 
 def _page(url: str, filename: str) -> str:
-    return download(SOURCE.id, url, filename).path.read_text(errors="replace")
+    return download(SOURCE.id, url, filename, archive=True).path.read_text(errors="replace")
 
 
 def discover() -> Edition:
@@ -245,7 +250,7 @@ def fetch(since: date | None = None) -> list[RawArtifact]:
     log.info("obr_efo: using %s (%s, published %s, %s) from %s", ed.vintage, ed.title, ed.published_on,
              "discovered" if ed.discovered else "fallback", ed.url)
     return [
-        download(SOURCE.id, ed.files[role], f"{ed.prefix}_{suffix}", vintage=ed.vintage)
+        download(SOURCE.id, ed.files[role], f"{ed.prefix}_{suffix}", vintage=ed.vintage, archive=True)
         for role, (_, suffix) in FILES.items()
     ]
 
@@ -269,8 +274,9 @@ def cached_artifacts() -> list[RawArtifact] | None:
             out = []
             for path, meta_path in zip(paths, metas):
                 meta = json.loads(meta_path.read_text())
-                out.append(RawArtifact(SOURCE.id, meta.get("requested_url") or meta["url"], path, meta["sha256"],
-                                       meta["fetched_at"], meta.get("content_type"), _vintage_of(path)))
+                raw = RawArtifact.from_meta(SOURCE.id, meta.get("requested_url") or meta["url"], path, meta)
+                raw.vintage = _vintage_of(path)
+                out.append(raw)
             return out
     return None
 

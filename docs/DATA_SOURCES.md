@@ -73,3 +73,5 @@ def parse(raw: RawArtifact) -> list[Observation]      # normalise to Observation
 SOURCE: Source                                        # metadata
 ```
 `etl/build.py` runs all, validates with schemas, runs the balance check, writes `data/build/` + `manifest.json` (source, vintage, hash, fetched_at). CI fails if a source is staler than its cadence + grace period.
+
+A publisher that refuses GitHub's servers (OBR's Cloudflare answers 403) is read through the Internet Archive: the module passes `archive=True` to `core.download()` (see `etl/wayback.py` for the freshness rules). The `RawArtifact` keeps the publisher URL it asked for in `url` and records where the bytes came from in `fetched_url` and, for an archive copy, `archived_at`; both go into the manifest, `history/artifacts.csv` and the nightly pull request. If the archive has no fresh copy, the build keeps the committed edition and says how to refresh it by hand (`docs/OPERATIONS.md`, section 11).

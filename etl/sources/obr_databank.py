@@ -109,8 +109,8 @@ def _download_cached(url: str, filename: str, vintage: str | None = None) -> Raw
             if vintage and meta.get("vintage") != vintage:
                 meta["vintage"] = vintage
                 meta_path.write_text(json.dumps(meta, indent=2))
-            return RawArtifact(SOURCE.id, meta["url"], path, meta["sha256"], meta["fetched_at"], meta.get("content_type"), meta.get("vintage") or vintage)
-    return download(SOURCE.id, url, filename, vintage=vintage)
+            return RawArtifact.from_meta(SOURCE.id, meta["url"], path, meta, vintage)
+    return download(SOURCE.id, url, filename, vintage=vintage, archive=True)
 
 
 def find_databank_link(html: str) -> tuple[str, str]:
@@ -123,8 +123,11 @@ def find_databank_link(html: str) -> tuple[str, str]:
 
 
 def fetch(since: date | None = None) -> list[RawArtifact]:
-    """Find the current databank on the OBR data page and download it (both cached 20 h). `since` is unused: the file is cumulative."""
-    page = download(SOURCE.id, DATA_PAGE, PAGE_NAME)
+    """
+    Find the current databank on the OBR data page and download it (both cached 20 h). `since` is unused: the file is cumulative.
+    OBR refuses GitHub's servers; both requests then go through the Internet Archive (etl/wayback.py).
+    """
+    page = download(SOURCE.id, DATA_PAGE, PAGE_NAME, archive=True)
     html = page.path.read_text(errors="replace")
     url, vintage = find_databank_link(html)
     raw = _download_cached(url, XLSX_NAME, vintage)

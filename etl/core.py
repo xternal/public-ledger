@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import re
 from dataclasses import asdict, dataclass
 from datetime import date, datetime, timedelta, timezone
@@ -33,10 +34,16 @@ from urllib.parse import urljoin, urlparse
 import httpx
 from pydantic import BaseModel, model_validator
 
+from etl import wayback
+
+log = logging.getLogger(__name__)
+
 ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = ROOT / "data" / "raw"
 BUILD_DIR = ROOT / "data" / "build"
 USER_AGENT = "PublicLedgerETL/0.1 (+https://github.com/xternal/public-ledger)"
+# What a bot shield (OBR's Cloudflare) answers to a datacenter address; download(archive=True) then asks the Internet Archive.
+REFUSED = {403, 429, 503}
 
 Quality = Literal["sourced", "approx", "modelled", "training"]
 Kind = Literal["outturn", "forecast", "projection"]
@@ -134,6 +141,19 @@ class RawArtifact:
     content_type: str | None = None
     # Free-form edition label found while fetching (e.g. "EFO-2026-03"), if any.
     vintage: str | None = None
+    # Where the bytes were read from: `url` after the publisher's redirects, or the Internet
+    # Archive's raw copy of it (then archived_at is when the archive captured it). `url` stays
+    # the publisher URL we asked for.
+    fetched_url: str | None = None
+    archived_at: str | None = None
+
+    @classmethod
+    def from_meta(cls, source_id: str, url: str, path: Path, meta: dict, vintage: str | None = None) -> "RawArtifact":
+        """The artifact described by a data/raw/<source>/<file>.meta.json written by download()."""
+        return cls(
+            source_id, url, path, meta["sha256"], meta["fetched_at"], meta.get("content_type"),
+            meta.get("vintage") or vintage, meta.get("fetched_url") or meta.get("url"), meta.get("archived_at"),
+        )
 
     def to_manifest(self) -> dict:
         d = asdict(self)
@@ -162,11 +182,18 @@ def download(
     max_age: timedelta = timedelta(hours=20),
     vintage: str | None = None,
     http: httpx.Client | None = None,
+    archive: bool = False,
 ) -> RawArtifact:
     """
     Download a URL into data/raw/<source_id>/ and record its hash. A file
     fetched less than `max_age` ago is reused, so development runs do not hit
     the publisher again (be polite: one request per file per day).
+
+    With `archive=True`, a refusal (REFUSED: what a bot shield answers to a
+    datacenter address) is answered from the Internet Archive instead
+    (etl/wayback.py), with a copy no older than `max_age` by its rules. The
+    meta file and the artifact keep the publisher URL we asked for, and record
+    the archive copy the bytes came from (fetched_url, archived_at).
     """
     folder = RAW_DIR / source_id
     folder.mkdir(parents=True, exist_ok=True)
@@ -178,21 +205,40 @@ def download(
         fetched = datetime.fromisoformat(meta["fetched_at"])
         # Publishers redirect (OBR /download/... -> /docs/...): match the URL we asked for too.
         if url in (meta.get("url"), meta.get("requested_url")) and datetime.now(timezone.utc) - fetched < max_age:
-            return RawArtifact(source_id, url, path, meta["sha256"], meta["fetched_at"], meta.get("content_type"), meta.get("vintage") or vintage)
+            return RawArtifact.from_meta(source_id, url, path, meta, vintage)
     own = http is None
     http = http or client()
     try:
-        r = http.get(url)
-        r.raise_for_status()
+        try:
+            r = http.get(url)
+            r.raise_for_status()
+            content = r.content
+            got = {"url": str(r.url), "fetched_url": str(r.url), "archived_at": None, "content_type": r.headers.get("content-type")}
+        except httpx.HTTPStatusError as e:
+            status = e.response.status_code
+            if not archive or status not in REFUSED:
+                raise
+            log.warning("%s answered %s; reading it through the Internet Archive", url, status)
+            try:
+                cap = wayback.fetch(url, max_age=max_age, http=http)
+            except wayback.ArchiveError as ae:
+                raise wayback.ArchiveError(f"{url} refused us ({status}) and the Internet Archive fallback failed: {ae}") from e
+            content = cap.content
+            got = {
+                "url": cap.original_url, "fetched_url": cap.replay_url,
+                "archived_at": cap.captured_at.isoformat(timespec="seconds"), "content_type": cap.content_type,
+            }
+            log.info("%s: using the archive's copy captured %s (%s)", url, got["archived_at"], got["fetched_url"])
     finally:
         if own:
             http.close()
-    path.write_bytes(r.content)
-    sha = hashlib.sha256(r.content).hexdigest()
+    path.write_bytes(content)
+    sha = hashlib.sha256(content).hexdigest()
     fetched_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    meta = {"url": str(r.url), "requested_url": url, "sha256": sha, "fetched_at": fetched_at, "content_type": r.headers.get("content-type"), "vintage": vintage}
+    meta = {"url": got["url"], "requested_url": url, "fetched_url": got["fetched_url"], "archived_at": got["archived_at"],
+            "sha256": sha, "fetched_at": fetched_at, "content_type": got["content_type"], "vintage": vintage}
     meta_path.write_text(json.dumps(meta, indent=2))
-    return RawArtifact(source_id, url, path, sha, fetched_at, meta["content_type"], vintage)
+    return RawArtifact.from_meta(source_id, url, path, meta, vintage)
 
 
 def links(html: str, base: str, pattern: str) -> list[str]:
