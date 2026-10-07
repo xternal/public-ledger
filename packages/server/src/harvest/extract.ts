@@ -196,7 +196,8 @@ export function locate(quote: string, text: string): [number, number][] {
 
 const segmentAt = (segments: SpeakerSegment[], [start, end]: [number, number]) => segments.find((s) => s.start <= start && end <= s.end) ?? null;
 
-const isChair = (s: Pick<SpeakerSegment, "name" | "role">) => /\b(deputy )?speaker\b|chair(man|woman)? of ways and means/i.test(s.role ?? "") || /^(mr|madam) (deputy )?speaker$/i.test(s.name);
+/** The Speaker, Deputy Speakers and chairs keep order; they never make promises. */
+const isChair = (s: Pick<SpeakerSegment, "name" | "role">) => /\b(deputy )?speaker\b|^(the )?chair\b|chair(man|woman)? of ways and means/i.test(s.role ?? "") || /^(mr|madam) (deputy )?speaker$/i.test(s.name);
 
 const plain = (s: string) => normaliseForMatch(s).text;
 

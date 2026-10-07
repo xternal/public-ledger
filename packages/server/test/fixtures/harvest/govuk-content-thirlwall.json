@@ -1,0 +1,308 @@
+{
+ "analytics_identifier": null,
+ "base_path": "/government/news/government-to-act-on-thirlwall-patient-safety-recommendations",
+ "content_id": "c32021ba-cd8b-4349-b0c7-abaef809b13c",
+ "description": "The government outlines plans to strengthen NHS safeguarding, accountability and neonatal safety, including work on 'cot cams'.",
+ "details": {
+  "attachments": [],
+  "body": "<div class=\"govspeak\"><ul>\n  <li>Government sets out immediate steps to strengthen patient safety and safeguarding following the Thirlwall Inquiry</li>\n  <li>Urgent work launched on neonatal ‘cot cams’ to improve safety and give reassurance to parents with babies in hospital</li>\n  <li>Action also includes tougher accountability for NHS managers, stronger inspections and safeguarding reforms</li>\n  <li>Comes as Health Secretary chairs first meeting as Chair of the Maternity and Neonatal Taskforce, established following the Amos and Ockenden maternity reviews</li>\n</ul>\n\n<p>The Health and Social Care Secretary has set out immediate actions to strengthen patient safety, safeguarding and accountability across the NHS, following the publication of Lady Justice Thirlwall’s <a href=\"https://www.gov.uk/government/publications/thirlwall-inquiry-report\">final report into the Countess of Chester Hospital</a>.</p>\n\n<p>The Thirlwall Inquiry found serious failures of governance, leadership and safeguarding, with opportunities missed to act on concerns and protect babies from harm.</p>\n\n<p>Responding to the findings in Parliament, the Health and Social Care Secretary said safeguarding must be at the heart of the NHS and that the government would act on the inquiry’s recommendations to help prevent such failures happening again.</p>\n\n<p>Health and Social Care Secretary Yvette Cooper said:</p>\n\n<blockquote>\n  <p>The suffering endured by these babies and their families is impossible to comprehend. </p>\n\n  <p>On behalf of the government and the health service, I am profoundly sorry for the failures set out so clearly in this report. </p>\n\n  <p class=\"last-child\">For the harm, distress and unthinkable loss for their families. For the failures by the NHS to keep babies safe. </p>\n</blockquote>\n\n<p>The government has begun work on a series of measures while it considers the inquiry’s recommendations in full, including:</p>\n\n<ul>\n  <li>urgent work to develop plans for CCTV, including ‘cot cams’, in neonatal settings to improve safety and provide reassurance to parents</li>\n  <li>new guidance on the safe use and storage of insulin and strengthened guidance for medical examiners reviewing neonatal deaths</li>\n  <li>plans to regulate NHS managers through a barring scheme for senior leaders who fail in their responsibilities</li>\n  <li>continued rollout of the National Bereavement Care Pathway for families experiencing neonatal loss, with all NHS trusts now signed up to implement it</li>\n  <li>creation of a single tracker to monitor delivery of recommendations from major maternity and neonatal reviews and inquiries, helping ensure reforms are implemented and progress is transparent</li>\n</ul>\n\n<p>In Parliament, the Health and Social Care Secretary said:</p>\n\n<blockquote>\n  <p>The safety and care for babies, the safeguarding of every patient, the respect for families - all these go right to the heart of our NHS values.  </p>\n\n  <p>The inquiry recognises that in many areas things have changed since these terrible events took place, including welcome improvements at the Countess in services for women and children.  </p>\n\n  <p>However, the inquiry is clear that new action is needed. </p>\n\n  <p>I take these recommendations extremely seriously and the government will of course consider the entire report and set out a full response.</p>\n\n  <p class=\"last-child\">Safeguarding is everyone’s business, and safeguarding must be everyone’s priority. Concerns must be heard and acted upon. Staff who speak up must be protected and taken seriously, and I expect every leader, every board across the NHS, every professional and manager, every member of staff to uphold their safeguarding responsibilities.</p>\n</blockquote>\n\n<p>The Secretary of State also announced that safeguarding will be placed at the centre of the forthcoming Babies, Children and Young People’s Modern Service Framework, underlining the government’s commitment to making the safety of babies and children a core priority across the health service.</p>\n\n<p>It comes as the Health and Social Care Secretary chaired her first meeting as Chair of the Maternity and Neonatal Taskforce this afternoon. The taskforce will translate the recommendations from the Ockenden and Amos reviews into an action plan for transforming care, to be published this year.</p>\n\n<p>The government will publish its full response to Lady Justice Thirlwall’s recommendations once it has completed detailed consideration of the report.</p>\n</div>",
+  "change_history": [
+   {
+    "note": "First published.",
+    "public_timestamp": "2026-09-15T16:20:00Z"
+   }
+  ],
+  "emphasised_organisations": [
+   "7cd6bf12-bbe9-4118-8523-f927b0442156"
+  ],
+  "images": [
+   {
+    "caption": "",
+    "content_type": "image/jpeg",
+    "sources": {
+     "s216": "https://assets.publishing.service.gov.uk/media/6aaa4ce6086ce7c57b818542/s216_hospital_ward_with_equipment.jpg",
+     "s300": "https://assets.publishing.service.gov.uk/media/6aaa4ce6ce3f006bd4346b01/s300_hospital_ward_with_equipment.jpg",
+     "s465": "https://assets.publishing.service.gov.uk/media/6aaa4ce60420ac660805f883/s465_hospital_ward_with_equipment.jpg",
+     "s630": "https://assets.publishing.service.gov.uk/media/6aaa4ce6ce3f006bd4346b03/s630_hospital_ward_with_equipment.jpg",
+     "s712": "https://assets.publishing.service.gov.uk/media/6aaa4ce60420ac660805f882/s712_hospital_ward_with_equipment.jpg",
+     "s960": "https://assets.publishing.service.gov.uk/media/6aaa4ce6ce3f006bd4346b02/s960_hospital_ward_with_equipment.jpg"
+    },
+    "type": "lead"
+   }
+  ],
+  "political": true
+ },
+ "document_type": "press_release",
+ "first_published_at": "2026-09-15T17:20:00+01:00",
+ "links": {
+  "available_translations": [
+   {
+    "api_path": "/api/content/government/news/government-to-act-on-thirlwall-patient-safety-recommendations",
+    "api_url": "https://www.gov.uk/api/content/government/news/government-to-act-on-thirlwall-patient-safety-recommendations",
+    "base_path": "/government/news/government-to-act-on-thirlwall-patient-safety-recommendations",
+    "content_id": "c32021ba-cd8b-4349-b0c7-abaef809b13c",
+    "document_type": "press_release",
+    "links": {},
+    "locale": "en",
+    "public_updated_at": "2026-09-15T16:20:00Z",
+    "schema_name": "news_article",
+    "title": "Government to act on Thirlwall patient safety recommendations",
+    "web_url": "https://www.gov.uk/government/news/government-to-act-on-thirlwall-patient-safety-recommendations",
+    "withdrawn": false
+   }
+  ],
+  "emphasised_organisations": [
+   {
+    "analytics_identifier": "D12",
+    "api_path": "/api/content/government/organisations/department-of-health-and-social-care",
+    "api_url": "https://www.gov.uk/api/content/government/organisations/department-of-health-and-social-care",
+    "base_path": "/government/organisations/department-of-health-and-social-care",
+    "content_id": "7cd6bf12-bbe9-4118-8523-f927b0442156",
+    "details": {
+     "acronym": "DHSC",
+     "brand": "department-of-health-social-care",
+     "default_news_image": {
+      "high_resolution_url": "https://assets.publishing.service.gov.uk/media/627508178fa8f520738d5474/s960_DHSC_plaque.jpg",
+      "url": "https://assets.publishing.service.gov.uk/media/62750817e90e070dbf5acad5/s300_DHSC_plaque.jpg"
+     },
+     "logo": {
+      "crest": "single-identity",
+      "formatted_title": "Department<br/>of Health &amp;<br/>Social Care"
+     },
+     "organisation_govuk_status": {
+      "status": "live",
+      "updated_at": null,
+      "url": null
+     }
+    },
+    "document_type": "organisation",
+    "links": {},
+    "locale": "en",
+    "schema_name": "organisation",
+    "title": "Department of Health and Social Care",
+    "web_url": "https://www.gov.uk/government/organisations/department-of-health-and-social-care",
+    "withdrawn": false
+   }
+  ],
+  "government": [
+   {
+    "api_path": "/api/content/government/2026-burnham-labour-government",
+    "api_url": "https://www.gov.uk/api/content/government/2026-burnham-labour-government",
+    "base_path": "/government/2026-burnham-labour-government",
+    "content_id": "1fb8162a-7f42-4a44-ae9b-42e8d8f36807",
+    "details": {
+     "current": true,
+     "ended_on": null,
+     "started_on": "2026-07-20T00:00:00+00:00"
+    },
+    "document_type": "government",
+    "links": {},
+    "locale": "en",
+    "title": "2026 Burnham Labour government",
+    "web_url": "https://www.gov.uk/government/2026-burnham-labour-government"
+   }
+  ],
+  "organisations": [
+   {
+    "analytics_identifier": "D12",
+    "api_path": "/api/content/government/organisations/department-of-health-and-social-care",
+    "api_url": "https://www.gov.uk/api/content/government/organisations/department-of-health-and-social-care",
+    "base_path": "/government/organisations/department-of-health-and-social-care",
+    "content_id": "7cd6bf12-bbe9-4118-8523-f927b0442156",
+    "details": {
+     "acronym": "DHSC",
+     "brand": "department-of-health-social-care",
+     "default_news_image": {
+      "high_resolution_url": "https://assets.publishing.service.gov.uk/media/627508178fa8f520738d5474/s960_DHSC_plaque.jpg",
+      "url": "https://assets.publishing.service.gov.uk/media/62750817e90e070dbf5acad5/s300_DHSC_plaque.jpg"
+     },
+     "logo": {
+      "crest": "single-identity",
+      "formatted_title": "Department<br/>of Health &amp;<br/>Social Care"
+     },
+     "organisation_govuk_status": {
+      "status": "live",
+      "updated_at": null,
+      "url": null
+     }
+    },
+    "document_type": "organisation",
+    "links": {},
+    "locale": "en",
+    "schema_name": "organisation",
+    "title": "Department of Health and Social Care",
+    "web_url": "https://www.gov.uk/government/organisations/department-of-health-and-social-care",
+    "withdrawn": false
+   }
+  ],
+  "people": [
+   {
+    "api_path": "/api/content/government/people/yvette-cooper",
+    "api_url": "https://www.gov.uk/api/content/government/people/yvette-cooper",
+    "base_path": "/government/people/yvette-cooper",
+    "content_id": "e3145327-542d-43d8-9c4e-f6908f265478",
+    "document_type": "person",
+    "links": {},
+    "locale": "en",
+    "public_updated_at": "2026-07-20T19:08:19Z",
+    "schema_name": "person",
+    "title": "The Rt Hon Yvette Cooper MP",
+    "web_url": "https://www.gov.uk/government/people/yvette-cooper",
+    "withdrawn": false
+   }
+  ],
+  "primary_publishing_organisation": [
+   {
+    "analytics_identifier": "D12",
+    "api_path": "/api/content/government/organisations/department-of-health-and-social-care",
+    "api_url": "https://www.gov.uk/api/content/government/organisations/department-of-health-and-social-care",
+    "base_path": "/government/organisations/department-of-health-and-social-care",
+    "content_id": "7cd6bf12-bbe9-4118-8523-f927b0442156",
+    "details": {
+     "acronym": "DHSC",
+     "brand": "department-of-health-social-care",
+     "default_news_image": {
+      "high_resolution_url": "https://assets.publishing.service.gov.uk/media/627508178fa8f520738d5474/s960_DHSC_plaque.jpg",
+      "url": "https://assets.publishing.service.gov.uk/media/62750817e90e070dbf5acad5/s300_DHSC_plaque.jpg"
+     },
+     "logo": {
+      "crest": "single-identity",
+      "formatted_title": "Department<br/>of Health &amp;<br/>Social Care"
+     },
+     "organisation_govuk_status": {
+      "status": "live",
+      "updated_at": null,
+      "url": null
+     }
+    },
+    "document_type": "organisation",
+    "links": {},
+    "locale": "en",
+    "schema_name": "organisation",
+    "title": "Department of Health and Social Care",
+    "web_url": "https://www.gov.uk/government/organisations/department-of-health-and-social-care",
+    "withdrawn": false
+   }
+  ],
+  "roles": [
+   {
+    "api_path": "/api/content/government/ministers/secretary-of-state-for-health-and-social-care",
+    "api_url": "https://www.gov.uk/api/content/government/ministers/secretary-of-state-for-health-and-social-care",
+    "base_path": "/government/ministers/secretary-of-state-for-health-and-social-care",
+    "content_id": "25fa7393-375b-46ef-ab91-1b2bb9ef0e7f",
+    "details": {
+     "body": "<p>The Secretary of State is responsible for the work of the Department of Health and Social Care, including:</p>\n\n<ul>\n  <li>overall financial control and oversight of NHS delivery and performance</li>\n  <li>oversight of social care policy</li>\n</ul>\n",
+     "role_payment_type": null,
+     "seniority": 12,
+     "whip_organisation": {}
+    },
+    "document_type": "ministerial_role",
+    "links": {},
+    "locale": "en",
+    "public_updated_at": "2018-01-23T10:09:56Z",
+    "schema_name": "role",
+    "title": "Secretary of State for Health and Social Care",
+    "web_url": "https://www.gov.uk/government/ministers/secretary-of-state-for-health-and-social-care",
+    "withdrawn": false
+   }
+  ],
+  "taxons": [
+   {
+    "api_path": "/api/content/health-and-social-care/patient-safety",
+    "api_url": "https://www.gov.uk/api/content/health-and-social-care/patient-safety",
+    "base_path": "/health-and-social-care/patient-safety",
+    "content_id": "5a8b6318-79d7-4ac0-81a3-f8e2b6ab7cf5",
+    "details": {
+     "internal_name": "Patient safety [P] (level 3, health theme)",
+     "notes_for_editors": "",
+     "visible_to_departmental_editors": false
+    },
+    "document_type": "taxon",
+    "links": {
+     "parent_taxons": [
+      {
+       "api_path": "/api/content/health-and-social-care/national-health-service",
+       "api_url": "https://www.gov.uk/api/content/health-and-social-care/national-health-service",
+       "base_path": "/health-and-social-care/national-health-service",
+       "content_id": "f3dcc290-752f-4bbe-b379-9155d919a58d",
+       "details": {
+        "internal_name": "National Health Service (level 2)",
+        "notes_for_editors": "",
+        "visible_to_departmental_editors": false
+       },
+       "document_type": "taxon",
+       "links": {
+        "parent_taxons": [
+         {
+          "api_path": "/api/content/health-and-social-care",
+          "api_url": "https://www.gov.uk/api/content/health-and-social-care",
+          "base_path": "/health-and-social-care",
+          "content_id": "8124ead8-8ebc-4faf-88ad-dd5cbcc92ba8",
+          "description": "",
+          "details": {
+           "internal_name": "Health and social care",
+           "notes_for_editors": "",
+           "visible_to_departmental_editors": true
+          },
+          "document_type": "taxon",
+          "links": {
+           "root_taxon": [
+            {
+             "api_path": "/api/content/",
+             "api_url": "https://www.gov.uk/api/content/",
+             "base_path": "/",
+             "content_id": "f3bbdec2-0e62-4520-a7fd-6ffd5d36e03a",
+             "document_type": "homepage",
+             "links": {},
+             "locale": "en",
+             "public_updated_at": "2026-02-18T13:00:23Z",
+             "schema_name": "homepage",
+             "title": "GOV.UK homepage",
+             "web_url": "https://www.gov.uk/",
+             "withdrawn": false
+            }
+           ]
+          },
+          "locale": "en",
+          "phase": "live",
+          "public_updated_at": "2018-09-16T20:30:51Z",
+          "schema_name": "taxon",
+          "title": "Health and social care",
+          "web_url": "https://www.gov.uk/health-and-social-care",
+          "withdrawn": false
+         }
+        ]
+       },
+       "locale": "en",
+       "phase": "live",
+       "public_updated_at": "2018-08-22T12:56:21Z",
+       "schema_name": "taxon",
+       "title": "National Health Service",
+       "web_url": "https://www.gov.uk/health-and-social-care/national-health-service",
+       "withdrawn": false
+      }
+     ]
+    },
+    "locale": "en",
+    "phase": "live",
+    "public_updated_at": "2018-08-22T12:56:22Z",
+    "schema_name": "taxon",
+    "title": "Patient safety",
+    "web_url": "https://www.gov.uk/health-and-social-care/patient-safety",
+    "withdrawn": false
+   }
+  ]
+ },
+ "locale": "en",
+ "phase": "live",
+ "public_updated_at": "2026-09-15T17:20:00+01:00",
+ "publishing_app": "whitehall",
+ "publishing_request_id": "21-1789550101.482-10.13.20.231-2653",
+ "publishing_scheduled_at": null,
+ "rendering_app": "frontend",
+ "scheduled_publishing_delay_seconds": null,
+ "schema_name": "news_article",
+ "title": "Government to act on Thirlwall patient safety recommendations",
+ "updated_at": "2026-09-16T10:15:02+01:00",
+ "withdrawn_notice": {}
+}

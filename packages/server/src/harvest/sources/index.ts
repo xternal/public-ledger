@@ -1,4 +1,9 @@
 import type { SourceDoc, Venue } from "../types";
+import { DEFAULT_GOVUK_LIMIT, fetchGovukDay } from "./govuk";
+import { fetchHansardDay } from "./hansard";
+import { buildUploadDoc } from "./upload";
+import { errorMessage, isIsoDate } from "./util";
+import { fetchWmsDay } from "./wms";
 
 export interface FetchDayOptions {
   fetch?: typeof fetch;
@@ -6,9 +11,32 @@ export interface FetchDayOptions {
   govukLimit?: number;
 }
 
-/** A day's sources: Commons oral statements, PMQs, written ministerial statements, GOV.UK press releases. */
-export async function fetchDay(_date: string, _opts: FetchDayOptions = {}): Promise<{ docs: SourceDoc[]; errors: { sourceId: string; message: string }[] }> {
-  throw new Error("fetchDay: not built yet (M4 sources)");
+/**
+ * A day's sources: Commons oral statements, PMQs, written ministerial statements, GOV.UK press releases.
+ * Requests go one at a time. A failure in one source (or one document) is
+ * reported in `errors` and never fails the day.
+ */
+export async function fetchDay(date: string, opts: FetchDayOptions = {}): Promise<{ docs: SourceDoc[]; errors: { sourceId: string; message: string }[] }> {
+  if (!isIsoDate(date)) throw new Error(`fetchDay: date must be YYYY-MM-DD, got "${date}"`);
+  const doFetch = opts.fetch ?? fetch;
+  const limit = Math.max(0, Math.floor(opts.govukLimit ?? DEFAULT_GOVUK_LIMIT));
+  const docs: SourceDoc[] = [];
+  const errors: { sourceId: string; message: string }[] = [];
+  const sources: [string, () => Promise<{ docs: SourceDoc[]; errors: { sourceId: string; message: string }[] }>][] = [
+    ["hansard", () => fetchHansardDay(date, doFetch)],
+    ["wms", () => fetchWmsDay(date, doFetch)],
+    ["govuk", () => fetchGovukDay(date, doFetch, limit)],
+  ];
+  for (const [sourceId, run] of sources) {
+    try {
+      const out = await run();
+      docs.push(...out.docs);
+      errors.push(...out.errors);
+    } catch (e) {
+      errors.push({ sourceId, message: errorMessage(e) });
+    }
+  }
+  return { docs, errors };
 }
 
 export interface UploadInput {
@@ -26,6 +54,6 @@ export interface UploadInput {
 }
 
 /** A manually supplied transcript (or YouTube captions) as a SourceDoc. */
-export async function sourceFromUpload(_input: UploadInput, _opts: { fetch?: typeof fetch } = {}): Promise<SourceDoc> {
-  throw new Error("sourceFromUpload: not built yet (M4 sources)");
+export async function sourceFromUpload(input: UploadInput, opts: { fetch?: typeof fetch } = {}): Promise<SourceDoc> {
+  return buildUploadDoc(input, opts.fetch);
 }
