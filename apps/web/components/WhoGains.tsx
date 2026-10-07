@@ -85,7 +85,7 @@ export function WhoGains() {
   const statusVisible = phase.kind === "pending" || phase.kind === "error" || phase.kind === "not_applicable";
 
   return (
-    <section id="who-gains" aria-labelledby="who-gains-h" className="grid scroll-mt-20 gap-6 border-t border-line pt-8">
+    <section id="who-gains" aria-labelledby="who-gains-h" className="grid gap-6 border-t border-line pt-8">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="max-w-[66ch]">
           <div className="text-label text-muted">{T1_COPY.kicker}</div>

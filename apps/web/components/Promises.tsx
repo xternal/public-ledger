@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useScenario } from "@/lib/scenario";
-import { todayIso } from "@/lib/promises";
+import { ownerOf, todayIso } from "@/lib/promises";
 import { ContributeForm, type SubmissionKind } from "./ContributeForm";
 import { CreditTable } from "./CreditTable";
+import { OwnerChips, ownerOptions } from "./PromiseFilters";
 import { PromiseList } from "./PromiseList";
 import { QualityBadge, SectionHeading } from "./ui";
 
@@ -23,6 +24,11 @@ export function PromisesSection() {
   const today = useToday();
   const [kind, setKind] = useState<SubmissionKind>("new");
   const [cardId, setCardId] = useState(cards[0]?.id ?? "");
+  // Party chips filter the newest cards here; "See all" carries the choice to /promises.
+  const [party, setParty] = useState("");
+  const owners = ownerOptions(cards, cards);
+  const matching = party ? cards.filter((c) => ownerOf(c).id === party) : cards;
+  const partyName = party ? owners.find((o) => o.id === party)?.label : undefined;
 
   // "Add evidence" on a card page links here with ?card=<id>.
   useEffect(() => {
@@ -36,16 +42,21 @@ export function PromisesSection() {
   const unchecked = cards.filter((c) => c.file.editor_check_required).length;
 
   return (
-    <section id="promises" aria-labelledby="promises-h" className="scroll-mt-16 pt-20">
+    <section id="promises" aria-labelledby="promises-h" className="pt-20">
       <SectionHeading
         id="promises-h"
         title="Promise ledger"
         intro="Every promise gets a card: what, who, how much, from where, and a timeline that ends in delivery or in silence."
         aside={unchecked ? <QualityBadge quality="approx">{`${unchecked} of ${cards.length} cards awaiting editor check`}</QualityBadge> : undefined}
       />
-      <PromiseList cards={cards.slice(0, HOME_CARDS)} today={today} />
-      <a href="/promises" className="mt-4 inline-block text-sm font-semibold">
-        See all {cards.length} promises, with filters
+      <div className="mb-4">
+        <OwnerChips options={owners} total={cards.length} value={party} onChange={setParty} />
+      </div>
+      <PromiseList cards={matching.slice(0, HOME_CARDS)} today={today} />
+      <a href={party ? `/promises?party=${encodeURIComponent(party)}` : "/promises"} className="mt-4 inline-block text-sm font-semibold">
+        {matching.length > HOME_CARDS
+          ? `See all ${matching.length} ${partyName ? `${partyName} ` : ""}promises, with search and filters`
+          : "Search and filter every promise"}
       </a>
 
       <div className="mt-16">

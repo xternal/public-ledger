@@ -3,7 +3,7 @@ import { SectionHeading } from "./ui";
 
 export function Faq() {
   return (
-    <section id="faq" aria-labelledby="faq-h" className="scroll-mt-16 pt-20">
+    <section id="faq" aria-labelledby="faq-h" className="pt-20">
       <SectionHeading id="faq-h" title="Questions" />
       <div className="grid gap-x-10 gap-y-6 text-sm md:grid-cols-2">
         {FAQ.map(({ q, a }) => (

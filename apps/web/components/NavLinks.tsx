@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { keepInView } from "@/lib/keepInView";
 
 export interface NavLink {
   href: string;
@@ -49,9 +50,12 @@ export function NavLinks({ links, current, spy = false }: { links: NavLink[]; cu
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    // A jump to an anchor that is already in place scrolls nothing, so no scroll event comes.
+    window.addEventListener("hashchange", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("hashchange", onScroll);
       if (frame) cancelAnimationFrame(frame);
       clearTimeout(timer);
     };
@@ -70,14 +74,7 @@ export function NavLinks({ links, current, spy = false }: { links: NavLink[]; cu
       return;
     }
     const link = nav.querySelector<HTMLElement>(`a[href="${CSS.escape(activeHref)}"]`);
-    if (!link) return;
-    // Measure on screen, so the menu's current scroll is accounted for; centre the item if any part is hidden.
-    const n = nav.getBoundingClientRect();
-    const r = link.getBoundingClientRect();
-    if (r.left < n.left || r.right > n.right) {
-      // Instant, not smooth: a small shift that always lands, also with reduced motion or in throttled tabs.
-      nav.scrollLeft = Math.max(0, nav.scrollLeft + (r.left - n.left) - (n.width - r.width) / 2);
-    }
+    if (link) keepInView(nav, link);
   }, [activeHref]);
 
   return (
