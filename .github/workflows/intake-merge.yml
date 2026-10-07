@@ -17,11 +17,17 @@ on:
   workflow_run:
     workflows: [CI]
     types: [completed]
+  # GitHub starts no workflow for a review on a pull request a workflow opened (as
+  # the intake PRs are), so an approval given after the last push would go
+  # unnoticed. An hourly sweep checks every open intake PR.
+  # 17 minutes past each hour, UTC (BST: same minute, one hour ahead).
+  schedule:
+    - cron: "17 * * * *"
   workflow_dispatch:
     inputs:
       pr:
-        description: Intake pull request number to check now
-        required: true
+        description: Intake pull request number to check now (empty = all open intake PRs)
+        required: false
 
 permissions:
   contents: write
@@ -51,7 +57,11 @@ jobs:
           if [ -z "$prs" ] && [ -n "$RUN_PRS" ] && [ "$RUN_PRS" != "null" ]; then
             prs=$(echo "$RUN_PRS" | jq -r '.[].number')
           fi
-          [ -z "$prs" ] && { echo "No pull request in this event."; exit 0; }
+          if [ -z "$prs" ]; then
+            # The hourly sweep (or a manual run without a number): every open intake pull request.
+            prs=$(gh pr list --repo "$REPO" --label intake --state open --json number --jq '.[].number')
+          fi
+          [ -z "$prs" ] && { echo "No open intake pull request."; exit 0; }
           for pr in $prs; do
             info=$(gh pr view "$pr" --repo "$REPO" --json state,labels,headRefOid,isDraft,baseRefName)
             if [ "$(echo "$info" | jq -r '.state')" != "OPEN" ] || [ "$(echo "$info" | jq -r '.baseRefName')" != "main" ] \
