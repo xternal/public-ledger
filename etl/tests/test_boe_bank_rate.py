@@ -25,7 +25,7 @@ def obs(raws):
 
 
 def test_contract(obs):
-    assert m.SOURCE.id == m.SOURCE_ID and m.SOURCE.cadence_days == 45 and m.SOURCE.grace_days == 14
+    assert m.SOURCE.id == m.SOURCE_ID and m.SOURCE.cadence_days == 49 and m.SOURCE.grace_days == 14
     periods = [o.period for o in obs]
     assert periods == sorted(set(periods))
     for o in obs:
@@ -77,3 +77,69 @@ def test_latest_decision_present(raws, obs):
         f"last change {[o.period for o in obs if 'held' not in (o.method_note or '')][-1]}; "
         f"next due {cal['next_due']}; seed {seed['bank_rate_pct']}% at {seed['bank_rate_date']}"
     )
+
+
+# ---------------------------------------------------------------- edition label (network-free)
+
+MPC_2026 = [date(2026, 2, 5), date(2026, 3, 19), date(2026, 4, 30), date(2026, 6, 18),
+            date(2026, 7, 30), date(2026, 9, 17), date(2026, 11, 5), date(2026, 12, 17)]
+# Bank Rate from each date on (a short made-up history with the real shape).
+STEPS = [(date(2018, 1, 1), 0.5), (date(2018, 8, 2), 0.75), (date(2020, 3, 11), 0.25), (date(2025, 12, 18), 3.75)]
+
+
+def synthetic(tmp_path, until: date, steps=STEPS, mpc=MPC_2026) -> list[m.RawArtifact]:
+    """An IADB export (every weekday from 2 Jan 2018 to `until`) and an MPC dates page, as fetch() stores them."""
+    from datetime import timedelta
+
+    rows, d = ["DATE,IUDBEDR"], date(2018, 1, 2)
+    while d <= until:
+        if d.weekday() < 5:
+            rows.append(f"{d:%d %b %Y},{[v for s, v in steps if s <= d][-1]}")
+        d += timedelta(days=1)
+    csv_path = tmp_path / f"IUDBEDR-{until}.csv"
+    csv_path.write_text("\n".join(rows) + "\n")
+    by_year: dict[int, list[date]] = {}
+    for x in mpc:
+        by_year.setdefault(x.year, []).append(x)
+    html = "".join(f"<h2>{y} confirmed dates</h2><table>" + "".join(f"<tr><td>{x:%A} {x.day} {x:%B}</td></tr>" for x in ds) + "</table>"
+                   for y, ds in by_year.items())
+    page = tmp_path / "upcoming-mpc-dates.html"
+    page.write_text(f"<html><body>{html}</body></html>")
+    return [m.RawArtifact(m.SOURCE_ID, m.IADB_CSV_URL, csv_path, "x", "t"),
+            m.RawArtifact(m.SOURCE_ID, m.MPC_DATES_URL, page, "x", "t")]
+
+
+def test_edition_is_named_after_its_newest_point_not_the_last_day(tmp_path):
+    """Another business day at the same rate is the same edition: no new file, no nightly pull request."""
+    monday, tuesday = m.parse(synthetic(tmp_path, date(2026, 10, 5))), m.parse(synthetic(tmp_path, date(2026, 10, 6)))
+    assert [o.model_dump() for o in monday] == [o.model_dump() for o in tuesday]
+    assert {o.vintage for o in monday} == {"IADB IUDBEDR as of 2026-09-17"}
+    assert monday[-1].period == "2026-09-17" and "held" in monday[-1].method_note
+
+
+def test_a_new_decision_is_a_new_edition(tmp_path):
+    held = m.parse(synthetic(tmp_path, date(2026, 11, 6)))
+    assert {o.vintage for o in held} == {"IADB IUDBEDR as of 2026-11-05"}
+    assert [(o.period, o.value) for o in held[-2:]] == [("2025-12-18", 3.75), ("2026-11-05", 3.75)]
+
+    cut = m.parse(synthetic(tmp_path, date(2026, 11, 6), STEPS + [(date(2026, 11, 5), 3.5)]))
+    assert {o.vintage for o in cut} == {"IADB IUDBEDR as of 2026-11-05"}
+    assert (cut[-1].period, cut[-1].value, cut[-1].method_note) == ("2026-11-05", 3.5, None)
+
+
+def test_staleness_counts_from_the_latest_decision(tmp_path):
+    """Seven weeks between decisions is on time; a decision missed by more than the grace period fails the build."""
+    from etl.build import Run, Store
+    from etl.checks import staleness
+
+    store = Store({m.SOURCE_ID: m.parse(synthetic(tmp_path, date(2026, 10, 5)))})
+
+    def check(today: date):
+        run = Run(build_id="test", started_at="test", trigger="test", sources={m.SOURCE_ID: m.SOURCE})
+        report = staleness(store, run, today)[m.SOURCE_ID]
+        assert report["published_on"] == "2026-09-17"
+        return [c.level for c in run.checks]
+
+    assert check(date(2026, 11, 5)) == []           # 49 days: the next decision is due today
+    assert check(date(2026, 11, 6)) == ["warning"]  # one day late
+    assert check(date(2026, 11, 21)) == ["error"]   # 15 days late, beyond the 14-day grace

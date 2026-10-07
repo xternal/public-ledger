@@ -1,6 +1,6 @@
 {
-  "build_id": "2026-10-06T21:23:58Z",
-  "git_sha": "90c9021",
+  "build_id": "2026-10-07T13:30:48Z",
+  "git_sha": "d40e023",
   "status": "ok",
   "base_year": "2025-26",
   "observations": 3940,
@@ -12,19 +12,19 @@
       "url": "https://www.bankofengland.co.uk/boeapps/database/Bank-Rate.asp",
       "licence": "Bank of England terms of use (https://www.bankofengland.co.uk/legal)",
       "published_on": null,
-      "cadence_days": 45,
+      "cadence_days": 49,
       "grace_days": 14,
       "freshness": {
-        "vintage": "IADB IUDBEDR to 2026-10-05",
-        "published_on": "2026-10-05",
-        "age_days": 1,
-        "cadence_days": 45,
+        "vintage": "IADB IUDBEDR as of 2026-09-17",
+        "published_on": "2026-09-17",
+        "age_days": 20,
+        "cadence_days": 49,
         "grace_days": 14,
         "overdue_days": 0
       },
       "observations": 24,
       "vintages": [
-        "IADB IUDBEDR to 2026-10-05"
+        "IADB IUDBEDR as of 2026-09-17"
       ],
       "files": []
     },
@@ -40,7 +40,7 @@
       "freshness": {
         "vintage": "DWP-SF-2026",
         "published_on": "2026-04-14",
-        "age_days": 175,
+        "age_days": 176,
         "cadence_days": 200,
         "grace_days": 60,
         "overdue_days": 0
@@ -63,7 +63,7 @@
       "freshness": {
         "vintage": "income-tax-rates@2026-10-01",
         "published_on": "2026-10-01",
-        "age_days": 5,
+        "age_days": 6,
         "cadence_days": 365,
         "grace_days": 60,
         "overdue_days": 0
@@ -90,10 +90,10 @@
       "freshness": {
         "vintage": "HMRC-DE-2025-06",
         "published_on": "2025-06-24",
-        "age_days": 469,
+        "age_days": 470,
         "cadence_days": 365,
         "grace_days": 60,
-        "overdue_days": 104
+        "overdue_days": 105
       },
       "observations": 228,
       "vintages": [
@@ -113,7 +113,7 @@
       "freshness": {
         "vintage": "HMRC-ITLS-2026-07",
         "published_on": "2026-07-15",
-        "age_days": 83,
+        "age_days": 84,
         "cadence_days": 365,
         "grace_days": 60,
         "overdue_days": 0
@@ -136,7 +136,7 @@
       "freshness": {
         "vintage": "PESA-2026",
         "published_on": "2026-07-16",
-        "age_days": 82,
+        "age_days": 83,
         "cadence_days": 120,
         "grace_days": 45,
         "overdue_days": 0
@@ -159,7 +159,7 @@
       "freshness": {
         "vintage": "NATO-DE-2026-07",
         "published_on": "2026-07-09",
-        "age_days": 89,
+        "age_days": 90,
         "cadence_days": 365,
         "grace_days": 60,
         "overdue_days": 0
@@ -182,7 +182,7 @@
       "freshness": {
         "vintage": "OBR-PFD-2026-09",
         "published_on": "2026-09-24",
-        "age_days": 12,
+        "age_days": 13,
         "cadence_days": 31,
         "grace_days": 21,
         "overdue_days": 0
@@ -205,7 +205,7 @@
       "freshness": {
         "vintage": "EFO-2026-03",
         "published_on": "2026-03-03",
-        "age_days": 217,
+        "age_days": 218,
         "cadence_days": 245,
         "grace_days": 30,
         "overdue_days": 0
@@ -228,7 +228,7 @@
       "freshness": {
         "vintage": "FH-2026-04",
         "published_on": "2026-04-17",
-        "age_days": 172,
+        "age_days": 173,
         "cadence_days": 365,
         "grace_days": 90,
         "overdue_days": 0
@@ -251,7 +251,7 @@
       "freshness": {
         "vintage": "MYE-2026-10",
         "published_on": "2026-10-01",
-        "age_days": 5,
+        "age_days": 6,
         "cadence_days": 365,
         "grace_days": 90,
         "overdue_days": 0
@@ -274,7 +274,7 @@
       "freshness": {
         "vintage": "PSF-2026-09",
         "published_on": "2026-09-22",
-        "age_days": 14,
+        "age_days": 15,
         "cadence_days": 31,
         "grace_days": 10,
         "overdue_days": 0
@@ -297,7 +297,7 @@
       "freshness": {
         "vintage": "PSF-2026-09",
         "published_on": "2026-09-22",
-        "age_days": 14,
+        "age_days": 15,
         "cadence_days": 31,
         "grace_days": 14,
         "overdue_days": 0
@@ -314,8 +314,8 @@
       "check_id": "staleness",
       "level": "warning",
       "subject": "hmrc_reckoner",
-      "message": "HMRC-DE-2025-06 is 469 days old; a new edition was due 104 days ago (grace 60). Acknowledged until 2027-01-31: HMRC postponed the January 2026 edition of 'Direct effects of illustrative tax changes' (notice of 6 Jul 2026, no new date).",
-      "value": 104
+      "message": "HMRC-DE-2025-06 is 470 days old; a new edition was due 105 days ago (grace 60). Acknowledged until 2027-01-31: HMRC postponed the January 2026 edition of 'Direct effects of illustrative tax changes' (notice of 6 Jul 2026, no new date).",
+      "value": 105
     }
   ],
   "identity": [
