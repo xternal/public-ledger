@@ -8,7 +8,8 @@
     "./follow": "./src/follow/index.ts",
     "./intake": "./src/intake/index.ts",
     "./alerts": "./src/alerts/index.ts",
-    "./triage": "./src/triage/index.ts"
+    "./triage": "./src/triage/index.ts",
+    "./harvest": "./src/harvest/index.ts"
   },
   "scripts": {
     "test": "vitest run",

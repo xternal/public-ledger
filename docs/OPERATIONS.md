@@ -130,3 +130,39 @@ succeeds, so it is safe to merge before setup.
   and the privacy notice.
 * ICO registration (data protection fee) for the controller.
 * Editors and a lawyer read the cards (see `docs/reviews/`).
+
+## 10. Intake: daily promise drafts (GitHub Actions)
+
+`.github/workflows/harvest.yml` runs every day at 06:15 UTC (07:15 BST; 06:15
+GMT after the clocks go back on 2026-10-25), and by hand from the Actions tab
+with an optional date. It reads the previous day's Commons statements, PMQs,
+written ministerial statements and GOV.UK press releases; Claude proposes
+candidate promises; only quotes found word for word in the source are kept.
+Each day with candidates becomes one **draft** pull request labelled `intake`,
+on a branch `intake/<date>`, with one YAML per candidate in
+`content/drafts/<date>/` and the source texts beside them
+(`content/README.md`, "Drafts").
+
+* **Set up:** add the `ANTHROPIC_API_KEY` secret in GitHub (repo → Settings →
+  Secrets and variables → Actions); the same key as §5 works, but a separate
+  key with its own monthly spend limit shows intake costs on their own.
+  Optionally set the repository *variable* `INTAKE_MODEL` to change the model.
+  Without the key the job logs "Intake not configured" and succeeds.
+* **The guarantee:** before the pull request opens, `pnpm validate` re-checks
+  every draft's quote against its stored source, character for character. If
+  that fails, no pull request opens and the run fails. CI on the pull request
+  does the same check after every push.
+* **CI on the pull request:** GitHub does not start workflows for pull requests
+  opened by a workflow's own token, so CI first runs when an editor pushes to
+  the branch.
+* **Never merged automatically.** Two editors turn each draft into a card or
+  delete it; the drafts folder must be gone before merge.
+* **Running a day again:** the job never overwrites an existing `intake/<date>`
+  branch (it may hold editors' work). Close the pull request and delete the
+  branch first, then run the workflow with that date.
+* **Locally** (needs `ANTHROPIC_API_KEY` in your shell to extract):
+  `pnpm harvest -- day --date 2026-10-06 --dry-run` prints the day's report and
+  writes nothing; without `--dry-run` it writes the drafts and
+  `content/drafts/<date>/PR.md` (the pull request text, not committed).
+  `pnpm harvest -- upload …` does the same for a transcript or a YouTube
+  video's captions.

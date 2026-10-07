@@ -1,0 +1,721 @@
+{
+ "results": [
+  {
+   "title": "Thousands more young people to access help with life's biggest challenges",
+   "link": "/government/news/thousands-more-young-people-to-access-help-with-lifes-biggest-challenges",
+   "public_timestamp": "2026-09-15T21:30:00Z",
+   "organisations": [
+    {
+     "title": "Department for Digital, Culture, Media and Sport",
+     "acronym": "DCMS",
+     "slug": "department-for-digital-culture-media-and-sport",
+     "link": "/government/organisations/department-for-digital-culture-media-and-sport",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "619f392c-6302-441a-bd24-01cf972ed431",
+     "link": "/government/people/vicky-foxcroft",
+     "title": "Vicky Foxcroft MP",
+     "slug": "vicky-foxcroft"
+    },
+    {
+     "content_id": "429385d4-66f8-490d-bea0-f2ba6255856f",
+     "link": "/government/people/lisa-nandy",
+     "title": "The Rt Hon Lisa Nandy MP",
+     "slug": "lisa-nandy"
+    }
+   ],
+   "description": "42 new Young Futures Hubs to open across England, reversing a decade of decline in local youth services.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/thousands-more-young-people-to-access-help-with-lifes-biggest-challenges",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Government to act on Thirlwall patient safety recommendations",
+   "link": "/government/news/government-to-act-on-thirlwall-patient-safety-recommendations",
+   "public_timestamp": "2026-09-15T16:20:00Z",
+   "organisations": [
+    {
+     "title": "Department of Health and Social Care",
+     "acronym": "DHSC",
+     "slug": "department-of-health-and-social-care",
+     "link": "/government/organisations/department-of-health-and-social-care",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "e3145327-542d-43d8-9c4e-f6908f265478",
+     "link": "/government/people/yvette-cooper",
+     "title": "The Rt Hon Yvette Cooper MP",
+     "slug": "yvette-cooper"
+    }
+   ],
+   "description": "The government outlines plans to strengthen NHS safeguarding, accountability and neonatal safety, including work on 'cot cams'.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/government-to-act-on-thirlwall-patient-safety-recommendations",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Specialised Committee on the Implementation of the Windsor Framework: Joint Statement, 15 September 2026",
+   "link": "/government/news/specialised-committee-on-the-implementation-of-the-windsor-framework-joint-statement-15-september-2026",
+   "public_timestamp": "2026-09-15T15:00:00Z",
+   "organisations": [
+    {
+     "title": "Cabinet Office",
+     "acronym": "",
+     "slug": "cabinet-office",
+     "link": "/government/organisations/cabinet-office",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [],
+   "description": "Specialised Committee on the Implementation of the Windsor Framework: Joint Statement, 15 September 2025",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/specialised-committee-on-the-implementation-of-the-windsor-framework-joint-statement-15-september-2026",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Councils’ high-cost services to be transformed through £91m fund",
+   "link": "/government/news/councils-high-cost-services-to-be-transformed-through-91m-fund",
+   "public_timestamp": "2026-09-15T13:47:25Z",
+   "organisations": [
+    {
+     "title": "Ministry of Housing, Communities and Local Government",
+     "acronym": "MHCLG",
+     "slug": "ministry-of-housing-communities-local-government",
+     "link": "/government/organisations/ministry-of-housing-communities-local-government",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "3d33b0a9-1d1b-4b2d-b01e-0c444beca77d",
+     "link": "/government/people/jim-mcmahon",
+     "title": "Jim McMahon OBE MP",
+     "slug": "jim-mcmahon"
+    }
+   ],
+   "description": "Temporary accommodation, adult social care and other expensive services will be improved and made more efficient across 14 councils",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/councils-high-cost-services-to-be-transformed-through-91m-fund",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Inspection report published: An inspection of the Future Border and Immigration System benefits realisation (March – July 2026)",
+   "link": "/government/news/inspection-report-published-an-inspection-of-the-future-border-and-immigration-system-benefits-realisation-march-july-2026",
+   "public_timestamp": "2026-09-15T12:49:55Z",
+   "organisations": [
+    {
+     "title": "Independent Chief Inspector of Borders and Immigration ",
+     "acronym": "ICIBI",
+     "slug": "independent-chief-inspector-of-borders-and-immigration",
+     "link": "/government/organisations/independent-chief-inspector-of-borders-and-immigration",
+     "organisation_type": "independent_monitoring_body"
+    }
+   ],
+   "people": [],
+   "description": "The Independent Chief Inspector comments on the inspection report on the Future Border and Immigration System benefits realisation following its publication.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/inspection-report-published-an-inspection-of-the-future-border-and-immigration-system-benefits-realisation-march-july-2026",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Update on Bright Horizons regulatory action",
+   "link": "/government/news/update-on-bright-horizons-regulatory-action",
+   "public_timestamp": "2026-09-15T12:31:34Z",
+   "organisations": [
+    {
+     "title": "Ofsted",
+     "acronym": "Ofsted",
+     "slug": "ofsted",
+     "link": "/government/organisations/ofsted",
+     "organisation_type": "non_ministerial_department"
+    }
+   ],
+   "people": [],
+   "description": "Since September last year, Ofsted has been carrying out an extensive programme of regulatory activity across nurseries in the Bright Horizons group.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/update-on-bright-horizons-regulatory-action",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Boss of home improvements firm which made thousands of cold calls banned from being a director",
+   "link": "/government/news/boss-of-home-improvements-firm-which-made-thousands-of-cold-calls-banned-from-being-a-director",
+   "public_timestamp": "2026-09-15T12:26:26Z",
+   "organisations": [
+    {
+     "title": "The Insolvency Service",
+     "acronym": "",
+     "slug": "insolvency-service",
+     "link": "/government/organisations/insolvency-service",
+     "organisation_type": "executive_agency"
+    }
+   ],
+   "people": [],
+   "description": "Directorship ban until 2034 after failure to pay ICO fine",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/boss-of-home-improvements-firm-which-made-thousands-of-cold-calls-banned-from-being-a-director",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Somerset Prepared wants community award nominations",
+   "link": "/government/news/somerset-prepared-wants-community-award-nominations",
+   "public_timestamp": "2026-09-15T10:21:00Z",
+   "organisations": [
+    {
+     "title": "Environment Agency",
+     "acronym": "",
+     "slug": "environment-agency",
+     "link": "/government/organisations/environment-agency",
+     "organisation_type": "executive_ndpb"
+    }
+   ],
+   "people": [],
+   "description": "Somerset Prepared seeks nominations for its Community Resilience Awards, which celebrate people and groups who help their communities with emergencies. ",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/somerset-prepared-wants-community-award-nominations",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "New sovereign UK turbojet engine takes to the skies in under seven months",
+   "link": "/government/news/new-sovereign-uk-turbojet-engine-takes-to-the-skies-in-under-seven-months",
+   "public_timestamp": "2026-09-15T08:30:07Z",
+   "organisations": [
+    {
+     "title": "Ministry of Defence",
+     "acronym": "MOD",
+     "slug": "ministry-of-defence",
+     "link": "/government/organisations/ministry-of-defence",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "0e11b976-f017-4c29-b0f2-94468466af99",
+     "link": "/government/people/luke-pollard",
+     "title": "Luke Pollard MP",
+     "slug": "luke-pollard"
+    }
+   ],
+   "description": "MOD and UK start-up Alloyed co-develop a new family of digitally manufactured turbojet engines, built entirely in Britain, taking one engine from concept to flight in under seven months.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/new-sovereign-uk-turbojet-engine-takes-to-the-skies-in-under-seven-months",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Government introduces Repeal Bill to remove outdated constitutional rules",
+   "link": "/government/news/government-introduces-repeal-bill-to-remove-outdated-constitutional-rules",
+   "public_timestamp": "2026-09-15T08:00:05Z",
+   "organisations": [
+    {
+     "title": "Cabinet Office",
+     "acronym": "",
+     "slug": "cabinet-office",
+     "link": "/government/organisations/cabinet-office",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "762a5ae3-c159-4fb4-8f4e-a828e41f77b3",
+     "link": "/government/people/andy-burnham",
+     "title": "The Rt Hon Andy Burnham MP",
+     "slug": "andy-burnham"
+    }
+   ],
+   "description": "The Bill will remove the historic religious restrictions which prevents a Roman Catholic or Jewish Prime Minister from carrying out the full constitutional duties of their office.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/government-introduces-repeal-bill-to-remove-outdated-constitutional-rules",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "New rules pave the way for businesses to adopt digital proof of age for alcohol sales",
+   "link": "/government/news/new-rules-pave-the-way-for-businesses-to-adopt-digital-proof-of-age-for-alcohol-sales",
+   "public_timestamp": "2026-09-14T23:01:02Z",
+   "organisations": [
+    {
+     "title": "Department for Digital, Culture, Media and Sport",
+     "acronym": "DCMS",
+     "slug": "department-for-digital-culture-media-and-sport",
+     "link": "/government/organisations/department-for-digital-culture-media-and-sport",
+     "organisation_type": "ministerial_department"
+    },
+    {
+     "title": "Home Office",
+     "acronym": "Home Office",
+     "slug": "home-office",
+     "link": "/government/organisations/home-office",
+     "organisation_type": "ministerial_department"
+    },
+    {
+     "title": "Office for Digital Identities and Attributes",
+     "acronym": "OfDIA",
+     "slug": "office-for-digital-identities-and-attributes",
+     "link": "/government/organisations/office-for-digital-identities-and-attributes",
+     "organisation_type": "sub_organisation"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "611cafa0-1b96-45fa-8a8a-7d254cba6ffb",
+     "link": "/government/people/stephanie-peacock",
+     "title": "Stephanie Peacock MP",
+     "slug": "stephanie-peacock"
+    }
+   ],
+   "description": "Licensed premises across England and Wales will now have the option to accept digital proof of age when selling alcohol. ",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/new-rules-pave-the-way-for-businesses-to-adopt-digital-proof-of-age-for-alcohol-sales",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Rare species help Dorset nature reserve gain national recognition",
+   "link": "/government/news/rare-species-help-dorset-nature-reserve-gain-national-recognition",
+   "public_timestamp": "2026-09-14T23:01:02Z",
+   "organisations": [
+    {
+     "title": "Natural England",
+     "acronym": "Natural England",
+     "slug": "natural-england",
+     "link": "/government/organisations/natural-england",
+     "organisation_type": "executive_ndpb"
+    }
+   ],
+   "people": [],
+   "description": "Lyscombe, part of a nationally important landscape in Dorset which inspired Thomas Hardy, has become a National Nature Reserve.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/rare-species-help-dorset-nature-reserve-gain-national-recognition",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Prison expansion brings new cells and jobs to North East",
+   "link": "/government/news/prison-expansion-brings-new-cells-and-jobs-to-north-east",
+   "public_timestamp": "2026-09-14T16:16:06Z",
+   "organisations": [
+    {
+     "title": "Ministry of Justice",
+     "acronym": "MOJ",
+     "slug": "ministry-of-justice",
+     "link": "/government/organisations/ministry-of-justice",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "1351658c-f7d8-47c3-80b9-34f3573d1727",
+     "link": "/government/people/catherine-mckinnell",
+     "title": "Catherine McKinnell MP",
+     "slug": "catherine-mckinnell"
+    }
+   ],
+   "description": "Construction has now begun on 152 new prison places at HMP Kirklevington Grange near Yarm, helping to lock up dangerous criminals and keep the public safe.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/prison-expansion-brings-new-cells-and-jobs-to-north-east",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Government moves to acquire Speciality Steel UK",
+   "link": "/government/news/government-moves-to-acquire-speciality-steel-uk",
+   "public_timestamp": "2026-09-14T15:10:41Z",
+   "organisations": [
+    {
+     "title": "Department for Business, Innovation, Science and Trade",
+     "acronym": "BIST",
+     "slug": "department-for-business-innovation-science-and-trade",
+     "link": "/government/organisations/department-for-business-innovation-science-and-trade",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "9309376e-a072-4177-921f-5941901bb3f6",
+     "link": "/government/people/louise-haigh",
+     "title": "The Rt Hon Louise Haigh MP",
+     "slug": "louise-haigh"
+    },
+    {
+     "content_id": "1bda1bf9-acfe-42b6-8b82-7e7b6417593e",
+     "link": "/government/people/jonathan-reynolds",
+     "title": "The Rt Hon Jonathan Reynolds MP",
+     "slug": "jonathan-reynolds"
+    }
+   ],
+   "description": "The Business Secretary Jonathan Reynolds has today announced the Government will work towards the public acquisition of Speciality Steel UK (SSUK). ",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/government-moves-to-acquire-speciality-steel-uk",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Morgan and Morecambe Offshore Wind Farms Transmission Assets development consent decision announced",
+   "link": "/government/news/morgan-and-morecambe-offshore-wind-farms-transmission-assets-development-consent-decision-announced",
+   "public_timestamp": "2026-09-14T14:28:53Z",
+   "organisations": [
+    {
+     "title": "Planning Inspectorate",
+     "acronym": "",
+     "slug": "planning-inspectorate",
+     "link": "/government/organisations/planning-inspectorate",
+     "organisation_type": "executive_agency"
+    }
+   ],
+   "people": [],
+   "description": "The Morgan and Morecambe Offshore Wind Farms Transmission Assets DCO application has today been granted development consent by the Department for Energy Security and Net Zero",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/morgan-and-morecambe-offshore-wind-farms-transmission-assets-development-consent-decision-announced",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "UK and US fusion supercomputers to be linked across Atlantic",
+   "link": "/government/news/uk-and-us-fusion-supercomputers-to-be-linked-across-atlantic",
+   "public_timestamp": "2026-09-14T14:00:09Z",
+   "organisations": [
+    {
+     "title": "UK Atomic Energy Authority",
+     "acronym": "UKAEA",
+     "slug": "uk-atomic-energy-authority",
+     "link": "/government/organisations/uk-atomic-energy-authority",
+     "organisation_type": "executive_ndpb"
+    }
+   ],
+   "people": [],
+   "description": "UKAEA and PPPL have joined forces to accelerate fusion energy’s development,  linking UKAEA’s SUNRISE supercomputer with PPPL’s STELLAR-AI platform.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/uk-and-us-fusion-supercomputers-to-be-linked-across-atlantic",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Community groups invited to apply for funding to bring people together",
+   "link": "/government/news/community-groups-invited-to-apply-for-funding-to-bring-people-together",
+   "public_timestamp": "2026-09-14T12:37:28Z",
+   "organisations": [
+    {
+     "title": "Ministry of Housing, Communities and Local Government",
+     "acronym": "MHCLG",
+     "slug": "ministry-of-housing-communities-local-government",
+     "link": "/government/organisations/ministry-of-housing-communities-local-government",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "a91e1026-2317-4781-b561-68984a95bc27",
+     "link": "/government/people/florence-eshalomi",
+     "title": "Florence Eshalomi MP",
+     "slug": "florence-eshalomi"
+    }
+   ],
+   "description": "The next wave of the Common Ground Award provides up to £2.5m for projects, groups and organisations brining people together and transforming their community.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/community-groups-invited-to-apply-for-funding-to-bring-people-together",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Vital £9.3 million funding boost for victims in Essex",
+   "link": "/government/news/vital-93-million-funding-boost-for-victims-in-essex",
+   "public_timestamp": "2026-09-14T12:37:24Z",
+   "organisations": [
+    {
+     "title": "Ministry of Justice",
+     "acronym": "MOJ",
+     "slug": "ministry-of-justice",
+     "link": "/government/organisations/ministry-of-justice",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "2f7b87d3-f096-4cfe-9c56-b6038b048241",
+     "link": "/government/people/alex-davies-jones",
+     "title": "Alex Davies-Jones MP",
+     "slug": "alex-davies-jones"
+    }
+   ],
+   "description": "Funding will help victim-survivors of all types of crime including domestic abuse and sexual violence",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/vital-93-million-funding-boost-for-victims-in-essex",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "UK steps up support for global efforts to prepare for El Niño following devastating extreme weather",
+   "link": "/government/news/uk-steps-up-support-for-global-efforts-to-prepare-for-el-nino-following-devastating-extreme-weather",
+   "public_timestamp": "2026-09-14T11:41:18Z",
+   "organisations": [
+    {
+     "title": "Foreign, Commonwealth & Development Office",
+     "acronym": "FCDO",
+     "slug": "foreign-commonwealth-development-office",
+     "link": "/government/organisations/foreign-commonwealth-development-office",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "2d7e7e3b-3133-40b4-99b7-7b7cac0d489b",
+     "link": "/government/people/kirsty-mcneill",
+     "title": "Kirsty McNeill MP",
+     "slug": "kirsty-mcneill"
+    }
+   ],
+   "description": "Hundreds of thousands of people around the world will be helped to prepare for extreme weather conditions next year.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/uk-steps-up-support-for-global-efforts-to-prepare-for-el-nino-following-devastating-extreme-weather",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "British filmmakers handed boost by new film agreement with Canada",
+   "link": "/government/news/british-filmmakers-handed-boost-by-new-film-agreement-with-canada",
+   "public_timestamp": "2026-09-14T10:34:26Z",
+   "organisations": [
+    {
+     "title": "Department for Digital, Culture, Media and Sport",
+     "acronym": "DCMS",
+     "slug": "department-for-digital-culture-media-and-sport",
+     "link": "/government/organisations/department-for-digital-culture-media-and-sport",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "90ad5c0c-4b41-4ea0-942c-44736c140778",
+     "link": "/government/people/ian-murray",
+     "title": "The Rt Hon Ian Murray MP",
+     "slug": "ian-murray"
+    }
+   ],
+   "description": "At the Toronto International Film Festival, Creative Industries Minister Ian Murray signs new treaty with his Canadian counterpart",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/british-filmmakers-handed-boost-by-new-film-agreement-with-canada",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Healthier school dinners as government delivers major reforms",
+   "link": "/government/news/healthier-school-dinners-as-government-delivers-major-reforms",
+   "public_timestamp": "2026-09-14T10:21:36Z",
+   "organisations": [
+    {
+     "title": "Department for Education",
+     "acronym": "DfE",
+     "slug": "department-for-education",
+     "link": "/government/organisations/department-for-education",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "6eedb70c-b31b-4487-b719-28438de44532",
+     "link": "/government/people/lucy-powell",
+     "title": "The Rt Hon Lucy Powell MP",
+     "slug": "lucy-powell"
+    }
+   ],
+   "description": "Government updates school food standards for first time in over a decade, backed by Chef Jamie Oliver, actor and campaigner Dame Emma Thompson and parents.  ",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/healthier-school-dinners-as-government-delivers-major-reforms",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Almost 7 million adults in the dark about their State Pension",
+   "link": "/government/news/almost-7-million-adults-in-the-dark-about-their-state-pension",
+   "public_timestamp": "2026-09-14T10:07:36Z",
+   "organisations": [
+    {
+     "title": "HM Revenue & Customs",
+     "acronym": "HMRC",
+     "slug": "hm-revenue-customs",
+     "link": "/government/organisations/hm-revenue-customs",
+     "organisation_type": "non_ministerial_department"
+    }
+   ],
+   "people": [],
+   "description": "HMRC is encouraging people to check their State Pension forecast using the HMRC app during Pension Awareness Week.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/almost-7-million-adults-in-the-dark-about-their-state-pension",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Young Brits recruited as drug mules as overseas drug smuggling arrests quadruple in three years",
+   "link": "/government/news/young-brits-recruited-as-drug-mules-as-overseas-drug-smuggling-arrests-quadruple-in-three-years",
+   "public_timestamp": "2026-09-14T09:39:13Z",
+   "organisations": [
+    {
+     "title": "Foreign, Commonwealth & Development Office",
+     "acronym": "FCDO",
+     "slug": "foreign-commonwealth-development-office",
+     "link": "/government/organisations/foreign-commonwealth-development-office",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "956b4454-bc77-4145-8c00-760140501574",
+     "link": "/government/people/stephen-doughty",
+     "title": "Stephen Doughty MP",
+     "slug": "stephen-doughty"
+    }
+   ],
+   "description": "More than 200 Brits are currently detained overseas in cannabis smuggling cases linked to Thailand alone, after being recruited with promises of free holidays, easy money and ‘low risk’ opportunities",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/young-brits-recruited-as-drug-mules-as-overseas-drug-smuggling-arrests-quadruple-in-three-years",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Lancashire prison to gain 240 extra places",
+   "link": "/government/news/lancashire-prison-to-gain-240-extra-places",
+   "public_timestamp": "2026-09-14T09:17:55Z",
+   "organisations": [
+    {
+     "title": "Ministry of Justice",
+     "acronym": "MOJ",
+     "slug": "ministry-of-justice",
+     "link": "/government/organisations/ministry-of-justice",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "1351658c-f7d8-47c3-80b9-34f3573d1727",
+     "link": "/government/people/catherine-mckinnell",
+     "title": "Catherine McKinnell MP",
+     "slug": "catherine-mckinnell"
+    }
+   ],
+   "description": "HMP Lancaster Farms capacity boosted by more than 40 per cent as part of largest prison expansion programme since the Victorian era",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/lancashire-prison-to-gain-240-extra-places",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "Your cancellation’s covered: new scheme to help stranded rail passengers arrives this weekend",
+   "link": "/government/news/your-cancellations-covered-new-scheme-to-help-stranded-rail-passengers-arrives-this-weekend",
+   "public_timestamp": "2026-09-13T23:01:04Z",
+   "organisations": [
+    {
+     "title": "Department for Transport",
+     "acronym": "DfT",
+     "slug": "department-for-transport",
+     "link": "/government/organisations/department-for-transport",
+     "organisation_type": "ministerial_department"
+    },
+    {
+     "title": "DfT Operator Limited",
+     "acronym": "DFTO",
+     "slug": "dft-operator-limited",
+     "link": "/government/organisations/dft-operator-limited",
+     "organisation_type": "public_corporation"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "c8b3865a-9090-41e0-aba5-5ee25a80fd94",
+     "link": "/government/people/lord-hendy-of-richmond-hill",
+     "title": "Lord Hendy of Richmond Hill CBE",
+     "slug": "lord-hendy-of-richmond-hill"
+    }
+   ],
+   "description": "From 20 September 2026, if a train is cancelled, passengers can get on another operator’s service and carry on their journey without paying again.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/your-cancellations-covered-new-scheme-to-help-stranded-rail-passengers-arrives-this-weekend",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  },
+  {
+   "title": "UK and US fusion strike partnership to accelerate clean energy",
+   "link": "/government/news/uk-and-us-fusion-strike-partnership-to-accelerate-clean-energy",
+   "public_timestamp": "2026-09-13T23:01:00Z",
+   "organisations": [
+    {
+     "title": "Department for Energy Security and Net Zero",
+     "acronym": "DESNZ",
+     "slug": "department-for-energy-security-and-net-zero",
+     "link": "/government/organisations/department-for-energy-security-and-net-zero",
+     "organisation_type": "ministerial_department"
+    },
+    {
+     "title": "Foreign, Commonwealth & Development Office",
+     "acronym": "FCDO",
+     "slug": "foreign-commonwealth-development-office",
+     "link": "/government/organisations/foreign-commonwealth-development-office",
+     "organisation_type": "ministerial_department"
+    }
+   ],
+   "people": [
+    {
+     "content_id": "5a866e1a-9762-462c-8a85-e716c04ae0e4",
+     "link": "/government/people/michael-shanks",
+     "title": "Michael Shanks MP",
+     "slug": "michael-shanks"
+    },
+    {
+     "content_id": "739e6ec2-1179-4596-8a39-9dc9459c9496",
+     "link": "/government/people/chris-elmore",
+     "title": "Chris Elmore MP",
+     "slug": "chris-elmore"
+    }
+   ],
+   "description": "UK and US set to sign agreements at the Global Fusion Policy Summit  to combine expertise in AI,  computing and fusion and to cooperate on regulating fusion energy.",
+   "index": "govuk",
+   "es_score": null,
+   "_id": "/government/news/uk-and-us-fusion-strike-partnership-to-accelerate-clean-energy",
+   "elasticsearch_type": "edition",
+   "document_type": "edition"
+  }
+ ],
+ "total": 26,
+ "start": 0,
+ "aggregates": {},
+ "suggested_queries": [],
+ "suggested_autocomplete": [],
+ "es_cluster": "A"
+}

@@ -1,0 +1,42 @@
+{
+ "value": {
+  "id": 1942984,
+  "memberId": 4870,
+  "member": {
+   "id": 4870,
+   "listAs": "Eshalomi, Florence",
+   "name": "Florence Eshalomi",
+   "party": "Labour",
+   "partyColour": "d50000",
+   "partyAbbreviation": "Lab",
+   "memberFrom": "Vauxhall and Camberwell Green",
+   "thumbnailUrl": "https://members-api.parliament.uk/api/Members/4870/Thumbnail"
+  },
+  "memberRole": "Minister of State for Homelessness, Democracy, Communities and Faith",
+  "uin": "HCWS351",
+  "dateMade": "2026-09-15T00:00:00",
+  "answeringBodyId": 7,
+  "answeringBodyName": "Ministry of Housing, Communities and Local Government",
+  "title": "Homes for Ukraine funding changes",
+  "text": "<p>Over the past four years, the government has remained committed to supporting Ukrainians fleeing Putin’s illegal and unjustified full-scale invasion. Through the Homes for Ukraine scheme, we have welcomed over 181,000 Ukrainians to the UK. Our commitment to Ukraine and its people remains steadfast, as the Prime Minister made clear last month in making Kyiv the destination for his first international visit.</p><p>The government is sincerely grateful to sponsors and hosts who have opened their homes to those fleeing from the invasion. They have played a truly pivotal role in helping Ukrainian families to find safety, stability and community in the UK. The response across the last four years reflects the generosity and solidarity of the public in providing sanctuary to those in need. In addition to sponsors and hosts, councils and voluntary and community sector organisations have been central to the strength and effectiveness of the Homes for Ukraine scheme.</p><p>Since the launch of the Homes for Ukraine scheme, the Ministry of Housing, Communities and Local Government has provided two core types of funding to support those seeking sanctuary in the UK. Local authorities receive the Homes for Ukraine tariff – a payment made in respect of each arrival to meet their costs associated with the delivery of the programme. Sponsors and hosts can also claim thank you payments as a gesture of appreciation for their generosity in opening their homes. To date, the government has provided over £1.81 billion in funding for the scheme.</p><p>The Homes for Ukraine scheme has evolved from an initial emergency response into a more established programme. The government is therefore making changes to Homes for Ukraine funding to ensure that the scheme remains sustainable, so that we can continue to support those fleeing the war in Ukraine.</p><p><strong>Changes to Homes for Ukraine funding </strong></p><p>The following changes will take effect from 1 January 2027:</p><ul><li><p>Where sponsors/hosts are claiming thank you payments from local authorities, the government will reimburse local authorities via the Homes for Ukraine sponsor thank you grant at a rate of £100 per month, per household, irrespective of how long a guest has been on the Homes for Ukraine programme. This is a reduction from the current rate of £350 per month. All thank you payments made by local authorities during the Ukraine Permission Extension visa period will be reimbursed at a rate of £100 per month for a maximum of eighteen months. Sponsors/hosts and guests are encouraged to consider what this change means for them. If a sponsor/host is looking to end sponsorship, then they could explore moving on to a more formal rental arrangement. Advice on renting a room in their home (including through the Government’s Rent a Room scheme) or renting out a property is available on GOV.UK.</p></li></ul><ul><li><p>The Homes for Ukraine tariff will decrease from £5,900 to £3,300 for arrivals after 1 January 2027 to ensure this funding remains affordable. This funding can continue to be used flexibly to meet local and individual needs, and remains at a sustainable level that continues to meet core administrative costs, while still enabling investment in rematching and homelessness prevention activity.</p></li></ul><p>Funding for the most vulnerable arrivals - unaccompanied minors – will remain at the current levels, in recognition of the complex needs and safeguarding requirements associated with unaccompanied minors. Local authorities will continue to receive multi-year tariff funding via the Homes for Ukraine eligible minor grant, which remains at £10,500 per arrival in year one and £6,100 for subsequent years</p><p><strong>Implementation and next steps </strong></p><p>The government will be writing to sponsors/hosts, local authority leaders and chief executives, and colleagues in the devolved governments, to set out the planned changes to Homes for Ukraine funding.</p><p>Updated guidance will also be published on GOV.UK. This guidance sets out the changes and what they mean in practice, including arrangements for local authority quarterly claims.</p>",
+  "house": "Commons",
+  "noticeNumber": 9,
+  "hasAttachments": false,
+  "hasLinkedStatements": true,
+  "linkedStatements": [
+   {
+    "linkedStatementId": 1942987,
+    "linkType": "JointStatement",
+    "linkDate": "2026-09-15T00:00:00"
+   }
+  ],
+  "attachments": []
+ },
+ "links": [
+  {
+   "rel": "self",
+   "href": "/Statements/1942984",
+   "method": "GET"
+  }
+ ]
+}

@@ -9,7 +9,7 @@ import { normaliseForMatch } from "./text";
  * anything and never changes a submission's status (invariant 8).
  */
 
-export const DEFAULT_PREFILL_MODEL = "claude-sonnet-5-5";
+export const DEFAULT_PREFILL_MODEL = "claude-opus-5-5";
 /** Models that accept the server-side refusal fallback (`fallbacks: "default"`) on the Claude API. */
 const FALLBACK_MODELS = new Set(["claude-sonnet-5-5", "claude-opus-5-5", "claude-opus-5", "claude-fable-5-1"]);
 const FALLBACK_BETA = "server-side-fallback-2026-07-01";

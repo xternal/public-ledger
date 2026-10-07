@@ -52,7 +52,7 @@ Any actor (or their office) may dispute a card's parameters. The reply is publis
 
 ## 6. Editorial process
 
-1. Intake (manual or LLM draft from transcript) → draft card in a pull request.
+1. Intake (manual or LLM draft from transcript) → draft card in a pull request. LLM drafts (`content/drafts/`) quote only words found exactly in the stored source, are never published, and each one becomes a card or is deleted before the pull request merges.
 2. Editor checks quote against primary source, fills parameters, cites costings.
 3. Second editor approves. Two-person rule for every merge.
 4. Publish. Nightly job appends `deadline_missed` where due.

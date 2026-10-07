@@ -1,0 +1,42 @@
+{
+ "value": {
+  "id": 1943121,
+  "memberId": 4243,
+  "member": {
+   "id": 4243,
+   "listAs": "Jarvis, Dan",
+   "name": "Dan Jarvis",
+   "party": "Labour",
+   "partyColour": "d50000",
+   "partyAbbreviation": "Lab",
+   "memberFrom": "Barnsley North",
+   "thumbnailUrl": "https://members-api.parliament.uk/api/Members/4243/Thumbnail"
+  },
+  "memberRole": "The Minister of State for Security",
+  "uin": "HCWS353",
+  "dateMade": "2026-09-15T00:00:00",
+  "answeringBodyId": 1,
+  "answeringBodyName": "Home Office",
+  "title": "Anti-Money Laundering and Asset Recovery Strategy 2026-29",
+  "text": "<p>Today the Government published the Anti-Money Laundering and Asset Recovery Strategy 2026-2029, setting out our response to the money laundering that enables serious and organised crime across the UK and threatens our national security.</p><p> </p><p>Money laundering fuels drug trafficking, people smuggling, fraud and corruption. It can also enable terrorism, hostile state activity and other threats to national security. It damages communities, distorts legitimate markets and undermines confidence in the UK’s financial and legal systems. Criminals are using increasingly sophisticated methods, including, complex corporate structures, cryptoassets and emerging technologies and cash-based laundering. To address these growing risks, a coordinated and intelligence-led response is required.</p><p> </p><p>Backed by over £550m of investment over three years and resulting in an increase of 500 new law enforcement officers and specialists by end 2029. The strategy sets out three objectives: firstly, to make the UK’s defences more effective and efficient, while making it simpler and safer for honest businesses to grow; secondly, to disrupt money laundering and dismantle high-harm criminal networks at home and abroad; and finally, to recover more criminal assets for law enforcement, victims and the public.</p><p> </p><p>To achieve these objectives we will better target, integrate and empower the UK’s anti-money laundering and asset recovery system.</p><p> </p><p>First, we will target the highest priority threats, focussing on the criminals and activities that cause the most harm, and reducing low-value activity. We will focus action on risks including cash-based money laundering, criminal activity on the high street and the abuse of professional and financial services. We will intensify enforcement against criminal fronts, strengthen controls on Post Office cash deposits, and reform anti-money laundering supervision to make it more consistent, intelligence-led and outcomes-focused. We will also consult on changes to reduce low-value compliance and reporting activity, ensuring proportionate requirements which focus efforts on areas of highest risk.</p><p> </p><p>Second, we will integrate financial intelligence and deepen collaboration between government, law enforcement and the private sector to identify criminal networks earlier and support faster disruption and asset recovery. We will establish a new National Financial Intelligence Service within the National Crime Agency’s National Economic Crime Centre, bringing together public and private sector intelligence to identify criminal networks earlier and support faster disruption and asset recovery. We will strengthen the UK Financial Intelligence Unit, including through building a new Suspicious Activity Reports Digital Service, and by improving access to and usage of financial intelligence across policing. We will also deepen international partnerships against shared illicit finance risks, piloting a multinational public-private information-sharing partnership and improving cooperation to trace, restrain and recover assets held overseas.</p><p> </p><p>Third, we will empower the system with the people, powers and technology required to act. We will intensify the response to professional money laundering networks and enablers, by investing in financial investigators, forensic accountants and cryptoasset capabilities. We will expand the Asset Management Office to support all agencies with powers to recover assets under the Proceeds of Crime Act 2002. We will also consider further legislative changes to improve training for law enforcement, the judiciary and the legal profession.</p><p> </p><p>Taken together, these reforms will strengthen the UK’s ability to prevent illicit finance, disrupt the criminal networks that depend on it and recover the assets that sustain them. They will protect communities, support legitimate businesses and ensure that victims and the public benefit when criminal assets are recovered, making the United Kingdom a harder place for criminals to operate and a safer place to live, work and do business.</p><p> </p><p>This strategy forms part of the Government’s wider approach to economic crime, alongside the UK Anti-Corruption Strategy and the UK Fraud Strategies.</p><p> </p><p>The Anti-Money Laundering and Asset Recovery Strategy 2026-2029, CP 1677, has been laid before the House and is also available on gov.uk.</p>",
+  "house": "Commons",
+  "noticeNumber": 6,
+  "hasAttachments": false,
+  "hasLinkedStatements": true,
+  "linkedStatements": [
+   {
+    "linkedStatementId": 1943120,
+    "linkType": "JointStatement",
+    "linkDate": "2026-09-15T00:00:00"
+   }
+  ],
+  "attachments": []
+ },
+ "links": [
+  {
+   "rel": "self",
+   "href": "/Statements/1943121",
+   "method": "GET"
+  }
+ ]
+}

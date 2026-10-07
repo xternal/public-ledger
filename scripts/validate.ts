@@ -1,7 +1,10 @@
 /**
- * pnpm validate: schemas, cross-file references, the balance check and a
- * lint that keeps data out of components. Exits non-zero on any error;
- * warnings (cards not yet publishable) are printed but do not fail.
+ * pnpm validate: schemas, cross-file references, the balance check, a lint
+ * that keeps data out of components, and the exact-match check on intake
+ * drafts. Exits non-zero on any error; warnings (cards not yet publishable)
+ * are printed but do not fail. A draft still in content/drafts/ is an error,
+ * so an intake PR cannot be merged until editors have turned every draft into
+ * a card or deleted it; the intake job itself passes --allow-drafts.
  */
 import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync, statSync } from "node:fs";
@@ -10,6 +13,7 @@ import { parse as parseYaml } from "yaml";
 import { parseSeed } from "@ledger/schema/seed";
 import { BALANCE_TOLERANCE_BN, appendOnlyIssues } from "@ledger/schema";
 import { baseSettings, compute, createModel } from "@ledger/engine";
+import { checkDrafts } from "../packages/server/src/harvest/drafts";
 
 const root = join(import.meta.dirname, "..");
 const errors: string[] = [];
@@ -87,6 +91,14 @@ if (baseRef) {
   }
   console.log(`append-only check against ${baseRef}: ${baseFiles.length} published card(s)`);
 }
+
+// 5. Intake drafts (M4): every quote must be exactly its span of the stored source text.
+// Zero invented quotes is checked here, offline, for every draft in content/drafts/.
+const drafts = checkDrafts(root);
+errors.push(...drafts.errors);
+// Unresolved drafts block a merge; the morning intake job, which opens the PR, allows them.
+(process.argv.includes("--allow-drafts") ? warnings : errors).push(...drafts.warnings);
+if (drafts.drafts) console.log(`intake drafts: ${drafts.drafts} checked against their stored sources`);
 
 for (const w of warnings) console.log(`warn   ${w}`);
 for (const e of errors) console.log(`error  ${e}`);

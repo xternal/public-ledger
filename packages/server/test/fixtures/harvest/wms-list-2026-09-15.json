@@ -1,0 +1,131 @@
+{
+ "totalResults": 3,
+ "results": [
+  {
+   "value": {
+    "id": 1943121,
+    "memberId": 4243,
+    "member": {
+     "id": 4243,
+     "listAs": "Jarvis, Dan",
+     "name": "Dan Jarvis",
+     "party": "Labour",
+     "partyColour": "d50000",
+     "partyAbbreviation": "Lab",
+     "memberFrom": "Barnsley North",
+     "thumbnailUrl": "https://members-api.parliament.uk/api/Members/4243/Thumbnail"
+    },
+    "memberRole": "The Minister of State for Security",
+    "uin": "HCWS353",
+    "dateMade": "2026-09-15T00:00:00",
+    "answeringBodyId": 1,
+    "answeringBodyName": "Home Office",
+    "title": "Anti-Money Laundering and Asset Recovery Strategy 2026-29",
+    "text": "Today the Government published the Anti-Money Laundering and Asset Recovery Strategy 2026-2029, setting out our response to the money laundering that enables serious and organised crime across the UK and threatens our national security. Money laundering f...",
+    "house": "Commons",
+    "noticeNumber": 6,
+    "hasAttachments": false,
+    "hasLinkedStatements": true,
+    "linkedStatements": [
+     {
+      "linkedStatementId": 1943120,
+      "linkType": "JointStatement",
+      "linkDate": "2026-09-15T00:00:00"
+     }
+    ],
+    "attachments": []
+   },
+   "links": [
+    {
+     "rel": "self",
+     "href": "/Statements/1732546",
+     "method": "GET"
+    }
+   ]
+  },
+  {
+   "value": {
+    "id": 1943081,
+    "memberId": 420,
+    "member": {
+     "id": 420,
+     "listAs": "Cooper, Yvette",
+     "name": "Yvette Cooper",
+     "party": "Labour",
+     "partyColour": "d50000",
+     "partyAbbreviation": "Lab",
+     "memberFrom": "Pontefract, Castleford and Knottingley",
+     "thumbnailUrl": "https://members-api.parliament.uk/api/Members/420/Thumbnail"
+    },
+    "memberRole": "Secretary of State for Health and Social Care",
+    "uin": "HCWS352",
+    "dateMade": "2026-09-15T00:00:00",
+    "answeringBodyId": 17,
+    "answeringBodyName": "Department of Health and Social Care",
+    "title": "Thirwall Inquiry Final Report and Recommendations",
+    "text": "Please refer to the Oral Statement I have made today on this subject.",
+    "house": "Commons",
+    "noticeNumber": 5,
+    "hasAttachments": false,
+    "hasLinkedStatements": true,
+    "linkedStatements": [
+     {
+      "linkedStatementId": 1943119,
+      "linkType": "JointStatement",
+      "linkDate": "2026-09-15T00:00:00"
+     }
+    ],
+    "attachments": []
+   },
+   "links": [
+    {
+     "rel": "self",
+     "href": "/Statements/1732547",
+     "method": "GET"
+    }
+   ]
+  },
+  {
+   "value": {
+    "id": 1942984,
+    "memberId": 4870,
+    "member": {
+     "id": 4870,
+     "listAs": "Eshalomi, Florence",
+     "name": "Florence Eshalomi",
+     "party": "Labour",
+     "partyColour": "d50000",
+     "partyAbbreviation": "Lab",
+     "memberFrom": "Vauxhall and Camberwell Green",
+     "thumbnailUrl": "https://members-api.parliament.uk/api/Members/4870/Thumbnail"
+    },
+    "memberRole": "Minister of State for Homelessness, Democracy, Communities and Faith",
+    "uin": "HCWS351",
+    "dateMade": "2026-09-15T00:00:00",
+    "answeringBodyId": 7,
+    "answeringBodyName": "Ministry of Housing, Communities and Local Government",
+    "title": "Homes for Ukraine funding changes",
+    "text": "Over the past four years, the government has remained committed to supporting Ukrainians fleeing Putin’s illegal and unjustified full-scale invasion. Through the Homes for Ukraine scheme, we have welcomed over 181,000 Ukrainians to the UK. Our commitment ...",
+    "house": "Commons",
+    "noticeNumber": 9,
+    "hasAttachments": false,
+    "hasLinkedStatements": true,
+    "linkedStatements": [
+     {
+      "linkedStatementId": 1942987,
+      "linkType": "JointStatement",
+      "linkDate": "2026-09-15T00:00:00"
+     }
+    ],
+    "attachments": []
+   },
+   "links": [
+    {
+     "rel": "self",
+     "href": "/Statements/1732548",
+     "method": "GET"
+    }
+   ]
+  }
+ ]
+}
