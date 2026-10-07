@@ -27,6 +27,8 @@ permissions:
   contents: write
   pull-requests: write
   actions: write
+  # Reading CI results (check runs); a workflow that lists permissions gets nothing it does not list.
+  checks: read
 
 concurrency:
   group: intake-merge

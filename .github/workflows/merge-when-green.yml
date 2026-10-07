@@ -1,0 +1,78 @@
+name: Merge when green
+
+# The repository is private on GitHub's free plan, so main cannot require checks
+# (branch protection). Instead: label a pull request `merge-when-green` and this
+# job merges it once CI is green on its latest commit.
+# - Green means the CI checks `app` and `data` both succeeded on the head commit
+#   (the latest run of each). A commit pushed after the checks is never merged
+#   unchecked (--match-head-commit); its own CI run decides again.
+# - Only open pull requests into main carrying the label are touched.
+# - Merges made with the workflow token start no other workflows, so when the
+#   merge changed content/ this job starts the alerts run itself. Vercel deploys
+#   main through its own GitHub connection, so the site updates as usual.
+# Intake pull requests have their own rule (.github/workflows/intake-merge.yml).
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+  pull_request:
+    types: [labeled]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: Pull request number to check now
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+  # Reading CI results (check runs); a workflow that lists permissions gets nothing it does not list.
+  checks: read
+
+concurrency:
+  group: merge-when-green
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge labelled pull requests whose checks are green
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          LABEL: merge-when-green
+          EVENT_PR: ${{ github.event.pull_request.number || inputs.pr || '' }}
+          RUN_PRS: ${{ toJSON(github.event.workflow_run.pull_requests) }}
+        run: |
+          set -euo pipefail
+          prs="$EVENT_PR"
+          if [ -z "$prs" ] && [ -n "$RUN_PRS" ] && [ "$RUN_PRS" != "null" ]; then
+            prs=$(echo "$RUN_PRS" | jq -r '.[].number')
+          fi
+          [ -z "$prs" ] && { echo "No pull request in this event."; exit 0; }
+          for pr in $prs; do
+            info=$(gh pr view "$pr" --repo "$REPO" --json state,labels,headRefOid,isDraft,baseRefName)
+            if [ "$(echo "$info" | jq -r '.state')" != "OPEN" ] || [ "$(echo "$info" | jq -r '.baseRefName')" != "main" ] \
+               || ! echo "$info" | jq -e --arg l "$LABEL" '.labels | map(.name) | index($l)' > /dev/null; then
+              echo "#$pr: not an open pull request into main labelled $LABEL; nothing to do."; continue
+            fi
+            head=$(echo "$info" | jq -r '.headRefOid')
+            checks=$(gh api "repos/$REPO/commits/$head/check-runs?per_page=100" | jq '[.check_runs[] | select(.name == "app" or .name == "data")] | group_by(.name) | map(sort_by(.started_at) | last)')
+            green=$(echo "$checks" | jq '[.[] | select(.conclusion == "success")] | length')
+            failed=$(echo "$checks" | jq '[.[] | select(.conclusion != null and .conclusion != "success")] | length')
+            echo "#$pr at ${head:0:7}: $green of 2 CI checks green, $failed failed."
+            if [ "$failed" -gt 0 ]; then echo "#$pr: CI failed; leaving it open."; continue; fi
+            if [ "$green" -lt 2 ]; then echo "#$pr: CI still running; the next CI completion checks again."; continue; fi
+            [ "$(echo "$info" | jq -r '.isDraft')" = "true" ] && { echo "#$pr: still a draft; leaving it open."; continue; }
+            before=$(gh api "repos/$REPO/git/ref/heads/main" --jq '.object.sha')
+            gh pr merge "$pr" --repo "$REPO" --merge --delete-branch --match-head-commit "$head"
+            after=$(gh pr view "$pr" --repo "$REPO" --json mergeCommit --jq '.mergeCommit.oid')
+            echo "#$pr merged as ${after:0:7}."
+            if gh api "repos/$REPO/compare/$before...$after" --jq '[.files[].filename | select(startswith("content/"))] | length' | grep -qv '^0$'; then
+              echo "Content changed: starting alerts for ${before:0:7}..${after:0:7}."
+              gh workflow run alerts.yml --repo "$REPO" -f task=diff -f before="$before" -f after="$after" -f dry_run=false
+            fi
+          done
