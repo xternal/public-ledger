@@ -1,5 +1,5 @@
 // Follow (M3b): email double opt-in, manage links, Telegram bot, follower counts.
-export { CONSENT_POINTS, CONSENT_TEXT, CONSENT_VERSION } from "./consent";
+export { CONSENT_POINTS, CONSENT_TEXT, CONSENT_VERSION, PRIVACY_PATH } from "./consent";
 export {
   CADENCES,
   TARGET_KINDS,

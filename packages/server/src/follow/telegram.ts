@@ -2,7 +2,7 @@ import type { Config } from "../config";
 import { sameHash } from "../crypto";
 import type { TelegramSender } from "../telegram-api";
 import { countUsage } from "../usage";
-import { CONSENT_POINTS } from "./consent";
+import { CONSENT_POINTS, PRIVACY_PATH } from "./consent";
 import { type FollowContext, telegramFollow, telegramStop, telegramTargets, telegramUnfollow } from "./service";
 import { type KnownTarget, type Target, parseTelegramPayload, plainDescribe, telegramPayload } from "./targets";
 
@@ -143,6 +143,8 @@ function helpText(config: Config): string {
     "/unfollow – stop following one thing",
     "/stop – stop all alerts and delete your chat id",
     "/help – this message",
+    "",
+    `Who runs Public Ledger, what we keep and your rights: ${config.siteUrl}${PRIVACY_PATH}`,
   ].join("\n");
 }
 
@@ -150,7 +152,17 @@ async function offerFollow(ctx: BotContext, chatId: string, target: Target): Pro
   const name = (ctx.describe ?? plainDescribe)(target);
   await ctx.bot.sendWithButtons(
     chatId,
-    [`Follow: ${name}`, "", "Before you follow:", ...CONSENT_POINTS.map((p) => `• ${p}`), "", "Send /stop at any time to delete everything.", "", "Press Follow to agree and start."].join("\n"),
+    [
+      `Follow: ${name}`,
+      "",
+      "Before you follow:",
+      ...CONSENT_POINTS.map((p) => `• ${p}`),
+      `Full details: ${ctx.config.siteUrl}${PRIVACY_PATH}`,
+      "",
+      "Send /stop at any time to delete everything.",
+      "",
+      "Press Follow to agree and start.",
+    ].join("\n"),
     [[{ text: "Follow", data: telegramPayload(target) }]],
   );
   await countUsage(ctx.db, { event: "follow_started", props: { channel: "telegram", target_kind: target.kind } }, 1, ctx.now ?? new Date());

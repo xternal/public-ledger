@@ -5,7 +5,7 @@ import type { Mailer } from "../mail";
 import { decrypt, encrypt, hashToken, lookupHash, newToken, normaliseEmail, sameHash } from "../crypto";
 import { rateLimit } from "../spam";
 import { countUsage } from "../usage";
-import { CONSENT_VERSION } from "./consent";
+import { CONSENT_VERSION, PRIVACY_PATH } from "./consent";
 import { isTokenShape } from "./input";
 import { type Cadence, type DescribeTarget, type Target, type TargetKind, plainDescribe, sameTarget } from "./targets";
 import { errorText } from "../log";
@@ -74,7 +74,7 @@ export function manageUrl(config: Config, token: string): string {
 
 /** The privacy notice: who runs Public Ledger, what is kept, for how long, and readers' rights. */
 export function privacyUrl(config: Config): string {
-  return `${config.siteUrl}/privacy`;
+  return `${config.siteUrl}${PRIVACY_PATH}`;
 }
 
 /** One-click unsubscribe (RFC 8058): mail clients POST here; put it in MailMessage.unsubscribeUrl. */

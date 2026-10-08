@@ -5,6 +5,7 @@ import { outboxMailer, type MailMessage, type Mailer } from "../src/mail";
 import { decrypt } from "../src/crypto";
 import {
   ADDRESS_DAILY_LIMIT,
+  CONSENT_POINTS,
   CONSENT_VERSION,
   confirmEmailFollow,
   confirmTokenState,
@@ -157,6 +158,21 @@ describe("email follow: start → confirm → manage → unsubscribe → delete"
     expect(fresh).not.toBe(res.manageToken);
     expect(await manageView({ db, config }, fresh)).not.toBeNull();
     await expect(manageToken(db, config, "00000000-0000-4000-8000-000000000000")).rejects.toThrow();
+  });
+});
+
+describe("consent text", () => {
+  it("names the controller and the services that carry messages, in a version newer than the first", () => {
+    const text = CONSENT_POINTS.join(" ");
+    expect(text).toContain("Empatiq Limited runs Public Ledger");
+    expect(text).toContain("Resend delivers our emails");
+    expect(text).toContain("Telegram carries the bot's messages");
+    expect(CONSENT_VERSION > "2026-10-06").toBe(true);
+  });
+
+  it("links the privacy notice from the confirmation email", async () => {
+    await requestEmailFollow(ctx(), { email: EMAIL, targets: [BUS], cadence: "instant" });
+    expect(mail.sent[0]!.text).toContain("Who runs Public Ledger, what we keep and your rights: https://ledger.test/privacy");
   });
 });
 

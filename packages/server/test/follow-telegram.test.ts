@@ -61,6 +61,7 @@ describe("Telegram bot", () => {
     expect(c.chatId).toBe(String(CHAT));
     expect(c.text).toContain("Follow: name of promise uk-bus-cap-2-2026");
     for (const p of CONSENT_POINTS) expect(c.text).toContain(p);
+    expect(c.text).toContain("Full details: https://ledger.test/privacy");
     expect(c.buttons).toEqual([[{ text: "Follow", data: "p_uk-bus-cap-2-2026" }]]);
     expect(await db.query("SELECT 1 FROM subscription")).toHaveLength(0);
   });
