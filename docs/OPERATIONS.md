@@ -15,10 +15,10 @@ variables (`apps/web/.env.example` lists them all).
 | Thing | Provider | Region | What is stored |
 |---|---|---|---|
 | Subscriptions, submissions, counts | Neon Postgres | AWS eu-west-2 (London) | Encrypted addresses, followed ids, submissions; no IPs, no names |
-| Alert and receipt emails | Amazon SES | eu-west-2 (London) | Nothing kept beyond SES's own sending logs; no open or click tracking |
+| Alert and receipt emails | Resend (or Amazon SES) | Resend: eu-west-1 (Ireland); SES: eu-west-2 (London) | Nothing kept beyond the provider's own sending logs; no open or click tracking |
 | Telegram alerts | Telegram Bot API | Telegram's servers | Chat id (encrypted on our side) |
 | App and API | Vercel | Functions in `lhr1` (London) | Nothing; stateless |
-| Alerts job | GitHub Actions | GitHub | Nothing; reads secrets, talks to Neon, SES and Telegram |
+| Alerts job | GitHub Actions | GitHub | Nothing; reads secrets, talks to Neon, the mail provider and Telegram |
 
 ## 1. Keys you generate yourself
 
@@ -53,7 +53,18 @@ before doing it.
 4. Turn on Neon's point-in-time restore (on by default on paid plans) and note
    the retention.
 
-## 3. Mail: Amazon SES (London)
+## 3. Mail: Resend (recommended) or Amazon SES
+
+Mail needs a domain you own, for example `alerts@<your-domain>`: neither provider can send from `*.vercel.app`.
+
+**Resend** (`MAIL_PROVIDER=resend`). It's simpler, and the owner already uses it on other projects.
+
+1. In Resend, add the sending **domain** in the **EU region (eu-west-1, Ireland)**, and publish the DNS records it gives you (DKIM, SPF via a `send` subdomain, and a DMARC record: `p=quarantine` once mail flows cleanly).
+2. On the domain, turn **open tracking and click tracking off**. Our mail is plain text with no images or rewritten links, and tracking would break the privacy promise.
+3. Create an API key with **sending access** to that domain only.
+4. Set `MAIL_PROVIDER=resend`, `RESEND_API_KEY`, `MAIL_FROM` (e.g. `Public Ledger <alerts@your-domain>`) and optionally `MAIL_REPLY_TO`, in Vercel and, for alerts, in GitHub Actions secrets.
+
+**Amazon SES** (`MAIL_PROVIDER=ses`): keeps mail in London, at the cost of more setup.
 
 1. In the AWS console switch to **eu-west-2 (London)**, open SES.
 2. Verify the sending **domain** (not a single address): add the three DKIM
