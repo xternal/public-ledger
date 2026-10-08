@@ -41,9 +41,21 @@ fi
 # never fine for a public one, where anyone's pull request could run here.
 [ "$(gh repo view "$REPO" --json visibility --jq .visibility)" = "PRIVATE" ] || die "$REPO is not private; a runner on your Mac must never serve a public repository"
 
+# Jobs use the Mac's own Python 3.14 (GitHub's macOS Python builds only install under
+# /Users/runner), so the runner's PATH must reach Homebrew; it records PATH when registered.
+path_setup() {
+  command -v /opt/homebrew/bin/python3.14 > /dev/null || die "Python 3.14 is needed for the data jobs: brew install python@3.14"
+  case ":$(cat .path 2> /dev/null):" in
+    *:/opt/homebrew/bin:*) return 1 ;;
+    *) echo "/opt/homebrew/bin:$(cat .path 2> /dev/null || echo "$PATH")" > .path ;;
+  esac
+}
+
 if [ -f "$DIR/.runner" ]; then
   say "Already set up in $DIR; making sure it is running"
-  cd "$DIR" && (./svc.sh start || true) && ./svc.sh status || true
+  cd "$DIR"
+  if path_setup; then ./svc.sh stop 2> /dev/null || true; fi
+  (./svc.sh start || true) && ./svc.sh status || true
   exit 0
 fi
 
@@ -70,6 +82,8 @@ say "Registering it with $REPO (label: $LABEL)"
   --name "$(scutil --get LocalHostName)-ledger" \
   --labels "$LABEL" \
   --work _work
+
+path_setup || true
 
 say "Starting it as a background service (it starts again when you log in)"
 ./svc.sh install
