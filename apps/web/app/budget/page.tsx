@@ -175,7 +175,8 @@ export default function BudgetPage() {
                   {w.other.length} more government promises it could move
                 </span>
                 <span className="mt-1 block text-muted">
-                  No cost stated yet. <span className="font-medium text-accent group-open:hidden">Show them</span>
+                  No yearly cost on these: some have no cost of their own, others no official yearly figure yet. Each card says which.{" "}
+                  <span className="font-medium text-accent group-open:hidden">Show them</span>
                 </span>
               </summary>
               <div className="mt-4">
