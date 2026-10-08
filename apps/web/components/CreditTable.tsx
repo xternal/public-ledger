@@ -9,8 +9,8 @@ import { signedBn } from "@/lib/format";
 export const CREDIT_COLUMNS: { label: string; statuses: Status[]; color: string }[] = [
   { label: "Delivered", statuses: ["delivered"], color: "var(--good)" },
   { label: "In progress", statuses: ["promised", "in_plan", "legislated", "funded", "delivering"], color: "var(--warn)" },
-  { label: "Failed", statuses: ["failed"], color: "var(--bad)" },
-  { label: "Quietly dropped", statuses: ["quietly_dropped"], color: "var(--debt)" },
+  { label: "Not met", statuses: ["failed"], color: "var(--bad)" },
+  { label: "Undone", statuses: ["quietly_dropped"], color: "var(--debt)" },
   { label: "Unscoreable", statuses: ["unscoreable"], color: "var(--idle)" },
 ];
 

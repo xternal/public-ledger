@@ -1,6 +1,6 @@
 # Promise standard v0
 
-The rules that turn a sentence into a card. Published, versioned, applied to every actor in the same way, including the project's own founders.
+The rules that turn a sentence into a card. Published, versioned, applied to every actor in the same way.
 
 ## 1. What counts as a promise
 
@@ -42,6 +42,8 @@ unscoreable (separate)
 | failed | Deadline passed and evidence shows it was not met, or officially abandoned |
 | quietly_dropped | Deadline passed, no official statement, no evidence of delivery. Auto-flagged by `deadline_missed`, confirmed by an editor after 30 days |
 
+Readers see neutral labels that state the fact, never a verdict on a person: `failed` reads **Not met** and `quietly_dropped` reads **Undone**. The ids stay as they are in the data.
+
 ## 4. Rewording
 
 If the actor restates the promise with different terms, add a `PromiseVersion` and a `reworded` event. The card shows a diff (e.g. "2023: £2 cap → 2025: £3 cap → 2026: £2 cap"). Rewording is not failure, but it is visible.
@@ -60,7 +62,7 @@ Any actor (or their office) may dispute a card's parameters. The reply is publis
 
 ## 7. Conflicts of interest
 
-Editors declare party membership. Cards about the project's own founders' parties require an external reviewer's approval.
+Editors declare party membership. An editor never approves a card about their own party; another editor or an external reviewer does.
 
 ## 8. Reader submissions
 
@@ -68,7 +70,7 @@ Editors declare party membership. Cards about the project's own founders' partie
 2. Automatic checks: URL reachable, archived snapshot, transcript exact-match where available, duplicate detection, LLM pre-fill.
 3. An editor triages within 3 working days: accept → draft card or new timeline event in a pull request; reject with a reason code (no primary source, not a promise, duplicate, out of scope).
 4. Same two-editor rule as any other card. Submission volume never changes a status; only evidence does.
-5. Submissions about the project's founders' own party are reviewed by an external reviewer, as in §7.
+5. Submissions about an editor's own party are reviewed by another editor or an external reviewer, as in §7.
 6. Contributor credit only when requested.
 
 ## 9. Corrections

@@ -15,9 +15,9 @@ Legend: ✅ fixed in this pass · 🔲 open. Owner: ENG, DATA, ED (editor), ECON
 | B2 | Lever coefficients (1p income tax ≈ £7.4bn, 1pp VAT ≈ £8.7bn, NICs, CT, Bank Rate → debt interest) are from model memory | Every sandbox result depends on them | Replace with HMRC "Direct effects of illustrative tax changes" and OBR ready reckoner; golden tests | DATA, ECON | ✅ M1: HMRC June 2025 edition and OBR debt-interest reckoner, golden tests · 🔲 HMRC's next edition is postponed (acknowledged until 31 Jan 2027) |
 | B3 | Macro rules of thumb (multipliers, VAT pass-through) unsigned | GDP/CPI tiles look authoritative | Economist sign-off against published OBR/BoE elasticities; tiles now carry a "rule of thumb" badge | ECON | ✅ badge · 🔲 sign-off |
 | B4 | Only the bus-cap card is sourced. Defence 2.5% and 1.5m homes have no sources; the defence cost range I had entered was an estimate; the credit-history table uses fictional "Party A/B/C" | Publishing an unsourced status about a named politician is a defamation and credibility risk | Defence cost removed ("cost pending editor"). Editors source every card; credit table only renders from real cards | ED | ✅ partly · 🔲 |
-| B5 | UK election law. Non-party campaigning that can reasonably be regarded as intended to influence voters is regulated; registration is needed above £20,000 (England) or £10,000 (Scotland, Wales, NI) in a regulated period. Foreign-linked bodies face tight limits (Elections Act 2022 cap for ineligible foreign campaigners, from model memory) | A promise tracker with status labels on parties may count; funding from a Russian party would be a problem | Legal advice before launch and before each regulated period; UK entity, UK funding, neutral brand; publish funding sources | LEGAL | 🔲 |
+| B5 | UK election law. Non-party campaigning that can reasonably be regarded as intended to influence voters is regulated; registration is needed above £20,000 (England) or £10,000 (Scotland, Wales, NI) in a regulated period. Foreign-linked bodies face tight limits (Elections Act 2022 cap for ineligible foreign campaigners, from model memory) | A promise tracker with status labels on parties may count; funding from a party, a campaign or a foreign source would be a problem | Legal advice before launch and before each regulated period; UK entity, UK funding, neutral brand; publish funding sources | LEGAL | 🔲 |
 | B6 | Defamation exposure from statuses like `failed` and `quietly_dropped` on named people | UK defamation law is claimant-friendly | Evidence requirement per status (`PROMISE_STANDARD.md` §3), right of reply, legal review of status wording and templates, archive every source | LEGAL, ED | 🔲 |
-| B7 | Follow lists and submission histories reveal political opinions (UK GDPR Art. 9 special category) | Regulatory and trust risk; in Russia mode a physical safety risk | Explicit consent, minimal storage, aggregates only, DPIA, Russia mode without accounts (`PRIVACY_AND_ACCOUNTS.md`) | LEGAL, ENG | ✅ spec · 🔲 DPIA |
+| B7 | Follow lists and submission histories reveal political opinions (UK GDPR Art. 9 special category) | Regulatory and trust risk | Explicit consent, minimal storage, aggregates only, DPIA (`PRIVACY_AND_ACCOUNTS.md`) | LEGAL, ENG | ✅ spec · 🔲 DPIA |
 | B8 | Licences and terms | Attribution is a condition of reuse | OGL v3 attribution for gov data; Open Parliament Licence for Hansard; TheyWorkForYou API terms and key; fair-dealing limits on storing broadcast transcripts (store short quotes plus timestamps, not full transcripts) | LEGAL, ENG | 🔲 |
 
 ## High
@@ -50,7 +50,7 @@ Legend: ✅ fixed in this pass · 🔲 open. Owner: ENG, DATA, ED (editor), ECON
 | M8 | Full d3 bundle (~280 KB) in prototype | ✅ modular d3 imports (M0) |
 | M9 | Build-time estimate (6–8 weeks) is low-confidence | 🔲 re-estimate after M0 |
 | M10 | KPI "Debt £2.9tn" doesn't move with scenarios (year-one view) | ✅ labelled with its year (M0) · 🔲 scenario debt at horizon |
-| M11 | README and RUSSIA docs were in Russian | ✅ all handover docs now in English |
+| M11 | Some handover docs were not in English | ✅ all handover docs now in English |
 
 ## Found in M1 (data pipeline)
 

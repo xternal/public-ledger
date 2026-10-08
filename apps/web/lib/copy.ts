@@ -6,7 +6,7 @@ export const QUALITY_LABEL: Record<Quality | "plug", string> = {
   sourced: "Sourced",
   approx: "Estimate",
   modelled: "Modelled",
-  training: "Placeholder",
+  training: "To check",
   plug: "Balancing figure",
 };
 
@@ -14,7 +14,7 @@ export const QUALITY_HELP: Record<Quality | "plug", string> = {
   sourced: "Taken from an official release, linked.",
   approx: "Derived or scaled from official figures; the method is shown.",
   modelled: "Produced by our model, shown as a range.",
-  training: "A stand-in until the data pipeline replaces it. Do not quote.",
+  training: "A working figure not yet checked against an official source or by an economist. Please don't quote it yet.",
   plug: "A residual that makes the statement balance. It must be broken down before launch.",
 };
 
@@ -41,8 +41,8 @@ export const STATUS_LABEL: Record<Status, string> = {
   funded: "Funded",
   delivering: "Delivering",
   delivered: "Delivered",
-  failed: "Failed",
-  quietly_dropped: "Quietly dropped",
+  failed: "Not met",
+  quietly_dropped: "Undone",
   unscoreable: "Unscoreable",
 };
 
@@ -54,7 +54,7 @@ export const EVENT_LABEL: Record<EventType | "today", string> = {
   funded: "Funded",
   delivering: "Delivering",
   delivered: "Delivered",
-  failed: "Failed",
+  failed: "Not met",
   deadline: "Deadline",
   deadline_missed: "Deadline passed",
   reply: "Reply",
@@ -67,7 +67,7 @@ export const EVIDENCE_OPTIONS = [
   { id: "funded", label: "It was funded in a Budget or Estimates" },
   { id: "delivering", label: "It started" },
   { id: "delivered", label: "It was delivered" },
-  { id: "failed", label: "It was dropped or failed" },
+  { id: "failed", label: "It was not met, or was abandoned" },
 ] as const;
 
 /**

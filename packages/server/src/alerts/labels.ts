@@ -11,8 +11,8 @@ export const STATUS_LABEL: Record<string, string> = {
   funded: "Funded",
   delivering: "Delivering",
   delivered: "Delivered",
-  failed: "Failed",
-  quietly_dropped: "Quietly dropped",
+  failed: "Not met",
+  quietly_dropped: "Undone",
   unscoreable: "Unscoreable",
 };
 
@@ -24,7 +24,7 @@ export const EVENT_LABEL: Record<string, string> = {
   funded: "Funded",
   delivering: "Delivering",
   delivered: "Delivered",
-  failed: "Failed",
+  failed: "Not met",
   deadline: "Deadline",
   deadline_missed: "Deadline passed",
   reply: "Reply",

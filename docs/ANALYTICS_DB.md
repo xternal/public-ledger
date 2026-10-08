@@ -42,4 +42,3 @@ Design choices:
 1. No identifiers of people, devices or sessions in any table.
 2. Follow and submission counts carry no promise or actor id (analytics privacy rule 6).
 3. Analytics never change a finding: views and counts are not evidence for a status.
-4. Russia mode: server totals only (docs/RUSSIA.md).

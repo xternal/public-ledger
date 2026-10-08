@@ -36,7 +36,7 @@ Under UK GDPR, data revealing political opinions is special category data (Artic
 |---|---|---|---|
 | RSS/Atom per promise, actor, area | No | Nothing | v0 |
 | Email alerts (double opt-in) | No | Email + followed IDs | v0 |
-| Telegram bot | No | Telegram chat ID + followed IDs | v0 (essential for Russia mode) |
+| Telegram bot | No | Telegram chat ID + followed IDs | v0 |
 | Web push | No | Push endpoint + followed IDs | v1 |
 | Account (passkey or magic link) | Yes | Email, followed IDs, submission history, optional public handle | v1 |
 
@@ -59,6 +59,3 @@ Under UK GDPR, data revealing political opinions is special category data (Artic
 * Public user profiles or follower lists.
 * Likes/upvotes on findings (popularity must not affect a card's status).
 
-## Russia mode
-
-Accounts off. Follow via RSS and Telegram bot only. Submissions anonymous by default: no IP logging at all, metadata stripped from uploads, Tor-reachable form, no request for real names, editors outside Russia. A list of people tracking Kremlin promises is a danger to them, so the product must be unable to produce one.

@@ -15,7 +15,6 @@ A customer journey map (CJM) follows one kind of user from what first prompts th
 | [M5b] | Optional accounts. |
 | [M6] | Demography and the long term (`/people`). |
 | [M7] | Backtest, public API and CSV, method changelog. |
-| [M8] | Russia mode. |
 | [gap] | The journey needs it, but no doc specifies or schedules it. See "Gaps and open questions". |
 
 References: F1–F9 are features in `docs/PRD.md`. "Inv 1–9" are the invariants in `CLAUDE.md`. B, H and "review M" IDs are issues in `docs/PRE_SHIP_REVIEW.md`. For example, review M6 is the Google Fonts issue, not milestone [M6]. A § number without a file points to `docs/PROMISE_STANDARD.md`. The personas come from the PRD users table. The reader who contributes and the follower both come from module 6 (Follow & Contribute). They are mapped separately because they use different screens and we store different data about them (`docs/PRIVACY_AND_ACCOUNTS.md`).
@@ -117,7 +116,7 @@ Disagrees with a card and uses the right of reply. Hypothetical example: a staff
 | **Should do** | Go to the card, not to social media | Read the evidence behind the status | Point to one parameter and one source | Attach primary evidence and keep it short | Send new evidence when delivery moves | Follow their own actor page |
 | **Thinking / feeling** | "Who runs this, and who funds it?" | "Is this a hit piece?" | "We named the money. Why only 'in plan'?" | "Will our reply be buried?" | "They printed it in full, with their answer." | "Better to feed them evidence than fight them." |
 | **Pain points and risks** | Suspicion of bias or foreign funding (B5) | Illustrative party table, unsourced cards (B4) | Status read as an accusation (B6). Parameters as hidden editorial power (PRD risks) | No channel or identity check specified [gap] | 5-day deadline missed, or a rejection without reasons | Belief that other parties get softer treatment |
-| **Product response** | Neutral brand, UK entity, published funding (B5) | Track record built only from real cards (B4). No "liar score" (F5) | Public standard and evidence for every status (§2–3). "Funding not stated" is a fact | Reply published next to the card within 5 working days (§5) | An accepted change becomes a new version with a reason (inv 5) | One standard for everyone (inv 6). External review for the founders' parties (§7) |
+| **Product response** | Neutral brand, UK entity, published funding (B5) | Track record built only from real cards (B4). No "liar score" (F5) | Public standard and evidence for every status (§2–3). "Funding not stated" is a fact | Reply published next to the card within 5 working days (§5) | An accepted change becomes a new version with a reason (inv 5) | One standard for everyone (inv 6). An editor never approves a card about their own party (§7) |
 | **Analytics events** | `alert_sent` | `actor_page_viewed`, `promise_card_viewed` | `version_diff_opened`, `method_viewed` | `reply_received` | `reply_published` | `submission_sent` (kind: evidence) |
 
 **Moments that matter**
@@ -204,21 +203,7 @@ Takes a promise from intake, through the two-editor merge, to a live card, then 
 - A merge with one editor, or an automatic merge from intake (inv 8, [M4]).
 - A past version or timeline event rewritten (inv 5).
 - A status set without the evidence the standard requires (B6).
-- A different rule or speed for any party, including the founders' own (inv 6, §7).
-
-## Russia mode note [M8]
-
-From `docs/RUSSIA.md` and `docs/PRIVACY_AND_ACCOUNTS.md`. The engine, screens and standard stay the same. These journey steps change:
-
-| Persona | What changes |
-|---|---|
-| Curious voter, campaigner | The Sankey shows classified spending as a grey "not disclosed" flow with a range. Levers include the Urals oil price, the exchange rate, the National Wealth Fund and the key rate, which drives the cost of subsidised mortgages. "What it means for me" uses region, occupation, mortgage and pension, from official aggregates. |
-| Journalist | More grey zones and quality labels, with cross-checks against outside estimates. Some sources are reachable only through mirrors or archives. |
-| Politician or staffer | The first batch is the May decrees and national projects, with long histories ("promised → reworded → moved to 2030"). The party's own programme is assessed first. How officials reply is not specified [gap]. |
-| Reader who contributes | Anonymous by default: no IP logging, file metadata stripped, a Tor-friendly form, no real names. |
-| Follower | No accounts and no email. RSS and Telegram only, with no subscriber list beyond what Telegram holds. |
-| Editor | Editors work outside Russia and use public sources only. |
-| Analytics | Server totals only (see the Analytics plan). |
+- A different rule or speed for any party, including one an editor belongs to (inv 6, §7).
 
 ## Analytics plan
 
@@ -299,8 +284,7 @@ Each funnel is worked out as a ratio of daily or weekly totals at each step. It 
 7. **Alerts carry no tracking.** No pixels and no per-recipient link tokens. Every alert link carries the same fixed tag (for example `via=alert`), so a click counts as `referrer_kind: alert` and nothing more (F7).
 8. **Salary never leaves the browser.** `your_share_opened` carries no values (inv 7).
 9. **Analytics never change a finding.** Views, follows and submission counts are never evidence for a status (§8, PRIVACY_AND_ACCOUNTS).
-10. **Russia mode collects nothing beyond server totals.** It runs no client events. It counts only page requests per route per day, alerts sent and submissions received, with no IP logging (RUSSIA.md §7).
-11. **The DPIA covers analytics** as well as follows and submissions (B7).
+10. **The DPIA covers analytics** as well as follows and submissions (B7).
 
 ### Open question for product: which analytics stack?
 
@@ -310,7 +294,6 @@ We do not pick a vendor here. Whatever we choose must:
 - count server-side for form pages;
 - store aggregates only;
 - keep no IPs, including in host and CDN logs;
-- support a Russia mode with server totals only.
 
 Owner: product, with ENG and LEGAL.
 
@@ -331,5 +314,4 @@ Owner: product, with ENG and LEGAL.
 | 11 | Alert click-through is a README metric, but email click tracking is disabled. Confirm the fixed `via=alert` tag is acceptable | Follower | LEGAL, ENG |
 | 12 | No README metric for scenarios built or shared. Media citations need manual monitoring, because referrer data is only a proxy | Campaigner, journalist | ED, ENG (product decides) |
 | 13 | Who counts as a "verified member" for "cost this next" voting in the UK pilot. A link to a party member registry may clash with the neutral brand (B5) | Contributor | LEGAL |
-| 14 | Russia mode: how replies from officials are handled, and alert channels without email | Politician, follower | ED, LEGAL |
-| 15 | Web push (v1), the `/line/[node]` drill-down with related promises, and a public submission credit for evidence (not only new cards) have no milestone | Voter, follower, contributor | ENG, DES |
+| 14 | Web push (v1), the `/line/[node]` drill-down with related promises, and a public submission credit for evidence (not only new cards) have no milestone | Voter, follower, contributor | ENG, DES |

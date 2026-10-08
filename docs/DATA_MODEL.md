@@ -147,7 +147,7 @@ type Money = { amount: number; currency: string };   // as the notice states it,
 interface ContractLink {
   id: string;                 // "<promise_id>:<key>"; key = ocid, or "<ocid>--award-<award_id>" for one lot
   promise_id: string;
-  source: "find_a_tender" | "contracts_finder" | "zakupki";   // zakupki kept for M8, not fetched yet
+  source: "find_a_tender" | "contracts_finder";
   ocid: string;               // "ocds-h6vhtk-…" (Find a Tender), "ocds-b5fd17-…" (Contracts Finder)
   title: string; buyer: string;
   notice_url: string; archived_url?: string; record_url: string;

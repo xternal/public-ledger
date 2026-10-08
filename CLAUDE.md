@@ -1,6 +1,6 @@
 # CLAUDE.md — Public Ledger
 
-You are building **Public Ledger**: an open, consumer-grade P&L of the state (UK pilot, Russia later). Three linked modules: the **Statement** (Sankey of income → spending), the **Sandbox** (levers → ranged consequences), and the **Promise ledger** (every political promise as a card with cost, funding and a status timeline). A promise card *is* a sandbox scenario plus a timeline. Read `README.md` (concept) and `docs/PRE_SHIP_REVIEW.md` (known issues), then `docs/PRD.md`, `docs/DATA_MODEL.md`, `docs/MODEL.md` before writing code.
+You are building **Public Ledger**: an open, consumer-grade P&L of the state (UK). Three linked modules: the **Statement** (Sankey of income → spending), the **Sandbox** (levers → ranged consequences), and the **Promise ledger** (every political promise as a card with cost, funding and a status timeline). A promise card *is* a sandbox scenario plus a timeline. Read `README.md` (concept) and `docs/PRE_SHIP_REVIEW.md` (known issues), then `docs/PRD.md`, `docs/DATA_MODEL.md`, `docs/MODEL.md` before writing code.
 
 The clickable reference for look and behaviour is `prototype/index.html` (built from `prototype/template.html` + `data/seed/*.json` by `build_prototype.py`). Port it, including the visual direction in `docs/DESIGN_HANDOFF.md` (white, one typeface, numbers first, three data colours). Do not redesign it unless `docs/DESIGN_HANDOFF.md` or a newer design says so.
 
