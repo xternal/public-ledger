@@ -9,7 +9,7 @@ Most UK government data is under the Open Government Licence v3. URLs verified o
 | OBR Economic and fiscal outlook (EFO) | Receipts by tax, spending components (RDEL, CDEL, AME, welfare, debt interest), PSNB, PSND, GDP, forecast to t+5. Supplementary tables (xlsx) incl. ready reckoners | Spring + autumn | ✓ https://obr.uk/efo/economic-and-fiscal-outlook-march-2026/ |
 | OBR Public finances databank | Long historical series (% GDP and £bn) | After each EFO | https://obr.uk/data/ |
 | OBR brief guide | Headline numbers for the current year (used for seed) | Each EFO | ✓ https://obr.uk/forecasts-in-depth/brief-guides-and-explainers/public-finances/ |
-| OBR Fiscal risks and sustainability | 50-year projections, age-cost profiles | Annual (July) | https://obr.uk/frs/ |
+| OBR Fiscal risks and sustainability | Long-term spending projections to 2075-76 for /people (`etl/sources/obr_frs.py`): age-related spending by line (Table 3.1) and the scenarios in Charts 3.12 and 3.4. July 2026 edition (FRS-2026-07) | Annual (July) | ✓ https://obr.uk/frs/fiscal-risks-and-sustainability-july-2026/ |
 | ONS Public sector finances | Monthly outturn: receipts, spending, borrowing, debt, debt interest | Monthly | ✓ https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance |
 | HMT Public spending statistics / PESA | Spending by COFOG function and sub-function, by department, by country/region (CRA) | PESA July; stats Feb/May/Nov | ✓ https://www.gov.uk/government/statistics/public-spending-statistics-release-may-2026/public-spending-statistics-may-2026 · https://www.gov.uk/government/collections/public-expenditure-statistical-analyses-pesa |
 | HMRC tax receipts | Monthly receipts by tax | Monthly | https://www.gov.uk/government/statistics/hmrc-tax-and-nics-receipts-for-the-uk |
@@ -30,7 +30,8 @@ Current state at time of writing: Bank Rate 3.75%, held 17 Sep 2026 (BoE IADB se
 
 | Source | What | URL |
 |---|---|---|
-| ONS population estimates and national projections | Population by age, variants (fertility, migration, mortality) | https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationprojections |
+| ONS national population projections | UK principal projection and its 13 variants, 2024-based (released 28 Apr 2026): births, deaths, net migration, fertility, life expectancy, working-age and pension-age counts, old-age dependency ratio, to 2075 (`etl/sources/ons_npp.py`, from the table of contents workbook and each UK summary table) | ✓ https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationprojections/bulletins/nationalpopulationprojections/2024based |
+| ONS mid-year population estimates: components of change | Past UK births and deaths, year to mid-2012 to mid-2025, table MYEB5 of the detailed time series (released 1 Oct 2026; `etl/sources/ons_mye_components.py`) | ✓ https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland |
 | ONS births, deaths | TFR, births, deaths | https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages |
 | ONS families and households | Number of households (per-household translation) | https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/families |
 | ONS labour market | Employment, earnings (for "what it means for me") | https://www.ons.gov.uk/employmentandlabourmarket |
@@ -73,7 +74,7 @@ def fetch(since: date | None) -> RawArtifact          # download, store raw file
 def parse(raw: RawArtifact) -> list[Observation]      # normalise to Observation schema
 SOURCE: Source                                        # metadata
 ```
-`etl/build.py` runs all, validates with schemas, runs the balance check, writes `data/build/` + `manifest.json` (source, vintage, hash, fetched_at). CI fails if a source is staler than its cadence + grace period.
+`etl/build.py` runs all, validates with schemas, runs the balance check, writes `data/build/` + `manifest.json` (source, vintage, hash, fetched_at). `--only id,id` fetches just those sources and rebuilds the rest from their committed editions. CI fails if a source is staler than its cadence + grace period.
 
 A vintage names an edition, so it must change only when the data does: take it from the publisher (release date, edition name) or from the data itself (Bank Rate: "IADB IUDBEDR as of <latest decision>"), never from the day of the fetch. The nightly opens a pull request whenever a file under `data/build/observations` changes, so a label that moves on its own opens one every night. As a backstop, the build does not write an edition whose rows repeat the newest committed edition holding them under a new label (GOV.UK's `updated_at` moves on technical republishes); it keeps the committed file and logs an `edition` info check. After fetching, the build assembles from the committed editions, exactly as the offline rebuild in CI does.
 

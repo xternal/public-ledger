@@ -3,12 +3,14 @@ Run every source, normalise, check and write data/build/ (docs/BUILD_PLAN.md M1)
 
     python -m etl.build             fetch (cached 20 h) + parse + assemble + check
     python -m etl.build --offline   rebuild from committed observations only
+    python -m etl.build --only a,b  fetch sources a and b; rebuild the rest from committed observations
 
 Outputs (all committed, so every data change is a reviewable diff):
     data/build/observations/<source>/<vintage>.csv   every observation, one file per edition (not for an
                                                      edition that only relabels the newest committed one)
     data/build/statements/<year>.json + index.json   what the Statement shows for each year
     data/build/levers.json, tax.json                 sandbox coefficients and Your share rates
+    data/build/people.json                           population and long-term spending projections (/people)
     data/build/manifest.json                         sources, files, hashes, vintages, freshness, checks
     data/build/history/{runs,artifacts,checks}.csv   append-only pipeline log for the warehouse
 
@@ -174,16 +176,18 @@ def recorded_source(src: Source, recorded: dict[str, dict]) -> Source:
     return Source(**{**src.model_dump(), **{k: recorded[src.id][k] for k in FETCHED_FIELDS if k in recorded[src.id]}})
 
 
-def collect(run: Run, offline: bool) -> dict[str, list[Observation]]:
+def collect(run: Run, offline: bool, only: set[str] | None = None) -> dict[str, list[Observation]]:
+    """Every source's observations: fetched, or (offline, or not among `only`) the committed editions."""
     by_source: dict[str, list[Observation]] = {}
     recorded = manifest_sources()
     for mod in discover():
         src: Source = mod.SOURCE
-        if offline:
+        committed_only = offline or (only is not None and src.id not in only)
+        if committed_only:
             # Modules learn the edition's title and date while fetching; offline, take them from the manifest.
             src = recorded_source(src, recorded)
         run.sources[src.id] = src
-        if offline:
+        if committed_only:
             by_source[src.id] = read_committed(src.id)
             continue
         try:
@@ -266,6 +270,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--offline", action="store_true")
     ap.add_argument("--trigger", default="manual")
+    ap.add_argument("--only", help="comma-separated source ids to fetch; every other source is rebuilt from its committed editions")
     args = ap.parse_args(argv)
     import logging
 
@@ -277,7 +282,8 @@ def main(argv: list[str] | None = None) -> int:
     trigger = "offline" if args.offline and args.trigger == "manual" else args.trigger
     run = Run(build_id=now.strftime("%Y-%m-%dT%H:%M:%SZ"), started_at=now.isoformat(timespec="seconds"), trigger=trigger)
 
-    by_source = collect(run, args.offline)
+    only = {x.strip() for x in args.only.split(",") if x.strip()} if args.only else None
+    by_source = collect(run, args.offline, only)
     store = Store(by_source)
 
     # Import the assembly steps that depend on source details lazily, so a missing
@@ -285,6 +291,9 @@ def main(argv: list[str] | None = None) -> int:
     from etl.assemble import assemble_all
 
     outputs = assemble_all(store, run)
+    from etl.people import assemble_people
+
+    outputs["people"] = assemble_people(store, run, outputs.get("sources", []))
     from etl.checks import run_checks
 
     run_checks(store, run, outputs)

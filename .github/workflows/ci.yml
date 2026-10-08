@@ -42,4 +42,4 @@ jobs:
       # Rebuild from the committed observations: balance, coverage and staleness checks fail the job.
       - run: python -m etl.build --offline --trigger ci
       - name: Committed build output is up to date
-        run: git diff --exit-code -- data/build/app.json data/build/statements data/build/levers.json data/build/tax.json
+        run: git diff --exit-code -- data/build/app.json data/build/statements data/build/levers.json data/build/tax.json data/build/people.json
