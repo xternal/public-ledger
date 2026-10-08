@@ -69,6 +69,8 @@ Do not build projections. Use:
 
 Levers here are assumptions, not policies: fertility, net migration, life expectancy, state pension age. Output: old-age dependency ratio, age-related spending % GDP to 2075 as a fan.
 
+Built in M6 as `/people` (`etl/people.py` → `data/build/people.json`). Each switch picks a published ONS variant; a mix the ONS does not publish is reported, never computed. Two numbers are worked out from published ones and marked `approx`: people of working age per person over pension age (ONS counts), and age-related spending in an OBR scenario (OBR baseline plus the scenario's published change). Neither body publishes a state pension age variant, so that lever shows its owner (government) and the assumptions used, with no switch.
+
 ## Ensemble display
 
 When two tiers disagree (T0 static vs T1 microsim), show both side by side with a one-line explanation of why. Disagreement is information.
