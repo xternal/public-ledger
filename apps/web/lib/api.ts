@@ -68,7 +68,7 @@ export const endpoints = (): Endpoint[] => [
 
 export const api = {
   index: () =>
-    json("index", "", {
+    json("index", "index", {
       endpoints: endpoints().map((e) => ({
         path: e.path,
         url: `${siteUrl()}${e.example}`,

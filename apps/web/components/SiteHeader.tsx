@@ -8,7 +8,7 @@ const LINKS = [
   { href: "/mp", label: "Your MP" },
   { href: "/people", label: "People" },
   { href: "/#contribute", label: "Contribute" },
-  { href: "/#method", label: "Method" },
+  { href: "/method", label: "Method" },
 ];
 
 /** Header for pages outside the home page. Server-safe, no sandbox state. */
