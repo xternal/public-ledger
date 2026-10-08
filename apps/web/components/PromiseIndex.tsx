@@ -169,7 +169,7 @@ function Summary({ cards, today, total, withCost }: { cards: CardView[]; today: 
     { n: cards.length, label: cards.length === total ? (cards.length === 1 ? "promise" : "promises") : `of ${total} promises` },
     { n: live, label: "in progress" },
     { n: delivered, label: "delivered" },
-    { n: broken, label: "failed or dropped" },
+    { n: broken, label: "not met or undone" },
     { n: overdue, label: "past deadline", tone: overdue ? "text-debt-ink" : undefined },
     { n: costed.length, label: "with a cost" },
   ];

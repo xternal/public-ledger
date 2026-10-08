@@ -46,13 +46,14 @@ describe("config", () => {
 });
 
 describe("database", () => {
+  // Starting an in-memory Postgres can take several seconds when the whole suite runs in parallel.
   it("migrates idempotently", async () => {
     const db = await testDb();
     expect(await migrate(db)).toEqual([]);
     const tables = (await db.query<{ table_name: string }>("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_name")).map((r) => r.table_name);
     expect(tables).toEqual(expect.arrayContaining(["subscription", "subscription_target", "change_event", "delivery", "submission", "daily_salt", "rate_bucket", "usage_daily", "mail_outbox"]));
     await db.close();
-  });
+  }, 30_000);
 
   it("has no column that could hold an IP address or a name", async () => {
     const db = await testDb();

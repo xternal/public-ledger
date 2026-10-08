@@ -2,6 +2,8 @@
 
 Working title. This file covers the concept, the product logic and the build order. Specs for implementation live in `CLAUDE.md` and `docs/`. Read `docs/PRE_SHIP_REVIEW.md` before anything goes public.
 
+**Who is behind it.** Public Ledger is built by [Pavel Guzhikov](https://guzh.uk), a UK resident, as an active citizen: someone who wants a better-informed society and new, more accountable forms of government. It is independent. No party, campaign or government funds or directs it, and it holds every party, in government or opposition, to the same published standard.
+
 ## 1. The idea in one paragraph
 
 A country is a company with 69 million shareholders and no annual report they can read. We build that report. The country's P&L reads in ten seconds, like the Alphabet or Amazon income-statement Sankeys. Next to it sits a sandbox where any politician's proposal turns, within a second, into "what it costs, where the money comes from, and what it does to debt, prices and my wallet". The third part is a promise ledger: a credit history for people in power. Every promise has a timeline that ends either in action or in visible silence.
@@ -43,10 +45,10 @@ Sources: DfT written statement (https://www.gov.uk/government/speeches/2-bus-far
 
 ## 4. Where the original brief needed correcting
 
-1. **Bank Rate in the UK is not a government lever.** The independent Bank of England sets it (3.75%, held 17 Sep 2026, next decision 5 Nov). The sandbox lets you move it, labelled "not a decision by politicians". Its fiscal channel is debt interest (≈£110bn a year, 8p of every £1 spent). In Russia it matters more: the key rate directly drives the budget cost of subsidised mortgages and loans.
+1. **Bank Rate in the UK is not a government lever.** The independent Bank of England sets it (3.75%, held 17 Sep 2026, next decision 5 Nov). The sandbox lets you move it, labelled "not a decision by politicians". Its fiscal channel is debt interest (≈£110bn a year, 8p of every £1 spent).
 2. **Do not build our own macro model.** It takes years and invites the "rigged model" attack. Open building blocks exist: OBR and HMRC publish ready reckoners (cost of 1p on income tax, VAT, etc.), and PolicyEngine UK is an open-source tax-benefit microsimulation with an API. Our edge is the interface, the speed (promise → card in 48 hours), tracking over time and one standard for everyone.
-3. **The UK is the test track, not the market.** UK analysis is plentiful (OBR, IFS, Full Fact, PolicyEngine). What is missing is one consumer product linking promise → cost → status. The UK pilot exists to harden the engine, the standard and the design, and to earn outside validation. The bigger value is Russia, where data is worst and promises are plentiful.
-4. **The UK pilot needs a neutral brand and a UK entity from day one.** A British tool run by a Russian opposition party is the first thing journalists would write about, and UK election law restricts campaigning by foreign-linked bodies (see the review).
+3. **The gap is the product, not the data.** UK analysis is plentiful (OBR, IFS, Full Fact, PolicyEngine). What is missing is one consumer product linking promise → cost → status, readable in seconds by anyone.
+4. **Independent and neutral from day one.** A tool that scores parties must not be run or funded by one. Publish who funds it, keep the brand neutral, and take advice on UK election law before regulated campaign periods (see the review).
 5. **Ranges are not decoration.** No single-number forecasts. The first visible miss would otherwise discredit the whole ledger.
 6. **No composite "liar score" in v0.** Show the status distribution and let people judge. A single score is the easiest thing to attack before the methodology has earned trust.
 
@@ -61,7 +63,7 @@ In (≈6–8 weeks for one developer with Claude Code; low-confidence estimate):
 * OG images for every card and scenario (the share preview is where virality lives).
 * Methodology and sources page.
 
-Out: user accounts, microsimulation (v1), LLM intake from Hansard and TV (v1), demography (v2), backtest (v2), Russia (v3).
+Out: user accounts, microsimulation (v1), LLM intake from Hansard and TV (v1), demography (v2), backtest (v2).
 
 ## 6. Roadmap
 
@@ -74,9 +76,8 @@ Out: user accounts, microsimulation (v1), LLM intake from Hansard and TV (v1), d
 | M5 | 3 wks | PolicyEngine UK: "what it means for me" by household type, decile, region |
 | M5b | 1 wk | Optional accounts (passkey/magic link): synced follows, contributor credit |
 | M6–M7 | 3 wks | Demography and long-term horizon (OBR FSR), backtest, public API |
-| M8 | — | Russia adapter (see `docs/RUSSIA.md`) |
 
-## 7. Metrics (from Project 6, adapted to the UK pilot)
+## 7. Metrics
 
 * Time from headline promise to card: < 72 h by end of pilot.
 * Costed cards: 100 at launch, 300 after six months.
@@ -85,11 +86,7 @@ Out: user accounts, microsimulation (v1), LLM intake from Hansard and TV (v1), d
 * Followers per card and alert click-through: does the timeline bring people back.
 * Share of cards where the actor used the right of reply: a sign that the people we assess read us.
 
-## 8. Moving to Russia, briefly
-
-Same engine. Three things change: sources (Ministry of Finance, Treasury, Central Bank, procurement portal, decrees and national projects); quality labels (the classified part of the budget and cut-back Rosstat statistics appear on the Sankey as a visible grey zone); and levers (oil and gas revenue and the Urals price, the National Wealth Fund, the exchange rate, key rate → subsidised mortgages, open and classified military spending). The first batch of promises is the May decrees of 2012 and 2018 and the national projects. Accounts are off by default in Russia mode. Details: `docs/RUSSIA.md`.
-
-## 9. What is in the pack
+## 8. What is in the pack
 
 | File | For | What |
 |---|---|---|
@@ -104,7 +101,6 @@ Same engine. Three things change: sources (Ministry of Finance, Treasury, Centra
 | `docs/PRIVACY_AND_ACCOUNTS.md` | Product, legal | Follow, contribute, accounts and the data rules around them |
 | `docs/DESIGN_HANDOFF.md` | Designer | Screens, components, tokens, mobile |
 | `docs/BUILD_PLAN.md` | Claude Code | Milestones with ready-to-paste prompts |
-| `docs/RUSSIA.md` | Party team | Russia adaptation |
 | `data/seed/*.json` | All | Seed data (P&L 2025-26, levers, promises) |
 | `prototype/` | Design, engineering | Clickable prototype; `index.html` is built by `build_prototype.py` |
 

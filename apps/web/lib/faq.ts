@@ -21,7 +21,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Who checks the cards?",
-    a: "Every card is re-read against its live sources by Junior Editor, our automated reviewer: the quote word for word, the dates, the evidence, the status, the cost, neutral wording and legal risk. Anything it finds is fixed in public as a dated correction on the card. Human editors review each card next; nothing a reader sends in is published until two editors agree.",
+    a: "Every card is re-read against its live sources by AI Journalist, our automated reviewer: the quote word for word, the dates, the evidence, the status, the cost, neutral wording and legal risk. Anything it finds is fixed in public as a dated correction on the card. Human editors review each card next; nothing a reader sends in is published until two editors agree.",
   },
   {
     q: "Do I need an account?",

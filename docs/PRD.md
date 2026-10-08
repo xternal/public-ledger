@@ -94,7 +94,7 @@ People hear "£2 bus fares", "3.5% on defence", "cut income tax by 2p" and have 
 | "The model is rigged" | Open code, public sources, ranges, ensemble, backtest, independent methodology board |
 | Parameterisation is hidden editorial power | Public standard (`PROMISE_STANDARD.md`), `unscoreable` status, right of reply |
 | False precision | Ranges everywhere, quality badges, no single-number forecasts |
-| Seen as a Russian party's tool meddling in UK politics | Neutral brand and entity for the UK pilot |
+| Seen as partisan, or as a campaign in disguise | Independent and self-funded, published funding, one standard for every party, neutral brand |
 | Stale data | Nightly ETL, vintage shown on every chart, staleness alert in CI |
 | Follow lists reveal political opinions (UK GDPR Art. 9) | Explicit consent, minimal storage, aggregates only, DPIA, see PRIVACY_AND_ACCOUNTS.md |
 | Brigading via submissions | Editor gate, dedupe, rate limits; volume never changes a status |

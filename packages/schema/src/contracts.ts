@@ -12,8 +12,8 @@ import { IsoDate, type Source } from "./provenance";
  * like a card's timeline, and `pnpm validate --base` rejects an edited one.
  */
 
-/** Where a contract's open data comes from. `zakupki` is kept for Russia (M8) and not fetched yet. */
-export const ContractSource = z.enum(["find_a_tender", "contracts_finder", "zakupki"]);
+/** Where a contract's open data comes from. */
+export const ContractSource = z.enum(["find_a_tender", "contracts_finder"]);
 export type ContractSource = z.infer<typeof ContractSource>;
 
 export const Ocid = z.string().regex(/^ocds-[a-z0-9]+-[A-Za-z0-9-]+$/, "an OCDS id, e.g. ocds-h6vhtk-0525b3");

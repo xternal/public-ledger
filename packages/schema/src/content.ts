@@ -138,7 +138,7 @@ function stable(v: unknown): string {
 }
 
 /**
- * A review of the whole card, shown on it. "automated" is Junior Editor, the
+ * A review of the whole card, shown on it. "automated" is AI Journalist (called Junior Editor until 8 Oct 2026), the
  * automated second check (every quote word for word at its source, dates,
  * evidence, status, cost, neutral wording, legal risk); "editor" and "legal" are
  * people. Reviews are append-only: a later review is added, never edited in.

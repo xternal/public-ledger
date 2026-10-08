@@ -8,7 +8,6 @@ export const showsContracts = (status: Status) => CONTRACT_STATUSES.includes(sta
 export const SOURCE_LABEL: Record<ContractSource, string> = {
   find_a_tender: "Find a Tender",
   contracts_finder: "Contracts Finder",
-  zakupki: "zakupki.gov.ru",
 };
 
 /** Companies House page for a company number; the register lists officers and beneficial owners, so we link rather than copy. */
