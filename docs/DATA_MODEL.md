@@ -99,10 +99,14 @@ type Status = "promised" | "in_plan" | "legislated" | "funded" | "delivering"
             | "delivered" | "failed" | "quietly_dropped" | "unscoreable";
 
 interface Actor { id: string; name: string; short_name?: string /* "Labour" for tight spaces */; kind: "person" | "party" | "government"; party_id?: string; roles: { title: string; from: string; to?: string }[];
-  parliament_member_id?: number /* person: UK Parliament Members API id, links /mp pages */; parliament_party_id?: number /* party: Members API party id */ }
+  parliament_member_id?: number /* person: UK Parliament Members API id, links /mp pages */; parliament_party_id?: number /* party: Members API party id */;
+  same_as?: string[] /* official pages an editor checked (party website, GOV.UK profile): schema.org sameAs; the Parliament page is derived from parliament_member_id */ }
 
 interface Promise {
   id: string;                 // "uk-bus-cap-2-2026"
+  headline?: string;          // "Cap bus fares at £2": neutral 3–8 word summary of what is promised, from the quote alone.
+                              // Names the card in titles, lists, structured data and Markdown; not history, so it can be improved.
+                              // Without one, pages use the quote cut at a word boundary.
   actor_id: string;
   made_on: string;
   venue: "manifesto" | "speech" | "debate" | "tv" | "interview" | "press_release" | "parliament" | "social";
@@ -245,4 +249,5 @@ interface Account {           // v1
 - requires ≥1 source URL;
 - requires `parameters` unless `status: unscoreable`;
 - forbids editing an existing `versions[i]` or `events[i]` (CI compares with `main`);
-- requires `lever_settings` to reference existing levers.
+- requires `lever_settings` to reference existing levers;
+- checks a `headline` is 3–8 words, under 70 characters, with no closing full stop. Adding or changing a headline is not a history edit: the append-only check covers `versions`, `events`, `replies`, `corrections` and `reviews` only.

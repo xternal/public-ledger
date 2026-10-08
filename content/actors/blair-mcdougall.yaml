@@ -4,6 +4,9 @@ kind: person
 # UK Parliament Members API: https://members.parliament.uk/member/5076
 parliament_member_id: 5076
 party_id: labour
+# Official pages (structured data sameAs), checked 8 Oct 2026: GOV.UK.
+same_as:
+  - https://www.gov.uk/government/people/blair-mcdougall
 roles:
   - title: Parliamentary Under-Secretary of State (Minister for Reindustrialisation), Department for Business, Innovation, Science and Trade and Department for Energy Security and Net Zero
     # Source: https://www.gov.uk/government/people/blair-mcdougall ("appointed Parliamentary Under-Secretary of State (Minister for Reindustrialisation) jointly in the Department for Business, Innovation, Science and Trade (BIST) and the Department for Energy Security and Net Zero (DESNZ) on 22 July 2026")
