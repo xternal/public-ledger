@@ -1,0 +1,55 @@
+id: uk-green-bank-windfall-tax-2026
+headline: "Apply a windfall tax to bank profits"
+actor_id: green-party
+made_on: "2026-10-02"
+venue: speech
+venue_label: Leader's speech, Green Party autumn conference 2026
+policy_area: taxes
+status: promised
+status_note: >-
+  The Green Party is not in government, so the card stays at Promised. The party set out the details on 19 August
+  2026: 38% on the biggest banks' UK retail profits above £800m. The quoted sentence also promises support from the
+  welfare state, which is too general to score.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Green Party: Zack Polanski's speech to conference in full (2 Oct 2026)"
+    url: https://greenparty.org.uk/2026/10/02/zack-polanskis-speech-to-conference-in-full/
+  - title: "Green Party: Greens announce windfall tax on the profits of big banks (19 Aug 2026)"
+    url: https://greenparty.org.uk/2026/08/19/greens-announce-windfall-tax-on-the-profits-of-big-banks/
+  - title: "Positive Money: Windfall tax on colossal bank profits could raise £19bn in 2026 (4 Aug 2026)"
+    url: https://positivemoney.org/uk/press-release/windfall-tax-on-colossal-bank-profits-could-raise-pound19bn-in-2026/
+versions:
+  - version: 1
+    text: "We will apply a windfall tax to obscene bank profits, and we will make sure the support of the welfare state is always there for those who need it."
+    recorded_on: "2026-10-02"
+    source_url: https://greenparty.org.uk/2026/10/02/zack-polanskis-speech-to-conference-in-full/
+    quote_checked_on: "2026-10-08"
+    parameters:
+      who: The UK's biggest banks, on their UK retail profits above £800m
+      how_much_bn_per_year: [-20.9, -19.0, -17.1]
+      cost_note: >-
+        Raises money, so the figures are negative. Year shown: 2026, one year of profits; the party does not say
+        whether the tax would repeat. The party's figure of about £19bn rests on Positive Money's estimate: 38% of the
+        big four banks' £49.7bn of net income above £800m, £18.9bn. Positive Money is a campaign group; no official or
+        independent costing was found on 8 Oct 2026.
+        Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "Positive Money: Windfall tax on colossal bank profits could raise £19bn in 2026 (4 Aug 2026)"
+          url: https://positivemoney.org/uk/press-release/windfall-tax-on-colossal-bank-profits-could-raise-pound19bn-in-2026/
+        - title: "Positive Money: 2026 bank windfall tax estimates (PDF)"
+          url: https://www.datocms-assets.com/132494/1785825253-2026-bank-windfall-tax-estimates.pdf
+      when: Not stated
+      funded_by: >-
+        Not a spending pledge; the party says £14.8bn of the money raised could give small and medium-sized
+        businesses a larger Employment Allowance
+events:
+  - date: "2026-10-02"
+    type: promised
+    text: Zack Polanski pledges a windfall tax on bank profits in his conference speech
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-08"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.

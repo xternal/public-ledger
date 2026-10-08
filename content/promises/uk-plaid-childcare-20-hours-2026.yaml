@@ -1,0 +1,56 @@
+id: uk-plaid-childcare-20-hours-2026
+headline: "Give 20 hours' free childcare from 9 months"
+actor_id: plaid-cymru
+made_on: "2026-04-09"
+venue: manifesto
+venue_label: Plaid Cymru Senedd manifesto 2026, page 8
+policy_area: social_protection
+status: in_plan
+status_note: >-
+  A pledge about Wales, where childcare is devolved. The Welsh Government's Programme for Government 2026 to 2030
+  commits to a new childcare offer from 9 months to 4 years, building to 20 hours a week for 48 weeks a year, so
+  the card is In plan. The existing offer for 3 and 4-year-olds of working parents stays.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Plaid Cymru: For Wales, Senedd manifesto 2026 (PDF), page 8"
+    url: https://assets.nationbuilder.com/plaid2016/pages/41843/attachments/original/1775140240/For_Wales_-_2026_Manifesto.pdf
+  - title: "Welsh Government: Programme for Government 2026 to 2030, chapter 2"
+    url: https://www.gov.wales/programme-for-government-2026-to-2030-chapter-2-html
+  - title: "Welsh Government: FM and DFM set out plans for most generous childcare offer since devolution"
+    url: https://www.gov.wales/fm-and-dfm-set-out-plans-for-most-generous-childcare-offer-since-devolution
+  - title: "IFS: Initial response to Plaid Cymru's manifesto (9 Apr 2026)"
+    url: https://ifs.org.uk/articles/initial-response-plaid-cymrus-manifesto
+versions:
+  - version: 1
+    text: "By the time our new offer is fully rolled out, every child aged 9 months to 4 years will be entitled to 20 hours of free childcare every week, for 48 weeks a year."
+    recorded_on: "2026-04-09"
+    source_url: https://assets.nationbuilder.com/plaid2016/pages/41843/attachments/original/1775140240/For_Wales_-_2026_Manifesto.pdf
+    quote_checked_on: "2026-10-08"
+    parameters:
+      who: Every child in Wales aged 9 months to 4 years, whatever their parents' work
+      how_much_bn_per_year: [0.36, 0.4, 0.44]
+      cost_note: >-
+        Year shown: the end of the Senedd term, 2030-31. The manifesto gives no cost; the IFS says Plaid Cymru
+        propose increasing spending on childcare by around £400 million a year by the end of the parliament, and
+        warns take-up for the youngest children could push it higher.
+        Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "IFS: Initial response to Plaid Cymru's manifesto (9 Apr 2026)"
+          url: https://ifs.org.uk/articles/initial-response-plaid-cymrus-manifesto
+      when: Phased in over the 2026–2031 Senedd term
+      funded_by: null
+events:
+  - date: "2026-04-09"
+    type: promised
+    text: Plaid Cymru launches its Senedd manifesto with a new childcare offer from 9 months
+  - date: "2026-09-10"
+    type: in_plan
+    text: The Welsh Government's Programme for Government 2026 to 2030 commits to the new childcare offer
+    evidence_url: https://www.gov.wales/programme-for-government-2026-to-2030-chapter-2-html
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-08"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.
