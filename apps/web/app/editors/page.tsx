@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/SiteHeader";
 import { JsonLd } from "@/components/JsonLd";
 import { CONTROLLER, EDITOR_APPLICATION_RETENTION_MONTHS } from "@/lib/privacy-copy";
-import { absolute, EDITORS_EMAIL, EDITORS_PAGE_UPDATED, MAKER, OPEN_GRAPH, SITE_NAME } from "@/lib/site";
+import { absolute, EDITORS_EMAIL, EDITORS_PAGE_UPDATED, MAKER, OPEN_GRAPH, SITE_NAME, SOURCE_CODE } from "@/lib/site";
 
 const TITLE = "Become a Public Ledger editor";
 const DESCRIPTION =
@@ -119,6 +119,12 @@ export default function EditorsPage() {
           </p>
           <p className="m-0 text-muted">
             An automated reviewer, AI Journalist, checks every draft first and flags problems. It never publishes anything: editors decide.
+          </p>
+          <p className="m-0">
+            <a href={`${SOURCE_CODE.url}/blob/main/docs/EDITORS.md`} className="font-medium">
+              Read the editors&apos; guide
+            </a>
+            <span className="text-muted">: the rules in plain words and a review step by step, with screenshots.</span>
           </p>
         </section>
 
