@@ -1,0 +1,26 @@
+{
+  "key": "ocds-h6vhtk-060bd4--award-1",
+  "ocid": "ocds-h6vhtk-060bd4",
+  "award_id": "1",
+  "source": "find_a_tender",
+  "title": "The Supply and Installation of Solar PV in 4 Sunderland Schools. (including a Council Option to include the Supply and Installation of Solar PV in a further 2 schools).",
+  "buyer": "Sunderland City Council",
+  "notice_url": "https://www.find-tender.service.gov.uk/Notice/005606-2026",
+  "record_url": "https://www.find-tender.service.gov.uk/api/1.0/ocdsRecordPackages/ocds-h6vhtk-060bd4",
+  "supplier": {
+    "name": "Oakes Energy Services Ltd",
+    "companies_house_number": "06434382"
+  },
+  "awarded_on": "2026-01-20",
+  "competition": "limited",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 73151.03,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2026-03-11"
+    }
+  ]
+}

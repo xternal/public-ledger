@@ -106,3 +106,22 @@ contracts:
   - ocds-h6vhtk-058e4b
   # Solar PV and batteries at Moseley Primary School, Coventry: GB Energy Solar Partnership (schools).
   - ocds-h6vhtk-065530
+  # Wolverhampton primary school, GB Energy Solar Partnership: solar PV, LED lighting and EV charge points (four contracts).
+  - ocid: ocds-b5fd17-3516e68f-d185-496b-af5d-9934219ba07f
+    notice_url: https://www.contractsfinder.service.gov.uk/Notice/94b3db54-d5f2-4525-9213-ca0ee1b542de
+  - ocid: ocds-b5fd17-d480ec34-23e5-4b09-9730-134fc569fd86
+    notice_url: https://www.contractsfinder.service.gov.uk/Notice/05184aa1-3a05-416a-94c9-c1a01ff59d88
+  - ocid: ocds-b5fd17-906f1ac1-654e-4a71-ab0f-72dc43cfb945
+    notice_url: https://www.contractsfinder.service.gov.uk/Notice/11442c93-7f3f-45ed-85b2-69ab5e0a13e2
+  - ocid: ocds-b5fd17-6b3c68e6-762c-4315-868d-bbd08d8a4a74
+    notice_url: https://www.contractsfinder.service.gov.uk/Notice/87e83499-1a94-4488-883b-2401a32c9e28
+  # Wigan fire and ambulance station solar PV, paid for by GB Energy through the Mayoral Renewables Fund (Greater Manchester).
+  - ocid: ocds-b5fd17-61d799b3-d072-4a16-a62b-f639ba3ba4cb
+    notice_url: https://www.contractsfinder.service.gov.uk/Notice/7bbed016-d322-40be-b6d6-c9a585c4c9c8
+  # Sunderland primary schools solar PV, Mayoral Renewables Fund (GB Energy): lots 1 and 2 of one procurement.
+  - ocid: ocds-h6vhtk-060bd4
+    award_id: "1"
+  - ocid: ocds-h6vhtk-060bd4
+    award_id: "2"
+  # EV charging at two Cadw depots, notice titled as a Great British Energy award.
+  - ocds-h6vhtk-06d82a

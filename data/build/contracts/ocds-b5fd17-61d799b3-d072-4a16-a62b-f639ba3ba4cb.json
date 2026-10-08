@@ -1,0 +1,24 @@
+{
+  "key": "ocds-b5fd17-61d799b3-d072-4a16-a62b-f639ba3ba4cb",
+  "ocid": "ocds-b5fd17-61d799b3-d072-4a16-a62b-f639ba3ba4cb",
+  "source": "contracts_finder",
+  "title": "GMCA1677 Wigan CFAS Solar PV And Optional Battery Storage",
+  "buyer": "THE GREATER MANCHESTER COMBINED AUTHORITY",
+  "notice_url": "https://www.contractsfinder.service.gov.uk/Notice/7bbed016-d322-40be-b6d6-c9a585c4c9c8",
+  "record_url": "https://www.contractsfinder.service.gov.uk/api/rest/2/get_published_notice/json/7bbed016-d322-40be-b6d6-c9a585c4c9c8",
+  "supplier": {
+    "name": "CARBON3 LTD",
+    "companies_house_number": "12318554"
+  },
+  "awarded_on": "2026-01-14",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 74694.93,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2026-03-31"
+    }
+  ]
+}

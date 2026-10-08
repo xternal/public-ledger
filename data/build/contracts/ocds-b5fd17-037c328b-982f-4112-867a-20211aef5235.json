@@ -1,0 +1,23 @@
+{
+  "key": "ocds-b5fd17-037c328b-982f-4112-867a-20211aef5235",
+  "ocid": "ocds-b5fd17-037c328b-982f-4112-867a-20211aef5235",
+  "source": "contracts_finder",
+  "title": "New Towns Gap Analysis 2 of 4",
+  "buyer": "Homes England (the name adopted by the Homes and Communities Agency)",
+  "notice_url": "https://www.contractsfinder.service.gov.uk/Notice/df7fc15c-e456-4180-9bed-020e7fad7d41",
+  "record_url": "https://www.contractsfinder.service.gov.uk/api/rest/2/get_published_notice/json/df7fc15c-e456-4180-9bed-020e7fad7d41",
+  "supplier": {
+    "name": "Cushman & Wakefield"
+  },
+  "awarded_on": "2025-09-26",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 150000.0,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2025-12-12"
+    }
+  ]
+}
