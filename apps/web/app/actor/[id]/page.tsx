@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { actorJsonLd, actorSameAs, clip, DESCRIPTION_MAX, statusCounts } from "@ledger/server/seo";
+import { STATUS_LABEL } from "@/lib/copy";
 import { getSeed } from "@/lib/data";
 import { contractTotals } from "@ledger/schema";
 import { signedBn, signedMoney } from "@/lib/format";
@@ -10,9 +12,17 @@ import { CREDIT_COLUMNS, MixBar, creditRows } from "@/components/CreditTable";
 import { FollowButton } from "@/components/FollowPanel";
 import { followOptions } from "@/app/follow/targets";
 import { JsonLd } from "@/components/JsonLd";
-import { absolute, SITE_NAME } from "@/lib/site";
+import { OPEN_GRAPH, seoContext } from "@/lib/site";
 
 type Props = { params: Promise<{ id: string }> };
+
+/** "UK Parliament", "GOV.UK", or the site's own name ("labour.org.uk"). */
+function officialLabel(url: string): string {
+  const host = new URL(url).hostname.replace(/^www\./, "");
+  if (host === "members.parliament.uk") return "UK Parliament";
+  if (host === "gov.uk") return "GOV.UK";
+  return host;
+}
 
 export function generateStaticParams() {
   return getSeed().actors.map((a) => ({ id: a.id }));
@@ -33,12 +43,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const r = cardsFor(id);
   if (!r) return {};
   const title = `${r.actor.name}: promises and how they stand`;
-  const description = `${r.cards.length} tracked ${r.cards.length === 1 ? "promise" : "promises"} by ${r.actor.name}, with costs, funding and status.`;
+  const mix = statusCounts(r.cards)
+    .map((x) => `${x.count} ${STATUS_LABEL[x.status].toLowerCase()}`)
+    .join(", ");
+  const description = clip(
+    `${r.cards.length} tracked ${r.cards.length === 1 ? "promise" : "promises"} by ${r.actor.name}${mix ? `: ${mix}` : ""}. Each with its cost a year, who pays, the evidence and a dated timeline.`,
+    DESCRIPTION_MAX,
+  );
   return {
     title: `${title} | Public Ledger`,
     description,
     alternates: { canonical: `/actor/${id}`, types: { "application/atom+xml": [{ url: `/feeds/actor/${id}.xml`, title: `Changes to ${r.actor.name}'s promises` }] } },
-    openGraph: { title, description, type: "profile", url: `/actor/${id}` },
+    openGraph: { ...OPEN_GRAPH, title, description, type: "profile", url: `/actor/${id}` },
     twitter: { card: "summary_large_image", title, description },
   };
 }
@@ -62,30 +78,9 @@ export default async function ActorPage({ params }: Props) {
   );
   // Contracts behind delivery (M6b): only for cards that show them, so the total matches what the cards list.
   const contracts = contractTotals(cards.filter((c) => showsContracts(c.file.status)).flatMap((c) => c.contracts));
-  const about =
-    actor.kind === "party"
-      ? { "@type": "Organization", name: actor.name }
-      : { "@type": "Person", name: actor.name, ...(actor.roles[0] ? { jobTitle: actor.roles[0].title } : {}), ...(party ? { affiliation: { "@type": "Organization", name: party.name } } : {}) };
-  const structuredData = [
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      url: absolute(`/actor/${actor.id}`),
-      name: `${actor.name}: promises and how they stand`,
-      inLanguage: "en-GB",
-      isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absolute("/") },
-      mainEntity: about,
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: SITE_NAME, item: absolute("/") },
-        { "@type": "ListItem", position: 2, name: "Promise ledger", item: absolute("/promises") },
-        { "@type": "ListItem", position: 3, name: actor.name, item: absolute(`/actor/${actor.id}`) },
-      ],
-    },
-  ];
+  const structuredData = actorJsonLd(actor, party ?? null, cards, seoContext());
+  // The official pages the structured data names (sameAs), shown to readers too.
+  const official = actorSameAs(actor).map((url) => ({ url, label: officialLabel(url) }));
   return (
     <>
       <JsonLd data={structuredData} />
@@ -100,6 +95,16 @@ export default async function ActorPage({ params }: Props) {
             {actor.kind === "party" ? "Party" : actor.roles.map((ro) => ro.title).join(", ") || "Person"}
             {party ? `, ${party.name}` : ""}
           </p>
+          {official.length > 0 && (
+            <p className="m-0 flex flex-wrap gap-x-3 gap-y-1 text-label text-muted">
+              <span>Official pages:</span>
+              {official.map((o) => (
+                <a key={o.url} href={o.url} rel="noopener noreferrer" target="_blank">
+                  {o.label}
+                </a>
+              ))}
+            </p>
+          )}
           <div className="mt-2">
             <FollowButton label={`Follow ${actor.name}`} trackKind="actor" target={{ kind: "actor", id: actor.id }} options={followOptions()} />
           </div>

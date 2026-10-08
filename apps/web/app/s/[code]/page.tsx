@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { Range } from "@ledger/schema";
 import { getSeed } from "@/lib/data";
+import { OPEN_GRAPH } from "@/lib/site";
 import { summarise } from "@/lib/scenario-summary";
 import { fixed, gbp, gbpBn, longDate, millions, rangeText, signed, signedBn } from "@/lib/format";
 
@@ -16,7 +17,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${s.headline} | Public Ledger scenario`,
     description,
-    openGraph: { title: s.headline, description, type: "article" },
+    // A shared scenario is a reader's own sum, not a page for search: previews yes, indexing no.
+    openGraph: { ...OPEN_GRAPH, title: s.headline, description, type: "article", url: `/s/${code}` },
     twitter: { card: "summary_large_image", title: s.headline, description },
     robots: { index: false },
   };

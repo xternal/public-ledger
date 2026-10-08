@@ -201,6 +201,8 @@ export interface CostOut {
 export interface PromiseOut {
   id: string;
   url: string;
+  /** The editors' neutral 3–8 word summary of what is promised; null until written. The quote (text) is the record. */
+  headline: string | null;
   actor_id: string;
   actor_name: string;
   party_id: string | null;
@@ -254,6 +256,7 @@ export function promiseOut(c: Card, ctx: Ctx): PromiseOut {
   return {
     id: c.id,
     url: `${ctx.siteUrl}/promise/${c.id}`,
+    headline: f.headline ?? null,
     actor_id: c.actor.id,
     actor_name: c.actor.name,
     party_id: c.party?.id ?? null,

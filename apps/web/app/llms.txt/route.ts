@@ -1,4 +1,5 @@
-import { backtestSummary } from "@ledger/schema";
+import { backtestSummary, PolicyArea } from "@ledger/schema";
+import { areaPath, cardHeadline } from "@ledger/server/seo";
 import { constituencies, RECENT_VOTES } from "@ledger/server/mp";
 import { getForecasts, getPeople, getSeed } from "@/lib/data";
 import { endpoints } from "@/lib/api";
@@ -7,7 +8,7 @@ import { STATUS_LABEL } from "@/lib/copy";
 import { FAQ } from "@/lib/faq";
 import { gbpBn } from "@/lib/format";
 import { pctGdp, per100, ratio, span, spendingSpan } from "@/lib/people-view";
-import { costText } from "@/lib/promises";
+import { AREA_LABEL, costText } from "@/lib/promises";
 import { absolute, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import { MP_DESCRIPTION } from "@/lib/mp-copy";
 import { PRIVACY_SUMMARY } from "@/lib/privacy-copy";
@@ -28,6 +29,7 @@ export function GET() {
   const shown = forecasts.filter((f) => f.recorded_as === "shown");
   const context = backtestSummary(forecasts.filter((f) => f.recorded_as === "context"));
   const firstRecorded = shown.map((f) => f.recorded_on).sort()[0] ?? null;
+  const areas = PolicyArea.options.filter((a) => seed.cards.some((c) => c.file.policy_area === a));
   const lines = [
     `# ${SITE_NAME}`,
     "",
@@ -39,6 +41,8 @@ export function GET() {
     "",
     `- [Annual statement and sandbox](${absolute("/")}): where the money came from and went, and what changing a tax or spending lever would do, as a range.`,
     `- [Promise ledger](${absolute("/promises")}): every tracked UK political promise with its cost, who pays, status and evidence. One standard for every party.`,
+    `- [Every promise in full](${absolute("/llms-full.txt")}): all ${seed.cards.length} promise cards as Markdown in one file (quote, speaker, party, date, status and status note, cost range, who pays, timeline with evidence links, contracts, corrections, sources), with the method in short and the licences. Each card alone is at ${absolute("/promise/<id>.md")}.`,
+    `- Promises by policy area: ${areas.map((a) => `[${AREA_LABEL[a]}](${absolute(areaPath(a))})`).join(", ")}. Each lists the cards in that area and how they stand.`,
     `- [People and long-term spending](${absolute("/people")}): ONS population projections (principal and variants) and OBR long-term spending projections. In the ONS principal projection there are ${per100(oadr.last)} people over pension age for every 100 of working age in ${oadr.lastYear} (${per100(oadr.first)} in ${oadr.firstYear}; variants ${per100(oadr.range[0])} to ${per100(oadr.range[2])}), and ${ratio(workers.last)} people of working age per person over pension age. In the OBR baseline, age-related spending goes from ${pctGdp(age.first)} of GDP in ${age.firstYear} to ${pctGdp(age.last)} in ${age.lastYear} (OBR scenarios ${pctGdp(age.range[0])} to ${pctGdp(age.range[2])}). Assumption switches pick published variants only.`,
     `- [Your MP](${absolute("/mp")}): ${MP_DESCRIPTION} Each of the ${constituencies().length} constituencies has a page at ${absolute("/mp/<constituency>")}, for example ${absolute("/mp/manchester-central")}: the sitting MP (from the UK Parliament Members API), any promises we track in their name, a summary of their party's, and their last ${RECENT_VOTES} recorded Commons votes (Commons Votes API), with votes on bills our cards cite highlighted. Data checked daily.`,
     `- [How the numbers are made](${absolute("/method")}): sources, quality labels, why results are ranges, who checks the cards, and a changelog of every data edition.`,
@@ -58,7 +62,10 @@ export function GET() {
     "",
     "## Promises",
     "",
-    ...seed.cards.map((c) => `- [${c.actor.name}: “${c.current.text}”](${absolute(`/promise/${c.id}`)}): ${STATUS_LABEL[c.file.status]}. ${costText(c)}.`),
+    ...seed.cards.map(
+      (c) =>
+        `- [${cardHeadline(c)}](${absolute(`/promise/${c.id}`)}) ([Markdown](${absolute(`/promise/${c.id}.md`)})): ${c.actor.name}, “${c.current.text.replace(/\s+/g, " ").trim()}”. ${STATUS_LABEL[c.file.status]}. ${costText(c)}.`,
+    ),
     "",
     "## Sources",
     "",

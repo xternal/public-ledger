@@ -18,6 +18,7 @@
     "journeys": "python3 scripts/journeys/build.py docs/CUSTOMER_JOURNEYS.md out/journey-maps.html",
     "deadlines": "tsx scripts/deadlines.ts",
     "alerts": "tsx scripts/alerts.ts",
+    "indexnow": "tsx scripts/indexnow.ts",
     "harvest": "tsx scripts/harvest.ts"
   },
   "devDependencies": {

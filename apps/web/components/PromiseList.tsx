@@ -63,6 +63,7 @@ function PromiseRow({ c, today }: { c: CardView; today: string | null }) {
       </span>
 
       <span className="grid min-w-0 gap-2">
+        {c.file.headline && <span className="-mb-1 text-label font-medium text-muted">{c.file.headline}</span>}
         <span className="line-clamp-3 text-[16px] font-[550] leading-snug tracking-[-0.01em]">“{c.current.text}”</span>
         <span className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px] text-muted">
           <StatusPill status={c.file.status} />

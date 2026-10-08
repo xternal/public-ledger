@@ -20,6 +20,11 @@
  * do not trigger the push run, so the daily maintenance run picks them up: a
  * data change is announced within a day, with no change to the workflow.
  *
+ * After a diff run on main, the changed cards' pages go to IndexNow (Bing and
+ * other engines) once the live site serves them: see scripts/indexnow.ts. It
+ * runs only in production with a public https SITE_URL, never fails the job,
+ * and INDEXNOW=off turns it off.
+ *
  * Production reads every secret from the environment (docs/OPERATIONS.md §8).
  * In CI without DATABASE_URL it prints "Alerts not configured: skipping" and
  * succeeds. Locally without DATABASE_URL it uses its own PGlite database in
@@ -51,6 +56,8 @@ import {
 } from "../packages/server/src/alerts/index";
 import { errorText } from "../packages/server/src/alerts/log";
 import { DEADLINE_WINDOWS, dueInWindow, ukDay, windowPhrase } from "../packages/schema/src/deadlines";
+import { canSubmit, indexNowKey } from "../packages/server/src/seo/indexnow";
+import { indexNowForChanges } from "../packages/server/src/seo/indexnow-changes";
 
 const root = join(import.meta.dirname, "..");
 const args = process.argv.slice(2).filter((a) => a !== "--");
@@ -113,6 +120,27 @@ function printData(beforeRef: string | undefined, afterRef: string) {
   for (const e of events) console.log(`  [${e.change_type}] ${e.promise_id ?? "statement"}: ${e.summary}`);
 }
 
+/**
+ * Tell IndexNow engines which card pages changed, once the deploy serves them.
+ * Search engines are a courtesy, not an alert: a failure is printed, never fatal.
+ */
+async function pingSearchEngines(config: Config, before: string | undefined, after: string) {
+  if (!config.production || process.env.INDEXNOW === "off" || !canSubmit(config.siteUrl)) return;
+  try {
+    await indexNowForChanges({
+      git,
+      before,
+      after,
+      siteUrl: config.siteUrl,
+      key: indexNowKey(join(root, "apps/web/public")),
+      fetchFn: (url, init) => fetch(url, init),
+      log: console.log,
+    });
+  } catch (e) {
+    console.warn(`IndexNow: not submitted (${errorText(e)}). Send by hand: pnpm indexnow -- --before ${before ?? "<sha>"} --after ${after}`);
+  }
+}
+
 async function main() {
   if (!command || !COMMANDS.includes(command)) usage();
   const needsDb = !(dryRun && ["diff", "data", "due"].includes(command));
@@ -164,6 +192,7 @@ async function main() {
     } finally {
       await db.close();
     }
+    await pingSearchEngines(config, flag("--before"), after);
     return;
   }
 

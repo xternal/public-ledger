@@ -2,4 +2,7 @@ id: hm-government
 name: HM Government
 kind: government
 standing: government
+# Official pages (structured data sameAs), checked 8 Oct 2026: GOV.UK.
+same_as:
+  - https://www.gov.uk/
 roles: []

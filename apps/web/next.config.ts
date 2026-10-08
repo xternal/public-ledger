@@ -19,6 +19,10 @@ const config: NextConfig = {
     maximumRedirects: 0,
     minimumCacheTTL: 86400,
   },
+  // Each promise card as Markdown for AI assistants: /promise/<id>.md, served by app/md/promise/[file] (the card page owns /promise/[id]).
+  async rewrites() {
+    return [{ source: "/promise/:file([a-z0-9-]+\\.md)", destination: "/md/promise/:file" }];
+  },
   // The public read-only API (/api/v1, M7): open to any site for GET. Route handlers set the same headers; this covers 404s and HEAD.
   async headers() {
     const cors = [

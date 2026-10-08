@@ -11,13 +11,13 @@ import { T1_METHOD } from "@/lib/t1-copy";
 import { AI_JOURNALIST_NOTE } from "@/lib/reviews";
 import { fixed, grouped, longDate } from "@/lib/format";
 import { METHOD_DESCRIPTION, METHOD_TITLE } from "@/lib/method-copy";
-import { absolute, MAKER, SITE_NAME } from "@/lib/site";
+import { absolute, OPEN_GRAPH, MAKER, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `${METHOD_TITLE} | Public Ledger`,
   description: METHOD_DESCRIPTION,
   alternates: { canonical: "/method" },
-  openGraph: { title: METHOD_TITLE, description: METHOD_DESCRIPTION, type: "article", url: "/method" },
+  openGraph: { ...OPEN_GRAPH, title: METHOD_TITLE, description: METHOD_DESCRIPTION, type: "article", url: "/method" },
   twitter: { card: "summary_large_image", title: METHOD_TITLE, description: METHOD_DESCRIPTION },
 };
 

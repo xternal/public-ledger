@@ -1,8 +1,18 @@
+import type { Metadata } from "next";
 import { getSeed } from "@/lib/data";
 import { FAQ } from "@/lib/faq";
-import { absolute, MAKER, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { absolute, MAKER, OPEN_GRAPH, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { Ledger } from "@/components/Ledger";
+
+const TITLE = "Public Ledger: where UK public money comes from and goes";
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: "/", types: { "application/atom+xml": [{ url: "/feeds/all.xml", title: "Public Ledger: every change" }] } },
+  openGraph: { ...OPEN_GRAPH, title: TITLE, description: SITE_DESCRIPTION, type: "website", url: "/" },
+};
 
 function structuredData() {
   const seed = getSeed();

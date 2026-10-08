@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { NavLinks } from "@/components/NavLinks";
 import { JsonLd } from "@/components/JsonLd";
 import { longDate } from "@/lib/format";
-import { absolute, MAKER, SITE_NAME } from "@/lib/site";
+import { absolute, MAKER, OPEN_GRAPH, SITE_NAME } from "@/lib/site";
 import {
   CONTROLLER,
   CONTROLLER_INTERESTS,
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   title: `${PRIVACY_TITLE} | Public Ledger`,
   description: PRIVACY_DESCRIPTION,
   alternates: { canonical: "/privacy" },
-  openGraph: { title: PRIVACY_TITLE, description: PRIVACY_DESCRIPTION, type: "article", url: "/privacy" },
+  openGraph: { ...OPEN_GRAPH, title: PRIVACY_TITLE, description: PRIVACY_DESCRIPTION, type: "article", url: "/privacy" },
   twitter: { card: "summary_large_image", title: PRIVACY_TITLE, description: PRIVACY_DESCRIPTION },
 };
 

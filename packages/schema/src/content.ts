@@ -38,6 +38,14 @@ export const ActorFile = z
      * one). Its MPs' /mp pages summarise its promises.
      */
     parliament_party_id: z.number().int().positive().optional(),
+    /**
+     * Official pages about this actor, for search engines' structured data
+     * (schema.org sameAs): a party's own website, a GOV.UK profile or
+     * organisation page. Only pages an editor has checked are about this actor;
+     * the UK Parliament page is derived from parliament_member_id, so it is not
+     * listed here.
+     */
+    same_as: z.array(z.url()).optional(),
   })
   .superRefine((a, ctx) => {
     if (a.parliament_member_id !== undefined && a.kind !== "person")
@@ -175,9 +183,28 @@ export const Review = z.object({
 });
 export type Review = z.infer<typeof Review>;
 
+/**
+ * A card's headline: a neutral 3–8 word summary of what is promised, written
+ * by editors from the quote alone ("Create Great British Energy", "Cap bus
+ * fares at £2"). It names the card in page titles, lists and search results;
+ * the quote stays the record. Not history: it can be improved at any time.
+ */
+export const Headline = z
+  .string()
+  .trim()
+  .min(3)
+  .max(70, "a headline is a short summary: 3–8 words, under 70 characters")
+  .refine((h) => !/[.!?]$/.test(h), "a headline has no closing full stop")
+  .refine((h) => {
+    const words = h.split(/\s+/).length;
+    return words >= 3 && words <= 8;
+  }, "a headline is 3–8 words");
+
 export const PromiseFile = z
   .object({
     id: z.string().regex(/^[a-z0-9-]+$/),
+    /** Optional until every card has one; pages fall back to the quote cut at a word boundary. */
+    headline: Headline.optional(),
     actor_id: z.string(),
     made_on: IsoDate,
     venue: Venue.optional(),

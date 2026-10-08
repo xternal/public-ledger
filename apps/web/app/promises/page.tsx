@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { PolicyArea } from "@ledger/schema";
+import { areaPath, collectionJsonLd } from "@ledger/server/seo";
 import { getSeed } from "@/lib/data";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PromiseIndex } from "@/components/PromiseIndex";
@@ -7,7 +9,8 @@ import { ComingUp, type DueItem } from "@/components/ComingUp";
 import { AREA_LABEL, isOverdue, ownerOf, promisesSummary, shortName, standingOf, todayIso, whoShort } from "@/lib/promises";
 import { followOptions, followWindows } from "@/app/follow/targets";
 import { JsonLd } from "@/components/JsonLd";
-import { absolute, SITE_NAME } from "@/lib/site";
+import { OPEN_GRAPH, seoContext } from "@/lib/site";
+import { creditRows } from "@/components/CreditTable";
 
 const TITLE = "Promises";
 const DESCRIPTION = "What UK parties and the government have promised, quoted word for word, and where each promise stands now: cost, who pays, and evidence. One standard for every party.";
@@ -24,7 +27,7 @@ export const metadata: Metadata = {
       ],
     },
   },
-  openGraph: { title: TITLE, description: DESCRIPTION, type: "website", url: "/promises" },
+  openGraph: { ...OPEN_GRAPH, title: TITLE, description: DESCRIPTION, type: "website", url: "/promises" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -34,20 +37,16 @@ export default function PromisesPage() {
   const due: DueItem[] = seed.cards.flatMap((c) =>
     c.file.deadline ? [{ id: c.id, deadline: c.file.deadline, status: c.file.status, text: c.current.text, who: whoShort(c) }] : [],
   );
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    url: absolute("/promises"),
-    name: TITLE,
-    description: DESCRIPTION,
-    inLanguage: "en-GB",
-    isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absolute("/") },
-    mainEntity: {
-      "@type": "ItemList",
-      numberOfItems: seed.cards.length,
-      itemListElement: seed.cards.map((c, i) => ({ "@type": "ListItem", position: i + 1, url: absolute(`/promise/${c.id}`), name: `${c.actor.name}: “${c.current.text}”` })),
-    },
-  };
+  // A CollectionPage whose list names each card by its headline, in the order the page lists them.
+  const structuredData = collectionJsonLd(
+    { path: "/promises", name: TITLE, description: DESCRIPTION, cards: seed.cards, breadcrumb: [{ name: TITLE, path: "/promises" }] },
+    seoContext(),
+  );
+  const areas = PolicyArea.options
+    .map((a) => ({ id: a, n: seed.cards.filter((c) => c.file.policy_area === a).length }))
+    .filter((a) => a.n > 0)
+    .sort((a, b) => AREA_LABEL[a.id].localeCompare(AREA_LABEL[b.id]));
+  const ownerRows = creditRows(seed.cards, "party");
   const today = todayIso();
   const summary = promisesSummary(seed.cards);
   const govCards = seed.cards.filter((c) => standingOf(c) === "government");
@@ -114,6 +113,27 @@ export default function PromisesPage() {
         <PromiseIndex cards={seed.cards} />
 
         <ComingUp items={due} builtOn={today} windows={followWindows()} options={options} />
+        <nav aria-labelledby="browse-h" className="grid gap-3 border-t border-line pt-6 text-label">
+          <h2 id="browse-h" className="m-0 text-label font-medium text-muted">
+            Browse the ledger
+          </h2>
+          <p className="m-0 flex flex-wrap gap-x-4 gap-y-1">
+            <span className="text-muted">By policy area:</span>
+            {areas.map((a) => (
+              <a key={a.id} href={areaPath(a.id)}>
+                {AREA_LABEL[a.id]} ({a.n})
+              </a>
+            ))}
+          </p>
+          <p className="m-0 flex flex-wrap gap-x-4 gap-y-1">
+            <span className="text-muted">By party or speaker:</span>
+            {ownerRows.map((o) => (
+              <a key={o.id} href={o.href}>
+                {o.name} ({o.cards.length})
+              </a>
+            ))}
+          </p>
+        </nav>
       </main>
     </>
   );

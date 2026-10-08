@@ -141,6 +141,7 @@ export function crossCheck(seed: Seed): SeedIssue[] {
     const where = `promises.${p.id}`;
     if (p.lever_settings) checkSettings(where, p.lever_settings);
     if (p.editor_check_required) warn(where, "needs editor check before publication");
+    if (!p.headline) warn(where, "no headline yet: titles and lists fall back to the quote cut short (content/README.md, Headline)");
     const current = p.versions[p.versions.length - 1]!;
     if (!current.quote_checked_on) warn(where, "quote not yet checked verbatim against its source");
     const fetched = new Set(seed.contracts.map((x) => x.key));

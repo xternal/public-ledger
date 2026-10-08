@@ -13,7 +13,8 @@
     "./model": "./src/model/index.ts",
     "./alpha": "./src/alpha.ts",
     "./mp": "./src/mp/index.ts",
-    "./api": "./src/api/index.ts"
+    "./api": "./src/api/index.ts",
+    "./seo": "./src/seo/index.ts"
   },
   "scripts": {
     "test": "vitest run",

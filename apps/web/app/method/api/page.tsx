@@ -8,13 +8,13 @@ import { MethodNav } from "@/components/MethodNav";
 import { JsonLd } from "@/components/JsonLd";
 import { CodeBlock } from "@/components/CopyButton";
 import { API_DESCRIPTION, API_TITLE } from "@/lib/method-copy";
-import { absolute, MAKER, SITE_NAME, siteUrl } from "@/lib/site";
+import { absolute, OPEN_GRAPH, MAKER, SITE_NAME, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `${API_TITLE} | Public Ledger`,
   description: API_DESCRIPTION,
   alternates: { canonical: "/method/api" },
-  openGraph: { title: API_TITLE, description: API_DESCRIPTION, type: "article", url: "/method/api" },
+  openGraph: { ...OPEN_GRAPH, title: API_TITLE, description: API_DESCRIPTION, type: "article", url: "/method/api" },
   twitter: { card: "summary_large_image", title: API_TITLE, description: API_DESCRIPTION },
 };
 
