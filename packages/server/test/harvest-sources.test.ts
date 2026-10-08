@@ -425,6 +425,10 @@ describe("GOV.UK", () => {
     ]);
   });
 
+  it("strips inline tags until none is left, even when removing one forms another", () => {
+    expect(prose("<p>a<<b>b>c</p>")).not.toContain("<b");
+  });
+
   it("reads the body as the page shows it, without stray spaces from links", () => {
     expect(prose('<p>A notice (<abbr title="Welfare Requirements Notice">WRN</abbr>) was served; see <a href="/r">the report</a>.</p><p>Next.</p>')).toBe(
       "A notice (WRN) was served; see the report.\nNext.",

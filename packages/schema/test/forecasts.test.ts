@@ -79,6 +79,8 @@ describe("forecast records (M7)", () => {
 
   it("names files after the edition and checks the folder", () => {
     expect(forecastFileName("EFO-2026-03+PESA-2026")).toBe("EFO-2026-03_PESA-2026");
+    expect(forecastFileName("  EFO-2026-03 (rev) ")).toBe("EFO-2026-03_rev");
+    expect(forecastFileName("_".repeat(50_000) + "x")).toBe("x");
     const ok = parseForecasts([{ path: "data/build/forecasts/obr/EFO-2026-03.json", data: file() }], undefined);
     expect(ok.issues).toEqual([]);
     const bad = parseForecasts([{ path: "data/build/forecasts/ons/EFO-2026-03.json", data: file() }], undefined);

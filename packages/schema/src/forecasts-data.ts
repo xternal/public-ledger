@@ -18,7 +18,16 @@ export interface RawForecastFile {
 }
 
 /** An edition label as a file name, as etl/backtest.py writes it: "EFO-2026-03+PESA-2026" → "EFO-2026-03_PESA-2026". */
-export const forecastFileName = (vintage: string) => vintage.replace(/[^A-Za-z0-9.-]+/g, "_").replace(/^_+|_+$/g, "");
+export const forecastFileName = (vintage: string) => trimUnderscores(vintage.replace(/[^A-Za-z0-9.-]+/g, "_"));
+
+/** Strips leading and trailing underscores in one pass (a /_+$/ regex can take quadratic time on long runs). */
+function trimUnderscores(s: string): string {
+  let start = 0;
+  let end = s.length;
+  while (start < end && s[start] === "_") start++;
+  while (end > start && s[end - 1] === "_") end--;
+  return s.slice(start, end);
+}
 
 export function readForecastFiles(root = repoRoot()): RawForecastFile[] {
   const dir = join(root, FORECASTS_DIR);
