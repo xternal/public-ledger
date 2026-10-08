@@ -1,0 +1,688 @@
+{
+  "maker": "public_ledger",
+  "source_id": "public_ledger",
+  "vintage": "EFO-2026-03+PESA-2026",
+  "made_on": "2026-10-08",
+  "inputs": [
+    "obr_efo:EFO-2026-03",
+    "hmt_pesa:PESA-2026"
+  ],
+  "about": "Our split of spending by function for years with no published split: each function keeps its share of the latest HMT PESA outturn year, applied to the OBR's total spending less debt interest and accounting adjustments. A single number, quality approx.",
+  "forecasts": [
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.social_protection:2026-27",
+      "series_id": "statement.spending.social_protection",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        434.85,
+        434.85,
+        434.85
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.health:2026-27",
+      "series_id": "statement.spending.health",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        274.983,
+        274.983,
+        274.983
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.education:2026-27",
+      "series_id": "statement.spending.education",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        134.235,
+        134.235,
+        134.235
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.economic_affairs:2026-27",
+      "series_id": "statement.spending.economic_affairs",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        100.322,
+        100.322,
+        100.322
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.defence:2026-27",
+      "series_id": "statement.spending.defence",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        69.848,
+        69.848,
+        69.848
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.public_order:2026-27",
+      "series_id": "statement.spending.public_order",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        59.493,
+        59.493,
+        59.493
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.general_services:2026-27",
+      "series_id": "statement.spending.general_services",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        37.405,
+        37.405,
+        37.405
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.housing_env:2026-27",
+      "series_id": "statement.spending.housing_env",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        44.446,
+        44.446,
+        44.446
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.culture:2026-27",
+      "series_id": "statement.spending.culture",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        16.072,
+        16.072,
+        16.072
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.social_protection:2027-28",
+      "series_id": "statement.spending.social_protection",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        449.753,
+        449.753,
+        449.753
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.health:2027-28",
+      "series_id": "statement.spending.health",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        284.406,
+        284.406,
+        284.406
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.education:2027-28",
+      "series_id": "statement.spending.education",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        138.835,
+        138.835,
+        138.835
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.economic_affairs:2027-28",
+      "series_id": "statement.spending.economic_affairs",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        103.76,
+        103.76,
+        103.76
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.defence:2027-28",
+      "series_id": "statement.spending.defence",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        72.242,
+        72.242,
+        72.242
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.public_order:2027-28",
+      "series_id": "statement.spending.public_order",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        61.532,
+        61.532,
+        61.532
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.general_services:2027-28",
+      "series_id": "statement.spending.general_services",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        38.687,
+        38.687,
+        38.687
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.housing_env:2027-28",
+      "series_id": "statement.spending.housing_env",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        45.969,
+        45.969,
+        45.969
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.culture:2027-28",
+      "series_id": "statement.spending.culture",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        16.623,
+        16.623,
+        16.623
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.social_protection:2028-29",
+      "series_id": "statement.spending.social_protection",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        460.261,
+        460.261,
+        460.261
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.health:2028-29",
+      "series_id": "statement.spending.health",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        291.052,
+        291.052,
+        291.052
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.education:2028-29",
+      "series_id": "statement.spending.education",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        142.079,
+        142.079,
+        142.079
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.economic_affairs:2028-29",
+      "series_id": "statement.spending.economic_affairs",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        106.184,
+        106.184,
+        106.184
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.defence:2028-29",
+      "series_id": "statement.spending.defence",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        73.93,
+        73.93,
+        73.93
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.public_order:2028-29",
+      "series_id": "statement.spending.public_order",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        62.97,
+        62.97,
+        62.97
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.general_services:2028-29",
+      "series_id": "statement.spending.general_services",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        39.591,
+        39.591,
+        39.591
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.housing_env:2028-29",
+      "series_id": "statement.spending.housing_env",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        47.043,
+        47.043,
+        47.043
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.culture:2028-29",
+      "series_id": "statement.spending.culture",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        17.012,
+        17.012,
+        17.012
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.social_protection:2029-30",
+      "series_id": "statement.spending.social_protection",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        471.037,
+        471.037,
+        471.037
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.health:2029-30",
+      "series_id": "statement.spending.health",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        297.866,
+        297.866,
+        297.866
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.education:2029-30",
+      "series_id": "statement.spending.education",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        145.405,
+        145.405,
+        145.405
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.economic_affairs:2029-30",
+      "series_id": "statement.spending.economic_affairs",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        108.67,
+        108.67,
+        108.67
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.defence:2029-30",
+      "series_id": "statement.spending.defence",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        75.661,
+        75.661,
+        75.661
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.public_order:2029-30",
+      "series_id": "statement.spending.public_order",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        64.444,
+        64.444,
+        64.444
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.general_services:2029-30",
+      "series_id": "statement.spending.general_services",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        40.518,
+        40.518,
+        40.518
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.housing_env:2029-30",
+      "series_id": "statement.spending.housing_env",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        48.145,
+        48.145,
+        48.145
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.culture:2029-30",
+      "series_id": "statement.spending.culture",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        17.41,
+        17.41,
+        17.41
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.social_protection:2030-31",
+      "series_id": "statement.spending.social_protection",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        488.62,
+        488.62,
+        488.62
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.health:2030-31",
+      "series_id": "statement.spending.health",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        308.985,
+        308.985,
+        308.985
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.education:2030-31",
+      "series_id": "statement.spending.education",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        150.833,
+        150.833,
+        150.833
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.economic_affairs:2030-31",
+      "series_id": "statement.spending.economic_affairs",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        112.727,
+        112.727,
+        112.727
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.defence:2030-31",
+      "series_id": "statement.spending.defence",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        78.485,
+        78.485,
+        78.485
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.public_order:2030-31",
+      "series_id": "statement.spending.public_order",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        66.85,
+        66.85,
+        66.85
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.general_services:2030-31",
+      "series_id": "statement.spending.general_services",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        42.031,
+        42.031,
+        42.031
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.housing_env:2030-31",
+      "series_id": "statement.spending.housing_env",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        49.942,
+        49.942,
+        49.942
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "public_ledger:EFO-2026-03+PESA-2026:statement.spending.culture:2030-31",
+      "series_id": "statement.spending.culture",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        18.06,
+        18.06,
+        18.06
+      ],
+      "range": "point",
+      "quality": "approx",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    }
+  ]
+}

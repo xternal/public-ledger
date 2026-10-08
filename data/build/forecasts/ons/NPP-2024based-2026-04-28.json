@@ -1,0 +1,1541 @@
+{
+  "maker": "ons",
+  "source_id": "ons_npp",
+  "vintage": "NPP-2024based-2026-04-28",
+  "made_on": "2026-04-28",
+  "about": "ONS population projections as /people shows them. The range runs from the lowest to the highest published variant in the shaded band (special cases left out); variants are other assumptions, not a probability range.",
+  "forecasts": [
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2025",
+      "series_id": "people.births",
+      "period": "2025",
+      "unit": "persons_k",
+      "predicted": [
+        651.892,
+        651.892,
+        651.892
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "context",
+      "note": "The ONS principal projection, recorded after the year ended to give the backtest an earlier official forecast to score. In a projection's first year every variant gives nearly the same number, so no range is recorded."
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2026",
+      "series_id": "people.births",
+      "period": "2026",
+      "unit": "persons_k",
+      "predicted": [
+        637.862,
+        653.015,
+        668.331
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2027",
+      "series_id": "people.births",
+      "period": "2027",
+      "unit": "persons_k",
+      "predicted": [
+        621.446,
+        648.104,
+        676.545
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2028",
+      "series_id": "people.births",
+      "period": "2028",
+      "unit": "persons_k",
+      "predicted": [
+        605.216,
+        643.884,
+        686.452
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2029",
+      "series_id": "people.births",
+      "period": "2029",
+      "unit": "persons_k",
+      "predicted": [
+        589.897,
+        639.633,
+        696.43
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2030",
+      "series_id": "people.births",
+      "period": "2030",
+      "unit": "persons_k",
+      "predicted": [
+        575.782,
+        636.207,
+        706.52
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2031",
+      "series_id": "people.births",
+      "period": "2031",
+      "unit": "persons_k",
+      "predicted": [
+        563.148,
+        633.694,
+        716.57
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2032",
+      "series_id": "people.births",
+      "period": "2032",
+      "unit": "persons_k",
+      "predicted": [
+        551.929,
+        631.458,
+        726.245
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2033",
+      "series_id": "people.births",
+      "period": "2033",
+      "unit": "persons_k",
+      "predicted": [
+        541.126,
+        629.667,
+        735.746
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2034",
+      "series_id": "people.births",
+      "period": "2034",
+      "unit": "persons_k",
+      "predicted": [
+        531.969,
+        628.503,
+        745.266
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2035",
+      "series_id": "people.births",
+      "period": "2035",
+      "unit": "persons_k",
+      "predicted": [
+        525.613,
+        628.274,
+        754.933
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2036",
+      "series_id": "people.births",
+      "period": "2036",
+      "unit": "persons_k",
+      "predicted": [
+        521.644,
+        629.068,
+        765.285
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2037",
+      "series_id": "people.births",
+      "period": "2037",
+      "unit": "persons_k",
+      "predicted": [
+        519.15,
+        630.67,
+        776.075
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2038",
+      "series_id": "people.births",
+      "period": "2038",
+      "unit": "persons_k",
+      "predicted": [
+        517.664,
+        632.961,
+        787.095
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2039",
+      "series_id": "people.births",
+      "period": "2039",
+      "unit": "persons_k",
+      "predicted": [
+        516.894,
+        635.69,
+        798.167
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2040",
+      "series_id": "people.births",
+      "period": "2040",
+      "unit": "persons_k",
+      "predicted": [
+        516.316,
+        638.614,
+        808.707
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2041",
+      "series_id": "people.births",
+      "period": "2041",
+      "unit": "persons_k",
+      "predicted": [
+        515.678,
+        641.487,
+        818.075
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2042",
+      "series_id": "people.births",
+      "period": "2042",
+      "unit": "persons_k",
+      "predicted": [
+        515.145,
+        644.097,
+        826.157
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2043",
+      "series_id": "people.births",
+      "period": "2043",
+      "unit": "persons_k",
+      "predicted": [
+        514.681,
+        646.255,
+        832.981
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2044",
+      "series_id": "people.births",
+      "period": "2044",
+      "unit": "persons_k",
+      "predicted": [
+        514.087,
+        647.665,
+        838.38
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2045",
+      "series_id": "people.births",
+      "period": "2045",
+      "unit": "persons_k",
+      "predicted": [
+        512.767,
+        647.861,
+        842.211
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2046",
+      "series_id": "people.births",
+      "period": "2046",
+      "unit": "persons_k",
+      "predicted": [
+        510.504,
+        646.915,
+        844.572
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2047",
+      "series_id": "people.births",
+      "period": "2047",
+      "unit": "persons_k",
+      "predicted": [
+        507.656,
+        645.282,
+        846.043
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2048",
+      "series_id": "people.births",
+      "period": "2048",
+      "unit": "persons_k",
+      "predicted": [
+        504.251,
+        642.989,
+        846.678
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2049",
+      "series_id": "people.births",
+      "period": "2049",
+      "unit": "persons_k",
+      "predicted": [
+        500.145,
+        639.95,
+        846.445
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2050",
+      "series_id": "people.births",
+      "period": "2050",
+      "unit": "persons_k",
+      "predicted": [
+        494.821,
+        635.571,
+        844.639
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2051",
+      "series_id": "people.births",
+      "period": "2051",
+      "unit": "persons_k",
+      "predicted": [
+        488.307,
+        629.915,
+        841.44
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2052",
+      "series_id": "people.births",
+      "period": "2052",
+      "unit": "persons_k",
+      "predicted": [
+        481.204,
+        623.801,
+        837.909
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2053",
+      "series_id": "people.births",
+      "period": "2053",
+      "unit": "persons_k",
+      "predicted": [
+        473.513,
+        617.198,
+        834.116
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2054",
+      "series_id": "people.births",
+      "period": "2054",
+      "unit": "persons_k",
+      "predicted": [
+        465.247,
+        610.204,
+        830.209
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2055",
+      "series_id": "people.births",
+      "period": "2055",
+      "unit": "persons_k",
+      "predicted": [
+        456.656,
+        603.115,
+        826.611
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2056",
+      "series_id": "people.births",
+      "period": "2056",
+      "unit": "persons_k",
+      "predicted": [
+        447.976,
+        596.298,
+        823.83
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2057",
+      "series_id": "people.births",
+      "period": "2057",
+      "unit": "persons_k",
+      "predicted": [
+        439.348,
+        589.983,
+        822.222
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2058",
+      "series_id": "people.births",
+      "period": "2058",
+      "unit": "persons_k",
+      "predicted": [
+        430.725,
+        584.07,
+        821.649
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2059",
+      "series_id": "people.births",
+      "period": "2059",
+      "unit": "persons_k",
+      "predicted": [
+        422.216,
+        578.63,
+        822.139
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2060",
+      "series_id": "people.births",
+      "period": "2060",
+      "unit": "persons_k",
+      "predicted": [
+        414.0,
+        573.816,
+        823.79
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2061",
+      "series_id": "people.births",
+      "period": "2061",
+      "unit": "persons_k",
+      "predicted": [
+        406.169,
+        569.656,
+        826.555
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2062",
+      "series_id": "people.births",
+      "period": "2062",
+      "unit": "persons_k",
+      "predicted": [
+        398.868,
+        566.248,
+        830.437
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2063",
+      "series_id": "people.births",
+      "period": "2063",
+      "unit": "persons_k",
+      "predicted": [
+        392.013,
+        563.374,
+        835.054
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2064",
+      "series_id": "people.births",
+      "period": "2064",
+      "unit": "persons_k",
+      "predicted": [
+        385.561,
+        560.912,
+        840.175
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2065",
+      "series_id": "people.births",
+      "period": "2065",
+      "unit": "persons_k",
+      "predicted": [
+        379.712,
+        558.994,
+        845.842
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2066",
+      "series_id": "people.births",
+      "period": "2066",
+      "unit": "persons_k",
+      "predicted": [
+        374.479,
+        557.627,
+        852.045
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2067",
+      "series_id": "people.births",
+      "period": "2067",
+      "unit": "persons_k",
+      "predicted": [
+        369.85,
+        556.737,
+        858.644
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2068",
+      "series_id": "people.births",
+      "period": "2068",
+      "unit": "persons_k",
+      "predicted": [
+        365.822,
+        556.261,
+        865.44
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2069",
+      "series_id": "people.births",
+      "period": "2069",
+      "unit": "persons_k",
+      "predicted": [
+        362.293,
+        556.054,
+        872.236
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2070",
+      "series_id": "people.births",
+      "period": "2070",
+      "unit": "persons_k",
+      "predicted": [
+        359.212,
+        556.032,
+        878.884
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2071",
+      "series_id": "people.births",
+      "period": "2071",
+      "unit": "persons_k",
+      "predicted": [
+        356.571,
+        556.185,
+        885.349
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2072",
+      "series_id": "people.births",
+      "period": "2072",
+      "unit": "persons_k",
+      "predicted": [
+        354.251,
+        556.438,
+        891.519
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2073",
+      "series_id": "people.births",
+      "period": "2073",
+      "unit": "persons_k",
+      "predicted": [
+        352.195,
+        556.687,
+        897.286
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2074",
+      "series_id": "people.births",
+      "period": "2074",
+      "unit": "persons_k",
+      "predicted": [
+        350.281,
+        556.861,
+        902.535
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.births:2075",
+      "series_id": "people.births",
+      "period": "2075",
+      "unit": "persons_k",
+      "predicted": [
+        348.468,
+        556.881,
+        907.243
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2025",
+      "series_id": "people.deaths",
+      "period": "2025",
+      "unit": "persons_k",
+      "predicted": [
+        634.987,
+        634.987,
+        634.987
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "context",
+      "note": "The ONS principal projection, recorded after the year ended to give the backtest an earlier official forecast to score. In a projection's first year every variant gives nearly the same number, so no range is recorded."
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2026",
+      "series_id": "people.deaths",
+      "period": "2026",
+      "unit": "persons_k",
+      "predicted": [
+        665.602,
+        665.767,
+        665.921
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2027",
+      "series_id": "people.deaths",
+      "period": "2027",
+      "unit": "persons_k",
+      "predicted": [
+        669.028,
+        669.644,
+        670.265
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2028",
+      "series_id": "people.deaths",
+      "period": "2028",
+      "unit": "persons_k",
+      "predicted": [
+        673.466,
+        674.822,
+        676.127
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2029",
+      "series_id": "people.deaths",
+      "period": "2029",
+      "unit": "persons_k",
+      "predicted": [
+        678.657,
+        680.992,
+        683.218
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2030",
+      "series_id": "people.deaths",
+      "period": "2030",
+      "unit": "persons_k",
+      "predicted": [
+        684.376,
+        687.975,
+        691.314
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2031",
+      "series_id": "people.deaths",
+      "period": "2031",
+      "unit": "persons_k",
+      "predicted": [
+        690.464,
+        695.541,
+        700.224
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2032",
+      "series_id": "people.deaths",
+      "period": "2032",
+      "unit": "persons_k",
+      "predicted": [
+        696.777,
+        703.594,
+        709.795
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2033",
+      "series_id": "people.deaths",
+      "period": "2033",
+      "unit": "persons_k",
+      "predicted": [
+        703.135,
+        711.932,
+        719.834
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2034",
+      "series_id": "people.deaths",
+      "period": "2034",
+      "unit": "persons_k",
+      "predicted": [
+        709.496,
+        720.438,
+        730.221
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2035",
+      "series_id": "people.deaths",
+      "period": "2035",
+      "unit": "persons_k",
+      "predicted": [
+        715.67,
+        728.961,
+        740.815
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2036",
+      "series_id": "people.deaths",
+      "period": "2036",
+      "unit": "persons_k",
+      "predicted": [
+        721.599,
+        737.383,
+        751.395
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2037",
+      "series_id": "people.deaths",
+      "period": "2037",
+      "unit": "persons_k",
+      "predicted": [
+        727.178,
+        745.583,
+        761.892
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2038",
+      "series_id": "people.deaths",
+      "period": "2038",
+      "unit": "persons_k",
+      "predicted": [
+        732.388,
+        753.494,
+        772.192
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2039",
+      "series_id": "people.deaths",
+      "period": "2039",
+      "unit": "persons_k",
+      "predicted": [
+        737.118,
+        760.986,
+        782.14
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2040",
+      "series_id": "people.deaths",
+      "period": "2040",
+      "unit": "persons_k",
+      "predicted": [
+        741.303,
+        767.961,
+        791.626
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2041",
+      "series_id": "people.deaths",
+      "period": "2041",
+      "unit": "persons_k",
+      "predicted": [
+        744.958,
+        774.386,
+        800.594
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2042",
+      "series_id": "people.deaths",
+      "period": "2042",
+      "unit": "persons_k",
+      "predicted": [
+        748.113,
+        780.305,
+        809.111
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2043",
+      "series_id": "people.deaths",
+      "period": "2043",
+      "unit": "persons_k",
+      "predicted": [
+        750.806,
+        785.791,
+        817.184
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2044",
+      "series_id": "people.deaths",
+      "period": "2044",
+      "unit": "persons_k",
+      "predicted": [
+        753.14,
+        790.886,
+        824.928
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2045",
+      "series_id": "people.deaths",
+      "period": "2045",
+      "unit": "persons_k",
+      "predicted": [
+        755.253,
+        795.739,
+        832.457
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2046",
+      "series_id": "people.deaths",
+      "period": "2046",
+      "unit": "persons_k",
+      "predicted": [
+        757.234,
+        800.454,
+        839.836
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2047",
+      "series_id": "people.deaths",
+      "period": "2047",
+      "unit": "persons_k",
+      "predicted": [
+        759.203,
+        805.122,
+        847.21
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2048",
+      "series_id": "people.deaths",
+      "period": "2048",
+      "unit": "persons_k",
+      "predicted": [
+        761.309,
+        809.893,
+        854.672
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2049",
+      "series_id": "people.deaths",
+      "period": "2049",
+      "unit": "persons_k",
+      "predicted": [
+        763.63,
+        814.788,
+        862.196
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2050",
+      "series_id": "people.deaths",
+      "period": "2050",
+      "unit": "persons_k",
+      "predicted": [
+        766.193,
+        819.778,
+        869.758
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2051",
+      "series_id": "people.deaths",
+      "period": "2051",
+      "unit": "persons_k",
+      "predicted": [
+        768.977,
+        824.808,
+        877.239
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2052",
+      "series_id": "people.deaths",
+      "period": "2052",
+      "unit": "persons_k",
+      "predicted": [
+        771.902,
+        829.805,
+        884.528
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2053",
+      "series_id": "people.deaths",
+      "period": "2053",
+      "unit": "persons_k",
+      "predicted": [
+        774.945,
+        834.627,
+        891.473
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2054",
+      "series_id": "people.deaths",
+      "period": "2054",
+      "unit": "persons_k",
+      "predicted": [
+        777.939,
+        839.154,
+        898.008
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2055",
+      "series_id": "people.deaths",
+      "period": "2055",
+      "unit": "persons_k",
+      "predicted": [
+        780.755,
+        843.291,
+        903.948
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2056",
+      "series_id": "people.deaths",
+      "period": "2056",
+      "unit": "persons_k",
+      "predicted": [
+        783.317,
+        846.858,
+        909.204
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2057",
+      "series_id": "people.deaths",
+      "period": "2057",
+      "unit": "persons_k",
+      "predicted": [
+        785.447,
+        849.84,
+        913.746
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2058",
+      "series_id": "people.deaths",
+      "period": "2058",
+      "unit": "persons_k",
+      "predicted": [
+        787.106,
+        852.096,
+        917.493
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2059",
+      "series_id": "people.deaths",
+      "period": "2059",
+      "unit": "persons_k",
+      "predicted": [
+        788.211,
+        853.686,
+        920.558
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2060",
+      "series_id": "people.deaths",
+      "period": "2060",
+      "unit": "persons_k",
+      "predicted": [
+        788.764,
+        854.62,
+        922.981
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2061",
+      "series_id": "people.deaths",
+      "period": "2061",
+      "unit": "persons_k",
+      "predicted": [
+        788.732,
+        854.964,
+        924.922
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2062",
+      "series_id": "people.deaths",
+      "period": "2062",
+      "unit": "persons_k",
+      "predicted": [
+        788.227,
+        854.842,
+        926.492
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2063",
+      "series_id": "people.deaths",
+      "period": "2063",
+      "unit": "persons_k",
+      "predicted": [
+        787.261,
+        854.368,
+        927.935
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2064",
+      "series_id": "people.deaths",
+      "period": "2064",
+      "unit": "persons_k",
+      "predicted": [
+        785.92,
+        853.696,
+        929.409
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2065",
+      "series_id": "people.deaths",
+      "period": "2065",
+      "unit": "persons_k",
+      "predicted": [
+        784.34,
+        852.926,
+        931.098
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2066",
+      "series_id": "people.deaths",
+      "period": "2066",
+      "unit": "persons_k",
+      "predicted": [
+        782.576,
+        852.282,
+        933.151
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2067",
+      "series_id": "people.deaths",
+      "period": "2067",
+      "unit": "persons_k",
+      "predicted": [
+        780.817,
+        851.841,
+        935.761
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2068",
+      "series_id": "people.deaths",
+      "period": "2068",
+      "unit": "persons_k",
+      "predicted": [
+        779.141,
+        851.801,
+        939.055
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2069",
+      "series_id": "people.deaths",
+      "period": "2069",
+      "unit": "persons_k",
+      "predicted": [
+        777.668,
+        852.256,
+        943.117
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2070",
+      "series_id": "people.deaths",
+      "period": "2070",
+      "unit": "persons_k",
+      "predicted": [
+        776.636,
+        853.335,
+        948.003
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2071",
+      "series_id": "people.deaths",
+      "period": "2071",
+      "unit": "persons_k",
+      "predicted": [
+        776.155,
+        855.135,
+        953.769
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2072",
+      "series_id": "people.deaths",
+      "period": "2072",
+      "unit": "persons_k",
+      "predicted": [
+        776.373,
+        857.639,
+        960.31
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2073",
+      "series_id": "people.deaths",
+      "period": "2073",
+      "unit": "persons_k",
+      "predicted": [
+        777.263,
+        860.842,
+        967.522
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2074",
+      "series_id": "people.deaths",
+      "period": "2074",
+      "unit": "persons_k",
+      "predicted": [
+        778.819,
+        864.595,
+        975.29
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "ons:NPP-2024based-2026-04-28:people.deaths:2075",
+      "series_id": "people.deaths",
+      "period": "2075",
+      "unit": "persons_k",
+      "predicted": [
+        781.019,
+        868.796,
+        983.399
+      ],
+      "range": "range",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    }
+  ]
+}
