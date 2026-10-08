@@ -89,7 +89,7 @@ describe("API v1 shapes", () => {
     const p = promises.find((x) => x.cost)!;
     expect(keys(p)).toEqual(
       [
-        "actor_id", "actor_name", "contracts", "corrections", "cost", "deadline", "events", "funded_by", "id", "made_on", "origin", "outcome_by", "party_id",
+        "actor_id", "actor_name", "contracts", "corrections", "cost", "deadline", "events", "funded_by", "headline", "id", "made_on", "origin", "outcome_by", "party_id",
         "policy_area", "quote_checked_on", "quote_licence", "quote_source_url", "replies", "sources", "status", "status_label", "status_note", "text",
         "url", "venue", "venue_label", "version", "versions", "when", "who",
       ].sort(),
