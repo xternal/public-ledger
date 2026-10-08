@@ -27,7 +27,14 @@ versions:
     quote_checked_on: "2026-10-07"
     parameters:
       who: Pupils and students in England, and the schools and colleges that teach and assess them
-      cost_note: No costing published.
+      cost_note: >-
+        No separate cost: publishing proposals costs nothing of its own, and the Department for Education has
+        published no costing. Its November 2025 response to the Curriculum and Assessment Review sets the
+        timetable, aiming to publish the final revised national curriculum by spring 2027, but gives no
+        overall cost for the reform.
+      cost_sources:
+        - title: "DfE: Government response to the Curriculum and Assessment Review (5 Nov 2025)"
+          url: https://assets.publishing.service.gov.uk/media/690b2a4a14b040dfe82922ea/Government_response_to_the_Curriculum_and_Assessment_Review.pdf
       when: Not stated ("soon")
       funded_by: null
 events:
@@ -35,6 +42,29 @@ events:
     type: promised
     text: Lucy Powell tells the Commons that proposals for curriculum and assessment reform building on the Becky Francis review will be published soon
 replies: []
+corrections:
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_note
+    was: "No costing published."
+    now: >-
+      No separate cost: publishing proposals costs nothing of its own, and the Department for Education has
+      published no costing. Its November 2025 response to the Curriculum and Assessment Review sets the
+      timetable, aiming to publish the final revised national curriculum by spring 2027, but gives no overall
+      cost for the reform.
+    reason: >-
+      The note said only that no costing was published. It now says why the promise has no separate cost and
+      what the Department for Education has published.
+    source_url: https://assets.publishing.service.gov.uk/media/690b2a4a14b040dfe82922ea/Government_response_to_the_Curriculum_and_Assessment_Review.pdf
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_sources
+    was: null
+    now:
+      - title: "DfE: Government response to the Curriculum and Assessment Review (5 Nov 2025)"
+        url: https://assets.publishing.service.gov.uk/media/690b2a4a14b040dfe82922ea/Government_response_to_the_Curriculum_and_Assessment_Review.pdf
+    reason: >-
+      The note said only that no costing was published. It now says why the promise has no separate cost and
+      what the Department for Education has published.
+    source_url: https://assets.publishing.service.gov.uk/media/690b2a4a14b040dfe82922ea/Government_response_to_the_Curriculum_and_Assessment_Review.pdf
 reviews:
   - by: Junior Editor
     kind: automated
