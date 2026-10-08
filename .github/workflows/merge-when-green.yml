@@ -10,6 +10,9 @@ name: Merge when green
 # - Merges made with the workflow token start no other workflows, so when the
 #   merge changed content/ this job starts the alerts run itself. Vercel deploys
 #   main through its own GitHub connection, so the site updates as usual.
+# - A pull request that changes .github/workflows/ is never merged here: GitHub does
+#   not let a workflow's token merge workflow changes. It gets one comment asking
+#   for a hand merge instead of a failed run.
 # Intake pull requests have their own rule (.github/workflows/intake-merge.yml).
 
 on:
@@ -67,6 +70,20 @@ jobs:
             if [ "$failed" -gt 0 ]; then echo "#$pr: CI failed; leaving it open."; continue; fi
             if [ "$green" -lt 2 ]; then echo "#$pr: CI still running; the next CI completion checks again."; continue; fi
             [ "$(echo "$info" | jq -r '.isDraft')" = "true" ] && { echo "#$pr: still a draft; leaving it open."; continue; }
+            # GitHub never lets a workflow's token merge changes to workflow files: say so on the pull request, once, and leave it for a person.
+            # (Read into a variable first: with pipefail, `gh … | grep -q` can fail when grep stops reading early.)
+            files=$(gh api "repos/$REPO/pulls/$pr/files?per_page=100" --paginate --jq '.[].filename')
+            if grep -q '^\.github/workflows/' <<< "$files"; then
+              echo "#$pr changes .github/workflows/, which only a person can merge; leaving it open."
+              note="<!-- merge-when-green:workflow-files -->"
+              comments=$(gh api "repos/$REPO/issues/$pr/comments?per_page=100" --paginate --jq '.[].body')
+              if ! grep -qF "$note" <<< "$comments"; then
+                printf '%s\n%s\n\n```bash\ngh pr merge %s --repo %s --merge\n```\n' "$note" \
+                  "Checks are green, but this pull request changes workflow files (\`.github/workflows/\`), and GitHub does not let a workflow merge those. Merge it by hand:" \
+                  "$pr" "$REPO" | gh pr comment "$pr" --repo "$REPO" --body-file -
+              fi
+              continue
+            fi
             before=$(gh api "repos/$REPO/git/ref/heads/main" --jq '.object.sha')
             gh pr merge "$pr" --repo "$REPO" --merge --delete-branch --match-head-commit "$head"
             after=$(gh pr view "$pr" --repo "$REPO" --json mergeCommit --jq '.mergeCommit.oid')
