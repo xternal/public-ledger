@@ -1,7 +1,7 @@
 import "server-only";
-import type { PolicyArea, Seed } from "@ledger/schema";
+import { DEADLINE_WINDOWS, WINDOW_LABEL, isDeadlineWindow, type PolicyArea, type Seed } from "@ledger/schema";
 import { loadConfig, errorText } from "@ledger/server";
-import { CONSENT_POINTS, CONSENT_VERSION, plainDescribe, type Target } from "@ledger/server/follow";
+import { CONSENT_POINTS, CONSENT_VERSION, plainDescribe, windowName, type Target } from "@ledger/server/follow";
 import { getSeed } from "@/lib/data";
 import { AREA_LABEL } from "@/lib/promises";
 import type { FollowOptions } from "@/components/FollowPanel";
@@ -28,7 +28,11 @@ function short(s: string, n = 90): string {
   return s.length > n ? `${s.slice(0, n - 1).trimEnd()}…` : s;
 }
 
+/** The deadline windows a reader can follow, for the follow panel's picker. */
+export const followWindows = () => DEADLINE_WINDOWS.map((id) => ({ id, label: WINDOW_LABEL[id] }));
+
 export function describeTarget(t: Target): string {
+  if (t.kind === "deadline_window") return windowName(t.id);
   const s = seed();
   if (!s) return plainDescribe(t);
   switch (t.kind) {
@@ -50,6 +54,7 @@ export function describeTarget(t: Target): string {
 export function isKnownTarget(t: Target): boolean {
   if (t.kind === "all") return t.id === "*";
   if (t.kind === "area") return t.id in AREA_LABEL;
+  if (t.kind === "deadline_window") return isDeadlineWindow(t.id);
   const s = seed();
   if (!s) return true;
   return t.kind === "promise" ? s.cards.some((c) => c.id === t.id) : s.actors.some((a) => a.id === t.id);
@@ -64,6 +69,8 @@ export function targetHref(t: Target): string {
       return `/actor/${t.id}`;
     case "area":
       return `/promises?area=${t.id}`;
+    case "deadline_window":
+      return "/promises#coming-up";
     case "all":
       return "/promises";
   }

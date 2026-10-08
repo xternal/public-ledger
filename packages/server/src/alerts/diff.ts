@@ -10,14 +10,26 @@ import { costRangeText, eventLabel, statusLabel, truncate, ukDate } from "./labe
  * range, and a published right of reply.
  */
 
-export type ChangeType = "new_card" | "status" | "event" | "deadline_missed" | "version" | "cost" | "reply";
+export type ChangeType =
+  | "new_card"
+  | "status"
+  | "event"
+  | "deadline_missed"
+  | "version"
+  | "cost"
+  | "reply"
+  // Data changes (alerts/data.ts) and the monthly list of what is coming due (alerts/deadlines.ts).
+  | "contract"
+  | "edition"
+  | "coming_due";
 
 export interface ChangeEvent {
   /** Stable: the same change in the same commit always gets the same id, so re-runs never duplicate. */
   id: string;
-  promise_id: string;
-  actor_id: string;
-  policy_area: string;
+  /** Null for changes that belong to no promise: a new edition of the headline figures, the monthly "coming due" list. */
+  promise_id: string | null;
+  actor_id: string | null;
+  policy_area: string | null;
   change_type: ChangeType;
   /** "Status changed: Promised → Funded" */
   summary: string;
@@ -29,6 +41,10 @@ export interface ChangeEvent {
   /** For submitter updates; not stored. */
   submission_ref?: string;
   evidence_url?: string;
+  /** The card's deadline, for deadline-window followers; not stored. */
+  deadline?: string;
+  /** Set when the change is an outcome deadline-window followers hear about; not stored. */
+  outcome?: "delivered" | "deadline_missed";
 }
 
 export interface DiffOptions {
@@ -84,6 +100,7 @@ export function diffContent(before: Map<string, string>, after: Map<string, stri
       url: `${site}/promise/${card.id}`,
       commit_sha: opts.commit,
       title: cardTitle(card, opts.actors),
+      ...(card.deadline ? { deadline: card.deadline } : {}),
     };
     const add = (change_type: ChangeType, summary: string, idCommit: string | null, detail: string, extra: Partial<ChangeEvent> = {}) =>
       events.push({ ...base, ...extra, id: changeId(idCommit, card.id, change_type, detail), change_type, summary });
@@ -95,7 +112,13 @@ export function diffContent(before: Map<string, string>, after: Map<string, stri
     }
 
     if (old.status !== card.status) {
-      add("status", `Status changed: ${statusLabel(old.status)} → ${statusLabel(card.status)}`, opts.commit, `${old.status}->${card.status}`);
+      add(
+        "status",
+        `Status changed: ${statusLabel(old.status)} → ${statusLabel(card.status)}`,
+        opts.commit,
+        `${old.status}->${card.status}`,
+        card.status === "delivered" ? { outcome: "delivered" } : {},
+      );
     }
 
     const oldNumbers = new Set(old.versions.map((v, i) => v.version ?? i + 1));
@@ -120,9 +143,10 @@ export function diffContent(before: Map<string, string>, after: Map<string, stri
       const extra = e.evidence_url ? { evidence_url: e.evidence_url } : {};
       if (e.type === "deadline_missed") {
         const due = card.deadline ? ` (${ukDate(card.deadline)})` : "";
-        add("deadline_missed", `Deadline passed${due}: ${text}`, null, key, extra);
+        add("deadline_missed", `Deadline passed${due}: ${text}`, null, key, { ...extra, outcome: "deadline_missed" });
       } else {
-        add("event", `${eventLabel(e.type ?? "")}${e.date ? `, ${ukDate(e.date)}` : ""}: ${text}`, null, key, extra);
+        const outcome = e.type === "delivered" ? { outcome: "delivered" as const } : {};
+        add("event", `${eventLabel(e.type ?? "")}${e.date ? `, ${ukDate(e.date)}` : ""}: ${text}`, null, key, { ...extra, ...outcome });
       }
     }
 

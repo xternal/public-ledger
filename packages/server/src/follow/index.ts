@@ -11,6 +11,7 @@ export {
   plainDescribe,
   sameTarget,
   telegramPayload,
+  windowName,
   type Cadence,
   type DescribeTarget,
   type KnownTarget,
