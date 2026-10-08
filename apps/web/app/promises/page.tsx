@@ -9,6 +9,7 @@ import { ComingUp, type DueItem } from "@/components/ComingUp";
 import { AREA_LABEL, isOverdue, ownerOf, promisesSummary, shortName, standingOf, todayIso, whoShort } from "@/lib/promises";
 import { followOptions, followWindows } from "@/app/follow/targets";
 import { JsonLd } from "@/components/JsonLd";
+import { budgetLinkText } from "@/lib/budget";
 import { OPEN_GRAPH, seoContext } from "@/lib/site";
 import { creditRows } from "@/components/CreditTable";
 
@@ -76,6 +77,11 @@ export default function PromisesPage() {
           {summary.length > 0 && <p className="m-0 text-lead text-muted">{summary.join(" ")}</p>}
           <p className="m-0 text-label text-muted">
             A promise moves along its timeline only on evidence: a plan, a bill, money in a Budget, or delivery.
+          </p>
+          <p className="m-0 text-label">
+            <a href="/budget" className="font-medium">
+              {budgetLinkText(today)}
+            </a>
           </p>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-label">
             <FollowButton
