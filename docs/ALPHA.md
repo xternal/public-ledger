@@ -20,7 +20,7 @@ Everything the site stores (submissions, follows later, T1 cache) goes to a Neon
    scripts/alpha-setup.sh
    ```
    It signs you in to Vercel, links the folder to the project, asks for the site address and the Neon connection string (press Enter if step 2 set it through Vercel; optionally, an Anthropic key for submission pre-fill), generates the keys and the editors' password on your machine, stores everything as Vercel environment variables, keeps a copy in `.env.alpha.local` (git-ignored; put it in your password manager), deploys, and prints the URL. If your project is not called `public-ledger`, run `VERCEL_PROJECT=<name> scripts/alpha-setup.sh`.
-4. **Open the URL.** `/api/health` should answer `{"ok":true}`. The first alpha is at https://public-ledger-gray.vercel.app (7 Oct 2026).
+4. **Open the URL.** `/api/health` should answer `{"ok":true}`. The first alpha went live at https://public-ledger-gray.vercel.app on 7 Oct 2026; since 8 Oct 2026 the site is at **https://ledgergov.uk** (`www.` and the old address redirect there with 308).
 
 From then on every merge to `main` redeploys the alpha.
 
@@ -29,3 +29,10 @@ From then on every merge to `main` redeploys the alpha.
 - **Close it to testers only:** set an `ALPHA_PASSWORD` (12+ characters) in Vercel and redeploy. Every page then asks for it once (a 30-day cookie), and nothing is indexed. Remove the variable to open it again.
 - **Turn email on:** set up Resend on a domain you own (docs/OPERATIONS.md §3), then set `MAIL_PROVIDER=resend`, `RESEND_API_KEY` and `MAIL_FROM` in Vercel.
 - **Alerts and intake against the alpha's database:** add `DATABASE_URL` and the same keys as GitHub Actions secrets (docs/OPERATIONS.md §8). Leave them out until email is on.
+
+## Own domain (ledgergov.uk, 8 Oct 2026)
+
+- **Cloudflare DNS** (proxy off, "DNS only", so Vercel issues the certificate): `A @ 76.76.21.21` and `CNAME www cname.vercel-dns.com`.
+- **Vercel:** both names are on the project. `www.ledgergov.uk` and `public-ledger-gray.vercel.app` redirect to `ledgergov.uk` (308), and `SITE_URL=https://ledgergov.uk` in Production, so canonical links, the sitemap, share tags and email links use the new address.
+- **Resend:** the domain is verified in Resend with its DKIM and `send.` records in Cloudflare. Add a DMARC record too: `TXT _dmarc "v=DMARC1; p=none; rua=mailto:<you>"`, moving to `p=quarantine` once mail flows cleanly.
+
