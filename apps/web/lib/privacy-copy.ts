@@ -36,6 +36,9 @@ export const CONTROLLER_OFFICE = `${CONTROLLER.office.street}, ${CONTROLLER.offi
  * "registration number to follow". One-line change: set the number here.
  */
 export const ICO_REGISTRATION_NUMBER: string | null = null;
+/** Applications to be an editor are deleted this long after we decide, if the applicant does not join. */
+export const EDITOR_APPLICATION_RETENTION_MONTHS = 6;
+
 export const ICO_COMPLAINTS_URL = "https://ico.org.uk/make-a-complaint/";
 export const ICO_PHONE = "0303 123 1113";
 
@@ -65,6 +68,10 @@ export function retention(): RetentionRow[] {
     { what: "Your email with a submission", howLong: `Until the editors decide, ${SUBMITTER_EMAIL_RETENTION_DAYS} days at most. Not kept at all if someone sent it first` },
     { what: "Your credit name", howLong: "On the card for good if it is published. Deleted if the editors turn it down" },
     { what: "What you sent in a submission", howLong: "Kept as the editors' record. We have not set an end date yet", toConfirm: true },
+    {
+      what: "An application to be an editor",
+      howLong: `Deleted within ${EDITOR_APPLICATION_RETENTION_MONTHS} months if you do not join. If you do, kept while you are an editor and deleted ${EDITOR_APPLICATION_RETENTION_MONTHS} months after you stop`,
+    },
     { what: "Scrambled codes made from your IP address, for rate limits", howLong: "Deleted at the next daily clean-up after the day ends: within about 28 hours" },
     { what: "Your postcode", howLong: "Not kept at all" },
     { what: "Daily usage counts", howLong: "Kept. They hold no personal data" },
@@ -89,4 +96,4 @@ export const PRIVACY_FAQ = (threshold: number): { q: string; a: string }[] => [
 ];
 
 /** One paragraph for llms.txt. */
-export const PRIVACY_SUMMARY = `Public Ledger is run by ${CONTROLLER.name}, Pavel Guzhikov's company, independently of any party; ${CONTROLLER.name} is the controller and is registered with the ICO. Reading stores nothing. Alerts keep only an encrypted email address or Telegram chat and what is followed, on explicit consent; follows are never shown individually. Submitters' emails are deleted once editors decide, or after ${SUBMITTER_EMAIL_RETENTION_DAYS} days. Postcodes are never kept. Contact: ${PRIVACY_EMAIL}.`;
+export const PRIVACY_SUMMARY = `Public Ledger is run by ${CONTROLLER.name}, Pavel Guzhikov's company, independently of any party; ${CONTROLLER.name} is the controller and is registered with the ICO. Reading stores nothing. Alerts keep only an encrypted email address or Telegram chat and what is followed, on explicit consent; follows are never shown individually. Submitters' emails are deleted once editors decide, or after ${SUBMITTER_EMAIL_RETENTION_DAYS} days. Postcodes are never kept. Applications to be an editor are deleted within ${EDITOR_APPLICATION_RETENTION_MONTHS} months if the applicant does not join. Contact: ${PRIVACY_EMAIL}.`;

@@ -212,6 +212,9 @@ export function ContributeForm({
       <div>
         <h2 className="text-title font-semibold">Seen a promise? Send it in.</h2>
         <p className="mt-2 max-w-[48ch] text-lead text-muted">No account needed. Editors check every submission against the original source before it becomes a card.</p>
+        <p className="mt-3 text-label text-muted">
+          Like checking sources? <a href="/editors">Become a volunteer editor</a>.
+        </p>
         <ol className="mt-6 grid list-none gap-4 p-0 text-sm text-muted [counter-reset:step]">
           {[
             "You send a link and, for video, the moment it was said.",

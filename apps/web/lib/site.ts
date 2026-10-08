@@ -20,6 +20,10 @@ export const isAlpha = () => process.env.SITE_STAGE === "alpha";
 
 /** The maker, credited at the foot of every page. */
 export const SOURCE_CODE = { url: "https://github.com/xternal/public-ledger", licence: "AGPL-3.0" } as const;
+/** Applications and questions from would-be editors (Cloudflare Email Routing forwards it). */
+export const EDITORS_EMAIL = "editors@ledgergov.uk";
+/** When /editors last changed: the JobPosting date and the sitemap use it. */
+export const EDITORS_PAGE_UPDATED = "2026-10-08";
 export const MAKER = { name: "Pavel Guzhikov", url: "https://guzh.uk", coffee: "https://ko-fi.com/pavelg" } as const;
 
 export function siteUrl(): string {

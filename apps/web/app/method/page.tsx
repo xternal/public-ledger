@@ -158,6 +158,11 @@ export default function MethodPage() {
               Whatever a review finds is fixed in public: the card shows a dated correction with the old and new value. Every party&apos;s cards get the
               same checks.
             </p>
+            <p className="m-0">
+              <a href="/editors" className="font-medium">
+                Become a volunteer editor
+              </a>
+            </p>
           </div>
           <div className="grid max-w-[62ch] content-start gap-3">
             <h2 className="m-0 text-title font-semibold">Checked against what happened</h2>
