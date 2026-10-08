@@ -1,0 +1,706 @@
+[
+    {
+        "MemberId": 4456,
+        "MemberVotedAye": false,
+        "MemberVotedNo": true,
+        "MemberWasTeller": false,
+        "PublishedDivision": {
+            "DivisionId": 2425,
+            "Date": "2026-09-10T16:58:00",
+            "PublicationUpdated": "2026-09-10T17:16:19",
+            "Number": 73,
+            "IsDeferred": false,
+            "EVELType": "",
+            "EVELCountry": "",
+            "Title": "Social Housing Bill [Lords]: Reasoned Amendment to Second Reading",
+            "AyeCount": 77,
+            "NoCount": 292,
+            "DoubleMajorityAyeCount": null,
+            "DoubleMajorityNoCount": null,
+            "AyeTellers": [
+                {
+                    "MemberId": 4805,
+                    "Name": "Alicia Kearns",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "Rutland and Stamford",
+                    "ListAs": "Kearns, Alicia",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5301,
+                    "Name": "Rebecca Smith",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "South West Devon",
+                    "ListAs": "Smith, Rebecca",
+                    "ProxyName": null
+                }
+            ],
+            "NoTellers": [
+                {
+                    "MemberId": 5041,
+                    "Name": "Shaun Davies",
+                    "Party": "Labour",
+                    "SubParty": null,
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Telford",
+                    "ListAs": "Davies, Shaun",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5029,
+                    "Name": "Emma Foody",
+                    "Party": "Labour",
+                    "SubParty": "Co-op",
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Cramlington and Killingworth",
+                    "ListAs": "Foody, Emma",
+                    "ProxyName": null
+                }
+            ],
+            "Ayes": [],
+            "Noes": [],
+            "FriendlyDescription": null,
+            "FriendlyTitle": null,
+            "NoVoteRecorded": [],
+            "RemoteVotingStart": null,
+            "RemoteVotingEnd": null
+        }
+    },
+    {
+        "MemberId": 4456,
+        "MemberVotedAye": true,
+        "MemberVotedNo": false,
+        "MemberWasTeller": false,
+        "PublishedDivision": {
+            "DivisionId": 2424,
+            "Date": "2026-09-09T00:00:00",
+            "PublicationUpdated": "2026-09-09T16:57:19",
+            "Number": 72,
+            "IsDeferred": true,
+            "EVELType": "",
+            "EVELCountry": "",
+            "Title": "Draft Plant Health, Seeds, Seed Potatoes and Plant Propagating Material  (Amendment) (Northern Ireland) Regulations 2026",
+            "AyeCount": 371,
+            "NoCount": 100,
+            "DoubleMajorityAyeCount": null,
+            "DoubleMajorityNoCount": null,
+            "AyeTellers": null,
+            "NoTellers": null,
+            "Ayes": [],
+            "Noes": [],
+            "FriendlyDescription": null,
+            "FriendlyTitle": null,
+            "NoVoteRecorded": [],
+            "RemoteVotingStart": null,
+            "RemoteVotingEnd": null
+        }
+    },
+    {
+        "MemberId": 4456,
+        "MemberVotedAye": false,
+        "MemberVotedNo": true,
+        "MemberWasTeller": false,
+        "PublishedDivision": {
+            "DivisionId": 2423,
+            "Date": "2026-09-08T18:39:00",
+            "PublicationUpdated": "2026-09-08T18:57:13",
+            "Number": 71,
+            "IsDeferred": false,
+            "EVELType": "",
+            "EVELCountry": "",
+            "Title": "Health Bill: Report Stage: Amendment 1",
+            "AyeCount": 162,
+            "NoCount": 297,
+            "DoubleMajorityAyeCount": null,
+            "DoubleMajorityNoCount": null,
+            "AyeTellers": [
+                {
+                    "MemberId": 5101,
+                    "Name": "Ashley Fox",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "Bridgwater",
+                    "ListAs": "Fox, Sir Ashley",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5301,
+                    "Name": "Rebecca Smith",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "South West Devon",
+                    "ListAs": "Smith, Rebecca",
+                    "ProxyName": null
+                }
+            ],
+            "NoTellers": [
+                {
+                    "MemberId": 5029,
+                    "Name": "Emma Foody",
+                    "Party": "Labour",
+                    "SubParty": "Co-op",
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Cramlington and Killingworth",
+                    "ListAs": "Foody, Emma",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5167,
+                    "Name": "Gregor Poynton",
+                    "Party": "Labour",
+                    "SubParty": null,
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Livingston",
+                    "ListAs": "Poynton, Gregor",
+                    "ProxyName": null
+                }
+            ],
+            "Ayes": [],
+            "Noes": [],
+            "FriendlyDescription": null,
+            "FriendlyTitle": null,
+            "NoVoteRecorded": [],
+            "RemoteVotingStart": null,
+            "RemoteVotingEnd": null
+        }
+    },
+    {
+        "MemberId": 4456,
+        "MemberVotedAye": false,
+        "MemberVotedNo": true,
+        "MemberWasTeller": false,
+        "PublishedDivision": {
+            "DivisionId": 2422,
+            "Date": "2026-09-08T18:28:00",
+            "PublicationUpdated": "2026-09-08T18:39:47",
+            "Number": 70,
+            "IsDeferred": false,
+            "EVELType": "",
+            "EVELCountry": "",
+            "Title": "Health Bill: Report Stage: New Clause 143",
+            "AyeCount": 106,
+            "NoCount": 302,
+            "DoubleMajorityAyeCount": null,
+            "DoubleMajorityNoCount": null,
+            "AyeTellers": [
+                {
+                    "MemberId": 5301,
+                    "Name": "Rebecca Smith",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "South West Devon",
+                    "ListAs": "Smith, Rebecca",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5101,
+                    "Name": "Ashley Fox",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "Bridgwater",
+                    "ListAs": "Fox, Sir Ashley",
+                    "ProxyName": null
+                }
+            ],
+            "NoTellers": [
+                {
+                    "MemberId": 5167,
+                    "Name": "Gregor Poynton",
+                    "Party": "Labour",
+                    "SubParty": null,
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Livingston",
+                    "ListAs": "Poynton, Gregor",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5029,
+                    "Name": "Emma Foody",
+                    "Party": "Labour",
+                    "SubParty": "Co-op",
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Cramlington and Killingworth",
+                    "ListAs": "Foody, Emma",
+                    "ProxyName": null
+                }
+            ],
+            "Ayes": [],
+            "Noes": [],
+            "FriendlyDescription": null,
+            "FriendlyTitle": null,
+            "NoVoteRecorded": [],
+            "RemoteVotingStart": null,
+            "RemoteVotingEnd": null
+        }
+    },
+    {
+        "MemberId": 4456,
+        "MemberVotedAye": false,
+        "MemberVotedNo": true,
+        "MemberWasTeller": false,
+        "PublishedDivision": {
+            "DivisionId": 2421,
+            "Date": "2026-09-08T18:14:00",
+            "PublicationUpdated": "2026-09-08T18:58:16",
+            "Number": 69,
+            "IsDeferred": false,
+            "EVELType": "",
+            "EVELCountry": "",
+            "Title": "Health Bill: Report Stage: New Clause 142",
+            "AyeCount": 108,
+            "NoCount": 357,
+            "DoubleMajorityAyeCount": null,
+            "DoubleMajorityNoCount": null,
+            "AyeTellers": [
+                {
+                    "MemberId": 5101,
+                    "Name": "Ashley Fox",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "Bridgwater",
+                    "ListAs": "Fox, Sir Ashley",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5301,
+                    "Name": "Rebecca Smith",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "South West Devon",
+                    "ListAs": "Smith, Rebecca",
+                    "ProxyName": null
+                }
+            ],
+            "NoTellers": [
+                {
+                    "MemberId": 5029,
+                    "Name": "Emma Foody",
+                    "Party": "Labour",
+                    "SubParty": "Co-op",
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Cramlington and Killingworth",
+                    "ListAs": "Foody, Emma",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5167,
+                    "Name": "Gregor Poynton",
+                    "Party": "Labour",
+                    "SubParty": null,
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Livingston",
+                    "ListAs": "Poynton, Gregor",
+                    "ProxyName": null
+                }
+            ],
+            "Ayes": [],
+            "Noes": [],
+            "FriendlyDescription": null,
+            "FriendlyTitle": null,
+            "NoVoteRecorded": [],
+            "RemoteVotingStart": null,
+            "RemoteVotingEnd": null
+        }
+    },
+    {
+        "MemberId": 4456,
+        "MemberVotedAye": false,
+        "MemberVotedNo": true,
+        "MemberWasTeller": false,
+        "PublishedDivision": {
+            "DivisionId": 2420,
+            "Date": "2026-09-08T18:01:00",
+            "PublicationUpdated": "2026-09-08T18:56:25",
+            "Number": 68,
+            "IsDeferred": false,
+            "EVELType": "",
+            "EVELCountry": "",
+            "Title": "Health Bill: Report Stage: New Clause 140",
+            "AyeCount": 79,
+            "NoCount": 300,
+            "DoubleMajorityAyeCount": null,
+            "DoubleMajorityNoCount": null,
+            "AyeTellers": [
+                {
+                    "MemberId": 5140,
+                    "Name": "Claire Young",
+                    "Party": "Liberal Democrat",
+                    "SubParty": null,
+                    "PartyColour": "fc7d0b",
+                    "PartyAbbreviation": "LD",
+                    "MemberFrom": "Thornbury and Yate",
+                    "ListAs": "Young, Claire",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5083,
+                    "Name": "Bobby Dean",
+                    "Party": "Liberal Democrat",
+                    "SubParty": null,
+                    "PartyColour": "fc7d0b",
+                    "PartyAbbreviation": "LD",
+                    "MemberFrom": "Carshalton and Wallington",
+                    "ListAs": "Dean, Bobby",
+                    "ProxyName": null
+                }
+            ],
+            "NoTellers": [
+                {
+                    "MemberId": 5029,
+                    "Name": "Emma Foody",
+                    "Party": "Labour",
+                    "SubParty": "Co-op",
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Cramlington and Killingworth",
+                    "ListAs": "Foody, Emma",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5167,
+                    "Name": "Gregor Poynton",
+                    "Party": "Labour",
+                    "SubParty": null,
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Livingston",
+                    "ListAs": "Poynton, Gregor",
+                    "ProxyName": null
+                }
+            ],
+            "Ayes": [],
+            "Noes": [],
+            "FriendlyDescription": null,
+            "FriendlyTitle": null,
+            "NoVoteRecorded": [],
+            "RemoteVotingStart": null,
+            "RemoteVotingEnd": null
+        }
+    },
+    {
+        "MemberId": 4456,
+        "MemberVotedAye": false,
+        "MemberVotedNo": true,
+        "MemberWasTeller": false,
+        "PublishedDivision": {
+            "DivisionId": 2419,
+            "Date": "2026-09-07T22:14:00",
+            "PublicationUpdated": "2026-09-09T17:24:23",
+            "Number": 67,
+            "IsDeferred": false,
+            "EVELType": "",
+            "EVELCountry": "",
+            "Title": "Health Bill: Report Stage: New Clause 145",
+            "AyeCount": 170,
+            "NoCount": 316,
+            "DoubleMajorityAyeCount": null,
+            "DoubleMajorityNoCount": null,
+            "AyeTellers": [
+                {
+                    "MemberId": 5101,
+                    "Name": "Ashley Fox",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "Bridgwater",
+                    "ListAs": "Fox, Sir Ashley",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 4739,
+                    "Name": "Jerome Mayhew",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "Broadland and Fakenham",
+                    "ListAs": "Mayhew, Jerome",
+                    "ProxyName": null
+                }
+            ],
+            "NoTellers": [
+                {
+                    "MemberId": 5236,
+                    "Name": "Jade Botterill",
+                    "Party": "Labour",
+                    "SubParty": null,
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Ossett and Denby Dale",
+                    "ListAs": "Botterill, Jade",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5041,
+                    "Name": "Shaun Davies",
+                    "Party": "Labour",
+                    "SubParty": null,
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Telford",
+                    "ListAs": "Davies, Shaun",
+                    "ProxyName": null
+                }
+            ],
+            "Ayes": [],
+            "Noes": [],
+            "FriendlyDescription": null,
+            "FriendlyTitle": null,
+            "NoVoteRecorded": [],
+            "RemoteVotingStart": null,
+            "RemoteVotingEnd": null
+        }
+    },
+    {
+        "MemberId": 4456,
+        "MemberVotedAye": false,
+        "MemberVotedNo": true,
+        "MemberWasTeller": false,
+        "PublishedDivision": {
+            "DivisionId": 2418,
+            "Date": "2026-09-07T22:00:00",
+            "PublicationUpdated": "2026-09-07T22:34:16",
+            "Number": 66,
+            "IsDeferred": false,
+            "EVELType": "",
+            "EVELCountry": "",
+            "Title": "Health Bill: Report Stage: New Clause 6",
+            "AyeCount": 77,
+            "NoCount": 317,
+            "DoubleMajorityAyeCount": null,
+            "DoubleMajorityNoCount": null,
+            "AyeTellers": [
+                {
+                    "MemberId": 5083,
+                    "Name": "Bobby Dean",
+                    "Party": "Liberal Democrat",
+                    "SubParty": null,
+                    "PartyColour": "fc7d0b",
+                    "PartyAbbreviation": "LD",
+                    "MemberFrom": "Carshalton and Wallington",
+                    "ListAs": "Dean, Bobby",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5322,
+                    "Name": "Will Forster",
+                    "Party": "Liberal Democrat",
+                    "SubParty": null,
+                    "PartyColour": "fc7d0b",
+                    "PartyAbbreviation": "LD",
+                    "MemberFrom": "Woking",
+                    "ListAs": "Forster, Mr Will",
+                    "ProxyName": null
+                }
+            ],
+            "NoTellers": [
+                {
+                    "MemberId": 5041,
+                    "Name": "Shaun Davies",
+                    "Party": "Labour",
+                    "SubParty": null,
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Telford",
+                    "ListAs": "Davies, Shaun",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5236,
+                    "Name": "Jade Botterill",
+                    "Party": "Labour",
+                    "SubParty": null,
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Ossett and Denby Dale",
+                    "ListAs": "Botterill, Jade",
+                    "ProxyName": null
+                }
+            ],
+            "Ayes": [],
+            "Noes": [],
+            "FriendlyDescription": null,
+            "FriendlyTitle": null,
+            "NoVoteRecorded": [],
+            "RemoteVotingStart": null,
+            "RemoteVotingEnd": null
+        }
+    },
+    {
+        "MemberId": 4456,
+        "MemberVotedAye": true,
+        "MemberVotedNo": false,
+        "MemberWasTeller": false,
+        "PublishedDivision": {
+            "DivisionId": 2416,
+            "Date": "2026-09-02T19:59:00",
+            "PublicationUpdated": "2026-09-03T13:39:32",
+            "Number": 64,
+            "IsDeferred": false,
+            "EVELType": "",
+            "EVELCountry": "",
+            "Title": "Representation of the People Bill: Third Reading",
+            "AyeCount": 411,
+            "NoCount": 102,
+            "DoubleMajorityAyeCount": null,
+            "DoubleMajorityNoCount": null,
+            "AyeTellers": [
+                {
+                    "MemberId": 5029,
+                    "Name": "Emma Foody",
+                    "Party": "Labour",
+                    "SubParty": "Co-op",
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Cramlington and Killingworth",
+                    "ListAs": "Foody, Emma",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5236,
+                    "Name": "Jade Botterill",
+                    "Party": "Labour",
+                    "SubParty": null,
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Ossett and Denby Dale",
+                    "ListAs": "Botterill, Jade",
+                    "ProxyName": null
+                }
+            ],
+            "NoTellers": [
+                {
+                    "MemberId": 5347,
+                    "Name": "David Reed",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "Exmouth and Exeter East",
+                    "ListAs": "Reed, David",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5351,
+                    "Name": "Gregory Stafford",
+                    "Party": "Conservative",
+                    "SubParty": null,
+                    "PartyColour": "0063ba",
+                    "PartyAbbreviation": "Con",
+                    "MemberFrom": "Farnham and Bordon",
+                    "ListAs": "Stafford, Gregory",
+                    "ProxyName": null
+                }
+            ],
+            "Ayes": [],
+            "Noes": [],
+            "FriendlyDescription": null,
+            "FriendlyTitle": null,
+            "NoVoteRecorded": [],
+            "RemoteVotingStart": null,
+            "RemoteVotingEnd": null
+        }
+    },
+    {
+        "MemberId": 4456,
+        "MemberVotedAye": false,
+        "MemberVotedNo": true,
+        "MemberWasTeller": false,
+        "PublishedDivision": {
+            "DivisionId": 2415,
+            "Date": "2026-09-02T19:34:00",
+            "PublicationUpdated": "2026-09-03T13:37:54",
+            "Number": 63,
+            "IsDeferred": false,
+            "EVELType": "",
+            "EVELCountry": "",
+            "Title": "Representation of the People Bill: Report Stage: New Clause 88",
+            "AyeCount": 85,
+            "NoCount": 427,
+            "DoubleMajorityAyeCount": null,
+            "DoubleMajorityNoCount": null,
+            "AyeTellers": [
+                {
+                    "MemberId": 5322,
+                    "Name": "Will Forster",
+                    "Party": "Liberal Democrat",
+                    "SubParty": null,
+                    "PartyColour": "fc7d0b",
+                    "PartyAbbreviation": "LD",
+                    "MemberFrom": "Woking",
+                    "ListAs": "Forster, Mr Will",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5083,
+                    "Name": "Bobby Dean",
+                    "Party": "Liberal Democrat",
+                    "SubParty": null,
+                    "PartyColour": "fc7d0b",
+                    "PartyAbbreviation": "LD",
+                    "MemberFrom": "Carshalton and Wallington",
+                    "ListAs": "Dean, Bobby",
+                    "ProxyName": null
+                }
+            ],
+            "NoTellers": [
+                {
+                    "MemberId": 5029,
+                    "Name": "Emma Foody",
+                    "Party": "Labour",
+                    "SubParty": "Co-op",
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Cramlington and Killingworth",
+                    "ListAs": "Foody, Emma",
+                    "ProxyName": null
+                },
+                {
+                    "MemberId": 5236,
+                    "Name": "Jade Botterill",
+                    "Party": "Labour",
+                    "SubParty": null,
+                    "PartyColour": "d50000",
+                    "PartyAbbreviation": "Lab",
+                    "MemberFrom": "Ossett and Denby Dale",
+                    "ListAs": "Botterill, Jade",
+                    "ProxyName": null
+                }
+            ],
+            "Ayes": [],
+            "Noes": [],
+            "FriendlyDescription": null,
+            "FriendlyTitle": null,
+            "NoVoteRecorded": [],
+            "RemoteVotingStart": null,
+            "RemoteVotingEnd": null
+        }
+    }
+]

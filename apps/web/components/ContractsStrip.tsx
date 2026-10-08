@@ -1,7 +1,7 @@
 import type { CardView, ContractLink } from "@ledger/schema";
 import { contractChange } from "@ledger/schema";
 import { longDate, money } from "@/lib/format";
-import { SOURCE_LABEL, bidsText, companiesHouseUrl, displayName, endLine, showsContracts, valueLine } from "@/lib/contracts";
+import { SOURCE_LABEL, bidsText, companiesHouseUrl, contractsSummary, displayName, endLine, showsContracts, valueLine } from "@/lib/contracts";
 import { WithProvenance } from "./ui";
 
 /**
@@ -9,6 +9,9 @@ import { WithProvenance } from "./ui";
  * the card, with who won, how many bid, and how the value and end date have
  * moved since the first notice. Shown once the card is funded or later.
  */
+/** Contracts listed in full before "Show more". */
+const SHOWN = 3;
+
 export function ContractsStrip({ card }: { card: CardView }) {
   if (!showsContracts(card.file.status) || !card.contracts.length) return null;
   const id = `contracts-${card.id}`;
@@ -23,11 +26,26 @@ export function ContractsStrip({ card }: { card: CardView }) {
           never rewrites an old one.
         </p>
       </div>
+      <p className="m-0 text-sm">{contractsSummary(card.contracts)}</p>
       <ul className="m-0 grid list-none border-t border-line p-0">
-        {card.contracts.map((c) => (
+        {card.contracts.slice(0, SHOWN).map((c) => (
           <Contract key={c.id} c={c} />
         ))}
       </ul>
+      {card.contracts.length > SHOWN && (
+        // The rest one click away, so a long list never buries the card.
+        <details className="group">
+          <summary className="cursor-pointer list-none text-label font-medium text-ink underline underline-offset-2 group-open:mb-1">
+            <span className="group-open:hidden">Show {card.contracts.length - SHOWN} more</span>
+            <span className="hidden group-open:inline">Show fewer</span>
+          </summary>
+          <ul className="m-0 grid list-none p-0">
+            {card.contracts.slice(SHOWN).map((c) => (
+              <Contract key={c.id} c={c} />
+            ))}
+          </ul>
+        </details>
+      )}
     </section>
   );
 }

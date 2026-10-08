@@ -18,7 +18,9 @@ export type UsageEvent =
   | { event: "submission_auto_checked"; props: { archived: "yes" | "no"; quote_matched: "yes" | "no" | "na"; duplicate: "yes" | "no" } }
   | { event: "submission_triaged"; props: { outcome: "accepted" | "rejected" | "duplicate"; reason_code: string } }
   | { event: "alert_sent"; props: { channel: "email" | "telegram"; change_type: string } }
-  | { event: "t1_requested"; props: { outcome: T1Outcome } };
+  | { event: "t1_requested"; props: { outcome: T1Outcome } }
+  /** /mp: how a search went. Never the postcode, name or constituency searched for. */
+  | { event: "mp_lookup"; props: { by: "postcode" | "name"; outcome: "found" | "choices" | "not_found" | "unavailable" } };
 
 /** What a request for "who gains and loses" came to: for cache-hit and failure rates. */
 export type T1Outcome = "cached" | "started" | "pending" | "ready" | "not_applicable" | "error" | "rate_limited";

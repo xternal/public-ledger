@@ -1,0 +1,23 @@
+{
+  "key": "ocds-h6vhtk-06d82a",
+  "ocid": "ocds-h6vhtk-06d82a",
+  "source": "find_a_tender",
+  "title": "Great British Energy Award Part 1 Cadw",
+  "buyer": "Llywodraeth Cymru / Welsh Government",
+  "notice_url": "https://www.find-tender.service.gov.uk/Notice/072421-2026",
+  "record_url": "https://www.find-tender.service.gov.uk/api/1.0/ocdsRecordPackages/ocds-h6vhtk-06d82a",
+  "supplier": {
+    "name": "PLUG (EV Stations)"
+  },
+  "awarded_on": "2026-03-16",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 101400.0,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2027-03-31"
+    }
+  ]
+}

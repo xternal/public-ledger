@@ -1,0 +1,88 @@
+{
+    "items": [
+        {
+            "value": {
+                "id": 4263,
+                "nameListAs": "Powell, Lucy",
+                "nameDisplayAs": "Lucy Powell",
+                "nameFullTitle": "Rt Hon Lucy Powell MP",
+                "nameAddressAs": "Lucy Powell",
+                "latestParty": {
+                    "id": 15,
+                    "name": "Labour (Co-op)",
+                    "abbreviation": "Lab",
+                    "backgroundColour": "d50000",
+                    "foregroundColour": "ffffff",
+                    "isLordsMainParty": true,
+                    "isLordsSpiritualParty": true,
+                    "governmentType": 0,
+                    "isIndependentParty": false
+                },
+                "gender": "F",
+                "latestHouseMembership": {
+                    "membershipFrom": "Manchester Central",
+                    "membershipFromId": 4167,
+                    "house": 1,
+                    "membershipStartDate": "2012-11-15T00:00:00",
+                    "membershipEndDate": null,
+                    "membershipEndReason": null,
+                    "membershipEndReasonNotes": null,
+                    "membershipEndReasonId": null,
+                    "membershipStatus": {
+                        "statusIsActive": true,
+                        "statusDescription": "Current Member",
+                        "statusNotes": null,
+                        "statusId": 0,
+                        "status": 0,
+                        "statusStartDate": "2024-07-04T00:00:00"
+                    }
+                },
+                "thumbnailUrl": "https://members-api.parliament.uk/api/Members/4263/Thumbnail"
+            },
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "/Members/4263",
+                    "method": "GET"
+                },
+                {
+                    "rel": "overview",
+                    "href": "/Members/4263",
+                    "method": "GET"
+                },
+                {
+                    "rel": "synopsis",
+                    "href": "/Members/4263/Synopsis",
+                    "method": "GET"
+                },
+                {
+                    "rel": "contactInformation",
+                    "href": "/Members/4263/Contact",
+                    "method": "GET"
+                }
+            ]
+        }
+    ],
+    "totalResults": 1,
+    "resultContext": "",
+    "skip": 0,
+    "take": 10,
+    "links": [
+        {
+            "rel": "self",
+            "href": "/Members/Search?skip=0&take=10",
+            "method": "GET"
+        },
+        {
+            "rel": "page.next",
+            "href": "/Members/Search?skip=0&take=10",
+            "method": "GET"
+        },
+        {
+            "rel": "page.previous",
+            "href": "/Members/Search?skip=0&take=10",
+            "method": "GET"
+        }
+    ],
+    "resultType": "MemberName, House, Status"
+}

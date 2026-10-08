@@ -1,5 +1,5 @@
 import { contractChange, type ContractLink, type ContractSource, type Status } from "@ledger/schema";
-import { longDate, signedMoney, signedPct } from "./format";
+import { longDate, money, signedMoney, signedPct } from "./format";
 
 /** Cards show their contracts once money is committed (M6b): funded, delivering or delivered. */
 export const CONTRACT_STATUSES: Status[] = ["funded", "delivering", "delivered"];
@@ -53,6 +53,7 @@ export function bidsText(c: ContractLink): string | null {
   }
   if (c.bids_received !== undefined) return String(c.bids_received);
   if (c.competition === "direct") return "None: awarded without competition";
+  if (c.competition === "limited") return "Not stated; invited suppliers only";
   return null;
 }
 
@@ -66,4 +67,12 @@ export function displayName(name: string): string {
     .split(/(\s+|-|\/)/)
     .map((w) => (KEEP_UPPER.has(w) || !/[A-Z]/.test(w) ? w : w.charAt(0) + w.slice(1).toLowerCase()))
     .join("");
+}
+
+/** "4 contracts, £1.2m in all at their latest values; 2 awarded without competition." */
+export function contractsSummary(contracts: ContractLink[]): string {
+  const total = contracts.reduce((a, c) => a + contractChange(c).latest.value.amount, 0);
+  const direct = contracts.filter((c) => c.competition === "direct").length;
+  const n = contracts.length;
+  return `${plural(n, "contract")}, ${money(total)} in all at their latest values${direct ? `; ${direct} awarded without competition` : ""}.`;
 }

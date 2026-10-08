@@ -1,4 +1,6 @@
 id: reform-uk
 name: Reform UK
 kind: party
+# UK Parliament Members API party id (https://members-api.parliament.uk/api/Parties/GetActive/1)
+parliament_party_id: 1036
 roles: []

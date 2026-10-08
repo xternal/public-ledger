@@ -9,6 +9,7 @@ const baseStatement = (raw: RawSeed) => {
   return b.statements[b.base_year];
 };
 const levers = (raw: RawSeed) => (raw.bundle as any).levers;
+const actor = (raw: RawSeed, id: string) => raw.content.actors.find((f) => f.path.endsWith(`${id}.yaml`))!.data as any;
 const bus = (raw: RawSeed) => raw.content.promises.find((f) => f.path.endsWith("uk-bus-cap-2-2026.yaml"))!.data as any;
 
 describe("build bundle and seed files", () => {
@@ -149,6 +150,21 @@ describe("validation rejects", () => {
     const raw = clone();
     bus(raw).actor_id = "nobody";
     expect(errorsOf(raw).some((e) => e.message.includes("unknown actor_id"))).toBe(true);
+  });
+
+  it("a Parliament id on the wrong kind of actor", () => {
+    const raw = clone();
+    actor(raw, "labour").parliament_member_id = 4263;
+    actor(raw, "lucy-powell").parliament_party_id = 15;
+    const errors = errorsOf(raw).map((e) => e.message);
+    expect(errors).toContain("only a person has a parliament_member_id");
+    expect(errors).toContain("only a party has a parliament_party_id");
+  });
+
+  it("two actors with the same Parliament id", () => {
+    const raw = clone();
+    actor(raw, "rachel-reeves").parliament_member_id = actor(raw, "lucy-powell").parliament_member_id;
+    expect(errorsOf(raw).some((e) => e.message.includes("Parliament member 4263 is already"))).toBe(true);
   });
 
   it("a card whose id does not match its file name", () => {
