@@ -40,11 +40,20 @@ versions:
       who: People in work across the UK who pay income tax, National Insurance and VAT
       how_much_bn_per_year: null
       cost_note: >-
-        A pledge not to raise rates has no direct cost against existing plans, and no official costing of it exists.
-        Labour's fiscal plan says policies not listed in its costings are funded from existing budgets or have no cost.
+        Keeping this pledge costs nothing against current plans, because it only rules out rises; Labour's
+        fiscal plan lists no cost for it. For scale, HMRC estimates that in 2027-28 1p on the basic rate of
+        income tax would raise about £8.25bn, 1 percentage point on the main rate of employee National
+        Insurance about £5.3bn, and 1 percentage point on the standard rate of VAT about £9.2bn. These are
+        HMRC's June 2025 estimates, made before Budget 2025; HMRC has postponed its next update.
       cost_sources:
         - title: "Labour Party: Change, 2024 manifesto (PDF), fiscal plan, page 126"
           url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=126
+        - title: "HMRC: Direct effects of illustrative tax changes, bulletin (June 2025)"
+          url: https://www.gov.uk/government/statistics/direct-effects-of-illustrative-tax-changes/direct-effects-of-illustrative-tax-changes-bulletin-january-2025
+        - title: "HMRC: Direct effects of illustrative tax changes, tables (June 2025, ODS)"
+          url: https://assets.publishing.service.gov.uk/media/68552862b46781eacfd71d71/June_2025_TRR_ODS__1_.ods
+        - title: "HMRC: 2026 statistics announcements (6 Jul 2026: next edition postponed)"
+          url: https://www.gov.uk/government/statistics/schedule-of-updates-and-announcements-for-hmrcs-statistics/2026-hmrc-statistics-announcements
       when: For the Parliament (taken as to 1 July 2029)
       funded_by: null
 events:
@@ -69,6 +78,36 @@ events:
     type: deadline
     text: End of the Parliament (editorial date)
 replies: []
+corrections:
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_note
+    was: "A pledge not to raise rates has no direct cost against existing plans, and no official costing of it exists. Labour's fiscal plan says policies not listed in its costings are funded from existing budgets or have no cost."
+    now: >-
+      Keeping this pledge costs nothing against current plans, because it only rules out rises; Labour's fiscal
+      plan lists no cost for it. For scale, HMRC estimates that in 2027-28 1p on the basic rate of income tax
+      would raise about £8.25bn, 1 percentage point on the main rate of employee National Insurance about
+      £5.3bn, and 1 percentage point on the standard rate of VAT about £9.2bn. These are HMRC's June 2025
+      estimates, made before Budget 2025; HMRC has postponed its next update.
+    reason: >-
+      The note now gives HMRC's official estimates of what each rise the pledge rules out would raise, for
+      scale. The pledge itself still has no cost against current plans.
+    source_url: https://www.gov.uk/government/statistics/direct-effects-of-illustrative-tax-changes/direct-effects-of-illustrative-tax-changes-bulletin-january-2025
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_sources
+    was: [{"title": "Labour Party: Change, 2024 manifesto (PDF), fiscal plan, page 126", "url": "https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=126"}]
+    now:
+      - title: "Labour Party: Change, 2024 manifesto (PDF), fiscal plan, page 126"
+        url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=126
+      - title: "HMRC: Direct effects of illustrative tax changes, bulletin (June 2025)"
+        url: https://www.gov.uk/government/statistics/direct-effects-of-illustrative-tax-changes/direct-effects-of-illustrative-tax-changes-bulletin-january-2025
+      - title: "HMRC: Direct effects of illustrative tax changes, tables (June 2025, ODS)"
+        url: https://assets.publishing.service.gov.uk/media/68552862b46781eacfd71d71/June_2025_TRR_ODS__1_.ods
+      - title: "HMRC: 2026 statistics announcements (6 Jul 2026: next edition postponed)"
+        url: https://www.gov.uk/government/statistics/schedule-of-updates-and-announcements-for-hmrcs-statistics/2026-hmrc-statistics-announcements
+    reason: >-
+      The note now gives HMRC's official estimates of what each rise the pledge rules out would raise, for
+      scale. The pledge itself still has no cost against current plans.
+    source_url: https://www.gov.uk/government/statistics/direct-effects-of-illustrative-tax-changes/direct-effects-of-illustrative-tax-changes-bulletin-january-2025
 reviews:
   - by: Junior Editor
     kind: automated

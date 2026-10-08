@@ -26,7 +26,15 @@ versions:
       who: >-
         Children under 18 in the UK; technology companies, which would be legally required to build protections
         into their devices
-      cost_note: No costing published.
+      cost_note: >-
+        No cost to the public purse stated. The law would require technology companies to build protections
+        into their devices, so the main cost falls on the companies. The government has not yet published the
+        bill or an impact assessment, and its announcement gives no figure.
+      cost_sources:
+        - title: "DCMS: UK to have world's strongest online child safety laws as government prepares legislation on nude images (9 Sep 2026)"
+          url: https://www.gov.uk/government/news/uk-to-have-worlds-strongest-online-child-safety-laws-as-government-prepares-legislation-on-nude-images
+        - title: "DCMS: Lisa Nandy's statement on protecting children online (8 Sep 2026)"
+          url: https://www.gov.uk/government/speeches/lisa-nandys-statement-on-protecting-children-online
       when: Not stated; the government says it will introduce the legislation "as soon as possible"
       funded_by: null
 events:
@@ -36,6 +44,28 @@ events:
       Government announces it will bring forward legislation requiring technology companies to stop under-18s
       taking, sharing or viewing nude images on their devices
 replies: []
+corrections:
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_note
+    was: "No costing published."
+    now: >-
+      No cost to the public purse stated. The law would require technology companies to build protections into
+      their devices, so the main cost falls on the companies. The government has not yet published the bill or
+      an impact assessment, and its announcement gives no figure.
+    reason: >-
+      The note said only that no costing was published. It now says who bears the cost under the announced plan.
+    source_url: https://www.gov.uk/government/news/uk-to-have-worlds-strongest-online-child-safety-laws-as-government-prepares-legislation-on-nude-images
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_sources
+    was: null
+    now:
+      - title: "DCMS: UK to have world's strongest online child safety laws as government prepares legislation on nude images (9 Sep 2026)"
+        url: https://www.gov.uk/government/news/uk-to-have-worlds-strongest-online-child-safety-laws-as-government-prepares-legislation-on-nude-images
+      - title: "DCMS: Lisa Nandy's statement on protecting children online (8 Sep 2026)"
+        url: https://www.gov.uk/government/speeches/lisa-nandys-statement-on-protecting-children-online
+    reason: >-
+      The note said only that no costing was published. It now says who bears the cost under the announced plan.
+    source_url: https://www.gov.uk/government/news/uk-to-have-worlds-strongest-online-child-safety-laws-as-government-prepares-legislation-on-nude-images
 reviews:
   - by: Junior Editor
     kind: automated

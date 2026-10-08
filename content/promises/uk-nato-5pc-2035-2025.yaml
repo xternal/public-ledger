@@ -35,15 +35,19 @@ versions:
     quote_checked_on: "2026-10-06"
     parameters:
       who: UK defence and national security (3.5% of GDP core defence, 1.5% resilience and security)
-      how_much_bn_per_year: [32.4, 36, 39.6]
+      how_much_bn_per_year: [36, 40, 44]
       cost_note: >-
-        Year shown: 2035, the target year, in 2025 terms; central figure only. The government gave no
-        cost. The IFS estimates that raising core defence from 2.3% of GDP to 3.5% equals about £36bn a year
-        in 2025 terms. The IFS figure is measured from 2024 spending (2.3% of GDP), so it overlaps with the
-        rise to 2.5% on the separate 2027 defence card. There is no costing for the 1.5% on resilience and
-        security, so the figure covers the core defence part only.
-        Low–high is an editorial ±10% because the source gives a central figure only.
+        Year shown: 2034-35, in 2025-26 terms. The government gave no cost. The OBR estimates that raising
+        core defence spending from 2.4% of GDP in 2025-26 to 3.5% would cost around £40bn a year by 2034-35.
+        The government says the further 1.5% of GDP for resilience and security is met within existing
+        spending plans, as the OBR reports, so the figure covers core defence only. It overlaps with the rise
+        on the separate 2027 defence card. Low–high is an editorial ±10% because the OBR gives a central
+        figure only; the IFS puts the rise at about £36bn a year.
       cost_sources:
+        - title: "OBR: Economic and fiscal outlook, March 2026, paragraph 4.15"
+          url: https://assets.publishing.service.gov.uk/media/69a6d7b62e1f4fbda4252208/economic-and-fiscal-outlook-march-2026-web-accessible.pdf#page=70
+        - title: "OBR: Fiscal risks and sustainability, July 2025, paragraph 5.18"
+          url: https://obr.uk/docs/dlm_uploads/Fiscal-risks-and-sustainability-report-July-2025.pdf#page=137
         - title: "IFS Green Budget 2025: Honouring NATO defence spending commitment would reshape British state"
           url: https://ifs.org.uk/news/honouring-nato-defence-spending-commitment-would-reshape-british-state
       when: By 2035
@@ -80,6 +84,41 @@ corrections:
       "Today's terms" meant the IFS's 2025 terms, and the note did not say that the IFS figure starts from 2024
       spending. It therefore includes the rise to 2.5% already counted on the 2027 defence card.
     source_url: https://ifs.org.uk/news/honouring-nato-defence-spending-commitment-would-reshape-british-state
+  - date: "2026-10-08"
+    path: versions[0].parameters.how_much_bn_per_year
+    was: [32.4, 36, 39.6]
+    now: [36, 40, 44]
+    reason: >-
+      The range came from the IFS, a think tank. The promise standard uses an official costing when one exists,
+      and the OBR has one: around £40bn a year by 2034-35 in 2025-26 terms. The IFS figure stays as support.
+    source_url: https://assets.publishing.service.gov.uk/media/69a6d7b62e1f4fbda4252208/economic-and-fiscal-outlook-march-2026-web-accessible.pdf#page=70
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_note
+    was: "Year shown: 2035, the target year, in 2025 terms; central figure only. The government gave no cost. The IFS estimates that raising core defence from 2.3% of GDP to 3.5% equals about £36bn a year in 2025 terms. The IFS figure is measured from 2024 spending (2.3% of GDP), so it overlaps with the rise to 2.5% on the separate 2027 defence card. There is no costing for the 1.5% on resilience and security, so the figure covers the core defence part only. Low–high is an editorial ±10% because the source gives a central figure only."
+    now: >-
+      Year shown: 2034-35, in 2025-26 terms. The government gave no cost. The OBR estimates that raising core
+      defence spending from 2.4% of GDP in 2025-26 to 3.5% would cost around £40bn a year by 2034-35. The
+      government says the further 1.5% of GDP for resilience and security is met within existing spending plans,
+      as the OBR reports, so the figure covers core defence only. It overlaps with the rise on the separate 2027
+      defence card. Low–high is an editorial ±10% because the OBR gives a central figure only; the IFS puts the
+      rise at about £36bn a year.
+    reason: >-
+      The note now explains the OBR figure that replaces the IFS one, and records the government's position that
+      the 1.5% for resilience and security is met within existing plans.
+    source_url: https://assets.publishing.service.gov.uk/media/69a6d7b62e1f4fbda4252208/economic-and-fiscal-outlook-march-2026-web-accessible.pdf#page=70
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_sources
+    was: [{"title": "IFS Green Budget 2025: Honouring NATO defence spending commitment would reshape British state", "url": "https://ifs.org.uk/news/honouring-nato-defence-spending-commitment-would-reshape-british-state"}]
+    now:
+      - title: "OBR: Economic and fiscal outlook, March 2026, paragraph 4.15"
+        url: https://assets.publishing.service.gov.uk/media/69a6d7b62e1f4fbda4252208/economic-and-fiscal-outlook-march-2026-web-accessible.pdf#page=70
+      - title: "OBR: Fiscal risks and sustainability, July 2025, paragraph 5.18"
+        url: https://obr.uk/docs/dlm_uploads/Fiscal-risks-and-sustainability-report-July-2025.pdf#page=137
+      - title: "IFS Green Budget 2025: Honouring NATO defence spending commitment would reshape British state"
+        url: https://ifs.org.uk/news/honouring-nato-defence-spending-commitment-would-reshape-british-state
+    reason: >-
+      The OBR's reports, the official source of the new figure, are added; the IFS stays as support.
+    source_url: https://assets.publishing.service.gov.uk/media/69a6d7b62e1f4fbda4252208/economic-and-fiscal-outlook-march-2026-web-accessible.pdf#page=70
 reviews:
   - by: Junior Editor
     kind: automated

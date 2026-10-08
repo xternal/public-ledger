@@ -28,7 +28,14 @@ versions:
         Children and adults in England who need mental health support (DHSC's May 2026 call for evidence is for a
         mental health strategy for England). The question was about mental health in-patient beds in
         Hertfordshire and patients sent far from home.
-      cost_note: No costing published.
+      cost_note: >-
+        No separate cost: presenting a strategy costs nothing of its own, and no costing had been published by
+        8 October 2026. For context only: the Department of Health and Social Care says NHS mental health
+        spending in England is forecast to reach a record £16.1 billion in 2026-27. That is the whole NHS
+        mental health budget, not money for this promise.
+      cost_sources:
+        - title: "DHSC: Informing the mental health strategy for England, call for evidence (15 May 2026)"
+          url: https://www.gov.uk/government/calls-for-evidence/informing-the-mental-health-strategy-for-england/informing-the-mental-health-strategy-for-england-call-for-evidence-document
       when: Before Christmas 2026
       funded_by: null
 events:
@@ -39,6 +46,29 @@ events:
     type: deadline
     text: Strategy due before the House before Christmas (editorial date)
 replies: []
+corrections:
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_note
+    was: "No costing published."
+    now: >-
+      No separate cost: presenting a strategy costs nothing of its own, and no costing had been published by 8
+      October 2026. For context only: the Department of Health and Social Care says NHS mental health spending
+      in England is forecast to reach a record £16.1 billion in 2026-27. That is the whole NHS mental health
+      budget, not money for this promise.
+    reason: >-
+      The note said only that no costing was published. It now says why the promise has no separate cost and
+      gives the wider NHS mental health budget for context, labelled as such.
+    source_url: https://www.gov.uk/government/calls-for-evidence/informing-the-mental-health-strategy-for-england/informing-the-mental-health-strategy-for-england-call-for-evidence-document
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_sources
+    was: null
+    now:
+      - title: "DHSC: Informing the mental health strategy for England, call for evidence (15 May 2026)"
+        url: https://www.gov.uk/government/calls-for-evidence/informing-the-mental-health-strategy-for-england/informing-the-mental-health-strategy-for-england-call-for-evidence-document
+    reason: >-
+      The note said only that no costing was published. It now says why the promise has no separate cost and
+      gives the wider NHS mental health budget for context, labelled as such.
+    source_url: https://www.gov.uk/government/calls-for-evidence/informing-the-mental-health-strategy-for-england/informing-the-mental-health-strategy-for-england-call-for-evidence-document
 reviews:
   - by: Junior Editor
     kind: automated
