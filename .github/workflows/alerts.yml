@@ -43,7 +43,7 @@ concurrency:
 
 jobs:
   alerts:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.RUNS_ON || 'ubuntu-latest' }}
     timeout-minutes: 15
     env:
       LEDGER_ENV: production
