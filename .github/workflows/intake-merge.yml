@@ -42,7 +42,7 @@ concurrency:
 
 jobs:
   merge:
-    runs-on: ${{ vars.RUNS_ON || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     steps:
       - name: Merge intake pull requests whose editors are done
         env:

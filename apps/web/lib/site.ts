@@ -19,6 +19,7 @@ export const OPEN_GRAPH = { siteName: SITE_NAME, locale: "en_GB" } as const;
 export const isAlpha = () => process.env.SITE_STAGE === "alpha";
 
 /** The maker, credited at the foot of every page. */
+export const SOURCE_CODE = { url: "https://github.com/xternal/public-ledger", licence: "AGPL-3.0" } as const;
 export const MAKER = { name: "Pavel Guzhikov", url: "https://guzh.uk", coffee: "https://ko-fi.com/pavelg" } as const;
 
 export function siteUrl(): string {
