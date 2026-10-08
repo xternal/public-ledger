@@ -2,7 +2,7 @@ name: Merge intake when editors are done
 
 # An intake pull request (label `intake`, opened by .github/workflows/harvest.yml)
 # merges by itself once its editors are done, and not before:
-# - enough different people have approved it: two by default (the two-editor
+# - enough different editors (people with write access) have approved it: two by default (the two-editor
 #   rule, invariant 8); a repository variable INTAKE_APPROVALS can change it;
 # - CI is green on its latest commit. `pnpm validate` fails while any draft is
 #   left in content/drafts/, so green means every draft became a card or was
@@ -69,8 +69,11 @@ jobs:
               echo "#$pr: not an open intake pull request into main; nothing to do."; continue
             fi
             head=$(echo "$info" | jq -r '.headRefOid')
-            # Each reviewer's latest review counts; a later "changes requested" cancels an earlier approval.
-            approvals=$(gh api "repos/$REPO/pulls/$pr/reviews" --paginate | jq -s 'add | group_by(.user.login) | map(sort_by(.submitted_at) | last | select(.state == "APPROVED")) | length')
+            # Only editors count: people with write access to the repository (owner,
+            # organisation member or collaborator), never any GitHub user who leaves a
+            # review. Each editor's latest verdict counts; a later "changes requested"
+            # cancels an earlier approval, a plain comment does not.
+            approvals=$(gh api "repos/$REPO/pulls/$pr/reviews" --paginate | jq -s 'add | map(select(.author_association == "OWNER" or .author_association == "MEMBER" or .author_association == "COLLABORATOR") | select(.state == "APPROVED" or .state == "CHANGES_REQUESTED" or .state == "DISMISSED")) | group_by(.user.login) | map(sort_by(.submitted_at) | last | select(.state == "APPROVED")) | length')
             checks=$(gh api "repos/$REPO/commits/$head/check-runs?per_page=100" | jq '[.check_runs[] | select(.name == "app" or .name == "data")] | group_by(.name) | map(sort_by(.started_at) | last)')
             green=$(echo "$checks" | jq '[.[] | select(.conclusion == "success")] | length')
             drafts=$(gh api "repos/$REPO/git/trees/$head?recursive=1" | jq '[.tree[].path | select(startswith("content/drafts/") and endswith(".yaml"))] | length')
