@@ -322,6 +322,7 @@ describe("recent votes", () => {
     expect(plainQuestion("Representation of the People Bill: Third Reading")).toBe("Third reading: should the Commons pass the bill?");
     expect(plainQuestion("Health Bill: Report Stage: New Clause 143")).toBe("Should new clause 143 be added to the bill?");
     expect(plainQuestion("Health Bill: Report Stage: Amendment 1")).toBe("Should amendment 1 be made to the bill?");
+    expect(plainQuestion("Closure motion")).toBe("Should the debate end now and go to a vote?");
     expect(plainQuestion("Draft Plant Health Regulations 2026")).toBeNull();
     expect(plainQuestion("Opposition Day: Something Unfamiliar")).toBeNull();
   });

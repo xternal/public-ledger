@@ -13,6 +13,12 @@ const config: NextConfig = {
   turbopack: { root },
   outputFileTracingRoot: root,
   poweredByHeader: false,
+  images: {
+    // MPs' official portraits (/mp pages), fetched by our server so readers' browsers never call Parliament.
+    remotePatterns: [{ protocol: "https", hostname: "members-api.parliament.uk", port: "", pathname: "/api/Members/*/Thumbnail", search: "" }],
+    maximumRedirects: 0,
+    minimumCacheTTL: 86400,
+  },
 };
 
 export default config;

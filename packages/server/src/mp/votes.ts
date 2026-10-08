@@ -56,8 +56,13 @@ const RULES: [RegExp, (m: RegExpExecArray) => string][] = [
   [/^ways and means resolution$/i, () => "Should the taxes or charges the bill needs be approved?"],
 ];
 
+/** Divisions whose whole title is the question's name. */
+const WHOLE: [RegExp, string][] = [[/^closure motion$/i, "Should the debate end now and go to a vote?"]];
+
 /** The question a division decided, in plain words, when its stage is a familiar one; otherwise null (the official title says it all). */
 export function plainQuestion(title: string): string | null {
+  const whole = WHOLE.find(([re]) => re.test(title.trim()));
+  if (whole) return whole[1];
   const { stage } = splitTitle(title);
   if (!stage) return null;
   const s = stage.replace(/\s+/g, " ").trim();
