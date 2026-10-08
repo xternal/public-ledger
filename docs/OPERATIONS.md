@@ -133,6 +133,13 @@ changes a card.
 Without `DATABASE_URL` set as a secret, the job logs "Alerts not configured" and
 succeeds, so it is safe to merge before setup.
 
+**Setting it up:** once mail works on the site (§3), run `scripts/github-secrets.sh`
+from the repository folder. It copies the settings the job needs from Vercel
+(Production) into GitHub Actions secrets without printing them: the database
+address, the encryption and lookup keys, the site address, the mail sender and
+key, and Telegram if set. It also sets the `MAIL_PROVIDER` repository variable
+(`resend`, `ses` or `off`). Run it again whenever one of those changes in Vercel.
+
 ## 9. Before going public (not code)
 
 * **DPIA** (data protection impact assessment) for follows, which are special

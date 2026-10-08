@@ -47,12 +47,15 @@ jobs:
     timeout-minutes: 15
     env:
       LEDGER_ENV: production
-      MAIL_PROVIDER: ses
+      # resend, ses or off: a repository variable, set by scripts/github-secrets.sh from Vercel's setting.
+      MAIL_PROVIDER: ${{ vars.MAIL_PROVIDER || 'off' }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       LEDGER_ENCRYPTION_KEY: ${{ secrets.LEDGER_ENCRYPTION_KEY }}
       LEDGER_LOOKUP_PEPPER: ${{ secrets.LEDGER_LOOKUP_PEPPER }}
       ALTCHA_HMAC_KEY: ${{ secrets.ALTCHA_HMAC_KEY }}
       MAIL_FROM: ${{ secrets.MAIL_FROM }}
+      MAIL_REPLY_TO: ${{ secrets.MAIL_REPLY_TO }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
