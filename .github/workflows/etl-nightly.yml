@@ -38,6 +38,9 @@ jobs:
       - run: python -m etl.build --trigger nightly
       # Contracts linked to promises (M6b): a changed value or end date appends a snapshot.
       - run: python -m etl.contracts
+      # Forecasts against outturn (M7): record any new forecast the site now shows, and score every one whose
+      # outturn is out. Its files change only when a new edition brings forecasts or outturn, so most nights it does nothing.
+      - run: python -m etl.backtest
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -53,7 +56,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           # The run log and manifest change every night; only a change in the data itself opens a PR.
-          if [ -z "$(git status --porcelain -- data/build/observations data/build/statements data/build/app.json data/build/levers.json data/build/tax.json data/build/people.json data/build/contracts content/promises)" ]; then
+          if [ -z "$(git status --porcelain -- data/build/observations data/build/statements data/build/app.json data/build/levers.json data/build/tax.json data/build/people.json data/build/contracts data/build/forecasts data/build/backtest.json content/promises)" ]; then
             echo "No data changes."
             exit 0
           fi

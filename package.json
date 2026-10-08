@@ -13,6 +13,7 @@
     "validate": "tsx scripts/validate.ts",
     "etl": "etl/.venv/bin/python -m etl.build",
     "contracts": "etl/.venv/bin/python -m etl.contracts",
+    "backtest": "etl/.venv/bin/python -m etl.backtest",
     "constituencies": "tsx scripts/constituencies.ts",
     "journeys": "python3 scripts/journeys/build.py docs/CUSTOMER_JOURNEYS.md out/journey-maps.html",
     "deadlines": "tsx scripts/deadlines.ts",

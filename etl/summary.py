@@ -23,6 +23,11 @@ def main() -> None:
     contracts = [f for f in files if f.startswith("data/build/contracts/")]
     if contracts:
         lines += ["**Contracts with a new snapshot or a new link** (value or dates changed in the notice; check the diff)", *[f"- `{f}`" for f in contracts], ""]
+    forecasts = [f for f in files if f.startswith("data/build/forecasts/")]
+    if forecasts:
+        lines += ["**New forecast records** (the site now shows these forecasts; records are append-only)", *[f"- `{f}`" for f in forecasts], ""]
+    if "data/build/backtest.json" in files:
+        lines += ["**Backtest rescored**: new outturn, or new forecasts to check. See `data/build/backtest.json` and /method/backtest.", ""]
     lines += ["**Sources**", "", "| Source | Edition | Age (days) | Overdue |", "|---|---|---|---|"]
     for s in m["sources"]:
         f = s.get("freshness") or {}

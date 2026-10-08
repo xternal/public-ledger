@@ -48,5 +48,7 @@ jobs:
       - run: python -m pytest etl/tests -q --offline
       # Rebuild from the committed observations: balance, coverage and staleness checks fail the job.
       - run: python -m etl.build --offline --trigger ci
+      # Forecast records and the backtest table (M7): a new edition merged without running the job shows up here.
+      - run: python -m etl.backtest
       - name: Committed build output is up to date
-        run: git diff --exit-code -- data/build/app.json data/build/statements data/build/levers.json data/build/tax.json data/build/people.json
+        run: git diff --exit-code -- data/build/app.json data/build/statements data/build/levers.json data/build/tax.json data/build/people.json data/build/forecasts data/build/backtest.json
