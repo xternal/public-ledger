@@ -1,0 +1,90 @@
+{
+    "longTitle": "A Bill to make provision about social housing.",
+    "summary": null,
+    "sponsors": [
+        {
+            "member": {
+                "memberId": 4956,
+                "name": "Baroness Taylor of Stevenage",
+                "party": "Labour",
+                "partyColour": "d50000",
+                "house": "Lords",
+                "memberPhoto": "https://members-api.parliament.uk/api/Members/4956/Thumbnail",
+                "memberPage": "https://members.parliament.uk/member/4956/contact",
+                "memberFrom": "Life peer"
+            },
+            "organisation": {
+                "name": "Ministry of Housing, Communities and Local Government",
+                "url": "https://www.gov.uk/government/organisations/ministry-of-housing-communities-local-government"
+            },
+            "sortOrder": 1
+        },
+        {
+            "member": {
+                "memberId": 4356,
+                "name": "Angela Rayner",
+                "party": "Labour",
+                "partyColour": "d50000",
+                "house": "Commons",
+                "memberPhoto": "https://members-api.parliament.uk/api/Members/4356/Thumbnail",
+                "memberPage": "https://members.parliament.uk/member/4356/contact",
+                "memberFrom": "Ashton-under-Lyne"
+            },
+            "organisation": {
+                "name": "Ministry of Housing, Communities and Local Government",
+                "url": "https://www.gov.uk/government/organisations/ministry-of-housing-communities-local-government"
+            },
+            "sortOrder": 2
+        }
+    ],
+    "promoters": [],
+    "petitioningPeriod": null,
+    "petitionInformation": null,
+    "agent": null,
+    "billId": 4126,
+    "shortTitle": "Social Housing Bill [HL]",
+    "formerShortTitle": null,
+    "currentHouse": "Commons",
+    "originatingHouse": "Lords",
+    "lastUpdate": "2026-10-08T14:29:24.1435825",
+    "billWithdrawn": null,
+    "isDefeated": false,
+    "billTypeId": 1,
+    "introducedSessionId": 40,
+    "includedSessionIds": [
+        40
+    ],
+    "isAct": false,
+    "currentStage": {
+        "id": 21204,
+        "stageId": 8,
+        "sessionId": 40,
+        "description": "Committee stage",
+        "abbreviation": "CS",
+        "house": "Commons",
+        "stageSittings": [
+            {
+                "id": 18653,
+                "stageId": 8,
+                "billStageId": 21204,
+                "billId": 4126,
+                "date": "2026-10-27T00:00:00"
+            },
+            {
+                "id": 18654,
+                "stageId": 8,
+                "billStageId": 21204,
+                "billId": 4126,
+                "date": "2026-10-29T00:00:00"
+            },
+            {
+                "id": 18655,
+                "stageId": 8,
+                "billStageId": 21204,
+                "billId": 4126,
+                "date": "2026-11-03T00:00:00"
+            }
+        ],
+        "sortOrder": 9
+    }
+}

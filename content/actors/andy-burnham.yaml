@@ -1,6 +1,8 @@
 id: andy-burnham
 name: Andy Burnham
 kind: person
+# UK Parliament Members API: https://members.parliament.uk/member/1427
+parliament_member_id: 1427
 party_id: labour
 roles:
   - title: Prime Minister

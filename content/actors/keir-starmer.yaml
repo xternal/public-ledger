@@ -1,6 +1,8 @@
 id: keir-starmer
 name: Keir Starmer
 kind: person
+# UK Parliament Members API: https://members.parliament.uk/member/4514
+parliament_member_id: 4514
 party_id: labour
 roles:
   - title: Prime Minister

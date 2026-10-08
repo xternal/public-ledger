@@ -2,4 +2,6 @@ id: green-party
 name: Green Party of England and Wales
 short_name: Greens
 kind: party
+# UK Parliament Members API party id (https://members-api.parliament.uk/api/Parties/GetActive/1)
+parliament_party_id: 44
 roles: []

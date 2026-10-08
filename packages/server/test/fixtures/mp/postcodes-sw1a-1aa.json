@@ -1,0 +1,12 @@
+{
+    "status": 200,
+    "result": [
+        {
+            "query": "SW1A 1AA",
+            "result": {
+                "postcode": "SW1A 1AA",
+                "parliamentary_constituency": "Cities of London and Westminster"
+            }
+        }
+    ]
+}

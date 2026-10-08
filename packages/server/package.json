@@ -11,7 +11,8 @@
     "./triage": "./src/triage/index.ts",
     "./harvest": "./src/harvest/index.ts",
     "./model": "./src/model/index.ts",
-    "./alpha": "./src/alpha.ts"
+    "./alpha": "./src/alpha.ts",
+    "./mp": "./src/mp/index.ts"
   },
   "scripts": {
     "test": "vitest run",
