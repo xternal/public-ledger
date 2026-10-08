@@ -1,0 +1,55 @@
+id: uk-triple-lock-2030-2026
+headline: "Adjust the State Pension triple lock from 2030"
+actor_id: hm-government
+made_on: "2026-09-29"
+venue: press_release
+venue_label: No 10 press release on a National Care Service
+policy_area: social_protection
+status: promised
+status_note: >-
+  The government says it will legislate for the change during this Parliament. Until April 2030 the State
+  Pension keeps rising by the triple lock; the Budget sets the April 2027 rise.
+deadline: "2030-04-01"
+origin: manual
+editor_check_required: true
+sources:
+  - title: "No 10: Prime Minister Andy Burnham sets out plans for a new National Care Service (29 Sep 2026)"
+    url: https://www.gov.uk/government/news/prime-minister-andy-burnham-sets-out-plans-for-a-new-national-care-service
+  - title: "DWP: State Pension uprating analysis 2026 (29 Sep 2026)"
+    url: https://www.gov.uk/government/publications/state-pension-uprating-analysis-2026/state-pension-uprating
+  - title: "HM Treasury: Budget 2025 (26 Nov 2025)"
+    url: https://www.gov.uk/government/publications/budget-2025-document/budget-2025-html
+versions:
+  - version: 1
+    text: "The current State Pension Triple Lock will be maintained until April 2030. From then, it will be adjusted so the State Pension rises by at least inflation or 2.5% each year with a new link built in to keep pace with earnings over time."
+    recorded_on: "2026-09-29"
+    source_url: https://www.gov.uk/government/news/prime-minister-andy-burnham-sets-out-plans-for-a-new-national-care-service
+    quote_checked_on: "2026-10-08"
+    parameters:
+      who: People receiving the basic or new State Pension
+      how_much_bn_per_year: null
+      cost_note: >-
+        No yearly figure is shown for the years this card covers. Keeping the triple lock until April 2030 is
+        already in the government's plans, so it adds no cost against them. After that, DWP estimates the adjusted
+        lock spends £15bn a year less than the triple lock would by 2039-40, and £50bn a year less by 2049-50
+        (nominal), and says these long-term figures should not be used for any other single year.
+      cost_sources:
+        - title: "DWP: State Pension uprating analysis 2026, tables 1 and 2"
+          url: https://www.gov.uk/government/publications/state-pension-uprating-analysis-2026/state-pension-uprating
+      when: The triple lock continues until April 2030; the adjusted lock applies from then
+      funded_by: >-
+        Not a spending pledge; the release says "Savings under the adjusted Triple Lock will be used for a new
+        National Care Service"
+events:
+  - date: "2026-09-29"
+    type: promised
+    text: The government says it will keep the triple lock until April 2030, then adjust it, as part of plans for a National Care Service
+  - date: "2030-04-01"
+    type: deadline
+    text: The adjusted lock is due to apply
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-08"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited official pages.

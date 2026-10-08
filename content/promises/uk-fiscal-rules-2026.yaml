@@ -1,0 +1,58 @@
+id: uk-fiscal-rules-2026
+headline: "Meet the fiscal rules, with a buffer"
+actor_id: john-healey
+made_on: "2026-07-21"
+venue: speech
+venue_label: Speech to Treasury staff
+policy_area: general_services
+status: promised
+status_note: >-
+  The test comes at the Budget on 28 October 2026, when the OBR judges whether the government's plans meet the
+  rules in the Charter for Budget Responsibility. The Prime Minister repeated the commitment at Prime Minister's
+  Questions on 2 September 2026, describing the debt rule as debt falling "by the end of the Parliament"; the
+  Charter sets 2029-30.
+deadline: "2026-10-28"
+origin: manual
+editor_check_required: true
+sources:
+  - title: "HM Treasury: Chancellor John Healey delivers speech to Treasury staff (21 Jul 2026)"
+    url: https://www.gov.uk/government/speeches/chancellor-john-healey-delivers-speech-to-treasury-staff
+  - title: "HM Treasury: Budget to move power and money out of Westminster, and into every postcode around Britain (31 Jul 2026)"
+    url: https://www.gov.uk/government/news/budget-to-move-power-and-money-out-of-westminster-and-into-every-postcode-around-britain
+  - title: "Hansard (Commons): Engagements, Prime Minister's Questions (2 Sep 2026)"
+    url: https://hansard.parliament.uk/Commons/2026-09-02/debates/64E68DAF-DE26-43C9-A6E0-ED2ED525D1FF/Engagements
+  - title: "HM Treasury: Chancellor John Healey's Growth Speech 2026 (7 Sep 2026)"
+    url: https://www.gov.uk/government/speeches/chancellor-john-healeys-growth-speech-2026
+  - title: "HM Treasury: Charter for Budget Responsibility, autumn 2025"
+    url: https://www.gov.uk/government/publications/draft-charter-for-budget-responsibility-autumn-2025
+versions:
+  - version: 1
+    text: "We will meet the fiscal rules. And Andy Burnham and I have talked about how we will do that in lockstep, ensuring there’s a buffer also for uncertainty."
+    recorded_on: "2026-07-21"
+    source_url: https://www.gov.uk/government/speeches/chancellor-john-healey-delivers-speech-to-treasury-staff
+    quote_checked_on: "2026-10-08"
+    parameters:
+      who: Everyone in the UK, through the overall balance of taxes, spending and borrowing
+      how_much_bn_per_year: null
+      cost_note: >-
+        No cost of its own: the pledge is about the overall balance of the public finances, not a tax or spending
+        measure. For scale, at Budget 2025 the OBR judged the stability rule met in 2029-30 by £21.7bn and the
+        investment rule by £24.4bn. The OBR's forecast on 28 October 2026 is the next test.
+      cost_sources:
+        - title: "HM Treasury: Budget 2025 (26 Nov 2025)"
+          url: https://www.gov.uk/government/publications/budget-2025-document/budget-2025-html
+      when: Judged at the Budget on 28 October 2026
+      funded_by: Not a spending pledge
+events:
+  - date: "2026-07-21"
+    type: promised
+    text: The Chancellor tells Treasury staff the government will meet the fiscal rules, with a buffer for uncertainty
+  - date: "2026-10-28"
+    type: deadline
+    text: The Budget, and the OBR's assessment of the fiscal rules
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-08"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited official pages.

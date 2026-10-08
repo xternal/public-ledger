@@ -1,0 +1,51 @@
+id: uk-your-first-home-2026
+headline: "Launch the Your First Home equity loan scheme"
+actor_id: hm-government
+made_on: "2026-09-26"
+venue: press_release
+venue_label: MHCLG press release
+policy_area: housing_env
+status: promised
+status_note: >-
+  The government says the scheme will be confirmed at the Budget on 28 October 2026, with its costs, income and
+  price caps and timetable.
+deadline: "2026-10-28"
+origin: manual
+editor_check_required: true
+sources:
+  - title: "MHCLG: New first-time buyer scheme to be confirmed at Budget (26 Sep 2026)"
+    url: https://www.gov.uk/government/news/new-first-time-buyer-scheme-to-be-confirmed-at-budget
+versions:
+  - version: 1
+    text: "The government has today (Saturday 26 September 2026) announced a new equity loan scheme - Your First Home - in England will be confirmed at next month’s Budget, to support more people into homeownership."
+    recorded_on: "2026-09-26"
+    source_url: https://www.gov.uk/government/news/new-first-time-buyer-scheme-to-be-confirmed-at-budget
+    quote_checked_on: "2026-10-08"
+    parameters:
+      who: >-
+        First-time buyers in England buying a new-build home from a developer in the scheme. The government says it
+        is expected to support 2.5% deposits, backed by 20% government-backed equity loans; income and price caps
+        are to be set at the Budget.
+      how_much_bn_per_year: null
+      cost_note: >-
+        No figure yet. The government says costs and timelines will be announced by the Chancellor at the Budget.
+      cost_sources:
+        - title: "MHCLG: New first-time buyer scheme to be confirmed at Budget (26 Sep 2026)"
+          url: https://www.gov.uk/government/news/new-first-time-buyer-scheme-to-be-confirmed-at-budget
+      when: To be confirmed at the Budget on 28 October 2026; no start date given
+      funded_by: >-
+        Partly stated: "Developers will be expected to make a contribution when signing up to the scheme to help
+        cover costs"
+events:
+  - date: "2026-09-26"
+    type: promised
+    text: The government announces the Your First Home equity loan scheme for England, to be confirmed at the Budget
+  - date: "2026-10-28"
+    type: deadline
+    text: Due to be confirmed at the Budget
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-08"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited official pages.
