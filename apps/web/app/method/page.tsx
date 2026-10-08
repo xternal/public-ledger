@@ -11,7 +11,7 @@ import { T1_METHOD } from "@/lib/t1-copy";
 import { AI_JOURNALIST_NOTE } from "@/lib/reviews";
 import { fixed, grouped, longDate } from "@/lib/format";
 import { METHOD_DESCRIPTION, METHOD_TITLE } from "@/lib/method-copy";
-import { absolute, OPEN_GRAPH, MAKER, SITE_NAME } from "@/lib/site";
+import { absolute, OPEN_GRAPH, MAKER, SITE_NAME, SOURCE_CODE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `${METHOD_TITLE} | Public Ledger`,
@@ -219,6 +219,14 @@ export default function MethodPage() {
             <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>; quotes from Parliament are under the{" "}
             <a href="https://www.parliament.uk/site-information/copyright-parliament/open-parliament-licence/">Open Parliament Licence</a>; other quotes are short
             extracts whose rights stay with the speaker. Every source is named next to its number and in the <a href="/method/api">open data API</a>.
+          </p>
+          <p className="m-0 text-muted">
+            The site&rsquo;s code, its data pipeline and every promise file are open source on <a href={SOURCE_CODE.url}>GitHub</a>, under the{" "}
+            <a href="https://www.gnu.org/licenses/agpl-3.0.html" rel="license">
+              GNU Affero General Public License v3.0
+            </a>
+            : anyone may run, study and change it, and anyone who runs a changed copy as a website must publish their changes too. Every edit to a promise card is
+            a commit you can read there.
           </p>
         </section>
 

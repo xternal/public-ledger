@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
-import { isAlpha, MAKER, OPEN_GRAPH, SITE_DESCRIPTION, SITE_NAME, siteUrl } from "@/lib/site";
+import { isAlpha, MAKER, OPEN_GRAPH, SITE_DESCRIPTION, SITE_NAME, siteUrl, SOURCE_CODE } from "@/lib/site";
 import { FooterLink } from "@/components/FooterLink";
 import "./globals.css";
 
@@ -51,6 +51,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <FooterLink href="/privacy">Privacy</FooterLink>
             <span aria-hidden>·</span>
             <a href="/method#licence">Our text: CC BY 4.0 · Data: Open Government Licence</a>
+            <span aria-hidden>·</span>
+            <a href={SOURCE_CODE.url}>Source code</a>
           </p>
         </footer>
       </body>

@@ -1,6 +1,6 @@
 # Public Ledger — an open P&L of the state
 
-Working title. This file covers the concept, the product logic and the build order. Specs for implementation live in `CLAUDE.md` and `docs/`. Read `docs/PRE_SHIP_REVIEW.md` before anything goes public.
+**Live at [ledgergov.uk](https://ledgergov.uk).** This file covers the concept, the product logic and the build order. Specs for implementation live in `CLAUDE.md` and `docs/`; known issues in `docs/PRE_SHIP_REVIEW.md`. To run it yourself, see [Run it locally](#run-it-locally); to help, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 **Who is behind it.** Public Ledger is built by [Pavel Guzhikov](https://guzh.uk), a UK resident, as an active citizen: someone who wants a better-informed society and new, more accountable forms of government. It is run through Empatiq Limited, Pavel Guzhikov's company, which holds any data readers give the site ([privacy notice](https://ledgergov.uk/privacy)). Empatiq Limited has no clients or contracts with government, political parties or any body this site tracks; if that ever changes, it will be declared here. It is independent. No party, campaign or government funds or directs it, and it holds every party, in government or opposition, to the same published standard.
 
@@ -106,6 +106,23 @@ Out: user accounts, microsimulation (v1), LLM intake from Hansard and TV (v1), d
 
 Confidence in the numbers: 2025-26 totals and the OBR borrowing and debt path are high (OBR, March 2026). Tax-by-tax and function splits are approximate, scaled from PESA 2024-25, and three lines are balancing plugs. Lever coefficients (cost of 1p of tax) are from model memory and labelled `training`; they must be replaced by HMRC tables before public launch.
 
-## Licence of the content
+## Run it locally
 
-What Public Ledger writes (status notes, cost notes, summaries, method pages) is licensed under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/). Official figures keep their own licences, mostly the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/); quotes from Parliament are under the [Open Parliament Licence](https://www.parliament.uk/site-information/copyright-parliament/open-parliament-licence/). See `/method#licence` on the site.
+You need Node 22 (see `.nvmrc`), pnpm 12 (`corepack enable pnpm`) and, for the data pipeline, Python 3.14.
+
+```bash
+pnpm install
+pnpm dev          # the site at http://localhost:3000
+pnpm test         # engine, schema and server tests
+pnpm validate     # schemas, the balance check, promise lint
+```
+
+Nothing else is needed to read and edit locally: without a `DATABASE_URL` the app uses an in-process database, writes mail to an outbox table and skips the Claude pre-fill (`apps/web/.env.example`). For the data pipeline: `python3.14 -m venv etl/.venv && etl/.venv/bin/pip install -r etl/requirements.txt`, then `pnpm etl`. Running the live service (database, mail, alerts, intake) is in `docs/OPERATIONS.md`.
+
+## Licence
+
+* **Code** (everything in this repository that is software): [GNU Affero General Public License v3.0 or later](LICENSE). You may run, study, change and share it; if you run a changed version as a website, you must offer its source to the people who use it.
+* **Our writing** (status notes, cost notes, summaries, method pages, the promise cards' own text): [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/). Credit Public Ledger with a link to the page.
+* **Official figures** keep their own licences, mostly the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/); quotes from Parliament are under the [Open Parliament Licence](https://www.parliament.uk/site-information/copyright-parliament/open-parliament-licence/); other quotes are short extracts whose rights stay with the speaker. See `/method#licence` on the site.
+
+Copyright © 2026 Pavel Guzhikov and contributors.

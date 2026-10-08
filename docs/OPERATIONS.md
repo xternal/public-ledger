@@ -266,30 +266,11 @@ The repository is private on GitHub's free plan, so `main` cannot require checks
 gh pr edit <number> --repo xternal/public-ledger --add-label merge-when-green
 ```
 
-## 12. Mac fallback for GitHub Actions
+## 12. GitHub Actions: GitHub's machines only
 
-GitHub's machines run every job and bill the Actions budget. If they stop (in October 2026 a lapsed payment blocked every job for a morning), a Mac can run the same jobs for free. Every workflow says `runs-on: ${{ vars.RUNS_ON || 'ubuntu-latest' }}`, so one repository variable decides where jobs run, with no code change.
+The repository is public, so every job runs on GitHub's own machines (`runs-on: ubuntu-latest`), free and without an Actions budget. There is no self-hosted runner and there must never be one: on a public repository anyone's pull request could run code on it. (Until October 2026, while the repository was private, a Mac could stand in when the budget ran out; it was removed before the repository went public.)
 
-1. **Set up once**, in your own terminal on the Mac (Apple Silicon), from the repository folder:
-   ```bash
-   scripts/runner-setup.sh
-   ```
-   It downloads GitHub's runner (`actions-runner-osx-arm64-<version>.tar.gz`, about 130 MB, from github.com/actions/runner), checks it against the SHA-256 in the release notes, registers it with this repository under the label `ledger-mac`, and starts it as a background service that comes back when you log in. It lives in `~/actions-runner/public-ledger`. Jobs keep running on GitHub until you switch.
-2. **Switch** when you need to, and back when GitHub works again:
-   ```bash
-   scripts/runner-switch.sh mac
-   scripts/runner-switch.sh github
-   scripts/runner-switch.sh status
-   ```
-3. **Remove** it entirely: `scripts/runner-setup.sh --remove` (this also switches jobs back to GitHub).
-
-Caveats:
-
-* **Keep the Mac awake** while it serves jobs (System Settings → Battery → Options: prevent sleeping when the display is off, on the power adapter). Jobs wait while it sleeps, and GitHub cancels a job that waits 24 hours. The nightly refresh is at 04:30 UTC (05:30 BST).
-* **One job at a time.** CI's `app` and `data` checks run one after the other, so CI takes longer.
-* **Private repository only.** A runner runs whatever a workflow gives it. The setup script refuses if the repository is public, because then anyone's pull request could run code on the Mac. If the repository ever goes public, run `scripts/runner-setup.sh --remove` first.
-* **Secrets pass through the Mac** during jobs (the Anthropic key for intake, for example), as they pass through GitHub's machines. Each job gets a fresh checkout in `_work`; nothing is kept between jobs except tool caches.
-* Jobs are written for both: the only Linux-only command (yesterday's date in the intake job) has a macOS branch.
+Pull requests from people outside the repository run their workflows only after an owner approves them (Settings → Actions → General → "Require approval for all external contributors"). They never get the repository's secrets. Labels (`merge-when-green`, `intake`) and the approvals the intake merge counts come only from people with write access.
 
 ## 13. Search engines and AI assistants
 
