@@ -1,16 +1,6 @@
 import { NavLinks } from "./NavLinks";
+import { SITE_LINKS } from "./siteLinks";
 import { LogoMark } from "@/lib/brand";
-
-const LINKS = [
-  { href: "/#statement", label: "Statement" },
-  { href: "/#scenario", label: "Scenario" },
-  { href: "/#you", label: "Your share" },
-  { href: "/promises", label: "Promises" },
-  { href: "/mp", label: "Your MP" },
-  { href: "/people", label: "People" },
-  { href: "/#contribute", label: "Contribute" },
-  { href: "/method", label: "Method" },
-];
 
 /** Header for pages outside the home page. Server-safe, no sandbox state. */
 export function SiteHeader({ current }: { current?: string }) {
@@ -21,7 +11,7 @@ export function SiteHeader({ current }: { current?: string }) {
           <LogoMark />
           Public Ledger
         </a>
-        <NavLinks links={LINKS} current={current} />
+        <NavLinks links={SITE_LINKS} current={current} />
       </div>
     </header>
   );

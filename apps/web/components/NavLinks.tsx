@@ -6,7 +6,11 @@ import { keepInView } from "@/lib/keepInView";
 export interface NavLink {
   href: string;
   label: string;
+  /** With `spy`: the in-page section that highlights this item, when its href is another page (default: the href's #fragment). */
+  section?: string;
 }
+
+const sectionOf = (l: NavLink): string | undefined => l.section ?? l.href.split("#")[1];
 
 /** Below the sticky header (56px) plus a little air: a section counts as "in view" once its top passes this line. */
 const SPY_LINE_PX = 120;
@@ -24,7 +28,7 @@ export function NavLinks({ links, current, spy = false, label = "Sections" }: { 
   // Section in view: the last section whose top has passed the line under the header.
   useEffect(() => {
     if (!spy) return;
-    const ids = links.map((l) => l.href.split("#")[1]).filter((id): id is string => !!id);
+    const ids = links.map(sectionOf).filter((id): id is string => !!id);
     let frame = 0;
     let timer: ReturnType<typeof setTimeout> | undefined;
     const update = () => {
@@ -61,7 +65,7 @@ export function NavLinks({ links, current, spy = false, label = "Sections" }: { 
     };
   }, [spy, links]);
 
-  const isActive = (l: NavLink) => (spy ? inView !== null && l.href.endsWith(`#${inView}`) : current === l.href);
+  const isActive = (l: NavLink) => (spy ? inView !== null && sectionOf(l) === inView : current === l.href);
 
   // Keep the highlighted item visible in the sideways-scrolling menu (phones), without moving the page.
   const activeHref = links.find(isActive)?.href ?? null;
