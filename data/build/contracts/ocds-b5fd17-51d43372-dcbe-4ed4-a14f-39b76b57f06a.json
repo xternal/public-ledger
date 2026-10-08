@@ -1,0 +1,23 @@
+{
+  "key": "ocds-b5fd17-51d43372-dcbe-4ed4-a14f-39b76b57f06a",
+  "ocid": "ocds-b5fd17-51d43372-dcbe-4ed4-a14f-39b76b57f06a",
+  "source": "contracts_finder",
+  "title": "New towns gap analysis 3 of 4",
+  "buyer": "Homes England (the name adopted by the Homes and Communities Agency)",
+  "notice_url": "https://www.contractsfinder.service.gov.uk/Notice/5a811c56-200f-4209-9b1f-571a8dfd7b59",
+  "record_url": "https://www.contractsfinder.service.gov.uk/api/rest/2/get_published_notice/json/5a811c56-200f-4209-9b1f-571a8dfd7b59",
+  "supplier": {
+    "name": "Deloitte LLP"
+  },
+  "awarded_on": "2025-09-26",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 150000.0,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2025-12-12"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "key": "ocds-b5fd17-906f1ac1-654e-4a71-ab0f-72dc43cfb945",
+  "ocid": "ocds-b5fd17-906f1ac1-654e-4a71-ab0f-72dc43cfb945",
+  "source": "contracts_finder",
+  "title": "CWC25196c - Great British Energy Solar Partnership: Rakegate EVCPs",
+  "buyer": "Wolverhampton City Council",
+  "notice_url": "https://www.contractsfinder.service.gov.uk/Notice/11442c93-7f3f-45ed-85b2-69ab5e0a13e2",
+  "record_url": "https://www.contractsfinder.service.gov.uk/api/rest/2/get_published_notice/json/11442c93-7f3f-45ed-85b2-69ab5e0a13e2",
+  "supplier": {
+    "name": "eEnergy Services UK Limited"
+  },
+  "awarded_on": "2026-04-01",
+  "competition": "open",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 28813.17,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2026-04-18"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "key": "ocds-b5fd17-6b3c68e6-762c-4315-868d-bbd08d8a4a74",
+  "ocid": "ocds-b5fd17-6b3c68e6-762c-4315-868d-bbd08d8a4a74",
+  "source": "contracts_finder",
+  "title": "CWC25196d - Great British Energy Solar Partnership: Lanesfield EVCPs",
+  "buyer": "Wolverhampton City Council",
+  "notice_url": "https://www.contractsfinder.service.gov.uk/Notice/87e83499-1a94-4488-883b-2401a32c9e28",
+  "record_url": "https://www.contractsfinder.service.gov.uk/api/rest/2/get_published_notice/json/87e83499-1a94-4488-883b-2401a32c9e28",
+  "supplier": {
+    "name": "eEnergy Services UK Limited"
+  },
+  "awarded_on": "2026-04-05",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 25793.26,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2026-04-10"
+    }
+  ]
+}

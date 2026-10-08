@@ -1,0 +1,23 @@
+{
+  "key": "ocds-b5fd17-d480ec34-23e5-4b09-9730-134fc569fd86",
+  "ocid": "ocds-b5fd17-d480ec34-23e5-4b09-9730-134fc569fd86",
+  "source": "contracts_finder",
+  "title": "CWC25196a - Great British Energy Solar Partnership: Rakegate LED Lighting",
+  "buyer": "Wolverhampton City Council",
+  "notice_url": "https://www.contractsfinder.service.gov.uk/Notice/05184aa1-3a05-416a-94c9-c1a01ff59d88",
+  "record_url": "https://www.contractsfinder.service.gov.uk/api/rest/2/get_published_notice/json/05184aa1-3a05-416a-94c9-c1a01ff59d88",
+  "supplier": {
+    "name": "eEnergy Services UK Limited"
+  },
+  "awarded_on": "2026-01-11",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 45552.15,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2026-01-30"
+    }
+  ]
+}

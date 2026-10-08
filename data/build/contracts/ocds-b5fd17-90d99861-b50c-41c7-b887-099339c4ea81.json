@@ -1,0 +1,24 @@
+{
+  "key": "ocds-b5fd17-90d99861-b50c-41c7-b887-099339c4ea81",
+  "ocid": "ocds-b5fd17-90d99861-b50c-41c7-b887-099339c4ea81",
+  "source": "contracts_finder",
+  "title": "New Towns Gap Analysis - 1 of 4",
+  "buyer": "Homes England (the name adopted by the Homes and Communities Agency)",
+  "notice_url": "https://www.contractsfinder.service.gov.uk/Notice/c0f07cb9-b334-4486-b310-039c0325f90f",
+  "record_url": "https://www.contractsfinder.service.gov.uk/api/rest/2/get_published_notice/json/c0f07cb9-b334-4486-b310-039c0325f90f",
+  "supplier": {
+    "name": "CBRE Limited"
+  },
+  "awarded_on": "2025-09-26",
+  "competition": "open",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 150000.0,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2025-12-12"
+    }
+  ]
+}

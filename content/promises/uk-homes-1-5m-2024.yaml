@@ -85,3 +85,12 @@ contracts:
   # Homes England: stakeholder engagement and social value advice for potential new towns locations.
   - ocid: ocds-b5fd17-199d7c84-a3d7-4db7-97c5-adc77fbd0202
     notice_url: https://www.contractsfinder.service.gov.uk/Notice/8ea88ce0-edee-4abc-97be-d32c65734a18
+  # Homes England: new towns gap analysis, four single-supplier commissions.
+  - ocid: ocds-b5fd17-90d99861-b50c-41c7-b887-099339c4ea81
+    notice_url: https://www.contractsfinder.service.gov.uk/Notice/c0f07cb9-b334-4486-b310-039c0325f90f
+  - ocid: ocds-b5fd17-037c328b-982f-4112-867a-20211aef5235
+    notice_url: https://www.contractsfinder.service.gov.uk/Notice/df7fc15c-e456-4180-9bed-020e7fad7d41
+  - ocid: ocds-b5fd17-51d43372-dcbe-4ed4-a14f-39b76b57f06a
+    notice_url: https://www.contractsfinder.service.gov.uk/Notice/5a811c56-200f-4209-9b1f-571a8dfd7b59
+  - ocid: ocds-b5fd17-8ef59a0b-6fe9-41e6-a3f0-e39c329dfa04
+    notice_url: https://www.contractsfinder.service.gov.uk/Notice/3bf3bb6b-6d87-4621-a456-764489d8fa3d
