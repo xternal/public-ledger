@@ -26,7 +26,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { getMpPage, type MpPage, type VoteGroupView } from "@/lib/mp";
 import { longDate } from "@/lib/format";
 import { shortName, todayIso } from "@/lib/promises";
-import { absolute, SITE_NAME } from "@/lib/site";
+import { absolute, OPEN_GRAPH, SITE_NAME } from "@/lib/site";
 import { mpPageDescription, mpPageTitle, MP_TITLE, OPL_ATTRIBUTION, OPL_URL } from "@/lib/mp-copy";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${title} | Public Ledger`,
     description,
     alternates: { canonical: `/mp/${c.slug}` },
-    openGraph: { title, description, type: "profile", url: `/mp/${c.slug}` },
+    openGraph: { ...OPEN_GRAPH, title, description, type: "profile", url: `/mp/${c.slug}` },
     twitter: { card: "summary_large_image", title, description },
   };
 }

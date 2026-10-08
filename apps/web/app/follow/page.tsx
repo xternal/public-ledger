@@ -4,12 +4,18 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { FollowButton } from "@/components/FollowPanel";
 import { AREA_LABEL } from "@/lib/promises";
 import { followOptions, followWindows } from "./targets";
+import { OPEN_GRAPH } from "@/lib/site";
+
+const TITLE = "Alerts: follow a promise, a politician or a policy area";
+const DESCRIPTION =
+  "Get an email, a Telegram message or an RSS item when a tracked UK political promise changes status, misses a deadline, is reworded or re-costed, or comes due. No account needed.";
 
 export const metadata: Metadata = {
-  title: "Alerts: follow a promise, a politician or a policy area | Public Ledger",
-  description:
-    "Get an email, a Telegram message or an RSS item when a tracked UK political promise changes status, misses a deadline, is reworded or re-costed, or comes due. No account needed.",
+  title: `${TITLE} | Public Ledger`,
+  description: DESCRIPTION,
   alternates: { canonical: "/follow" },
+  openGraph: { ...OPEN_GRAPH, title: TITLE, description: DESCRIPTION, type: "website", url: "/follow" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 /** About alerts, and where the "manage" link in emails explains itself. */

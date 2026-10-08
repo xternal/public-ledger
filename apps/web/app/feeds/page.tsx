@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/SiteHeader";
-import { absolute } from "@/lib/site";
+import { absolute, OPEN_GRAPH } from "@/lib/site";
 import { feedTargets } from "./feed-response";
 
 const TITLE = "Feeds: follow promise changes in a feed reader | Public Ledger";
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       ],
     },
   },
-  openGraph: { title: TITLE, description: DESCRIPTION, type: "website", url: absolute("/feeds") },
+  openGraph: { ...OPEN_GRAPH, title: TITLE, description: DESCRIPTION, type: "website", url: absolute("/feeds") },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

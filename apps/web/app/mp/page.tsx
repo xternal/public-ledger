@@ -3,7 +3,7 @@ import { constituencies } from "@ledger/server/mp";
 import { SiteHeader } from "@/components/SiteHeader";
 import { MpLookup } from "@/components/MpLookup";
 import { JsonLd } from "@/components/JsonLd";
-import { absolute, SITE_NAME } from "@/lib/site";
+import { absolute, OPEN_GRAPH, SITE_NAME } from "@/lib/site";
 import { LOOKUP_STEPS, MP_DESCRIPTION, MP_FAQ, MP_TITLE, ONSPD_ATTRIBUTION, OGL_URL, OPL_ATTRIBUTION, OPL_URL } from "@/lib/mp-copy";
 
 const TITLE = "Your MP: find them by postcode, see their promises and votes";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: `${TITLE} | Public Ledger`,
   description: MP_DESCRIPTION,
   alternates: { canonical: "/mp" },
-  openGraph: { title: TITLE, description: MP_DESCRIPTION, type: "website", url: "/mp" },
+  openGraph: { ...OPEN_GRAPH, title: TITLE, description: MP_DESCRIPTION, type: "website", url: "/mp" },
   twitter: { card: "summary_large_image", title: TITLE, description: MP_DESCRIPTION },
 };
 

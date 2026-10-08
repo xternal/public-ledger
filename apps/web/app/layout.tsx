@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
-import { isAlpha, MAKER, SITE_DESCRIPTION, SITE_NAME, siteUrl } from "@/lib/site";
+import { isAlpha, MAKER, OPEN_GRAPH, SITE_DESCRIPTION, SITE_NAME, siteUrl } from "@/lib/site";
 import { FooterLink } from "@/components/FooterLink";
 import "./globals.css";
 
@@ -9,8 +9,9 @@ export const metadata: Metadata = {
   title: "Public Ledger: where UK public money comes from and goes",
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
-  alternates: { canonical: "/", types: { "application/atom+xml": [{ url: "/feeds/all.xml", title: "Public Ledger: every change" }] } },
-  openGraph: { siteName: SITE_NAME, locale: "en_GB", type: "website", url: "/" },
+  // No canonical here: each public page names its own, and a page without one (a 404, a private link) must not claim to be the home page.
+  alternates: { types: { "application/atom+xml": [{ url: "/feeds/all.xml", title: "Public Ledger: every change" }] } },
+  openGraph: { ...OPEN_GRAPH, type: "website" },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
   authors: [{ name: MAKER.name, url: MAKER.url }],

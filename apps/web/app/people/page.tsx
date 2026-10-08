@@ -9,7 +9,7 @@ import { CONTROLLED_BY_LABEL, QUALITY_HELP } from "@/lib/copy";
 import { longDate } from "@/lib/format";
 import { PEOPLE_COPY as C, PEOPLE_DESCRIPTION, PEOPLE_TITLE, peopleFaq } from "@/lib/people-copy";
 import { deathsOvertake, pctGdp, per100, ratio, span, spendingSpan } from "@/lib/people-view";
-import { absolute, MAKER, SITE_NAME } from "@/lib/site";
+import { absolute, OPEN_GRAPH, MAKER, SITE_NAME } from "@/lib/site";
 
 const SHORT_TITLE = "People and long-term spending";
 
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: `${SHORT_TITLE} | Public Ledger`,
   description: PEOPLE_DESCRIPTION,
   alternates: { canonical: "/people" },
-  openGraph: { title: PEOPLE_TITLE, description: PEOPLE_DESCRIPTION, type: "website", url: "/people" },
+  openGraph: { ...OPEN_GRAPH, title: PEOPLE_TITLE, description: PEOPLE_DESCRIPTION, type: "website", url: "/people" },
   twitter: { card: "summary_large_image", title: PEOPLE_TITLE, description: PEOPLE_DESCRIPTION },
 };
 

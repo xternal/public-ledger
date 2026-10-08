@@ -21,13 +21,13 @@ import {
   pctText,
   periodLabel,
 } from "@/lib/method-copy";
-import { absolute, MAKER, SITE_NAME } from "@/lib/site";
+import { absolute, OPEN_GRAPH, MAKER, SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `${BACKTEST_TITLE} | Public Ledger`,
   description: BACKTEST_DESCRIPTION,
   alternates: { canonical: "/method/backtest" },
-  openGraph: { title: BACKTEST_TITLE, description: BACKTEST_DESCRIPTION, type: "article", url: "/method/backtest" },
+  openGraph: { ...OPEN_GRAPH, title: BACKTEST_TITLE, description: BACKTEST_DESCRIPTION, type: "article", url: "/method/backtest" },
   twitter: { card: "summary_large_image", title: BACKTEST_TITLE, description: BACKTEST_DESCRIPTION },
 };
 
