@@ -1,6 +1,7 @@
 import type { Db } from "../db";
 import { pruneSpamState } from "../spam";
 import { prunePendingAdditions, pruneUnconfirmed } from "../follow";
+import { pruneSubmitterEmails } from "../intake/submissions";
 import { countSent, deliver, inList, type AlertContext } from "./fanout";
 import { errorText } from "./log";
 import type { MessageEvent } from "./messages";
@@ -71,13 +72,16 @@ export interface MaintenanceReport {
   unconfirmed: number;
   /** Targets someone asked to add to a confirmed subscription, never confirmed by its owner. */
   pendingAdditions: number;
+  /** Submitters' emails past 90 days, whatever the submission's status. */
+  submitterEmails: number;
   outbox: number;
 }
 
 /**
  * Daily: delete delivery records older than 35 days, sign-ups and additions
- * never confirmed within 7 days (Follow service), yesterday's rate-limit salts
- * and buckets and expired spam challenges, and old development outbox mail.
+ * never confirmed within 7 days (Follow service), submitters' emails older
+ * than 90 days, yesterday's rate-limit salts and buckets and expired spam
+ * challenges, and old development outbox mail.
  */
 export async function runMaintenance(db: Db, now = new Date()): Promise<MaintenanceReport> {
   const cutoff = new Date(now.getTime() - DELIVERY_RETENTION_DAYS * 24 * 60 * 60 * 1000).toISOString();
@@ -85,6 +89,7 @@ export async function runMaintenance(db: Db, now = new Date()): Promise<Maintena
   const outbox = (await db.query("DELETE FROM mail_outbox WHERE created_at < $1 RETURNING id", [cutoff])).length;
   const unconfirmed = await pruneUnconfirmed(db, now);
   const pendingAdditions = await prunePendingAdditions(db, now);
+  const submitterEmails = await pruneSubmitterEmails(db, now);
   await pruneSpamState(db, now);
-  return { deliveries, unconfirmed: Number(unconfirmed) || 0, pendingAdditions, outbox };
+  return { deliveries, unconfirmed: Number(unconfirmed) || 0, pendingAdditions, submitterEmails, outbox };
 }

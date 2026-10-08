@@ -12,7 +12,9 @@ import { validateSubmission, type FieldErrors, type IntakeRules, type ValidSubmi
  * Receiving a reader submission (PRD F8, PROMISE_STANDARD §8). It becomes a
  * row in the editors' queue, never a card (invariant 8). No IP, name or user
  * agent is stored; an email, if given, is stored only encrypted and can be
- * deleted by the submitter with the link in their receipt.
+ * deleted by the submitter with the link in their receipt. It is kept only
+ * until the editors decide (triage deletes it after the last email), and 90
+ * days at most (the daily job). A duplicate on arrival keeps none at all.
  */
 
 /** Submissions per client per day (counted per HMAC of the IP with the day's salt). */
@@ -20,6 +22,8 @@ export const SUBMIT_DAILY_LIMIT = 10;
 /** Same link (and, for video, the same moment ±30 s) within this many days is a duplicate. */
 export const DUPLICATE_WINDOW_DAYS = 180;
 export const DUPLICATE_TIME_SECONDS = 30;
+/** A submitter's email is deleted after this many days, whatever happened to the submission. */
+export const SUBMITTER_EMAIL_RETENTION_DAYS = 90;
 
 export type ReceiveResult =
   | { ok: true; reference: string; status: "received" | "duplicate"; duplicateOf: string | null; receiptSent: boolean | null }
@@ -122,6 +126,7 @@ function receiptText(config: Config, reference: string, s: ValidSubmission, dele
     s.credit_handle
       ? `We keep your email only to tell you what happens to this submission. If it becomes a card, we credit you as "${s.credit_handle}".`
       : "We keep your email only to tell you what happens to this submission.",
+    `We delete it once the editors decide, and after ${SUBMITTER_EMAIL_RETENTION_DAYS} days at the latest.`,
     "",
     "To delete your email from our records, open this link and press the button:",
     `${config.siteUrl}/submission/delete?t=${deleteToken}`,
@@ -129,6 +134,22 @@ function receiptText(config: Config, reference: string, s: ValidSubmission, dele
     "Public Ledger",
   ];
   return lines.join("\n");
+}
+
+/** The receipt for a duplicate on arrival: the editors already have it, so the address is not kept. */
+function duplicateReceiptText(reference: string, s: ValidSubmission): string {
+  return [
+    "Thank you. Public Ledger has received your submission.",
+    "",
+    `Your reference: ${reference}`,
+    `Link you sent: ${s.url}${s.video_time !== null ? ` (at ${formatVideoTime(s.video_time)})` : ""}`,
+    "",
+    "Another reader sent this first, so the editors already have it.",
+    "",
+    "We have not kept your email address, so this is the only email about this submission.",
+    "",
+    "Public Ledger",
+  ].join("\n");
 }
 
 export async function receiveSubmission(body: unknown, deps: ReceiveDeps): Promise<ReceiveResult> {
@@ -154,15 +175,17 @@ export async function receiveSubmission(body: unknown, deps: ReceiveDeps): Promi
     return { ok: false, httpStatus: 429, error: "rate_limited" };
   }
 
-  // 4. Duplicates are still stored, marked, so editors see how often a source comes in.
+  // 4. Duplicates are still stored, marked, so editors see how often a source comes in. They are final
+  // (editors never triage them), so the email and credit name are not stored: the receipt is the only email.
   const duplicateOf = await findDuplicate(db, s, now);
   const status = duplicateOf ? "duplicate" : "received";
+  const keepContact = !duplicateOf;
   const checks: Record<string, unknown> = {};
   if (duplicateOf) checks.duplicate_of = duplicateOf;
   // TODO(schema): the reader's date has no column yet; kept here until migration 002 adds claimed_date.
   if (s.claimed_date) checks.claimed_date = s.claimed_date;
 
-  const token = s.contact_email ? newToken() : null;
+  const token = s.contact_email && keepContact ? newToken() : null;
   const reference = await db.transaction(async (tx) => {
     const id = await allocateReference(tx, now);
     await tx.query(
@@ -180,8 +203,8 @@ export async function receiveSubmission(body: unknown, deps: ReceiveDeps): Promi
         s.claimed_actor,
         s.claimed_quote,
         JSON.stringify(checks),
-        s.contact_email ? encrypt(config.encryptionKey, normaliseEmail(s.contact_email)) : null,
-        s.credit_handle,
+        s.contact_email && keepContact ? encrypt(config.encryptionKey, normaliseEmail(s.contact_email)) : null,
+        keepContact ? s.credit_handle : null,
         token?.hash ?? null,
         status,
         now.toISOString(),
@@ -193,9 +216,10 @@ export async function receiveSubmission(body: unknown, deps: ReceiveDeps): Promi
 
   // 5. Receipt, only if they gave an email. Report honestly whether it went.
   let receiptSent: boolean | null = null;
-  if (s.contact_email && token) {
+  if (s.contact_email) {
     try {
-      await mail.send({ to: s.contact_email, subject: `Your submission ${reference}`, text: receiptText(config, reference, s, token.token) });
+      const text = token ? receiptText(config, reference, s, token.token) : duplicateReceiptText(reference, s);
+      await mail.send({ to: s.contact_email, subject: `Your submission ${reference}`, text });
       receiptSent = true;
     } catch (e) {
       console.error("submission receipt not sent:", (e as Error).name); // never the message: provider errors can echo the address
@@ -258,6 +282,22 @@ export async function deleteSubmitterEmail(db: Db, token: string | null | undefi
   });
   if (result) await countUsage(db, { event: "data_deleted", props: { kind: "submitter" } }, 1, now);
   return result;
+}
+
+/**
+ * Delete submitters' emails older than 90 days, whatever the submission's
+ * status: never triaged, accepted but never merged, or anything else. The
+ * delete link goes too, since there is nothing left for it to delete. Run
+ * daily (alerts maintenance job). Returns how many emails were deleted.
+ */
+export async function pruneSubmitterEmails(db: Db, now = new Date()): Promise<number> {
+  const cutoff = new Date(now.getTime() - SUBMITTER_EMAIL_RETENTION_DAYS * 86_400_000).toISOString();
+  const rows = await db.query(
+    `UPDATE submission SET contact_email_enc = NULL, delete_token_hash = NULL
+      WHERE received_at < $1 AND (contact_email_enc IS NOT NULL OR delete_token_hash IS NOT NULL) RETURNING id`,
+    [cutoff],
+  );
+  return rows.length;
 }
 
 /** Server-side count of the contribute form being opened (no ids, no client analytics). */

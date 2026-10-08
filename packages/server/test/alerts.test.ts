@@ -373,7 +373,7 @@ describe("weekly digest", () => {
 });
 
 describe("maintenance", () => {
-  it("deletes deliveries after 35 days, unconfirmed sign-ups and additions after 7, and yesterday's rate-limit state", async () => {
+  it("deletes deliveries after 35 days, unconfirmed sign-ups and additions after 7, submitter emails after 90, and yesterday's rate-limit state", async () => {
     const sub = await subscribe({ address: "promise@example.org", targets: [["promise", "uk-bus-cap-2-2026"]] });
     for (const [id, days] of [["labour", 8], ["conservatives", 1]] as const) {
       await db.query("INSERT INTO pending_target (subscription_id, kind, target_id, confirm_token_hash, requested_at) VALUES ($1, 'actor', $2, $3, $4)", [
@@ -390,9 +390,17 @@ describe("maintenance", () => {
     const replied = { ...BUS, replies: [{ from_actor_id: "andy-burnham", date: "2026-10-05", text: "Confirmed." }] };
     await fanOut(diff(files(BUS), files(replied), "c0ffee2"), ctx());
     await rateLimit(db, "203.0.113.9", "submit", 3, new Date(T0.getTime() - DAY));
+    for (const [id, days] of [["S-2026-06-0001", 91], ["S-2026-09-0001", 30]] as const) {
+      await db.query(
+        `INSERT INTO submission (id, kind, url, url_normalised, contact_email_enc, delete_token_hash, status, received_at)
+         VALUES ($1, 'new_promise', 'https://example.org/a', 'https://example.org/a', $2, 'hash', 'received', $3)`,
+        [id, encrypt(config.encryptionKey, "reader@example.org"), new Date(T0.getTime() - days * DAY).toISOString()],
+      );
+    }
 
     const report = await runMaintenance(db, T0);
-    expect(report).toMatchObject({ deliveries: 2, unconfirmed: 1, pendingAdditions: 1 });
+    expect(report).toMatchObject({ deliveries: 2, unconfirmed: 1, pendingAdditions: 1, submitterEmails: 1 });
+    expect(await db.query("SELECT id FROM submission WHERE contact_email_enc IS NOT NULL")).toEqual([{ id: "S-2026-09-0001" }]);
     expect(await db.query("SELECT target_id FROM pending_target")).toEqual([{ target_id: "conservatives" }]);
     expect(await db.query("SELECT change_id FROM delivery WHERE subscription_id = $1", [sub])).toHaveLength(1);
     const left = await db.query<{ address_enc: string }>("SELECT address_enc FROM subscription WHERE confirmed_at IS NULL");

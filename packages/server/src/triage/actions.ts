@@ -12,8 +12,10 @@ import { getSubmission, OPEN_STATUSES, REJECT_REASONS, type RejectReason, type S
  * Editors' triage actions (PROMISE_STANDARD §8): accept into a draft pull
  * request, reject with a reason code, or mark as a duplicate. Each counts
  * `submission_triaged` (no ids) and, if the submitter left an address, sends
- * them a short status update. Rejection and duplicate are final, so the
- * address is deleted after that last update.
+ * them a short status update. That update is the last email: the address and
+ * its delete link are deleted once it is sent, whatever the outcome (DPIA
+ * measure M11). Rejection and duplicate are final, so the credit name, which
+ * will never be shown, goes too.
  */
 
 export interface TriageContext {
@@ -105,6 +107,14 @@ async function sendUpdate(ctx: TriageContext, encryptedAddress: string | null, m
 const SIGN_OFF = ["", "Public Ledger editors"];
 const LAST_EMAIL = "This is the last email about this submission. We delete your email address from it once this is sent.";
 
+/** After the last email: forget the address and retire its delete link; on a final "no", the unused credit name too. */
+async function forgetSubmitter(db: Db, id: string, outcome: "accepted" | "final"): Promise<void> {
+  await db.query(
+    `UPDATE submission SET contact_email_enc = NULL, delete_token_hash = NULL${outcome === "final" ? ", credit_handle = NULL" : ""} WHERE id = $1`,
+    [id],
+  );
+}
+
 /** Accept: open a draft PR (or, without a GitHub token, leave the YAML for an editor to copy), then mark it accepted. */
 export async function acceptSubmission(
   ctx: TriageContext,
@@ -153,16 +163,20 @@ export async function acceptSubmission(
   );
   if (!row) return { ok: false, error: "race" };
   await countUsage(ctx.db, { event: "submission_triaged", props: { outcome: "accepted", reason_code: "none" } }, 1, now);
+  const where = s.kind === "evidence" && s.promise_id ? `on its card: ${ctx.config.siteUrl}/promise/${s.promise_id}` : `in the promise ledger: ${ctx.config.siteUrl}/promises`;
   const emailed = await sendUpdate(ctx, row.contact_email_enc, {
     subject: `Your submission ${s.id} was accepted`,
     text: [
       `An editor accepted your submission ${s.id} and started a draft for the ledger.`,
       "",
       "Two editors check every change against the original source before it is published, so it can still change or be turned down.",
-      "We will email you once more when it is on the site.",
+      `Once it is published, you will find it ${where}`,
+      "",
+      LAST_EMAIL,
       ...SIGN_OFF,
     ].join("\n"),
   });
+  await forgetSubmitter(ctx.db, s.id, "accepted");
   return { ok: true, prUrl, draft, already: false, emailed };
 }
 
@@ -191,7 +205,7 @@ export async function rejectSubmission(ctx: TriageContext, id: string, reason: R
     subject: `Your submission ${id}`,
     text: [`Thank you for sending ${id}. The editors did not add it, because ${REASON_TEXT[reason]}.`, "", LAST_EMAIL, ...SIGN_OFF].join("\n"),
   });
-  await ctx.db.query("UPDATE submission SET contact_email_enc = NULL WHERE id = $1", [id]);
+  await forgetSubmitter(ctx.db, id, "final");
   return { ok: true, emailed };
 }
 
@@ -218,6 +232,6 @@ export async function markDuplicate(ctx: TriageContext, id: string, of: string):
     subject: `Your submission ${id}`,
     text: [`Thank you for sending ${id}. We already have it. ${where}`, "", LAST_EMAIL, ...SIGN_OFF].join("\n"),
   });
-  await ctx.db.query("UPDATE submission SET contact_email_enc = NULL WHERE id = $1", [id]);
+  await forgetSubmitter(ctx.db, id, "final");
   return { ok: true, emailed };
 }

@@ -245,12 +245,15 @@ describe("accept", () => {
     expect(pr.body).toContain("Possible duplicate of: S-2026-09-0007");
     expect(JSON.stringify(gh.calls)).not.toContain(EMAIL);
 
-    const [row] = await db.query<Record<string, unknown>>("SELECT status, resulting_pr_url, triaged_at, contact_email_enc FROM submission");
+    const [row] = await db.query<Record<string, unknown>>("SELECT status, resulting_pr_url, triaged_at, contact_email_enc, delete_token_hash, credit_handle FROM submission");
     expect(row).toMatchObject({ status: "accepted", resulting_pr_url: "https://github.com/editors/ledger/pull/7" });
     expect(row!.triaged_at).toBeTruthy();
-    expect(row!.contact_email_enc).toBeTruthy(); // kept for the final "it is on the site" update
+    // The update is the last email, so the address and its delete link go; the credit stays for the card.
+    expect(row).toMatchObject({ contact_email_enc: null, delete_token_hash: null, credit_handle: "vat_watcher" });
     const [m] = await outbox();
     expect(m).toMatchObject({ to: EMAIL, subject: "Your submission S-2026-10-0412 was accepted" });
+    expect(m!.text).toContain("Once it is published, you will find it in the promise ledger: https://ledger.test/promises");
+    expect(m!.text).toContain("This is the last email about this submission.");
     expect(await usage("outcome", "accepted")).toBe(1);
 
     // A second click does nothing new.
@@ -301,6 +304,8 @@ describe("accept", () => {
     expect(added!.every((l) => /^\s+(#|- |[a-z_]+: )/.test(l))).toBe(true);
     expect(added!.length).toBeLessThan(25);
     expect(gh.calls.find((c) => c.method === "POST" && c.path.endsWith("/pulls"))!.body!.title).toBe("Reader evidence S-2026-10-0415 for uk-bus-cap-2-2026 (draft)");
+    const [m] = await outbox();
+    expect(m!.text).toContain("Once it is published, you will find it on its card: https://ledger.test/promise/uk-bus-cap-2-2026");
   });
 
   it("changes nothing if GitHub fails", async () => {
@@ -317,12 +322,12 @@ describe("accept", () => {
 // ---------------------------------------------------------------- reject and duplicate
 
 describe("reject and duplicate", () => {
-  it("rejects with a reason code, tells the submitter, and deletes their address", async () => {
-    await submission({ id: "S-2026-10-0420" });
+  it("rejects with a reason code, tells the submitter, and deletes their address and unused credit name", async () => {
+    await submission({ id: "S-2026-10-0420", credit_handle: "vat_watcher" });
     expect(await rejectSubmission(ctx(), "S-2026-10-0420", "nonsense" as never)).toMatchObject({ ok: false });
     expect(await rejectSubmission(ctx(), "S-2026-10-0420", "no_primary_source")).toEqual({ ok: true, emailed: true });
-    const [row] = await db.query<Record<string, unknown>>("SELECT status, reason_code, contact_email_enc FROM submission");
-    expect(row).toEqual({ status: "rejected", reason_code: "no_primary_source", contact_email_enc: null });
+    const [row] = await db.query<Record<string, unknown>>("SELECT status, reason_code, contact_email_enc, delete_token_hash, credit_handle FROM submission");
+    expect(row).toEqual({ status: "rejected", reason_code: "no_primary_source", contact_email_enc: null, delete_token_hash: null, credit_handle: null });
     const [m] = await outbox();
     expect(m!.to).toBe(EMAIL);
     expect(m!.text).toContain("because we could not find a primary source");
@@ -331,8 +336,8 @@ describe("reject and duplicate", () => {
     expect(await rejectSubmission(ctx(), "S-2026-10-0420", "out_of_scope")).toMatchObject({ ok: false });
   });
 
-  it("marks a duplicate of another submission or of a card", async () => {
-    await submission({ id: "S-2026-10-0421" });
+  it("marks a duplicate of another submission or of a card, and deletes the address and credit name", async () => {
+    await submission({ id: "S-2026-10-0421", credit_handle: "vat_watcher" });
     await submission({ id: "S-2026-10-0422", email: null });
     expect(await markDuplicate(ctx(), "S-2026-10-0421", "not a ref!")).toMatchObject({ ok: false });
     expect(await markDuplicate(ctx(), "S-2026-10-0421", "uk-bus-cap-2-2026")).toEqual({ ok: true, emailed: true });
@@ -347,6 +352,8 @@ describe("reject and duplicate", () => {
     const mail = await outbox();
     expect(mail).toHaveLength(1);
     expect(mail[0]!.text).toContain("It is already on the site: https://ledger.test/promise/uk-bus-cap-2-2026");
+    const left = await db.query("SELECT 1 FROM submission WHERE contact_email_enc IS NOT NULL OR delete_token_hash IS NOT NULL OR credit_handle IS NOT NULL");
+    expect(left).toHaveLength(0);
     expect(await usage("outcome", "duplicate")).toBe(2);
   });
 });

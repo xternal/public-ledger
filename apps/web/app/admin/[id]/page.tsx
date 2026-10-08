@@ -11,9 +11,9 @@ export const dynamic = "force-dynamic";
 type Props = { params: Promise<{ id: string }>; searchParams: Promise<{ done?: string; error?: string; emailed?: string }> };
 
 const DONE: Record<string, string> = {
-  accept: "Accepted.",
-  reject: "Rejected. Any contact address is now deleted.",
-  duplicate: "Marked as a duplicate. Any contact address is now deleted.",
+  accept: "Accepted. Any contact address is now deleted.",
+  reject: "Rejected. Any contact address and credit name are now deleted.",
+  duplicate: "Marked as a duplicate. Any contact address and credit name are now deleted.",
 };
 
 export default async function SubmissionPage({ params, searchParams }: Props) {

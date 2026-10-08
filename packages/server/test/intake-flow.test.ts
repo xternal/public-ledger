@@ -10,9 +10,11 @@ import {
   countFormOpened,
   deleteSubmitterEmail,
   lookupDeleteToken,
+  pruneSubmitterEmails,
   receiveSubmission,
   referencePrefix,
   runAutoChecks,
+  SUBMITTER_EMAIL_RETENTION_DAYS,
   validateSubmission,
   type PrefillClient,
 } from "../src/intake";
@@ -135,6 +137,7 @@ describe("receiving", () => {
     expect(mailRow!.body_text).toMatch(/Your reference: S-2026-10-0001/);
     const token = /\/submission\/delete\?t=([A-Za-z0-9_-]+)/.exec(mailRow!.body_text)![1]!;
     expect(row!.delete_token_hash).not.toBe(token); // only the hash is stored
+    expect(mailRow!.body_text).toContain("We delete it once the editors decide, and after 90 days at the latest.");
     expect(await usage("submission_sent", "kind", "evidence")).toBe(1);
   });
 
@@ -208,6 +211,41 @@ describe("receiving", () => {
     const replay = await real({ kind: "new_promise", url: "https://www.gov.uk/y", altcha });
     expect(!replay.ok && [replay.httpStatus, replay.error]).toEqual([400, "spam_check"]);
     expect(await usage("submission_blocked", "reason", "spam_check")).toBe(1);
+  });
+});
+
+describe("submitter emails are kept only as long as needed", () => {
+  it("keeps no email, delete link or credit name for a duplicate on arrival, and says so in its only email", async () => {
+    await send({ kind: "new_promise", url: "https://www.gov.uk/a", contact_email: "first@example.org", altcha: "p" });
+    const r = await send({ kind: "new_promise", url: "https://www.gov.uk/a/", contact_email: "second@example.org", credit_handle: "busfan", altcha: "p" });
+    expect(r).toMatchObject({ ok: true, status: "duplicate", duplicateOf: "S-2026-10-0001", receiptSent: true });
+    const [row] = await db.query<Record<string, unknown>>("SELECT contact_email_enc, delete_token_hash, credit_handle FROM submission WHERE id = 'S-2026-10-0002'");
+    expect(row).toEqual({ contact_email_enc: null, delete_token_hash: null, credit_handle: null });
+    const [m] = await db.query<{ to_enc: string; body_text: string }>("SELECT to_enc, body_text FROM mail_outbox ORDER BY id DESC LIMIT 1");
+    expect(decrypt(config.encryptionKey, m!.to_enc)).toBe("second@example.org");
+    expect(m!.body_text).toContain("Another reader sent this first, so the editors already have it.");
+    expect(m!.body_text).toContain("We have not kept your email address");
+    expect(m!.body_text).not.toContain("/submission/delete");
+  });
+
+  it("deletes every email and delete link after 90 days, whatever the status", async () => {
+    const at = (days: number) => new Date(NOW.getTime() + days * 86_400_000);
+    await send({ kind: "new_promise", url: "https://www.gov.uk/old", contact_email: "old@example.org", altcha: "p" }); // never triaged
+    await send({ kind: "new_promise", url: "https://www.gov.uk/accepted", contact_email: "acc@example.org", credit_handle: "busfan", altcha: "p" });
+    await send({ kind: "new_promise", url: "https://www.gov.uk/new", contact_email: "new@example.org", altcha: "p" }, { now: at(30) });
+    await db.query("UPDATE submission SET status = 'accepted' WHERE url = 'https://www.gov.uk/accepted'"); // accepted, never merged
+
+    expect(await pruneSubmitterEmails(db, at(SUBMITTER_EMAIL_RETENTION_DAYS))).toBe(0);
+    expect(await pruneSubmitterEmails(db, at(SUBMITTER_EMAIL_RETENTION_DAYS + 1))).toBe(2);
+    const rows = await db.query<{ url: string; has_email: boolean; has_link: boolean; credit_handle: string | null }>(
+      "SELECT url, contact_email_enc IS NOT NULL AS has_email, delete_token_hash IS NOT NULL AS has_link, credit_handle FROM submission ORDER BY id",
+    );
+    expect(rows).toEqual([
+      { url: "https://www.gov.uk/old", has_email: false, has_link: false, credit_handle: null },
+      { url: "https://www.gov.uk/accepted", has_email: false, has_link: false, credit_handle: "busfan" }, // the credit is for the card
+      { url: "https://www.gov.uk/new", has_email: true, has_link: true, credit_handle: null },
+    ]);
+    expect(await pruneSubmitterEmails(db, at(SUBMITTER_EMAIL_RETENTION_DAYS + 1))).toBe(0);
   });
 });
 
