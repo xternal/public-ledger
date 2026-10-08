@@ -19,6 +19,12 @@ export const ActorFile = z
     /** A short form for tight spaces (filter chips, list lines): "Labour" for "Labour Party". */
     short_name: z.string().min(1).optional(),
     kind: ActorKind,
+    /**
+     * Where the actor stands at Westminster now: in government, in opposition,
+     * or a public body. Shown next to their promises so readers know who can
+     * deliver what; it never changes a status or a rule (invariant 6).
+     */
+    standing: z.enum(["government", "opposition", "public_body"]).optional(),
     party_id: z.string().optional(),
     roles: z.array(z.object({ title: z.string().min(1), from: IsoDate.optional(), to: IsoDate.optional() })),
     /**

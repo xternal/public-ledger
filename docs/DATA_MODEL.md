@@ -98,7 +98,7 @@ interface ScenarioResult {
 type Status = "promised" | "in_plan" | "legislated" | "funded" | "delivering"
             | "delivered" | "failed" | "quietly_dropped" | "unscoreable";
 
-interface Actor { id: string; name: string; short_name?: string /* "Labour" for tight spaces */; kind: "person" | "party" | "government"; party_id?: string; roles: { title: string; from: string; to?: string }[];
+interface Actor { id: string; name: string; short_name?: string /* "Labour" for tight spaces */; kind: "person" | "party" | "government"; standing?: "government" | "opposition" | "public_body" /* at Westminster, now; a label, never a different rule */; party_id?: string; roles: { title: string; from: string; to?: string }[];
   parliament_member_id?: number /* person: UK Parliament Members API id, links /mp pages */; parliament_party_id?: number /* party: Members API party id */;
   same_as?: string[] /* official pages an editor checked (party website, GOV.UK profile): schema.org sameAs; the Parliament page is derived from parliament_member_id */ }
 

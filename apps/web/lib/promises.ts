@@ -92,3 +92,55 @@ export function matchesQuery(c: CardView, query: string): boolean {
 
 /** Today's date in UK time as YYYY-MM-DD (deadline checks are day-level). */
 export const todayIso = () => new Date().toLocaleDateString("en-CA", { timeZone: "Europe/London" });
+
+export type Standing = "government" | "opposition" | "public_body";
+
+/** Where the card's owner stands at Westminster now (a label for readers; never a different rule). */
+export const standingOf = (c: CardView): Standing | undefined => ownerOf(c).standing ?? c.actor.standing;
+
+export const STANDING_LABEL: Record<Standing, string> = {
+  government: "in government",
+  opposition: "in opposition",
+  public_body: "public body",
+};
+
+/** How a status reads inside a sentence: "3 in a plan", "2 being delivered". */
+const STATUS_PHRASE: Record<Status, string> = {
+  promised: "promised with nothing in a plan yet",
+  in_plan: "in a plan",
+  legislated: "legislated",
+  funded: "funded",
+  delivering: "being delivered",
+  delivered: "delivered",
+  failed: "not met",
+  quietly_dropped: "undone",
+  unscoreable: "too vague to score",
+};
+
+function listWords(parts: string[]): string {
+  return parts.length < 2 ? (parts[0] ?? "") : `${parts.slice(0, -1).join(", ")} and ${parts.at(-1)}`;
+}
+
+/**
+ * The plain-English summary at the top of /promises, built from the cards:
+ * what the government promised and where it stands, then the opposition and
+ * public bodies. The same sentence shape for every group.
+ */
+export function promisesSummary(cards: CardView[]): string[] {
+  const by = (s: Standing) => cards.filter((c) => standingOf(c) === s);
+  const breakdown = (cs: CardView[]) =>
+    listWords(STATUS_ORDER.map((s) => [s, cs.filter((c) => c.file.status === s).length] as const).filter(([, n]) => n).map(([s, n]) => `${n} ${STATUS_PHRASE[s]}`));
+  const out: string[] = [];
+  const gov = by("government");
+  if (gov.length) out.push(`The government made ${gov.length} of the promises tracked here: ${breakdown(gov)}.`);
+  const opp = by("opposition");
+  if (opp.length) {
+    const parties = new Set(opp.map((c) => ownerOf(c).id)).size;
+    out.push(
+      `Opposition parties made ${opp.length}, from ${parties} ${parties === 1 ? "party" : "parties"}: they are costed where a costing exists, so voters can compare, but cannot be delivered from opposition.`,
+    );
+  }
+  const bodies = by("public_body");
+  if (bodies.length) out.push(`Public bodies made ${bodies.length}: ${breakdown(bodies)}.`);
+  return out;
+}
