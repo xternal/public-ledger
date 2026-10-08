@@ -169,3 +169,16 @@ build_id,check_id,level,subject,message,value
 2026-10-07T13:30:48Z,identity,info,2029-30,spending minus receipts = 63.4bn; published borrowing 63.4bn (obr_efo),-0.00044300000000419004
 2026-10-07T13:30:48Z,identity,info,2030-31,spending minus receipts = 59.0bn; published borrowing 59.0bn (obr_efo),-0.0009110000000021046
 2026-10-07T13:30:48Z,staleness,warning,hmrc_reckoner,"HMRC-DE-2025-06 is 470 days old; a new edition was due 105 days ago (grace 60). Acknowledged until 2027-01-31: HMRC postponed the January 2026 edition of 'Direct effects of illustrative tax changes' (notice of 6 Jul 2026, no new date).",105
+2026-10-08T06:50:35Z,identity,info,2019-20,spending minus receipts = 58.8bn; published borrowing 58.8bn (ons_psf),0.0
+2026-10-08T06:50:35Z,identity,info,2020-21,spending minus receipts = 310.8bn; published borrowing 310.8bn (ons_psf),0.0
+2026-10-08T06:50:35Z,identity,info,2021-22,spending minus receipts = 116.0bn; published borrowing 116.0bn (ons_psf),0.0
+2026-10-08T06:50:35Z,identity,info,2022-23,spending minus receipts = 123.8bn; published borrowing 123.8bn (ons_psf),0.0
+2026-10-08T06:50:35Z,identity,info,2023-24,spending minus receipts = 135.2bn; published borrowing 135.2bn (ons_psf),0.0
+2026-10-08T06:50:35Z,identity,info,2024-25,spending minus receipts = 149.8bn; published borrowing 149.8bn (ons_psf),0.0
+2026-10-08T06:50:35Z,identity,info,2025-26,spending minus receipts = 134.3bn; published borrowing 134.3bn (ons_psf),0.0
+2026-10-08T06:50:35Z,identity,info,2026-27,spending minus receipts = 115.5bn; published borrowing 115.5bn (obr_efo),0.0005760000000094578
+2026-10-08T06:50:35Z,identity,info,2027-28,spending minus receipts = 96.5bn; published borrowing 96.5bn (obr_efo),-0.0003679999999945949
+2026-10-08T06:50:35Z,identity,info,2028-29,spending minus receipts = 86.0bn; published borrowing 86.0bn (obr_efo),-0.0006340000000051305
+2026-10-08T06:50:35Z,identity,info,2029-30,spending minus receipts = 63.4bn; published borrowing 63.4bn (obr_efo),-0.00044300000000419004
+2026-10-08T06:50:35Z,identity,info,2030-31,spending minus receipts = 59.0bn; published borrowing 59.0bn (obr_efo),-0.0009110000000021046
+2026-10-08T06:50:35Z,staleness,warning,hmrc_reckoner,"HMRC-DE-2025-06 is 471 days old; a new edition was due 106 days ago (grace 60). Acknowledged until 2027-01-31: HMRC postponed the January 2026 edition of 'Direct effects of illustrative tax changes' (notice of 6 Jul 2026, no new date).",106
