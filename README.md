@@ -105,3 +105,7 @@ Out: user accounts, microsimulation (v1), LLM intake from Hansard and TV (v1), d
 | `prototype/` | Design, engineering | Clickable prototype; `index.html` is built by `build_prototype.py` |
 
 Confidence in the numbers: 2025-26 totals and the OBR borrowing and debt path are high (OBR, March 2026). Tax-by-tax and function splits are approximate, scaled from PESA 2024-25, and three lines are balancing plugs. Lever coefficients (cost of 1p of tax) are from model memory and labelled `training`; they must be replaced by HMRC tables before public launch.
+
+## Licence of the content
+
+What Public Ledger writes (status notes, cost notes, summaries, method pages) is licensed under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/). Official figures keep their own licences, mostly the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/); quotes from Parliament are under the [Open Parliament Licence](https://www.parliament.uk/site-information/copyright-parliament/open-parliament-licence/). See `/method#licence` on the site.
