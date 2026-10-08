@@ -8,10 +8,12 @@ import {
   CONSENT_VERSION,
   confirmEmailFollow,
   confirmTokenState,
+  confirmView,
   deleteByManageToken,
   followerCount,
   manageView,
   parseFollowRequest,
+  prunePendingAdditions,
   pruneUnconfirmed,
   removeTarget,
   requestEmailFollow,
@@ -74,7 +76,7 @@ describe("email follow: start → confirm → manage → unsubscribe → delete"
 
     // Confirm (POST) → welcome email with a working manage link and one-click unsubscribe.
     const res = await confirmEmailFollow(ctx(new Date(T0.getTime() + 3600_000)), ct);
-    expect(res.ok).toBe(true);
+    expect(res).toMatchObject({ ok: true, kind: "signup" });
     if (!res.ok) return;
     const welcome = mail.sent[1]!;
     expect(welcome.text).toContain(`https://ledger.test/follow/manage?t=${res.manageToken}`);
@@ -88,14 +90,18 @@ describe("email follow: start → confirm → manage → unsubscribe → delete"
     expect((await manageView({ db, config }, res.manageToken))!.cadence).toBe("weekly");
     expect(await usage("digest_chosen")).toBe(1);
 
+    // Following more is confirmed by email too, like the first sign-up.
     await requestEmailFollow(ctx(new Date(T0.getTime() + 7200_000)), { email: "reader@example.org", targets: [BURNHAM], cadence: "instant" });
     const added = mail.sent[2]!;
-    expect(added.subject).toMatch(/now also follow/);
+    expect(added.subject).toBe("Confirm what to add to your Public Ledger alerts");
     const manage2 = tokenIn(added.text, "/follow/manage")!;
     expect(manage2).toBe(res.manageToken); // the same link in every email, so any email's link keeps working
+    expect((await manageView({ db, config }, manage2))!.targets).toEqual([BUS]);
+    const addResult = await confirmEmailFollow(ctx(new Date(T0.getTime() + 7300_000)), tokenIn(added.text, "/follow/confirm"));
+    expect(addResult).toEqual({ ok: true, kind: "addition", manageToken: res.manageToken });
     view = await manageView({ db, config }, manage2);
     expect(view!.targets).toEqual([BUS, BURNHAM]);
-    expect(view!.cadence).toBe("weekly"); // an unverified request never changes a confirmed choice
+    expect(view!.cadence).toBe("weekly"); // a follow request never changes a confirmed choice
 
     expect(await removeTarget(ctx(), manage2, BUS)).toBe("removed");
     expect((await manageView({ db, config }, manage2))!.targets).toEqual([BURNHAM]);
@@ -220,6 +226,97 @@ describe("privacy of the email flow", () => {
     expect(mail.sent).toHaveLength(ADDRESS_DAILY_LIMIT);
     // The last link sent still works.
     expect(await confirmTokenState(db, tokenIn(mail.sent.at(-1)!.text, "/follow/confirm"), T0)).toBe("valid");
+  });
+});
+
+describe("follow requests for an address that is already confirmed", () => {
+  async function confirmed(targets: Target[] = [BUS]) {
+    await requestEmailFollow(ctx(), { email: EMAIL, targets, cadence: "instant" });
+    const res = await confirmEmailFollow(ctx(), tokenIn(mail.sent.at(-1)!.text, "/follow/confirm"));
+    if (!res.ok) throw new Error("confirm failed");
+    const [{ id }] = (await db.query<{ id: string }>("SELECT id FROM subscription")) as [{ id: string }];
+    return { manage: res.manageToken, id };
+  }
+  const followed = async (manage: string) => (await manageView({ db, config }, manage))!.targets;
+  const later = (ms: number) => new Date(T0.getTime() + ms);
+
+  it("adds nothing until the owner confirms, then adds exactly what was asked", async () => {
+    const { manage, id } = await confirmed();
+    await db.query("UPDATE subscription SET consent_text_version = 'older', consent_at = $2 WHERE id = $1", [id, T0.toISOString()]);
+    const sentBefore = mail.sent.length;
+    // A stranger who knows the address asks to add a politician to it.
+    await requestEmailFollow(ctx(later(DAY)), { email: "reader@example.org", targets: [BURNHAM], cadence: "weekly" });
+    expect(mail.sent).toHaveLength(sentBefore + 1);
+    const ask = mail.sent.at(-1)!;
+    expect(ask.to).toBe("reader@example.org");
+    expect(ask.text).toContain("A request came in to add these to the alerts this address gets from Public Ledger:\n\n- name of actor andy-burnham");
+    expect(ask.text).toContain("Nothing changes until you confirm.");
+    expect(ask.unsubscribeUrl).toContain("/api/follow/unsubscribe?t=");
+
+    // Nothing is followed, counted or alerted yet, and the request changed nothing the owner chose.
+    expect(await followed(manage)).toEqual([BUS]);
+    expect(await followerCount(db, "actor", BURNHAM.id, 1)).toBeNull();
+    expect((await manageView({ db, config }, manage))!.cadence).toBe("instant");
+    const [before] = await db.query<{ consent_text_version: string }>("SELECT consent_text_version FROM subscription");
+    expect(before!.consent_text_version).toBe("older");
+
+    // Opening the link reads only; pressing Confirm adds it and records the owner's consent.
+    const ct = tokenIn(ask.text, "/follow/confirm")!;
+    for (let i = 0; i < 2; i++) expect(await confirmView(db, ct, later(DAY))).toEqual({ state: "valid", kind: "addition", targets: [BURNHAM] });
+    expect(await followed(manage)).toEqual([BUS]);
+    expect(await confirmEmailFollow(ctx(later(2 * DAY)), ct)).toEqual({ ok: true, kind: "addition", manageToken: manage });
+    expect(await followed(manage)).toEqual([BUS, BURNHAM]);
+    expect(await db.query("SELECT 1 FROM pending_target")).toHaveLength(0);
+    const [after] = await db.query<{ consent_text_version: string; consent_at: Date }>("SELECT consent_text_version, consent_at FROM subscription");
+    expect(after!.consent_text_version).toBe(CONSENT_VERSION);
+    expect(new Date(after!.consent_at).toISOString()).toBe(later(2 * DAY).toISOString());
+    expect(mail.sent).toHaveLength(sentBefore + 1); // no welcome email for an addition
+    expect(await confirmEmailFollow(ctx(later(2 * DAY)), ct)).toEqual({ ok: false, reason: "invalid" }); // single use
+  });
+
+  it("gives each request its own link, and moves a repeated target to the newest one", async () => {
+    const { manage } = await confirmed();
+    const area: Target = { kind: "area", id: "health" };
+    await requestEmailFollow(ctx(later(1000)), { email: EMAIL, targets: [BURNHAM], cadence: "instant" });
+    const first = tokenIn(mail.sent.at(-1)!.text, "/follow/confirm")!;
+    await requestEmailFollow(ctx(later(2000)), { email: EMAIL, targets: [area, BURNHAM], cadence: "instant" });
+    const second = tokenIn(mail.sent.at(-1)!.text, "/follow/confirm")!;
+    expect(first).not.toBe(second);
+    expect(await confirmView(db, first, later(3000))).toMatchObject({ state: "invalid" }); // its only target moved to the newer link
+    expect(await confirmView(db, second, later(3000))).toEqual({ state: "valid", kind: "addition", targets: [BURNHAM, area] });
+    await confirmEmailFollow(ctx(later(4000)), second);
+    expect(await followed(manage)).toEqual([BUS, BURNHAM, area]);
+  });
+
+  it("says so, and changes nothing, when the address already follows everything asked", async () => {
+    const { manage } = await confirmed([BUS, BURNHAM]);
+    await requestEmailFollow(ctx(later(1000)), { email: EMAIL, targets: [BURNHAM], cadence: "weekly" });
+    const note = mail.sent.at(-1)!;
+    expect(note.subject).toBe("You already follow this on Public Ledger");
+    expect(note.text).not.toContain("/follow/confirm");
+    expect(await db.query("SELECT 1 FROM pending_target")).toHaveLength(0);
+    expect((await manageView({ db, config }, manage))!.cadence).toBe("instant");
+  });
+
+  it("refuses an addition link after 7 days, and the daily job deletes what nobody confirmed", async () => {
+    const { manage } = await confirmed();
+    await requestEmailFollow(ctx(later(DAY)), { email: EMAIL, targets: [BURNHAM], cadence: "instant" });
+    const ct = tokenIn(mail.sent.at(-1)!.text, "/follow/confirm")!;
+    expect(await prunePendingAdditions(db, later(7 * DAY))).toBe(0);
+    expect(await confirmEmailFollow(ctx(later(8 * DAY + 60_000)), ct)).toEqual({ ok: false, reason: "expired" });
+    expect(await confirmView(db, ct, later(8 * DAY + 60_000))).toEqual({ state: "expired", kind: "addition", targets: [] });
+    expect(await prunePendingAdditions(db, later(8 * DAY + 60_000))).toBe(1);
+    expect(await confirmView(db, ct, later(8 * DAY + 60_000))).toMatchObject({ state: "invalid" });
+    expect(await followed(manage)).toEqual([BUS]);
+  });
+
+  it("goes with the subscription when the owner deletes it", async () => {
+    const { manage } = await confirmed();
+    await requestEmailFollow(ctx(later(1000)), { email: EMAIL, targets: [BURNHAM], cadence: "instant" });
+    const ct = tokenIn(mail.sent.at(-1)!.text, "/follow/confirm")!;
+    expect(await deleteByManageToken(ctx(), manage, "delete")).toBe(true);
+    expect(await db.query("SELECT 1 FROM pending_target")).toHaveLength(0);
+    expect(await confirmEmailFollow(ctx(later(2000)), ct)).toEqual({ ok: false, reason: "invalid" });
   });
 });
 

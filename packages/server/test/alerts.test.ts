@@ -373,8 +373,16 @@ describe("weekly digest", () => {
 });
 
 describe("maintenance", () => {
-  it("deletes deliveries after 35 days, unconfirmed sign-ups after 7, and yesterday's rate-limit state", async () => {
+  it("deletes deliveries after 35 days, unconfirmed sign-ups and additions after 7, and yesterday's rate-limit state", async () => {
     const sub = await subscribe({ address: "promise@example.org", targets: [["promise", "uk-bus-cap-2-2026"]] });
+    for (const [id, days] of [["labour", 8], ["conservatives", 1]] as const) {
+      await db.query("INSERT INTO pending_target (subscription_id, kind, target_id, confirm_token_hash, requested_at) VALUES ($1, 'actor', $2, $3, $4)", [
+        sub,
+        id,
+        `hash-${id}`,
+        new Date(T0.getTime() - days * DAY).toISOString(),
+      ]);
+    }
     await subscribe({ address: "stale@example.org", confirmed: false, targets: [["all", "*"]], createdAt: new Date(T0.getTime() - 8 * DAY) });
     await subscribe({ address: "recent@example.org", confirmed: false, targets: [["all", "*"]], createdAt: new Date(T0.getTime() - 1 * DAY) });
     const { before, after } = statusChange();
@@ -384,7 +392,8 @@ describe("maintenance", () => {
     await rateLimit(db, "203.0.113.9", "submit", 3, new Date(T0.getTime() - DAY));
 
     const report = await runMaintenance(db, T0);
-    expect(report).toMatchObject({ deliveries: 2, unconfirmed: 1 });
+    expect(report).toMatchObject({ deliveries: 2, unconfirmed: 1, pendingAdditions: 1 });
+    expect(await db.query("SELECT target_id FROM pending_target")).toEqual([{ target_id: "conservatives" }]);
     expect(await db.query("SELECT change_id FROM delivery WHERE subscription_id = $1", [sub])).toHaveLength(1);
     const left = await db.query<{ address_enc: string }>("SELECT address_enc FROM subscription WHERE confirmed_at IS NULL");
     expect(left.map((r) => decrypt(config.encryptionKey, r.address_enc))).toEqual(["recent@example.org"]);

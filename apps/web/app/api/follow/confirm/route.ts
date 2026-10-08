@@ -26,6 +26,7 @@ async function tokenFrom(req: Request): Promise<string | null> {
 export async function POST(req: Request) {
   const ctx = await followContext();
   const res = await confirmEmailFollow(ctx, await tokenFrom(req));
-  const to = res.ok ? `/follow/manage?t=${encodeURIComponent(res.manageToken)}&m=confirmed` : `/follow/confirm?e=${res.reason}`;
+  const done = res.ok && res.kind === "addition" ? "added" : "confirmed";
+  const to = res.ok ? `/follow/manage?t=${encodeURIComponent(res.manageToken)}&m=${done}` : `/follow/confirm?e=${res.reason}`;
   return new Response(null, { status: 303, headers: { location: new URL(to, req.url).toString(), "cache-control": "no-store" } });
 }
