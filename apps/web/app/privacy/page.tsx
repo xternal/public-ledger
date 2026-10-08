@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { NavLinks } from "@/components/NavLinks";
 import { JsonLd } from "@/components/JsonLd";
 import { longDate } from "@/lib/format";
-import { absolute, MAKER, OPEN_GRAPH, SITE_NAME } from "@/lib/site";
+import { absolute, EDITORS_EMAIL, MAKER, OPEN_GRAPH, SITE_NAME } from "@/lib/site";
 import {
   CONTROLLER,
   CONTROLLER_INTERESTS,
@@ -18,6 +18,7 @@ import {
   PRIVACY_FAQ,
   PRIVACY_TITLE,
   PRIVACY_UPDATED,
+  EDITOR_APPLICATION_RETENTION_MONTHS,
   followerThreshold,
   retention,
 } from "@/lib/privacy-copy";
@@ -64,6 +65,12 @@ const MORE_SERVICES: typeof SERVICES = [
   { name: "Internet Archive", role: "saves a public copy of a link you send", where: "US non-profit", sees: "The link only, sent from our server." },
   { name: "postcodes.io", role: "finds the constituency for a postcode", where: "UK service", whereToConfirm: true, sees: "The postcode only, sent from our server, never with your IP address." },
   { name: "UK Parliament", role: "provides the data about MPs", where: "UK", sees: "A name you type into Your MP, sent from our server." },
+  {
+    name: "Cloudflare",
+    role: "runs our domain and forwards email sent to our addresses (such as privacy@ and editors@) to our mailbox",
+    where: "US company",
+    sees: "Emails you send us, including applications to be an editor.",
+  },
 ];
 
 const h2 = "m-0 text-title font-semibold";
@@ -234,6 +241,16 @@ export default function PrivacyPage() {
               you.
             </p>
           </Feature>
+          <Feature title="Applying to be an editor">
+            <p className="m-0">
+              What you write to <a href={`mailto:${EDITORS_EMAIL}`}>{EDITORS_EMAIL}</a>: your name, your email address, what you tell us about yourself, and any
+              party membership or political role you declare.
+            </p>
+            <p className="m-0 text-muted">
+              We use it only to consider your application. We ask about party membership so that no editor ever approves a card about their own party; we
+              do not publish it unless you agree. If you do not join, we delete it within {EDITOR_APPLICATION_RETENTION_MONTHS} months.
+            </p>
+          </Feature>
           <Feature title="The editors' area">
             <p className="m-0">Editors sign in with a shared password. They see submissions, never email addresses.</p>
             <p className="m-0 text-muted">Failed sign-ins are counted with the same daily scrambled code, to slow down anyone guessing the password.</p>
@@ -253,6 +270,10 @@ export default function PrivacyPage() {
               <b className="font-semibold">Your email and credit name with a submission:</b> your consent (Article 6(1)(a)).
             </li>
             <li>
+              <b className="font-semibold">An application to be an editor:</b> our legitimate interest in choosing editors (Article 6(1)(f)); for any party
+              membership or political role you declare, your explicit consent (Article 9(2)(a)), which you give by telling us.
+            </li>
+            <li>
               <b className="font-semibold">What you send in, Your MP searches, spam checks, usage counts and hosting logs:</b> our legitimate interest in
               running a useful, secure site (Article 6(1)(f)). Each uses as little as it can, and none is used to profile you or decide anything about you.
             </li>
@@ -266,7 +287,7 @@ export default function PrivacyPage() {
           <p className="m-0 text-muted">These services run parts of Public Ledger for us. None may use your data for anything else.</p>
           <ServiceList items={SERVICES} />
           <details>
-            <summary className="cursor-pointer font-medium text-accent">Four more, for submissions and Your MP</summary>
+            <summary className="cursor-pointer font-medium text-accent">Five more, for submissions, Your MP and email to us</summary>
             <div className="mt-3">
               <ServiceList items={MORE_SERVICES} />
             </div>
