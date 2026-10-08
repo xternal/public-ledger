@@ -71,6 +71,13 @@ const MORE_SERVICES: typeof SERVICES = [
     where: "US company",
     sees: "Emails you send us, including applications to be an editor.",
   },
+  {
+    name: "Proton",
+    role: "hosts our mailbox, where email sent to our addresses arrives",
+    where: "Swiss company; mail stored in Switzerland",
+    whereToConfirm: true,
+    sees: "Emails you send us, including applications to be an editor. Proton says it encrypts stored mail so that it cannot read it.",
+  },
 ];
 
 const h2 = "m-0 text-title font-semibold";
@@ -287,13 +294,13 @@ export default function PrivacyPage() {
           <p className="m-0 text-muted">These services run parts of Public Ledger for us. None may use your data for anything else.</p>
           <ServiceList items={SERVICES} />
           <details>
-            <summary className="cursor-pointer font-medium text-accent">Five more, for submissions, Your MP and email to us</summary>
+            <summary className="cursor-pointer font-medium text-accent">Six more, for submissions, Your MP and email to us</summary>
             <div className="mt-3">
               <ServiceList items={MORE_SERVICES} />
             </div>
           </details>
           <p className="m-0 text-muted">
-            Where data leaves the UK, it goes to Ireland, which UK law treats as safe, or to US companies, under the UK–US data bridge or the UK&apos;s standard
+            Where data leaves the UK, it goes to Ireland or Switzerland, which UK law treats as safe, or to US companies, under the UK–US data bridge or the UK&apos;s standard
             contract clauses. <ToConfirm />
           </p>
         </section>
