@@ -26,6 +26,9 @@ export const CONTROLLER = {
   companyNumber: "13746700",
   office: { street: "66 Paul Street", locality: "London", postcode: "EC2A 4NA" },
 } as const;
+/** Declared by the owner on 8 October 2026; if it ever changes, say so here and in the README. */
+export const CONTROLLER_INTERESTS =
+  "Empatiq Limited has no clients or contracts with government, political parties or any body this site tracks. If that ever changes, it will be declared here.";
 export const CONTROLLER_OFFICE = `${CONTROLLER.office.street}, ${CONTROLLER.office.locality} ${CONTROLLER.office.postcode}`;
 /**
  * The ICO registration number (ZB…), once the ICO issues it. The fee is paid

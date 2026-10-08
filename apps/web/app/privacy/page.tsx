@@ -8,6 +8,7 @@ import { longDate } from "@/lib/format";
 import { absolute, MAKER, SITE_NAME } from "@/lib/site";
 import {
   CONTROLLER,
+  CONTROLLER_INTERESTS,
   CONTROLLER_OFFICE,
   ICO_COMPLAINTS_URL,
   ICO_REGISTRATION_NUMBER,
@@ -178,6 +179,7 @@ export default function PrivacyPage() {
             Public Ledger is run by {CONTROLLER.name}, Pavel Guzhikov&apos;s company, independently of any party. {CONTROLLER.name} is the controller of
             your personal data: it decides what is collected and why, and is responsible for it.
           </p>
+          <p className="m-0">{CONTROLLER_INTERESTS}</p>
           <p className="m-0">
             Write to <a href={`mailto:${PRIVACY_EMAIL}`}>{PRIVACY_EMAIL}</a> about anything on this page.
           </p>

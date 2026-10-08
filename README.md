@@ -2,7 +2,7 @@
 
 Working title. This file covers the concept, the product logic and the build order. Specs for implementation live in `CLAUDE.md` and `docs/`. Read `docs/PRE_SHIP_REVIEW.md` before anything goes public.
 
-**Who is behind it.** Public Ledger is built by [Pavel Guzhikov](https://guzh.uk), a UK resident, as an active citizen: someone who wants a better-informed society and new, more accountable forms of government. It is run through Empatiq Limited, Pavel Guzhikov's company, which holds any data readers give the site ([privacy notice](https://ledgergov.uk/privacy)). It is independent. No party, campaign or government funds or directs it, and it holds every party, in government or opposition, to the same published standard.
+**Who is behind it.** Public Ledger is built by [Pavel Guzhikov](https://guzh.uk), a UK resident, as an active citizen: someone who wants a better-informed society and new, more accountable forms of government. It is run through Empatiq Limited, Pavel Guzhikov's company, which holds any data readers give the site ([privacy notice](https://ledgergov.uk/privacy)). Empatiq Limited has no clients or contracts with government, political parties or any body this site tracks; if that ever changes, it will be declared here. It is independent. No party, campaign or government funds or directs it, and it holds every party, in government or opposition, to the same published standard.
 
 ## 1. The idea in one paragraph
 
