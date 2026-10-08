@@ -34,7 +34,14 @@ versions:
         Public bodies in England covered by section 1 of the Equality Act 2010, which would have to consider
         reducing inequalities of outcome from socio-economic disadvantage in strategic decisions; lower-income
         families
-      cost_note: No costing published.
+      cost_note: >-
+        Too small to show in billions. The only official costing is the 2009 Equality Bill impact assessment:
+        about £187,000 a year across 695 public bodies in England and Wales, plus about £468,000 once, almost
+        all staff time. It uses 2008 pay rates, and the government has published no new costing for bringing
+        the duty into force in England.
+      cost_sources:
+        - title: "Government Equalities Office: Equality Bill impact assessment, version 3 (Nov 2009), Annex A"
+          url: https://assets.publishing.service.gov.uk/media/5a7c7cf4ed915d6969f4538c/9780108508677.pdf
       when: >-
         Not stated. A government press release the same day calls it one of the new Class Unit's early priorities.
       funded_by: null
@@ -45,6 +52,29 @@ events:
       Bridget Phillipson tells Parliament a new Class Unit will lead the enactment of the socio-economic duty in the
       Equality Act 2010
 replies: []
+corrections:
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_note
+    was: "No costing published."
+    now: >-
+      Too small to show in billions. The only official costing is the 2009 Equality Bill impact assessment:
+      about £187,000 a year across 695 public bodies in England and Wales, plus about £468,000 once, almost all
+      staff time. It uses 2008 pay rates, and the government has published no new costing for bringing the duty
+      into force in England.
+    reason: >-
+      The note said only that no costing was published. An official costing exists, from 2009, and shows the
+      cost is negligible; the note now gives it.
+    source_url: https://assets.publishing.service.gov.uk/media/5a7c7cf4ed915d6969f4538c/9780108508677.pdf
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_sources
+    was: null
+    now:
+      - title: "Government Equalities Office: Equality Bill impact assessment, version 3 (Nov 2009), Annex A"
+        url: https://assets.publishing.service.gov.uk/media/5a7c7cf4ed915d6969f4538c/9780108508677.pdf
+    reason: >-
+      The note said only that no costing was published. An official costing exists, from 2009, and shows the
+      cost is negligible; the note now gives it.
+    source_url: https://assets.publishing.service.gov.uk/media/5a7c7cf4ed915d6969f4538c/9780108508677.pdf
 reviews:
   - by: Junior Editor
     kind: automated

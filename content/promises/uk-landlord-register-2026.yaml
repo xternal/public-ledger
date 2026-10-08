@@ -34,12 +34,20 @@ versions:
         access to the information (the government says this will help them "spot rogue landlords and take quicker
         action")
       cost_note: >-
-        No costing published. Under the draft regulations, a fee must be paid to make or renew (every 12 months) each
-        dwelling entry, and in some cases to reactivate one; the database operator sets the fee by reference to its relevant costs (draft
-        regulations 6(5), 10(2), 12(5) and 14).
+        The government has not published what the register costs the public purse. Its 2024 impact assessment
+        lists a government grant to set up the database without a figure, and says the database will
+        eventually pay for itself through registration fees. The fee is now £65 a year per property, and the
+        law lets it cover running the database and enforcing the rules. The 2026 regulations came without a
+        new impact assessment.
       cost_sources:
         - title: "Draft Private Rented Sector Database Regulations 2026, legislation.gov.uk"
           url: https://www.legislation.gov.uk/ukdsi/2026/9780348286861/contents
+        - title: "MHCLG: Renters' Rights Bill impact assessment (22 Nov 2024), paragraph 115 and Annex 3"
+          url: https://assets.publishing.service.gov.uk/media/67405a2353373262c0d825c5/Renters__Rights_Bill_Impact_assessment.pdf
+        - title: "MHCLG: Explanatory memorandum to the draft Private Rented Sector Database Regulations 2026"
+          url: https://www.legislation.gov.uk/ukdsi/2026/9780348286861/memorandum/contents
+        - title: "MHCLG Housing Hub: Get ready to register (the £65 fee)"
+          url: https://housinghub.campaign.gov.uk/renting-is-changing/get-ready-to-register/
       when: >-
         Launch on 15 December 2026 in the West Midlands, then other regions over 12 months; landlords in each region
         get three months to sign up once it is called forward, and all landlords actively letting must be registered
@@ -61,6 +69,36 @@ events:
     type: deadline
     text: All landlords actively letting property due to be registered
 replies: []
+corrections:
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_note
+    was: "No costing published. Under the draft regulations, a fee must be paid to make or renew (every 12 months) each dwelling entry, and in some cases to reactivate one; the database operator sets the fee by reference to its relevant costs (draft regulations 6(5), 10(2), 12(5) and 14)."
+    now: >-
+      The government has not published what the register costs the public purse. Its 2024 impact assessment
+      lists a government grant to set up the database without a figure, and says the database will eventually
+      pay for itself through registration fees. The fee is now £65 a year per property, and the law lets it
+      cover running the database and enforcing the rules. The 2026 regulations came without a new impact
+      assessment.
+    reason: >-
+      The note said only that no costing was published. It now says what the government's impact assessment does
+      say: an uncosted upfront grant, paid back over time by landlord fees.
+    source_url: https://assets.publishing.service.gov.uk/media/67405a2353373262c0d825c5/Renters__Rights_Bill_Impact_assessment.pdf
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_sources
+    was: [{"title": "Draft Private Rented Sector Database Regulations 2026, legislation.gov.uk", "url": "https://www.legislation.gov.uk/ukdsi/2026/9780348286861/contents"}]
+    now:
+      - title: "Draft Private Rented Sector Database Regulations 2026, legislation.gov.uk"
+        url: https://www.legislation.gov.uk/ukdsi/2026/9780348286861/contents
+      - title: "MHCLG: Renters' Rights Bill impact assessment (22 Nov 2024), paragraph 115 and Annex 3"
+        url: https://assets.publishing.service.gov.uk/media/67405a2353373262c0d825c5/Renters__Rights_Bill_Impact_assessment.pdf
+      - title: "MHCLG: Explanatory memorandum to the draft Private Rented Sector Database Regulations 2026"
+        url: https://www.legislation.gov.uk/ukdsi/2026/9780348286861/memorandum/contents
+      - title: "MHCLG Housing Hub: Get ready to register (the £65 fee)"
+        url: https://housinghub.campaign.gov.uk/renting-is-changing/get-ready-to-register/
+    reason: >-
+      The note said only that no costing was published. It now says what the government's impact assessment does
+      say: an uncosted upfront grant, paid back over time by landlord fees.
+    source_url: https://assets.publishing.service.gov.uk/media/67405a2353373262c0d825c5/Renters__Rights_Bill_Impact_assessment.pdf
 reviews:
   - by: Junior Editor
     kind: automated

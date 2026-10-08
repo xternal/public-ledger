@@ -32,15 +32,17 @@ versions:
         Mayors of strategic authorities in England, who would control 16-19 education funding in their areas,
         and 16- to 19-year-olds in education there
       cost_note: >-
-        No costing published. The pledge moves control of existing 16-19 education funding from central
-        government to mayors. No official figure has been published for how much of that budget would be
-        devolved, or for any change in total spending. DfE describes it as the devolution of "billions of pounds
-        of funding for 16 to 19-year-olds".
+        No cost of its own: the pledge hands mayors control of money the Department for Education already
+        spends, and no costing has been published. For scale only, England's whole 16-19 budget is nearly £9
+        billion in the 2026/27 academic year, but the government has not said how much of it would pass to
+        mayors. DfE describes it as the devolution of "billions of pounds of funding for 16 to 19-year-olds".
       cost_sources:
         - title: "DfE press release, 10 Sep 2026: Local leaders have say on reforms to prepare youngsters for work"
           url: https://www.gov.uk/government/news/local-leaders-have-say-on-reforms-to-prepare-youngsters-for-work
         - title: "Cabinet Office, 31 Jul 2026: Rewiring the State – Cabinet Statement"
           url: https://www.gov.uk/government/publications/rewiring-the-state-cabinet-statement/rewiring-the-state-cabinet-statement-html
+        - title: "UK Parliament: written question 125387, Further Education: Finance (answered 20 Apr 2026)"
+          url: https://questions-statements.parliament.uk/written-questions/detail/2026-04-10/125387
       when: >-
         Not stated. The Cabinet's Rewiring the State statement says a white paper in autumn 2026 will set out
         the timetable.
@@ -50,6 +52,33 @@ events:
     type: promised
     text: Lucy Powell tells the Commons that mayors will control the 16-19 education budget for the first time
 replies: []
+corrections:
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_note
+    was: "No costing published. The pledge moves control of existing 16-19 education funding from central government to mayors. No official figure has been published for how much of that budget would be devolved, or for any change in total spending. DfE describes it as the devolution of \"billions of pounds of funding for 16 to 19-year-olds\"."
+    now: >-
+      No cost of its own: the pledge hands mayors control of money the Department for Education already spends,
+      and no costing has been published. For scale only, England's whole 16-19 budget is nearly £9 billion in
+      the 2026/27 academic year, but the government has not said how much of it would pass to mayors. DfE
+      describes it as the devolution of "billions of pounds of funding for 16 to 19-year-olds".
+    reason: >-
+      The note now gives the size of the existing national 16-19 budget, from a ministerial answer, so readers
+      can see the scale; it stays clear that this is money already spent, not a new cost.
+    source_url: https://questions-statements.parliament.uk/written-questions/detail/2026-04-10/125387
+  - date: "2026-10-08"
+    path: versions[0].parameters.cost_sources
+    was: [{"title": "DfE press release, 10 Sep 2026: Local leaders have say on reforms to prepare youngsters for work", "url": "https://www.gov.uk/government/news/local-leaders-have-say-on-reforms-to-prepare-youngsters-for-work"}, {"title": "Cabinet Office, 31 Jul 2026: Rewiring the State – Cabinet Statement", "url": "https://www.gov.uk/government/publications/rewiring-the-state-cabinet-statement/rewiring-the-state-cabinet-statement-html"}]
+    now:
+      - title: "DfE press release, 10 Sep 2026: Local leaders have say on reforms to prepare youngsters for work"
+        url: https://www.gov.uk/government/news/local-leaders-have-say-on-reforms-to-prepare-youngsters-for-work
+      - title: "Cabinet Office, 31 Jul 2026: Rewiring the State – Cabinet Statement"
+        url: https://www.gov.uk/government/publications/rewiring-the-state-cabinet-statement/rewiring-the-state-cabinet-statement-html
+      - title: "UK Parliament: written question 125387, Further Education: Finance (answered 20 Apr 2026)"
+        url: https://questions-statements.parliament.uk/written-questions/detail/2026-04-10/125387
+    reason: >-
+      The note now gives the size of the existing national 16-19 budget, from a ministerial answer, so readers
+      can see the scale; it stays clear that this is money already spent, not a new cost.
+    source_url: https://questions-statements.parliament.uk/written-questions/detail/2026-04-10/125387
 reviews:
   - by: Junior Editor
     kind: automated
