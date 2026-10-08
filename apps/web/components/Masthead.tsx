@@ -3,18 +3,8 @@
 import { useScenario } from "@/lib/scenario";
 import { gbpBn } from "@/lib/format";
 import { NavLinks } from "./NavLinks";
+import { SITE_LINKS } from "./siteLinks";
 import { LogoMark } from "@/lib/brand";
-
-const SECTIONS = [
-  { href: "#statement", label: "Statement" },
-  { href: "#scenario", label: "Scenario" },
-  { href: "#you", label: "Your share" },
-  { href: "#promises", label: "Promises" },
-  { href: "/mp", label: "Your MP" },
-  { href: "/people", label: "People" },
-  { href: "#contribute", label: "Contribute" },
-  { href: "#method", label: "Method" },
-];
 
 export function TopBar() {
   const { view } = useScenario();
@@ -26,7 +16,7 @@ export function TopBar() {
           <LogoMark />
           Public Ledger
         </a>
-        <NavLinks links={SECTIONS} spy />
+        <NavLinks links={SITE_LINKS} spy />
         <span className="hidden whitespace-nowrap text-label text-muted md:inline">
           {meta.country}, {meta.fiscal_year}
         </span>
