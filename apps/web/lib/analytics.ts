@@ -20,7 +20,9 @@ import type { Unit } from "./format";
  */
 export type AnalyticsEvent =
   | { name: "unit_changed"; props: { unit: Unit } }
-  | { name: "chart_table_opened"; props: { chart_id: "statement" | "debt_fan" | "t1_deciles" | "t1_winners" | "t1_regions" } }
+  | { name: "chart_table_opened"; props: { chart_id: "statement" | "debt_fan" | "t1_deciles" | "t1_winners" | "t1_regions" | PeopleChartId } }
+  /** /people: which assumption or scenario a reader switched to (published variants only; ids, no free text). */
+  | { name: "people_assumption_changed"; props: { assumption: "fertility" | "migration" | "life_expectancy" | "spending"; value: string } }
   | { name: "quality_badge_opened"; props: { quality: string } }
   | { name: "lever_changed"; props: { lever_id: string } }
   | { name: "preset_applied"; props: { preset_id: string } }
@@ -53,3 +55,6 @@ export function setAnalyticsSink(next: Sink | null) {
 export function track<E extends AnalyticsEvent>(name: E["name"], props: E["props"]) {
   sink?.({ name, props } as AnalyticsEvent);
 }
+
+/** Charts on /people that have a table view. */
+export type PeopleChartId = "people_oadr" | "people_workers" | "people_births" | "people_spending";

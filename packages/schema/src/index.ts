@@ -9,3 +9,4 @@ export * from "./content";
 export * from "./drafts";
 export type { Seed, SeedIssue, RawSeed } from "./seed";
 export * from "./t1";
+export * from "./people";

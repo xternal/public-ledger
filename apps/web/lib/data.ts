@@ -1,6 +1,7 @@
 import "server-only";
 import { loadSeed } from "@ledger/schema/seed";
-import type { Seed } from "@ledger/schema";
+import { loadPeople } from "@ledger/schema/people";
+import type { PeopleBundle, Seed } from "@ledger/schema";
 
 /**
  * Seed data, parsed and cross-checked through the Zod schemas at build time.
@@ -11,4 +12,12 @@ let cached: Seed | null = null;
 export function getSeed(): Seed {
   cached ??= loadSeed();
   return cached;
+}
+
+let people: PeopleBundle | null = null;
+
+/** /people: ONS population projections and OBR long-term spending (data/build/people.json), validated on first use. */
+export function getPeople(): PeopleBundle {
+  people ??= loadPeople();
+  return people;
 }

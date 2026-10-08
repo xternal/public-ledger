@@ -9,6 +9,7 @@ const SECTIONS = [
   { href: "#scenario", label: "Scenario" },
   { href: "#you", label: "Your share" },
   { href: "#promises", label: "Promises" },
+  { href: "/people", label: "People" },
   { href: "#contribute", label: "Contribute" },
   { href: "#method", label: "Method" },
 ];

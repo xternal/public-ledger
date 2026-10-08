@@ -44,7 +44,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           # The run log and manifest change every night; only a change in the data itself opens a PR.
-          if [ -z "$(git status --porcelain -- data/build/observations data/build/statements data/build/app.json data/build/levers.json data/build/tax.json content/promises)" ]; then
+          if [ -z "$(git status --porcelain -- data/build/observations data/build/statements data/build/app.json data/build/levers.json data/build/tax.json data/build/people.json content/promises)" ]; then
             echo "No data changes."
             exit 0
           fi

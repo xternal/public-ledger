@@ -79,6 +79,8 @@ def publish(run: Run, store: Store, by_source: dict[str, list[Observation]], out
         write_json(BUILD_DIR / "statements" / "index.json", {"base_year": outputs["base_year"], "years": outputs["years"]})
         write_json(BUILD_DIR / "levers.json", outputs["levers"])
         write_json(BUILD_DIR / "tax.json", outputs["tax"])
+        if outputs.get("people"):
+            write_json(BUILD_DIR / "people.json", outputs["people"])
         write_json(
             BUILD_DIR / "app.json",
             {

@@ -11,6 +11,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { parseSeed } from "@ledger/schema/seed";
+import { loadPeople } from "@ledger/schema/people";
 import { BALANCE_TOLERANCE_BN, appendOnlyIssues } from "@ledger/schema";
 import { baseSettings, compute, createModel } from "@ledger/engine";
 import { checkDrafts } from "../packages/server/src/harvest/drafts";
@@ -22,6 +23,12 @@ const warnings: string[] = [];
 // 1. Schemas and cross-file checks
 const { seed, issues } = parseSeed();
 for (const i of issues) (i.level === "error" ? errors : warnings).push(`${i.where}: ${i.message}`);
+// /people (M6): population and long-term spending projections.
+try {
+  loadPeople();
+} catch (e) {
+  errors.push((e as Error).message);
+}
 
 // 2. Balance: receipts + borrowing == spending, at base and for every preset and card scenario
 if (seed) {
