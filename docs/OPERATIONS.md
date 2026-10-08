@@ -126,12 +126,30 @@ changes a card.
 * on every push to `main` that changes `content/` → detects changes and sends
   instant alerts (a few minutes end to end; the target is 15);
 * weekly digest every Monday 07:00 UTC (08:00 BST; 07:00 GMT after the clocks
-  go back on 2026-10-25);
+  go back on 2026-10-25). In the first week of a UK month the same run sends
+  deadline-window followers the month's list of promises coming due;
 * daily maintenance: deletes unconfirmed sign-ups after 7 days, delivery
   records after 35 days, yesterday's rate-limit salts and buckets.
 
+**Data alerts** (contracts behind promises; new editions of the headline
+figures, which go only to people who follow everything) come from `data/build`.
+The push run and the daily maintenance run both announce data changes since the
+last commit already announced, which the database remembers (`alert_cursor`).
+A nightly data refresh that touches nothing in `content/` does not trigger the
+push run, so its changes go out with the next daily run (03:30 UTC), within a
+day. The first run on a new database announces nothing and starts from there.
+To check by hand: `pnpm alerts -- data --dry-run --before <sha> --after <sha>`;
+`pnpm alerts -- due --dry-run` lists what each deadline window would send.
+
 Without `DATABASE_URL` set as a secret, the job logs "Alerts not configured" and
 succeeds, so it is safe to merge before setup.
+
+**Setting it up:** once mail works on the site (§3), run `scripts/github-secrets.sh`
+from the repository folder. It copies the settings the job needs from Vercel
+(Production) into GitHub Actions secrets without printing them: the database
+address, the encryption and lookup keys, the site address, the mail sender and
+key, and Telegram if set. It also sets the `MAIL_PROVIDER` repository variable
+(`resend`, `ses` or `off`). Run it again whenever one of those changes in Vercel.
 
 ## 9. Before going public (not code)
 

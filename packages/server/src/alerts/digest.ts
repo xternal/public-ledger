@@ -13,7 +13,7 @@ import type { MessageEvent } from "./messages";
 
 /** Same order as change detection: what happened to the card first, then its timeline. */
 const TYPE_ORDER = `CASE change_type WHEN 'new_card' THEN 0 WHEN 'status' THEN 1 WHEN 'version' THEN 2 WHEN 'cost' THEN 3
-  WHEN 'event' THEN 4 WHEN 'deadline_missed' THEN 4 WHEN 'reply' THEN 5 ELSE 6 END`;
+  WHEN 'event' THEN 4 WHEN 'deadline_missed' THEN 4 WHEN 'contract' THEN 4 WHEN 'reply' THEN 5 WHEN 'edition' THEN 6 ELSE 7 END`;
 
 export interface DigestReport {
   subscriptions: number;
@@ -46,7 +46,7 @@ export async function runDigest(
         ORDER BY detected_at, ${TYPE_ORDER}, id`,
       ids,
     );
-    for (const e of events) e.title = opts.titles?.get(e.promise_id);
+    for (const e of events) e.title = e.promise_id ? opts.titles?.get(e.promise_id) : undefined;
     report.subscriptions++;
     try {
       await deliver(ctx, sub, events, "digest", now);

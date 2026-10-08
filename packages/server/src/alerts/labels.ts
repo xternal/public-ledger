@@ -81,3 +81,43 @@ export function costRangeText(r: readonly number[] | null | undefined): string {
   const abs = [Math.abs(low), Math.abs(high)].sort((a, b) => a - b) as [number, number];
   return `${raises ? "Raises" : "Costs"} £${fmtBn(abs[0])}bn to £${fmtBn(abs[1])}bn a year`;
 }
+
+/** "£115bn", "£24.6bn", "£0.45bn": as the site shows billions (apps/web/lib/format.ts gbpBn). */
+export function gbpBnText(x: number): string {
+  return `${x < 0 ? "−" : ""}£${fmtBn(x)}bn`;
+}
+
+const MINUS = "−";
+const GBP_PER_MILLION = 1e6;
+const GBP_PER_BILLION = 1e9;
+
+/** A contract value: "£395,493", "£12.3m", "£1.2bn"; other currencies keep their code: "1,200 EUR" (apps/web/lib/format.ts money). */
+export function moneyText(amount: number, currency = "GBP"): string {
+  const a = Math.abs(amount);
+  const sign = amount < 0 ? MINUS : "";
+  if (currency !== "GBP") return `${sign}${whole.format(a)} ${currency}`;
+  if (a >= GBP_PER_BILLION) return `${sign}£${fmtBn(a / GBP_PER_BILLION)}bn`;
+  if (a >= GBP_PER_MILLION) return `${sign}£${oneDp.format(a / GBP_PER_MILLION)}m`;
+  return `${sign}£${whole.format(Math.round(a))}`;
+}
+
+/** "+£7,498", "−£1.2m". */
+export const signedMoneyText = (amount: number, currency = "GBP") => `${amount > 0.5 ? "+" : amount < -0.5 ? MINUS : ""}${moneyText(Math.abs(amount), currency)}`;
+
+/** "+6.4%", "−12%". */
+export const signedPctText = (x: number) => `${x > 0.05 ? "+" : x < -0.05 ? MINUS : ""}${oneDp.format(Math.abs(x))}%`;
+
+/** Words kept in capitals when a notice's ALL-CAPS name is set in normal case (apps/web/lib/contracts.ts). */
+const KEEP_UPPER = new Set(["NHS", "UK", "PV", "EV", "EVC", "LLP", "PLC", "CIC", "BDP", "LED", "GB", "HM", "PCC", "ICB"]);
+
+/** "BRIGHT SPARK ENERGY SOLUTIONS LIMITED" → "Bright Spark Energy Solutions Limited"; mixed-case names are left alone. */
+export function displayName(name: string): string {
+  if (/[a-z]/.test(name)) return name;
+  return name
+    .split(/(\s+|-|\/)/)
+    .map((w) => (KEEP_UPPER.has(w) || !/[A-Z]/.test(w) ? w : w.charAt(0) + w.slice(1).toLowerCase()))
+    .join("");
+}
+
+/** Cards show their contracts once money is committed (apps/web/lib/contracts.ts CONTRACT_STATUSES); alerts follow the page. */
+export const CONTRACT_STATUSES: readonly string[] = ["funded", "delivering", "delivered"];

@@ -136,7 +136,7 @@ function helpText(config: Config): string {
   return [
     "Public Ledger tells you here when a promise you follow changes: its status, a deadline, its wording, its cost, or a reply from the people named on it.",
     "",
-    `To follow one promise, a politician or a policy area, open it on ${config.siteUrl}/promises, choose Follow, then Telegram.`,
+    `To follow one promise, a politician, a policy area or what is coming due, open it on ${config.siteUrl}/promises, choose Follow, then Telegram.`,
     "",
     "/follow – follow everything",
     "/list – what you follow",

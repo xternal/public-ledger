@@ -1,3 +1,4 @@
+import { alertWindows, ukDay } from "@ledger/schema";
 import type { Config } from "../config";
 import { decrypt } from "../crypto";
 import type { Db } from "../db";
@@ -7,13 +8,15 @@ import { countUsage } from "../usage";
 import { manageToken } from "../follow";
 import type { ChangeEvent } from "./diff";
 import { errorText } from "./log";
-import { alertEmail, digestEmail, manageLinks, submitterEmail, telegramText, type MessageEvent } from "./messages";
+import { alertEmail, digestEmail, manageLinks, submitterEmail, telegramText, type ManageLinks, type MessageEvent } from "./messages";
 
 /**
  * Fan-out (PRD F7): store each change once, find the confirmed subscriptions
  * that follow it (the promise, its actor, the actor's party, its policy area,
- * or everything), and send one message per subscription per run. Weekly
- * subscribers get the change queued for their digest instead.
+ * a deadline window it falls in, or everything), and send one message per
+ * subscription per run. Weekly subscribers get the change queued for their
+ * digest instead. Changes that belong to no promise (a new edition of the
+ * headline figures) reach only people who follow everything.
  *
  * Idempotent: the delivery table's primary key (change, subscription) is
  * claimed before sending, so a re-run never sends twice; a failed send is
@@ -64,8 +67,23 @@ export interface MatchedSubscription {
   cadence: "instant" | "weekly";
 }
 
+/**
+ * The deadline windows whose followers hear about this change: only outcomes
+ * (delivered, deadline passed) of a promise whose deadline falls in the
+ * window, or in the month before it, on the UK day of the run.
+ */
+export function windowsFor(e: Pick<ChangeEvent, "outcome" | "deadline">, now = new Date()): string[] {
+  return e.outcome ? alertWindows(e.deadline, ukDay(now)) : [];
+}
+
 /** Confirmed subscriptions following this change through any of its targets. Unconfirmed sign-ups never match. */
-export async function matchingSubscriptions(db: Db, e: Pick<ChangeEvent, "promise_id" | "actor_id" | "policy_area">, party: string | null): Promise<MatchedSubscription[]> {
+export async function matchingSubscriptions(
+  db: Db,
+  e: Pick<ChangeEvent, "promise_id" | "actor_id" | "policy_area">,
+  party: string | null,
+  windows: string[] = [],
+): Promise<MatchedSubscription[]> {
+  const byWindow = windows.length ? `OR (t.kind = 'deadline_window' AND t.target_id IN (${inList(windows, 4)}))` : "";
   return db.query<MatchedSubscription>(
     `SELECT DISTINCT s.id, s.channel, s.cadence
        FROM subscription s JOIN subscription_target t ON t.subscription_id = s.id
@@ -73,13 +91,34 @@ export async function matchingSubscriptions(db: Db, e: Pick<ChangeEvent, "promis
         AND ((t.kind = 'promise' AND t.target_id = $1)
           OR (t.kind = 'actor' AND (t.target_id = $2 OR t.target_id = $3))
           OR (t.kind = 'area' AND t.target_id = $4)
+          ${byWindow}
           OR t.kind = 'all')
       ORDER BY s.id`,
-    [e.promise_id, e.actor_id, party, e.policy_area],
+    [e.promise_id, e.actor_id, party, e.policy_area, ...windows],
   );
 }
 
+/** How to word one message on each channel. Email gets the subscription's own manage links. */
+export interface Render {
+  email: (links: ManageLinks) => { subject: string; text: string };
+  telegram: () => string;
+}
+
 /** Send one message to one subscription. Email carries the subscription's manage and one-click unsubscribe links. */
+export async function deliverText(ctx: Pick<AlertContext, "db" | "config" | "mailer" | "telegram">, sub: { id: string; channel: "email" | "telegram" }, render: Render): Promise<void> {
+  const [row] = await ctx.db.query<{ address_enc: string }>("SELECT address_enc FROM subscription WHERE id = $1 AND confirmed_at IS NOT NULL", [sub.id]);
+  if (!row) throw new Error("subscription no longer exists");
+  const address = decrypt(ctx.config.encryptionKey, row.address_enc);
+  if (sub.channel === "telegram") {
+    await ctx.telegram.send(address, render.telegram());
+    return;
+  }
+  const links = manageLinks(ctx.config.siteUrl, await manageToken(ctx.db, ctx.config, sub.id));
+  const { subject, text } = render.email(links);
+  await ctx.mailer.send({ to: address, subject, text, unsubscribeUrl: links.unsubscribeUrl });
+}
+
+/** Send changes to one subscription, as an instant alert or a digest. */
 export async function deliver(
   ctx: Pick<AlertContext, "db" | "config" | "mailer" | "telegram">,
   sub: { id: string; channel: "email" | "telegram" },
@@ -87,16 +126,10 @@ export async function deliver(
   mode: "instant" | "digest",
   now = new Date(),
 ): Promise<void> {
-  const [row] = await ctx.db.query<{ address_enc: string }>("SELECT address_enc FROM subscription WHERE id = $1 AND confirmed_at IS NOT NULL", [sub.id]);
-  if (!row) throw new Error("subscription no longer exists");
-  const address = decrypt(ctx.config.encryptionKey, row.address_enc);
-  if (sub.channel === "telegram") {
-    await ctx.telegram.send(address, telegramText(events, { digest: mode === "digest", now }));
-    return;
-  }
-  const links = manageLinks(ctx.config.siteUrl, await manageToken(ctx.db, ctx.config, sub.id));
-  const { subject, text } = mode === "digest" ? digestEmail(events, links, now) : alertEmail(events, links);
-  await ctx.mailer.send({ to: address, subject, text, unsubscribeUrl: links.unsubscribeUrl });
+  await deliverText(ctx, sub, {
+    telegram: () => telegramText(events, { digest: mode === "digest", now }),
+    email: (links) => (mode === "digest" ? digestEmail(events, links, now) : alertEmail(events, links)),
+  });
 }
 
 export async function countSent(db: Db, channel: "email" | "telegram", events: { change_type: string }[], now = new Date()): Promise<void> {
@@ -114,7 +147,8 @@ export async function fanOut(events: ChangeEvent[], ctx: AlertContext): Promise<
 
   const bySub = new Map<string, { sub: MatchedSubscription; events: ChangeEvent[] }>();
   for (const e of events) {
-    for (const sub of await matchingSubscriptions(db, e, ctx.partyOf(e.actor_id))) {
+    const party = e.actor_id ? ctx.partyOf(e.actor_id) : null;
+    for (const sub of await matchingSubscriptions(db, e, party, windowsFor(e, now))) {
       const entry = bySub.get(sub.id) ?? { sub, events: [] };
       entry.events.push(e);
       bySub.set(sub.id, entry);
@@ -168,6 +202,7 @@ export async function notifySubmitters(events: ChangeEvent[], ctx: Pick<AlertCon
   let sent = 0;
   const candidates: { submissionId: string; promiseId: string; url: string; kind: "card" | "evidence" }[] = [];
   for (const e of events) {
+    if (!e.promise_id) continue; // only card changes can carry a submission
     if (e.change_type === "new_card" && e.submission_ref) {
       candidates.push({ submissionId: e.submission_ref, promiseId: e.promise_id, url: e.url, kind: "card" });
     } else if ((e.change_type === "event" || e.change_type === "deadline_missed") && e.evidence_url) {
