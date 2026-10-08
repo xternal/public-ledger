@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { baseSettings, createModel, encodeScenario } from "@ledger/engine";
 import { getSeed } from "@/lib/data";
 import { STATUS_LABEL } from "@/lib/copy";
-import { costText, whoLine } from "@/lib/promises";
+import { costText } from "@/lib/promises";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PromiseDetail } from "@/components/PromiseDetail";
 import { SourcesProvider } from "@/components/ui";
@@ -85,15 +85,11 @@ export default async function PromisePage({ params }: Props) {
     <SourcesProvider sources={seed.sources}>
       <JsonLd data={structuredData(card)} />
       <SiteHeader current="/promises" />
-      <main className="mx-auto grid max-w-[880px] gap-6 px-4 pb-20 pt-10 sm:px-6">
-        <a href="/promises" className="justify-self-start text-label font-medium">
-          All promises
+      <main className="mx-auto grid max-w-[1100px] gap-6 px-4 pb-20 pt-8 sm:px-6">
+        <a href="/promises" className="justify-self-start text-label font-medium no-underline">
+          ← All promises
         </a>
         <PromiseDetail card={card} householdsM={macro.households_m} householdsP={macro.provenance.households_m!} spendingBn={spendingBn} runHref={runHref} />
-        <p className="m-0 border-t border-line pt-5 text-[12.5px] text-muted">
-          Status follows the <a href="https://github.com/xternal/public-ledger/blob/main/docs/PROMISE_STANDARD.md">promise standard</a>, the same for every party.
-          Anyone named on a card can reply, and replies are published next to it. {whoLine(card)}.
-        </p>
       </main>
     </SourcesProvider>
   );
