@@ -290,3 +290,29 @@ Caveats:
 * **Private repository only.** A runner runs whatever a workflow gives it. The setup script refuses if the repository is public, because then anyone's pull request could run code on the Mac. If the repository ever goes public, run `scripts/runner-setup.sh --remove` first.
 * **Secrets pass through the Mac** during jobs (the Anthropic key for intake, for example), as they pass through GitHub's machines. Each job gets a fresh checkout in `_work`; nothing is kept between jobs except tool caches.
 * Jobs are written for both: the only Linux-only command (yesterday's date in the intake job) has a macOS branch.
+
+## 13. Search engines and AI assistants
+
+What the site publishes for them, all built from the same content as the pages:
+
+* `/sitemap.xml` (every public page with the date it last changed) and `/robots.txt` (search and AI crawlers welcome; forms, tokens, `/admin`, `/alpha` and `/api/` other than `/api/v1/` kept out).
+* Each card's `<title>` is `<headline> – <speaker> promise, <status> | Public Ledger` (the site name drops when the title would pass about 70 characters) and its description starts with the facts: status, cost a year, who pays, who promised it and when. Headlines are in the card files (`content/README.md`).
+* JSON-LD on every public page: a card is a WebPage about its policy area whose main entity is the quote, spoken by a Person or Organization with `sameAs` links (UK Parliament page from `parliament_member_id`, plus the actor's checked `same_as` pages); `/promises` and each `/promises/area/<area>` page are a CollectionPage with an ItemList of headlines; actor pages are ProfilePages. Shapes are checked by `packages/server/test/seo.test.ts`.
+* For AI assistants: `/llms.txt` (a guide to the site), `/llms-full.txt` (every card in Markdown with the method in short and the licences) and `/promise/<id>.md` (one card; each card page links to it with `<link rel="alternate" type="text/markdown">`).
+
+**IndexNow** tells Bing and the other engines that use it (Yandex, Seznam, Naver, Yep) which pages changed, so they re-read them in minutes. The key is public by design and lives in `apps/web/public/<key>.txt`, which the site serves at `https://ledgergov.uk/<key>.txt`. After every content change on `main`, the alerts job (§8) waits until the live site shows the new version of each changed card (up to 6 minutes, reading `/promise/<id>.md`), then submits the card, its Markdown, `/promises`, its area page, its speaker's and party's pages and `/llms-full.txt`. It runs only with `LEDGER_ENV=production` and a public https `SITE_URL`, never fails the job, and `INDEXNOW=off` turns it off. By hand:
+
+```bash
+SITE_URL=https://ledgergov.uk pnpm indexnow -- --all --dry-run       # list every sitemap URL
+SITE_URL=https://ledgergov.uk pnpm indexnow -- --all                 # first run, or after a big change
+SITE_URL=https://ledgergov.uk pnpm indexnow -- --before <sha> --after <sha>   # cards changed between two commits
+SITE_URL=https://ledgergov.uk pnpm indexnow -- https://ledgergov.uk/promises  # these URLs
+```
+
+To change the key, replace the file with a new `<32 hex>.txt` holding its own name; nothing else changes.
+
+**Google Search Console and Bing Webmaster Tools** need the owner's accounts (once):
+
+1. Google: [search.google.com/search-console](https://search.google.com/search-console) → Add property → **Domain** → `ledgergov.uk`, and add the TXT record it shows to the domain's DNS (Vercel → Domains, if Vercel holds the DNS). Then Sitemaps → submit `https://ledgergov.uk/sitemap.xml`, and URL inspection → Request indexing for `/`, `/promises` and one card.
+2. Bing: [bing.com/webmasters](https://www.bing.com/webmasters) → **Import from Google Search Console** (brings the verified site and its sitemap), or add `https://ledgergov.uk` and verify by DNS. Then run `pnpm indexnow -- --all` once; Bing's IndexNow page shows the submissions.
+3. A week later, check Pages (Google) and Site Explorer (Bing) for pages not indexed, and Enhancements → Breadcrumbs for structured data errors.
