@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { getSeed } from "@/lib/data";
 import { OG, ogFonts } from "@/lib/og";
 import { fixed, gbpBn, shareOf } from "@/lib/format";
+import { MARK_DATA_URI } from "@/lib/brand";
 
 export const alt = "Public Ledger: where UK public money went, and where it came from";
 export const size = OG.size;
@@ -19,10 +20,7 @@ export default async function Image() {
   return new ImageResponse(
     <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%", background: OG.bg, color: OG.ink, padding: "56px 64px", fontFamily: "Geist" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 28, fontWeight: 600 }}>
-        <div style={{ display: "flex", width: 22, height: 22, borderRadius: 5, overflow: "hidden" }}>
-          <div style={{ width: "55%", height: "100%", background: OG.rec }} />
-          <div style={{ width: "45%", height: "100%", background: OG.debt }} />
-        </div>
+        <img src={MARK_DATA_URI} width={28} height={28} alt="" />
         Public Ledger
       </div>
       <div style={{ display: "flex", fontSize: 66, fontWeight: 600, letterSpacing: -2.4, lineHeight: 1.05, marginTop: 52, maxWidth: 980 }}>

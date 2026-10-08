@@ -4,6 +4,7 @@ import { OG, ogFonts } from "@/lib/og";
 import { STATUS_LABEL } from "@/lib/copy";
 import { fixed, gbp, gbpBn, longDate, perHousehold, rangeText, shareOf } from "@/lib/format";
 import { costSense, whoLine } from "@/lib/promises";
+import { MARK_DATA_URI } from "@/lib/brand";
 
 export const alt = "A Public Ledger promise card: the quote, its status, cost, per household and who pays";
 export const size = OG.size;
@@ -49,10 +50,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
     <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%", background: OG.bg, color: OG.ink, padding: "52px 64px", fontFamily: "Geist" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 26, fontWeight: 600 }}>
-          <div style={{ display: "flex", width: 20, height: 20, borderRadius: 5, overflow: "hidden" }}>
-            <div style={{ width: "55%", height: "100%", background: OG.rec }} />
-            <div style={{ width: "45%", height: "100%", background: OG.debt }} />
-          </div>
+          <img src={MARK_DATA_URI} width={26} height={26} alt="" />
           Public Ledger
         </div>
         <div style={{ display: "flex", fontSize: 24, fontWeight: 600, color: STATUS_COLOR[card.file.status] ?? OG.ink, border: `2px solid ${STATUS_COLOR[card.file.status] ?? OG.ink}`, padding: "4px 16px", borderRadius: 999 }}>

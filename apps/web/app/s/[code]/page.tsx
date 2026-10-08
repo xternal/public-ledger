@@ -5,6 +5,7 @@ import { getSeed } from "@/lib/data";
 import { OPEN_GRAPH } from "@/lib/site";
 import { summarise } from "@/lib/scenario-summary";
 import { fixed, gbp, gbpBn, longDate, millions, rangeText, signed, signedBn } from "@/lib/format";
+import { LogoMark } from "@/lib/brand";
 
 type Props = { params: Promise<{ code: string }> };
 
@@ -52,7 +53,7 @@ export default async function SharePage({ params }: Props) {
       <header className="border-b border-line">
         <div className="mx-auto flex h-14 max-w-[880px] items-center justify-between gap-4 px-4 sm:px-6">
           <a href="/" className="flex items-center gap-2 text-[15px] font-semibold tracking-[-0.01em] text-ink no-underline">
-            <i aria-hidden className="inline-block size-3.5 rounded-[3px] bg-[linear-gradient(90deg,var(--rec)_0_55%,var(--debt)_55%_100%)]" />
+            <LogoMark />
             Public Ledger
           </a>
           <a href={`/?s=${code}#scenario`} className="rounded-full bg-ink px-3 py-1 text-label font-semibold text-bg no-underline hover:opacity-90">
