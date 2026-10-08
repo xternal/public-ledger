@@ -139,6 +139,29 @@ interface PromiseEvent {      // append-only timeline
 
 interface Reply { promise_id: string; from_actor_id: string; date: string; text: string; editor_response?: string }
 
+// Contracts behind delivery (M6b). Editors link a promise to contracts by hand, in its YAML:
+// `contracts: [ocid | { ocid, award_id?, notice_url? }]`; nothing is matched automatically.
+// etl/contracts.py fetches each linked contract's OCDS record nightly into data/build/contracts/<key>.json.
+// Schema: packages/schema/src/contracts.ts.
+type Money = { amount: number; currency: string };   // as the notice states it, net of VAT when both are given
+interface ContractLink {
+  id: string;                 // "<promise_id>:<key>"; key = ocid, or "<ocid>--award-<award_id>" for one lot
+  promise_id: string;
+  source: "find_a_tender" | "contracts_finder" | "zakupki";   // zakupki kept for M8, not fetched yet
+  ocid: string;               // "ocds-h6vhtk-…" (Find a Tender), "ocds-b5fd17-…" (Contracts Finder)
+  title: string; buyer: string;
+  notice_url: string; archived_url?: string; record_url: string;
+  supplier: { name: string; companies_house_number?: string };   // linked to Companies House; owners are not stored
+  awarded_on: string;
+  bids_received?: number;
+  snapshots: {                // append-only, like PromiseEvent: a change in value or dates is a new snapshot
+    fetched_at: string;       // the day the nightly fetch first saw this state
+    value: Money;
+    end_date_planned: string;
+    end_date_actual?: string; // once the notice says the contract ended
+  }[];
+}
+
 interface Forecast {          // for backtest (M7)
   id: string; scenario_id?: string; series_id: string; period: string;
   predicted: Range; made_on: string; engine_version: string;

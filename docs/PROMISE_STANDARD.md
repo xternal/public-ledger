@@ -81,3 +81,12 @@ History is append-only, but our own mistakes must be fixable. A correction fixes
 4. A wrong quote is corrected the same way, and the quote check is redone and `quote_checked_on` updated.
 5. Notes that describe the present (`status_note`, top-level `sources`) are kept current by ordinary edits; they are not history.
 6. Same two-editor rule as any other change.
+
+## 10. Contracts behind delivery
+
+Once a card is `funded`, `delivering` or `delivered`, it can list the public contracts that carry the promise out: who won, how many bid, and how the value and end date have moved since the first notice.
+
+1. An editor links contracts by hand, in the card's `contracts`: the contract's OCID from Find a Tender (`ocds-h6vhtk-…`), or `{ ocid, notice_url }` for Contracts Finder, with `award_id` when a procurement awarded several contracts. Nothing is matched automatically.
+2. A contract is linked only when its notice, or an official page about the award, ties it to the promised programme by name or by its funding. Being on the same subject is not enough.
+3. The nightly job reads every linked contract's open data and appends a snapshot when the value or an end date changes. Snapshots are append-only: CI rejects an edited one, and a contract file is never deleted.
+4. The same two-editor rule applies to adding or removing a link.

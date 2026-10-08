@@ -82,3 +82,22 @@ export const monthYear = (iso: string) => {
 export const shortYear = (fy: string) => fy.slice(2).replace("-", "/");
 
 export const shareOf = (part: number, whole_: number) => (part / whole_) * PERCENT;
+
+const GBP_PER_MILLION = 1e6;
+const GBP_PER_BILLION = 1e9;
+
+/** A contract value in pounds: "£395,493", "£12.3m", "£1.2bn". Other currencies keep their code: "1,200 EUR". */
+export function money(amount: number, currency = "GBP"): string {
+  const a = Math.abs(amount);
+  const sign = amount < 0 ? MINUS : "";
+  if (currency !== "GBP") return `${sign}${whole.format(a)} ${currency}`;
+  if (a >= GBP_PER_BILLION) return `${sign}£${fmtBn(a / GBP_PER_BILLION)}bn`;
+  if (a >= GBP_PER_MILLION) return `${sign}£${oneDp.format(a / GBP_PER_MILLION)}m`;
+  return `${sign}£${whole.format(Math.round(a))}`;
+}
+
+/** "+£54,507", "−£1.2m"; no sign for no change. */
+export const signedMoney = (amount: number, currency = "GBP") => signOf(amount, 0.5) + money(Math.abs(amount), currency);
+
+/** "+13.8%" */
+export const signedPct = (x: number) => signed(x, (a) => `${oneDp.format(a)}%`, 0.05);

@@ -12,7 +12,7 @@ import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { parseSeed } from "@ledger/schema/seed";
 import { loadPeople } from "@ledger/schema/people";
-import { BALANCE_TOLERANCE_BN, appendOnlyIssues } from "@ledger/schema";
+import { BALANCE_TOLERANCE_BN, appendOnlyIssues, contractAppendOnlyIssues } from "@ledger/schema";
 import { baseSettings, compute, createModel } from "@ledger/engine";
 import { checkDrafts } from "../packages/server/src/harvest/drafts";
 
@@ -97,6 +97,27 @@ if (baseRef) {
     for (const issue of appendOnlyIssues(was, now)) errors.push(`content/promises/${name}: ${issue}`);
   }
   console.log(`append-only check against ${baseRef}: ${baseFiles.length} published card(s)`);
+
+  // Contract snapshots (M6b) only grow too, and a published contract file is never deleted.
+  let baseContracts: string[] = [];
+  try {
+    baseContracts = git("ls-tree", "--name-only", `${baseRef}:data/build/contracts`).split("\n").filter((f) => f.endsWith(".json"));
+  } catch {
+    // No contracts on the base branch yet.
+  }
+  for (const name of baseContracts) {
+    const path = join(root, "data", "build", "contracts", name);
+    let now: unknown;
+    try {
+      now = JSON.parse(readFileSync(path, "utf8"));
+    } catch {
+      errors.push(`data/build/contracts/${name}: removed or unreadable; a published contract's history is kept`);
+      continue;
+    }
+    const was = JSON.parse(git("show", `${baseRef}:data/build/contracts/${name}`));
+    for (const issue of contractAppendOnlyIssues(was, now)) errors.push(`data/build/contracts/${name}: ${issue}`);
+  }
+  if (baseContracts.length) console.log(`append-only check against ${baseRef}: ${baseContracts.length} published contract(s)`);
 }
 
 // 5. Intake drafts (M4): every quote must be exactly its span of the stored source text.
