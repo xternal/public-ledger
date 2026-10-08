@@ -98,6 +98,8 @@ Out: user accounts, microsimulation (v1), LLM intake from Hansard and TV (v1), d
 | `docs/MODEL.md` | Engineering, economists | Model tiers T0–T3, formulas, ranges, backtest |
 | `docs/DATA_SOURCES.md` | Engineering | UK sources with URLs and how to ingest them |
 | `docs/PROMISE_STANDARD.md` | Editors | Parameterisation, statuses, submissions |
+| `docs/EDITORS.md` | Editors | The editors' guide: the rules in plain words, how to review a card on GitHub, the declaration |
+| `docs/BUDGET_DAY.md` | Editors | The plan for Budget day (28 Oct 2026): documents, what moves each watched card, ready-made entries |
 | `docs/PRIVACY_AND_ACCOUNTS.md` | Product, legal | Follow, contribute, accounts and the data rules around them |
 | `docs/DESIGN_HANDOFF.md` | Designer | Screens, components, tokens, mobile |
 | `docs/BUILD_PLAN.md` | Claude Code | Milestones with ready-to-paste prompts |
