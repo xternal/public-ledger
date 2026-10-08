@@ -9,7 +9,9 @@ import { type Db, testDb } from "../src/db";
 import { outboxMailer } from "../src/mail";
 import {
   acceptSubmission,
+  ADMIN_FAILED_SIGNIN_LIMIT,
   adminGate,
+  adminGateLimited,
   checkAdminAuth,
   draftFor,
   getSubmission,
@@ -70,6 +72,39 @@ describe("admin access (proxy gate)", () => {
       expect(res.headers.get("x-robots-tag")).toBe("noindex, nofollow");
       expect(res.headers.get("cache-control")).toBe("no-store");
     }
+  });
+
+  it("limits failed sign-ins per connection, without storing the IP, and then refuses even the right password", async () => {
+    const from = (ip: string, auth?: string) =>
+      new Request("https://ledger.test/admin", { headers: { "x-forwarded-for": ip, ...(auth ? { authorization: auth } : {}) } });
+    const gate = (r: Request, now = T0) => adminGateLimited(r, async () => db, ENV, now);
+    const right = basic("editor", ENV.ADMIN_PASSWORD);
+
+    // The browser's first visit, with no credentials yet, is not a failure.
+    for (let i = 0; i < ADMIN_FAILED_SIGNIN_LIMIT + 2; i++) expect((await gate(from("203.0.113.5")))!.status).toBe(401);
+    expect(await gate(from("203.0.113.5", right))).toBeNull();
+
+    for (let i = 0; i < ADMIN_FAILED_SIGNIN_LIMIT; i++) expect((await gate(from("203.0.113.5", basic("editor", `guess${i}`))))!.status).toBe(401);
+    const locked = (await gate(from("203.0.113.5", right)))!;
+    expect(locked.status).toBe(429);
+    expect(locked.headers.get("www-authenticate")).toBeNull();
+    expect(locked.headers.get("x-robots-tag")).toBe("noindex, nofollow");
+    expect(Number(locked.headers.get("retry-after"))).toBe(15 * 3600); // until midnight UTC (T0 is 09:00 UTC)
+    expect((await gate(from("203.0.113.5", basic("editor", "again"))))!.status).toBe(429);
+
+    // Another connection is unaffected, and the next UTC day starts afresh.
+    expect(await gate(from("198.51.100.9", right))).toBeNull();
+    expect(await gate(from("203.0.113.5", right), new Date(T0.getTime() + 86_400_000))).toBeNull();
+
+    // Disabled stays a plain 404 and never touches the database.
+    const noDb = async () => {
+      throw new Error("no database needed");
+    };
+    expect((await adminGateLimited(from("203.0.113.5", right), noDb, {}, T0))!.status).toBe(404);
+    expect((await adminGateLimited(from("203.0.113.5"), noDb, ENV, T0))!.status).toBe(401);
+
+    // Only salted hashes are stored, never the address.
+    expect(JSON.stringify(await db.query("SELECT * FROM rate_bucket"))).not.toContain("203.0.113.5");
   });
 
   it("lets the right credentials through", () => {
