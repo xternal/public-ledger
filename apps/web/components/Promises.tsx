@@ -8,6 +8,7 @@ import { CreditTable } from "./CreditTable";
 import { OwnerChips, ownerOptions } from "./PromiseFilters";
 import { PromiseList } from "./PromiseList";
 import { QualityBadge, SectionHeading } from "./ui";
+import { budgetLinkText } from "@/lib/budget";
 
 /** How many of the newest cards the home page shows; the rest live on /promises. */
 const HOME_CARDS = 6;
@@ -52,6 +53,11 @@ export function PromisesSection() {
       <div className="mb-4">
         <OwnerChips options={owners} total={cards.length} value={party} onChange={setParty} />
       </div>
+      <p className="mb-4 text-label">
+        <a href="/budget" className="font-medium">
+          {budgetLinkText(today)}
+        </a>
+      </p>
       <PromiseList cards={matching.slice(0, HOME_CARDS)} today={today} />
       <a href={party ? `/promises?party=${encodeURIComponent(party)}` : "/promises"} className="mt-4 inline-block text-sm font-semibold">
         {matching.length > HOME_CARDS

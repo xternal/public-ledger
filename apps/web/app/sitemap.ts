@@ -32,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absolute("/method/backtest"), lastModified: built, changeFrequency: "monthly", priority: 0.6 },
     { url: absolute("/method/api"), lastModified: built, changeFrequency: "monthly", priority: 0.5 },
     { url: absolute("/follow"), lastModified: built, changeFrequency: "monthly", priority: 0.4 },
+    { url: absolute("/budget"), lastModified: latest, changeFrequency: "daily", priority: 0.8 },
     { url: absolute("/editors"), lastModified: EDITORS_PAGE_UPDATED, changeFrequency: "monthly", priority: 0.4 },
     { url: absolute("/privacy"), lastModified: PRIVACY_UPDATED, changeFrequency: "yearly", priority: 0.3 },
     { url: absolute("/feeds"), lastModified: latest, changeFrequency: "daily", priority: 0.4 },
