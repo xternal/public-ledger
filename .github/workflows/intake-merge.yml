@@ -19,10 +19,10 @@ on:
     types: [completed]
   # GitHub starts no workflow for a review on a pull request a workflow opened (as
   # the intake PRs are), so an approval given after the last push would go
-  # unnoticed. An hourly sweep checks every open intake PR.
-  # 17 minutes past each hour, UTC (BST: same minute, one hour ahead).
+  # unnoticed. A sweep every 3 hours checks every open intake PR (about 240 billed minutes a month; hourly was about 720).
+  # 17 minutes past every third hour, UTC: 00:17, 03:17 … 21:17 (BST: one hour ahead).
   schedule:
-    - cron: "17 * * * *"
+    - cron: "17 */3 * * *"
   workflow_dispatch:
     inputs:
       pr:
@@ -42,7 +42,7 @@ concurrency:
 
 jobs:
   merge:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.RUNS_ON || 'ubuntu-latest' }}
     steps:
       - name: Merge intake pull requests whose editors are done
         env:
@@ -58,7 +58,7 @@ jobs:
             prs=$(echo "$RUN_PRS" | jq -r '.[].number')
           fi
           if [ -z "$prs" ]; then
-            # The hourly sweep (or a manual run without a number): every open intake pull request.
+            # The 3-hourly sweep (or a manual run without a number): every open intake pull request.
             prs=$(gh pr list --repo "$REPO" --label intake --state open --json number --jq '.[].number')
           fi
           [ -z "$prs" ] && { echo "No open intake pull request."; exit 0; }

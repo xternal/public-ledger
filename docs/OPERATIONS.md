@@ -225,8 +225,33 @@ bundle.
 
 ## 11. Merging when CI is green
 
-The repository is private on GitHub's free plan, so `main` cannot require checks. Instead, label a pull request **`merge-when-green`**: `.github/workflows/merge-when-green.yml` merges it once the CI checks `app` and `data` are both green on its latest commit (never a newer, unchecked commit), and starts the alerts run when content changed. Vercel deploys the merge as usual. Intake pull requests follow their own rule (approvals plus green CI, `.github/workflows/intake-merge.yml`).
+The repository is private on GitHub's free plan, so `main` cannot require checks. Instead, label a pull request **`merge-when-green`**: `.github/workflows/merge-when-green.yml` merges it once the CI checks `app` and `data` are both green on its latest commit (never a newer, unchecked commit), and starts the alerts run when content changed. Vercel deploys the merge as usual. Intake pull requests follow their own rule (approvals plus green CI, `.github/workflows/intake-merge.yml`). GitHub starts no workflow when an editor approves a pull request a workflow opened, so a sweep every 3 hours (17 minutes past 00, 03 … 21 UTC; an hour later in BST) merges approved intake pull requests; run the workflow by hand to merge one sooner.
 
 ```bash
 gh pr edit <number> --repo xternal/public-ledger --add-label merge-when-green
 ```
+
+## 12. Mac fallback for GitHub Actions
+
+GitHub's machines run every job and bill the Actions budget. If they stop (in October 2026 a lapsed payment blocked every job for a morning), a Mac can run the same jobs for free. Every workflow says `runs-on: ${{ vars.RUNS_ON || 'ubuntu-latest' }}`, so one repository variable decides where jobs run, with no code change.
+
+1. **Set up once**, in your own terminal on the Mac (Apple Silicon), from the repository folder:
+   ```bash
+   scripts/runner-setup.sh
+   ```
+   It downloads GitHub's runner (`actions-runner-osx-arm64-<version>.tar.gz`, about 130 MB, from github.com/actions/runner), checks it against the SHA-256 in the release notes, registers it with this repository under the label `ledger-mac`, and starts it as a background service that comes back when you log in. It lives in `~/actions-runner/public-ledger`. Jobs keep running on GitHub until you switch.
+2. **Switch** when you need to, and back when GitHub works again:
+   ```bash
+   scripts/runner-switch.sh mac
+   scripts/runner-switch.sh github
+   scripts/runner-switch.sh status
+   ```
+3. **Remove** it entirely: `scripts/runner-setup.sh --remove` (this also switches jobs back to GitHub).
+
+Caveats:
+
+* **Keep the Mac awake** while it serves jobs (System Settings → Battery → Options: prevent sleeping when the display is off, on the power adapter). Jobs wait while it sleeps, and GitHub cancels a job that waits 24 hours. The nightly refresh is at 04:30 UTC (05:30 BST).
+* **One job at a time.** CI's `app` and `data` checks run one after the other, so CI takes longer.
+* **Private repository only.** A runner runs whatever a workflow gives it. The setup script refuses if the repository is public, because then anyone's pull request could run code on the Mac. If the repository ever goes public, run `scripts/runner-setup.sh --remove` first.
+* **Secrets pass through the Mac** during jobs (the Anthropic key for intake, for example), as they pass through GitHub's machines. Each job gets a fresh checkout in `_work`; nothing is kept between jobs except tool caches.
+* Jobs are written for both: the only Linux-only command (yesterday's date in the intake job) has a macOS branch.

@@ -16,16 +16,23 @@ concurrency:
 
 jobs:
   refresh:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.RUNS_ON || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: actions/setup-python@v5
+        if: runner.environment == 'github-hosted'
         with:
           python-version: "3.14"
           cache: pip
           cache-dependency-path: etl/requirements.txt
+      # The Mac fallback runner (docs/OPERATIONS.md §12): GitHub's Python builds for macOS only install
+      # under /Users/runner, so use the Mac's own Python 3.14 (Homebrew) in a fresh virtual environment.
+      - if: runner.environment == 'self-hosted'
+        run: |
+          python3.14 -m venv "$RUNNER_TEMP/venv"
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
       - run: pip install -r etl/requirements.txt
       # Fetch every source, normalise, check. A balance, coverage or staleness error fails the run.
       - run: python -m etl.build --trigger nightly
