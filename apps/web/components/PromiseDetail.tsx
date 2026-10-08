@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import type { CardView, Provenance } from "@ledger/schema";
+import type { CardView, Provenance, Status } from "@ledger/schema";
 import { LADDER } from "@ledger/schema";
 import { EVENT_LABEL, STATUS_LABEL } from "@/lib/copy";
 import { fixed, gbp, gbpBn, longDate, monthYear, perHousehold, rangeText, shareOf } from "@/lib/format";
@@ -63,6 +63,14 @@ function Ladder({ card }: { card: CardView }) {
   );
 }
 
+/** Another card to read next, as the related list shows it. */
+export interface RelatedCard {
+  id: string;
+  headline: string;
+  who: string;
+  status: Status;
+}
+
 export interface PromiseDetailProps {
   card: CardView;
   householdsM: number;
@@ -70,6 +78,14 @@ export interface PromiseDetailProps {
   spendingBn: number;
   /** /?s=<code>#scenario for cards with lever settings. */
   runHref: string | null;
+  /** The editors' short summary of what is promised, or the quote cut short until they write one. */
+  headline: string;
+  /** The last day the card changed (YYYY-MM-DD): its newest event, version, correction or review. */
+  updated: string | null;
+  /** The policy area's own page. */
+  areaHref: string;
+  /** Up to three cards to read next: same area first, then same party. */
+  related: RelatedCard[];
 }
 
 /** A titled block in the reading column. */
@@ -116,7 +132,7 @@ function Fold({ title, children }: { title: string; children: ReactNode }) {
  * order (status, timeline, cost, contracts, replies); details folded last.
  * Props only, so it needs no sandbox state.
  */
-export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runHref }: PromiseDetailProps) {
+export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runHref, headline, updated, areaHref, related }: PromiseDetailProps) {
   const today = useToday();
   const [followOpen, setFollowOpen] = useState(false);
   const f = card.file;
@@ -143,11 +159,14 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
             </>
           )}
           <span aria-hidden>·</span>
-          <span>{AREA_LABEL[f.policy_area]}</span>
+          <a href={areaHref}>{AREA_LABEL[f.policy_area]}</a>
         </span>
-        <h1 id={`card-${f.id}`} className="m-0 max-w-[32ch] text-[clamp(26px,3.6vw,38px)] font-semibold leading-[1.15] tracking-[-0.025em]">
-          “{card.current.text}”
-        </h1>
+        <div className="grid gap-2">
+          <p className="m-0 text-body font-semibold text-ink">{headline}</p>
+          <h1 id={`card-${f.id}`} className="m-0 max-w-[32ch] text-[clamp(26px,3.6vw,38px)] font-semibold leading-[1.15] tracking-[-0.025em]">
+            “{card.current.text}”
+          </h1>
+        </div>
         <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-label text-muted">
           <StatusPill status={f.status} />
           {card.outcomeBy && (
@@ -227,6 +246,11 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
               <span aria-hidden className="text-good">✓ </span>
               Checked by {reviewerLabel(review)} on {longDate(review.on)}
               {f.editor_check_required ? "; human editor review to come" : ""}. <a href="/method#reviews">What that means</a>
+            </p>
+          )}
+          {updated && (
+            <p className="m-0 px-1 text-caption text-muted">
+              Last updated <time dateTime={updated}>{longDate(updated)}</time>
             </p>
           )}
         </aside>
@@ -354,6 +378,27 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
               </Fold>
             </div>
           </Section>
+
+          {related.length > 0 && (
+            <Section id={`related-${f.id}`} title="Related promises">
+              <ul className="m-0 grid list-none border-t border-line p-0">
+                {related.map((r) => (
+                  <li key={r.id} className="border-b border-line">
+                    <a href={`/promise/${r.id}`} className="grid gap-1 py-3 text-ink no-underline hover:underline">
+                      <span className="text-sm font-medium">{r.headline}</span>
+                      <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-caption text-muted">
+                        {r.who}
+                        <StatusPill status={r.status} />
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <a href={areaHref} className="justify-self-start text-label font-medium">
+                Every promise in {AREA_LABEL[f.policy_area]}
+              </a>
+            </Section>
+          )}
         </div>
       </div>
     </article>

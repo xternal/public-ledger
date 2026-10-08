@@ -1,6 +1,7 @@
 import "server-only";
 import { DEADLINE_WINDOWS, PolicyArea, WINDOW_LABEL, isDeadlineWindow } from "@ledger/schema";
 import { buildFeed, headlineOf, windowFeedTitle, FEED_CONTENT_TYPE, type FeedKind, type Headline } from "@ledger/server/alerts";
+import { areaPath } from "@ledger/server/seo";
 import { getSeed } from "@/lib/data";
 import { AREA_LABEL } from "@/lib/promises";
 import { siteUrl } from "@/lib/site";
@@ -66,7 +67,8 @@ export function feedResponse(kind: FeedKind, key: string): Response {
     const area = PolicyArea.safeParse(key);
     if (area.success) title = `Public Ledger: ${AREA_LABEL[area.data]}`;
     subtitle = `Changes to promises about ${area.success ? AREA_LABEL[area.data].toLowerCase() : key}.`;
-    alternatePath = "/promises";
+    // The area's own page, once it has cards (an empty area has no page).
+    alternatePath = area.success && seed.cards.some((c) => c.file.policy_area === area.data) ? areaPath(area.data) : "/promises";
   }
   if (!title) return new Response("Not found", { status: 404, headers: { "content-type": "text/plain; charset=utf-8" } });
   const xml = buildFeed(seed.cards, kind, key, {
