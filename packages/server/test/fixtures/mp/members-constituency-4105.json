@@ -1,0 +1,16 @@
+{
+    "value": {
+        "id": 4105,
+        "name": "Holborn and St Pancras",
+        "startDate": "2024-05-31T00:00:00",
+        "endDate": null,
+        "currentRepresentation": null
+    },
+    "links": [
+        {
+            "rel": "self",
+            "href": "/Constituency/4105/Holborn and St Pancras",
+            "method": "GET"
+        }
+    ]
+}

@@ -1,0 +1,76 @@
+{
+    "longTitle": "A Bill to make provision about Great British Energy.",
+    "summary": null,
+    "sponsors": [
+        {
+            "member": {
+                "memberId": 1510,
+                "name": "Ed Miliband",
+                "party": "Labour",
+                "partyColour": "d50000",
+                "house": "Commons",
+                "memberPhoto": "https://members-api.parliament.uk/api/Members/1510/Thumbnail",
+                "memberPage": "https://members.parliament.uk/member/1510/contact",
+                "memberFrom": "Doncaster North"
+            },
+            "organisation": {
+                "name": "Department for Energy Security and Net Zero",
+                "url": "https://www.gov.uk/government/organisations/department-for-energy-security-and-net-zero"
+            },
+            "sortOrder": 1
+        },
+        {
+            "member": {
+                "memberId": 2024,
+                "name": "Lord Hunt of Kings Heath",
+                "party": "Labour",
+                "partyColour": "d50000",
+                "house": "Lords",
+                "memberPhoto": "https://members-api.parliament.uk/api/Members/2024/Thumbnail",
+                "memberPage": "https://members.parliament.uk/member/2024/contact",
+                "memberFrom": "Life peer"
+            },
+            "organisation": {
+                "name": "Department for Energy Security and Net Zero",
+                "url": "https://www.gov.uk/government/organisations/department-for-energy-security-and-net-zero"
+            },
+            "sortOrder": 2
+        }
+    ],
+    "promoters": [],
+    "petitioningPeriod": null,
+    "petitionInformation": null,
+    "agent": null,
+    "billId": 3738,
+    "shortTitle": "Great British Energy Act 2025",
+    "formerShortTitle": null,
+    "currentHouse": "Unassigned",
+    "originatingHouse": "Commons",
+    "lastUpdate": "2025-06-03T15:41:57.014915",
+    "billWithdrawn": null,
+    "isDefeated": false,
+    "billTypeId": 1,
+    "introducedSessionId": 39,
+    "includedSessionIds": [
+        39
+    ],
+    "isAct": true,
+    "currentStage": {
+        "id": 19932,
+        "stageId": 11,
+        "sessionId": 39,
+        "description": "Royal Assent",
+        "abbreviation": "RA",
+        "house": "Unassigned",
+        "stageSittings": [
+            {
+                "id": 17046,
+                "stageId": 11,
+                "billStageId": 19932,
+                "billId": 3738,
+                "date": "2025-05-15T00:00:00"
+            }
+        ],
+        "sortOrder": 17
+    }
+}

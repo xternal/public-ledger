@@ -1,0 +1,79 @@
+{
+    "value": [
+        {
+            "member": {
+                "value": {
+                    "id": 4514,
+                    "nameListAs": "Starmer, Sir Keir",
+                    "nameDisplayAs": "Sir Keir Starmer",
+                    "nameFullTitle": "Rt Hon Sir Keir Starmer",
+                    "nameAddressAs": null,
+                    "latestParty": {
+                        "id": 15,
+                        "name": "Labour",
+                        "abbreviation": "Lab",
+                        "backgroundColour": "d50000",
+                        "foregroundColour": "ffffff",
+                        "isLordsMainParty": true,
+                        "isLordsSpiritualParty": true,
+                        "governmentType": 0,
+                        "isIndependentParty": false
+                    },
+                    "gender": "M",
+                    "latestHouseMembership": {
+                        "membershipFrom": "Holborn and St Pancras",
+                        "membershipFromId": 4105,
+                        "house": 1,
+                        "membershipStartDate": "2015-05-07T00:00:00",
+                        "membershipEndDate": "2026-09-01T00:00:00",
+                        "membershipEndReason": "Resignation (Chiltern)",
+                        "membershipEndReasonNotes": null,
+                        "membershipEndReasonId": 9,
+                        "membershipStatus": null
+                    },
+                    "thumbnailUrl": "https://members-api.parliament.uk/api/Members/4514/Thumbnail"
+                },
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "/Members/4514",
+                        "method": "GET"
+                    },
+                    {
+                        "rel": "overview",
+                        "href": "/Members/4514",
+                        "method": "GET"
+                    },
+                    {
+                        "rel": "synopsis",
+                        "href": "/Members/4514/Synopsis",
+                        "method": "GET"
+                    },
+                    {
+                        "rel": "contactInformation",
+                        "href": "/Members/4514/Contact",
+                        "method": "GET"
+                    }
+                ]
+            },
+            "representation": {
+                "membershipFrom": null,
+                "membershipFromId": 4105,
+                "house": 1,
+                "membershipStartDate": "2024-07-04T00:00:00",
+                "membershipEndDate": "2026-09-01T00:00:00",
+                "membershipEndReason": null,
+                "membershipEndReasonNotes": null,
+                "membershipEndReasonId": 9,
+                "membershipStatus": null
+            }
+        }
+    ],
+    "links": [
+        {
+            "rel": "self",
+            "href": "Constituency/4105/Representations",
+            "method": "GET"
+        }
+    ]
+}
