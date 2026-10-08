@@ -17,7 +17,7 @@ const SPY_LINE_PX = 120;
  * - with `spy`, the in-page section in view is highlighted as the reader scrolls, with aria-current="location";
  * - on narrow screens the menu scrolls sideways, and the highlighted item is kept in view.
  */
-export function NavLinks({ links, current, spy = false }: { links: NavLink[]; current?: string; spy?: boolean }) {
+export function NavLinks({ links, current, spy = false, label = "Sections" }: { links: NavLink[]; current?: string; spy?: boolean; label?: string }) {
   const [inView, setInView] = useState<string | null>(null);
   const navRef = useRef<HTMLElement>(null);
 
@@ -78,7 +78,7 @@ export function NavLinks({ links, current, spy = false }: { links: NavLink[]; cu
   }, [activeHref]);
 
   return (
-    <nav ref={navRef} aria-label="Sections" className="no-scrollbar flex min-w-0 flex-1 gap-0.5 overflow-x-auto">
+    <nav ref={navRef} aria-label={label} className="no-scrollbar flex min-w-0 flex-1 gap-0.5 overflow-x-auto">
       {links.map((l) => {
         const active = isActive(l);
         return (

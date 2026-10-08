@@ -2,10 +2,11 @@ import type { MetadataRoute } from "next";
 import { constituencies, constituencyList } from "@ledger/server/mp";
 import { getPeople, getSeed, getVintages } from "@/lib/data";
 import { absolute, lastChanged } from "@/lib/site";
+import { PRIVACY_UPDATED } from "@/lib/privacy-copy";
 
 /**
  * Every public page: home, the promise ledger, people and long-term spending,
- * Your MP and its 650 constituency pages, the method pages, each card and each actor. Dates come
+ * Your MP and its 650 constituency pages, the method pages, the privacy notice, each card and each actor. Dates come
  * from the content itself. Constituency pages are rendered on first visit and
  * refreshed daily; they carry no date here because an MP's votes change them
  * on any sitting day, and a made-up date would mislead crawlers.
@@ -29,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absolute("/method/backtest"), lastModified: built, changeFrequency: "monthly", priority: 0.6 },
     { url: absolute("/method/api"), lastModified: built, changeFrequency: "monthly", priority: 0.5 },
     { url: absolute("/follow"), lastModified: built, changeFrequency: "monthly", priority: 0.4 },
+    { url: absolute("/privacy"), lastModified: PRIVACY_UPDATED, changeFrequency: "yearly", priority: 0.3 },
     { url: absolute("/feeds"), lastModified: latest, changeFrequency: "daily", priority: 0.4 },
     ...seed.cards.map((c) => ({ url: absolute(`/promise/${c.id}`), lastModified: lastEvent(c.id), changeFrequency: "weekly" as const, priority: 0.7 })),
     ...constituencies().map((c) => ({ url: absolute(`/mp/${c.slug}`), changeFrequency: "weekly" as const, priority: 0.5 })),
