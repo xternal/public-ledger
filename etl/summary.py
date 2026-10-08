@@ -20,6 +20,9 @@ def main() -> None:
     new_vintages = [f for f in files if f.startswith("data/build/observations/")]
     if new_vintages:
         lines += ["**New or revised editions**", *[f"- `{f}`" for f in new_vintages], ""]
+    contracts = [f for f in files if f.startswith("data/build/contracts/")]
+    if contracts:
+        lines += ["**Contracts with a new snapshot or a new link** (value or dates changed in the notice; check the diff)", *[f"- `{f}`" for f in contracts], ""]
     lines += ["**Sources**", "", "| Source | Edition | Age (days) | Overdue |", "|---|---|---|---|"]
     for s in m["sources"]:
         f = s.get("freshness") or {}

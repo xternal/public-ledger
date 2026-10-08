@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { IsoDate, Range } from "./provenance";
+import { ContractRef, contractKey, type ContractFile, type ContractLink } from "./contracts";
 import { Settings } from "./levers";
 import { EventType, Status, Venue } from "./promises";
 
@@ -181,6 +182,12 @@ export const PromiseFile = z
     outcome_by: z.object({ actor_id: z.string(), note: z.string().optional() }).optional(),
     corrections: z.array(Correction).default([]),
     reviews: z.array(Review).default([]),
+    /**
+     * Public contracts that carry the promise out, linked by an editor (M6b):
+     * OCIDs from Find a Tender or Contracts Finder. Shown once the card is
+     * funded, delivering or delivered.
+     */
+    contracts: z.array(ContractRef).default([]),
   })
   .superRefine((p, ctx) => {
     if (p.outcome_by && !["legislated", "funded", "delivering", "delivered"].includes(p.status))
@@ -234,10 +241,13 @@ export interface CardView {
   current: PromiseVersion;
   /** Role of the actor on the day the promise was made, if known. */
   role: string | null;
+  /** Linked contracts that have been fetched, in the order the card lists them. */
+  contracts: ContractLink[];
 }
 
-export function cardViews(promises: PromiseFile[], actors: ActorFile[]): CardView[] {
+export function cardViews(promises: PromiseFile[], actors: ActorFile[], contracts: ContractFile[] = []): CardView[] {
   const byId = new Map(actors.map((a) => [a.id, a]));
+  const contractByKey = new Map(contracts.map((c) => [c.key, c]));
   return promises
     .map((file) => {
       const actor = byId.get(file.actor_id)!;
@@ -245,7 +255,11 @@ export function cardViews(promises: PromiseFile[], actors: ActorFile[]): CardVie
       const role =
         actor.roles.find((r) => (!r.from || r.from <= file.made_on) && (!r.to || r.to >= file.made_on))?.title ?? actor.roles[0]?.title ?? null;
       const outcomeBy = file.outcome_by ? (byId.get(file.outcome_by.actor_id) ?? null) : null;
-      return { id: file.id, file, actor, party, outcomeBy, current: file.versions[file.versions.length - 1]!, role };
+      const linked = file.contracts.flatMap((r) => {
+        const c = contractByKey.get(contractKey(r));
+        return c ? [{ ...c, id: `${file.id}:${c.key}`, promise_id: file.id }] : [];
+      });
+      return { id: file.id, file, actor, party, outcomeBy, current: file.versions[file.versions.length - 1]!, role, contracts: linked };
     })
     .sort((a, b) => b.file.made_on.localeCompare(a.file.made_on) || a.id.localeCompare(b.id));
 }

@@ -6,6 +6,7 @@ export * from "./presets";
 export * from "./tax";
 export * from "./bundle";
 export * from "./content";
+export * from "./contracts";
 export * from "./drafts";
 export type { Seed, SeedIssue, RawSeed } from "./seed";
 export * from "./t1";

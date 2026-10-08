@@ -1,0 +1,93 @@
+{
+ "id": "69eb20f9-3534-4eba-a223-4cedc2330e41",
+ "notice": {
+  "id": "69eb20f9-3534-4eba-a223-4cedc2330e41",
+  "parentId": null,
+  "parentIdentifier": "",
+  "linkReason": "",
+  "version": 1,
+  "identifier": "tender_341965/1400539",
+  "title": "Camera Equipment",
+  "cpvDescription": "Digital cameras",
+  "publishedDate": "2024-09-02T20:52:26+01:00",
+  "approachMarketDate": "",
+  "deadlineDate": "2024-05-27T12:00:00+01:00",
+  "valueLow": 49000,
+  "valueHigh": 0,
+  "postcode": "EC2V 7HH",
+  "region": "London",
+  "nationwide": false,
+  "location": {
+   "lat": 51.516,
+   "lon": -0.093
+  },
+  "start": "2024-06-26T00:00:00+01:00",
+  "end": "2025-06-25T00:00:00+01:00",
+  "type": "Contract",
+  "cpvCodes": [
+   "38651600"
+  ],
+  "spendProfile": null,
+  "status": "Awarded",
+  "isSuitableForSme": true,
+  "isSuitableForVco": false,
+  "supplyChain": false,
+  "lastNotifiableUpdate": "2024-09-02T20:52:26+01:00",
+  "organisationName": "City of London Corporation",
+  "sector": "",
+  "procedureType": "SingleTenderActionNonOJEU",
+  "procedureTypeOther": "",
+  "procedureAcceleratedJustification": "",
+  "ojeuContractType": "Products",
+  "isFrameworkAgreement": false,
+  "isExtensionPossible": false,
+  "annexDOption": null,
+  "reasonContractLawful": null
+ },
+ "createdDate": "2024-09-02T20:52:21+01:00",
+ "lastUpdatedDate": "2024-09-02T20:52:26+01:00",
+ "awards": [
+  {
+   "id": "706326",
+   "noticeId": "69eb20f9-3534-4eba-a223-4cedc2330e41",
+   "parentId": null,
+   "value": 49000,
+   "supplierName": "Stagecast Limited",
+   "supplierAddress": "27 Old Gloucester Street, London, United Kingdom, WC1N 3AX",
+   "contact": null,
+   "dunsNumber": "",
+   "supplierAwardedValue": null,
+   "referenceType": "NONE_OTHER",
+   "reference": "",
+   "startDate": "2024-06-26T00:00:00+01:00",
+   "endDate": "2025-06-25T00:00:00+01:00",
+   "awardedDate": "2024-06-12T00:00:00+01:00",
+   "awardedProcedureType": "SingleTenderActionNonOJEU",
+   "awardedProcedureTypeOther": "",
+   "awardedProcedureAcceleratedJustification": "",
+   "annexDOptionType": "",
+   "reasonContractLawful": "",
+   "additionalDetails": "",
+   "awardedToSME": false,
+   "awardedToVCSO": false,
+   "awardGuid": "687e14d3-b7b2-424f-a53a-d1953e09d45e"
+  }
+ ],
+ "isPublished": true,
+ "isPreAwarded": true,
+ "organisation": {
+  "name": "City of London Corporation"
+ },
+ "withdrawnDate": "",
+ "withdrawnReason": "",
+ "withdrawnByUser": null,
+ "cpvCodes": [
+  {
+   "code": "38651600",
+   "description": "Digital cameras",
+   "parentCode": "38651000",
+   "hasChildren": false
+  }
+ ],
+ "numberOfViews": "273"
+}

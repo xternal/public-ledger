@@ -101,3 +101,8 @@ reviews:
     kind: automated
     on: "2026-10-06"
     note: Second check of every quote, date, evidence link, status, cost, wording and legal risk against the live sources; fixes applied as corrections.
+contracts:
+  # Solar PV at five ambulance sites, paid for by the GB Energy Solar Partnerships programme (NHS).
+  - ocds-h6vhtk-058e4b
+  # Solar PV and batteries at Moseley Primary School, Coventry: GB Energy Solar Partnership (schools).
+  - ocds-h6vhtk-065530

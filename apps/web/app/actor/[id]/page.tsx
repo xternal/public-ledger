@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getSeed } from "@/lib/data";
-import { signedBn } from "@/lib/format";
+import { contractTotals } from "@ledger/schema";
+import { signedBn, signedMoney } from "@/lib/format";
+import { delayText, showsContracts } from "@/lib/contracts";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PromiseList } from "@/components/PromiseList";
 import { CREDIT_COLUMNS, MixBar, creditRows } from "@/components/CreditTable";
@@ -58,6 +60,8 @@ export default async function ActorPage({ params }: Props) {
     }),
     { counts: CREDIT_COLUMNS.map(() => 0), byOthers: CREDIT_COLUMNS.map(() => 0), costed: 0, pledgedBn: 0, fundingNamed: 0 },
   );
+  // Contracts behind delivery (M6b): only for cards that show them, so the total matches what the cards list.
+  const contracts = contractTotals(cards.filter((c) => showsContracts(c.file.status)).flatMap((c) => c.contracts));
   const about =
     actor.kind === "party"
       ? { "@type": "Organization", name: actor.name }
@@ -141,6 +145,34 @@ export default async function ActorPage({ params }: Props) {
           </ul>
           <p className="m-0 text-[12.5px] text-muted">No score: the mix speaks for itself. Every actor is held to the same promise standard.</p>
         </section>
+
+        {contracts.count > 0 && (
+          <section aria-labelledby="contracts-h" className="grid gap-3">
+            <h2 id="contracts-h" className="text-title font-semibold">
+              Contracts behind delivery
+            </h2>
+            <dl className="m-0 grid grid-cols-2 gap-x-6 gap-y-5 border-y border-line py-5 sm:grid-cols-3">
+              <div className="grid gap-0.5">
+                <dt className="text-label text-muted">Contracts linked</dt>
+                <dd className="m-0 text-[26px] font-semibold tracking-[var(--tracking-figure)]">{contracts.count}</dd>
+              </div>
+              <div className="grid gap-0.5">
+                <dt className="text-label text-muted">Change in value since the first notice</dt>
+                <dd className={`m-0 text-[26px] font-semibold tracking-[var(--tracking-figure)] ${contracts.valueDelta > 0 ? "text-debt-ink" : ""}`}>
+                  {contracts.valueDelta ? signedMoney(contracts.valueDelta) : "None"}
+                </dd>
+              </div>
+              <div className="grid gap-0.5">
+                <dt className="text-label text-muted">Median delay to the end date</dt>
+                <dd className="m-0 text-[26px] font-semibold tracking-[var(--tracking-figure)]">{delayText(contracts.medianMonthsLate ?? 0)}</dd>
+              </div>
+            </dl>
+            <p className="m-0 text-[12.5px] text-muted">
+              Across the public contracts editors linked to these promises once they were funded or under way, read from the contract notices. Each promise card lists
+              its contracts.
+            </p>
+          </section>
+        )}
 
         <section aria-labelledby="cards-h" className="grid gap-4">
           <h2 id="cards-h" className="text-title font-semibold">

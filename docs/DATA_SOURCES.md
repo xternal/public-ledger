@@ -47,7 +47,8 @@ Current state at time of writing: Bank Rate 3.75%, held 17 Sep 2026 (BoE IADB se
 | UK Parliament Bills API | Bill stages → `legislated` events | https://bills-api.parliament.uk/ |
 | legislation.gov.uk | Enacted law, commencement | https://www.legislation.gov.uk/developer |
 | GOV.UK Content API / search | Press releases, policy papers → `funded`, `delivering` events | https://www.gov.uk/api/search.json |
-| Contracts Finder / Find a Tender | Procurement evidence for delivery | https://www.contractsfinder.service.gov.uk/ · https://www.find-tender.service.gov.uk/ |
+| Find a Tender (Central Digital Platform) | Contracts behind delivery (M6b): OCDS record per linked contract, `GET /api/1.0/ocdsRecordPackages/<ocid>`; every notice under the Procurement Act 2023 since 24 Feb 2025, and above-threshold notices before | https://www.find-tender.service.gov.uk/ |
+| Contracts Finder | Contracts behind delivery for below-threshold procurements started before 24 Feb 2025: notice JSON by notice id, `GET /api/rest/2/get_published_notice/json/<id>` (no lookup by OCID, so the card's link names the notice) | https://www.contractsfinder.service.gov.uk/ |
 | Party manifestos | Bulk promise intake at elections | Party websites; archive copies on web.archive.org |
 | Broadcast debates | Transcripts (BBC, ITV, Sky) — manual + LLM | Per broadcaster |
 

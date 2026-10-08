@@ -9,6 +9,7 @@ import { AREA_LABEL, costSense, todayIso, whoLine } from "@/lib/promises";
 import { track } from "@/lib/analytics";
 import { correctionTarget, correctionValue } from "@/lib/corrections";
 import { JUNIOR_EDITOR_NOTE, latestReview, reviewerLabel } from "@/lib/reviews";
+import { ContractsStrip } from "./ContractsStrip";
 import { FollowPanel } from "./FollowPanel";
 import { StatusPill } from "./PromiseList";
 import { QualityBadge, WithProvenance } from "./ui";
@@ -187,6 +188,8 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
       </ol>
 
       {f.status_note && <p className="m-0 text-[12.5px] leading-relaxed text-muted">{f.status_note}</p>}
+
+      <ContractsStrip card={card} />
 
       <div className="flex flex-wrap items-center gap-2.5">
         {runHref && (

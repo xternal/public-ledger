@@ -1,0 +1,24 @@
+{
+  "key": "ocds-b5fd17-199d7c84-a3d7-4db7-97c5-adc77fbd0202",
+  "ocid": "ocds-b5fd17-199d7c84-a3d7-4db7-97c5-adc77fbd0202",
+  "source": "contracts_finder",
+  "title": "New Towns social value & stakeholder engagement",
+  "buyer": "Homes England (the name adopted by the Homes and Communities Agency)",
+  "notice_url": "https://www.contractsfinder.service.gov.uk/Notice/8ea88ce0-edee-4abc-97be-d32c65734a18",
+  "record_url": "https://www.contractsfinder.service.gov.uk/api/rest/2/get_published_notice/json/8ea88ce0-edee-4abc-97be-d32c65734a18",
+  "supplier": {
+    "name": "BDP"
+  },
+  "awarded_on": "2025-09-03",
+  "competition": "direct",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 50000.0,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2026-03-31"
+    }
+  ]
+}

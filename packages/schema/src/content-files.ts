@@ -33,14 +33,28 @@ export function readYamlDir(dir: string): RawContentFile[] {
     });
 }
 
+export function readJsonDir(dir: string): RawContentFile[] {
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .filter((f) => f.endsWith(".json"))
+    .sort()
+    .map((f) => {
+      const path = join(dir, f);
+      return { path, data: JSON.parse(readFileSync(path, "utf8")) };
+    });
+}
+
 export interface RawContent {
   promises: RawContentFile[];
   actors: RawContentFile[];
+  /** Fetched contract records (M6b): data/build/contracts/*.json, written by etl/contracts.py. */
+  contracts: RawContentFile[];
 }
 
 export function readContent(root = repoRoot()): RawContent {
   return {
     promises: readYamlDir(join(root, "content", "promises")),
     actors: readYamlDir(join(root, "content", "actors")),
+    contracts: readJsonDir(join(root, "data", "build", "contracts")),
   };
 }

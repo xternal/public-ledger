@@ -4,6 +4,7 @@ import presetsRaw from "../../../data/seed/presets.json";
 import type { StatementSeed } from "./statement";
 import { fundingKey, type Lever, type LeversSeed, type Settings } from "./levers";
 import { ActorFile, PromiseFile, cardViews, type CardView } from "./content";
+import { CONTRACT_SOURCES, ContractFile, contractKey } from "./contracts";
 import { readContent, type RawContent } from "./content-files";
 import { PresetsSeed, type Preset } from "./presets";
 import type { TaxSeed } from "./tax";
@@ -24,8 +25,10 @@ export interface Seed {
   baseYear: string;
   builtAt: string;
   levers: LeversSeed;
-  /** Promise cards joined with their actors, newest first. */
+  /** Promise cards joined with their actors and linked contracts, newest first. */
   cards: CardView[];
+  /** Every fetched contract (data/build/contracts), linked or not. */
+  contracts: ContractFile[];
   actors: ActorFile[];
   /** Editorial presets followed by one preset per promise card that has lever settings. */
   presets: Preset[];
@@ -132,6 +135,16 @@ export function crossCheck(seed: Seed): SeedIssue[] {
     if (p.editor_check_required) warn(where, "needs editor check before publication");
     const current = p.versions[p.versions.length - 1]!;
     if (!current.quote_checked_on) warn(where, "quote not yet checked verbatim against its source");
+    const fetched = new Set(seed.contracts.map((x) => x.key));
+    const keys = p.contracts.map(contractKey);
+    keys.forEach((k, i) => {
+      if (keys.indexOf(k) !== i) err(`${where}.contracts`, `contract "${k}" is listed twice`);
+      else if (!fetched.has(k)) warn(`${where}.contracts`, `contract "${k}" is not fetched yet; run python -m etl.contracts (the nightly job does)`);
+    });
+  }
+  const linked = new Set(seed.cards.flatMap((c) => c.file.contracts.map(contractKey)));
+  for (const c of seed.contracts) {
+    if (!linked.has(c.key)) warn(`contracts.${c.key}`, "no card links this contract any more; it stays, unshown, so its history is kept");
   }
 
   const { income_tax, employee_ni } = seed.tax;
@@ -169,6 +182,13 @@ export function parseSeed(raw: RawSeed = rawSeed()): { seed: Seed | null; issues
       issues.push({ level: "error", where: f.path, message: `unknown outcome_by actor "${r.data.outcome_by.actor_id}"` });
     else promises.push(r.data);
   }
+  const contracts: ContractFile[] = [];
+  for (const f of raw.content.contracts ?? []) {
+    const r = ContractFile.safeParse(f.data);
+    if (r.error) issues.push(...zodIssues(f.path, r.error));
+    else if (r.data.key !== fileName(f.path.replace(/\.json$/, ""))) issues.push({ level: "error", where: f.path, message: `key "${r.data.key}" does not match the file name` });
+    else contracts.push(r.data);
+  }
   if (!bundle.success || !presets.success || issues.some((i) => i.level === "error")) {
     return { seed: null, issues };
   }
@@ -180,11 +200,12 @@ export function parseSeed(raw: RawSeed = rawSeed()): { seed: Seed | null; issues
     baseYear: b.base_year,
     builtAt: b.built_at,
     levers: b.levers,
-    cards: cardViews(promises, actors),
+    cards: cardViews(promises, actors, contracts),
+    contracts,
     actors,
     presets: [...presets.data.presets, ...promisePresets(promises)],
     tax: b.tax,
-    sources: b.sources,
+    sources: [...b.sources, ...CONTRACT_SOURCES.filter((c) => !b.sources.some((s) => s.id === c.id))],
   };
   return { seed, issues: [...issues, ...crossCheck(seed)] };
 }

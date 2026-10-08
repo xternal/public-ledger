@@ -1,0 +1,25 @@
+{
+  "key": "ocds-h6vhtk-065530",
+  "ocid": "ocds-h6vhtk-065530",
+  "source": "find_a_tender",
+  "title": "COV - GBESP Moseley Primary PV, Battery & EVC",
+  "buyer": "Coventry City Council",
+  "notice_url": "https://www.find-tender.service.gov.uk/Notice/013965-2026",
+  "record_url": "https://www.find-tender.service.gov.uk/api/1.0/ocdsRecordPackages/ocds-h6vhtk-065530",
+  "supplier": {
+    "name": "EENERGY SERVICES UK LIMITED",
+    "companies_house_number": "11217759"
+  },
+  "awarded_on": "2026-02-16",
+  "competition": "direct",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 179000.0,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2027-02-28"
+    }
+  ]
+}

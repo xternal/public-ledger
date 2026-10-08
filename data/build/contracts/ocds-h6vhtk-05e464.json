@@ -1,0 +1,24 @@
+{
+  "key": "ocds-h6vhtk-05e464",
+  "ocid": "ocds-h6vhtk-05e464",
+  "source": "find_a_tender",
+  "title": "PAHT - Validation Solution - Source Group",
+  "buyer": "The Princess Alexandra Hospital NHS Trust",
+  "notice_url": "https://www.find-tender.service.gov.uk/Notice/075228-2025",
+  "record_url": "https://www.find-tender.service.gov.uk/api/1.0/ocdsRecordPackages/ocds-h6vhtk-05e464",
+  "supplier": {
+    "name": "Insource Select Limited"
+  },
+  "awarded_on": "2025-05-19",
+  "competition": "direct",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 52269.0,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2025-10-20"
+    }
+  ]
+}

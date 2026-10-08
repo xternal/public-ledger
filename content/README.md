@@ -6,6 +6,7 @@ Rules: `docs/PROMISE_STANDARD.md`. Schema: `packages/schema/src/content.ts`. Che
 - **Append-only.** Never edit or remove an existing entry in `versions` or `events`. Rewording adds a version and a `reworded` event; a status change adds an event. CI compares every card with `main` and fails on any edit, unless the edit fixes our own mistake and a `corrections` entry records it (`docs/PROMISE_STANDARD.md` §9). The card shows every correction.
 - **Verbatim quotes.** `versions[].text` is copied exactly from `source_url`, and `quote_checked_on` records when someone confirmed it there.
 - **Evidence.** Every status event except `promised`, `deadline` and `deadline_missed` needs an `evidence_url`.
+- **Contracts.** `contracts` lists the public contracts behind delivery by OCID, linked by hand (`docs/PROMISE_STANDARD.md` §10). The nightly job fetches them into `data/build/contracts/`; to fetch now, run `pnpm contracts`.
 - **Two editors** approve every pull request that touches this folder.
 
 ## Drafts (`drafts/<date>/`)
