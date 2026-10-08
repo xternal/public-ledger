@@ -1,4 +1,5 @@
 id: hm-government
 name: HM Government
 kind: government
+standing: government
 roles: []

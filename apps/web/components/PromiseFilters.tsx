@@ -75,6 +75,25 @@ export function ownerOptions(all: CardView[], counted: CardView[]): ChipOption[]
  * and keeps the chosen chip in view.
  */
 export function OwnerChips({ options, total, value, onChange }: { options: ChipOption[]; total: number; value: string; onChange: (id: string) => void }) {
+  return <ChipRow label="Party or government" allLabel="All" options={options} total={total} value={value} onChange={onChange} />;
+}
+
+/** A labelled row of toggle chips with counts ("Any 34", "In plan 6"); on phones it scrolls sideways and keeps the chosen chip in view. */
+export function ChipRow({
+  label,
+  allLabel,
+  options,
+  total,
+  value,
+  onChange,
+}: {
+  label: string;
+  allLabel: string;
+  options: ChipOption[];
+  total: number;
+  value: string;
+  onChange: (id: string) => void;
+}) {
   const row = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const on = row.current?.querySelector<HTMLElement>('[aria-pressed="true"]');
@@ -101,8 +120,8 @@ export function OwnerChips({ options, total, value, onChange }: { options: ChipO
   };
 
   return (
-    <div ref={row} role="group" aria-label="Party or government" className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 py-0.5 sm:mx-0 sm:flex-wrap sm:px-0">
-      {chip("", "All", total)}
+    <div ref={row} role="group" aria-label={label} className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 py-0.5 sm:mx-0 sm:flex-wrap sm:px-0">
+      {chip("", allLabel, total)}
       {options.map((o) => chip(o.id, o.label, o.count))}
     </div>
   );

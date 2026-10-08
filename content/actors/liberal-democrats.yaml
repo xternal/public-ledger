@@ -2,6 +2,7 @@ id: liberal-democrats
 name: Liberal Democrats
 short_name: Lib Dems
 kind: party
+standing: opposition
 # UK Parliament Members API party id (https://members-api.parliament.uk/api/Parties/GetActive/1)
 parliament_party_id: 17
 roles: []
