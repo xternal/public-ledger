@@ -24,10 +24,13 @@ export function valueLine(c: ContractLink): string {
   return `${signedMoney(ch.valueDelta, ch.latest.value.currency)}${pct} since first seen on ${longDate(ch.first.fetched_at)}`;
 }
 
-/** "Ended 31 Oct 2027, 7 months late", "Due 30 Sep 2027, 6 months later than first planned", "Due 31 Mar 2027, as first planned". */
+/**
+ * "Ended 31 Oct 2027, 7 months late", "Planned end 30 Sep 2027, 6 months later than first planned",
+ * "Planned end 31 Mar 2027, as first planned". A planned end can be in the past: notices often never say a contract ended.
+ */
 export function endLine(c: ContractLink): { text: string; late: boolean } {
   const ch = contractChange(c);
-  const when = `${ch.finished ? "Ended" : "Due"} ${longDate(ch.endNow)}`;
+  const when = `${ch.finished ? "Ended" : "Planned end"} ${longDate(ch.endNow)}`;
   if (ch.monthsLate > 0)
     return { text: `${when}, ${plural(ch.monthsLate, "month")} ${ch.finished ? "late" : "later than first planned"}`, late: true };
   if (ch.monthsLate < 0) return { text: `${when}, ${plural(-ch.monthsLate, "month")} early`, late: false };
@@ -39,4 +42,29 @@ export function delayText(months: number): string {
   const m = Math.round(months);
   if (!m) return "On time";
   return `${plural(Math.abs(m), "month")} ${m > 0 ? "late" : "early"}`;
+}
+
+/** "15"; "14 to 16 for each of 5 lots" when one award covers several lots; "None: awarded without competition"; null when the notice does not say. */
+export function bidsText(c: ContractLink): string | null {
+  const lots = c.bids_received_by_lot;
+  if (lots?.length) {
+    const lo = Math.min(...lots);
+    const hi = Math.max(...lots);
+    return `${lo === hi ? lo : `${lo} to ${hi}`} for each of ${lots.length} lots`;
+  }
+  if (c.bids_received !== undefined) return String(c.bids_received);
+  if (c.competition === "direct") return "None: awarded without competition";
+  return null;
+}
+
+/** Words kept in capitals when a notice's ALL-CAPS name is set in normal case. */
+const KEEP_UPPER = new Set(["NHS", "UK", "PV", "EV", "EVC", "LLP", "PLC", "CIC", "BDP", "LED", "GB", "HM", "PCC", "ICB"]);
+
+/** Some notices give names in capitals ("BRIGHT SPARK ENERGY SOLUTIONS LIMITED"); show them in normal case. Mixed-case names are left alone. */
+export function displayName(name: string): string {
+  if (/[a-z]/.test(name)) return name;
+  return name
+    .split(/(\s+|-|\/)/)
+    .map((w) => (KEEP_UPPER.has(w) || !/[A-Z]/.test(w) ? w : w.charAt(0) + w.slice(1).toLowerCase()))
+    .join("");
 }

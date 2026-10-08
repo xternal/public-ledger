@@ -1,7 +1,7 @@
 import type { CardView, ContractLink } from "@ledger/schema";
 import { contractChange } from "@ledger/schema";
 import { longDate, money } from "@/lib/format";
-import { SOURCE_LABEL, companiesHouseUrl, endLine, showsContracts, valueLine } from "@/lib/contracts";
+import { SOURCE_LABEL, bidsText, companiesHouseUrl, displayName, endLine, showsContracts, valueLine } from "@/lib/contracts";
 import { WithProvenance } from "./ui";
 
 /**
@@ -47,7 +47,7 @@ function Contract({ c }: { c: ContractLink }) {
           {c.title}
         </a>
         <span className="text-label text-muted">
-          {c.buyer} · awarded {longDate(c.awarded_on)}
+          {displayName(c.buyer)} · awarded {longDate(c.awarded_on)}
         </span>
       </div>
       <dl className="m-0 grid grid-cols-2 gap-x-6 gap-y-3 text-sm md:grid-cols-4">
@@ -56,16 +56,16 @@ function Contract({ c }: { c: ContractLink }) {
           <dd className="m-0">
             {c.supplier.companies_house_number ? (
               <a href={companiesHouseUrl(c.supplier.companies_house_number)} target="_blank" rel="noopener noreferrer" title="Companies House: officers and owners">
-                {c.supplier.name}
+                {displayName(c.supplier.name)}
               </a>
             ) : (
-              c.supplier.name
+              displayName(c.supplier.name)
             )}
           </dd>
         </div>
         <div className="grid content-start gap-0.5">
           <dt className="text-caption text-muted">Bids received</dt>
-          <dd className="m-0">{c.bids_received ?? <span className="text-muted">Not stated</span>}</dd>
+          <dd className="m-0">{bidsText(c) ?? <span className="text-muted">Not stated</span>}</dd>
         </div>
         <div className="grid content-start gap-0.5">
           <dt className="text-caption text-muted">Value</dt>

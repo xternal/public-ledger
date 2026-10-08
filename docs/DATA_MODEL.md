@@ -154,6 +154,8 @@ interface ContractLink {
   supplier: { name: string; companies_house_number?: string };   // linked to Companies House; owners are not stored
   awarded_on: string;
   bids_received?: number;
+  bids_received_by_lot?: number[];   // when one award covers several lots
+  competition?: "open" | "selective" | "limited" | "direct";   // OCDS procurementMethod; direct = no competition
   snapshots: {                // append-only, like PromiseEvent: a change in value or dates is a new snapshot
     fetched_at: string;       // the day the nightly fetch first saw this state
     value: Money;

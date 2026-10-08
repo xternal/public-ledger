@@ -34,6 +34,7 @@ name the buyer's contact person, so only the fields below are kept.
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import logging
 import re
@@ -60,6 +61,8 @@ FTS_PREFIX = "ocds-h6vhtk-"
 CF_PREFIX = "ocds-b5fd17-"
 COMPANIES_HOUSE = re.compile(r"^[A-Z0-9]{8}$")
 CF_NOTICE = re.compile(r"/Notice/([0-9a-f-]{36})", re.I)
+# How the contract was let (OCDS procurementMethod). "direct" means awarded without competition.
+COMPETITION = {"open", "selective", "limited", "direct"}
 # Bid counts that mean "tenders received", in the order we prefer them.
 BID_MEASURES = ("bids", "validBids", "tenders", "electronicBids")
 
@@ -106,6 +109,11 @@ def record_url(ref: Ref) -> str:
     if not m:
         raise ContractError(f"{ref.ocid}: a Contracts Finder link needs notice_url (…/Notice/<notice id>)")
     return f"{CF}/api/rest/2/get_published_notice/json/{m.group(1)}"
+
+
+def _text(s: str | None) -> str | None:
+    """Notice text as a reader sees it: "&amp;" becomes "&", runs of spaces collapse."""
+    return " ".join(html.unescape(s).split()) if s else s
 
 
 def _day(iso: str | None) -> str | None:
@@ -158,17 +166,26 @@ def parse_fts(package: dict, ref: Ref) -> dict:
     notice_url = docs[-1]["url"] if docs else f"{FTS}/Notice/{notice_id}"
 
     awarded_on = _day(award.get("date")) or _day(contract.get("dateSigned")) or _day((award_releases or [{}])[0].get("date"))
-    lot = (award.get("relatedLots") or [None])[0]
-    stats = [s for s in (c.get("bids") or {}).get("statistics") or [] if not lot or s.get("relatedLot") in (None, lot)]
-    bids = next((int(s["value"]) for m in BID_MEASURES for s in stats if s.get("measure") == m and s.get("value") is not None), None)
+    stats = (c.get("bids") or {}).get("statistics") or []
+
+    def bids_for(lot: str | None) -> int | None:
+        rows = [s for s in stats if s.get("relatedLot") == lot or (lot is None and len(lots) < 2)]
+        return next((int(s["value"]) for m in BID_MEASURES for s in rows if s.get("measure") == m and s.get("value") is not None), None)
+
+    # One award can cover several lots, each with its own bidders: keep a count per lot rather than pick one.
+    lots = [str(x) for x in award.get("relatedLots") or []]
+    per_lot = [bids_for(lot) for lot in lots] if len(lots) > 1 else []
+    bids = None if per_lot else bids_for(lots[0] if lots else None)
 
     return {
-        "title": contract.get("title") or award.get("title") or (c.get("tender") or {}).get("title") or ref.ocid,
-        "buyer": (c.get("buyer") or {}).get("name") or "Not stated",
+        "title": _text(contract.get("title") or award.get("title") or (c.get("tender") or {}).get("title")) or ref.ocid,
+        "buyer": _text((c.get("buyer") or {}).get("name")) or "Not stated",
         "notice_url": notice_url,
-        "supplier": {"name": supplier.get("name") or party.get("name") or "Not stated", **({"companies_house_number": ch} if ch and COMPANIES_HOUSE.match(ch) else {})},
+        "supplier": {"name": _text(supplier.get("name") or party.get("name")) or "Not stated", **({"companies_house_number": ch} if ch and COMPANIES_HOUSE.match(ch) else {})},
         "awarded_on": awarded_on,
         **({"bids_received": bids} if bids is not None else {}),
+        **({"bids_received_by_lot": per_lot} if per_lot and all(b is not None for b in per_lot) else {}),
+        **({"competition": method} if (method := (c.get("tender") or {}).get("procurementMethod")) in COMPETITION else {}),
         "value": {"amount": value, "currency": currency},
         "end_date_planned": end_planned,
         **({"end_date_actual": end_actual} if end_actual else {}),
@@ -189,12 +206,15 @@ def parse_cf(notice: dict, ref: Ref) -> dict:
     if value is None or not end_planned:
         raise ContractError(f"{ref.ocid}: the notice has no awarded value or end date")
     ch = (a.get("reference") or "").strip().upper() if a.get("referenceType") == "COMPANIES_HOUSE" else ""
+    procedure = (a.get("awardedProcedureType") if a.get("awardedProcedureType") not in (None, "", "NotApplicable") else n.get("procedureType")) or ""
+    competition = "direct" if "SingleTender" in procedure else "open" if procedure.startswith("Open") else "selective" if procedure.startswith("Restricted") else None
     return {
-        "title": n.get("title") or ref.ocid,
-        "buyer": n.get("organisationName") or (notice.get("organisation") or {}).get("name") or "Not stated",
+        "title": _text(n.get("title")) or ref.ocid,
+        "buyer": _text(n.get("organisationName") or (notice.get("organisation") or {}).get("name")) or "Not stated",
         "notice_url": ref.notice_url,
-        "supplier": {"name": a.get("supplierName") or "Not stated", **({"companies_house_number": ch} if COMPANIES_HOUSE.match(ch) else {})},
+        "supplier": {"name": _text(a.get("supplierName")) or "Not stated", **({"companies_house_number": ch} if COMPANIES_HOUSE.match(ch) else {})},
         "awarded_on": _day(a.get("awardedDate")) or _day(n.get("publishedDate")),
+        **({"competition": competition} if competition else {}),
         "value": {"amount": value, "currency": "GBP"},
         "end_date_planned": end_planned,
     }
@@ -227,6 +247,8 @@ def merge(existing: dict | None, ref: Ref, current: dict, today: date, record: s
         "supplier": current["supplier"],
         "awarded_on": current["awarded_on"],
         **({"bids_received": current["bids_received"]} if "bids_received" in current else {}),
+        **({"bids_received_by_lot": current["bids_received_by_lot"]} if "bids_received_by_lot" in current else {}),
+        **({"competition": current["competition"]} if "competition" in current else {}),
         "snapshots": snapshots,
     }
     return out
@@ -261,8 +283,9 @@ def run(*, offline: bool = False, today: date | None = None, archive: bool = Tru
                 problems.append(f"{ref.key} (for {ref.promise_id}): {e}")
                 continue
             archived = (existing or {}).get("archived_url")
-            if not archived and archive and not offline:
-                # Once per contract: ask the Internet Archive to keep a copy of the notice.
+            if not archived and archive and not offline and existing is None:
+                # Once, when a contract is first linked: ask the Internet Archive to keep a copy of the notice.
+                # Save Page Now is slow and often busy; a miss is not retried every night (editors can add archived_url by hand).
                 snap = wayback.save(current["notice_url"], http)
                 archived = f"{wayback.ARCHIVE}/web/{snap[0]}/{snap[1]}" if snap else None
             data = merge(existing, ref, current, today, record_url(ref), archived)

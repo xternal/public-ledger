@@ -122,3 +122,33 @@ def test_run_offline_writes_files(tmp_path, monkeypatch):
 
     # A second run with nothing new writes nothing.
     assert contracts.run(offline=True, today=date(2026, 10, 9)) == (0, problems)
+
+
+def test_one_award_over_several_lots_keeps_bids_per_lot():
+    rec = fts_record()
+    c = rec["records"][0]["compiledRelease"]
+    c["awards"][0]["relatedLots"] = ["1", "2"]
+    c["bids"] = {"statistics": [
+        {"id": "1", "measure": "bids", "value": 15, "relatedLot": "1"},
+        {"id": "2", "measure": "finalStageBids", "value": 13, "relatedLot": "1"},
+        {"id": "3", "measure": "bids", "value": 14, "relatedLot": "2"},
+    ]}
+    got = parse_fts(rec, Ref("a", FTS_OCID))
+    assert got["bids_received_by_lot"] == [15, 14]
+    assert "bids_received" not in got
+    c["awards"][0]["relatedLots"] = ["2"]
+    assert parse_fts(rec, Ref("a", FTS_OCID))["bids_received"] == 14
+
+
+def test_notice_text_is_decoded():
+    n = cf_notice()
+    n["notice"]["title"] = "New Towns social value &amp; stakeholder  engagement"
+    assert parse_cf(n, Ref("a", CF_OCID, notice_url=CF_NOTICE))["title"] == "New Towns social value & stakeholder engagement"
+
+
+def test_how_the_contract_was_let():
+    rec = fts_record()
+    rec["records"][0]["compiledRelease"]["tender"]["procurementMethod"] = "direct"
+    assert parse_fts(rec, Ref("a", FTS_OCID))["competition"] == "direct"
+    n = cf_notice()  # SingleTenderActionNonOJEU
+    assert parse_cf(n, Ref("a", CF_OCID, notice_url=CF_NOTICE))["competition"] == "direct"

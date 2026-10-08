@@ -81,3 +81,7 @@ reviews:
     kind: automated
     on: "2026-10-06"
     note: Second check of every quote, date, evidence link, status, cost, wording and legal risk against the live sources; fixes applied as corrections.
+contracts:
+  # Homes England: stakeholder engagement and social value advice for potential new towns locations.
+  - ocid: ocds-b5fd17-199d7c84-a3d7-4db7-97c5-adc77fbd0202
+    notice_url: https://www.contractsfinder.service.gov.uk/Notice/8ea88ce0-edee-4abc-97be-d32c65734a18

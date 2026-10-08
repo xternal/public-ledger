@@ -1,0 +1,32 @@
+{
+  "key": "ocds-h6vhtk-058e4b",
+  "ocid": "ocds-h6vhtk-058e4b",
+  "source": "find_a_tender",
+  "title": "Photo Voltaic Solar Panels",
+  "buyer": "SOUTH WESTERN AMBULANCE SERVICE NHS FOUNDATION TRUST",
+  "notice_url": "https://www.find-tender.service.gov.uk/Notice/063921-2025",
+  "record_url": "https://www.find-tender.service.gov.uk/api/1.0/ocdsRecordPackages/ocds-h6vhtk-058e4b",
+  "supplier": {
+    "name": "BRIGHT SPARK ENERGY SOLUTIONS LIMITED",
+    "companies_house_number": "15029600"
+  },
+  "awarded_on": "2025-10-03",
+  "bids_received_by_lot": [
+    15,
+    14,
+    16,
+    16,
+    14
+  ],
+  "competition": "open",
+  "snapshots": [
+    {
+      "fetched_at": "2026-10-08",
+      "value": {
+        "amount": 117502.0,
+        "currency": "GBP"
+      },
+      "end_date_planned": "2026-03-31"
+    }
+  ]
+}

@@ -38,6 +38,11 @@ describe("contract files (M6b)", () => {
     expect(ContractRef.safeParse({ ocid: "ocds-h6vhtk-0525b3", supplier: "x" }).success).toBe(false);
   });
 
+  it("keeps bids per lot when one award covers several lots", () => {
+    expect(ContractFile.safeParse(contract({ bids_received: undefined, bids_received_by_lot: [15, 14, 16] })).success).toBe(true);
+    expect(ContractFile.safeParse(contract({ bids_received_by_lot: [15] })).success).toBe(false);
+  });
+
   it("keeps snapshots in date order", () => {
     const c = contract();
     c.snapshots = [c.snapshots[0]!, { ...c.snapshots[0]!, fetched_at: "2026-09-01" }];

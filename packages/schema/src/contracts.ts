@@ -75,6 +75,10 @@ export const ContractFile = z
     }),
     awarded_on: IsoDate,
     bids_received: z.number().int().nonnegative().optional(),
+    /** When one award covers several lots: the bids each lot received, in lot order. */
+    bids_received_by_lot: z.array(z.number().int().nonnegative()).min(2).optional(),
+    /** How the contract was let (OCDS procurementMethod): "direct" means awarded without competition. */
+    competition: z.enum(["open", "selective", "limited", "direct"]).optional(),
     snapshots: z.array(ContractSnapshot).min(1),
   })
   .strict()
