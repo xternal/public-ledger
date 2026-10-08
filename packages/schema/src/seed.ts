@@ -125,8 +125,16 @@ export function crossCheck(seed: Seed): SeedIssue[] {
   for (const p of seed.presets) checkSettings(`presets.${p.id}`, p.settings);
 
   const actorIds = new Set(seed.actors.map((a) => a.id));
+  const parliamentIds = new Map<string, string>();
   for (const a of seed.actors) {
     if (a.party_id && !actorIds.has(a.party_id)) err(`actors.${a.id}`, `unknown party_id "${a.party_id}"`);
+    // One Parliament id, one actor: /mp pages find people and parties by it.
+    for (const key of [a.parliament_member_id && `member ${a.parliament_member_id}`, a.parliament_party_id && `party ${a.parliament_party_id}`]) {
+      if (!key) continue;
+      const other = parliamentIds.get(key);
+      if (other) err(`actors.${a.id}`, `Parliament ${key} is already ${other}`);
+      else parliamentIds.set(key, a.id);
+    }
   }
   for (const c of seed.cards) {
     const p = c.file;

@@ -1,6 +1,8 @@
 id: blair-mcdougall
 name: Blair McDougall
 kind: person
+# UK Parliament Members API: https://members.parliament.uk/member/5076
+parliament_member_id: 5076
 party_id: labour
 roles:
   - title: Parliamentary Under-Secretary of State (Minister for Reindustrialisation), Department for Business, Innovation, Science and Trade and Department for Energy Security and Net Zero

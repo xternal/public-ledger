@@ -1,6 +1,8 @@
 id: lucy-powell
 name: Lucy Powell
 kind: person
+# UK Parliament Members API: https://members.parliament.uk/member/4263
+parliament_member_id: 4263
 party_id: labour
 roles:
   - title: Secretary of State for Education

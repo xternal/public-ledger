@@ -12,15 +12,33 @@ import { EventType, Status, Venue } from "./promises";
 
 export const ActorKind = z.enum(["person", "party", "government"]);
 
-export const ActorFile = z.object({
-  id: z.string().regex(/^[a-z0-9-]+$/),
-  name: z.string().min(1),
-  /** A short form for tight spaces (filter chips, list lines): "Labour" for "Labour Party". */
-  short_name: z.string().min(1).optional(),
-  kind: ActorKind,
-  party_id: z.string().optional(),
-  roles: z.array(z.object({ title: z.string().min(1), from: IsoDate.optional(), to: IsoDate.optional() })),
-});
+export const ActorFile = z
+  .object({
+    id: z.string().regex(/^[a-z0-9-]+$/),
+    name: z.string().min(1),
+    /** A short form for tight spaces (filter chips, list lines): "Labour" for "Labour Party". */
+    short_name: z.string().min(1).optional(),
+    kind: ActorKind,
+    party_id: z.string().optional(),
+    roles: z.array(z.object({ title: z.string().min(1), from: IsoDate.optional(), to: IsoDate.optional() })),
+    /**
+     * A person who is or was an MP: their UK Parliament Members API id
+     * (members.parliament.uk/member/<id>). Their constituency's /mp page lists
+     * their own promises.
+     */
+    parliament_member_id: z.number().int().positive().optional(),
+    /**
+     * A party: its Members API party id (Labour and Labour (Co-op) MPs share
+     * one). Its MPs' /mp pages summarise its promises.
+     */
+    parliament_party_id: z.number().int().positive().optional(),
+  })
+  .superRefine((a, ctx) => {
+    if (a.parliament_member_id !== undefined && a.kind !== "person")
+      ctx.addIssue({ code: "custom", path: ["parliament_member_id"], message: "only a person has a parliament_member_id" });
+    if (a.parliament_party_id !== undefined && a.kind !== "party")
+      ctx.addIssue({ code: "custom", path: ["parliament_party_id"], message: "only a party has a parliament_party_id" });
+  });
 export type ActorFile = z.infer<typeof ActorFile>;
 
 export const PolicyArea = z.enum([
