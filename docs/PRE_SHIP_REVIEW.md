@@ -79,8 +79,8 @@ Legend: ✅ fixed in this pass · 🔲 open. Owner: ENG, DATA, ED (editor), ECON
 | F5 | Manage, confirm and delete links carry their token in the query string, so it appears in host request logs | 🔲 accepted for v0 (pages are noindex, no-referrer); option: move the token into the URL fragment |
 | F6 | `/admin` uses interim basic auth | 🔲 put Cloudflare Access or Vercel Authentication in front before launch |
 | F7 | Follows are UK GDPR Article 9 data | 🔲 DPIA, legal read of the consent text, ICO fee before launch (docs/OPERATIONS.md §9) |
-| F8 | Alerts are diffed from `content/` only; data changes in `data/build` raise no alerts | 🔲 decide whether readers want data alerts |
-| F9 | "Deadline window" follows (PRD F7) not built | 🔲 v0.1 |
+| F8 | Alerts are diffed from `content/` only; data changes in `data/build` raise no alerts | ✅ contract changes reach the promise's, actor's and area's followers; new editions of the headline figures reach "everything"; feeds per card, `/feeds/updates.xml`; announced within a day (OPERATIONS §8) |
+| F9 | "Deadline window" follows (PRD F7) not built | ✅ follow this month, the next 3 or 12 months by email, Telegram or `/feeds/deadlines/{window}.xml`; outcomes as they happen, a monthly list; "Coming up" on /promises |
 
 ## Not a bug, but decide
 

@@ -5,13 +5,14 @@ import { track } from "@/lib/analytics";
 import { SpamCheck } from "./SpamCheck";
 
 /**
- * Follow a promise, an actor, a policy area or everything (PRD F7): RSS, email
- * (double opt-in) or the Telegram bot. No account. The consent text sits next
- * to the email form; Telegram shows it in the bot before anyone follows.
- * Nothing here sends analytics with ids; the server counts aggregates only.
+ * Follow a promise, an actor, a policy area, a deadline window or everything
+ * (PRD F7): RSS, email (double opt-in) or the Telegram bot. No account. The
+ * consent text sits next to the email form; Telegram shows it in the bot
+ * before anyone follows. Nothing here sends analytics with ids; the server
+ * counts aggregates only.
  */
 
-export type FollowKind = "promise" | "actor" | "area" | "all";
+export type FollowKind = "promise" | "actor" | "area" | "deadline_window" | "all";
 export interface FollowTarget {
   kind: FollowKind;
   id: string;
@@ -26,10 +27,21 @@ export interface FollowOptions {
 
 // These two must match feedPath and telegramPayload in @ledger/server/follow (M3b shared conventions).
 function feedPath(t: FollowTarget): string {
-  return t.kind === "all" ? "/feeds/all.xml" : `/feeds/${t.kind}/${t.id}.xml`;
+  if (t.kind === "all") return "/feeds/all.xml";
+  if (t.kind === "deadline_window") return `/feeds/deadlines/${t.id}.xml`;
+  return `/feeds/${t.kind}/${t.id}.xml`;
 }
 function telegramPayload(t: FollowTarget): string {
-  return t.kind === "all" ? "all" : `${{ promise: "p", actor: "a", area: "r" }[t.kind]}_${t.id}`;
+  return t.kind === "all" ? "all" : `${{ promise: "p", actor: "a", area: "r", deadline_window: "d" }[t.kind]}_${t.id}`;
+}
+
+/** What the panel says an alert is about. */
+function aboutText(t: FollowTarget): string {
+  if (t.kind === "deadline_window")
+    return "Get an alert when a promise due in this window is delivered or its deadline passes, and once a month a list of what is coming due. No account needed.";
+  if (t.kind === "all")
+    return "Get an alert when any promise changes, a contract behind one moves, or new official figures change the Statement. No account needed.";
+  return "Get an alert when a status, deadline, wording, cost or contract changes, or when someone named replies. No account needed.";
 }
 
 type Channel = "email" | "telegram" | "rss";
@@ -76,16 +88,21 @@ function useFollowerCount(t: FollowTarget): number | null {
 export interface FollowPanelProps {
   /** Element id (the opening button's aria-controls). */
   id: string;
-  /** What to follow. Omit and pass `areas` to let the reader pick a policy area or everything. */
+  /** What to follow. Omit and pass `areas` and/or `windows` to let the reader pick. */
   target?: FollowTarget;
   areas?: { id: string; label: string }[];
+  /** Deadline windows to offer ("Due in the next 3 months"). */
+  windows?: { id: string; label: string }[];
+  /** What the picker starts on; default everything (or the first window when only windows are offered). */
+  initial?: FollowTarget;
   /** From a server component; fetched from /api/follow/options when omitted. */
   options?: FollowOptions;
 }
 
-export function FollowPanel({ id, target, areas, options }: FollowPanelProps) {
+export function FollowPanel({ id, target, areas, windows, initial, options }: FollowPanelProps) {
   const opts = useOptions(options);
-  const [picked, setPicked] = useState<FollowTarget>(target ?? { kind: "all", id: "*" });
+  const onlyWindows = !areas?.length && !!windows?.length;
+  const [picked, setPicked] = useState<FollowTarget>(target ?? initial ?? (onlyWindows ? { kind: "deadline_window", id: windows![0]!.id } : { kind: "all", id: "*" }));
   const t = target ?? picked;
   const [channel, setChannel] = useState<Channel>("email");
   const count = useFollowerCount(t);
@@ -96,9 +113,9 @@ export function FollowPanel({ id, target, areas, options }: FollowPanelProps) {
 
   return (
     <div id={id} className="grid gap-4 rounded-control bg-sunk p-3.5 sm:p-4">
-      <p className="m-0 text-label text-muted">Get an alert when a status, deadline, wording or cost changes, or when someone named replies. No account needed.</p>
+      <p className="m-0 text-label text-muted">{aboutText(t)}</p>
 
-      {!target && areas && (
+      {!target && (areas?.length || windows?.length) && (
         <div className="grid max-w-[340px] gap-1.5">
           <label htmlFor={`${id}-what`} className={fieldLabel}>
             What to follow
@@ -112,12 +129,35 @@ export function FollowPanel({ id, target, areas, options }: FollowPanelProps) {
               setPicked({ kind: kind as FollowKind, id: rest.join(":") });
             }}
           >
-            <option value="all:*">Every promise</option>
-            {areas.map((a) => (
-              <option key={a.id} value={`area:${a.id}`}>
-                {a.label}
-              </option>
-            ))}
+            {onlyWindows ? (
+              windows!.map((w) => (
+                <option key={w.id} value={`deadline_window:${w.id}`}>
+                  {w.label}
+                </option>
+              ))
+            ) : (
+              <>
+                <option value="all:*">Everything</option>
+                {!!areas?.length && (
+                  <optgroup label="A policy area">
+                    {areas.map((a) => (
+                      <option key={a.id} value={`area:${a.id}`}>
+                        {a.label}
+                      </option>
+                    ))}
+                  </optgroup>
+                )}
+                {!!windows?.length && (
+                  <optgroup label="Deadlines">
+                    {windows.map((w) => (
+                      <option key={w.id} value={`deadline_window:${w.id}`}>
+                        {w.label}
+                      </option>
+                    ))}
+                  </optgroup>
+                )}
+              </>
+            )}
           </select>
         </div>
       )}
@@ -376,7 +416,7 @@ export function FollowButton({
   label,
   trackKind,
   ...panel
-}: Omit<FollowPanelProps, "id"> & { label: string; trackKind: "promise" | "actor" | "area" }) {
+}: Omit<FollowPanelProps, "id"> & { label: string; trackKind: "promise" | "actor" | "area" | "deadline_window" }) {
   const [open, setOpen] = useState(false);
   const id = `follow-${useId().replace(/[^A-Za-z0-9_-]/g, "")}`;
   return (

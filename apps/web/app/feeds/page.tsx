@@ -5,14 +5,19 @@ import { feedTargets } from "./feed-response";
 
 const TITLE = "Feeds: follow promise changes in a feed reader | Public Ledger";
 const DESCRIPTION =
-  "Atom feeds for every tracked UK political promise, party, politician and policy area: each new timeline event, rewording and right of reply, with no sign-up.";
+  "Atom feeds for every tracked UK political promise, party, politician, policy area and deadline: each new timeline event, rewording, reply and contract change, plus new official figures, with no sign-up.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: {
     canonical: absolute("/feeds"),
-    types: { "application/atom+xml": [{ url: absolute("/feeds/all.xml"), title: "Public Ledger: every promise change" }] },
+    types: {
+      "application/atom+xml": [
+        { url: absolute("/feeds/all.xml"), title: "Public Ledger: every change" },
+        { url: absolute("/feeds/updates.xml"), title: "Public Ledger: updates to the figures" },
+      ],
+    },
   },
   openGraph: { title: TITLE, description: DESCRIPTION, type: "website", url: absolute("/feeds") },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
@@ -21,7 +26,11 @@ export const metadata: Metadata = {
 const FAQ = [
   {
     q: "What is in a feed?",
-    a: "One entry for each dated change on a promise card: a new timeline event (such as funded, legislated or deadline passed), a rewording of the promise, and any published reply from the person or party named on the card. Each entry links to the card.",
+    a: "One entry for each dated change on a promise card: a new timeline event (such as funded, legislated or deadline passed), a rewording of the promise, any published reply from the person or party named on the card, and each change to a public contract linked to it. Each entry links to the card.",
+  },
+  {
+    q: "What do the deadline feeds and the updates feed add?",
+    a: "A deadline feed tells you when a promise due in its window is delivered or its deadline passes, and each month lists the open promises coming due. The updates feed has data changes only: a contract behind a promise that moves or is newly linked, and each new OBR forecast or ONS release that changes the borrowing, income or spending the Statement shows.",
   },
   {
     q: "How do I use one?",
@@ -49,7 +58,7 @@ function FeedLink({ path, label }: { path: string; label: string }) {
 }
 
 export default function FeedsPage() {
-  const { promises, actors, areas } = feedTargets();
+  const { promises, actors, areas, windows } = feedTargets();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -57,7 +66,11 @@ export default function FeedsPage() {
     description: DESCRIPTION,
     url: absolute("/feeds"),
     inLanguage: "en-GB",
-    hasPart: [{ "@type": "DataFeed", name: "Every promise change", url: absolute("/feeds/all.xml"), encodingFormat: "application/atom+xml" }],
+    hasPart: [
+      { "@type": "DataFeed", name: "Every change", url: absolute("/feeds/all.xml"), encodingFormat: "application/atom+xml" },
+      { "@type": "DataFeed", name: "Updates to the figures", url: absolute("/feeds/updates.xml"), encodingFormat: "application/atom+xml" },
+      ...windows.map((w) => ({ "@type": "DataFeed", name: w.title, url: absolute(`/feeds/deadlines/${w.id}.xml`), encodingFormat: "application/atom+xml" })),
+    ],
     mainEntity: {
       "@type": "FAQPage",
       mainEntity: FAQ.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
@@ -73,8 +86,8 @@ export default function FeedsPage() {
         <div className="grid gap-3">
           <h1 className="m-0 text-[clamp(30px,4.4vw,44px)] font-semibold leading-[1.06] tracking-[-0.035em]">Follow changes in a feed reader</h1>
           <p className="m-0 max-w-[62ch] text-lead text-muted">
-            Every promise card, party, politician and policy area has an Atom feed. Each entry is one change: a new timeline event, a rewording or a published
-            reply. No sign-up needed.
+            Every promise card, party, politician, policy area and deadline window has an Atom feed. Each entry is one change: a new timeline event, a
+            rewording, a published reply or a contract that moved. No sign-up needed.
           </p>
         </div>
 
@@ -83,7 +96,20 @@ export default function FeedsPage() {
             Everything
           </h2>
           <ul className="m-0 list-none p-0">
-            <FeedLink path="/feeds/all.xml" label="Every change to every promise" />
+            <FeedLink path="/feeds/all.xml" label="Every change, including new figures" />
+            <FeedLink path="/feeds/updates.xml" label="Updates to the figures only: contracts and new editions" />
+          </ul>
+        </section>
+
+        <section aria-labelledby="due-h" className={section}>
+          <h2 id="due-h" className={h2}>
+            By deadline
+          </h2>
+          <p className="m-0 text-label text-muted">Outcomes of promises due in the window, and each month what is coming due.</p>
+          <ul className="m-0 list-none p-0">
+            {windows.map((w) => (
+              <FeedLink key={w.id} path={`/feeds/deadlines/${w.id}.xml`} label={w.title} />
+            ))}
           </ul>
         </section>
 
