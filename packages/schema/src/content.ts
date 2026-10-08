@@ -143,19 +143,18 @@ export function fieldAt(entry: unknown, tail: string): unknown {
   return v === undefined ? null : v;
 }
 
-/** Keys a correction path may never name: they would write to Object.prototype instead of the card. */
-const UNSAFE_KEYS = new Set(["__proto__", "constructor", "prototype"]);
-
+/** A correction path may never name __proto__, constructor or prototype: that would write to Object.prototype. */
 function withField(entry: unknown, tail: string, value: unknown): unknown {
   const keys = tail.split(".").filter(Boolean);
-  if (keys.some((k) => UNSAFE_KEYS.has(k))) throw new Error(`unsafe correction path: ${tail}`);
   const copy = structuredClone(entry) as Record<string, unknown>;
   let o = copy;
-  keys.slice(0, -1).forEach((k) => {
+  for (const k of keys.slice(0, -1)) {
+    if (k === "__proto__" || k === "constructor" || k === "prototype") throw new Error(`unsafe correction path: ${tail}`);
     if (!o[k] || typeof o[k] !== "object") o[k] = {};
     o = o[k] as Record<string, unknown>;
-  });
+  }
   const last = keys.at(-1)!;
+  if (last === "__proto__" || last === "constructor" || last === "prototype") throw new Error(`unsafe correction path: ${tail}`);
   if (value === null) delete o[last];
   else o[last] = value;
   return copy;
