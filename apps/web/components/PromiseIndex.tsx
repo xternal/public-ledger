@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
-import type { CardView, PolicyArea, Range, Status } from "@ledger/schema";
+import { useEffect, useMemo, useState } from "react";
+import type { CardView, PolicyArea, Status } from "@ledger/schema";
 import { STATUS_LABEL } from "@/lib/copy";
-import { gbpBn, rangeText, signedBn } from "@/lib/format";
-import { AREA_LABEL, STATUS_ORDER, TERMINAL, costSense, isOverdue, shortName, todayIso } from "@/lib/promises";
-import { NO_FILTERS, OwnerChips, SORT_LABEL, ownerOptions, passes, sortCards, type Filters, type Sort } from "./PromiseFilters";
+import { AREA_LABEL, STATUS_ORDER, shortName, todayIso } from "@/lib/promises";
+import { ChipRow, NO_FILTERS, OwnerChips, SORT_LABEL, ownerOptions, passes, sortCards, type Filters, type Sort } from "./PromiseFilters";
 import { PromiseList } from "./PromiseList";
 
 function readFilters(): Filters {
@@ -23,10 +22,9 @@ function readFilters(): Filters {
 }
 
 /**
- * /promises: every card. A search box, a row of party chips and three
- * selects narrow the list; each option shows how many cards it would leave.
- * A line of counts sums up what is shown. Filters live in the URL, so a view
- * can be shared.
+ * /promises: every card. Labelled rows of chips (party, status, each with its
+ * count), a topic menu and a search box narrow the list; one line says what
+ * is shown. Filters live in the URL, so a view can be shared.
  */
 export function PromiseIndex({ cards }: { cards: CardView[] }) {
   const [f, setF] = useState<Filters>(NO_FILTERS);
@@ -56,15 +54,9 @@ export function PromiseIndex({ cards }: { cards: CardView[] }) {
 
   const forOwners = without("party");
   const owners = ownerOptions(cards, forOwners);
-  const forPeople = without("actor");
-  const people = uniqActors(cards.filter((c) => c.actor.kind === "person" || c.actor.id === f.actor)).map((a) => ({
-    value: a.id,
-    label: a.name,
-    count: forPeople.filter((c) => c.actor.id === a.id).length,
-  }));
   const forStatus = without("status");
   const statuses = STATUS_ORDER.filter((s) => cards.some((c) => c.file.status === s)).map((s) => ({
-    value: s,
+    id: s,
     label: STATUS_LABEL[s],
     count: forStatus.filter((c) => c.file.status === s).length,
   }));
@@ -72,133 +64,72 @@ export function PromiseIndex({ cards }: { cards: CardView[] }) {
   const areas = ([...new Set(cards.map((c) => c.file.policy_area))] as PolicyArea[])
     .sort((a, b) => AREA_LABEL[a].localeCompare(AREA_LABEL[b]))
     .map((a) => ({ value: a, label: AREA_LABEL[a], count: forArea.filter((c) => c.file.policy_area === a).length }));
-  const overdueCount = without("overdue").filter((c) => isOverdue(c, today)).length;
 
   const active = activeFilters(f, cards);
-  const narrowedToOne = !!(f.party || f.actor);
+  const order = f.sort === "newest" ? "newest first" : SORT_LABEL[f.sort].toLowerCase();
+  const resultLine = shown.length === cards.length ? `All ${cards.length} promises, ${order}.` : `${shown.length} of ${cards.length} promises, ${order}.`;
+  const row = "grid items-center gap-x-6 gap-y-2 md:grid-cols-[5.5rem_minmax(0,1fr)]";
+  const rowLabel = "text-label text-muted";
 
   return (
     <div className="grid gap-5">
-      <form className="grid gap-4" onSubmit={(e) => e.preventDefault()} role="search" aria-label="Filter promises">
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-[minmax(0,1.6fr)_repeat(3,minmax(0,1fr))]">
-          <label className="col-span-2 grid gap-1 text-caption text-muted md:col-span-1">
-            Search
-            <span className="relative">
+      <form className="grid gap-4 border-t border-line pt-6" onSubmit={(e) => e.preventDefault()} role="search" aria-label="Filter promises">
+        <div className={row}>
+          <span className={rowLabel}>Party</span>
+          <OwnerChips options={owners} total={forOwners.length} value={f.party} onChange={(id) => set("party", id)} />
+        </div>
+        <div className={row}>
+          <span className={rowLabel}>Status</span>
+          <ChipRow label="Status" allLabel="Any" options={statuses} total={forStatus.length} value={f.status} onChange={(id) => set("status", id)} />
+        </div>
+        <div className={row}>
+          <span className={rowLabel}>Topic</span>
+          <div className="grid gap-3 sm:grid-cols-[minmax(0,16rem)_minmax(0,1fr)]">
+            <Select value={f.area} onChange={(v) => set("area", v)} options={areas} allLabel="All topics" label="Topic" />
+            <label className="relative">
+              <span className="sr-only">Search the promises</span>
               <svg aria-hidden viewBox="0 0 16 16" className="pointer-events-none absolute left-3 top-1/2 size-3.5 -translate-y-1/2 text-faint">
                 <circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
                 <path d="m10.5 10.5 3 3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
               </svg>
-              <input
-                type="search"
-                className="field-input pl-8"
-                placeholder="Words from the promise, a name, a topic"
-                value={f.q}
-                onChange={(e) => set("q", e.target.value)}
-              />
-            </span>
-          </label>
-          <Field label="Status">
-            <Select value={f.status} onChange={(v) => set("status", v)} options={statuses} />
-          </Field>
-          <Field label="Area">
-            <Select value={f.area} onChange={(v) => set("area", v)} options={areas} />
-          </Field>
-          <Field label="Person" className="col-span-2 md:col-span-1">
-            <Select value={f.actor} onChange={(v) => set("actor", v)} options={people} allLabel="Anyone" />
-          </Field>
+              <input type="search" className="field-input pl-8" placeholder="Search words, names, places" value={f.q} onChange={(e) => set("q", e.target.value)} />
+            </label>
+          </div>
         </div>
-        <OwnerChips options={owners} total={forOwners.length} value={f.party} onChange={(id) => set("party", id)} />
       </form>
 
-      <div className="grid gap-3 border-y border-line py-4">
-        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
-          <Summary cards={shown} today={today} total={cards.length} withCost={narrowedToOne} />
-          <label className="flex items-center gap-2 text-label text-muted">
-            Sort
-            <span className="w-52">
-              <Select value={f.sort} onChange={(v) => set("sort", v as Sort)} options={Object.entries(SORT_LABEL).map(([value, label]) => ({ value, label }))} allLabel={null} />
-            </span>
-          </label>
-        </div>
-        <div className="flex flex-wrap items-center gap-2 text-label">
-          <label className={`flex items-center gap-2 ${overdueCount || f.overdue ? "cursor-pointer text-ink" : "text-faint"}`}>
-            <input
-              type="checkbox"
-              className="switch"
-              checked={f.overdue}
-              disabled={!overdueCount && !f.overdue}
-              onChange={(e) => set("overdue", e.target.checked)}
-            />
-            Only promises past their deadline <span className="tabular-nums text-muted">{overdueCount}</span>
-          </label>
-          {active.length > 0 && (
-            <span className="flex flex-wrap items-center gap-2 md:ml-auto">
-              <span className="text-muted">Showing:</span>
-              {active.map((a) => (
-                <button
-                  key={a.key}
-                  type="button"
-                  onClick={() => set(a.key, NO_FILTERS[a.key])}
-                  className="inline-flex cursor-pointer items-center gap-1 rounded-full bg-sunk px-2.5 py-1 text-caption font-medium text-ink hover:shadow-[inset_0_0_0_1px_var(--line-strong)]"
-                  aria-label={`Remove filter: ${a.label}`}
-                >
-                  {a.label} <span aria-hidden>×</span>
-                </button>
-              ))}
-              <button type="button" onClick={() => setF((x) => ({ ...NO_FILTERS, sort: x.sort }))} className="cursor-pointer font-medium text-ink underline underline-offset-2">
-                Clear all
-              </button>
-            </span>
+      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-line pt-4 text-label">
+        <span className="text-muted" aria-live="polite">
+          {resultLine}
+        </span>
+        <span className="flex flex-wrap items-center gap-2">
+          {active.map((a) => (
+            <button
+              key={a.key}
+              type="button"
+              onClick={() => set(a.key, NO_FILTERS[a.key])}
+              className="inline-flex cursor-pointer items-center gap-1 rounded-full bg-sunk px-2.5 py-1 text-caption font-medium text-ink hover:shadow-[inset_0_0_0_1px_var(--line-strong)]"
+              aria-label={`Remove filter: ${a.label}`}
+            >
+              {a.label} <span aria-hidden>×</span>
+            </button>
+          ))}
+          {active.length > 1 && (
+            <button type="button" onClick={() => setF((x) => ({ ...NO_FILTERS, sort: x.sort }))} className="cursor-pointer font-medium text-ink underline underline-offset-2">
+              Clear all
+            </button>
           )}
-        </div>
+          <label className="flex items-center gap-2 text-muted">
+            Sort
+            <span className="w-48">
+              <Select value={f.sort} onChange={(v) => set("sort", v as Sort)} options={Object.entries(SORT_LABEL).map(([value, label]) => ({ value, label }))} allLabel={null} label="Sort" />
+            </span>
+          </label>
+        </span>
       </div>
 
       <PromiseList cards={shown} today={today} empty="No promises match these filters. Remove one above, or clear them all." />
     </div>
-  );
-}
-
-/** The counts for what is shown: a line of numbers first, words second. */
-function Summary({ cards, today, total, withCost }: { cards: CardView[]; today: string | null; total: number; withCost: boolean }) {
-  const live = cards.filter((c) => !TERMINAL.includes(c.file.status)).length;
-  const delivered = cards.filter((c) => c.file.status === "delivered").length;
-  const broken = cards.filter((c) => c.file.status === "failed" || c.file.status === "quietly_dropped").length;
-  const overdue = cards.filter((c) => isOverdue(c, today)).length;
-  const costed = cards.filter((c) => c.current.parameters?.how_much_bn_per_year);
-  const items: { n: ReactNode; label: string; tone?: string }[] = [
-    { n: cards.length, label: cards.length === total ? (cards.length === 1 ? "promise" : "promises") : `of ${total} promises` },
-    { n: live, label: "in progress" },
-    { n: delivered, label: "delivered" },
-    { n: broken, label: "not met or undone" },
-    { n: overdue, label: "past deadline", tone: overdue ? "text-debt-ink" : undefined },
-    { n: costed.length, label: "with a cost" },
-  ];
-  // A net cost only means something for one party or person: adding up rival parties' promises would not.
-  if (withCost && costed.length) {
-    const sum = costed.reduce<Range>(
-      (acc, c) => {
-        const r = c.current.parameters!.how_much_bn_per_year!;
-        return [acc[0] + r[0], acc[1] + r[1], acc[2] + r[2]];
-      },
-      [0, 0, 0],
-    );
-    if (sum[0] < 0 && sum[2] > 0) {
-      // The range runs from raising money to costing it: keep the signs.
-      items.push({ n: rangeText(sum, signedBn), label: "net a year (+ costs, − raises)" });
-    } else {
-      const { raises, abs } = costSense(sum);
-      items.push({ n: rangeText(abs, gbpBn), label: raises ? "net raised a year" : "net cost a year" });
-    }
-  }
-  return (
-    <dl className="m-0 flex flex-wrap gap-x-6 gap-y-3" aria-live="polite">
-      {items.map((it) => (
-        <div key={it.label} className="grid gap-0.5">
-          <dt className="order-2 text-caption text-muted">{it.label}</dt>
-          <dd className={`order-1 m-0 text-[22px] font-semibold leading-none tracking-[var(--tracking-figure)] tabular-nums ${it.tone ?? ""}`}>{it.n}</dd>
-        </div>
-      ))}
-    </dl>
   );
 }
 
@@ -214,18 +145,7 @@ function activeFilters(f: Filters, cards: CardView[]): { key: keyof Filters; lab
   return out;
 }
 
-function uniqActors(cards: CardView[]) {
-  return [...new Map(cards.map((c) => [c.actor.id, c.actor])).values()].sort((a, b) => a.name.localeCompare(b.name));
-}
 
-function Field({ label, children, className = "" }: { label: string; children: ReactNode; className?: string }) {
-  return (
-    <label className={`grid gap-1 text-caption text-muted ${className}`}>
-      {label}
-      {children}
-    </label>
-  );
-}
 
 interface Option {
   value: string;
@@ -234,10 +154,10 @@ interface Option {
 }
 
 /** A native select; options that would leave no cards are disabled, unless chosen. */
-function Select({ value, onChange, options, allLabel = "All" }: { value: string; onChange: (v: string) => void; options: Option[]; allLabel?: string | null }) {
+function Select({ value, onChange, options, allLabel = "All", label }: { value: string; onChange: (v: string) => void; options: Option[]; allLabel?: string | null; label?: string }) {
   return (
     <span className="relative">
-      <select className="select pr-8 text-ink" value={value} onChange={(e) => onChange(e.target.value)}>
+      <select className="select pr-8 text-ink" aria-label={label} value={value} onChange={(e) => onChange(e.target.value)}>
         {allLabel !== null && <option value="">{allLabel}</option>}
         {options.map((o) => (
           <option key={o.value} value={o.value} disabled={o.count === 0 && o.value !== value}>

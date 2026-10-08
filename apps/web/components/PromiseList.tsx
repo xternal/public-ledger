@@ -1,5 +1,5 @@
 import type { CardView, Status } from "@ledger/schema";
-import { AREA_LABEL, costCell, isOverdue, whoShort } from "@/lib/promises";
+import { AREA_LABEL, STANDING_LABEL, costText, isOverdue, ownerOf, shortName, standingOf } from "@/lib/promises";
 import { STATUS_LABEL } from "@/lib/copy";
 import { longDate, monthYear } from "@/lib/format";
 import { latestReview, reviewerLabel } from "@/lib/reviews";
@@ -41,51 +41,50 @@ export function PromiseList({ cards, today, empty }: { cards: CardView[]; today:
   );
 }
 
+/**
+ * One row, read left to right: who made it and where they stand (in
+ * government, in opposition), then the promise in their words with its
+ * status, topic, cost a year and any deadline underneath.
+ */
 function PromiseRow({ c, today }: { c: CardView; today: string | null }) {
-  const cost = costCell(c);
   const review = latestReview(c.file);
   const overdue = isOverdue(c, today);
-  const fundingUnstated = c.current.parameters?.funded_by === null;
+  const owner = ownerOf(c);
+  const standing = standingOf(c);
+  const speaker = c.actor.kind === "person" ? c.actor.name : null;
   return (
     <a
       href={`/promise/${c.id}`}
-      className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-6 gap-y-2.5 px-3 py-4 text-ink no-underline transition-colors hover:bg-sunk md:grid-cols-[minmax(0,1fr)_10rem_11rem]"
+      className="grid gap-x-8 gap-y-2 px-3 py-5 text-ink no-underline transition-colors hover:bg-sunk md:grid-cols-[11rem_minmax(0,1fr)]"
     >
-      <span className="col-span-2 grid min-w-0 gap-1.5 md:col-span-1">
-        <span className="line-clamp-3 text-[16px] font-[550] leading-snug tracking-[-0.01em]">“{c.current.text}”</span>
-        <span className="text-label text-muted">
-          {whoShort(c)} · {longDate(c.file.made_on)} · {AREA_LABEL[c.file.policy_area]}
-        </span>
+      <span className="flex flex-wrap items-baseline gap-x-2 md:grid md:content-start md:gap-0.5">
+        <span className="text-sm font-semibold">{shortName(owner)}</span>
+        {standing && <span className="text-caption text-muted">{STANDING_LABEL[standing]}</span>}
       </span>
 
-      <span className="grid content-start justify-items-start gap-1">
-        <span className="flex items-center gap-1.5">
+      <span className="grid min-w-0 gap-2">
+        <span className="line-clamp-3 text-[16px] font-[550] leading-snug tracking-[-0.01em]">“{c.current.text}”</span>
+        <span className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px] text-muted">
           <StatusPill status={c.file.status} />
           {review && (
-            <span className="text-caption text-good" title={`Reviewed by ${reviewerLabel(review)}`}>
+            <span className="-ml-1.5 text-caption text-good" title={`Reviewed by ${reviewerLabel(review)}`}>
               <span aria-hidden>✓</span>
               <span className="sr-only">Reviewed by {reviewerLabel(review)}</span>
             </span>
           )}
+          {c.outcomeBy && <span className="font-medium text-ink">by {c.outcomeBy.name}</span>}
+          <span>{AREA_LABEL[c.file.policy_area]}</span>
+          <span>{costText(c)}</span>
+          {overdue ? (
+            <span className="font-medium text-debt-ink">Deadline passed, {monthYear(c.file.deadline!)}</span>
+          ) : (
+            c.file.deadline && <span>Due {monthYear(c.file.deadline)}</span>
+          )}
+          <span>
+            {speaker ? `${speaker}, ` : ""}
+            {longDate(c.file.made_on)}
+          </span>
         </span>
-        {c.outcomeBy && <span className="text-caption font-medium text-ink">by {c.outcomeBy.name}</span>}
-        {overdue ? (
-          <span className="text-caption font-medium text-debt-ink">Deadline passed, {monthYear(c.file.deadline!)}</span>
-        ) : (
-          c.file.deadline && <span className="text-caption text-muted">Due {monthYear(c.file.deadline)}</span>
-        )}
-      </span>
-
-      <span className="grid content-start justify-items-end gap-0.5 text-right">
-        {cost.amount ? (
-          <>
-            <span className="whitespace-nowrap text-[15px] font-semibold tabular-nums tracking-[-0.01em]">{cost.amount}</span>
-            <span className="text-caption text-muted">{cost.label}</span>
-          </>
-        ) : (
-          <span className="text-label text-muted">{cost.label}</span>
-        )}
-        {fundingUnstated && <span className="text-caption text-muted">Funding not stated</span>}
       </span>
     </a>
   );

@@ -2,6 +2,7 @@ id: snp
 name: Scottish National Party
 short_name: SNP
 kind: party
+standing: opposition
 # UK Parliament Members API party id (https://members-api.parliament.uk/api/Parties/GetActive/1)
 parliament_party_id: 29
 roles: []
