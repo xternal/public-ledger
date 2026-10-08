@@ -5,6 +5,7 @@
  * Red and green appear only on deltas and statuses.
  */
 :root {
+  --mark-tile: #101820;
   --bg: #ffffff;
   --surface: #ffffff;
   --sunk: #f5f5f6;
@@ -35,6 +36,7 @@
 /* Dark mode: deep navy slate (#101820, the owner's choice), not black; every text colour passes WCAG AA on bg, surface and sunk. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    --mark-tile: #1a2531;
     --bg: #101820;
     --surface: #131d27;
     --sunk: #1a2531;
@@ -62,6 +64,7 @@
 }
 
 :root[data-theme="dark"] {
+  --mark-tile: #1a2531;
   --bg: #101820;
   --surface: #131d27;
   --sunk: #1a2531;

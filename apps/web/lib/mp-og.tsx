@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { OG, ogFonts } from "@/lib/og";
+import { MARK_DATA_URI } from "@/lib/brand";
 
 /** Share image for /mp and /mp/<constituency>: built from the constituency list alone, so it never waits on Parliament. */
 export async function mpShareImage(eyebrow: string, heading: string): Promise<ImageResponse> {
@@ -13,10 +14,7 @@ export async function mpShareImage(eyebrow: string, heading: string): Promise<Im
   return new ImageResponse(
     <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%", background: OG.bg, color: OG.ink, padding: "56px 64px", fontFamily: "Geist" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 28, fontWeight: 600 }}>
-        <div style={{ display: "flex", width: 22, height: 22, borderRadius: 5, overflow: "hidden" }}>
-          <div style={{ width: "55%", height: "100%", background: OG.rec }} />
-          <div style={{ width: "45%", height: "100%", background: OG.debt }} />
-        </div>
+        <img src={MARK_DATA_URI} width={28} height={28} alt="" />
         Public Ledger
       </div>
       <div style={{ display: "flex", fontSize: 30, color: OG.muted, marginTop: 52 }}>{eyebrow}</div>
