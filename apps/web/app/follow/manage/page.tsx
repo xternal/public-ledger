@@ -15,6 +15,7 @@ type Props = { searchParams: Promise<Record<string, string | string[] | undefine
 
 const DONE: Record<string, string> = {
   confirmed: "Thanks, you are following.",
+  added: "Done. They are added to what you follow.",
   weekly: "Done. You will get a weekly digest on Mondays, only when something changed.",
   instant: "Done. You will get an email each time something you follow changes.",
   removed: "Done. You no longer follow that.",
@@ -129,7 +130,8 @@ export default async function ManagePage({ searchParams }: Props) {
             Stop all alerts
           </h2>
           <p className="m-0 max-w-[60ch] text-sm text-muted">
-            This deletes your address, your consent record and everything you follow, at once. Nothing is kept. To follow again later, you sign up again.
+            This deletes your address, your consent record and everything you follow, at once. To follow again later, you sign up again. The{" "}
+            <a href="/privacy">privacy notice</a> says what we keep and for how long.
           </p>
           <form method="post" action="/api/follow/manage">
             <input type="hidden" name="t" value={t} />

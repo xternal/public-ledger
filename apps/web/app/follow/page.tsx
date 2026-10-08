@@ -33,7 +33,8 @@ export default function FollowPage() {
           </h2>
           <p className="m-0">
             Open a <a href="/promises">promise</a> or a politician&apos;s page and press Follow. Then pick email, Telegram or an RSS feed. Email asks you to
-            confirm first. You can also follow a whole policy area, or everything:
+            confirm first, and again each time you add something, so nobody else can add to your alerts. You can also follow a whole policy area, or
+            everything:
           </p>
           <FollowButton label="Follow a policy area or everything" trackKind="area" areas={areas} windows={followWindows()} options={followOptions()} />
           <p className="m-0">
@@ -52,8 +53,8 @@ export default function FollowPage() {
             Change or stop your alerts
           </h2>
           <p className="m-0">
-            Every email has a link to change what you follow, switch to a weekly digest, or stop all alerts and delete your address. Use the link in your latest
-            email: each email has a fresh one, and links in older emails stop working.
+            Every email has a link to change what you follow, switch to a weekly digest, or stop all alerts and delete your address. It is the same link in
+            every email, so any of them works. Keep it to yourself: anyone who has it can change your alerts.
           </p>
           <p className="m-0">On Telegram, send /list, /unfollow or /stop to the bot. /stop deletes everything at once.</p>
         </section>
@@ -67,7 +68,10 @@ export default function FollowPage() {
               <li key={p}>{p}</li>
             ))}
           </ul>
-          <p className="m-0 text-muted">RSS feeds store nothing at all.</p>
+          <p className="m-0 text-muted">
+            RSS feeds store nothing at all. The <a href="/privacy">privacy notice</a> says who runs Public Ledger, how long we keep things and how to have
+            them deleted.
+          </p>
         </section>
       </main>
     </>

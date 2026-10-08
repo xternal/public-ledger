@@ -78,7 +78,7 @@ export function MpLookup() {
           </button>
         </div>
         <p id="mp-q-privacy" className="m-0 text-caption text-muted">
-          {LOOKUP_PRIVACY}
+          {LOOKUP_PRIVACY} <a href="/privacy">Privacy notice</a>
         </p>
       </form>
 

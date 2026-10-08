@@ -1,5 +1,15 @@
 // M3b triage: the editors' queue for reader submissions (PROMISE_STANDARD §8).
-export { adminGate, adminCredentials, checkAdminAuth, isSameOrigin, ADMIN_HEADERS, type AdminAuth, type AdminCredentials } from "./auth";
+export {
+  adminGate,
+  adminGateLimited,
+  adminCredentials,
+  checkAdminAuth,
+  isSameOrigin,
+  ADMIN_FAILED_SIGNIN_LIMIT,
+  ADMIN_HEADERS,
+  type AdminAuth,
+  type AdminCredentials,
+} from "./auth";
 export {
   listSubmissions,
   getSubmission,

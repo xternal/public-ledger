@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { isAlpha, MAKER, SITE_DESCRIPTION, SITE_NAME, siteUrl } from "@/lib/site";
+import { FooterLink } from "@/components/FooterLink";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -45,6 +46,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href={MAKER.coffee} rel="noopener noreferrer" target="_blank">
               Buy me a coffee
             </a>
+            <span aria-hidden>·</span>
+            <FooterLink href="/privacy">Privacy</FooterLink>
             <span aria-hidden>·</span>
             <a href="/method#licence">Our text: CC BY 4.0 · Data: Open Government Licence</a>
           </p>

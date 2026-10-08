@@ -315,6 +315,9 @@ function EmailForm({ id, target, consent }: { id: string; target: FollowTarget; 
                 <li key={p}>{p}</li>
               ))}
             </ul>
+            <p className="m-0">
+              Full details, including how long we keep things and your rights, are in the <a href="/privacy">privacy notice</a>.
+            </p>
           </div>
           <SpamCheck key={spamKey} onPayload={onPayload} />
         </>

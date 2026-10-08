@@ -10,6 +10,7 @@ import { pctGdp, per100, ratio, span, spendingSpan } from "@/lib/people-view";
 import { costText } from "@/lib/promises";
 import { absolute, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import { MP_DESCRIPTION } from "@/lib/mp-copy";
+import { PRIVACY_SUMMARY } from "@/lib/privacy-copy";
 
 export const dynamic = "force-static";
 
@@ -44,6 +45,7 @@ export function GET() {
     `- [Forecasts against what happened](${absolute("/method/backtest")}): every forecast the site shows is recorded and scored against the official outturn. ${backtestLead(backtestSummary(shown), firstRecorded)} Earlier official forecasts checked for context: ${context.scored}.`,
     `- [Open data API](${absolute("/method/api")}): the same data as JSON or CSV, free, no key.`,
     `- [Coming up](${absolute("/promises#coming-up")}): open promises due in the next 12 months, nearest deadline first. Readers can follow a deadline window (this month, next 3 months, next 12 months) by email, Telegram or feed.`,
+    `- [Privacy notice](${absolute("/privacy")}): ${PRIVACY_SUMMARY}`,
     `- [Atom feed of every change](${absolute("/feeds/all.xml")}): promise changes, contract changes and new editions of the headline figures.`,
     `- [Atom feed of updates to the figures](${absolute("/feeds/updates.xml")}): contracts behind promises that move or are linked, and new OBR forecasts or ONS releases that change the Statement.`,
     `- [Atom feed of promises due in the next 3 months](${absolute("/feeds/deadlines/next-3-months.xml")}): outcomes when they fall due, and a monthly list of what is coming due.`,

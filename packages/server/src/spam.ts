@@ -75,13 +75,18 @@ async function saltFor(db: Db, day: string): Promise<string> {
   return row!.salt;
 }
 
+/** Today's bucket for a client: HMAC(day's salt, client key). */
+async function bucketFor(db: Db, clientKey: string, now: Date): Promise<{ day: string; bucket: string }> {
+  const day = utcDay(now);
+  return { day, bucket: createHmac("sha256", await saltFor(db, day)).update(clientKey).digest("base64url") };
+}
+
 /**
  * Count one `action` for this client today and say whether it is within `limit`.
  * `clientKey` is the request IP (or any per-client string); it is never stored.
  */
 export async function rateLimit(db: Db, clientKey: string, action: string, limit: number, now = new Date()): Promise<boolean> {
-  const day = utcDay(now);
-  const bucket = createHmac("sha256", await saltFor(db, day)).update(clientKey).digest("base64url");
+  const { day, bucket } = await bucketFor(db, clientKey, now);
   const [row] = await db.query<{ count: number }>(
     `INSERT INTO rate_bucket (day, bucket_hash, action, count) VALUES ($1, $2, $3, 1)
      ON CONFLICT (day, bucket_hash, action) DO UPDATE SET count = rate_bucket.count + 1
@@ -89,6 +94,13 @@ export async function rateLimit(db: Db, clientKey: string, action: string, limit
     [day, bucket, action],
   );
   return Number(row!.count) <= limit;
+}
+
+/** How many times this client has done `action` today, without counting one more. */
+export async function rateCount(db: Db, clientKey: string, action: string, now = new Date()): Promise<number> {
+  const { day, bucket } = await bucketFor(db, clientKey, now);
+  const [row] = await db.query<{ count: number }>("SELECT count FROM rate_bucket WHERE day = $1 AND bucket_hash = $2 AND action = $3", [day, bucket, action]);
+  return Number(row?.count ?? 0);
 }
 
 /** Delete past salts and buckets and expired challenges. Run daily (alerts maintenance job). */

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CONFIRM_TTL_DAYS, confirmTokenState, pendingTargets, type ConfirmTokenState } from "@ledger/server/follow";
+import { CONFIRM_TTL_DAYS, CONSENT_POINTS, confirmView, type ConfirmView } from "@ledger/server/follow";
 import { getServer } from "@/lib/server";
 import { SiteHeader } from "@/components/SiteHeader";
 import { describeTarget } from "../targets";
@@ -13,8 +13,11 @@ export const metadata: Metadata = {
 
 type Props = { searchParams: Promise<Record<string, string | string[] | undefined>> };
 
+const h1 = "m-0 text-[clamp(26px,3.6vw,34px)] font-semibold leading-[1.15] tracking-[-0.025em]";
+
 /**
- * The link in the confirmation email lands here. Opening the page (GET) only
+ * The link in a confirmation email lands here: for a new sign-up, or for
+ * additions to alerts the address already gets. Opening the page (GET) only
  * reads; the button POSTs to /api/follow/confirm, because mail scanners open
  * links and must never confirm on someone's behalf.
  */
@@ -22,22 +25,24 @@ export default async function ConfirmPage({ searchParams }: Props) {
   const q = await searchParams;
   const t = typeof q.t === "string" ? q.t : "";
   const e = typeof q.e === "string" ? q.e : "";
-  let state: ConfirmTokenState = e === "expired" ? "expired" : "invalid";
-  let names: string[] = [];
+  let view: ConfirmView = { state: e === "expired" ? "expired" : "invalid", kind: "signup", targets: [] };
   if (t) {
     const { db } = await getServer();
-    state = await confirmTokenState(db, t);
-    if (state === "valid") names = (await pendingTargets(db, t)).map(describeTarget);
+    view = await confirmView(db, t);
   }
+  const names = view.targets.map(describeTarget);
+  const adding = view.kind === "addition";
 
   return (
     <>
       <SiteHeader current="/promises" />
       <main className="mx-auto grid max-w-[640px] gap-5 px-4 pb-20 pt-12 sm:px-6">
-        {state === "valid" ? (
+        {view.state === "valid" ? (
           <>
-            <h1 className="m-0 text-[clamp(26px,3.6vw,34px)] font-semibold leading-[1.15] tracking-[-0.025em]">Confirm your alerts</h1>
-            <p className="m-0 text-lead text-muted">Press the button to start getting alerts about:</p>
+            <h1 className={h1}>{adding ? "Add to your alerts" : "Confirm your alerts"}</h1>
+            <p className="m-0 text-lead text-muted">
+              {adding ? "Press the button to add these to the alerts you already get:" : "Press the button to start getting alerts about:"}
+            </p>
             <ul className="m-0 grid list-disc gap-1.5 pl-5 text-sm">
               {names.map((n) => (
                 <li key={n}>{n}</li>
@@ -50,12 +55,25 @@ export default async function ConfirmPage({ searchParams }: Props) {
               </button>
             </form>
             <p className="m-0 text-[12.5px] text-muted">
-              Did not ask for this? Close this page. Nothing is followed, and we delete the address after {CONFIRM_TTL_DAYS} days.
+              {adding
+                ? `Did not ask for this? Close this page. Nothing is added, and we delete the request after ${CONFIRM_TTL_DAYS} days.`
+                : `Did not ask for this? Close this page. Nothing is followed, and we delete the address after ${CONFIRM_TTL_DAYS} days.`}
             </p>
+            <details className="text-[12.5px] text-muted">
+              <summary className="cursor-pointer font-medium text-ink">What you agree to</summary>
+              <ul className="mb-0 mt-2 grid list-disc gap-1 pl-4">
+                {CONSENT_POINTS.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
+              </ul>
+              <p className="mb-0 mt-2">
+                Full details are in the <a href="/privacy">privacy notice</a>.
+              </p>
+            </details>
           </>
-        ) : state === "expired" ? (
+        ) : view.state === "expired" ? (
           <>
-            <h1 className="m-0 text-[clamp(26px,3.6vw,34px)] font-semibold leading-[1.15] tracking-[-0.025em]">This link has expired</h1>
+            <h1 className={h1}>This link has expired</h1>
             <p className="m-0 text-lead text-muted">
               Confirmation links work for {CONFIRM_TTL_DAYS} days. Open the promise again and press Follow, and we will send a new one.
             </p>
@@ -65,7 +83,7 @@ export default async function ConfirmPage({ searchParams }: Props) {
           </>
         ) : (
           <>
-            <h1 className="m-0 text-[clamp(26px,3.6vw,34px)] font-semibold leading-[1.15] tracking-[-0.025em]">This link does not work</h1>
+            <h1 className={h1}>This link does not work</h1>
             <p className="m-0 text-lead text-muted">
               It may have been used already or replaced by a newer email. If you have already confirmed, use the manage link in any email from us.
             </p>

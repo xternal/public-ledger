@@ -349,7 +349,8 @@ export function ContributeForm({
             {...a11y("contact_email", "sub-email-hint")}
           />
           <p id="sub-email-hint" className={hint}>
-            Stored encrypted and never shown. The receipt has a link to delete it at any time.
+            Stored encrypted and never shown. Deleted once the editors decide, or after 90 days at most; your receipt has a link to delete it sooner.{" "}
+            <a href="/privacy">Privacy notice</a>
           </p>
           {err("contact_email")}
         </div>

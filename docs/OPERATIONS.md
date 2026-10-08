@@ -102,7 +102,9 @@ changes a card.
 ## 6. Editors' triage (`/admin`)
 
 * Interim: set `ADMIN_USER` and `ADMIN_PASSWORD` (long, random). With either
-  unset, `/admin` returns 404.
+  unset, `/admin` returns 404. After 10 failed sign-ins in a UTC day, a
+  connection gets 429 until the next day, even with the right password
+  (counted by salted IP hash, deleted daily; `adminGateLimited`).
 * **Before launch**, put real sign-in in front: Vercel Authentication (Vercel
   plan with deployment protection for a path) or Cloudflare Access (free for
   small teams; email one-time codes or Google/Microsoft accounts).

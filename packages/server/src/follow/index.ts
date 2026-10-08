@@ -1,5 +1,5 @@
 // Follow (M3b): email double opt-in, manage links, Telegram bot, follower counts.
-export { CONSENT_POINTS, CONSENT_TEXT, CONSENT_VERSION } from "./consent";
+export { CONSENT_POINTS, CONSENT_TEXT, CONSENT_VERSION, PRIVACY_PATH } from "./consent";
 export {
   CADENCES,
   TARGET_KINDS,
@@ -25,6 +25,7 @@ export {
   confirmEmailFollow,
   confirmTokenState,
   confirmUrl,
+  confirmView,
   deleteByManageToken,
   followerCount,
   linksFor,
@@ -33,6 +34,8 @@ export {
   manageView,
   maskEmail,
   pendingTargets,
+  privacyUrl,
+  prunePendingAdditions,
   pruneUnconfirmed,
   removeTarget,
   requestEmailFollow,
@@ -46,6 +49,7 @@ export {
   unsubscribeUrl,
   type ConfirmResult,
   type ConfirmTokenState,
+  type ConfirmView,
   type FollowContext,
   type ManageView,
   type RemoveResult,

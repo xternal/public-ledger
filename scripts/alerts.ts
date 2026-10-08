@@ -7,7 +7,8 @@
  *   pnpm alerts -- digest                              send the weekly digest; in the first week of a
  *                                                      UK month, also the monthly "coming due" list
  *   pnpm alerts -- maintain                            daily clean-up (old deliveries, unconfirmed
- *                                                      sign-ups, rate-limit salts), then announce
+ *                                                      sign-ups and additions, submitter emails past
+ *                                                      90 days, rate-limit salts), then announce
  *                                                      data changes (below)
  *   pnpm alerts -- data [--after <sha>]                announce data changes only
  *   pnpm alerts -- due                                 send this month's "coming due" list now
@@ -216,7 +217,9 @@ async function main() {
       return;
     }
     const report = await runMaintenance(db);
-    console.log(`Maintenance: deleted ${report.deliveries} old delivery record(s), ${report.unconfirmed} unconfirmed sign-up(s), ${report.outbox} old outbox mail(s); pruned rate-limit state.`);
+    console.log(
+      `Maintenance: deleted ${report.deliveries} old delivery record(s), ${report.unconfirmed} unconfirmed sign-up(s), ${report.pendingAdditions} unconfirmed addition(s), ${report.submitterEmails} submitter email(s) past 90 days, ${report.outbox} old outbox mail(s); pruned rate-limit state.`,
+    );
     if (!(await announceData(db, config, captured))) process.exitCode = 1;
     warnCaptured(config, captured);
   } finally {

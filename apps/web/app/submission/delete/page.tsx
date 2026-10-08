@@ -85,7 +85,7 @@ export default async function DeleteEmailPage({ searchParams }: Props) {
                 ? "There have been too many delete requests from this connection today. Try again tomorrow."
                 : error === "error"
                   ? "We could not delete your email just now. Open the link in your receipt again and press the button."
-                  : "It may have been used already, in which case your email is already deleted and there is nothing more to do."}
+                  : "Your email may already be deleted: by this link, or by us once the editors decided or 90 days passed. Either way, there is nothing more to do."}
             </p>
             <a href="/promises" className="justify-self-start text-label font-medium">
               All promises
