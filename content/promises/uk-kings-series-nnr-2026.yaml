@@ -1,0 +1,57 @@
+id: uk-kings-series-nnr-2026
+actor_id: natural-england
+made_on: "2026-10-07"
+venue: press_release
+venue_label: Press release (Natural England)
+policy_area: housing_env
+status: delivering
+status_note: >-
+  Natural England's notice of 19 March 2026 says Seven Sisters became the 13th National Nature Reserve in the King's
+  Series, halfway to 25; Lyscombe in Dorset was declared on 15 September 2026 as the latest. That notice gives the
+  target date as 2028, while the 7 October 2026 release says 2027; the card uses the date in the quote and reads
+  "by 2027" as the end of 2027.
+deadline: "2027-12-31"
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "Natural England press release, 7 Oct 2026: Pine marten caught on camera in Suffolk nature reserve 'first'"
+    url: https://www.gov.uk/government/news/pine-marten-caught-on-camera-in-suffolk-nature-reserve-first
+  - title: "Natural England, 19 Mar 2026: Iconic Seven Sisters formally declared England's new National Nature Reserve"
+    url: https://www.gov.uk/government/news/iconic-seven-sisters-formally-declared-englands-new-national-nature-reserve
+  - title: "Natural England, 15 Sep 2026: Rare species help Dorset nature reserve gain national recognition"
+    url: https://www.gov.uk/government/news/rare-species-help-dorset-nature-reserve-gain-national-recognition
+versions:
+  - version: 1
+    text: >-
+      That’s why Natural England is delivering the King’s Series of National Nature Reserves, which will create or
+      extend 25 NNRs by 2027, leaving a legacy for people and nature.
+    recorded_on: "2026-10-07"
+    source_url: https://www.gov.uk/government/news/pine-marten-caught-on-camera-in-suffolk-nature-reserve-first
+    quote_checked_on: "2026-10-08"
+    parameters:
+      who: >-
+        People and wildlife around new or extended National Nature Reserves in England, and the landowners and
+        partners who manage them
+      cost_note: No costing published in the release.
+      when: By 2027, as stated; Natural England's March 2026 notice says 2028
+      funded_by: null
+events:
+  - date: "2026-10-07"
+    type: promised
+    text: >-
+      Natural England says the King's Series will create or extend 25 National Nature Reserves by 2027
+  - date: "2026-10-07"
+    type: delivering
+    text: >-
+      Under way: Natural England reported the 13th King's Series reserve (Seven Sisters) on 19 March 2026, and
+      declared Lyscombe in Dorset on 15 September 2026
+    evidence_url: https://www.gov.uk/government/news/iconic-seven-sisters-formally-declared-englands-new-national-nature-reserve
+  - date: "2027-12-31"
+    type: deadline
+    text: 25 new or extended National Nature Reserves due (by 2027, as stated)
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-08"
+    note: Quote checked word for word at the live GOV.UK page; status, dates and the 2027/2028 difference checked against Natural England's own notices.
