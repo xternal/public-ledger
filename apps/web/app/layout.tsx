@@ -45,6 +45,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href={MAKER.coffee} rel="noopener noreferrer" target="_blank">
               Buy me a coffee
             </a>
+            <span aria-hidden>·</span>
+            <a href="/method#licence">Our text: CC BY 4.0 · Data: Open Government Licence</a>
           </p>
         </footer>
       </body>

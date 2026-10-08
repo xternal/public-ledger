@@ -34,8 +34,9 @@ export interface Licence {
 }
 
 const SOURCES_NOTE = "Every number names its source (sources[].licence gives each one's terms). Most are Crown copyright under the OGL; Bank of England and NATO figures follow their own terms.";
-const OWN_WORK_NOTE =
-  "Notes, summaries and statuses written by Public Ledger have no open licence yet: credit Public Ledger and link to the page they come from.";
+/** Public Ledger's own writing (status notes, cost notes, summaries, method pages): Creative Commons Attribution 4.0. */
+export const OWN_WORK_LICENCE = { name: "Creative Commons Attribution 4.0 (CC BY 4.0)", url: "https://creativecommons.org/licenses/by/4.0/" } as const;
+const OWN_WORK_NOTE = `Notes, summaries and statuses written by Public Ledger are licensed under ${OWN_WORK_LICENCE.name} (${OWN_WORK_LICENCE.url}): reuse them freely, crediting Public Ledger with a link to the page they come from.`;
 
 export type Dataset = "index" | "statement" | "promises" | "actors" | "forecasts" | "contracts" | "vintages";
 
