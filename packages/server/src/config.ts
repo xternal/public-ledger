@@ -26,8 +26,11 @@ export interface Config {
   lookupPepper: Buffer;
   /** HMAC key for ALTCHA challenges. */
   altchaKey: string;
-  /** "off": no email at all (e.g. an alpha before SES is set up); the site hides email options. */
-  mail: { provider: "ses" | "outbox" | "off"; from: string; replyTo?: string; sesRegion: string };
+  /**
+   * "resend" or "ses" send real mail; "outbox" writes it to a table (development);
+   * "off": no email at all (an alpha before mail is set up), and the site hides email options.
+   */
+  mail: { provider: "resend" | "ses" | "outbox" | "off"; from: string; replyTo?: string; sesRegion: string; resendApiKey: string | null };
   telegram: { botToken: string | null; botUsername: string | null; webhookSecret: string | null };
   /** Claude API key for pre-filling submissions; unset means no pre-fill. */
   anthropicApiKey: string | null;
@@ -60,7 +63,9 @@ function key(name: string, value: string | undefined, production: boolean): Buff
 export function loadConfig(env: Record<string, string | undefined> = process.env): Config {
   const production = env.LEDGER_ENV === "production";
   const stage = env.SITE_STAGE === "alpha" ? "alpha" : "live";
-  const provider = env.MAIL_PROVIDER === "off" ? "off" : env.MAIL_PROVIDER === "ses" || production ? "ses" : "outbox";
+  const provider =
+    env.MAIL_PROVIDER === "off" ? "off" : env.MAIL_PROVIDER === "resend" ? "resend" : env.MAIL_PROVIDER === "ses" || production ? "ses" : "outbox";
+  const sends = production && (provider === "ses" || provider === "resend");
   if (production && !env.DATABASE_URL) throw new Error("DATABASE_URL must be set in production (the local database cannot run on a serverless host)");
   if (env.ALPHA_PASSWORD && env.ALPHA_PASSWORD.length < 12) throw new Error("ALPHA_PASSWORD, when set, must be 12 characters or more");
   return {
@@ -75,9 +80,10 @@ export function loadConfig(env: Record<string, string | undefined> = process.env
     altchaKey: required("ALTCHA_HMAC_KEY", env.ALTCHA_HMAC_KEY, production, "dev-altcha-key"),
     mail: {
       provider,
-      from: required("MAIL_FROM", env.MAIL_FROM, production && provider === "ses", "Public Ledger <alerts@localhost>"),
+      from: required("MAIL_FROM", env.MAIL_FROM, sends, "Public Ledger <alerts@localhost>"),
       replyTo: env.MAIL_REPLY_TO || undefined,
       sesRegion: env.SES_REGION || "eu-west-2",
+      resendApiKey: provider === "resend" ? required("RESEND_API_KEY", env.RESEND_API_KEY, true, "") : null,
     },
     telegram: {
       botToken: env.TELEGRAM_BOT_TOKEN || null,

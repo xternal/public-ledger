@@ -65,6 +65,38 @@ export function sesMailer(config: Config): Mailer {
   };
 }
 
+/**
+ * Resend (MAIL_PROVIDER=resend): one HTTPS call per message, plain text only.
+ * Open and click tracking are settings on the sending domain in Resend; keep
+ * both off (docs/OPERATIONS.md §3). The error never includes the address.
+ */
+export function resendMailer(config: Config, fetchImpl: typeof fetch = fetch): Mailer {
+  return {
+    async send(m) {
+      const res = await fetchImpl("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${config.mail.resendApiKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from: config.mail.from,
+          to: [m.to],
+          subject: m.subject,
+          text: m.text,
+          ...(config.mail.replyTo ? { reply_to: config.mail.replyTo } : {}),
+          headers: headers(m),
+        }),
+      });
+      if (!res.ok) {
+        // Resend answers {"name": "...", "message": "..."}; keep the name only, as messages can echo the recipient.
+        const name = await res
+          .json()
+          .then((b: { name?: unknown }) => (typeof b?.name === "string" ? b.name : ""))
+          .catch(() => "");
+        throw new Error(`Resend refused the message: HTTP ${res.status}${name ? ` ${name}` : ""}`);
+      }
+    },
+  };
+}
+
 /** Email switched off (MAIL_PROVIDER=off): every send fails loudly, and the site hides its email options. */
 export class MailDisabledError extends Error {
   constructor() {
@@ -83,5 +115,6 @@ export function offMailer(): Mailer {
 
 export function mailerFor(config: Config, db: Db): Mailer {
   if (config.mail.provider === "off") return offMailer();
+  if (config.mail.provider === "resend") return resendMailer(config);
   return config.mail.provider === "ses" ? sesMailer(config) : outboxMailer(db, config);
 }

@@ -27,5 +27,5 @@ From then on every merge to `main` redeploys the alpha.
 ## Options
 
 - **Close it to testers only:** set an `ALPHA_PASSWORD` (12+ characters) in Vercel and redeploy. Every page then asks for it once (a 30-day cookie), and nothing is indexed. Remove the variable to open it again.
-- **Turn email on:** set up SES (docs/OPERATIONS.md §3), then set `MAIL_PROVIDER=ses`, `MAIL_FROM` and the AWS keys in Vercel.
+- **Turn email on:** set up Resend on a domain you own (docs/OPERATIONS.md §3), then set `MAIL_PROVIDER=resend`, `RESEND_API_KEY` and `MAIL_FROM` in Vercel.
 - **Alerts and intake against the alpha's database:** add `DATABASE_URL` and the same keys as GitHub Actions secrets (docs/OPERATIONS.md §8). Leave them out until email is on.
