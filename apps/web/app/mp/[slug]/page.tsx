@@ -7,10 +7,12 @@ import {
   divisionUrl,
   groupTally,
   howTheyVoted,
+  memberPortraitUrl,
   memberUrl,
   memberVotesUrl,
   outcome,
   plainQuestion,
+  PORTRAIT_LICENCE_URL,
   splitTitle,
   type Mp,
   type Seat,
@@ -132,13 +134,28 @@ export default async function MpPageView({ params }: Props) {
           <h2 id="mp-about-h" className="m-0 text-body font-semibold text-ink">
             About this page
           </h2>
-          <p className="m-0">
-            Who represents {c.name} in the House of Commons, the promises we track for them and their party, and their most recent votes. MPs and votes come
-            from UK Parliament&apos;s Members and Commons Votes APIs, checked once a day; this page last checked at {checkedText(p.checkedAt)}. Promises come
-            from our <a href="/promises">promise ledger</a>, where every party is held to the same standard.
-          </p>
+          {seat.mp ? (
+            <p className="m-0">
+              Who represents {c.name} in the House of Commons, the promises we track for them and their party, and their most recent votes. MPs and votes
+              come from UK Parliament&apos;s Members and Commons Votes APIs, checked once a day; this page last checked at {checkedText(p.checkedAt)}. Promises
+              come from our <a href="/promises">promise ledger</a>, where every party is held to the same standard.
+            </p>
+          ) : (
+            <p className="m-0">
+              Who represents {c.name} in the House of Commons. While the seat is vacant, the page names the last MP; once a new MP is elected it shows them,
+              the promises we track for them and their party, and how they vote. The data comes from UK Parliament&apos;s Members API, checked once a day; this
+              page last checked at {checkedText(p.checkedAt)}.
+            </p>
+          )}
           <p className="m-0 text-caption">
-            <a href={OPL_URL}>{OPL_ATTRIBUTION}</a> Portrait: UK Parliament.
+            <a href={OPL_URL}>{OPL_ATTRIBUTION}</a>
+            {seat.mp?.photoUrl && (
+              <>
+                {" "}
+                Portrait: <a href={memberPortraitUrl(seat.mp.memberId)}>official UK Parliament portrait</a>, <a href={PORTRAIT_LICENCE_URL}>CC BY 3.0</a>,
+                resized.
+              </>
+            )}
           </p>
         </section>
       </main>
@@ -155,7 +172,6 @@ function Who({ mp, constituency }: { mp: Mp; constituency: string }) {
           alt={`Official portrait of ${mp.name}`}
           width={104}
           height={104}
-          sizes="104px"
           preload
           className="size-[84px] rounded-panel bg-sunk object-cover sm:size-[104px]"
         />
@@ -408,7 +424,8 @@ function VoteGroupRow({ group: g }: { group: VoteGroupView }) {
           <Pill>{groupTally(g)}</Pill>
         </span>
         <span className="pl-4 text-label text-muted">
-          {g.votes.length} votes · {dayRange(g.first, g.last)} · Show each vote
+          {g.votes.length} votes · {dayRange(g.first, g.last)}
+          <span className="group-open:hidden"> · Show each vote</span>
         </span>
       </summary>
       <div className="grid gap-3 px-3 pb-4 pl-7">

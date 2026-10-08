@@ -322,6 +322,19 @@ describe("recent votes", () => {
     expect(plainQuestion("Representation of the People Bill: Third Reading")).toBe("Third reading: should the Commons pass the bill?");
     expect(plainQuestion("Health Bill: Report Stage: New Clause 143")).toBe("Should new clause 143 be added to the bill?");
     expect(plainQuestion("Health Bill: Report Stage: Amendment 1")).toBe("Should amendment 1 be made to the bill?");
+    expect(plainQuestion("Armed Forces Bill Report Stage: New Clause 22")).toBe("Should new clause 22 be added to the bill?");
+    expect(plainQuestion("Railways Bill Remaining Stages: Amendment 148")).toBe("Should amendment 148 be made to the bill?");
+    expect(plainQuestion("Steel Industry (Nationalisation) Bill Committee: New Clause 4")).toBe("Should new clause 4 be added to the bill?");
+    expect(plainQuestion("National Security (State Threats) Bill: motion to agree to Lords Amendment 1")).toBe("Should the Commons accept Lords amendment 1?");
+    expect(plainQuestion("English Devolution and Community Empowerment Bill: motion to disagree to Lords Amendment 98")).toBe(
+      "Should the Commons reject Lords amendment 98?",
+    );
+    expect(plainQuestion("English Devolution and Community Empowerment Bill: motion to disagree with Lords Amendments 94B and 94C")).toBe(
+      "Should the Commons reject Lords amendments 94B and 94C?",
+    );
+    expect(plainQuestion("National Security (State Threats) Bill: Allocation of Time motion")).toBe("Should the time for debating the bill be limited?");
+    // Ping-pong motions with many parts keep their official title only.
+    expect(plainQuestion("Crime and Policing Bill: motion to insist on Amendments 439C and 439D and disagree with Lords Amendments 439E and 439F")).toBeNull();
     expect(plainQuestion("Closure motion")).toBe("Should the debate end now and go to a vote?");
     expect(plainQuestion("Draft Plant Health Regulations 2026")).toBeNull();
     expect(plainQuestion("Opposition Day: Something Unfamiliar")).toBeNull();
@@ -362,6 +375,16 @@ describe("votes on bills our cards cite", () => {
       [4126, ["social-homes"]],
       [3738, ["energy"]],
     ]);
+  });
+
+  it("finds the bill in a title whether or not a colon follows its name", () => {
+    expect(splitTitle("Health Bill: Report Stage: New Clause 143")).toEqual({ subject: "Health Bill", stage: "Report Stage: New Clause 143" });
+    expect(splitTitle("Public Office (Accountability) Bill Report Stage: Amendment 199 ")).toEqual({ subject: "Public Office (Accountability) Bill", stage: "Report Stage: Amendment 199" });
+    expect(splitTitle("Bill of Rights Bill Committee: New Clause 1")).toEqual({ subject: "Bill of Rights Bill", stage: "Committee: New Clause 1" });
+    expect(splitTitle("Royal Albert Hall Bill [Lords]: Revival")).toEqual({ subject: "Royal Albert Hall Bill [Lords]", stage: "Revival" });
+    expect(splitTitle("King's Speech Motion for an Address: amendment (p)")).toEqual({ subject: "King's Speech Motion for an Address", stage: "amendment (p)" });
+    expect(splitTitle("Closure motion")).toEqual({ subject: "Closure motion", stage: null });
+    expect(billKey(splitTitle("Public Office (Accountability) Bill Report Stage: Amendment 19").subject)).toBe("public office accountability bill");
   });
 
   it("names a bill the same way in the Bills API and in division titles", () => {

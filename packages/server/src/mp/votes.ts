@@ -43,15 +43,22 @@ export function groupVotes(votes: Vote[]): VoteGroup[] {
   return groups;
 }
 
+const AMENDING = "(?:report stage|remaining stages|committee of the whole house|committee)";
+const LORDS = "lords amendments?\\s+(\\S+(?: and \\S+)?)";
+const lordsNumbers = (m: RegExpExecArray) => (m[1]!.includes(" and ") ? `amendments ${m[1]}` : `amendment ${m[1]}`);
+
 const RULES: [RegExp, (m: RegExpExecArray) => string][] = [
   [/^reasoned amendment to second reading$/i, () => "Should the bill be stopped at its second reading?"],
   [/^second reading$/i, () => "Second reading: should the bill go ahead?"],
   [/^third reading$/i, () => "Third reading: should the Commons pass the bill?"],
-  [/^(?:report stage|committee of the whole house|committee)\s*:\s*new clause\s+(\S+)$/i, (m) => `Should new clause ${m[1]} be added to the bill?`],
-  [/^(?:report stage|committee of the whole house|committee)\s*:\s*amendments?\s+(\S+)$/i, (m) => `Should amendment ${m[1]} be made to the bill?`],
-  [/^(?:report stage|committee of the whole house|committee)\s*:\s*new schedule\s+(\S+)$/i, (m) => `Should new schedule ${m[1]} be added to the bill?`],
-  [/^(?:motion to )?disagree (?:with|to) lords amendments?\s+(\S+)$/i, (m) => `Should the Commons reject Lords amendment ${m[1]}?`],
+  [new RegExp(`^${AMENDING}\\s*:\\s*new clause\\s+(\\S+)$`, "i"), (m) => `Should new clause ${m[1]} be added to the bill?`],
+  [new RegExp(`^${AMENDING}\\s*:\\s*amendments?\\s+(\\S+)$`, "i"), (m) => `Should amendment ${m[1]} be made to the bill?`],
+  [new RegExp(`^${AMENDING}\\s*:\\s*new schedule\\s+(\\S+)$`, "i"), (m) => `Should new schedule ${m[1]} be added to the bill?`],
+  [new RegExp(`^(?:motion to )?disagree (?:with|to) ${LORDS}$`, "i"), (m) => `Should the Commons reject Lords ${lordsNumbers(m)}?`],
+  [new RegExp(`^(?:motion to )?agree (?:with|to) ${LORDS}$`, "i"), (m) => `Should the Commons accept Lords ${lordsNumbers(m)}?`],
   [/^programme motion(?:\s*\(no\.?\s*\d+\))?$/i, () => "Should the timetable for debating the bill be agreed?"],
+  [/^allocation of time motion$/i, () => "Should the time for debating the bill be limited?"],
+  [/^carry-over motion$/i, () => "Should the bill carry over into the next session of Parliament?"],
   [/^money resolution$/i, () => "Should the spending the bill needs be approved?"],
   [/^ways and means resolution$/i, () => "Should the taxes or charges the bill needs be approved?"],
 ];

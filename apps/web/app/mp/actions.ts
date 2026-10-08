@@ -13,10 +13,9 @@ import { getServer } from "@/lib/server";
  * typed is stored or logged: only an aggregate count of how lookups went.
  */
 
+/** Only the outcome: what was typed stays in the reader's browser, and is not sent back as the next call's state. */
 export interface LookupState {
   result: LookupResult | null;
-  /** What the reader typed, sent back to their own browser only, to refill the box when nothing was found. */
-  query: string;
 }
 
 /** Never cached: a postcode must not land in Next's data cache. */
@@ -40,5 +39,5 @@ export async function findMp(_prev: LookupState, form: FormData): Promise<Lookup
   }
 
   if (result.kind === "found") redirect(`/mp/${result.slug}`);
-  return { result, query };
+  return { result };
 }

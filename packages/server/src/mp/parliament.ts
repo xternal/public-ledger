@@ -12,6 +12,9 @@ import type { Constituency } from "./names";
 /** Public pages for people to check what we show. */
 export const memberUrl = (id: number) => `https://members.parliament.uk/member/${id}`;
 export const memberVotesUrl = (id: number) => `https://members.parliament.uk/member/${id}/voting`;
+/** The portrait's page, with its photographer's credit. Portraits are CC BY 3.0. */
+export const memberPortraitUrl = (id: number) => `https://members.parliament.uk/member/${id}/portrait`;
+export const PORTRAIT_LICENCE_URL = "https://creativecommons.org/licenses/by/3.0/";
 export const divisionUrl = (id: number) => `https://votes.parliament.uk/votes/commons/division/${id}`;
 export const billUrl = (id: number) => `https://bills.parliament.uk/bills/${id}`;
 

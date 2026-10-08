@@ -1,11 +1,11 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { findMp, type LookupState } from "@/app/mp/actions";
 import type { LookupResult } from "@ledger/server/mp";
 import { LOOKUP_PRIVACY } from "@/lib/mp-copy";
 
-const INITIAL: LookupState = { result: null, query: "" };
+const INITIAL: LookupState = { result: null };
 
 type Problem = Exclude<LookupResult, { kind: "found" } | { kind: "choices" }>;
 
@@ -36,6 +36,8 @@ function message(r: Problem): string {
  */
 export function MpLookup() {
   const [state, action, pending] = useActionState(findMp, INITIAL);
+  // Held here so the box keeps what was typed after a search (React clears uncontrolled fields after a form action).
+  const [value, setValue] = useState("");
   const status = useRef<HTMLDivElement>(null);
   const r = state.result;
   const problem = r && r.kind !== "found" && r.kind !== "choices" ? r : null;
@@ -53,12 +55,11 @@ export function MpLookup() {
         </label>
         <div className="flex flex-col gap-2 sm:flex-row">
           <input
-            // A fresh field per answer, refilled with what was typed (React clears a form after its action).
-            key={`${r?.kind ?? "none"}:${state.query}`}
             id="mp-q"
             name="q"
             type="text"
-            defaultValue={state.query}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
             autoComplete="postal-code"
             spellCheck={false}
             enterKeyHint="search"

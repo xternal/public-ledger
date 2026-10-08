@@ -53,11 +53,22 @@ export function billKey(title: string): string | null {
   return /\bbill$/.test(s) ? s : null;
 }
 
-/** "Health Bill: Report Stage: New Clause 143" → subject "Health Bill", stage "Report Stage: New Clause 143". */
+/** Stages that Parliament sometimes writes after a bill's name without a colon: "Armed Forces Bill Report Stage: New Clause 22". */
+const STAGE_AFTER_BILL = /^(?:report stage|remaining stages|committee(?: of the whole house)?|second reading|third reading|consideration of lords amendments)\b/i;
+
+/**
+ * "Health Bill: Report Stage: New Clause 143" and "Health Bill Report Stage:
+ * New Clause 143" both → subject "Health Bill", stage "Report Stage: New
+ * Clause 143". A title with no stage is all subject.
+ */
 export function splitTitle(title: string): { subject: string; stage: string | null } {
-  const i = title.indexOf(":");
-  if (i < 0) return { subject: title.trim(), stage: null };
-  return { subject: title.slice(0, i).trim(), stage: title.slice(i + 1).trim() || null };
+  const t = title.replace(/\s+/g, " ").trim();
+  const i = t.indexOf(":");
+  const head = (i < 0 ? t : t.slice(0, i)).trim();
+  const rest = i < 0 ? null : t.slice(i + 1).trim() || null;
+  const m = /^(.*\bBill(?:\s*\[(?:Lords|HL)\])?)\s+(.+)$/i.exec(head);
+  if (m && STAGE_AFTER_BILL.test(m[2]!)) return { subject: m[1]!.trim(), stage: rest ? `${m[2]}: ${rest}` : m[2]! };
+  return { subject: head, stage: rest };
 }
 
 /** Bill name (as billKey) → the cards citing that bill. */
