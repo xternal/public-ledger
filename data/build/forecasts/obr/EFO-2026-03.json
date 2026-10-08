@@ -1,0 +1,555 @@
+{
+  "maker": "obr",
+  "source_id": "obr_efo",
+  "vintage": "EFO-2026-03",
+  "made_on": "2026-03-03",
+  "about": "OBR forecasts as the Statement and the debt path show them. The OBR publishes single numbers in these tables, with no range.",
+  "forecasts": [
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnb:2025-26",
+      "series_id": "fiscal.psnb",
+      "period": "2025-26",
+      "unit": "gbp_bn",
+      "predicted": [
+        132.735,
+        132.735,
+        132.735
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "context",
+      "note": "Recorded after the year ended, to give the backtest an earlier official forecast to score. The site did not show it as a forecast."
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnb:2026-27",
+      "series_id": "fiscal.psnb",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        115.461,
+        115.461,
+        115.461
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnb:2027-28",
+      "series_id": "fiscal.psnb",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        96.467,
+        96.467,
+        96.467
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnb:2028-29",
+      "series_id": "fiscal.psnb",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        86.016,
+        86.016,
+        86.016
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnb:2029-30",
+      "series_id": "fiscal.psnb",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        63.403,
+        63.403,
+        63.403
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnb:2030-31",
+      "series_id": "fiscal.psnb",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        59.02,
+        59.02,
+        59.02
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd:2025-26",
+      "series_id": "fiscal.psnd",
+      "period": "2025-26",
+      "unit": "gbp_bn",
+      "predicted": [
+        2922.307,
+        2922.307,
+        2922.307
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "context",
+      "note": "Recorded after the year ended, to give the backtest an earlier official forecast to score. The site did not show it as a forecast."
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd:2026-27",
+      "series_id": "fiscal.psnd",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        3053.062,
+        3053.062,
+        3053.062
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd:2027-28",
+      "series_id": "fiscal.psnd",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        3191.404,
+        3191.404,
+        3191.404
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd:2028-29",
+      "series_id": "fiscal.psnd",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        3319.41,
+        3319.41,
+        3319.41
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd:2029-30",
+      "series_id": "fiscal.psnd",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        3427.149,
+        3427.149,
+        3427.149
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd:2030-31",
+      "series_id": "fiscal.psnd",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        3513.696,
+        3513.696,
+        3513.696
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd_pct_gdp:2025-26",
+      "series_id": "fiscal.psnd_pct_gdp",
+      "period": "2025-26",
+      "unit": "pct_gdp",
+      "predicted": [
+        94.31,
+        94.31,
+        94.31
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "context",
+      "note": "Recorded after the year ended, to give the backtest an earlier official forecast to score. The site did not show it as a forecast."
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd_pct_gdp:2026-27",
+      "series_id": "fiscal.psnd_pct_gdp",
+      "period": "2026-27",
+      "unit": "pct_gdp",
+      "predicted": [
+        94.815,
+        94.815,
+        94.815
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd_pct_gdp:2027-28",
+      "series_id": "fiscal.psnd_pct_gdp",
+      "period": "2027-28",
+      "unit": "pct_gdp",
+      "predicted": [
+        95.739,
+        95.739,
+        95.739
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd_pct_gdp:2028-29",
+      "series_id": "fiscal.psnd_pct_gdp",
+      "period": "2028-29",
+      "unit": "pct_gdp",
+      "predicted": [
+        96.281,
+        96.281,
+        96.281
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd_pct_gdp:2029-30",
+      "series_id": "fiscal.psnd_pct_gdp",
+      "period": "2029-30",
+      "unit": "pct_gdp",
+      "predicted": [
+        96.065,
+        96.065,
+        96.065
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:fiscal.psnd_pct_gdp:2030-31",
+      "series_id": "fiscal.psnd_pct_gdp",
+      "period": "2030-31",
+      "unit": "pct_gdp",
+      "predicted": [
+        95.051,
+        95.051,
+        95.051
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:receipts.total:2025-26",
+      "series_id": "receipts.total",
+      "period": "2025-26",
+      "unit": "gbp_bn",
+      "predicted": [
+        1235.253,
+        1235.253,
+        1235.253
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "context",
+      "note": "Recorded after the year ended, to give the backtest an earlier official forecast to score. The site did not show it as a forecast."
+    },
+    {
+      "id": "obr:EFO-2026-03:receipts.total:2026-27",
+      "series_id": "receipts.total",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        1303.793,
+        1303.793,
+        1303.793
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:receipts.total:2027-28",
+      "series_id": "receipts.total",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        1375.408,
+        1375.408,
+        1375.408
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:receipts.total:2028-29",
+      "series_id": "receipts.total",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        1427.438,
+        1427.438,
+        1427.438
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:receipts.total:2029-30",
+      "series_id": "receipts.total",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        1491.944,
+        1491.944,
+        1491.944
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:receipts.total:2030-31",
+      "series_id": "receipts.total",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        1551.485,
+        1551.485,
+        1551.485
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.debt_interest:2025-26",
+      "series_id": "spending.debt_interest",
+      "period": "2025-26",
+      "unit": "gbp_bn",
+      "predicted": [
+        109.682,
+        109.682,
+        109.682
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "context",
+      "note": "Recorded after the year ended, to give the backtest an earlier official forecast to score. The site did not show it as a forecast."
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.debt_interest:2026-27",
+      "series_id": "spending.debt_interest",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        109.366,
+        109.366,
+        109.366
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.debt_interest:2027-28",
+      "series_id": "spending.debt_interest",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        116.709,
+        116.709,
+        116.709
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.debt_interest:2028-29",
+      "series_id": "spending.debt_interest",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        125.923,
+        125.923,
+        125.923
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.debt_interest:2029-30",
+      "series_id": "spending.debt_interest",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        134.704,
+        134.704,
+        134.704
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.debt_interest:2030-31",
+      "series_id": "spending.debt_interest",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        137.111,
+        137.111,
+        137.111
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.tme:2025-26",
+      "series_id": "spending.tme",
+      "period": "2025-26",
+      "unit": "gbp_bn",
+      "predicted": [
+        1367.988,
+        1367.988,
+        1367.988
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "context",
+      "note": "Recorded after the year ended, to give the backtest an earlier official forecast to score. The site did not show it as a forecast."
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.tme:2026-27",
+      "series_id": "spending.tme",
+      "period": "2026-27",
+      "unit": "gbp_bn",
+      "predicted": [
+        1419.255,
+        1419.255,
+        1419.255
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.tme:2027-28",
+      "series_id": "spending.tme",
+      "period": "2027-28",
+      "unit": "gbp_bn",
+      "predicted": [
+        1471.875,
+        1471.875,
+        1471.875
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.tme:2028-29",
+      "series_id": "spending.tme",
+      "period": "2028-29",
+      "unit": "gbp_bn",
+      "predicted": [
+        1513.453,
+        1513.453,
+        1513.453
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.tme:2029-30",
+      "series_id": "spending.tme",
+      "period": "2029-30",
+      "unit": "gbp_bn",
+      "predicted": [
+        1555.348,
+        1555.348,
+        1555.348
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    },
+    {
+      "id": "obr:EFO-2026-03:spending.tme:2030-31",
+      "series_id": "spending.tme",
+      "period": "2030-31",
+      "unit": "gbp_bn",
+      "predicted": [
+        1610.504,
+        1610.504,
+        1610.504
+      ],
+      "range": "point",
+      "quality": "sourced",
+      "recorded_on": "2026-10-08",
+      "recorded_as": "shown"
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
 import { constituencies, constituencyList } from "@ledger/server/mp";
-import { getPeople, getSeed } from "@/lib/data";
+import { getPeople, getSeed, getVintages } from "@/lib/data";
 import { absolute, lastChanged } from "@/lib/site";
 
 /**
  * Every public page: home, the promise ledger, people and long-term spending,
- * Your MP and its 650 constituency pages, each card and each actor. Dates come
+ * Your MP and its 650 constituency pages, the method pages, each card and each actor. Dates come
  * from the content itself. Constituency pages are rendered on first visit and
  * refreshed daily; they carry no date here because an MP's votes change them
  * on any sitting day, and a made-up date would mislead crawlers.
@@ -17,12 +17,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const latest = seed.cards.map((c) => lastEvent(c.id)).sort().at(-1) ?? built;
   // /people changes when one of its sources publishes a new edition.
   const peopleChanged = getPeople().sources.map((s) => s.published_on ?? built).sort().at(-1) ?? built;
+  // The method pages change when a new data edition arrives (and with it, possibly new forecasts or scores).
+  const newestEdition = getVintages().changelog.map((e) => e.first_loaded ?? e.published_on ?? "").sort().at(-1) || built;
   const actorIds = [...new Set(seed.cards.flatMap((c) => [c.actor.id, c.party?.id].filter((x): x is string => !!x)))];
   return [
     { url: absolute("/"), lastModified: built, changeFrequency: "daily", priority: 1 },
     { url: absolute("/promises"), lastModified: latest, changeFrequency: "daily", priority: 0.9 },
     { url: absolute("/people"), lastModified: peopleChanged, changeFrequency: "monthly", priority: 0.8 },
     { url: absolute("/mp"), lastModified: constituencyList().fetched_on, changeFrequency: "monthly", priority: 0.8 },
+    { url: absolute("/method"), lastModified: newestEdition, changeFrequency: "weekly", priority: 0.6 },
+    { url: absolute("/method/backtest"), lastModified: built, changeFrequency: "monthly", priority: 0.6 },
+    { url: absolute("/method/api"), lastModified: built, changeFrequency: "monthly", priority: 0.5 },
     { url: absolute("/follow"), lastModified: built, changeFrequency: "monthly", priority: 0.4 },
     { url: absolute("/feeds"), lastModified: latest, changeFrequency: "daily", priority: 0.4 },
     ...seed.cards.map((c) => ({ url: absolute(`/promise/${c.id}`), lastModified: lastEvent(c.id), changeFrequency: "weekly" as const, priority: 0.7 })),

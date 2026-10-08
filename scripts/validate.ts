@@ -1,5 +1,5 @@
 /**
- * pnpm validate: schemas, cross-file references, the balance check, a lint
+ * pnpm validate: schemas (cards, data, forecasts), cross-file references, the balance check, a lint
  * that keeps data out of components, and the exact-match check on intake
  * drafts. Exits non-zero on any error; warnings (cards not yet publishable)
  * are printed but do not fail. A draft still in content/drafts/ is an error,
@@ -12,7 +12,8 @@ import { join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { parseSeed } from "@ledger/schema/seed";
 import { loadPeople } from "@ledger/schema/people";
-import { BALANCE_TOLERANCE_BN, appendOnlyIssues, contractAppendOnlyIssues } from "@ledger/schema";
+import { parseForecasts, readBacktestTable, readForecastFiles } from "@ledger/schema/forecasts";
+import { BALANCE_TOLERANCE_BN, appendOnlyIssues, contractAppendOnlyIssues, forecastAppendOnlyIssues } from "@ledger/schema";
 import { baseSettings, compute, createModel } from "@ledger/engine";
 import { checkDrafts } from "../packages/server/src/harvest/drafts";
 
@@ -29,6 +30,9 @@ try {
 } catch (e) {
   errors.push((e as Error).message);
 }
+
+// Forecasts and the backtest table (M7): every record parses and every score names a recorded forecast.
+errors.push(...parseForecasts(readForecastFiles(root), readBacktestTable(root)).issues);
 
 // 2. Balance: receipts + borrowing == spending, at base and for every preset and card scenario
 if (seed) {
@@ -118,6 +122,26 @@ if (baseRef) {
     for (const issue of contractAppendOnlyIssues(was, now)) errors.push(`data/build/contracts/${name}: ${issue}`);
   }
   if (baseContracts.length) console.log(`append-only check against ${baseRef}: ${baseContracts.length} published contract(s)`);
+
+  // Forecast records (M7) are append-only too: a published record is never changed or removed, nor is its file.
+  let baseForecasts: string[] = [];
+  try {
+    baseForecasts = git("ls-tree", "-r", "--name-only", baseRef, "--", "data/build/forecasts").split("\n").filter((f) => f.endsWith(".json"));
+  } catch {
+    // No forecasts on the base branch yet.
+  }
+  for (const rel of baseForecasts) {
+    let now: unknown;
+    try {
+      now = JSON.parse(readFileSync(join(root, rel), "utf8"));
+    } catch {
+      errors.push(`${rel}: removed or unreadable; recorded forecasts are kept`);
+      continue;
+    }
+    const was = JSON.parse(git("show", `${baseRef}:${rel}`));
+    for (const issue of forecastAppendOnlyIssues(was, now)) errors.push(`${rel}: ${issue}`);
+  }
+  if (baseForecasts.length) console.log(`append-only check against ${baseRef}: ${baseForecasts.length} published forecast file(s)`);
 }
 
 // 5. Intake drafts (M4): every quote must be exactly its span of the stored source text.

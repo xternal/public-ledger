@@ -19,6 +19,17 @@ const config: NextConfig = {
     maximumRedirects: 0,
     minimumCacheTTL: 86400,
   },
+  // The public read-only API (/api/v1, M7): open to any site for GET. Route handlers set the same headers; this covers 404s and HEAD.
+  async headers() {
+    const cors = [
+      { key: "Access-Control-Allow-Origin", value: "*" },
+      { key: "Access-Control-Allow-Methods", value: "GET, HEAD, OPTIONS" },
+    ];
+    return [
+      { source: "/api/v1", headers: cors },
+      { source: "/api/v1/:path*", headers: cors },
+    ];
+  },
 };
 
 export default config;

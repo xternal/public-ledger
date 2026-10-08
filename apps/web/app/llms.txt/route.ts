@@ -1,5 +1,8 @@
+import { backtestSummary } from "@ledger/schema";
 import { constituencies, RECENT_VOTES } from "@ledger/server/mp";
-import { getPeople, getSeed } from "@/lib/data";
+import { getForecasts, getPeople, getSeed } from "@/lib/data";
+import { endpoints } from "@/lib/api";
+import { backtestLead } from "@/lib/method-copy";
 import { STATUS_LABEL } from "@/lib/copy";
 import { FAQ } from "@/lib/faq";
 import { gbpBn } from "@/lib/format";
@@ -20,6 +23,10 @@ export function GET() {
   const oadr = span(people.charts.oadr);
   const workers = span(people.charts.workers);
   const age = spendingSpan(people);
+  const { forecasts } = getForecasts();
+  const shown = forecasts.filter((f) => f.recorded_as === "shown");
+  const context = backtestSummary(forecasts.filter((f) => f.recorded_as === "context"));
+  const firstRecorded = shown.map((f) => f.recorded_on).sort()[0] ?? null;
   const lines = [
     `# ${SITE_NAME}`,
     "",
@@ -33,10 +40,19 @@ export function GET() {
     `- [Promise ledger](${absolute("/promises")}): every tracked UK political promise with its cost, who pays, status and evidence. One standard for every party.`,
     `- [People and long-term spending](${absolute("/people")}): ONS population projections (principal and variants) and OBR long-term spending projections. In the ONS principal projection there are ${per100(oadr.last)} people over pension age for every 100 of working age in ${oadr.lastYear} (${per100(oadr.first)} in ${oadr.firstYear}; variants ${per100(oadr.range[0])} to ${per100(oadr.range[2])}), and ${ratio(workers.last)} people of working age per person over pension age. In the OBR baseline, age-related spending goes from ${pctGdp(age.first)} of GDP in ${age.firstYear} to ${pctGdp(age.last)} in ${age.lastYear} (OBR scenarios ${pctGdp(age.range[0])} to ${pctGdp(age.range[2])}). Assumption switches pick published variants only.`,
     `- [Your MP](${absolute("/mp")}): ${MP_DESCRIPTION} Each of the ${constituencies().length} constituencies has a page at ${absolute("/mp/<constituency>")}, for example ${absolute("/mp/manchester-central")}: the sitting MP (from the UK Parliament Members API), any promises we track in their name, a summary of their party's, and their last ${RECENT_VOTES} recorded Commons votes (Commons Votes API), with votes on bills our cards cite highlighted. Data checked daily.`,
+    `- [How the numbers are made](${absolute("/method")}): sources, quality labels, why results are ranges, who checks the cards, and a changelog of every data edition.`,
+    `- [Forecasts against what happened](${absolute("/method/backtest")}): every forecast the site shows is recorded and scored against the official outturn. ${backtestLead(backtestSummary(shown), firstRecorded)} Earlier official forecasts checked for context: ${context.scored}.`,
+    `- [Open data API](${absolute("/method/api")}): the same data as JSON or CSV, free, no key.`,
     `- [Coming up](${absolute("/promises#coming-up")}): open promises due in the next 12 months, nearest deadline first. Readers can follow a deadline window (this month, next 3 months, next 12 months) by email, Telegram or feed.`,
     `- [Atom feed of every change](${absolute("/feeds/all.xml")}): promise changes, contract changes and new editions of the headline figures.`,
     `- [Atom feed of updates to the figures](${absolute("/feeds/updates.xml")}): contracts behind promises that move or are linked, and new OBR forecasts or ONS releases that change the Statement.`,
     `- [Atom feed of promises due in the next 3 months](${absolute("/feeds/deadlines/next-3-months.xml")}): outcomes when they fall due, and a monthly list of what is coming due.`,
+    "",
+    "## Open data API",
+    "",
+    "Read-only, JSON by default; add .csv for a spreadsheet. Every number carries unit, quality, source_id and vintage (edition); every response carries its licence (Open Government Licence v3.0; Open Parliament Licence for quotes from Parliament). Open CORS for GET. No reader data.",
+    "",
+    ...endpoints().map((e) => `- [${e.path}](${absolute(e.example)})${e.csv ? ` ([CSV](${absolute(`${e.example}.csv`)}))` : ""}: ${e.about}`),
     "",
     "## Promises",
     "",

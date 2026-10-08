@@ -75,9 +75,19 @@ Built in M6 as `/people` (`etl/people.py` → `data/build/people.json`). Each sw
 
 When two tiers disagree (T0 static vs T1 microsim), show both side by side with a one-line explanation of why. Disagreement is information.
 
-## Backtest (v2)
+## Backtest (built in M7, 8 Oct 2026)
 
-Every published ranged number for a future period is stored as a `Forecast`. When outturn arrives (ONS PSF, OBR EFO outturn), compute: hit (outturn within range), miss above, miss below. Publish a quarterly "forecasts vs outturn" page, including misses.
+Every forward number the site shows that a later official outturn can score is stored as a `Forecast` record (`data/build/forecasts/<maker>/<edition>.json`, schema `packages/schema/src/forecasts.ts`), append-only: `pnpm validate --base` rejects a changed or removed record. `python -m etl.backtest` (also `pnpm backtest`) records new ones and scores every record whose period has an outturn in `data/build/backtest.json`. The nightly data job runs it after the build; CI re-runs it and fails if the committed files differ. Page: `/method/backtest`; data: `/api/v1/forecasts`.
+
+**Scoring.** A hit when `low ≤ outturn ≤ high`, edges included. Otherwise a miss above or below, sized from the nearer edge of the range (in the forecast's unit and as a share of the central value); the error from the central value is kept too. Outturn: ONS public sector finances first, then the OBR's outturn (databank, later EFOs); HMT PESA outturn for spending by function; ONS mid-year estimates for births and deaths. Scores are worked out again on every run, so a revised outturn moves them; the table names the edition it used. The hit rate counts ranged forecasts only.
+
+**What is recorded (decided 8 Oct 2026).**
+- *OBR fiscal aggregates* the Statement and the debt path show for forecast years: receipts, total spending, borrowing, debt interest, debt (£bn and % of GDP). The OBR publishes single numbers in these tables, so they are recorded as points (`low = central = high`) and never given a range we made up; a point only "hits" by matching exactly, so the page shows how far off it was instead and leaves points out of the hit rate. The 13 receipt lines are left out: the OBR and the ONS draw some lines differently (business rates, non-tax income), so a gap would measure a definition, not a forecast.
+- *Our split of spending by function* for forecast years (each function keeps its share of the latest PESA outturn year): our own forecasts, quality `approx`, points. Scored against PESA outturn, so the score tests our split and the OBR total together.
+- *ONS births and deaths* on `/people`, with the range the page shades: lowest to highest published variant (special cases left out). Variants are other assumptions, not a probability range, and the page says so.
+- *Context:* earlier official forecasts for periods the site already shows as outturn are recorded once, labelled `recorded_as: context` and as the OBR's or the ONS's: the March 2026 EFO for 2025-26, and the ONS principal projection for the year to mid-2025 (its first projected year, where every variant gives the same number to within a few dozen people, so it is recorded as a point). They give the page honest content from day one and are never counted as ours.
+
+**What is left out, and why.** Promise-card costs and sandbox or share-page results are costings of what-ifs (what a measure would cost, what a change would do, on official costings, with no economy-wide effects). No official outturn measures a what-if, so there is no fair score: the debt path under a scenario is conditional on the scenario happening, alone. A costing could one day be scored against an official outturn cost of the measure itself (for example a department's spend on a delivered grant); that needs a source per measure and is not built. `/people`'s dependency ratio, workers per pensioner and long-term spending are not recorded yet: the ETL holds no outturn that measures them (ONS population by age would score the first two), and the 2075 spending paths are scenarios, not forecasts.
 
 ## Prototype engine reference
 

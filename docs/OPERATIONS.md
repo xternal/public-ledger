@@ -17,7 +17,7 @@ variables (`apps/web/.env.example` lists them all).
 | Subscriptions, submissions, counts | Neon Postgres | AWS eu-west-2 (London) | Encrypted addresses, followed ids, submissions; no IPs, no names |
 | Alert and receipt emails | Resend (or Amazon SES) | Resend: eu-west-1 (Ireland); SES: eu-west-2 (London) | Nothing kept beyond the provider's own sending logs; no open or click tracking |
 | Telegram alerts | Telegram Bot API | Telegram's servers | Chat id (encrypted on our side) |
-| App and API | Vercel | Functions in `lhr1` (London) | Nothing; stateless |
+| App and API (including the public `/api/v1`) | Vercel | Functions in `lhr1` (London) | Nothing; stateless. `/api/v1` is built from committed files at deploy and serves no database rows |
 | Alerts job | GitHub Actions | GitHub | Nothing; reads secrets, talks to Neon, the mail provider and Telegram |
 
 ## 1. Keys you generate yourself
@@ -233,8 +233,12 @@ git switch main && git pull --ff-only && git switch -c data/obr-2026-11-26
 3. Run every source. OBR answers a home connection, so no archive is involved:
 
 ```bash
-pnpm etl
+pnpm etl && pnpm backtest
 ```
+
+`pnpm backtest` records the new edition's forecasts (the site will show
+them) and scores anything whose outturn is now out (docs/MODEL.md "Backtest").
+CI runs it too and fails if you forget.
 
 4. Check that the run ends with `ok` and no `fetch` warnings for OBR, and that
    `data/build/observations/obr_efo/` (or `obr_databank/`) has the new

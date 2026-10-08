@@ -289,7 +289,7 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
             <p className="m-0 text-muted" title={r.kind === "automated" ? AI_JOURNALIST_NOTE : undefined}>
               <span aria-hidden className="text-good">✓ </span>
               Reviewed by <b className="font-semibold text-ink">{reviewerLabel(r)}</b> on {longDate(r.on)}.{" "}
-              <a href="/#reviews">What that means</a>
+              <a href="/method#reviews">What that means</a>
             </p>
           ) : null;
         })()}

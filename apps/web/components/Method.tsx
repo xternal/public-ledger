@@ -3,72 +3,48 @@
 import { ENGINE_VERSION } from "@ledger/engine";
 import { QUALITY_HELP } from "@/lib/copy";
 import { T1_METHOD } from "@/lib/t1-copy";
-import { fixed } from "@/lib/format";
 import { useScenario } from "@/lib/scenario";
 import { QualityBadge, SectionHeading } from "./ui";
-import { AI_JOURNALIST_NOTE } from "@/lib/reviews";
 
+/** The home page's short method note; the full method, the backtest and the API live under /method. */
 export function Method() {
   const { seed } = useScenario();
-  const { spending_multiplier: ms, tax_multiplier: mt } = seed.levers.macro_rules;
-  const range = (r: readonly number[]) => `${fixed(r[0]!, 1)}–${fixed(r[2]!, 1)}`;
-
   return (
     <section id="method" aria-labelledby="method-h" className="pt-20">
-      <SectionHeading id="method-h" title="How the numbers work" />
+      <SectionHeading
+        id="method-h"
+        title="How the numbers work"
+        intro={`Every number comes from one of ${seed.sources.length} official sources, or is worked out from them, and says which.`}
+      />
       <div className="grid gap-10 text-sm text-muted md:grid-cols-3">
         <div>
           <h3 className="mb-2 text-body font-semibold text-ink">Ranges, not points</h3>
-          <ul className="m-0 grid gap-1.5 pl-4">
-            <li>Every result shows low, central and high.</li>
-            <li>Tax levers use HMRC&apos;s costings, which include how taxpayers respond but not knock-on effects on the wider economy.</li>
-            <li>
-              GDP effects use spending multipliers of {range(ms)} and tax multipliers of {range(mt)}.
-            </li>
-            <li>Bank Rate is set by the Bank of England. The sandbox lets you move it, labelled as such.</li>
-          </ul>
+          <p className="m-0">
+            Every result shows low, central and high. Tax levers use HMRC&apos;s costings, which include how taxpayers respond but not knock-on effects on
+            the wider economy.
+          </p>
         </div>
         <div>
           <h3 className="mb-2 text-body font-semibold text-ink">Every number has a label</h3>
-          <ul className="m-0 grid list-none gap-2.5 p-0">
-            {(["sourced", "approx", "modelled", "training", "plug"] as const).map((q) => (
-              <li key={q} className="grid gap-0.5">
+          <ul className="m-0 flex list-none flex-wrap gap-x-4 gap-y-1.5 p-0">
+            {(["sourced", "approx", "modelled", "training"] as const).map((q) => (
+              <li key={q} title={q === "modelled" ? T1_METHOD.modelledHelp : QUALITY_HELP[q]}>
                 <QualityBadge quality={q} />
-                <span>{q === "modelled" ? T1_METHOD.modelledHelp : QUALITY_HELP[q]}</span>
               </li>
             ))}
           </ul>
+          <p className="m-0 mt-2">Hover over or focus a number to see how it was made and where it comes from.</p>
         </div>
         <div>
-          <h3 className="mb-2 text-body font-semibold text-ink">Sources</h3>
-          <ul className="m-0 grid gap-1.5 pl-4">
-            {seed.sources.map((s) => (
-              <li key={s.id}>
-                <a href={s.url} target="_blank" rel="noopener noreferrer">
-                  {s.title}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <h3 className="mb-2 text-body font-semibold text-ink">Checked against what happened</h3>
+          <p className="m-0">Every forecast shown here is recorded, and scored when the official outturn arrives, misses included.</p>
         </div>
       </div>
-      <div className="mt-10 max-w-[72ch] text-sm text-muted">
-        <h3 className="mb-2 text-body font-semibold text-ink">{T1_METHOD.heading}</h3>
-        <div className="grid gap-2.5">
-          {T1_METHOD.paragraphs.map((p) => (
-            <p key={p} className="m-0 leading-relaxed">
-              {p}
-            </p>
-          ))}
-        </div>
-      </div>
-      <div id="reviews" className="mt-10 grid max-w-[72ch] gap-2 text-sm text-muted">
-        <h3 className="m-0 text-body font-semibold text-ink">Who checks the cards</h3>
-        <p className="m-0 leading-relaxed">{AI_JOURNALIST_NOTE}</p>
-        <p className="m-0 leading-relaxed">
-          Whatever a review finds is fixed in public: the card shows a dated correction with the old and new value. Every party&apos;s cards get the same checks.
-        </p>
-      </div>
+      <p className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
+        <a href="/method">How the numbers are made</a>
+        <a href="/method/backtest">Forecasts against outturn</a>
+        <a href="/method/api">Open data API</a>
+      </p>
     </section>
   );
 }

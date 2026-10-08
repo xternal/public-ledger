@@ -165,10 +165,33 @@ interface ContractLink {
   }[];
 }
 
-interface Forecast {          // for backtest (M7)
-  id: string; scenario_id?: string; series_id: string; period: string;
-  predicted: Range; made_on: string; engine_version: string;
-  outturn?: number; outturn_source_id?: string;
+// Forecasts against outturn (M7). Records are append-only, one file per maker and edition:
+// data/build/forecasts/<maker>/<edition>.json = { maker, source_id, vintage, made_on, inputs?, about, forecasts: [...] }.
+// Schema: packages/schema/src/forecasts.ts. Written by etl/backtest.py; docs/MODEL.md "Backtest" says what is recorded.
+interface Forecast {
+  id: string;                 // "<maker>:<edition>:<series_id>:<period>"
+  maker: "obr" | "ons" | "public_ledger";   // whose forecast it is; official ones are never ours
+  source_id: string; vintage: string;       // where it comes from ("obr_efo", "EFO-2026-03"); ours name their inputs
+  series_id: string;          // "fiscal.psnb", "people.births", "statement.spending.health"
+  period: string;             // "2026-27", or "2026" for ONS years to 30 June
+  unit: string;
+  predicted: Range;           // a single published number is [x, x, x] with range: "point"
+  range: "range" | "point";
+  quality: Quality;
+  made_on: string;            // when the maker published it (ours: when first recorded)
+  recorded_on: string;        // when this site recorded it
+  recorded_as: "shown" | "context";   // context: an earlier official forecast, recorded after its period ended
+  note?: string;
+  engine_version?: string; scenario_id?: string;   // for our own model forecasts (none yet)
+}
+
+// data/build/backtest.json, worked out again on every run (not append-only):
+interface BacktestResult {
+  forecast_id: string;
+  outturn: number; outturn_source_id: string; outturn_vintage: string; outturn_quality: Quality;
+  result: "hit" | "miss_above" | "miss_below";   // hit: low <= outturn <= high
+  miss: number; miss_pct: number | null;         // distance outside the range, from its nearer edge
+  error: number; error_pct: number | null;       // outturn minus central
 }
 ```
 

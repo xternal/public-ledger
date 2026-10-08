@@ -1,0 +1,110 @@
+{
+  "outturn_editions": [
+    {
+      "source_id": "ons_mye_components",
+      "vintage": "MYEB-2026-10-01"
+    },
+    {
+      "source_id": "ons_psf",
+      "vintage": "PSF-2026-09"
+    }
+  ],
+  "results": [
+    {
+      "forecast_id": "obr:EFO-2026-03:fiscal.psnb:2025-26",
+      "outturn": 134.286,
+      "outturn_source_id": "ons_psf",
+      "outturn_vintage": "PSF-2026-09",
+      "outturn_quality": "sourced",
+      "result": "miss_above",
+      "miss": 1.551,
+      "miss_pct": 1.17,
+      "error": 1.551,
+      "error_pct": 1.17
+    },
+    {
+      "forecast_id": "obr:EFO-2026-03:fiscal.psnd:2025-26",
+      "outturn": 2916.8,
+      "outturn_source_id": "ons_psf",
+      "outturn_vintage": "PSF-2026-09",
+      "outturn_quality": "sourced",
+      "result": "miss_below",
+      "miss": 5.507,
+      "miss_pct": 0.19,
+      "error": -5.507,
+      "error_pct": -0.19
+    },
+    {
+      "forecast_id": "obr:EFO-2026-03:fiscal.psnd_pct_gdp:2025-26",
+      "outturn": 93.3,
+      "outturn_source_id": "ons_psf",
+      "outturn_vintage": "PSF-2026-09",
+      "outturn_quality": "sourced",
+      "result": "miss_below",
+      "miss": 1.01,
+      "miss_pct": 1.07,
+      "error": -1.01,
+      "error_pct": -1.07
+    },
+    {
+      "forecast_id": "obr:EFO-2026-03:receipts.total:2025-26",
+      "outturn": 1231.312,
+      "outturn_source_id": "ons_psf",
+      "outturn_vintage": "PSF-2026-09",
+      "outturn_quality": "sourced",
+      "result": "miss_below",
+      "miss": 3.941,
+      "miss_pct": 0.32,
+      "error": -3.941,
+      "error_pct": -0.32
+    },
+    {
+      "forecast_id": "obr:EFO-2026-03:spending.debt_interest:2025-26",
+      "outturn": 108.632,
+      "outturn_source_id": "ons_psf",
+      "outturn_vintage": "PSF-2026-09",
+      "outturn_quality": "approx",
+      "result": "miss_below",
+      "miss": 1.05,
+      "miss_pct": 0.96,
+      "error": -1.05,
+      "error_pct": -0.96
+    },
+    {
+      "forecast_id": "obr:EFO-2026-03:spending.tme:2025-26",
+      "outturn": 1365.598,
+      "outturn_source_id": "ons_psf",
+      "outturn_vintage": "PSF-2026-09",
+      "outturn_quality": "sourced",
+      "result": "miss_below",
+      "miss": 2.39,
+      "miss_pct": 0.17,
+      "error": -2.39,
+      "error_pct": -0.17
+    },
+    {
+      "forecast_id": "ons:NPP-2024based-2026-04-28:people.births:2025",
+      "outturn": 652.441,
+      "outturn_source_id": "ons_mye_components",
+      "outturn_vintage": "MYEB-2026-10-01",
+      "outturn_quality": "sourced",
+      "result": "miss_above",
+      "miss": 0.549,
+      "miss_pct": 0.08,
+      "error": 0.549,
+      "error_pct": 0.08
+    },
+    {
+      "forecast_id": "ons:NPP-2024based-2026-04-28:people.deaths:2025",
+      "outturn": 647.532,
+      "outturn_source_id": "ons_mye_components",
+      "outturn_vintage": "MYEB-2026-10-01",
+      "outturn_quality": "sourced",
+      "result": "miss_above",
+      "miss": 12.545,
+      "miss_pct": 1.98,
+      "error": 12.545,
+      "error_pct": 1.98
+    }
+  ]
+}

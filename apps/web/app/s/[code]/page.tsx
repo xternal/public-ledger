@@ -117,7 +117,7 @@ export default async function SharePage({ params }: Props) {
             </p>
           )}
           <p className="m-0">
-            Data as of {longDate(seed.builtAt.slice(0, 10))}. <a href="/#method">How the numbers work</a>
+            Data as of {longDate(seed.builtAt.slice(0, 10))}. <a href="/method">How the numbers work</a>
           </p>
         </div>
 
