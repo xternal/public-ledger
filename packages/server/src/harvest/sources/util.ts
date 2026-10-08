@@ -93,5 +93,11 @@ const INLINE_TAGS = /<\/?(?:a|abbr|acronym|b|strong|i|em|span|sup|sub|small|u|ma
  * reads "report." and "(<abbr>WRN</abbr>)" reads "(WRN)", as on the page.
  */
 export function prose(html: string): string {
-  return htmlToText(html.replace(INLINE_TAGS, ""));
+  // Repeat until stable, so removing one tag cannot leave another behind ("<<a>b>").
+  let out = html;
+  for (let prev = ""; prev !== out; ) {
+    prev = out;
+    out = out.replace(INLINE_TAGS, "");
+  }
+  return htmlToText(out);
 }

@@ -18,6 +18,16 @@ describe("append-only promise history (invariant 5)", () => {
     expect(appendOnlyIssues(card(), after)).toEqual([]);
   });
 
+  it("refuses a correction path that would write to Object.prototype", () => {
+    const after = card();
+    after.events[1]!.text = "Plan published (amended)";
+    (after as Record<string, unknown>).corrections = [
+      { date: "2026-10-08", path: "events[1].__proto__.polluted", was: null, now: "yes", reason: "test" },
+    ];
+    expect(() => appendOnlyIssues(card(), after)).toThrow(/unsafe correction path/);
+    expect(({} as Record<string, unknown>).polluted).toBeUndefined();
+  });
+
   it("rejects editing a published event", () => {
     const after = card();
     after.events[1]!.text = "Plan published (amended)";

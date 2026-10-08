@@ -38,7 +38,8 @@ function captureMailer(): Mailer & { sent: MailMessage[] } {
   return { sent, send: async (m) => void sent.push(m) };
 }
 
-const tokenIn = (text: string, path: string) => new RegExp(`${path.replace(/[/?]/g, "\\$&")}\\?t=([A-Za-z0-9_.-]+)`).exec(text)?.[1];
+const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&");
+const tokenIn = (text: string, path: string) => new RegExp(`${escapeRegExp(path)}\\?t=([A-Za-z0-9_.-]+)`).exec(text)?.[1];
 
 let db: Db;
 let mail: ReturnType<typeof captureMailer>;

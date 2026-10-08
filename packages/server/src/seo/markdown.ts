@@ -13,8 +13,8 @@ import { absoluteUrl, areaPath, cardCostText, cardHeadline, cardLastUpdated, SIT
 export const MARKDOWN_CONTENT_TYPE = "text/markdown; charset=utf-8";
 
 const flat = (s: string) => s.replace(/\s+/g, " ").trim();
-/** Link text cannot hold square brackets unescaped. */
-const linkText = (s: string) => flat(s).replace(/([[\]])/g, "\\$1");
+/** Link text cannot hold square brackets or backslashes unescaped. */
+const linkText = (s: string) => flat(s).replace(/([\\[\]])/g, "\\$1");
 const link = (text: string, url: string) => `[${linkText(text)}](${url})`;
 
 /** Our automated reviewer was called "Junior Editor" until 8 Oct 2026; readers see its current name (apps/web/lib/reviews.ts). */

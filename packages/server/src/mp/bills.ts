@@ -66,8 +66,18 @@ export function splitTitle(title: string): { subject: string; stage: string | nu
   const i = t.indexOf(":");
   const head = (i < 0 ? t : t.slice(0, i)).trim();
   const rest = i < 0 ? null : t.slice(i + 1).trim() || null;
-  const m = /^(.*\bBill(?:\s*\[(?:Lords|HL)\])?)\s+(.+)$/i.exec(head);
-  if (m && STAGE_AFTER_BILL.test(m[2]!)) return { subject: m[1]!.trim(), stage: rest ? `${m[2]}: ${rest}` : m[2]! };
+  // The last "Bill" (or "Bill [Lords]") followed by a space and more text splits the head. Found by scanning
+  // matches rather than one backtracking regex: titles come from Parliament's API, and a greedy ".*" before
+  // "\s+(.+)" can take quadratic time on long inputs.
+  let split = -1;
+  for (const m of head.matchAll(/\bBill(?: ?\[(?:Lords|HL)\])?/gi)) {
+    const end = m.index + m[0].length;
+    if (head[end] === " " && end + 1 < head.length) split = end;
+  }
+  if (split > 0) {
+    const after = head.slice(split + 1);
+    if (STAGE_AFTER_BILL.test(after)) return { subject: head.slice(0, split).trim(), stage: rest ? `${after}: ${rest}` : after };
+  }
   return { subject: head, stage: rest };
 }
 

@@ -28,11 +28,11 @@ export interface FollowOptions {
 // These two must match feedPath and telegramPayload in @ledger/server/follow (M3b shared conventions).
 function feedPath(t: FollowTarget): string {
   if (t.kind === "all") return "/feeds/all.xml";
-  if (t.kind === "deadline_window") return `/feeds/deadlines/${t.id}.xml`;
-  return `/feeds/${t.kind}/${t.id}.xml`;
+  if (t.kind === "deadline_window") return `/feeds/deadlines/${encodeURIComponent(t.id)}.xml`;
+  return `/feeds/${t.kind}/${encodeURIComponent(t.id)}.xml`;
 }
 function telegramPayload(t: FollowTarget): string {
-  return t.kind === "all" ? "all" : `${{ promise: "p", actor: "a", area: "r", deadline_window: "d" }[t.kind]}_${t.id}`;
+  return t.kind === "all" ? "all" : `${{ promise: "p", actor: "a", area: "r", deadline_window: "d" }[t.kind]}_${encodeURIComponent(t.id)}`;
 }
 
 /** What the panel says an alert is about. */
@@ -364,7 +364,7 @@ function TelegramOption({ target, bot }: { target: FollowTarget; bot: string }) 
       <p className="m-0 max-w-[60ch] text-sm">
         Open our bot in Telegram. It tells you what we store, then you press Follow. Send /stop at any time to delete everything.
       </p>
-      <a href={`https://t.me/${bot}?start=${telegramPayload(target)}`} target="_blank" rel="noopener noreferrer" className={`justify-self-start ${primary}`}>
+      <a href={`https://t.me/${encodeURIComponent(bot)}?start=${telegramPayload(target)}`} target="_blank" rel="noopener noreferrer" className={`justify-self-start ${primary}`}>
         Open in Telegram
       </a>
     </div>

@@ -404,8 +404,8 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-si
   <footer>Prototype for design handoff. Figures are for layout and interaction review; do not quote them until the ingestion pipeline and editor checks are in place.</footer>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-sankey/0.12.3/d3-sankey.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-sankey/0.12.3/d3-sankey.min.js" integrity="sha512-KK15oKpabNDaLpWinMtNfTqy/V7pzlc2FRG174PfASes7RRx6TAsua8HJdRTKo8+BLvPBKNIkL7kXWcz5HoqqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 const PNL = /*__PNL__*/null;
 const LEV = /*__LEV__*/null;
@@ -588,7 +588,7 @@ function renderFan(r){
 function renderResult(r){
   const d=r.drange, any=r.changes.length>0;
   document.getElementById("res-h").textContent= !any?"No changes yet": d[1]>0.05?`Borrowing up £${fmtBn(d[1])}bn a year`: d[1]<-0.05?`Borrowing down £${fmtBn(-d[1])}bn a year`:"Borrowing unchanged";
-  const ps=document.getElementById("r-psnb"); ps.textContent=signedBn(d[1]).replace(/^£/,"£"); ps.className="rv "+(d[1]>0.05?"up":d[1]<-0.05?"down":"flat");
+  const ps=document.getElementById("r-psnb"); ps.textContent=signedBn(d[1]); ps.className="rv "+(d[1]>0.05?"up":d[1]<-0.05?"down":"flat");
   document.getElementById("r-psnb-r").textContent=any?`range ${signedBn(d[0])} to ${signedBn(d[2])}`:"range —";
   const hh=d[1]*1e9/(M.households_m*1e6); const he=document.getElementById("r-hh"); he.textContent=sign(hh)+money(Math.abs(hh)); he.className="rv "+(hh>0.5?"up":hh<-0.5?"down":"flat");
   document.getElementById("r-cpi").textContent=(r.cpi[1]>=0?"+":"−")+Math.abs(r.cpi[1]).toFixed(1)+"pp";

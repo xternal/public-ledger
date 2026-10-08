@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { decrypt, encrypt, lookupHash, newToken, hashToken, sameHash, normaliseEmail } from "../src/crypto";
 import { countUsage } from "../src/usage";
+import { errorText } from "../src/log";
 import { loadConfig } from "../src/config";
 import { migrate, testDb } from "../src/db";
 
@@ -156,5 +157,20 @@ describe("alpha stage and email off", () => {
   it("an off mailer refuses to send", async () => {
     const { offMailer, MailDisabledError } = await import("../src/mail");
     await expect(offMailer().send({ to: "a@b.c", subject: "s", text: "t" })).rejects.toBeInstanceOf(MailDisabledError);
+  });
+});
+
+describe("errorText", () => {
+  it("never logs an address or a long number", () => {
+    expect(errorText(new Error("Email address is not verified: <reader@example.org>, ref 12345678"))).toBe(
+      "Error: Email address is not verified: <[address]>, ref [number]",
+    );
+  });
+
+  it("stays fast and short on a huge message", () => {
+    const started = performance.now();
+    const out = errorText(new Error("!".repeat(200_000)));
+    expect(performance.now() - started).toBeLessThan(200);
+    expect(out.length).toBeLessThanOrEqual(300);
   });
 });
