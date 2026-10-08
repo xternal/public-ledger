@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ActorFile, PromiseFile, cardViews, type CardView } from "@ledger/schema";
 import { loadSeed } from "@ledger/schema/seed";
-import { atomFeed, buildFeed, cardEntries, cardsForFeed, tagUri, xmlEscape } from "../src/alerts";
+import { atomFeed, buildFeed, cardEntries, cardsForFeed, headlineOf, tagUri, xmlEscape, type Headline } from "../src/alerts";
 
 const SITE = "https://ledger.test";
 
@@ -206,5 +206,167 @@ describe("Atom feeds", () => {
     expect(new Set(ids).size).toBe(ids.length);
     const dates = entries.map((e) => text(kid(e, "updated")));
     expect([...dates].sort().reverse()).toEqual(dates);
+  });
+});
+
+// ---------------------------------------------------------------- data and deadline feeds (PRE_SHIP_REVIEW F8, F9)
+
+const CONTRACT = {
+  key: "ocds-h6vhtk-058e4b",
+  ocid: "ocds-h6vhtk-058e4b",
+  source: "find_a_tender" as const,
+  title: "Photo Voltaic Solar Panels",
+  buyer: "SOUTH WESTERN AMBULANCE SERVICE NHS FOUNDATION TRUST",
+  notice_url: "https://www.find-tender.service.gov.uk/Notice/063921-2025",
+  record_url: "https://www.find-tender.service.gov.uk/api/1.0/ocdsRecordPackages/ocds-h6vhtk-058e4b",
+  supplier: { name: "BRIGHT SPARK ENERGY SOLUTIONS LIMITED" },
+  awarded_on: "2025-10-03",
+  snapshots: [
+    { fetched_at: "2026-09-01", value: { amount: 117502, currency: "GBP" }, end_date_planned: "2026-03-31" },
+    { fetched_at: "2026-10-01", value: { amount: 125000, currency: "GBP" }, end_date_planned: "2026-06-30" },
+  ],
+};
+
+function dataCards(): CardView[] {
+  const scored = (id: string, over: Record<string, unknown>) =>
+    PromiseFile.parse({
+      id,
+      actor_id: "andy-burnham",
+      made_on: "2026-07-22",
+      policy_area: "economic_affairs",
+      sources: [{ title: "Source", url: "https://example.org/a" }],
+      versions: [
+        {
+          version: 1,
+          text: `Promise ${id}.`,
+          recorded_on: "2026-07-22",
+          source_url: "https://example.org/a",
+          parameters: { who: "Everyone", how_much_bn_per_year: [0.36, 0.4, 0.44], when: "2027", funded_by: null },
+        },
+      ],
+      events: [{ date: "2026-07-22", type: "promised", text: "Announced" }],
+      replies: [],
+      status: "promised",
+      ...over,
+    });
+  return cardViews(
+    [
+      scored("uk-solar-2026", { status: "delivering", contracts: [CONTRACT.key], events: [{ date: "2026-07-22", type: "promised", text: "Announced" }, { date: "2026-08-01", type: "delivering", text: "Started", evidence_url: "https://example.org/s" }] }),
+      scored("uk-unfunded-2026", { contracts: [CONTRACT.key] }),
+      scored("uk-due-dec-2026", { deadline: "2026-12-24" }),
+      scored("uk-due-oct-2026", {
+        deadline: "2026-10-31",
+        status: "delivered",
+        events: [
+          { date: "2026-07-22", type: "promised", text: "Announced" },
+          { date: "2026-10-20", type: "delivered", text: "In force", evidence_url: "https://example.org/d" },
+        ],
+      }),
+      scored("uk-missed-2026", {
+        deadline: "2026-09-30",
+        events: [
+          { date: "2026-07-22", type: "promised", text: "Announced" },
+          { date: "2026-10-01", type: "deadline_missed", text: "The deadline passed with no evidence of delivery recorded.", auto: true },
+        ],
+      }),
+      scored("uk-due-2029", { deadline: "2029-07-01" }),
+    ],
+    actors,
+    [CONTRACT],
+  );
+}
+
+const HEADLINES: Headline[] = [
+  { year: "2025-26", vintage: "PESA-2026 + PSF-2026-09", vintage_label: "ONS outturn, September 2026 release", kind: "outturn", borrowing: 134.286, income: 1231.3, spending: 1365.6, source: { id: "ons_psf", title: "ONS Public sector finances", url: "https://www.ons.gov.uk/psf", published_on: "2026-09-22" }, quality: "sourced" },
+  { year: "2024-25", vintage: "PESA-2026 + PSF-2026-09", vintage_label: "ONS outturn, September 2026 release", kind: "outturn", borrowing: 149.8, income: 1140.6, spending: 1290.3, source: { id: "ons_psf", title: "ONS Public sector finances", url: "https://www.ons.gov.uk/psf", published_on: "2026-09-22" }, quality: "sourced" },
+  { year: "2026-27", vintage: "EFO-2026-03", vintage_label: "OBR forecast, March 2026", kind: "forecast", borrowing: 115.462, income: 1303.8, spending: 1419.3, source: { id: "obr_efo", title: "OBR Economic and fiscal outlook – March 2026", url: "https://obr.uk/efo/", published_on: "2026-03-03" }, quality: "sourced" },
+];
+
+describe("data and deadline feeds", () => {
+  it("put a card's contracts in its feeds once the card shows them: linked, then each change", () => {
+    const feed = parseXml(buildFeed(dataCards(), "promise", "uk-solar-2026", { ...opts, title: "Solar", alternatePath: "/promise/uk-solar-2026" }));
+    const titles = kids(feed, "entry").map((e) => text(kid(e, "title")));
+    expect(titles.slice(0, 2)).toEqual([
+      "Contract changed: value £125,000, was £117,502 (+£7,498, +6.4%); planned end 30 June 2026, was 31 March 2026. “Photo Voltaic Solar Panels”,… (Andy Burnham)",
+      "Contract linked: £117,502, “Photo Voltaic Solar Panels”, awarded 3 October 2025 by South Western Ambulance Service NHS Foundation Trust to… (Andy Burnham)",
+    ]);
+    const first = kids(feed, "entry")[0]!;
+    expect(text(kid(first, "id"))).toBe("tag:ledger.test,2026:promise/uk-solar-2026/contract/ocds-h6vhtk-058e4b/1");
+    expect(text(kid(first, "updated"))).toBe("2026-10-01T00:00:00Z");
+    expect(kid(first, "link").attrs.href).toBe("https://ledger.test/promise/uk-solar-2026#contracts-uk-solar-2026");
+    expect(text(kid(first, "content"))).toContain("Source: Find a Tender notice, https://www.find-tender.service.gov.uk/Notice/063921-2025 (sourced).");
+    // A card that is not funded yet does not show its contracts, so neither does its feed.
+    const early = parseXml(buildFeed(dataCards(), "promise", "uk-unfunded-2026", { ...opts, title: "x", alternatePath: "/" }));
+    expect(kids(early, "entry").map((e) => text(kid(e, "title"))).some((t) => t.startsWith("Contract"))).toBe(false);
+  });
+
+  it("has an updates feed of data changes: contracts and one entry per edition of the headline figures, numbers first", () => {
+    const feed = parseXml(buildFeed(dataCards(), "updates", "*", { ...opts, title: "Updates", alternatePath: "/", headlines: HEADLINES }));
+    expect(kid(feed, "link").attrs.href).toBe("https://ledger.test/feeds/updates.xml");
+    expect(text(kid(feed, "id"))).toBe("tag:ledger.test,2026:feed/updates");
+    const entries = kids(feed, "entry");
+    expect(entries.map((e) => text(kid(e, "title")))).toEqual([
+      expect.stringMatching(/^Contract changed/),
+      "Borrowing £134bn in 2025-26: ONS outturn, September 2026 release",
+      expect.stringMatching(/^Contract linked/),
+      "Borrowing £115bn in 2026-27: OBR forecast, March 2026",
+    ]);
+    const ons = entries[1]!;
+    expect(text(kid(ons, "updated"))).toBe("2026-09-22T00:00:00Z");
+    expect(text(kid(ons, "id"))).toBe("tag:ledger.test,2026:edition/PESA-2026_PSF-2026-09");
+    expect(text(kid(ons, "content"))).toBe(
+      [
+        "ONS outturn, September 2026 release: what the Statement shows, year by year.",
+        "",
+        "2024-25: borrowing £150bn, income £1,141bn, spending £1,290bn.",
+        "2025-26: borrowing £134bn, income £1,231bn, spending £1,366bn.",
+        "",
+        "Source: ONS Public sector finances, https://www.ons.gov.uk/psf (sourced).",
+      ].join("\n"),
+    );
+    // "Every change" includes the data changes too, as following everything by email does.
+    const all = kids(parseXml(buildFeed(dataCards(), "all", "*", { ...opts, title: "All", alternatePath: "/", headlines: HEADLINES })), "entry").map((e) => text(kid(e, "title")));
+    expect(all).toEqual(expect.arrayContaining(["Borrowing £115bn in 2026-27: OBR forecast, March 2026", expect.stringMatching(/^Contract linked/)]));
+  });
+
+  it("has a feed per deadline window: outcomes judged on their own day, and this month's list of what is coming due", () => {
+    const build = (w: string, today: string) =>
+      parseXml(buildFeed(dataCards(), "deadlines", w, { siteUrl: SITE, today, title: `Due ${w}`, alternatePath: "/promises#coming-up" }));
+    const month = build("this-month", "2026-10-25");
+    expect(kid(month, "link").attrs.href).toBe("https://ledger.test/feeds/deadlines/this-month.xml");
+    const entries = kids(month, "entry");
+    // Nothing open is due in October (the October promise was delivered), so there is no list; the
+    // September deadline that passed on 1 October is in the grace month, so its followers hear of it.
+    expect(entries.map((e) => text(kid(e, "title")))).toEqual([
+      "Delivered: Promise uk-due-oct-2026. (Andy Burnham, due 31 October 2026)",
+      "Deadline passed: Promise uk-missed-2026. (Andy Burnham, due 30 September 2026)",
+    ]);
+    // The same delivery appears under the same id as in the card's own feed.
+    expect(text(kid(entries[0]!, "id"))).toBe("tag:ledger.test,2026:promise/uk-due-oct-2026/event/1");
+    // Three months: the December deadline is coming due; 2029 is not.
+    const list = (feed: El) => kids(feed, "entry").find((e) => text(kid(e, "title")).startsWith("Coming due"))!;
+    const quarter = list(build("next-3-months", "2026-10-25"));
+    expect(text(kid(quarter, "title"))).toBe("Coming due: 1 promise between October and December 2026");
+    expect(text(kid(quarter, "id"))).toBe("tag:ledger.test,2026:deadlines/next-3-months/2026-10");
+    expect(text(kid(quarter, "updated"))).toBe("2026-10-01T00:00:00Z");
+    expect(text(kid(quarter, "content"))).toContain("24 December 2026: Andy Burnham, “Promise uk-due-dec-2026.” (Promised). https://ledger.test/promise/uk-due-dec-2026");
+    expect(text(kid(quarter, "content"))).not.toContain("2029");
+    // In December the same promise is past its deadline and still open.
+    expect(text(kid(list(build("this-month", "2026-12-28")), "content"))).toContain("(Promised, deadline passed)");
+    // An unknown window is an empty, valid feed.
+    expect(kids(build("next-5-years", "2026-10-25"), "entry")).toEqual([]);
+  });
+
+  it("builds valid updates and deadline feeds from the real data", () => {
+    const seed = loadSeed();
+    const headlines = Object.values(seed.statements).map((s) => headlineOf(s)!);
+    expect(headlines.every(Boolean)).toBe(true);
+    for (const [kind, key] of [["updates", "*"], ["deadlines", "next-12-months"], ["all", "*"]] as const) {
+      const feed = parseXml(buildFeed(seed.cards, kind, key, { siteUrl: SITE, title: "Public Ledger", alternatePath: "/", headlines }));
+      const ids = kids(feed, "entry").map((e) => text(kid(e, "id")));
+      expect(new Set(ids).size).toBe(ids.length);
+      const dates = kids(feed, "entry").map((e) => text(kid(e, "updated")));
+      expect([...dates].sort().reverse()).toEqual(dates);
+    }
   });
 });

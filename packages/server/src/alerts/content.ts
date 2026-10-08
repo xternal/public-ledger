@@ -1,4 +1,5 @@
 import { parse } from "yaml";
+import { contractKey } from "@ledger/schema";
 import { truncate } from "./labels";
 
 /**
@@ -37,6 +38,8 @@ export interface LooseCard {
   versions: LooseVersion[];
   events: LooseEvent[];
   replies: LooseReply[];
+  /** Keys of the linked contracts (file names under data/build/contracts/, without ".json"). */
+  contracts: string[];
 }
 export interface LooseActor {
   id: string;
@@ -68,6 +71,11 @@ export function parseCard(yamlText: string): LooseCard | null {
     versions: arr<LooseVersion>(data.versions),
     events: arr<LooseEvent>(data.events),
     replies: arr<LooseReply>(data.replies),
+    contracts: arr<unknown>(data.contracts).flatMap((r) => {
+      if (typeof r === "string") return [r];
+      const o = r as { ocid?: unknown; award_id?: unknown } | null;
+      return o && typeof o.ocid === "string" ? [contractKey({ ocid: o.ocid, award_id: typeof o.award_id === "string" ? o.award_id : undefined })] : [];
+    }),
   };
 }
 
