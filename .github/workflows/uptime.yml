@@ -1,0 +1,61 @@
+name: Uptime
+
+# Every 15 minutes: is ledgergov.uk up? A page that fails twice, a minute
+# apart, opens one issue labelled `uptime` (GitHub emails the owner); the
+# first good check after that comments and closes it. Public pages only, no
+# secrets. Free on a public repository.
+
+on:
+  schedule:
+    # Every 15 minutes, UTC.
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+concurrency:
+  group: uptime
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check the site and open or close the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SITE: https://ledgergov.uk
+        run: |
+          failing() {
+            local out=""
+            for page in /api/health / /promises; do
+              code=$(curl -s --max-time 20 -o /dev/null -w '%{http_code}' "$SITE$page" || true)
+              [ "$code" = "200" ] || out="$out $page → ${code:-no answer}"
+            done
+            echo "$out"
+          }
+          down=$(failing)
+          if [ -n "$down" ]; then
+            echo "First check failed:$down. Checking again in a minute."
+            sleep 60
+            down=$(failing)
+          fi
+          open=$(gh issue list --repo "$REPO" --label uptime --state open --json number --jq '.[0].number // empty')
+          now=$(TZ=Europe/London date '+%-d %b %Y, %H:%M %Z')
+          if [ -n "$down" ]; then
+            echo "Down:$down"
+            if [ -z "$open" ]; then
+              gh label create uptime --repo "$REPO" --color B60205 --description "The site is not answering" 2> /dev/null || true
+              gh issue create --repo "$REPO" --label uptime --title "ledgergov.uk is not answering" \
+                --body "Found at $now by the uptime check, twice a minute apart:$down. Vercel status: https://www.vercel-status.com. This issue closes itself when the site answers again."
+            fi
+          else
+            echo "Up."
+            if [ -n "$open" ]; then
+              gh issue comment "$open" --repo "$REPO" --body "Answering again at $now."
+              gh issue close "$open" --repo "$REPO"
+            fi
+          fi

@@ -272,6 +272,8 @@ The repository is public, so every job runs on GitHub's own machines (`runs-on: 
 
 Pull requests from people outside the repository run their workflows only after an owner approves them (Settings → Actions → General → "Require approval for all external contributors"). They never get the repository's secrets. Labels (`merge-when-green`, `intake`) and the approvals the intake merge counts come only from people with write access.
 
+**Uptime.** `.github/workflows/uptime.yml` checks `/api/health`, `/` and `/promises` every 15 minutes. Two failures a minute apart open one issue labelled `uptime`, which GitHub emails to the owner; the first good check after that closes it. It reads public pages only and needs no secrets.
+
 ## 13. Search engines and AI assistants
 
 What the site publishes for them, all built from the same content as the pages:
