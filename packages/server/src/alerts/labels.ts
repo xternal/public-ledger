@@ -79,12 +79,17 @@ export function costRangeText(r: readonly number[] | null | undefined): string {
   const [low, central, high] = r as [number, number, number];
   const raises = central < 0;
   const abs = [Math.abs(low), Math.abs(high)].sort((a, b) => a - b) as [number, number];
-  return `${raises ? "Raises" : "Costs"} £${fmtBn(abs[0])}bn to £${fmtBn(abs[1])}bn a year`;
+  return `${raises ? "Raises" : "Costs"} ${gbpBnText(abs[0])} to ${gbpBnText(abs[1])} a year`;
 }
 
-/** "£115bn", "£24.6bn", "£0.45bn": as the site shows billions (apps/web/lib/format.ts gbpBn). */
+/** Under £0.1bn the amount reads in millions, so a small range stays a range ("£18m to £22m"). */
+const MILLIONS_BELOW_BN = 0.1;
+
+/** "£115bn", "£24.6bn", "£0.45bn", "£18m": as the site shows billions (apps/web/lib/format.ts gbpBn). */
 export function gbpBnText(x: number): string {
-  return `${x < 0 ? "−" : ""}£${fmtBn(x)}bn`;
+  const a = Math.abs(x);
+  const sign = x < 0 ? "−" : "";
+  return a > 0 && a < MILLIONS_BELOW_BN ? `${sign}£${whole.format(Math.round(a * 1000))}m` : `${sign}£${fmtBn(a)}bn`;
 }
 
 const MINUS = "−";

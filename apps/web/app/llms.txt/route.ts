@@ -12,7 +12,7 @@ import { AREA_LABEL, costText } from "@/lib/promises";
 import { absolute, SITE_DESCRIPTION, SITE_NAME, SOURCE_CODE } from "@/lib/site";
 import { MP_DESCRIPTION } from "@/lib/mp-copy";
 import { PRIVACY_SUMMARY } from "@/lib/privacy-copy";
-import { BUDGET } from "@/lib/budget";
+import { BUDGET, BUDGET_TOPICS, topicCards } from "@/lib/budget";
 
 export const dynamic = "force-static";
 
@@ -50,6 +50,7 @@ export function GET() {
     `- [Forecasts against what happened](${absolute("/method/backtest")}): every forecast the site shows is recorded and scored against the official outturn. ${backtestLead(backtestSummary(shown), firstRecorded)} Earlier official forecasts checked for context: ${context.scored}.`,
     `- [Open data API](${absolute("/method/api")}): the same data as JSON or CSV, free, no key.`,
     `- [${BUDGET.name}](${absolute("/budget")}): the Budget on ${BUDGET.date} can fund, change or break the government's promises. The page lists the government's promises it could still move (those needing money, largest first, and tax pledges), the opposition's costed pledges for comparison, and, from Budget day, what the Budget did to each card with links to the evidence.`,
+    ...BUDGET_TOPICS.filter((t) => topicCards(seed.cards, t).length > 0).map((t) => `- [${t.heading}](${absolute(`/budget/${t.id}`)}): ${t.description}`),
     `- [Coming up](${absolute("/promises#coming-up")}): open promises due in the next 12 months, nearest deadline first. Readers can follow a deadline window (this month, next 3 months, next 12 months) by email, Telegram or feed.`,
     `- [Privacy notice](${absolute("/privacy")}): ${PRIVACY_SUMMARY}`,
     `- [Become an editor](${absolute("/editors")}): volunteer editors check promise cards against their sources; two must approve every card. About two hours a week, remote, no coding; any party or none, declared.`,

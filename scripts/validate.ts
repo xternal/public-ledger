@@ -8,7 +8,7 @@
  */
 import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { dirname, join, relative } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { parseSeed } from "@ledger/schema/seed";
 import { loadPeople } from "@ledger/schema/people";
@@ -75,6 +75,15 @@ for (const file of files(join(root, "apps/web/components"))) {
       if (re.test(code)) errors.push(`${relative(root, file)}:${i + 1}: ${why} in a component; move it to data/seed`);
     }
   });
+}
+
+// 3b. Every shared page has its own share image. A page that sets its own Open Graph fields loses the
+// image it would inherit (Next.js replaces the whole openGraph object), so it needs an opengraph-image beside it.
+for (const file of files(join(root, "apps/web/app"))) {
+  if (!file.endsWith("page.tsx") || !/\bopenGraph\s*:/.test(readFileSync(file, "utf8"))) continue;
+  const dir = dirname(file);
+  if (!readdirSync(dir).some((n) => /^opengraph-image\.(tsx|ts|png|jpg)$/.test(n)))
+    errors.push(`${relative(root, file)}: sets openGraph but has no opengraph-image beside it, so shares show no picture`);
 }
 
 // 4. Promise history is append-only (invariant 5): compare every card with the base branch.

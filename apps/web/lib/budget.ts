@@ -68,6 +68,10 @@ export const BUDGET_TOPICS = [
   {
     id: "capital-gains-tax",
     title: "Capital gains tax",
+    /** The topic's own page (/budget/<id>): its heading, and the description search engines and share cards show. */
+    heading: "Capital gains tax: what each party has promised",
+    description:
+      "Will capital gains tax rise in the Budget? No minister has said. What each UK party has actually promised on it, word for word, with what each would cost or raise and the sources, beside HMRC's own estimates.",
     match: /capital gains/i,
     intro:
       "Ministers have been asked in Parliament whether capital gains tax will rise to match income tax. The Treasury's answer is that decisions on tax are taken by the Chancellor at the Budget. HMRC's own estimates show that large rises can lose money rather than raise it, because people sell fewer assets. These are the promises parties have made on it, with what each would cost or raise.",
