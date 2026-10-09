@@ -300,3 +300,20 @@ To change the key, replace the file with a new `<32 hex>.txt` holding its own na
 1. Google: [search.google.com/search-console](https://search.google.com/search-console) → Add property → **Domain** → `ledgergov.uk`, and add the TXT record it shows to the domain's DNS (Vercel → Domains, if Vercel holds the DNS). Then Sitemaps → submit `https://ledgergov.uk/sitemap.xml`, and URL inspection → Request indexing for `/`, `/promises` and one card.
 2. Bing: [bing.com/webmasters](https://www.bing.com/webmasters) → **Import from Google Search Console** (brings the verified site and its sitemap), or add `https://ledgergov.uk` and verify by DNS. Then run `pnpm indexnow -- --all` once; Bing's IndexNow page shows the submissions.
 3. A week later, check Pages (Google) and Site Explorer (Bing) for pages not indexed, and Enhancements → Breadcrumbs for structured data errors.
+
+## 14. Parity check: proof that a change serves the same site
+
+For a change that must not change what readers and machines get, such as the move to the OpenPromises engine, `scripts/parity.ts` builds the site for production, serves it on a free local port and compares what it serves with a baseline. Run it from the repository root:
+
+```bash
+pnpm parity:snapshot    # on the commit the change starts from, e.g. main: writes .parity/baseline
+pnpm parity:check       # on the change: writes .parity/current, compares, exits 1 on any difference
+```
+
+* **What it compares, byte for byte:** every `/api/v1` endpoint as JSON and CSV (each card and each year too), every feed (`all`, `updates`, deadlines, and one per area, actor and promise), `sitemap.xml`, `robots.txt`, `llms.txt`, `llms-full.txt` and every card's `.md`; the status code and content type of each.
+* **And each page's metadata:** for every page in the sitemap, every actor page and each route type (home, `/promises`, areas, actors, cards, `/budget` and its topics, `/method`, `/people`, `/editors`, `/feeds`, `/privacy`, `/mp`), the title, description, canonical, robots, alternates, Open Graph, Twitter tags and JSON-LD, as a share crawler sees them. MP pages are a sample of three, because each one asks UK Parliament's API when it is first served.
+* **The same settings both times:** `SITE_URL=https://ledgergov.uk`, the alpha gate off, and the clock pinned to the moment the baseline was taken (`scripts/parity-clock.cjs`, loaded only into `next build` and `next start`), so a check run days later still compares like with like.
+* **Normalised, because it must vary:** the API's `data_build` stamp, and the time an MP page read Parliament's data (its JSON-LD `dateModified`). Nothing else.
+* **The result:** a diff grouped by file, with JSON pretty-printed, on screen and in `.parity/report.txt`. `.parity/` is gitignored.
+* **Time:** about 10 seconds for each command on a laptop once Next.js has compiled the app here before; the first build in a fresh checkout takes longer.
+* **Things to know:** it runs `next build`, so it replaces `apps/web/.next`. Take the baseline from the commit the change starts from: a newer `data/build` (the nightly data job) shows up as differences. MP pages need Parliament's API to answer; if it doesn't, those three pages differ, so run the check again. `--no-build` reuses the existing build, which only matches when it was built by this script.
