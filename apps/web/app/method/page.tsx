@@ -128,6 +128,10 @@ export default function MethodPage() {
             <ul className="m-0 grid gap-1.5 pl-4 text-muted">
               <li>Every sandbox result shows low, central and high.</li>
               <li>Tax levers use HMRC&apos;s costings per unit of change. They include how taxpayers respond, but not knock-on effects on the wider economy.</li>
+              <li>
+                Capital gains tax works in steps. HMRC says its figures for it cannot be scaled, so the sandbox offers only the rises HMRC costs and
+                uses HMRC&apos;s own figure for each: never a figure in between, and nothing beyond the largest.
+              </li>
               <li>Where a source gives a central figure only, the range is an editorial band around it, and the method note says so.</li>
               <li>
                 Effects on GDP use spending multipliers of {band(ms)} and tax multipliers of {band(mt)}: wide on purpose, and labelled as rules of thumb.

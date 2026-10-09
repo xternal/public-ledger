@@ -111,7 +111,8 @@ export default async function SharePage({ params }: Props) {
         <div className="grid gap-2 rounded-panel bg-sunk p-5 text-label text-muted">
           <p className="m-0 font-semibold text-ink">Built by someone using the sandbox. This is not a Public Ledger forecast or finding.</p>
           <p className="m-0">
-            Tax costings are HMRC&apos;s and debt-interest costings the OBR&apos;s, per unit of change. They include how taxpayers respond but no wider economic
+            Tax costings are HMRC&apos;s and debt-interest costings the OBR&apos;s, per unit of change (capital gains tax only at the steps HMRC costs).
+            They include how taxpayers respond but no wider economic
             effects. Price and GDP effects are rules of thumb, shown as wide ranges. Total spending this year: {gbpBn(seed.statement.spending.reduce((a, l) => a + l.bn, 0))}.
           </p>
           {stale && (

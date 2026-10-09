@@ -14,6 +14,8 @@ import { OPEN_GRAPH, seoContext } from "@/lib/site";
 import { creditRows } from "@/components/CreditTable";
 
 const TITLE = "Promises";
+/** What a share card shows: a whole claim, not the menu label. */
+const SHARE_TITLE = "UK political promises, word for word, and where each stands";
 const DESCRIPTION = "What UK parties and the government have promised, quoted word for word, and where each promise stands now: cost, who pays, and evidence. One standard for every party.";
 
 export const metadata: Metadata = {
@@ -28,8 +30,8 @@ export const metadata: Metadata = {
       ],
     },
   },
-  openGraph: { ...OPEN_GRAPH, title: TITLE, description: DESCRIPTION, type: "website", url: "/promises" },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  openGraph: { ...OPEN_GRAPH, title: SHARE_TITLE, description: DESCRIPTION, type: "website", url: "/promises" },
+  twitter: { card: "summary_large_image", title: SHARE_TITLE, description: DESCRIPTION },
 };
 
 export default function PromisesPage() {

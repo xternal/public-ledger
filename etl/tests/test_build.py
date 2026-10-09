@@ -10,7 +10,7 @@ import pytest
 
 from etl.assemble import assemble_all
 from etl.build import Run, Store, read_committed, discover
-from etl.core import BUILD_DIR
+from etl.core import BUILD_DIR, ROOT
 
 
 @pytest.fixture(scope="module")
@@ -90,6 +90,53 @@ def test_new_m2_levers_from_hmrc_and_govuk(outputs):
         assert by_id[lever_id]["quality"] in ("sourced", "approx")
     assert by_id["personal_allowance"]["effect"]["per_unit_bn"]["y1"][1] < 0
     assert outputs["tax"]["income_tax"]["personal_allowance_lever"] == "personal_allowance"
+
+
+# HMRC, Direct effects of illustrative tax changes (June 2025), £ million, change made in April 2026:
+# {step: (2026-27, 2028-29)}. Minus = the Treasury collects less.
+HMRC_CGT = {
+    "cgt_lower": {1: (-5, 5), 5: (-40, -10), 10: (-130, -135)},
+    "cgt_higher": {1: (-15, -30), 5: (-170, -870), 10: (-540, -3565)},
+}
+
+
+def test_cgt_levers_use_hmrcs_own_steps(outputs):
+    by_id = {l["id"]: l for l in outputs["levers"]["levers"]}
+    for lever_id, want in HMRC_CGT.items():
+        l = by_id[lever_id]
+        assert l["quality"] == "sourced" and l["source_id"] == "hmrc_reckoner" and l["effect"]["target"] == "cgt"
+        assert "per_unit_bn" not in l["effect"]
+        steps = l["effect"]["steps"]
+        assert [s["at"] for s in steps] == [1, 5, 10]
+        assert l["min"] == l["base"] and l["max"] == l["base"] + 10
+        for s in steps:
+            y1, y5 = want[s["at"]]
+            assert s["y1"][1] == pytest.approx(y1 / 1000) and s["y5"][1] == pytest.approx(y5 / 1000)
+            for r in (s["y1"], s["y5"]):
+                assert r[0] <= r[1] <= r[2]
+                assert r[0] == pytest.approx(r[1] * 1.1 if r[1] < 0 else r[1] * 0.9)
+        note = l["method_note"]
+        assert "are also non-linear and so cannot be scaled up" in note and "only steps" in note
+        assert "−£540m in 2026-27" in note if lever_id == "cgt_higher" else "−£130m in 2026-27" in note
+    # Bases from GOV.UK; the higher rate is 16 points short of income tax's 40%, beyond HMRC's last step.
+    assert by_id["cgt_lower"]["base"] == 18 and by_id["cgt_higher"]["base"] == 24
+    assert "would need a rise of 16 points, bigger than any HMRC estimates" in by_id["cgt_higher"]["method_note"]
+    assert "would need a rise of 2 points, which is not one of HMRC's steps" in by_id["cgt_lower"]["method_note"]
+
+
+def test_cgt_lever_keeps_the_template_when_a_step_is_missing():
+    run = Run(build_id="test", started_at="test", trigger="test")
+    by_source = {}
+    for mod in discover():
+        run.sources[mod.SOURCE.id] = mod.SOURCE
+        by_source[mod.SOURCE.id] = read_committed(mod.SOURCE.id)
+    by_source["hmrc_reckoner"] = [o for o in by_source["hmrc_reckoner"] if o.series_id != "reckoner.cgt_higher_rate_5pp"]
+    by_id = {l["id"]: l for l in assemble_all(Store(by_source), run)["levers"]["levers"]}
+    template = next(l for l in json.loads((ROOT / "data" / "seed" / "levers.json").read_text())["levers"] if l["id"] == "cgt_higher")
+    assert by_id["cgt_higher"]["effect"] == template["effect"]
+    assert by_id["cgt_higher"]["quality"] == "training"
+    assert any(c.check_id == "coverage" and c.level == "warning" and "cgt_higher_rate_5pp missing" in c.message for c in run.checks)
+    assert by_id["cgt_lower"]["quality"] == "sourced"
 
 
 def test_failed_fetch_keeps_the_recorded_edition(monkeypatch):

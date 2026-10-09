@@ -4,6 +4,7 @@ import { GROUP_LABEL, GROUP_ORDER } from "@/lib/copy";
 import { direction, rangeText, signedBn } from "@/lib/format";
 import { useScenario } from "@/lib/scenario";
 import { LeverSlider } from "./LeverSlider";
+import { LeverSteps } from "./LeverSteps";
 import { MeasureToggle } from "./MeasureToggle";
 
 export function SandboxDock() {
@@ -74,7 +75,15 @@ export function SandboxDock() {
         return (
           <fieldset key={group} className="m-0 grid gap-4 border-0 border-t border-line-strong p-0 pt-4">
             <legend className="float-left mb-1 w-full p-0 text-caption font-medium text-muted">{GROUP_LABEL[group]}</legend>
-            {levers.map((l) => (l.unit === "toggle" ? <MeasureToggle key={l.id} lever={l} /> : <LeverSlider key={l.id} lever={l} />))}
+            {levers.map((l) =>
+              l.unit === "toggle" ? (
+                <MeasureToggle key={l.id} lever={l} />
+              ) : l.effect.steps ? (
+                <LeverSteps key={l.id} lever={l} />
+              ) : (
+                <LeverSlider key={l.id} lever={l} />
+              ),
+            )}
           </fieldset>
         );
       })}

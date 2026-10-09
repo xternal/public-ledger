@@ -34,6 +34,9 @@ export const GROUP_LABEL: Record<LeverGroup, string> = {
 
 export const GROUP_ORDER: LeverGroup[] = ["taxes", "spending", "rates", "measures"];
 
+/** Under a stepped lever (capital gains tax): why there is no slider. */
+export const STEPPED_LEVER_NOTE = "Official estimates exist only for these steps.";
+
 export const STATUS_LABEL: Record<Status, string> = {
   promised: "Promised",
   in_plan: "In plan",

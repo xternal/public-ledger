@@ -4,7 +4,7 @@ import { collectionJsonLd } from "@ledger/server/seo";
 import { getSeed } from "@/lib/data";
 import { EVENT_LABEL } from "@/lib/copy";
 import { AREA_LABEL, todayIso } from "@/lib/promises";
-import { BUDGET, budgetDayEvents, budgetWatch } from "@/lib/budget";
+import { BUDGET, BUDGET_TOPICS, budgetDayEvents, budgetWatch, topicCards } from "@/lib/budget";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PromiseList, StatusPill } from "@/components/PromiseList";
 import { FollowButton } from "@/components/FollowPanel";
@@ -23,7 +23,11 @@ const dayDate = (iso: string) => {
 };
 
 const TITLE = `${BUDGET.name}: the promises it could fund or break`;
-const DESCRIPTION = `The Budget on ${dayDate(BUDGET.date)} can fund, change or break the government's promises. The ones to watch, what each would cost a year, and, from Budget day, what it did to each.`;
+/** Topics with at least one card; the description names them only then. */
+const TOPICS_SHOWN = BUDGET_TOPICS.filter((t) => topicCards(getSeed().cards, t).length > 0).map((t) => t.title.toLowerCase());
+const DESCRIPTION = `The Budget on ${dayDate(BUDGET.date)} can fund, change or break the government's promises. The ones to watch, what each would cost a year${
+  TOPICS_SHOWN.length ? `, what the parties have promised on ${TOPICS_SHOWN.join(" and ")}` : ""
+}, and, from Budget day, what the Budget did to each.`;
 
 export const metadata: Metadata = {
   title: `${TITLE} | Public Ledger`,
@@ -48,13 +52,14 @@ export default function BudgetPage() {
   const after = today >= BUDGET.date;
   const w = budgetWatch(seed.cards);
   const watched = [...w.needMoney, ...w.tax, ...w.other];
+  const topics = BUDGET_TOPICS.map((topic) => ({ topic, cards: topicCards(seed.cards, topic) })).filter((t) => t.cards.length > 0);
   const when = dayDate(BUDGET.date);
   const structuredData = collectionJsonLd(
     {
       path: "/budget",
       name: TITLE,
       description: DESCRIPTION,
-      cards: [...w.moved, ...watched, ...w.opposition].filter((c, i, all) => all.indexOf(c) === i),
+      cards: [...w.moved, ...watched, ...topics.flatMap((t) => t.cards), ...w.opposition].filter((c, i, all) => all.indexOf(c) === i),
       about: {
         "@type": "Event",
         name: BUDGET.name,
@@ -166,6 +171,30 @@ export default function BudgetPage() {
             <PromiseList cards={w.tax} today={today} />
           </section>
         )}
+
+        {topics.map(({ topic, cards }) => (
+          <section key={topic.id} id={topic.id} aria-labelledby={`${topic.id}-h`} className={`${section} scroll-mt-20`}>
+            <div className="grid max-w-[68ch] gap-1">
+              <h2 id={`${topic.id}-h`} className={h2}>
+                {topic.title}
+              </h2>
+              <p className="m-0 text-muted">{topic.intro}</p>
+              <p className="m-0 text-label text-muted">
+                Sources:{" "}
+                {topic.sources.map((s, i) => (
+                  <span key={s.url}>
+                    {i > 0 && " · "}
+                    <a href={s.url}>{s.title}</a>
+                  </span>
+                ))}
+              </p>
+              <p className="m-0 text-label">
+                <a href={`/budget/${topic.id}`}>{topic.title} on its own page, to share</a>
+              </p>
+            </div>
+            <PromiseList cards={cards} today={today} />
+          </section>
+        ))}
 
         {w.other.length > 0 && (
           <section aria-labelledby="other-h" className={section}>

@@ -2,7 +2,7 @@ import type { z } from "zod";
 import bundleRaw from "../../../data/build/app.json";
 import presetsRaw from "../../../data/seed/presets.json";
 import type { StatementSeed } from "./statement";
-import { fundingKey, type Lever, type LeversSeed, type Settings } from "./levers";
+import { STEP_TOLERANCE, fundingKey, stepValues, type Lever, type LeversSeed, type Settings } from "./levers";
 import { ActorFile, PromiseFile, cardViews, type CardView } from "./content";
 import { CONTRACT_SOURCES, ContractFile, contractKey } from "./contracts";
 import { readContent, type RawContent } from "./content-files";
@@ -119,6 +119,8 @@ export function crossCheck(seed: Seed): SeedIssue[] {
         err(where, `unknown setting suffix in "${key}"`);
       } else if (typeof value !== "number" || value < lever.min || value > lever.max) {
         err(where, `"${key}" = ${value} is outside ${lever.min}–${lever.max}`);
+      } else if (lever.effect.steps && !stepValues(lever).some((v) => Math.abs(v - value) < STEP_TOLERANCE)) {
+        err(where, `"${key}" = ${value} is not one of the lever's steps (${stepValues(lever).join(", ")})`);
       }
     }
   };

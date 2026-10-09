@@ -11,6 +11,8 @@ Source of `per_unit_bn`:
 - Bank Rate → debt interest: OBR EFO ready reckoner (sensitivity of debt interest to a 1pp rise in Bank Rate and gilt yields). Year one is smaller than year five because only short-dated debt, reserves (QE) and T-bills reprice immediately.
 - % of GDP targets: `d × nominal GDP / 100`.
 
+**Stepped levers.** Where the source says its costings cannot be scaled, a lever carries `steps` instead of `per_unit_bn`: the source's own changes, each with its own Range for year one (`y1`) and the last year it costs (`y5`). Capital gains tax works this way: HMRC costs rises of 1, 5 and 10 points in each rate and says the figures "are also non-linear and so cannot be scaled up" (big rises raise less, or lose money, because people sell fewer assets). The engine uses HMRC's figure for the step a value stands on and nothing else: no interpolation, no scaling, nothing beyond the last step. A value between steps (from an old link) counts as the step below it; the sandbox shows these levers as a set of choices, not a slider.
+
 "Static" here means no economy-wide (macro) effects; HMRC costings may include taxpayers' own responses. Restrict slider ranges to the band where the source says linearity holds (typically a few pp), and label results "static, before behaviour".
 
 Ranges: v0 uses ±10–25% around central based on the source's own stated uncertainty, or a documented editorial default. Never a point.

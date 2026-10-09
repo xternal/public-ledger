@@ -3,6 +3,7 @@ import re
 import shutil
 from dataclasses import replace
 from datetime import date
+from pathlib import Path
 
 import pytest
 
@@ -12,6 +13,9 @@ from etl.sources import govuk_tax_rates as m
 SEED = ROOT / "data" / "seed"
 SERIES = [f"tax.income_tax.{k}" for k in m.INCOME_TAX_KEYS] + [f"tax.ni.{k}" for k in m.NI_KEYS]
 FUEL = "tax.fuel_duty.main_rate"
+CGT = [f"tax.cgt.{k}" for k in m.CGT_KEYS]
+# The "rates" part of https://www.gov.uk/api/content/capital-gains-tax, fetched 9 Oct 2026 (other parts left out).
+CGT_FIXTURE = Path(__file__).parent / "fixtures" / "govuk_tax_rates" / "capital-gains-tax.json"
 
 
 def _seed() -> tuple[str, dict]:
@@ -54,6 +58,9 @@ def test_contract(obs):
         if o.series_id == FUEL:
             assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", o.period) and o.unit == "pence_per_litre" and o.geography == "UK"
             continue
+        if o.series_id in CGT:
+            assert FISCAL_YEAR.match(o.period) and o.unit == "pct" and o.geography == "UK"
+            continue
         assert o.series_id in SERIES and FISCAL_YEAR.match(o.period)
         assert o.geography == ("UK" if o.series_id.startswith("tax.ni.") else "England, Wales and NI")
         assert o.unit == ("pct" if o.series_id.endswith("_rate") else "gbp")
@@ -62,7 +69,7 @@ def test_contract(obs):
 def test_all_thresholds_for_at_least_one_year(obs):
     by_year: dict[str, set] = {}
     for o in obs:
-        if o.series_id == FUEL:
+        if o.series_id == FUEL or o.series_id in CGT:
             continue
         by_year.setdefault(o.period, set()).add(o.series_id)
     complete = [y for y, s in by_year.items() if s == set(SERIES)]
@@ -71,7 +78,7 @@ def test_all_thresholds_for_at_least_one_year(obs):
 
 def test_values_next_to_seed(obs):
     seed_year, seed = _seed()
-    years = sorted({o.period for o in obs if o.series_id != FUEL})
+    years = sorted({o.period for o in obs if o.series_id in SERIES})
     val = {(o.series_id, o.period): o.value for o in obs}
     lines = [f"{'series':42} {'seed ' + seed_year:>14} " + " ".join(f"{y:>10}" for y in years)]
     for s in SERIES:
@@ -125,7 +132,7 @@ def test_parser_is_strict_on_missing_text(raws, tmp_path):
 
 def test_parser_is_strict_on_disagreement(raws, tmp_path):
     """HMRC PAYE bands that join up but disagree with income-tax-rates must stop the parse."""
-    year = sorted({o.period for o in m.parse(raws) if o.series_id != FUEL})[-1]
+    year = sorted({o.period for o in m.parse(raws) if o.series_id in SERIES})[-1]
     start = int(year[:4])
     name = f"rates-and-thresholds-for-employers-{start}-to-{start + 1}.json"
     bad = _tampered(raws, tmp_path, name, ("Up to £37,700", "Up to £37,000"), ("From £37,701", "From £37,001"))
@@ -139,3 +146,60 @@ def test_fuel_duty_is_strict_on_disagreement(raws, tmp_path):
                     ("From 23 March 2022 (pounds per litre)", "From 1 April 2026 (pounds per litre)"))
     with pytest.raises(ValueError, match="disagree"):
         m.parse(bad)
+
+
+# ---------------------------------------------------------------- capital gains tax (stored copy, no network)
+
+
+def _cgt_doc(*edits: tuple[str, str]) -> dict:
+    text = CGT_FIXTURE.read_text(encoding="utf-8")
+    for old, new in edits:
+        assert old in text, old
+        text = text.replace(old, new)
+    return json.loads(text)
+
+
+def test_cgt_rates_from_the_guide():
+    """The two main rates and the tax year they start in, as UK-wide percentages."""
+    obs = m._cgt_observations(_cgt_doc(), date(2026, 10, 9))
+    assert {o.series_id: o.value for o in obs} == {"tax.cgt.lower_rate": 18.0, "tax.cgt.higher_rate": 24.0}
+    for o in obs:
+        assert o.period == "2026-27" and o.unit == "pct" and o.geography == "UK" and o.kind == "outturn"
+        assert o.quality == "sourced" and o.source_id == m.SOURCE_ID and o.vintage == "capital-gains-tax@2026-10-02"
+
+
+def test_cgt_seed_levers_start_from_the_guide():
+    seed = {lv["id"]: lv for lv in json.loads((SEED / "levers.json").read_text())["levers"]}
+    _, rates = m._cgt(_cgt_doc())
+    assert seed["cgt_lower"]["base"] == rates["lower_rate"]
+    assert seed["cgt_higher"]["base"] == rates["higher_rate"]
+
+
+def test_cgt_rates_before_they_start_are_a_forecast():
+    assert {o.kind for o in m._cgt_observations(_cgt_doc(), date(2026, 4, 5))} == {"forecast"}
+
+
+def test_cgt_is_strict_on_missing_text():
+    bad = _cgt_doc(("within the basic", "inside the basic"))
+    with pytest.raises(ValueError, match="pattern"):
+        m._cgt(bad)
+
+
+def test_cgt_is_strict_on_disagreement():
+    """The rate above the basic band and the rate for higher rate taxpayers must be the same."""
+    bad = _cgt_doc(("you’ll pay 24% on your gains", "you’ll pay 28% on your gains"))
+    with pytest.raises(ValueError, match="disagree"):
+        m._cgt(bad)
+
+
+def test_cgt_is_strict_on_mixed_years():
+    bad = _cgt_doc(("you’ll pay 18% on your gains made from 6 April 2026", "you’ll pay 18% on your gains made from 6 April 2025"))
+    with pytest.raises(ValueError, match="different years"):
+        m._cgt(bad)
+
+
+def test_cgt_needs_the_rates_part():
+    doc = _cgt_doc()
+    doc["details"]["parts"][0]["slug"] = "something-else"
+    with pytest.raises(ValueError, match="no part 'rates'"):
+        m._cgt(doc)

@@ -78,7 +78,7 @@ export function WhoGains() {
   const labelOf = (id: string) => model.leverById.get(id)?.label.split(",")[0] ?? id;
   const notInModel = notModelled.length > 0 && (
     <p className="m-0 text-[12.5px] leading-relaxed text-muted">
-      {T1_COPY.notInModel} {notModelled.map(labelOf).join(", ")}.
+      {T1_COPY.notInModel} {[...new Set(notModelled.map(labelOf))].join(", ")}.
     </p>
   );
   const status = statusText(phase);

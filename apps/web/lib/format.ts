@@ -20,7 +20,14 @@ export const fmtBn = (x: number) => {
   const a = Math.abs(x);
   return withMinus((a >= PERCENT ? whole : a >= 1 ? oneDp : twoDp).format(x));
 };
-export const gbpBn = (x: number) => (x < 0 ? MINUS : "") + `£${fmtBn(Math.abs(x))}bn`;
+/** Under £0.1bn the amount reads in millions, so a small range stays a range ("£18m to £22m", not "£0.02bn to £0.02bn"). */
+const MILLIONS_BELOW_BN = 0.1;
+const MILLIONS_PER_BN = 1000;
+export const gbpBn = (x: number) => {
+  const a = Math.abs(x);
+  const sign = x < 0 ? MINUS : "";
+  return a > 0 && a < MILLIONS_BELOW_BN ? `${sign}£${whole.format(Math.round(a * MILLIONS_PER_BN))}m` : `${sign}£${fmtBn(a)}bn`;
+};
 export const gbpTn = (bn: number) => `£${oneDp.format(bn / 1000)}tn`;
 export const gbp = (x: number) => (x < -0.5 ? MINUS : "") + `£${whole.format(Math.abs(Math.round(x)))}`;
 export const fixed = (x: number, dp: number) => withMinus(x.toFixed(dp));

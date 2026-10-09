@@ -302,6 +302,120 @@
       }
     },
     {
+      "group": "taxes",
+      "controlled_by": "government",
+      "quality": "training",
+      "method_note": "TODO(source): template value; etl/build.py replaces it with HMRC's own capital gains tax steps (the reckoner) and the GOV.UK rate. HMRC's figures cannot be scaled, so the lever offers only its steps.",
+      "id": "cgt_lower",
+      "label": "Capital gains tax, lower rate",
+      "unit": "pp",
+      "base": 18,
+      "min": 18,
+      "max": 28,
+      "step": 1,
+      "effect": {
+        "target": "cgt",
+        "steps": [
+          {
+            "at": 1,
+            "y1": [
+              -0.0055,
+              -0.005,
+              -0.0045
+            ],
+            "y5": [
+              0.0045,
+              0.005,
+              0.0055
+            ]
+          },
+          {
+            "at": 5,
+            "y1": [
+              -0.044,
+              -0.04,
+              -0.036
+            ],
+            "y5": [
+              -0.011,
+              -0.01,
+              -0.009
+            ]
+          },
+          {
+            "at": 10,
+            "y1": [
+              -0.143,
+              -0.13,
+              -0.117
+            ],
+            "y5": [
+              -0.1485,
+              -0.135,
+              -0.1215
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "group": "taxes",
+      "controlled_by": "government",
+      "quality": "training",
+      "method_note": "TODO(source): template value; etl/build.py replaces it with HMRC's own capital gains tax steps (the reckoner) and the GOV.UK rate. HMRC's figures cannot be scaled, so the lever offers only its steps.",
+      "id": "cgt_higher",
+      "label": "Capital gains tax, higher rate",
+      "unit": "pp",
+      "base": 24,
+      "min": 24,
+      "max": 34,
+      "step": 1,
+      "effect": {
+        "target": "cgt",
+        "steps": [
+          {
+            "at": 1,
+            "y1": [
+              -0.0165,
+              -0.015,
+              -0.0135
+            ],
+            "y5": [
+              -0.033,
+              -0.03,
+              -0.027
+            ]
+          },
+          {
+            "at": 5,
+            "y1": [
+              -0.187,
+              -0.17,
+              -0.153
+            ],
+            "y5": [
+              -0.957,
+              -0.87,
+              -0.783
+            ]
+          },
+          {
+            "at": 10,
+            "y1": [
+              -0.594,
+              -0.54,
+              -0.486
+            ],
+            "y5": [
+              -3.9215,
+              -3.565,
+              -3.2085
+            ]
+          }
+        ]
+      }
+    },
+    {
       "id": "defence_gdp",
       "label": "Defence, % of GDP",
       "group": "spending",

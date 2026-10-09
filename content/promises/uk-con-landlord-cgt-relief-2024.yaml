@@ -1,0 +1,47 @@
+id: uk-con-landlord-cgt-relief-2024
+headline: "Capital gains relief for landlords selling to tenants"
+actor_id: conservatives
+made_on: "2024-06-11"
+venue: manifesto
+venue_label: 2024 manifesto, page 55
+policy_area: taxes
+status: promised
+status_note: The Conservatives are not in government, so the card stays at Promised.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Conservative Party: Clear Plan. Bold Action. Secure Future, 2024 manifesto (PDF), page 55"
+    url: https://public.conservatives.com/static/documents/GE2024/Conservative-Manifesto-GE2024.pdf#page=55
+  - title: "Conservative Party: Costings Document 2024 (PDF), Table 1"
+    url: https://public.conservatives.com/static/documents/GE2024/Conservative-Costings-Document-GE2024.pdf#page=3
+versions:
+  - version: 1
+    text: >-
+      To further support homeowners, we will introduce a two-year temporary Capital Gains Tax relief for landlords
+      who sell to their existing tenants.
+    recorded_on: "2024-06-11"
+    source_url: https://public.conservatives.com/static/documents/GE2024/Conservative-Manifesto-GE2024.pdf#page=55
+    quote_checked_on: "2026-10-09"
+    parameters:
+      who: Landlords who sell a rented home to the tenants already living in it
+      how_much_bn_per_year: [0.018, 0.02, 0.022]
+      cost_note: >-
+        Year shown: 2025-26, the first of the relief's two years. Party figure only: £20m in each of 2025-26 and
+        2026-27 and nothing after, which the party says is based on Treasury costings (costings document, Table 1,
+        "CGT on sales to tenants: suspend"). No official or independent costing was found. Low–high is an editorial
+        ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "Conservative Party: Costings Document 2024 (PDF), Table 1"
+          url: https://public.conservatives.com/static/documents/GE2024/Conservative-Costings-Document-GE2024.pdf#page=3
+      when: Two years; the party costed it for 2025-26 and 2026-27
+      funded_by: Not stated for this measure; the party's costings say the manifesto as a whole is fully funded
+events:
+  - date: "2024-06-11"
+    type: promised
+    text: Conservative manifesto pledges a two-year capital gains tax relief for landlords who sell to their tenants
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-09"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.
