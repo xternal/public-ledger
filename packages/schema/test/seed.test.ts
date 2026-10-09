@@ -55,6 +55,7 @@ describe("validation rejects", () => {
 
   it("a training value without a TODO(source) note", () => {
     const raw = clone();
+    levers(raw).macro_rules.quality = "training";
     levers(raw).macro_rules.method_note = "from memory";
     expect(errorsOf(raw).some((e) => e.message.includes("TODO(source)"))).toBe(true);
   });

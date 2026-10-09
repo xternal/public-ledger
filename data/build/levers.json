@@ -17,6 +17,21 @@
         "url": "https://www.gov.uk/government/news/cheaper-travel-for-millions-with-a-third-off-fares",
         "published_on": "2026-07-22",
         "licence": "OGL v3"
+      },
+      {
+        "id": "obr_fiscal_multipliers",
+        "title": "OBR: Fiscal multipliers used in the October 2024 Economic and fiscal outlook (FOI reply, 3 Dec 2024), table 1.1",
+        "publisher": "OBR",
+        "url": "https://obr.uk/docs/dlm_uploads/FOI06112024.pdf",
+        "published_on": "2024-12-03",
+        "licence": "OGL v3"
+      },
+      {
+        "id": "obr_multipliers_box",
+        "title": "OBR: Fiscal multipliers (box)",
+        "publisher": "OBR",
+        "url": "https://obr.uk/box/fiscal-multipliers/",
+        "licence": "OGL v3"
       }
     ]
   },
@@ -420,16 +435,17 @@
   ],
   "macro_rules": {
     "spending_multiplier": [
-      0.4,
-      0.7,
+      0.45,
+      0.6,
       1.0
     ],
     "tax_multiplier": [
-      0.2,
-      0.4,
-      0.6
+      0.3,
+      0.33,
+      0.35
     ],
-    "quality": "training",
-    "method_note": "TODO(source): rules of thumb from model memory, pending economist sign-off against OBR/BoE elasticities (review B3). Year-1 GDP effect = (spending multiplier × Δ non-interest spending − tax multiplier × Δ tax) / GDP. Ranges are deliberately wide."
+    "quality": "approx",
+    "source_id": "obr_fiscal_multipliers",
+    "method_note": "OBR first-year fiscal multipliers: a change worth 1% of GDP moves real GDP by 0.45% for day-to-day public services, 0.6% for welfare and 1% for investment (October 2024 EFO, FOI table 1.1), so spending runs from 0.45 (low) through 0.6 (central) to 1.0 (high). Tax: 0.33 in the OBR's current single multiplier (central), and 0.3 for income tax and National Insurance and 0.35 for VAT in its earlier published framework (low and high; OBR fiscal multipliers box). The sandbox applies one spending and one tax multiplier to every lever, so the result is an approximation; the OBR also tapers multipliers to zero over five years. Year-1 GDP effect = (spending multiplier × Δ non-interest spending − tax multiplier × Δ tax) / GDP."
   }
 }
