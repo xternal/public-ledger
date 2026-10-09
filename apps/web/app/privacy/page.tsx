@@ -12,6 +12,7 @@ import {
   CONTROLLER_OFFICE,
   ICO_COMPLAINTS_URL,
   ICO_REGISTRATION_NUMBER,
+  icoRegisterUrl,
   ICO_PHONE,
   PRIVACY_DESCRIPTION,
   PRIVACY_EMAIL,
@@ -159,7 +160,10 @@ export default function PrivacyPage() {
           postalCode: CONTROLLER.office.postcode,
           addressCountry: "GB",
         },
-        identifier: { "@type": "PropertyValue", propertyID: "Companies House company number", value: CONTROLLER.companyNumber },
+        identifier: [
+          { "@type": "PropertyValue", propertyID: "Companies House company number", value: CONTROLLER.companyNumber },
+          ...(ICO_REGISTRATION_NUMBER ? [{ "@type": "PropertyValue", propertyID: "ICO registration number", value: ICO_REGISTRATION_NUMBER }] : []),
+        ],
       },
     },
     { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) },
@@ -204,7 +208,14 @@ export default function PrivacyPage() {
           <p className="m-0 text-muted">
             {CONTROLLER.name} is a private limited company registered in England, company number {CONTROLLER.companyNumber}, registered office{" "}
             {CONTROLLER_OFFICE}. Registered with the Information Commissioner&apos;s Office (
-            {ICO_REGISTRATION_NUMBER ? `registration number ${ICO_REGISTRATION_NUMBER}` : "registration number to follow"}).
+            {ICO_REGISTRATION_NUMBER ? (
+              <>
+                registration number <a href={icoRegisterUrl(ICO_REGISTRATION_NUMBER)}>{ICO_REGISTRATION_NUMBER}</a>
+              </>
+            ) : (
+              "registration number to follow"
+            )}
+            ).
           </p>
         </section>
 

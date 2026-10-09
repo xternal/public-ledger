@@ -31,11 +31,13 @@ export const CONTROLLER_INTERESTS =
   "Empatiq Limited has no clients or contracts with government, political parties or any body this site tracks. If that ever changes, it will be declared here.";
 export const CONTROLLER_OFFICE = `${CONTROLLER.office.street}, ${CONTROLLER.office.locality} ${CONTROLLER.office.postcode}`;
 /**
- * The ICO registration number (ZB…), once the ICO issues it. The fee is paid
- * (tier 1; application C2054431, 8 October 2026). Until then the page says
- * "registration number to follow". One-line change: set the number here.
+ * The ICO registration number of Empatiq Limited (tier 1 data protection fee,
+ * paid by direct debit; reference given by the ICO on 9 October 2026). Its
+ * entry on the ICO's public register is at icoRegisterUrl().
  */
-export const ICO_REGISTRATION_NUMBER: string | null = null;
+export const ICO_REGISTRATION_NUMBER: string | null = "ZC269680";
+/** The ICO's public register entry for a registration number. */
+export const icoRegisterUrl = (n: string) => `https://ico.org.uk/ESDWebPages/Entry/${n}`;
 /** Applications to be an editor are deleted this long after we decide, if the applicant does not join. */
 export const EDITOR_APPLICATION_RETENTION_MONTHS = 6;
 
@@ -106,4 +108,4 @@ export const PRIVACY_FAQ = (threshold: number): { q: string; a: string }[] => [
 ];
 
 /** One paragraph for llms.txt. */
-export const PRIVACY_SUMMARY = `Public Ledger is run by ${CONTROLLER.name}, Pavel Guzhikov's company, independently of any party; ${CONTROLLER.name} is the controller and is registered with the ICO. Reading stores nothing. Alerts keep only an encrypted email address or Telegram chat and what is followed, on explicit consent; follows are never shown individually. Submitters' emails are deleted once editors decide, or after ${SUBMITTER_EMAIL_RETENTION_DAYS} days. Postcodes are never kept. Applications to be an editor are deleted within ${EDITOR_APPLICATION_RETENTION_MONTHS} months if the applicant does not join. Contact: ${PRIVACY_EMAIL}.`;
+export const PRIVACY_SUMMARY = `Public Ledger is run by ${CONTROLLER.name}, Pavel Guzhikov's company, independently of any party; ${CONTROLLER.name} is the controller and is registered with the ICO${ICO_REGISTRATION_NUMBER ? ` (${ICO_REGISTRATION_NUMBER})` : ""}. Reading stores nothing. Alerts keep only an encrypted email address or Telegram chat and what is followed, on explicit consent; follows are never shown individually. Submitters' emails are deleted once editors decide, or after ${SUBMITTER_EMAIL_RETENTION_DAYS} days. Postcodes are never kept. Applications to be an editor are deleted within ${EDITOR_APPLICATION_RETENTION_MONTHS} months if the applicant does not join. Contact: ${PRIVACY_EMAIL}.`;
