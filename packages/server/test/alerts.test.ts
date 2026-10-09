@@ -47,6 +47,7 @@ function card(over: Partial<Card> & { id: string }): Card {
     policy_area: "economic_affairs",
     status: "in_plan",
     origin: "manual",
+    outcome_by: { actor_id: "hm-government" },
     sources: [{ title: "Press release", url: "https://www.gov.uk/government/news/bus" }],
     versions: [
       {
@@ -55,7 +56,13 @@ function card(over: Partial<Card> & { id: string }): Card {
         recorded_on: "2026-07-22",
         source_url: "https://www.gov.uk/government/news/bus",
         quote_checked_on: "2026-10-06",
-        parameters: { who: "Bus passengers", how_much_bn_per_year: [0.36, 0.4, 0.44], when: "2027", funded_by: "Reprioritised DESNZ budget" },
+        parameters: {
+          who: "Bus passengers",
+          how_much_bn_per_year: [0.36, 0.4, 0.44],
+          costed_by: { kind: "official", name: "Department for Transport" },
+          when: "2027",
+          funded_by: "Reprioritised DESNZ budget",
+        },
       },
     ],
     events: [

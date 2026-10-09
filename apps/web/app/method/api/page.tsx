@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { API_VERSION, OGL, OPEN_PARLIAMENT_LICENCE, licenceFor, statementYear } from "@ledger/server/api";
+import { API_VERSION, OGL, OPEN_PARLIAMENT_LICENCE, licenceFor, promiseOut, statementYear } from "@ledger/server/api";
 import { getSeed } from "@/lib/data";
 import { endpoints } from "@/lib/api";
 import { STATUS_LABEL } from "@/lib/copy";
@@ -28,6 +28,34 @@ const FIELDS: { name: string; means: string }[] = [
   { name: "low, central, high", means: "A range. Forecasts and model results always have one; a single published number has low = central = high." },
 ];
 
+/** The promise-card fields readers ask about most: who must act, who made the cost, and how changes are recorded. */
+const PROMISE_FIELDS: { name: string; means: string }[] = [
+  {
+    name: "outcome_by",
+    means:
+      "The body that would have to act to deliver the promise as worded, as of now, named by its role: hm-government, a devolved government, a council or a public body, never a party or a person. null when no body in power is committed to it, such as an opposition party's pledge. It follows the role, not the party: when power changes hands, it changes only if the new holders take the promise on or the old ones lose the power to deliver it. Every card has it, a value or null. Until 9 October 2026 this field held what brought_about_by holds now.",
+  },
+  {
+    name: "brought_about_by",
+    means: "Who brought about the current status when it was not the card's own actor, such as an opposition pledge the government carried out; null otherwise.",
+  },
+  {
+    name: "cost",
+    means:
+      "The yearly cost to the public purse in £ billion, as low, central and high; a negative figure raises money. null when there is no costing. versions[].cost is the cost as each version of the promise stood.",
+  },
+  {
+    name: "cost.costed_by",
+    means:
+      "Who made the central figure, as kind and name. official: the OBR, HMRC, HM Treasury or another UK government department, or a devolved government's equivalent, whoever made the promise. party: the promise-maker's own figure, including one a party now in government made in opposition. independent: anyone else, such as the IFS, a think tank or academics. name is the maker as a reader would say it, such as OBR or Labour Party. Every cost has it; method_note explains where the low and high figures come from.",
+  },
+  {
+    name: "corrections",
+    means:
+      "Every fix to the card's history, with the old and new values and the reason. A new official yearly cost is recorded here too. A change to a card's current cost is also an entry in /feeds/all.xml and /feeds/updates.xml, with an id that never changes.",
+  },
+];
+
 export default function ApiPage() {
   const seed = getSeed();
   const site = siteUrl();
@@ -51,6 +79,29 @@ export default function ApiPage() {
     },
   ];
   const figureJson = JSON.stringify({ borrowing }, null, 2);
+  // A real card with an official cost if there is one, so the example shows every field described.
+  const sampleCard =
+    seed.cards.find((c) => c.current.parameters?.costed_by?.kind === "official" && c.outcomeBy) ?? seed.cards.find((c) => c.current.parameters?.how_much_bn_per_year) ?? seed.cards[0];
+  const samplePromise = sampleCard ? promiseOut(sampleCard, { siteUrl: site, statusLabel: STATUS_LABEL }) : null;
+  const promiseJson = samplePromise
+    ? JSON.stringify(
+        {
+          id: samplePromise.id,
+          status: samplePromise.status,
+          outcome_by: samplePromise.outcome_by,
+          brought_about_by: samplePromise.brought_about_by,
+          cost: samplePromise.cost && {
+            low: samplePromise.cost.low,
+            central: samplePromise.cost.central,
+            high: samplePromise.cost.high,
+            unit: samplePromise.cost.unit,
+            costed_by: samplePromise.cost.costed_by,
+          },
+        },
+        null,
+        2,
+      )
+    : null;
 
   const structuredData = [
     {
@@ -142,6 +193,29 @@ export default function ApiPage() {
           </div>
           <dl className="m-0 grid content-start gap-3 text-sm">
             {FIELDS.map((f) => (
+              <div key={f.name} className="grid gap-0.5">
+                <dt>
+                  <code className="font-medium">{f.name}</code>
+                </dt>
+                <dd className="m-0 text-muted">{f.means}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section aria-labelledby="promise-fields-h" className="grid gap-x-10 gap-y-6 border-t border-line pt-10 lg:grid-cols-2">
+          <div className="grid min-w-0 content-start gap-3">
+            <h2 id="promise-fields-h" className="m-0 text-title font-semibold">
+              Promise cards: who must act, and who made the cost
+            </h2>
+            <p className="m-0 max-w-[62ch] text-muted">
+              Every card in <code>/api/{API_VERSION}/promises</code> says which body would have to deliver it and, when it has a cost, who made the
+              central figure. The rules are in the <a href="https://github.com/xternal/public-ledger/blob/main/docs/PROMISE_STANDARD.md">promise standard</a>, the same for every party.
+            </p>
+            {promiseJson && samplePromise && <CodeBlock caption={`From /api/${API_VERSION}/promises/${samplePromise.id} (some fields left out)`} code={promiseJson} />}
+          </div>
+          <dl className="m-0 grid content-start gap-3 text-sm">
+            {PROMISE_FIELDS.map((f) => (
               <div key={f.name} className="grid gap-0.5">
                 <dt>
                   <code className="font-medium">{f.name}</code>

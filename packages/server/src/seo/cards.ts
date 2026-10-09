@@ -99,8 +99,8 @@ const endSentence = (s: string) => (/[.…!?]$/.test(s) ? s : `${s}.`);
  * quote as fits. "Delivering. Costs £1.53bn to £1.87bn a year. Paid for by: a
  * windfall tax… Promised by Labour Party on 13 June 2024."
  */
-export function cardDescription(c: Pick<CardView, "file" | "current" | "actor" | "outcomeBy">): string {
-  const status = `${statusLabel(c.file.status)}${c.outcomeBy ? ` (by ${c.outcomeBy.name})` : ""}.`;
+export function cardDescription(c: Pick<CardView, "file" | "current" | "actor" | "broughtAboutBy">): string {
+  const status = `${statusLabel(c.file.status)}${c.broughtAboutBy ? ` (by ${c.broughtAboutBy.name})` : ""}.`;
   const head = `${status} ${endSentence(cardCostText(c))}`;
   const tail = `Promised by ${c.actor.name} on ${ukDate(c.file.made_on)}.`;
   const pay = cardFundingText(c);

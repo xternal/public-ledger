@@ -75,6 +75,23 @@ describe("append-only promise history (invariant 5)", () => {
     expect(appendOnlyIssues(before, tampered)).toEqual(["corrections[0] was changed or removed; corrections are append-only too"]);
   });
 
+  it("lets a field added to the standard later (costed_by) be filled in once, then treats it as history", () => {
+    const costed = () => ({ ...card(), versions: [{ version: 1, text: "We will do X.", parameters: { how_much_bn_per_year: [0.9, 1, 1.1] } }] });
+    const filled = costed() as ReturnType<typeof costed> & { versions: { parameters: Record<string, unknown> }[] };
+    filled.versions[0]!.parameters.costed_by = { kind: "official", name: "OBR" };
+    expect(appendOnlyIssues(costed(), filled)).toEqual([]);
+    // Filling it in does not open the rest of the entry: the cost itself still needs a correction.
+    const sneaky = structuredClone(filled);
+    sneaky.versions[0]!.parameters.how_much_bn_per_year = [1.8, 2, 2.2];
+    expect(appendOnlyIssues(costed(), sneaky)).toEqual(["versions[0] was changed or removed; history is append-only (add a new entry, or record a correction)"]);
+    // Once published, changing who made the figure is a correction like any other.
+    const changed = structuredClone(filled);
+    changed.versions[0]!.parameters.costed_by = { kind: "party", name: "Labour Party" };
+    expect(appendOnlyIssues(filled, changed)).toEqual(["versions[0] was changed or removed; history is append-only (add a new entry, or record a correction)"]);
+    const corrected = { ...structuredClone(changed), corrections: [{ date: "2026-10-09", path: "versions[0].parameters.costed_by", was: { kind: "official", name: "OBR" }, now: { kind: "party", name: "Labour Party" }, reason: "The figure is the party's." }] };
+    expect(appendOnlyIssues(filled, corrected)).toEqual([]);
+  });
+
   it("keeps reviews append-only: a new review is added, an old one never edited", () => {
     const review = { by: "Junior Editor", kind: "automated", on: "2026-10-06" };
     const before = { ...card(), reviews: [review] };

@@ -56,6 +56,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: { canonical: `/actor/${id}`, types: { "application/atom+xml": [{ url: `/feeds/actor/${id}.xml`, title: `Changes to ${r.actor.name}'s promises` }] } },
     openGraph: { ...OPEN_GRAPH, title, description, type: "profile", url: `/actor/${id}` },
     twitter: { card: "summary_large_image", title, description },
+    // An actor named only as the body that must deliver someone else's promises (outcome_by) has no cards of its own yet: keep that empty page out of search.
+    ...(r.cards.length ? {} : { robots: { index: false, follow: true } }),
   };
 }
 

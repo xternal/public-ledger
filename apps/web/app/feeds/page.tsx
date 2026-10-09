@@ -26,11 +26,11 @@ export const metadata: Metadata = {
 const FAQ = [
   {
     q: "What is in a feed?",
-    a: "One entry for each dated change on a promise card: a new timeline event (such as funded, legislated or deadline passed), a rewording of the promise, any published reply from the person or party named on the card, and each change to a public contract linked to it. Each entry links to the card.",
+    a: "One entry for each dated change on a promise card: a new timeline event (such as funded, legislated or deadline passed), a rewording of the promise, a change to its yearly cost, any published reply from the person or party named on the card, and each change to a public contract linked to it. Each entry links to the card.",
   },
   {
     q: "What do the deadline feeds and the updates feed add?",
-    a: "A deadline feed tells you when a promise due in its window is delivered or its deadline passes, and each month lists the open promises coming due. The updates feed has data changes only: a contract behind a promise that moves or is newly linked, and each new OBR forecast or ONS release that changes the borrowing, income or spending the Statement shows.",
+    a: "A deadline feed tells you when a promise due in its window is delivered or its deadline passes, and each month lists the open promises coming due. The updates feed has data changes only: a promise whose yearly cost changes, a contract behind a promise that moves or is newly linked, and each new OBR forecast or ONS release that changes the borrowing, income or spending the Statement shows.",
   },
   {
     q: "How do I use one?",
@@ -97,7 +97,7 @@ export default function FeedsPage() {
           </h2>
           <ul className="m-0 list-none p-0">
             <FeedLink path="/feeds/all.xml" label="Every change, including new figures" />
-            <FeedLink path="/feeds/updates.xml" label="Updates to the figures only: contracts and new editions" />
+            <FeedLink path="/feeds/updates.xml" label="Updates to the figures only: costs, contracts and new editions" />
           </ul>
         </section>
 

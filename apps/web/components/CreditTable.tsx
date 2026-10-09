@@ -20,7 +20,7 @@ export interface CreditRow {
   href: string;
   cards: CardView[];
   counts: number[];
-  /** Per column, how many of those outcomes someone else brought about (outcome_by). */
+  /** Per column, how many of those outcomes someone else brought about (brought_about_by). */
   byOthers: number[];
   costed: number;
   pledgedBn: number;
@@ -42,7 +42,7 @@ export function creditRows(cards: CardView[], by: "party" | "actor"): CreditRow[
       href: `/actor/${id}`,
       cards: g.cards,
       counts: CREDIT_COLUMNS.map((col) => g.cards.filter((c) => col.statuses.includes(c.file.status)).length),
-      byOthers: CREDIT_COLUMNS.map((col) => g.cards.filter((c) => col.statuses.includes(c.file.status) && c.outcomeBy).length),
+      byOthers: CREDIT_COLUMNS.map((col) => g.cards.filter((c) => col.statuses.includes(c.file.status) && c.broughtAboutBy).length),
       costed: g.cards.filter((c) => c.current.parameters?.how_much_bn_per_year).length,
       pledgedBn: g.cards.reduce((a, c) => a + (c.current.parameters?.how_much_bn_per_year?.[1] ?? 0), 0),
       fundingNamed: g.cards.filter((c) => c.current.parameters?.funded_by).length,

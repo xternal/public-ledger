@@ -89,13 +89,22 @@ describe("API v1 shapes", () => {
     const p = promises.find((x) => x.cost)!;
     expect(keys(p)).toEqual(
       [
-        "actor_id", "actor_name", "contracts", "corrections", "cost", "deadline", "events", "funded_by", "headline", "id", "made_on", "origin", "outcome_by", "party_id",
+        "actor_id", "actor_name", "brought_about_by", "contracts", "corrections", "cost", "deadline", "events", "funded_by", "headline", "id", "made_on", "origin", "outcome_by", "party_id",
         "policy_area", "quote_checked_on", "quote_licence", "quote_source_url", "replies", "sources", "status", "status_label", "status_note", "text",
         "url", "venue", "venue_label", "version", "versions", "when", "who",
       ].sort(),
     );
-    expect(keys(p.cost!)).toEqual(["central", "high", "low", "method_note", "quality", "sources", "unit"]);
+    expect(keys(p.cost!)).toEqual(["central", "costed_by", "high", "low", "method_note", "quality", "sources", "unit"]);
     expect(p.cost!.low).toBeLessThanOrEqual(p.cost!.high);
+    // AI Journalist's two rules read these (RFC 0001 Amendment 1): every cost names its maker, every card says who must act.
+    const governments = new Set(seed.actors.filter((a) => a.kind === "government").map((a) => a.id));
+    for (const x of promises) {
+      for (const c of [x.cost, ...x.versions.map((v) => v.cost)]) if (c) expect(["official", "party", "independent"]).toContain(c.costed_by?.kind);
+      expect(x.outcome_by === null || governments.has(x.outcome_by)).toBe(true);
+    }
+    expect(promises.some((x) => x.outcome_by === null)).toBe(true);
+    // An opposition party's pledge rests with no body in power.
+    expect(promises.filter((x) => seed.actors.find((a) => a.id === x.party_id)?.standing === "opposition" && x.status === "promised").map((x) => x.outcome_by)).not.toContain("hm-government");
     expect(p.status_label).toBe(`label:${p.status}`);
     const text = JSON.stringify(promises);
     for (const k of ["credit", "submission_ref", "email", "address", "subscription", "consent"]) expect(text).not.toContain(`"${k}"`);

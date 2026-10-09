@@ -83,6 +83,19 @@ corrections:
     source_url: https://assets.publishing.service.gov.uk/…/Budget_2026.pdf#page=NN
 ```
 
+Set the version's `costed_by` to the new figure's maker (here `{ kind: official, name: HM Treasury }`). If the card had a cost from another maker, record that change as a correction too, in the same pull request:
+
+```yaml
+  - date: "2026-10-28"
+    path: versions[0].parameters.costed_by
+    was: { kind: party, name: Labour Party }
+    now: { kind: official, name: HM Treasury }
+    reason: The central figure is now the Budget's official costing.
+    source_url: https://assets.publishing.service.gov.uk/…/Budget_2026.pdf#page=NN
+```
+
+A change to a card's current cost appears in `/feeds/all.xml` and `/feeds/updates.xml` once the pull request is merged.
+
 A broken pledge reads **Not met**, never "broken": the label states the fact, the evidence link carries the rest.
 
 ## Rules that matter most on the day

@@ -101,6 +101,7 @@ export function draftNewPromise(s: SubmissionView, opts: { today: string; existi
     submission_ref: s.id,
     ...(s.credit_handle ? { credit: oneLine(s.credit_handle, 40) } : {}),
     editor_check_required: true,
+    outcome_by: TODO,
     sources: [source],
     versions: [
       {
@@ -128,6 +129,11 @@ export function draftNewPromise(s: SubmissionView, opts: { today: string; existi
   const readerDate = typeof s.checks.claimed_date === "string" ? ` (the reader said: ${oneLine(s.checks.claimed_date, 40)})` : "";
   setComment(doc, ["made_on"], `TODO: the date the promise was made, YYYY-MM-DD${readerDate}; add venue and venue_label if known (${VENUES})`);
   setComment(doc, ["policy_area"], `TODO: one of ${POLICY_AREAS}`);
+  setComment(
+    doc,
+    ["outcome_by"],
+    "TODO: the body that must act to deliver it now, as { actor_id: hm-government } (a government or public body from content/actors), or null when no body in power is committed to it (PROMISE_STANDARD §11)",
+  );
   setComment(doc, ["sources", 0, "title"], "TODO: a short title naming the publisher and date");
   setComment(
     doc,
@@ -136,7 +142,7 @@ export function draftNewPromise(s: SubmissionView, opts: { today: string; existi
   );
   setComment(doc, ["versions", 0, "quote_checked_on"], "TODO: the date an editor checked the words at source_url");
   setComment(doc, ["versions", 0, "parameters", "who"], "TODO: who it applies to, exactly as stated");
-  setComment(doc, ["versions", 0, "parameters", "how_much_bn_per_year"], "TODO: [low, central, high] in £bn a year with a cost_note and cost_sources, or leave null if not stated");
+  setComment(doc, ["versions", 0, "parameters", "how_much_bn_per_year"], "TODO: [low, central, high] in £bn a year with costed_by (who made the central figure), a cost_note and cost_sources, or leave null if not stated");
   setComment(doc, ["versions", 0, "parameters", "when"], "TODO: when, exactly as stated");
   setComment(doc, ["versions", 0, "parameters", "funded_by"], "TODO: exactly as stated; null means Funding not stated");
   setComment(doc, ["events", 0, "date"], "TODO: same as made_on");

@@ -183,14 +183,25 @@ export function parseSeed(raw: RawSeed = rawSeed()): { seed: Seed | null; issues
     else actors.push(r.data);
   }
   const promises: PromiseFile[] = [];
-  const actorIds = new Set(actors.map((a) => a.id));
+  const actorById = new Map(actors.map((a) => [a.id, a]));
+  const actorIds = new Set(actorById.keys());
   for (const f of raw.content.promises) {
+    // Say plainly what is missing: a value, or null when no body in power is committed (PROMISE_STANDARD §11).
+    if (f.data && typeof f.data === "object" && !("outcome_by" in f.data)) {
+      issues.push({ level: "error", where: f.path, message: "outcome_by is missing: give the body that must act to deliver it (an actor id), or null when no body in power is committed (PROMISE_STANDARD §11)" });
+      continue;
+    }
     const r = PromiseFile.safeParse(f.data);
     if (r.error) issues.push(...zodIssues(f.path, r.error));
     else if (r.data.id !== fileName(f.path)) issues.push({ level: "error", where: f.path, message: `id "${r.data.id}" does not match the file name` });
     else if (!actorIds.has(r.data.actor_id)) issues.push({ level: "error", where: f.path, message: `unknown actor_id "${r.data.actor_id}"` });
     else if (r.data.outcome_by && !actorIds.has(r.data.outcome_by.actor_id))
       issues.push({ level: "error", where: f.path, message: `unknown outcome_by actor "${r.data.outcome_by.actor_id}"` });
+    // The field follows the role, not the party: it names a government or public body, never a party or a person.
+    else if (r.data.outcome_by && actorById.get(r.data.outcome_by.actor_id)!.kind !== "government")
+      issues.push({ level: "error", where: f.path, message: `outcome_by names a body by its role (an actor of kind government, such as hm-government), not "${r.data.outcome_by.actor_id}"` });
+    else if (r.data.brought_about_by && !actorIds.has(r.data.brought_about_by.actor_id))
+      issues.push({ level: "error", where: f.path, message: `unknown brought_about_by actor "${r.data.brought_about_by.actor_id}"` });
     else promises.push(r.data);
   }
   const contracts: ContractFile[] = [];

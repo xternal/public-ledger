@@ -73,7 +73,7 @@ function PromiseRow({ c, today }: { c: CardView; today: string | null }) {
               <span className="sr-only">Reviewed by {reviewerLabel(review)}</span>
             </span>
           )}
-          {c.outcomeBy && <span className="font-medium text-ink">by {c.outcomeBy.name}</span>}
+          {c.broughtAboutBy && <span className="font-medium text-ink">by {c.broughtAboutBy.name}</span>}
           <span>{AREA_LABEL[c.file.policy_area]}</span>
           <span>{costText(c)}</span>
           {overdue ? (

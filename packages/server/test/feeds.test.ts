@@ -122,6 +122,7 @@ function promise(id: string, actor_id: string, over: Record<string, unknown> = {
       { date: "2027-01-01", type: "deadline", text: "Due to start" },
     ],
     replies: [{ from_actor_id: actor_id, date: "2026-09-01", text: "We stand by it." }],
+    outcome_by: null,
     ...over,
     // parameters are null in these fixtures, which the standard allows only for unscoreable cards
     status: "unscoreable",
@@ -241,12 +242,13 @@ function dataCards(): CardView[] {
           text: `Promise ${id}.`,
           recorded_on: "2026-07-22",
           source_url: "https://example.org/a",
-          parameters: { who: "Everyone", how_much_bn_per_year: [0.36, 0.4, 0.44], when: "2027", funded_by: null },
+          parameters: { who: "Everyone", how_much_bn_per_year: [0.36, 0.4, 0.44], costed_by: { kind: "official", name: "HM Treasury" }, when: "2027", funded_by: null },
         },
       ],
       events: [{ date: "2026-07-22", type: "promised", text: "Announced" }],
       replies: [],
       status: "promised",
+      outcome_by: { actor_id: "hm-government" },
       ...over,
     });
   return cardViews(
@@ -327,6 +329,58 @@ describe("data and deadline feeds", () => {
     // "Every change" includes the data changes too, as following everything by email does.
     const all = kids(parseXml(buildFeed(dataCards(), "all", "*", { ...opts, title: "All", alternatePath: "/", headlines: HEADLINES })), "entry").map((e) => text(kid(e, "title")));
     expect(all).toEqual(expect.arrayContaining(["Borrowing £115bn in 2026-27: OBR forecast, March 2026", expect.stringMatching(/^Contract linked/)]));
+  });
+
+  it("has an entry when a card's current cost changes, with an id that never changes, in the updates and all feeds", () => {
+    const params = (cost: number[], name = "HM Treasury") => ({ who: "Everyone", how_much_bn_per_year: cost, costed_by: { kind: "official", name }, cost_note: "Note.", when: "2027", funded_by: null });
+    const v1 = { version: 1, text: "Promise one.", recorded_on: "2026-07-22", source_url: "https://example.org/a", parameters: params([1.8, 2, 2.2], "OBR") };
+    const costCard = (extra: Record<string, unknown>) =>
+      cardViews(
+        [
+          PromiseFile.parse({
+            id: "uk-cost-2026",
+            actor_id: "andy-burnham",
+            made_on: "2026-07-22",
+            policy_area: "economic_affairs",
+            status: "promised",
+            outcome_by: { actor_id: "hm-government" },
+            sources: [{ title: "Source", url: "https://example.org/a" }],
+            versions: [v1],
+            events: [{ date: "2026-07-22", type: "promised", text: "Announced" }],
+            ...extra,
+          }),
+        ],
+        actors,
+      );
+    // A new official figure is a correction to the version (BUDGET_DAY.md). A note-only correction is not a cost change.
+    const corrected = costCard({
+      corrections: [
+        { date: "2026-09-01", path: "versions[0].parameters.cost_note", was: null, now: "Note.", reason: "Note added." },
+        { date: "2026-10-01", path: "versions[0].parameters.how_much_bn_per_year", was: [0.9, 1, 1.1], now: [1.8, 2, 2.2], reason: "The OBR published the official yearly cost.", source_url: "https://obr.uk/x" },
+      ],
+    });
+    const updates = kids(parseXml(buildFeed(corrected, "updates", "*", { ...opts, title: "Updates", alternatePath: "/" })), "entry");
+    expect(updates).toHaveLength(1);
+    const e = updates[0]!;
+    expect(text(kid(e, "id"))).toBe("tag:ledger.test,2026:promise/uk-cost-2026/cost/correction/1");
+    expect(text(kid(e, "title"))).toBe("Cost changed: now costs £1.8bn to £2.2bn a year, was costs £0.9bn to £1.1bn a year (Andy Burnham)");
+    expect(text(kid(e, "updated"))).toBe("2026-10-01T00:00:00Z");
+    expect(text(kid(e, "content"))).toContain("Central figure by OBR (official).\nWhy: The OBR published the official yearly cost.\nSource: https://obr.uk/x");
+    const all = kids(parseXml(buildFeed(corrected, "all", "*", { ...opts, title: "All", alternatePath: "/" })), "entry").map((x) => text(kid(x, "id")));
+    expect(all).toContain("tag:ledger.test,2026:promise/uk-cost-2026/cost/correction/1");
+
+    // A rewording that changes the cost is a cost change too; a correction to a version already replaced is not a change to the current cost.
+    const v2 = { version: 2, text: "Promise two.", recorded_on: "2026-08-15", source_url: "https://example.org/b", parameters: params([2.7, 3, 3.3]) };
+    const reworded = costCard({
+      versions: [v1, v2],
+      corrections: [{ date: "2026-09-01", path: "versions[0].parameters.how_much_bn_per_year", was: [0.9, 1, 1.1], now: [1.8, 2, 2.2], reason: "Misread." }],
+      events: [
+        { date: "2026-07-22", type: "promised", text: "Announced" },
+        { date: "2026-08-15", type: "reworded", text: "Restated", evidence_url: "https://example.org/b" },
+      ],
+    });
+    const ids = cardEntries(reworded[0]!, opts).map((x) => x.id).filter((id) => id.includes("/cost/"));
+    expect(ids).toEqual(["tag:ledger.test,2026:promise/uk-cost-2026/cost/version/2"]);
   });
 
   it("has a feed per deadline window: outcomes judged on their own day, and this month's list of what is coming due", () => {

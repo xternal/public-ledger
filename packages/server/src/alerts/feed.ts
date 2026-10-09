@@ -1,14 +1,14 @@
-import { alertWindows, dueInWindow, isDeadlineWindow, monthKey, windowPhrase, WINDOW_LABEL, type CardView, type ContractLink, type DeadlineWindow } from "@ledger/schema";
+import { alertWindows, dueInWindow, isDeadlineWindow, monthKey, windowPhrase, COSTED_BY_LABEL, WINDOW_LABEL, type CardView, type ContractLink, type DeadlineWindow } from "@ledger/schema";
 import { contractChangeText, contractLinkedText, type Headline, type LooseContract } from "./data";
-import { CONTRACT_STATUSES, areaLabel, eventLabel, gbpBnText, statusLabel, truncate, ukDate, ukToday } from "./labels";
+import { CONTRACT_STATUSES, areaLabel, costRangeText, eventLabel, gbpBnText, statusLabel, truncate, ukDate, ukToday } from "./labels";
 
 /**
  * Atom 1.0 feeds (RFC 4287) built from content and data/build alone, no
  * database: one entry per timeline event, rewording (version 2 onwards),
- * published reply and contract snapshot, and one per edition of the headline
- * figures. Entry ids are tag: URIs that depend only on the card id and the
- * entry's position in its append-only history (invariant 5), or on the
- * edition, so they never change.
+ * published reply, change to a card's current cost and contract snapshot, and
+ * one per edition of the headline figures. Entry ids are tag: URIs that depend
+ * only on the card id and the entry's position in its append-only history
+ * (invariant 5), or on the edition, so they never change.
  */
 
 export type FeedKind = "all" | "promise" | "actor" | "area" | "deadlines" | "updates";
@@ -118,7 +118,66 @@ export function cardEntries(card: CardView, opts: EntryOptions): AtomEntry[] {
       content: [`Reply from ${from}, ${ukDate(r.date)}:`, r.text, r.editor_response ? `\nEditors’ response: ${r.editor_response}` : null, "", quote].filter((x) => x !== null).join("\n"),
     });
   });
+  out.push(...costEntries(card, opts));
   out.push(...contractEntries(card, opts));
+  return out;
+}
+
+const COST_CORRECTION = /^versions\[(\d+)\]\.parameters\.how_much_bn_per_year$/;
+const sameCost = (a: unknown, b: unknown) => JSON.stringify(a ?? null) === JSON.stringify(b ?? null);
+const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
+
+/**
+ * Changes to a card's current cost. A new official figure, or a fix to ours,
+ * is a correction to the version (PROMISE_STANDARD §9, BUDGET_DAY.md); a
+ * rewording can carry a new cost. One entry per correction of a version's cost
+ * made while that version was the current one, and one per new version whose
+ * cost differs from the version before. Ids depend only on the card id and the
+ * entry's position in its append-only history, so they never change.
+ */
+export function costEntries(card: CardView, opts: EntryOptions): AtomEntry[] {
+  const site = opts.siteUrl.replace(/\/$/, "");
+  const today = opts.today ?? ukToday();
+  const f = card.file;
+  const who = card.actor.name;
+  const link = `${site}/promise/${card.id}`;
+  const category = { term: f.policy_area, label: areaLabel(f.policy_area) };
+  const quote = `${who}, ${ukDate(f.made_on)}: “${card.current.text}”`;
+  const statusLine = `Status now: ${statusLabel(f.status)}.`;
+  const out: AtomEntry[] = [];
+  /** Who made the figure, when the version still carries it. */
+  const maker = (k: number, figure: unknown) => {
+    const p = f.versions[k]?.parameters;
+    return p?.costed_by && sameCost(p.how_much_bn_per_year, figure) ? `Central figure by ${p.costed_by.name} (${COSTED_BY_LABEL[p.costed_by.kind]}).` : null;
+  };
+  const entry = (id: string, date: string, now: unknown, was: unknown, lines: (string | null)[]): AtomEntry => ({
+    id: tagUri(site, `promise/${card.id}/cost/${id}`),
+    // Worded as the email and Telegram alert for the same change (diff.ts).
+    title: `Cost changed: now ${lower(costRangeText(now as number[] | null))}, was ${lower(costRangeText(was as number[] | null))} (${who})`,
+    updated: stamp(date),
+    link,
+    category,
+    content: [`Cost changed, ${ukDate(date)}: now ${lower(costRangeText(now as number[] | null))}; was ${lower(costRangeText(was as number[] | null))}.`, ...lines, "", quote, statusLine]
+      .filter((x) => x !== null)
+      .join("\n"),
+  });
+
+  f.corrections.forEach((c, i) => {
+    const m = COST_CORRECTION.exec(c.path);
+    if (!m || c.date > today || sameCost(c.was, c.now)) return;
+    const k = Number(m[1]);
+    const next = f.versions[k + 1];
+    if (next && next.recorded_on <= c.date) return; // that version was no longer the current one
+    out.push(entry(`correction/${i}`, c.date, c.now, c.was, [maker(k, c.now), `Why: ${c.reason}`, c.source_url ? `Source: ${c.source_url}` : null]));
+  });
+
+  f.versions.forEach((v, k) => {
+    if (k === 0 || v.recorded_on > today) return;
+    const was = f.versions[k - 1]!.parameters?.how_much_bn_per_year ?? null;
+    const now = v.parameters?.how_much_bn_per_year ?? null;
+    if (sameCost(was, now)) return;
+    out.push(entry(`version/${v.version}`, v.recorded_on, now, was, [maker(k, now), `With the reworded promise (version ${v.version}). Source: ${v.source_url}`]));
+  });
   return out;
 }
 
@@ -318,9 +377,10 @@ export function feedPath(kind: FeedKind, key?: string): string {
 const newestFirst = (entries: AtomEntry[], limit = 200) => entries.sort((a, b) => b.updated.localeCompare(a.updated) || b.id.localeCompare(a.id)).slice(0, limit);
 
 /**
- * A complete feed document. "all" is every change (cards, their contracts and
- * new editions of the headline figures), like following everything by email;
- * "updates" is the data changes only; "deadlines" is one deadline window.
+ * A complete feed document. "all" is every change (cards, their costs and
+ * contracts, and new editions of the headline figures), like following
+ * everything by email; "updates" is the data changes only (costs, contracts,
+ * editions); "deadlines" is one deadline window.
  */
 export function buildFeed(
   cards: CardView[],
@@ -338,7 +398,7 @@ export function buildFeed(
         ? newestFirst(deadlineEntries(selected, key, opts))
         : []
       : kind === "updates"
-        ? newestFirst([...selected.flatMap((c) => contractEntries(c, opts)), ...editions()])
+        ? newestFirst([...selected.flatMap((c) => [...costEntries(c, opts), ...contractEntries(c, opts)]), ...editions()])
         : kind === "all"
           ? newestFirst([...selected.flatMap((c) => cardEntries(c, opts)), ...editions()])
           : feedEntries(selected, opts);

@@ -119,6 +119,14 @@ interface Promise {
   deadline?: string;
   lever_settings?: Record<string, number | boolean | string>;   // → Scenario
   sources: { title: string; url: string; archived_url?: string }[];
+  outcome_by: { actor_id: string; note?: string } | null;
+                              // Required. The body that would have to act to deliver it as worded, as of now: an actor of
+                              // kind "government" named by its role (hm-government, a devolved government, a council).
+                              // null = no body in power is committed (an opposition pledge). Describes the present, so
+                              // ordinary edits keep it current (PROMISE_STANDARD §11).
+  brought_about_by?: { actor_id: string; note?: string };
+                              // Credit: who brought about the current status when it was not the card's own actor
+                              // (legislated or later only). Called outcome_by until 9 Oct 2026.
 }
 
 interface PromiseVersion {    // append-only
@@ -128,6 +136,9 @@ interface PromiseVersion {    // append-only
   parameters: {
     who?: string;
     how_much_bn_per_year?: Range | null;
+    costed_by?: { kind: "official" | "party" | "independent"; name: string };
+                              // Required with a cost, absent without one: who made the central figure (PROMISE_STANDARD §2).
+                              // Added after versions were first published, so it may be filled in once without a correction.
     when?: string;
     funded_by?: string | null;  // null = not stated at announcement
   } | null;                   // null ⇒ unscoreable
@@ -251,6 +262,7 @@ interface Account {           // v1
 `content/promises/uk-bus-cap-2-2026.yaml` mirrors `Promise` + inline `versions[]` + `events[]`. The validator:
 - requires ≥1 source URL;
 - requires `parameters` unless `status: unscoreable`;
-- forbids editing an existing `versions[i]` or `events[i]` (CI compares with `main`);
+- forbids editing an existing `versions[i]` or `events[i]` (CI compares with `main`), except filling in a field added to the standard later (`LATE_FIELDS` in `packages/schema/src/content.ts`: `parameters.costed_by`) where the published entry lacked it;
+- requires `outcome_by` on every card (an actor of kind `government`, or `null`), and `costed_by` on every version with a cost;
 - requires `lever_settings` to reference existing levers;
 - checks a `headline` is 3–8 words, under 70 characters, with no closing full stop. Adding or changing a headline is not a history edit: the append-only check covers `versions`, `events`, `replies`, `corrections` and `reviews` only.

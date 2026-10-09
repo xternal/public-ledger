@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import type { CardView, Provenance, Status } from "@ledger/schema";
-import { LADDER } from "@ledger/schema";
+import { COSTED_BY_LABEL, LADDER } from "@ledger/schema";
 import { EVENT_LABEL, STATUS_LABEL } from "@/lib/copy";
 import { fixed, gbp, gbpBn, longDate, monthYear, perHousehold, rangeText, shareOf } from "@/lib/format";
 import { AREA_LABEL, costSense, todayIso } from "@/lib/promises";
@@ -169,9 +169,9 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
         </div>
         <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-label text-muted">
           <StatusPill status={f.status} />
-          {card.outcomeBy && (
-            <a href={`/actor/${card.outcomeBy.id}`} className="font-medium" title={f.outcome_by?.note}>
-              by {card.outcomeBy.name}
+          {card.broughtAboutBy && (
+            <a href={`/actor/${card.broughtAboutBy.id}`} className="font-medium" title={f.brought_about_by?.note}>
+              by {card.broughtAboutBy.name}
             </a>
           )}
           <span>
@@ -197,6 +197,11 @@ export function PromiseDetail({ card, householdsM, householdsP, spendingBn, runH
                   <>
                     <dd className="m-0 text-[26px] font-semibold leading-none tracking-[var(--tracking-figure)]">{gbpBn(cost[1])}</dd>
                     <dd className="m-0 text-caption text-muted">range {rangeText(cost, gbpBn)}</dd>
+                    {p?.costed_by && (
+                      <dd className="m-0 text-caption text-muted">
+                        Central figure: {p.costed_by.name} ({COSTED_BY_LABEL[p.costed_by.kind]})
+                      </dd>
+                    )}
                     <dd className="m-0 mt-1 flex flex-wrap items-center gap-x-2 text-caption text-muted">
                       about {gbp(perHousehold(cost[1], householdsM))} per household · {fixed(shareOf(cost[1], spendingBn), 2)}% of spending
                       <WithProvenance p={householdsP} align="end">
