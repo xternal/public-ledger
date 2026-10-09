@@ -1,0 +1,50 @@
+id: uk-con-no-cgt-rise-2024
+headline: "No rise in capital gains tax"
+actor_id: conservatives
+made_on: "2024-06-11"
+venue: manifesto
+venue_label: 2024 manifesto, page 9
+policy_area: taxes
+status: promised
+status_note: >-
+  The Conservatives are not in government, so the card stays at Promised. In October 2024 the Labour government
+  raised the main rates of capital gains tax from 10% and 20% to 18% and 24% (Autumn Budget 2024, para 2.48). No
+  later Conservative pledge on capital gains tax rates was found on 9 October 2026.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Conservative Party: Clear Plan. Bold Action. Secure Future, 2024 manifesto (PDF), page 9"
+    url: https://public.conservatives.com/static/documents/GE2024/Conservative-Manifesto-GE2024.pdf#page=9
+  - title: "HM Treasury: Autumn Budget 2024 (30 Oct 2024), para 2.48"
+    url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+versions:
+  - version: 1
+    text: We will not increase Capital Gains Tax.
+    recorded_on: "2024-06-11"
+    source_url: https://public.conservatives.com/static/documents/GE2024/Conservative-Manifesto-GE2024.pdf#page=9
+    quote_checked_on: "2026-10-09"
+    parameters:
+      who: People who pay capital gains tax when they sell assets such as shares, second homes or a business
+      how_much_bn_per_year: null
+      cost_note: >-
+        No cost against the policy of the time, because the pledge only rules out a rise. For scale, HMRC estimates
+        that raising the higher rate of capital gains tax by 5 or 10 percentage points would lose money by 2028-29
+        (£870m and £3,565m), because people sell fewer assets, and warns that its figures cannot be scaled up (June
+        2025 estimates).
+      cost_sources:
+        - title: "HMRC: Direct effects of illustrative tax changes, bulletin (June 2025)"
+          url: https://www.gov.uk/government/statistics/direct-effects-of-illustrative-tax-changes/direct-effects-of-illustrative-tax-changes-bulletin-january-2025
+        - title: "HMRC: Direct effects of illustrative tax changes, tables (June 2025, ODS)"
+          url: https://assets.publishing.service.gov.uk/media/68552862b46781eacfd71d71/June_2025_TRR_ODS__1_.ods
+      when: Not stated; taken as the 2024 Parliament
+      funded_by: Not a spending pledge
+events:
+  - date: "2024-06-11"
+    type: promised
+    text: Conservative manifesto pledges not to increase capital gains tax
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-09"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.

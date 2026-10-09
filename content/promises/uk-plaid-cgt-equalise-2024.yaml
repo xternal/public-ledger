@@ -1,0 +1,55 @@
+id: uk-plaid-cgt-equalise-2024
+headline: "Equalise capital gains tax with income tax"
+actor_id: plaid-cymru
+made_on: "2024-06-13"
+venue: manifesto
+venue_label: 2024 manifesto, page 8
+policy_area: taxes
+status: promised
+status_note: >-
+  Plaid Cymru is not in government, so the card stays at Promised. Capital gains tax is set for the whole UK at
+  Westminster.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Plaid Cymru: For fairness, for ambition, for Wales, 2024 manifesto (PDF), page 8"
+    url: https://assets.nationbuilder.com/plaid2016/pages/13170/attachments/original/1721133624/Plaid_Cymru_Maniffesto_2024_ENGLISH.pdf?1721133624
+versions:
+  - version: 1
+    text: Plaid Cymru would equalise capital gains tax with income tax, raising between £12bn - £15bn.
+    recorded_on: "2024-06-13"
+    source_url: https://assets.nationbuilder.com/plaid2016/pages/13170/attachments/original/1721133624/Plaid_Cymru_Maniffesto_2024_ENGLISH.pdf?1721133624
+    quote_checked_on: "2026-10-09"
+    parameters:
+      who: People across the UK who make taxable capital gains
+      how_much_bn_per_year: [-15.0, -13.5, -12.0]
+      cost_note: >-
+        Negative because the pledge raises money. Year not stated by the party. Low and high are the party's own
+        range, £12bn to £15bn (manifesto page 8); central is the midpoint. Independent estimates depend on the
+        design. The Office of Tax Simplification (2020) put a static figure for aligning the rates at about £14bn a
+        year, and said "nothing like this amount would be raised in practice". CenTax (September 2026) estimates
+        £19.7bn more in 2030, but only for a package that also adds an investment allowance, ends the tax-free uplift
+        at death and taxes gains when people leave the UK. HMRC's official estimates stop at a 10-point rise, show
+        that rise on the higher rate losing £3,565m in 2028-29, and cannot be scaled up. No official costing of full
+        alignment exists.
+      cost_sources:
+        - title: "Plaid Cymru: 2024 manifesto (PDF), page 8"
+          url: https://assets.nationbuilder.com/plaid2016/pages/13170/attachments/original/1721133624/Plaid_Cymru_Maniffesto_2024_ENGLISH.pdf?1721133624
+        - title: "Office of Tax Simplification: Capital Gains Tax review, first report (Nov 2020), page 39"
+          url: https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/935073/Capital_Gains_Tax_stage_1_report_-_Nov_2020_-_web_copy.pdf#page=39
+        - title: "CenTax: Taxes at the top (Sep 2026), page 19"
+          url: https://centax.org.uk/wp-content/uploads/2026/09/AdvaniHughsonSummers2026_Taxes-at-the-top.pdf#page=19
+        - title: "HMRC: Direct effects of illustrative tax changes, tables (June 2025, ODS)"
+          url: https://assets.publishing.service.gov.uk/media/68552862b46781eacfd71d71/June_2025_TRR_ODS__1_.ods
+      when: Not stated
+      funded_by: Not a spending pledge
+events:
+  - date: "2024-06-13"
+    type: promised
+    text: Plaid Cymru manifesto pledges to equalise capital gains tax with income tax
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-09"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.
