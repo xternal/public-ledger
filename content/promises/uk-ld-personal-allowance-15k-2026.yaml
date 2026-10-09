@@ -1,0 +1,55 @@
+id: uk-ld-personal-allowance-15k-2026
+headline: "Raise the tax-free personal allowance to £15,000"
+actor_id: liberal-democrats
+made_on: "2026-09-22"
+venue: press_release
+venue_label: Liberal Democrat news release with the leader's conference speech
+policy_area: taxes
+status: promised
+status_note: >-
+  The Liberal Democrats are not in government, so the card stays at Promised. The release says 2.5 million people
+  would be taken out of income tax; the leader's speech the same day says 2 million more.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Liberal Democrats: Cutting income tax to tackle the cost of living crisis (22 Sep 2026)"
+    url: https://www.libdems.org.uk/news/article/cutting-income-tax-to-tackle-the-cost-of-living-crisis
+  - title: "Liberal Democrats: The fight of our lives, leader's speech (22 Sep 2026)"
+    url: https://www.libdems.org.uk/news/article/the-fight-of-our-lives
+  - title: "Chartered Institute of Taxation: Liberal Democrat Conference 2026"
+    url: https://www.tax.org.uk/liberal-democrats-conference-2026-tax
+versions:
+  - version: 1
+    text: "The Liberal Democrats will take 2.5 million people out of paying income tax altogether by raising the tax-free personal allowance to £15,000."
+    recorded_on: "2026-09-22"
+    source_url: https://www.libdems.org.uk/news/article/cutting-income-tax-to-tackle-the-cost-of-living-crisis
+    quote_checked_on: "2026-10-08"
+    parameters:
+      who: >-
+        UK income taxpayers. The same package raises the employee National Insurance threshold to £15,000 and the
+        higher-rate threshold to £56,000 (outside Scotland).
+      how_much_bn_per_year: [15.3, 17.0, 18.7]
+      cost_note: >-
+        The party's own figure, £17bn a year, covers the whole package (the allowance, the National Insurance
+        threshold and the higher-rate threshold) with no split, and the release gives no year. No independent costing
+        was found on 8 Oct 2026.
+        Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "Liberal Democrats: Cutting income tax to tackle the cost of living crisis (22 Sep 2026)"
+          url: https://www.libdems.org.uk/news/article/cutting-income-tax-to-tackle-the-cost-of-living-crisis
+        - title: "Chartered Institute of Taxation: Liberal Democrat Conference 2026"
+          url: https://www.tax.org.uk/liberal-democrats-conference-2026-tax
+      when: Not stated
+      funded_by: >-
+        From a "growth dividend worth £27 billion a year" the party expects from a new partnership with the EU,
+        including the Single Market and a Customs Union; it says £17bn of it would pay for the tax cuts
+events:
+  - date: "2026-09-22"
+    type: promised
+    text: The Liberal Democrats announce the £15,000 personal allowance on the last day of their conference
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-08"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.

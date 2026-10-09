@@ -1,0 +1,13 @@
+id: john-healey
+name: John Healey
+kind: person
+# UK Parliament Members API: https://members.parliament.uk/member/400
+parliament_member_id: 400
+party_id: labour
+# Official pages (structured data sameAs), checked 8 Oct 2026: GOV.UK.
+same_as:
+  - https://www.gov.uk/government/people/john-healey
+roles:
+  - title: Chancellor of the Exchequer
+    # Source: https://www.gov.uk/government/people/john-healey ("John Healey was appointed Chancellor of the Exchequer on 20 July 2026.")
+    from: "2026-07-20"

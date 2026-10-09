@@ -1,0 +1,55 @@
+id: uk-pubs-business-rates-cut-2026
+headline: "Cut business rates 20% for pubs and venues"
+actor_id: hm-government
+made_on: "2026-07-23"
+venue: press_release
+venue_label: Press release from No 10, HM Treasury and the business department
+policy_area: taxes
+status: promised
+status_note: >-
+  The cut applies to bills from April 2027. The government says details of the exclusion for the very largest
+  live music venues will be set out at the Budget, and the Chancellor told the Commons on 8 September 2026 that he
+  would set out more details of business rates reform there.
+deadline: "2027-04-01"
+origin: manual
+editor_check_required: true
+sources:
+  - title: "No 10, HM Treasury and DBT: Burnham means business: PM slashes business rates bills for pubs, clubs and live music venues (23 Jul 2026)"
+    url: https://www.gov.uk/government/news/burnham-means-business-pm-slashes-business-rates-bills-for-pubs-clubs-and-live-music-venues
+  - title: "HM Treasury: Treasury to call time on uncertainty for pubs and hotels (24 Aug 2026)"
+    url: https://www.gov.uk/government/news/treasury-to-call-time-on-uncertainty-for-pubs-and-hotels
+  - title: "Hansard (Commons): High Street Renewal (8 Sep 2026)"
+    url: https://hansard.parliament.uk/Commons/2026-09-08/debates/316E8598-025F-4C1E-B595-1D7CBC383C7C/HighStreetRenewal
+versions:
+  - version: 1
+    text: "Pubs, clubs and live music venues set to receive a 20% cut to their business rates bills saving the typical pub an estimated £1,100 next year"
+    recorded_on: "2026-07-23"
+    source_url: https://www.gov.uk/government/news/burnham-means-business-pm-slashes-business-rates-bills-for-pubs-clubs-and-live-music-venues
+    quote_checked_on: "2026-10-08"
+    parameters:
+      who: Nearly 32,000 pubs, clubs and live music venues in England (the very largest live music venues excluded)
+      how_much_bn_per_year: [0.09, 0.1, 0.11]
+      cost_note: >-
+        Year shown: 2027-28, the first year of the cut. The government says the package is worth around £100
+        million a year. No independent costing has been published.
+        Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "No 10, HM Treasury and DBT press release (23 Jul 2026)"
+          url: https://www.gov.uk/government/news/burnham-means-business-pm-slashes-business-rates-bills-for-pubs-clubs-and-live-music-venues
+      when: Business rates bills from April 2027; no end date given
+      funded_by: >-
+        "Today’s changes will be fully funded, including through reviewing reliefs for businesses that do not make
+        a positive contribution to local communities, such as vape shops."
+events:
+  - date: "2026-07-23"
+    type: promised
+    text: The government announces a 20% business rates cut for pubs, clubs and live music venues in England
+  - date: "2027-04-01"
+    type: deadline
+    text: Due to apply to bills
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-08"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited official pages.

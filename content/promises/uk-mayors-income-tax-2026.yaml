@@ -1,0 +1,54 @@
+id: uk-mayors-income-tax-2026
+headline: "Give every mayor a share of income tax"
+actor_id: hm-government
+made_on: "2026-07-31"
+venue: press_release
+venue_label: "Cabinet statement: Rewiring the State"
+policy_area: general_services
+status: promised
+status_note: >-
+  The Chancellor has said he will set out a roadmap to fiscal devolution at the Budget on 28 October 2026. The
+  Cabinet statement says detailed arrangements will be confirmed at the upcoming Spending Review, with income tax
+  receipts kept locally from April 2028.
+deadline: "2028-04-01"
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Cabinet Office: Rewiring the State – Cabinet Statement (31 Jul 2026)"
+    url: https://www.gov.uk/government/publications/rewiring-the-state-cabinet-statement/rewiring-the-state-cabinet-statement-html
+  - title: "No 10: PM hands mayors share of income tax to make lives better in every postcode (30 Jul 2026)"
+    url: https://www.gov.uk/government/news/pm-hands-mayors-share-of-income-tax-to-make-lives-better-in-every-postcode
+  - title: "HM Treasury: Chancellor John Healey's Growth Speech 2026 (7 Sep 2026)"
+    url: https://www.gov.uk/government/speeches/chancellor-john-healeys-growth-speech-2026
+  - title: "UK Parliament: Written statement HCWS330, Fiscal Devolution in England (10 Sep 2026)"
+    url: https://questions-statements.parliament.uk/written-statements/detail/2026-09-10/HCWS330
+versions:
+  - version: 1
+    text: "We have therefore agreed to overhaul the way regional government is funded, starting by replacing grants from central government with a share of local income tax for every mayor beginning in 2028, such that where a region grows its tax base, it benefits from the increased receipts."
+    recorded_on: "2026-07-31"
+    source_url: https://www.gov.uk/government/publications/rewiring-the-state-cabinet-statement/rewiring-the-state-cabinet-statement-html
+    quote_checked_on: "2026-10-08"
+    parameters:
+      who: Every mayor in England and the people their strategic authorities serve
+      how_much_bn_per_year: null
+      cost_note: >-
+        No figure: the pledge changes how mayors are funded, a share of local income tax in place of central grants,
+        rather than adding spending, and no amount has been published.
+      cost_sources:
+        - title: "Cabinet Office: Rewiring the State – Cabinet Statement (31 Jul 2026)"
+          url: https://www.gov.uk/government/publications/rewiring-the-state-cabinet-statement/rewiring-the-state-cabinet-statement-html
+      when: Income tax receipts kept locally from April 2028; a roadmap at the Budget on 28 October 2026
+      funded_by: '"replacing grants from central government with a share of local income tax"'
+events:
+  - date: "2026-07-31"
+    type: promised
+    text: The Cabinet agrees to give every mayor a share of local income tax from 2028, in place of central grants
+  - date: "2028-04-01"
+    type: deadline
+    text: Income tax receipts due to be kept locally
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-08"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited official pages.

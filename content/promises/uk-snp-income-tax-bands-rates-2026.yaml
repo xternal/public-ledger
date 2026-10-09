@@ -1,0 +1,46 @@
+id: uk-snp-income-tax-bands-rates-2026
+headline: "Hold Scottish income tax bands and rates"
+actor_id: snp
+made_on: "2026-04-16"
+venue: manifesto
+venue_label: SNP Scottish Parliament election manifesto 2026, page 27
+policy_area: taxes
+status: promised
+status_note: >-
+  A pledge about Scottish income tax, which the Scottish Parliament sets. The SNP leads the Scottish Government
+  (First Minister John Swinney), so each year's Scottish rate resolution tests it, starting with 2027-28. The
+  manifesto introduces it "accepting that all governments require flexibility to respond to material changes in
+  circumstances". It covers the number of bands and their rates, not the thresholds.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "SNP: Scottish Parliament election manifesto 2026 (PDF), page 27"
+    url: https://s3-eu-west-2.amazonaws.com/www.snp.org/uploads/2026/04/2026-05-0120SNP20The20Scottish20Parliament20Election2020262072pp20COMPLETE20no-crops.pdf
+  - title: "Scottish Government: Scottish income tax rates and bands, 2026 to 2027"
+    url: https://www.gov.scot/publications/scottish-income-tax-rates-and-bands/pages/2026-to-2027/
+  - title: "Scottish Government: First Minister"
+    url: https://www.gov.scot/about/who-runs-government/first-minister/
+versions:
+  - version: 1
+    text: "We will not increase the number of bands or their rates over the lifetime of the next parliament."
+    recorded_on: "2026-04-16"
+    source_url: https://s3-eu-west-2.amazonaws.com/www.snp.org/uploads/2026/04/2026-05-0120SNP20The20Scottish20Parliament20Election2020262072pp20COMPLETE20no-crops.pdf
+    quote_checked_on: "2026-10-08"
+    parameters:
+      who: Scottish income taxpayers
+      how_much_bn_per_year: null
+      cost_note: >-
+        No cost against current policy: the pledge rules out adding bands or raising rates. No costing of it has
+        been published.
+      when: Over the 2026–2031 Scottish Parliament
+      funded_by: Not a spending pledge
+events:
+  - date: "2026-04-16"
+    type: promised
+    text: The SNP publishes its Scottish Parliament manifesto, pledging not to add income tax bands or raise rates
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-08"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.

@@ -1,0 +1,45 @@
+id: uk-union-learning-fund-2026
+headline: "Restore the Union Learning Fund, £15m a year"
+actor_id: hm-government
+made_on: "2026-09-28"
+venue: press_release
+venue_label: HM Treasury news story
+policy_area: education
+status: promised
+status_note: >-
+  The Treasury says the Budget will set out how the fund is paid for, from savings found by the Department for Work
+  and Pensions.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "HM Treasury: Chancellor backs young people into work by supporting jobs (28 Sep 2026)"
+    url: https://www.gov.uk/government/news/chancellor-backs-young-people-into-work-by-supporting-jobs
+versions:
+  - version: 1
+    text: "The Chancellor also confirmed £15 million a year of additional funding to restore the Union Learning Fund in England, helping working people gain new skills, progress at work and adapt as technology, including AI, changes the workplace."
+    recorded_on: "2026-09-28"
+    source_url: https://www.gov.uk/government/news/chancellor-backs-young-people-into-work-by-supporting-jobs
+    quote_checked_on: "2026-10-08"
+    parameters:
+      who: Working people in England
+      how_much_bn_per_year: [0.0135, 0.015, 0.0165]
+      cost_note: >-
+        The government's own figure: £15 million a year. No start date or independent costing has been published.
+        Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "HM Treasury: Chancellor backs young people into work by supporting jobs (28 Sep 2026)"
+          url: https://www.gov.uk/government/news/chancellor-backs-young-people-into-work-by-supporting-jobs
+      when: Not stated
+      funded_by: >-
+        "The Budget will set out details how apprenticeship brokerage expansion and Union Learning Fund are fully
+        funded by savings found by the Department for Work & Pensions."
+events:
+  - date: "2026-09-28"
+    type: promised
+    text: The Chancellor confirms £15m a year to restore the Union Learning Fund in England
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-08"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited official pages.
