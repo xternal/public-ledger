@@ -1,6 +1,6 @@
 {
-  "build_id": "2026-10-08T06:50:35Z",
-  "git_sha": "46e0c9a",
+  "build_id": "2026-10-09T08:28:24Z",
+  "git_sha": "86b4956",
   "status": "ok",
   "base_year": "2025-26",
   "observations": 11621,
@@ -17,7 +17,7 @@
       "freshness": {
         "vintage": "IADB IUDBEDR as of 2026-09-17",
         "published_on": "2026-09-17",
-        "age_days": 21,
+        "age_days": 22,
         "cadence_days": 49,
         "grace_days": 14,
         "overdue_days": 0
@@ -40,7 +40,7 @@
       "freshness": {
         "vintage": "DWP-SF-2026",
         "published_on": "2026-04-14",
-        "age_days": 177,
+        "age_days": 178,
         "cadence_days": 200,
         "grace_days": 60,
         "overdue_days": 0
@@ -63,7 +63,7 @@
       "freshness": {
         "vintage": "income-tax-rates@2026-10-01",
         "published_on": "2026-10-01",
-        "age_days": 7,
+        "age_days": 8,
         "cadence_days": 365,
         "grace_days": 60,
         "overdue_days": 0
@@ -90,10 +90,10 @@
       "freshness": {
         "vintage": "HMRC-DE-2025-06",
         "published_on": "2025-06-24",
-        "age_days": 471,
+        "age_days": 472,
         "cadence_days": 365,
         "grace_days": 60,
-        "overdue_days": 106
+        "overdue_days": 107
       },
       "observations": 228,
       "vintages": [
@@ -113,7 +113,7 @@
       "freshness": {
         "vintage": "HMRC-ITLS-2026-07",
         "published_on": "2026-07-15",
-        "age_days": 85,
+        "age_days": 86,
         "cadence_days": 365,
         "grace_days": 60,
         "overdue_days": 0
@@ -136,7 +136,7 @@
       "freshness": {
         "vintage": "PESA-2026",
         "published_on": "2026-07-16",
-        "age_days": 84,
+        "age_days": 85,
         "cadence_days": 120,
         "grace_days": 45,
         "overdue_days": 0
@@ -159,7 +159,7 @@
       "freshness": {
         "vintage": "NATO-DE-2026-07",
         "published_on": "2026-07-09",
-        "age_days": 91,
+        "age_days": 92,
         "cadence_days": 365,
         "grace_days": 60,
         "overdue_days": 0
@@ -182,7 +182,7 @@
       "freshness": {
         "vintage": "OBR-PFD-2026-09",
         "published_on": "2026-09-24",
-        "age_days": 14,
+        "age_days": 15,
         "cadence_days": 31,
         "grace_days": 21,
         "overdue_days": 0
@@ -205,7 +205,7 @@
       "freshness": {
         "vintage": "EFO-2026-03",
         "published_on": "2026-03-03",
-        "age_days": 219,
+        "age_days": 220,
         "cadence_days": 245,
         "grace_days": 30,
         "overdue_days": 0
@@ -228,7 +228,7 @@
       "freshness": {
         "vintage": "FRS-2026-07",
         "published_on": "2026-07-07",
-        "age_days": 93,
+        "age_days": 94,
         "cadence_days": 365,
         "grace_days": 90,
         "overdue_days": 0
@@ -237,19 +237,7 @@
       "vintages": [
         "FRS-2026-07"
       ],
-      "files": [
-        {
-          "source_id": "obr_frs",
-          "url": "https://obr.uk/download/july-2026-fiscal-risks-and-sustainability-charts-and-tables-chapter-3/",
-          "path": "data/raw/obr_frs/frs_2026_07_chapter3.xlsx",
-          "sha256": "7ae2183f3f7a3eeee1a1447c73e3fac206722b0bf757c9773b5f30120b015c2b",
-          "fetched_at": "2026-10-07T21:18:57+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "vintage": "FRS-2026-07",
-          "fetched_url": "https://assets.publishing.service.gov.uk/media/6a4cb54db7203c4c023fd29a/4._Fiscal_risks_and_sustainability_July_2026_charts_and_tables_-_Chapter_3.xlsx",
-          "archived_at": null
-        }
-      ]
+      "files": []
     },
     {
       "id": "ons_households",
@@ -263,7 +251,7 @@
       "freshness": {
         "vintage": "FH-2026-04",
         "published_on": "2026-04-17",
-        "age_days": 174,
+        "age_days": 175,
         "cadence_days": 365,
         "grace_days": 90,
         "overdue_days": 0
@@ -286,7 +274,7 @@
       "freshness": {
         "vintage": "MYEB-2026-10-01",
         "published_on": "2026-10-01",
-        "age_days": 7,
+        "age_days": 8,
         "cadence_days": 365,
         "grace_days": 90,
         "overdue_days": 0
@@ -295,19 +283,7 @@
       "vintages": [
         "MYEB-2026-10-01"
       ],
-      "files": [
-        {
-          "source_id": "ons_mye_components",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland/mid2011tomid2025/myebtablesuk20112025.xlsx",
-          "path": "data/raw/ons_mye_components/myeb_2011_2025.xlsx",
-          "sha256": "d9ff4766d114ace7a40c351ba697f4a875e9e80270d9f58185319a26791f2c53",
-          "fetched_at": "2026-10-07T21:17:55+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "MYEB-2026-10-01",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland/mid2011tomid2025/myebtablesuk20112025.xlsx",
-          "archived_at": null
-        }
-      ]
+      "files": []
     },
     {
       "id": "ons_npp",
@@ -321,7 +297,7 @@
       "freshness": {
         "vintage": "NPP-2024based-2026-04-28",
         "published_on": "2026-04-28",
-        "age_days": 163,
+        "age_days": 164,
         "cadence_days": 900,
         "grace_days": 180,
         "overdue_days": 0
@@ -330,162 +306,7 @@
       "vintages": [
         "NPP-2024based-2026-04-28"
       ],
-      "files": [
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablea11principalprojectionuksummary/2024based/ukpppsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_ppp_uk_summary.xlsx",
-          "sha256": "730202e92106b3451ae72039ff641b37880879b39966f617cd29b2e6efb4c07f",
-          "fetched_at": "2026-10-07T21:15:58+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablea11principalprojectionuksummary/2024based/ukpppsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tableb11highfertilityvariantuksummary/2024based/ukhppsummary1.xlsx",
-          "path": "data/raw/ons_npp/npp2024_hpp_uk_summary.xlsx",
-          "sha256": "5eec32271fbf4b4af5a5d9240f97c702afd1b78ca0dc737300236b694edda663",
-          "fetched_at": "2026-10-07T21:16:19+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tableb11highfertilityvariantuksummary/2024based/ukhppsummary1.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablec11lowfertilityvariantuksummary/2024based/uklppsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_lpp_uk_summary.xlsx",
-          "sha256": "ea21fa39247dfa9270614618d48c193447c396ac52fbc314b966b331ed4dd575",
-          "fetched_at": "2026-10-07T21:16:19+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablec11lowfertilityvariantuksummary/2024based/uklppsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tabled11highlifeexpectancyvariantuksummary/2024based/ukphpsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_php_uk_summary.xlsx",
-          "sha256": "f18611b668948ccb5034b24e66d4901cd31c3cac45c88c065882643710d7fa15",
-          "fetched_at": "2026-10-07T21:16:19+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tabled11highlifeexpectancyvariantuksummary/2024based/ukphpsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablee11lowlifeexpectancyvariantuksummary/2024based/ukplpsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_plp_uk_summary.xlsx",
-          "sha256": "24bedd684c2f82d745b6b189e23566044ca2912e3f20fe43c4704fbf23c4df13",
-          "fetched_at": "2026-10-07T21:16:30+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablee11lowlifeexpectancyvariantuksummary/2024based/ukplpsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablef11highmigrationvariantuksummary/2024based/ukpphsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_pph_uk_summary.xlsx",
-          "sha256": "097b90e42c1d3a4d5399d961f0876bd47087466f54c860ab64151a912021d59d",
-          "fetched_at": "2026-10-07T21:16:30+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablef11highmigrationvariantuksummary/2024based/ukpphsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tableg11lowmigrationvariantuksummary/2024based/ukpplsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_ppl_uk_summary.xlsx",
-          "sha256": "a6827a694b266aeb227988d002693975a62dd0bb03e286fbbf2bb99d4c071848",
-          "fetched_at": "2026-10-07T21:16:41+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tableg11lowmigrationvariantuksummary/2024based/ukpplsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablej11zeronetmigrationnaturalchangeonlyvariantuksummary/2024based/ukppzsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_ppz_uk_summary.xlsx",
-          "sha256": "c88f62c255ad2119301e439efd2096c2da8ddaf877c03575b5f78c4f156f00b4",
-          "fetched_at": "2026-10-07T21:16:41+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablej11zeronetmigrationnaturalchangeonlyvariantuksummary/2024based/ukppzsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tableh11highpopulationvariantuksummary/2024based/ukhhhsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_hhh_uk_summary.xlsx",
-          "sha256": "24586c0bd8003d1fa297ab2bc546a16eedff5b0fb8e3bbda024c1a771b64ce8a",
-          "fetched_at": "2026-10-07T21:16:41+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tableh11highpopulationvariantuksummary/2024based/ukhhhsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablei11lowpopulationvariantuksummary/2024based/uklllsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_lll_uk_summary.xlsx",
-          "sha256": "f2d308b9c71f9a0fc9e447d88b3d852f90480c2ff47868935f96795eb66635fe",
-          "fetched_at": "2026-10-07T21:17:02+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablei11lowpopulationvariantuksummary/2024based/uklllsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablek11youngagestructurevariantuksummary/2024based/ukhlhsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_hlh_uk_summary.xlsx",
-          "sha256": "703d34a304d865df543d7551d9991c435c2af7d1378ce39b11cf796082617afa",
-          "fetched_at": "2026-10-07T21:17:02+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablek11youngagestructurevariantuksummary/2024based/ukhlhsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablel11oldagestructurevariantuksummary/2024based/uklhlsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_lhl_uk_summary.xlsx",
-          "sha256": "11d055ff5b6f3f1a1bb05dab5208ba7e8ff981b68f823920b6719e8ea0fa59f9",
-          "fetched_at": "2026-10-07T21:17:03+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tablel11oldagestructurevariantuksummary/2024based/uklhlsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tableo11replacementfertilityvariantuksummary/2024based/ukrppsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_rpp_uk_summary.xlsx",
-          "sha256": "18c5c3909b0c060d3eae2b2ba1f62a3bd5a1e6dcff8d2242ab53626772616645",
-          "fetched_at": "2026-10-07T21:17:23+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/tableo11replacementfertilityvariantuksummary/2024based/ukrppsummary.xlsx",
-          "archived_at": null
-        },
-        {
-          "source_id": "ons_npp",
-          "url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/nolongtermmortalityimprovementvariantuksummary/2024based/ukpnpsummary.xlsx",
-          "path": "data/raw/ons_npp/npp2024_pnp_uk_summary.xlsx",
-          "sha256": "7b096814c4a2e89a37bd323f9a5e4334921e4f2f391c767240fa88236b467fc9",
-          "fetched_at": "2026-10-07T21:17:24+00:00",
-          "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8",
-          "vintage": "NPP-2024based-2026-04-28",
-          "fetched_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationprojections/datasets/nolongtermmortalityimprovementvariantuksummary/2024based/ukpnpsummary.xlsx",
-          "archived_at": null
-        }
-      ]
+      "files": []
     },
     {
       "id": "ons_population",
@@ -499,7 +320,7 @@
       "freshness": {
         "vintage": "MYE-2026-10",
         "published_on": "2026-10-01",
-        "age_days": 7,
+        "age_days": 8,
         "cadence_days": 365,
         "grace_days": 90,
         "overdue_days": 0
@@ -522,7 +343,7 @@
       "freshness": {
         "vintage": "PSF-2026-09",
         "published_on": "2026-09-22",
-        "age_days": 16,
+        "age_days": 17,
         "cadence_days": 31,
         "grace_days": 10,
         "overdue_days": 0
@@ -545,7 +366,7 @@
       "freshness": {
         "vintage": "PSF-2026-09",
         "published_on": "2026-09-22",
-        "age_days": 16,
+        "age_days": 17,
         "cadence_days": 31,
         "grace_days": 14,
         "overdue_days": 0
@@ -562,8 +383,8 @@
       "check_id": "staleness",
       "level": "warning",
       "subject": "hmrc_reckoner",
-      "message": "HMRC-DE-2025-06 is 471 days old; a new edition was due 106 days ago (grace 60). Acknowledged until 2027-01-31: HMRC postponed the January 2026 edition of 'Direct effects of illustrative tax changes' (notice of 6 Jul 2026, no new date).",
-      "value": 106
+      "message": "HMRC-DE-2025-06 is 472 days old; a new edition was due 107 days ago (grace 60). Acknowledged until 2027-01-31: HMRC postponed the January 2026 edition of 'Direct effects of illustrative tax changes' (notice of 6 Jul 2026, no new date).",
+      "value": 107
     }
   ],
   "identity": [
