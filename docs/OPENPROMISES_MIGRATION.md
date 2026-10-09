@@ -238,7 +238,7 @@ The principle: **the files move, the site does not.** Public Ledger keeps `Promi
 
 **Step 7: switch over (half to one day).** When `openpromises validate` passes, make it blocking and remove `legacy` from the configuration. Remove from `scripts/validate.ts` what the engine now covers: the card schema, the append-only check for cards and the reference checks. `pnpm validate` keeps what is ours: the balance check, the "no data in components" lint, share images, contracts and forecasts append-only, the intake drafts' quote check, and Public Ledger's own rules (`outcome_by` names a government body, `brought_about_by` only once something has happened, `costed_by` goes with every cost, if OpenPromises does not take these). The intake merge job counts approvals in the card instead of GitHub reviews. GitHub reviews stay for discussion.
 
-**Step 8: pages (RFC step E2, later).** Move promise pages onto `@openpromises/react` only where they render the same. The parity check covers share tags, not whole pages, so page HTML is compared by eye (§6) or added to the parity check before this step. Keep Public Ledger's feeds, API, Markdown, JSON-LD and `llms.txt` code reading the same `CardView` until `@openpromises/publish` produces the same output, including ids. Feed entry ids already match for events, rewordings and replies (`tag:ledgergov.uk,2026:promise/<id>/event/<n>`). Cost, contract, edition and deadline-window entries exist only in Public Ledger's code.
+**Step 8: pages (RFC step E2, later).** Move promise pages onto `@openpromises/react` only where they render the same. The parity check covers each route type's title, meta and share tags, not whole pages (build hashes and markup change with every build), so pages are compared with screenshots before and after (§6, point 5). Keep Public Ledger's feeds, API, Markdown, JSON-LD and `llms.txt` code reading the same `CardView` until `@openpromises/publish` produces the same output, including ids. Feed entry ids already match for events, rewordings and replies (`tag:ledgergov.uk,2026:promise/<id>/event/<n>`). Cost, contract, edition and deadline-window entries exist only in Public Ledger's code.
 
 ### What stays the same, area by area
 
@@ -257,10 +257,10 @@ The principle: **the files move, the site does not.** Public Ledger keeps `Promi
 ## 6. Proving the site is the same
 
 1. **Data.** A test reads every card and actor in v1 back into Public Ledger's shape and compares it with the legacy file at the base commit (as in §2.4). Any difference fails.
-2. **Output.** Public Ledger's parity check, being built for this move: `pnpm parity:snapshot` records the published output on `main` (API v1, feeds, sitemap, the llms files, each card's Markdown and share tags), and `pnpm parity:check` on the branch must find no difference. This document uses that check rather than a second one of its own.
+2. **Output.** Public Ledger's parity check, being built for this move: `pnpm parity:snapshot` records the published output on `main`, and `pnpm parity:check` on the branch must find no difference. It covers API v1, feeds, `sitemap.xml`, `robots.txt`, the llms files, each card's Markdown, and for each route type the title, meta description, canonical URL, share tags and JSON-LD. It does not compare whole-page HTML, which changes with every build. This document uses that check rather than a second one of its own.
 3. **History.** `openpromises validate --base origin/main` reports no history change, and `pnpm validate` agrees.
 4. **Alerts.** Comparing the last legacy commit with the converted one finds no change, so no email, Telegram message or feed entry goes out.
-5. **By eye.** Screenshots of the home page, `/promises`, a costed card, a card with corrections, an actor page and `/budget`, before and after, on a phone and a laptop.
+5. **Pages, by eye.** Screenshots of one page per route type, at 375px wide and at desktop width, before and after, compared side by side. Include a costed card and a card with corrections among the promise pages. This replaces an HTML diff, which build hashes would make noisy.
 
 ## 7. Rollback
 
