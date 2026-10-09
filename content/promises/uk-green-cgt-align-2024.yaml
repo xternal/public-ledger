@@ -1,0 +1,58 @@
+id: uk-green-cgt-align-2024
+headline: "Align capital gains tax with income tax"
+actor_id: green-party
+made_on: "2024-06-12"
+venue: manifesto
+venue_label: 2024 manifesto, page 13
+policy_area: taxes
+status: promised
+status_note: The Green Party is not in government, so the card stays at Promised.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Green Party: Real Hope. Real Change. 2024 manifesto (PDF), page 13"
+    url: https://greenparty.org.uk/app/uploads/2024/06/Green-Party-2024-General-Election-Manifesto-Long-version-with-cover.pdf#page=13
+  - title: "Green Party: Investing in Hope, budget background paper (PDF), June 2024, page 3"
+    url: https://greenparty.org.uk/app/uploads/2024/06/budget-background-v3.pdf#page=3
+versions:
+  - version: 1
+    text: >-
+      Elected Greens will push too for the reform Capital Gains Tax (CGT) by aligning the rates paid by taxpayers on
+      income and taxable gains. This would affect less than 2% of all income-tax payers.
+    recorded_on: "2024-06-12"
+    source_url: https://greenparty.org.uk/app/uploads/2024/06/Green-Party-2024-General-Election-Manifesto-Long-version-with-cover.pdf#page=13
+    quote_checked_on: "2026-10-09"
+    parameters:
+      who: People with taxable capital gains; the party says under 2% of income tax payers would be affected
+      how_much_bn_per_year: [-20.9, -19.0, -17.1]
+      cost_note: >-
+        Negative because the pledge raises money. Year shown: the end of the Parliament, the year of the party's
+        figure. Party figure: about £19bn a year by the end of the Parliament (budget background paper, page 3).
+        Independent estimates depend on the design. The Office of Tax Simplification (2020) put a static figure for
+        aligning the rates at about £14bn a year, and said "nothing like this amount would be raised in practice".
+        CenTax (September 2026) estimates £19.7bn more in 2030, but only for a package that also adds an investment
+        allowance, ends the tax-free uplift at death and taxes gains when people leave the UK. HMRC's official
+        estimates stop at a 10-point rise, show that rise on the higher rate losing £3,565m in 2028-29, and cannot
+        be scaled up. No official costing of full alignment exists. Low–high is an editorial ±10% because the party
+        gives a central figure only.
+      cost_sources:
+        - title: "Green Party: Investing in Hope, budget background paper (PDF), page 3"
+          url: https://greenparty.org.uk/app/uploads/2024/06/budget-background-v3.pdf#page=3
+        - title: "Office of Tax Simplification: Capital Gains Tax review, first report (Nov 2020), page 39"
+          url: https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/935073/Capital_Gains_Tax_stage_1_report_-_Nov_2020_-_web_copy.pdf#page=39
+        - title: "CenTax: Taxes at the top (Sep 2026), page 19"
+          url: https://centax.org.uk/wp-content/uploads/2026/09/AdvaniHughsonSummers2026_Taxes-at-the-top.pdf#page=19
+        - title: "HMRC: Direct effects of illustrative tax changes, tables (June 2025, ODS)"
+          url: https://assets.publishing.service.gov.uk/media/68552862b46781eacfd71d71/June_2025_TRR_ODS__1_.ods
+      when: By the end of the Parliament, in the party's estimate
+      funded_by: Not a spending pledge; the party says the money raised would pay for its investment in public services
+events:
+  - date: "2024-06-12"
+    type: promised
+    text: Green Party manifesto pledges to push to align the tax rates on income and on capital gains
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-09"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.

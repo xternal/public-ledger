@@ -1,0 +1,72 @@
+id: uk-carried-interest-2024
+headline: "Close the carried interest loophole"
+actor_id: labour
+made_on: "2024-06-13"
+venue: manifesto
+venue_label: 2024 manifesto, page 21
+policy_area: taxes
+status: delivered
+status_note: >-
+  From the 2026-27 tax year, carried interest (the share of a fund's profits paid to its managers) is taxed under
+  income tax instead of capital gains tax (Finance Act 2026, section 58). Under the design announced at Autumn Budget
+  2024, a 72.5% multiplier applies to qualifying carried interest brought into the charge (para 5.67). As an interim
+  step, the capital gains tax rates on carried interest rose to 32% from 6 April 2025.
+origin: manual
+editor_check_required: true
+sources:
+  - title: "Labour Party: Change, 2024 manifesto (PDF), page 21"
+    url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=21
+  - title: "HM Treasury: Autumn Budget 2024 (30 Oct 2024), paras 2.57 and 5.67"
+    url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+  - title: "Finance Act 2026, section 58: carried interest"
+    url: https://www.legislation.gov.uk/ukpga/2026/11/section/58
+versions:
+  - version: 1
+    text: >-
+      Private equity is the only industry where performance-related pay is treated as capital gains. Labour will close
+      this loophole.
+    recorded_on: "2024-06-13"
+    source_url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=21
+    quote_checked_on: "2026-10-09"
+    parameters:
+      who: Private equity and other fund managers who are paid carried interest
+      how_much_bn_per_year: [-0.088, -0.08, -0.072]
+      cost_note: >-
+        Negative because the pledge raises money. Year used: 2028-29, the year Labour's costings use. The official
+        Autumn Budget 2024 costing, covering both the 32% interim rate and the move into income tax, is £80m in
+        2028-29 (Table 5.1, line 21); central figure only. Other years: nothing in 2024-25 and 2025-26, a cost of £5m
+        in 2026-27, £140m in 2027-28 and £85m in 2029-30. Labour's own costing was £565m in 2028-29 (manifesto page
+        127). Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "HM Treasury: Autumn Budget 2024, Table 5.1, line 21"
+          url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+        - title: "Labour Party: Change, 2024 manifesto (PDF), costings, page 127"
+          url: https://labour.org.uk/wp-content/uploads/2024/06/Labour-Party-manifesto-2024.pdf#page=127
+      when: From the 2026-27 tax year
+      funded_by: >-
+        Not a spending pledge; Labour's costings count the £565m among the revenue paying for its manifesto plans
+        (page 127)
+events:
+  - date: "2024-06-13"
+    type: promised
+    text: Labour manifesto pledges to stop treating private equity performance pay as capital gains
+  - date: "2024-10-30"
+    type: in_plan
+    text: >-
+      Autumn Budget 2024 says carried interest will be taxed within income tax from April 2026, and raises its capital
+      gains tax rates to 32% from April 2025
+    evidence_url: https://assets.publishing.service.gov.uk/media/672b9695fbd69e1861921c63/Autumn_Budget_2024_Accessible.pdf
+  - date: "2026-03-18"
+    type: legislated
+    text: Finance Act 2026 receives Royal Assent; section 58 moves carried interest into income tax
+    evidence_url: https://www.legislation.gov.uk/ukpga/2026/11/section/58
+  - date: "2026-04-06"
+    type: delivered
+    text: Carried interest is taxed under income tax from the 2026-27 tax year
+    evidence_url: https://www.legislation.gov.uk/ukpga/2026/11/section/58
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-09"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.
