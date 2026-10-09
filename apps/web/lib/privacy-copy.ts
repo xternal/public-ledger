@@ -62,7 +62,10 @@ export interface RetentionRow {
 export function retention(): RetentionRow[] {
   const alphaDays = Math.round(ALPHA_COOKIE_MAX_AGE / 86_400);
   return [
-    { what: "Your alerts: your address and what you follow", howLong: "Until you stop your alerts or delete your data" },
+    {
+      what: "Your alerts: your address and what you follow",
+      howLong: "Until you stop your alerts or delete your data, or until your address permanently refuses our email or you mark an alert as spam",
+    },
     { what: "A sign-up or an addition nobody confirmed", howLong: `${CONFIRM_TTL_DAYS} days` },
     { what: "Which alert went to which subscriber", howLong: `${DELIVERY_RETENTION_DAYS} days` },
     { what: "Your email with a submission", howLong: `Until the editors decide, ${SUBMITTER_EMAIL_RETENTION_DAYS} days at most. Not kept at all if someone sent it first` },

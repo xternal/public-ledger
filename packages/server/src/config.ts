@@ -30,7 +30,7 @@ export interface Config {
    * "resend" or "ses" send real mail; "outbox" writes it to a table (development);
    * "off": no email at all (an alpha before mail is set up), and the site hides email options.
    */
-  mail: { provider: "resend" | "ses" | "outbox" | "off"; from: string; replyTo?: string; sesRegion: string; resendApiKey: string | null };
+  mail: { provider: "resend" | "ses" | "outbox" | "off"; from: string; replyTo?: string; sesRegion: string; resendApiKey: string | null; resendWebhookSecret: string | null };
   telegram: { botToken: string | null; botUsername: string | null; webhookSecret: string | null };
   /** Claude API key for pre-filling submissions; unset means no pre-fill. */
   anthropicApiKey: string | null;
@@ -84,6 +84,8 @@ export function loadConfig(env: Record<string, string | undefined> = process.env
       replyTo: env.MAIL_REPLY_TO || undefined,
       sesRegion: env.SES_REGION || "eu-west-2",
       resendApiKey: provider === "resend" ? required("RESEND_API_KEY", env.RESEND_API_KEY, true, "") : null,
+      /** Signing secret of the Resend webhook (bounces and complaints); unset turns the endpoint off. */
+      resendWebhookSecret: env.RESEND_WEBHOOK_SECRET || null,
     },
     telegram: {
       botToken: env.TELEGRAM_BOT_TOKEN || null,

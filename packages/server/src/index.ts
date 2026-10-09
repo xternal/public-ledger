@@ -3,6 +3,7 @@ export * from "./db";
 export * from "./crypto";
 export * from "./usage";
 export * from "./mail";
+export * from "./mail-events";
 export * from "./telegram-api";
 export * from "./spam";
 export * from "./log";
