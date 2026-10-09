@@ -1,0 +1,13 @@
+id: matthew-pennycook
+name: Matthew Pennycook
+kind: person
+# UK Parliament Members API: https://members.parliament.uk/member/4520
+parliament_member_id: 4520
+party_id: labour
+# Official pages (structured data sameAs), checked 9 Oct 2026: GOV.UK.
+same_as:
+  - https://www.gov.uk/government/people/matthew-pennycook
+roles:
+  - title: Minister of State for Housing and Planning
+    # Source: https://www.gov.uk/government/people/matthew-pennycook ("Minister of State (Minister for Housing and Planning)", current, from 6 July 2024)
+    from: "2024-07-06"

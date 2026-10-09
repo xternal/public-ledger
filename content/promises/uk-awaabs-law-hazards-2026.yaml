@@ -1,0 +1,68 @@
+id: uk-awaabs-law-hazards-2026
+headline: "Widen Awaab's Law to more home hazards"
+actor_id: hm-government
+made_on: "2026-10-08"
+venue: press_release
+venue_label: Press release (MHCLG), notes to editors
+policy_area: housing_env
+status: in_plan
+status_note: >-
+  Awaab's Law sets legal deadlines for social landlords in England to investigate and fix dangerous hazards; since
+  October 2025 it has covered damp and mould. Draft regulations published on 13 July 2026 would add excess cold,
+  excess heat, domestic hygiene, falls, electrical, explosion and structural collapse hazards from 30 November 2026;
+  they need Parliament's approval.
+deadline: "2026-11-30"
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "MHCLG press release, 8 Oct 2026: Clampdown on dangerous homes to protect more tenants and families"
+    url: https://www.gov.uk/government/news/clampdown-on-dangerous-homes-to-protect-more-tenants-and-families
+  - title: "Draft Hazards in Social Housing (Prescribed Requirements) (England) (Amendment) Regulations 2026, legislation.gov.uk"
+    url: https://www.legislation.gov.uk/ukdsi/2026/9780348285611/contents
+  - title: "Impact assessment for the draft regulations (13 Jul 2026), legislation.gov.uk"
+    url: https://www.legislation.gov.uk/ukia/2026/128/pdfs/ukia_20260128_en.pdf
+  - title: "Hazards in Social Housing (Prescribed Requirements) (England) Regulations 2025 (SI 2025/1042)"
+    url: https://www.legislation.gov.uk/uksi/2025/1042/contents/made
+versions:
+  - version: 1
+    text: >-
+      Subject to parliamentary approval, phase 2 comes into force on 30 November 2026, extending the protections to
+      further serious hazards like electrical hazards, excess cold and falls.
+    recorded_on: "2026-10-08"
+    source_url: https://www.gov.uk/government/news/clampdown-on-dangerous-homes-to-protect-more-tenants-and-families
+    quote_checked_on: "2026-10-09"
+    parameters:
+      who: >-
+        Social housing tenants in England (over 4 million, by the government's count), whose landlords must fix more
+        kinds of serious hazard to legal deadlines; councils and housing associations as landlords
+      how_much_bn_per_year: [0.0143, 0.0159, 0.0175]
+      cost_note: >-
+        Cost to the public purse: what councils, as landlords, pay to comply. Year shown: the first year. The
+        government's impact assessment puts councils' costs at £15.9m a year in years 1 and 2 and £5.7m a year
+        after (2026 prices), and housing associations' at £27.8m and £10.0m; £190.2m over ten years for the whole
+        sector in present value. Housing associations are not part of the public sector, so their costs are not
+        counted here. Low–high is an editorial ±10% because the source gives a central figure only.
+      cost_sources:
+        - title: "Impact assessment for the draft regulations (13 Jul 2026), legislation.gov.uk"
+          url: https://www.legislation.gov.uk/ukia/2026/128/pdfs/ukia_20260128_en.pdf
+      when: From 30 November 2026, if Parliament approves the draft regulations
+      funded_by: null
+events:
+  - date: "2026-10-08"
+    type: promised
+    text: The government says phase 2 of Awaab's Law in social housing comes into force on 30 November 2026
+  - date: "2026-10-08"
+    type: in_plan
+    text: >-
+      Draft regulations, published on 13 July 2026, set 30 November 2026 as the start date for the wider list of
+      hazards
+    evidence_url: https://www.legislation.gov.uk/ukdsi/2026/9780348285611/contents
+  - date: "2026-11-30"
+    type: deadline
+    text: Phase 2 due to come into force
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-09"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.
