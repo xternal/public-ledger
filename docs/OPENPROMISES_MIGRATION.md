@@ -15,8 +15,8 @@ The plan for moving Public Ledger's promise cards and their checks onto the Open
 - **One thing blocks validation today: `costed_by`.** #67 added it inside each version's cost (who made the central figure). Format v1 has no place for it, so the 29 costed cards fail the format check. It needs a change in OpenPromises (question 1).
 - **Two more gaps once that is fixed, both already known:** no editors' approvals are recorded in any card (54 cards), and the 29 costs have no quality label. No pull request that changed a card has two approvals on GitHub, so importing past approvals (OpenPromises decision 11) gives at most one per card. Editors will need to review all 54 cards.
 - **Two things would be lost silently:** `openpromises migrate` drops YAML comments (63 lines, including why each contract is linked), and the engine has no equivalent of #67's rule that lets a newly required field be filled in on published entries without a correction (`LATE_FIELDS`).
-- **The site can stay exactly as it is.** Public Ledger keeps its own pages, API and feeds, and reads v1 files into its current internal shape. A before-and-after snapshot of every API response, feed and page proves nothing changed.
-- **Estimate:** about 5 working days in Public Ledger, plus 1–2 days of OpenPromises changes, plus about 14–27 editor-hours to review and approve the 54 cards. Converting the files should land by Wednesday 11 November, or else after AI Journalist goes public around 16 November.
+- **The site can stay exactly as it is.** Public Ledger keeps its own pages, API and feeds, and reads v1 files into its current internal shape. The parity check being built for this move (`pnpm parity:snapshot` before, `pnpm parity:check` after) proves the published output is unchanged.
+- **Estimate:** about 4–5 working days in Public Ledger, plus 1–2 days of OpenPromises changes, plus about 14–27 editor-hours to review and approve the 54 cards. Converting the files should land by Wednesday 11 November, or else after AI Journalist goes public around 16 November.
 
 ## 1. What was run
 
@@ -219,26 +219,26 @@ The principle: **the files move, the site does not.** Public Ledger keeps `Promi
 
 **Step 1: configuration and a check that reports (half a day).** Add `openpromises.config.ts` (the engine's fixture configuration plus the `x` schema in §3.5, `deadlines.text`, `legacy: "public-ledger"`). Add `@openpromises/core`, `files` and `cli` as pinned development dependencies only; the site's runtime needs none of them. In CI, run `openpromises validate` with the private editors list from a secret (decision 10). It runs as a step that reports without blocking (`continue-on-error: true`), next to `pnpm validate`.
 
-**Step 2: a reader for both formats, and the snapshot proof (2 days).**
+**Step 2: a reader for both formats (1½ days).**
 - In `packages/schema`, add a pure reader that turns a v1 card or actor into today's `PromiseFile` / `ActorFile`: language maps back to strings, `cost.*` back to `how_much_bn_per_year` / `cost_note` / `cost_sources` / `costed_by`, the current version's `deadline` back onto the card, `links` and `x` back to their fields, and correction paths and values back to their legacy form. Legacy files pass through unchanged, so the site reads either format. It is the inverse of `fromPublicLedger`, and the scratch round trip (§2.4) shows it is exact.
 - Route every reader through it: `content-files.ts` / `seed.ts` (all pages and the API), `alerts/content.ts` `parseCard` (alerts compare cards across commits, including across the conversion commit), `harvest/drafts.ts` (the index of quotes already on cards), and `etl/contracts.py` (reads `links.contracts` as well as `contracts`).
-- Add the snapshot harness in §6 and record the "before" snapshot from `main`.
+- Record the "before" output with `pnpm parity:snapshot` on `main` (§6).
 
 **Step 3: writers and examples (1 day).** `scripts/deadlines.ts` switches to `openpromises deadlines` or writes `text: { en }`. Triage writes new promises as v1 drafts and evidence events as v1 events. Update the drafts and fields described in `content/README.md`, and the YAML examples in `docs/EDITORS.md`, `docs/BUDGET_DAY.md` (ready-made entries), `PROMISE_STANDARD.md` §9 (correction paths become `versions[0].parameters.cost.range`) and `docs/DATA_MODEL.md`.
 
 **Step 4: the conversion pull request (half a day, plus two editors' review).** `openpromises migrate` and nothing else, as MIGRATING.md says. In this pull request:
 - `openpromises validate --base origin/main` must report no history change.
 - `pnpm validate`'s own append-only check would compare legacy YAML on `main` with v1 YAML here and fail. So in step 2 it reads both sides through the reader (or hands this check to the engine) before comparing.
-- The snapshot comparison (§6) must show no difference.
+- `pnpm parity:check` (§6) must pass: no difference from the "before" output.
 - The alerts test must show no change between the last legacy commit and the converted one, so no follower gets an email, Telegram message or feed entry about the conversion.
 
 **Step 5: approvals in the cards (editor time; runs alongside).** No pull request that changed a card has two approvals on GitHub; three have one, from the owner's account on intake pull requests. Under decision 11, approvals are imported only from people on the editors list. Whether the owner counts as an editor here is Pavel's call (§9). Either way, every card needs at least one more editor review, recorded with `openpromises review`. The engine's `approvals` rule stays non-blocking until all 54 cards pass. Until then Public Ledger's present merge rule (two GitHub approvals, or the owner) still guards what gets published.
 
-**Step 6: quality labels (after question 2).** Editors add `quality` to the 29 costs, starting from today's published `sourced` (question 3). The API then reads the label from the card instead of working it out. The snapshot shows no change unless an editor changed a label.
+**Step 6: quality labels (after question 2).** Editors add `quality` to the 29 costs, starting from today's published `sourced` (question 3). The API then reads the label from the card instead of working it out. `pnpm parity:check` shows no change unless an editor changed a label.
 
 **Step 7: switch over (half to one day).** When `openpromises validate` passes, make it blocking and remove `legacy` from the configuration. Remove from `scripts/validate.ts` what the engine now covers: the card schema, the append-only check for cards and the reference checks. `pnpm validate` keeps what is ours: the balance check, the "no data in components" lint, share images, contracts and forecasts append-only, the intake drafts' quote check, and Public Ledger's own rules (`outcome_by` names a government body, `brought_about_by` only once something has happened, `costed_by` goes with every cost, if OpenPromises does not take these). The intake merge job counts approvals in the card instead of GitHub reviews. GitHub reviews stay for discussion.
 
-**Step 8: pages (RFC step E2, later).** Move promise pages onto `@openpromises/react` only where the snapshot shows the same HTML. Keep Public Ledger's feeds, API, Markdown, JSON-LD and `llms.txt` code reading the same `CardView` until `@openpromises/publish` produces the same output, including ids. Feed entry ids already match for events, rewordings and replies (`tag:ledgergov.uk,2026:promise/<id>/event/<n>`). Cost, contract, edition and deadline-window entries exist only in Public Ledger's code.
+**Step 8: pages (RFC step E2, later).** Move promise pages onto `@openpromises/react` only where they render the same. The parity check covers share tags, not whole pages, so page HTML is compared by eye (§6) or added to the parity check before this step. Keep Public Ledger's feeds, API, Markdown, JSON-LD and `llms.txt` code reading the same `CardView` until `@openpromises/publish` produces the same output, including ids. Feed entry ids already match for events, rewordings and replies (`tag:ledgergov.uk,2026:promise/<id>/event/<n>`). Cost, contract, edition and deadline-window entries exist only in Public Ledger's code.
 
 ### What stays the same, area by area
 
@@ -248,16 +248,16 @@ The principle: **the files move, the site does not.** Public Ledger keeps `Promi
 | `scripts/validate.ts` and the append-only check | Reads both sides through the reader during the move (step 4), then hands card history to the engine (step 7). Invariant 5 is checked throughout. |
 | Intake and harvest | Draft format and exact-quote check unchanged until E4 (question 6). The quote index reads cards through the reader. |
 | Triage | Writes v1 drafts and v1 events (step 3). Model suggestions stay as comments in drafts, which editors remove. |
-| API v1 | Same code over the same `CardView`, so the same JSON and CSV, field for field, including `corrections[].path`, `cost.quality` and `cost.costed_by`. Proved by snapshot. |
+| API v1 | Same code over the same `CardView`, so the same JSON and CSV, field for field, including `corrections[].path`, `cost.quality` and `cost.costed_by`. Proved by `pnpm parity:check`. |
 | Feeds and alerts | Same code and the same `tag:` ids. The conversion commit produces no alert (step 4). |
-| SEO and sharing | Markdown, JSON-LD, `llms.txt`, sitemap, Open Graph images and area URLs come from the same code and configuration. Proved by snapshot. |
+| SEO and sharing | Markdown, JSON-LD, `llms.txt`, sitemap, Open Graph images and area URLs come from the same code and configuration. Proved by `pnpm parity:check`. |
 | ETL | `etl/contracts.py` reads `links.contracts`. Nothing else in `etl/` reads cards. |
-| Tests | Add: reader round trip on every card, snapshot comparison, alerts across the conversion commit. Server tests keep their legacy-format fixtures, which the reader still accepts. |
+| Tests | Add: reader round trip on every card, alerts across the conversion commit; `pnpm parity:check` in CI for the conversion pull request. Server tests keep their legacy-format fixtures, which the reader still accepts. |
 
 ## 6. Proving the site is the same
 
 1. **Data.** A test reads every card and actor in v1 back into Public Ledger's shape and compares it with the legacy file at the base commit (as in §2.4). Any difference fails.
-2. **Output.** A snapshot script writes, from one build: every `/api/v1/*` response as JSON and CSV; every Atom feed (all, updates, deadlines, and each promise, actor and area feed); every card's Markdown; `llms.txt`, `llms-full.txt`, `sitemap.xml` and `robots.txt`; and the HTML and Open Graph tags of one page of every route type, plus every promise page. Run it on `main` and on the branch with the dates fixed. `diff -r` must be empty.
+2. **Output.** Public Ledger's parity check, being built for this move: `pnpm parity:snapshot` records the published output on `main` (API v1, feeds, sitemap, the llms files, each card's Markdown and share tags), and `pnpm parity:check` on the branch must find no difference. This document uses that check rather than a second one of its own.
 3. **History.** `openpromises validate --base origin/main` reports no history change, and `pnpm validate` agrees.
 4. **Alerts.** Comparing the last legacy commit with the converted one finds no change, so no email, Telegram message or feed entry goes out.
 5. **By eye.** Screenshots of the home page, `/promises`, a costed card, a card with corrections, an actor page and `/budget`, before and after, on a phone and a laptop.
@@ -274,7 +274,7 @@ The principle: **the files move, the site does not.** Public Ledger keeps `Promi
 | Work | Who | Time |
 |---|---|---|
 | Questions 1, 2, 4 and 5 in OpenPromises, released | OpenPromises session | 1–2 days |
-| Steps 1–4 and 7 in Public Ledger | Public Ledger | about 5 working days |
+| Steps 1–4 and 7 in Public Ledger (the parity check is built separately) | Public Ledger | about 4–5 working days |
 | Reviewing the conversion pull request | Two editors | about 1 hour each |
 | Approvals: about 15 minutes per card, per editor, 54 cards, at least one review each (two if the owner's approvals are not imported) | Editors | about 14–27 editor-hours |
 | Quality labels on 29 costs | Editors, as part of the same review | included above |
