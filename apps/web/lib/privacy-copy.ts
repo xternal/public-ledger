@@ -17,7 +17,7 @@ export const PRIVACY_TITLE = "Privacy notice";
 export const PRIVACY_DESCRIPTION =
   "What Public Ledger keeps about you and why: alerts by email or Telegram, submissions and the Your MP postcode search. Who runs it, which services handle your data, how long we keep it, and how to have it deleted.";
 /** The date this notice last changed in substance. */
-export const PRIVACY_UPDATED = "2026-10-08";
+export const PRIVACY_UPDATED = "2026-10-09";
 /** Where readers write about their data (set up and forwarding, 8 October 2026). */
 export const PRIVACY_EMAIL = "privacy@ledgergov.uk";
 /** The controller: the company that runs Public Ledger and holds readers' data. */
@@ -79,7 +79,11 @@ export function retention(): RetentionRow[] {
     { what: "Your postcode", howLong: "Not kept at all" },
     { what: "Daily usage counts", howLong: "Kept. They hold no personal data" },
     { what: "The testers' password cookie, if the site asks for one", howLong: `${alphaDays} days, in your browser` },
-    { what: "Copies in database backups and our providers' logs", howLong: "A short time after you delete, until they expire", toConfirm: true },
+    {
+      what: "Copies in database backups and our providers' logs",
+      howLong:
+        "Gone within about a month of you deleting: our database's restore history keeps 6 hours, hosting logs 1 day, our email service's copies of alerts and receipts 30 days, Claude's copy of a submission up to 30 days, records of email forwarded to us 31 days, and our mailbox's backups 30 days",
+    },
   ];
 }
 

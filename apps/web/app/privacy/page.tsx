@@ -43,13 +43,13 @@ const SECTIONS = [
 ];
 
 const SERVICES: { name: string; role: string; where: string; sees: string; whereToConfirm?: boolean }[] = [
-  { name: "Vercel", role: "hosts the site", where: "US company; our code runs in London", sees: "Every request, including your IP address, in its own logs." },
+  { name: "Vercel", role: "hosts the site", where: "US company; our code runs in London, and its logs may be held in the US", sees: "Every request, including your IP address, in its own logs." },
   { name: "Neon", role: "runs our database", where: "US company; the data is stored in London", sees: "Everything we keep. Addresses are encrypted before they reach it." },
-  { name: "Resend", role: "sends our emails", where: "US company; sends from Ireland", sees: "Your email address and each email, which names what you follow. It tells us when an email bounces or is marked as spam." },
+  { name: "Resend", role: "sends our emails", where: "US company; sends from Ireland and keeps its records in the US", sees: "Your email address and each email, which names what you follow. It tells us when an email bounces or is marked as spam." },
   {
     name: "Telegram",
     role: "carries the bot's messages, if you choose Telegram",
-    where: "Its own servers, in several countries",
+    where: "Its own servers; for people in the UK, in the Netherlands",
     sees: "Your chat and what you follow. Telegram runs your account under its own privacy policy.",
   },
   {
@@ -61,9 +61,14 @@ const SERVICES: { name: string; role: string; where: string; sees: string; where
 ];
 
 const MORE_SERVICES: typeof SERVICES = [
-  { name: "Anthropic", role: "its Claude model suggests card details to editors", where: "US company", sees: "What you sent and the source's text. Never your email or credit name." },
+  { name: "Anthropic", role: "its Claude model suggests card details to editors", where: "US company, contracted through its Irish arm; data stored in the US", sees: "What you sent and the source's text. Never your email or credit name." },
   { name: "Internet Archive", role: "saves a public copy of a link you send", where: "US non-profit", sees: "The link only, sent from our server." },
-  { name: "postcodes.io", role: "finds the constituency for a postcode", where: "UK service", whereToConfirm: true, sees: "The postcode only, sent from our server, never with your IP address." },
+  {
+    name: "postcodes.io",
+    role: "finds the constituency for a postcode",
+    where: "UK company (Ideal Postcodes)",
+    sees: "The postcode only, sent from our server, never with your IP address. It publishes no privacy notice for this service, so it may keep the postcodes it is asked about.",
+  },
   { name: "UK Parliament", role: "provides the data about MPs", where: "UK", sees: "A name you type into Your MP, sent from our server." },
   {
     name: "Cloudflare",
@@ -74,8 +79,7 @@ const MORE_SERVICES: typeof SERVICES = [
   {
     name: "Proton",
     role: "hosts our mailbox, where email sent to our addresses arrives",
-    where: "Swiss company; mail stored in Switzerland",
-    whereToConfirm: true,
+    where: "Swiss company; mail stored, encrypted, in Switzerland, Germany or Norway",
     sees: "Emails you send us, including applications to be an editor. Proton says it encrypts stored mail so that it cannot read it.",
   },
 ];
@@ -304,8 +308,10 @@ export default function PrivacyPage() {
             </div>
           </details>
           <p className="m-0 text-muted">
-            Where data leaves the UK, it goes to Ireland or Switzerland, which UK law treats as safe, or to US companies, under the UK–US data bridge or the UK&apos;s standard
-            contract clauses. <ToConfirm />
+            Some data leaves the UK. Email to us is stored in Switzerland, Germany or Norway, and Telegram keeps UK users&apos; data in the Netherlands; UK
+            law treats these countries as safe. Vercel, Neon, Resend, Anthropic, GitHub and Cloudflare are US companies and may hold data in the US. All six
+            give us the UK&apos;s standard contract clauses in their data protection terms, and all but Anthropic say they are certified under the UK–US data
+            bridge.
           </p>
         </section>
 
