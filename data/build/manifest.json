@@ -1,9 +1,9 @@
 {
-  "build_id": "2026-10-09T08:46:19Z",
-  "git_sha": "41bfb57",
+  "build_id": "2026-10-09T13:58:27Z",
+  "git_sha": "228f8ec",
   "status": "ok",
   "base_year": "2025-26",
-  "observations": 11621,
+  "observations": 11623,
   "sources": [
     {
       "id": "boe_bank_rate",
@@ -53,7 +53,7 @@
     },
     {
       "id": "govuk_tax_rates",
-      "title": "Income Tax rates and Personal Allowances; National Insurance rates; HMRC rates and thresholds for employers; HMRC hydrocarbon oils (fuel duty) rates",
+      "title": "Income Tax rates and Personal Allowances; National Insurance rates; HMRC rates and thresholds for employers; HMRC hydrocarbon oils (fuel duty) rates; Capital Gains Tax rates",
       "publisher": "GOV.UK / HM Revenue and Customs",
       "url": "https://www.gov.uk/income-tax-rates",
       "licence": "OGL v3",
@@ -61,16 +61,17 @@
       "cadence_days": 365,
       "grace_days": 60,
       "freshness": {
-        "vintage": "income-tax-rates@2026-10-01",
-        "published_on": "2026-10-01",
-        "age_days": 8,
+        "vintage": "capital-gains-tax@2026-10-02",
+        "published_on": "2026-10-02",
+        "age_days": 7,
         "cadence_days": 365,
         "grace_days": 60,
         "overdue_days": 0
       },
-      "observations": 25,
+      "observations": 27,
       "vintages": [
         "amended-fuel-duty-rates-2026-to-2027@2026-09-30",
+        "capital-gains-tax@2026-10-02",
         "excise-duty-hydrocarbon-oils-rates@2026-09-30",
         "income-tax-rates@2026-10-01",
         "rates-and-thresholds-for-employers-2025-to-2026@2026-09-30",

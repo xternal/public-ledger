@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { loadSeed } from "@ledger/schema/seed";
-import { fundingKey, type Settings } from "@ledger/schema";
+import { fundingKey, stepValues, type Settings } from "@ledger/schema";
 import {
   baseSettings,
   changedSettings,
@@ -10,6 +10,8 @@ import {
   decodeScenario,
   encodeScenario,
   mortgageDelta,
+  snapToStep,
+  stepFor,
   taxOn,
   yourShare,
   type Model,
@@ -36,6 +38,12 @@ function rng(seedValue: number) {
 function randomSettings(m: Model, rand: () => number): Settings {
   const s = baseSettings(m);
   for (const l of m.levers) {
+    if (l.effect.steps) {
+      // A stepped lever offers today's value and the source's steps, nothing between.
+      const values = stepValues(l);
+      s[l.id] = values[Math.floor(rand() * values.length)]!;
+      continue;
+    }
     const steps = Math.round((l.max - l.min) / l.step);
     s[l.id] = l.min + Math.round(rand() * steps) * l.step;
     if (l.funding_options) {
@@ -74,11 +82,11 @@ describe("statement balance (invariant 4)", () => {
 });
 
 describe("golden tests: +1 unit reproduces each lever's central per_unit_bn", () => {
-  for (const lever of seed.levers.levers) {
+  for (const lever of seed.levers.levers.filter((l) => l.effect.per_unit_bn)) {
     it(lever.id, () => {
       const base = compute(model, baseSettings(model));
       const r = compute(model, { ...baseSettings(model), [lever.id]: lever.base + 1 });
-      const central = lever.effect.per_unit_bn.y1[1];
+      const central = lever.effect.per_unit_bn!.y1[1];
       const side = model.sideOf.get(lever.effect.target);
       const line = side === "receipt" ? r.receipts : r.spending;
       const baseLine = side === "receipt" ? base.receipts : base.spending;
@@ -86,6 +94,88 @@ describe("golden tests: +1 unit reproduces each lever's central per_unit_bn", ()
       expect(r.y1.d_borrowing_bn[1]).toBeCloseTo(side === "receipt" ? -central : central, 9);
     });
   }
+});
+
+describe("stepped levers: capital gains tax at HMRC's own steps only", () => {
+  // HMRC, Direct effects of illustrative tax changes (June 2025), £ million, change made in April 2026:
+  // { step: [2026-27, 2028-29] }. Minus = the Treasury collects less.
+  const HMRC_CGT: Record<string, Record<number, [number, number]>> = {
+    cgt_lower: { 1: [-5, 5], 5: [-40, -10], 10: [-130, -135] },
+    cgt_higher: { 1: [-15, -30], 5: [-170, -870], 10: [-540, -3565] },
+  };
+  const base = baseSettings(model);
+  const baseResult = compute(model, base);
+  const cgtChange = (r: ReturnType<typeof compute>) => r.receipts.cgt! - baseResult.receipts.cgt!;
+
+  for (const [id, figures] of Object.entries(HMRC_CGT)) {
+    const lever = model.leverById.get(id)!;
+
+    it(`${id}: offers only HMRC's steps, from today's rate`, () => {
+      expect(lever.effect.per_unit_bn).toBeUndefined();
+      expect(lever.effect.steps!.map((s) => s.at)).toEqual([1, 5, 10]);
+      expect(lever.effect.target).toBe("cgt");
+      expect(lever.min).toBe(lever.base);
+      expect(lever.max).toBe(lever.base + 10);
+      lever.effect.steps!.forEach((s) => expect(s.y5![1]).toBeCloseTo(figures[s.at]![1] / 1000, 9));
+    });
+
+    for (const [at, [y1]] of Object.entries(figures)) {
+      it(`${id} +${at}: reproduces HMRC's year-one figure`, () => {
+        const r = compute(model, { ...base, [id]: lever.base + Number(at) });
+        expect(cgtChange(r)).toBeCloseTo(y1 / 1000, 9);
+        // Receipts fall, so borrowing rises: a rise in the rate that loses money reads as more borrowing.
+        expect(r.y1.d_borrowing_bn[1]).toBeCloseTo(-y1 / 1000, 9);
+        expect(r.changes).toEqual([{ lever_id: id, kind: "lever", delta: Number(at), d_borrowing_bn: r.y1.d_borrowing_bn }]);
+        expectBalanced({ ...base, [id]: lever.base + Number(at) });
+      });
+    }
+
+    it(`${id}: a value between steps takes the step below, never a blend`, () => {
+      const at = (v: number) => compute(model, { ...base, [id]: lever.base + v });
+      expect(cgtChange(at(3))).toBeCloseTo(figures[1]![0] / 1000, 9);
+      expect(at(3).changes[0]!.delta).toBe(1);
+      expect(cgtChange(at(9.5))).toBeCloseTo(figures[5]![0] / 1000, 9);
+      expect(cgtChange(at(1 + 1e-12))).toBeCloseTo(figures[1]![0] / 1000, 9);
+      // Beyond the last step: the last step, not a scaled-up figure.
+      expect(cgtChange(at(25))).toBeCloseTo(figures[10]![0] / 1000, 9);
+      // Below the first step, or below today's rate: no change.
+      expect(at(0.5).changes).toEqual([]);
+      expect(at(-3).changes).toEqual([]);
+    });
+  }
+
+  it("a big rise in the higher rate adds about half a billion to borrowing in year one", () => {
+    const lever = model.leverById.get("cgt_higher")!;
+    const r = compute(model, { ...base, cgt_higher: lever.base + 10 });
+    expect(r.y1.d_borrowing_bn[1]).toBeCloseTo(0.54, 9);
+    expect(r.y1.d_borrowing_bn[0]).toBeGreaterThan(0);
+    expect(r.y1.d_borrowing_bn[0]).toBeLessThan(r.y1.d_borrowing_bn[2]);
+  });
+
+  it("snap an old link's value onto the step at or below it, and say so", () => {
+    const lever = model.leverById.get("cgt_higher")!;
+    for (const [value, want] of [
+      [lever.base + 7, lever.base + 5],
+      [lever.base + 0.5, lever.base],
+      [lever.base + 40, lever.base + 10],
+      [lever.base - 4, lever.base],
+    ] as const) {
+      const code = btoa(JSON.stringify({ v: 1, y: seed.baseYear, s: { cgt_higher: value } })).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+      const d = decodeScenario(model, code)!;
+      expect(d.settings.cgt_higher).toBe(want);
+      expect(d.adjusted).toEqual(["cgt_higher"]);
+    }
+    const onStep = encodeScenario(model, { ...base, cgt_higher: lever.base + 5 }, seed.baseYear);
+    expect(decodeScenario(model, onStep)!.adjusted).toEqual([]);
+  });
+
+  it("stepFor and snapToStep agree with the steps", () => {
+    const lever = model.leverById.get("cgt_lower")!;
+    expect(stepFor(lever, lever.base)).toBeUndefined();
+    expect(stepFor(lever, lever.base + 5)!.at).toBe(5);
+    expect(snapToStep(lever, lever.base + 6)).toBe(lever.base + 5);
+    expect(stepValues(lever)).toEqual([lever.base, lever.base + 1, lever.base + 5, lever.base + 10]);
+  });
 });
 
 describe("bus fare cap", () => {

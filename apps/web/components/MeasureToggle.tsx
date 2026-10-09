@@ -17,6 +17,8 @@ export function MeasureToggle({ lever }: { lever: Lever }) {
   const card = lever.promise_id ? seed.cards.find((c) => c.id === lever.promise_id)?.file : undefined;
   const id = `measure-${lever.id}`;
   const fundingOption = lever.funding_options?.find((f) => f.id === funding);
+  // The schema gives every toggle a per-unit cost (only non-toggles may have steps).
+  const cost = lever.effect.per_unit_bn?.y1;
 
   return (
     <div className="grid gap-2">
@@ -36,7 +38,7 @@ export function MeasureToggle({ lever }: { lever: Lever }) {
       </label>
       <p className="m-0 text-caption text-muted">
         {card && <>Announced {longDate(card.made_on)}. </>}
-        Costs {rangeText(lever.effect.per_unit_bn.y1, gbpBn)} a year.
+        {cost && <>Costs {rangeText(cost, gbpBn)} a year.</>}
       </p>
       {lever.funding_options && (
         <div className={`grid gap-1.5 transition-opacity ${on ? "" : "opacity-50"}`}>

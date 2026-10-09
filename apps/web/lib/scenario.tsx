@@ -148,7 +148,7 @@ export function ScenarioProvider({ seed, children }: { seed: Seed; children: Rea
     const notes: string[] = [];
     if (decoded.baseYear !== seed.baseYear) notes.push(`It was built on ${decoded.baseYear} figures and now runs on ${seed.baseYear}.`);
     if (decoded.dropped.length) notes.push("Some settings no longer exist and were left out.");
-    if (decoded.adjusted.length) notes.push("Some values were moved back inside the range the sandbox allows.");
+    if (decoded.adjusted.length) notes.push("Some values were moved to a setting the sandbox allows.");
     if (notes.length) setLinkNotice(`Opened a shared scenario. ${notes.join(" ")}`);
   }, [model, seed.baseYear]);
 

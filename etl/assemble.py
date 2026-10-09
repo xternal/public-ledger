@@ -236,6 +236,10 @@ BASIS_NOTES = {
     ("ons_psf_receipts", "non_tax"): "ONS outturn basis; it includes some receipts the OBR forecast shows under business rates.",
 }
 EDITORIAL_RANGE_HMRC = 0.10  # HMRC publishes central costings only
+# HMRC costs capital gains tax rises only at these steps (points above today's rate) and says the
+# figures "are also non-linear and so cannot be scaled up" (bulletin), so the levers offer only these.
+CGT_STEPS = (1, 5, 10)
+HMRC_CGT_NON_LINEAR = "are also non-linear and so cannot be scaled up"
 EDITORIAL_RANGE_OBR_RATES = 0.20  # OBR debt-interest sensitivities, central only
 
 
@@ -429,6 +433,20 @@ def build_levers(store: Store, base_year: str, base_statement: dict, run: Run) -
         o = store.get(series, tax_year, ["govuk_tax_rates"]) if tax_year else None
         if o and lever_id in by_id:
             rebase(by_id[lever_id], o.value)
+    # Capital gains tax: HMRC's own steps only, from the GOV.UK rate.
+    cgt_year = latest_cgt_year(store)
+    for lever_id, slug, what, series, it_series, it_name in [
+        ("cgt_lower", "cgt_lower_rate", "the lower rate of capital gains tax", "tax.cgt.lower_rate", "tax.income_tax.basic_rate", "basic rate"),
+        ("cgt_higher", "cgt_higher_rate", "the higher rate of capital gains tax", "tax.cgt.higher_rate", "tax.income_tax.higher_rate", "higher rate"),
+    ]:
+        if lever_id not in by_id:
+            continue
+        o = store.get(series, cgt_year, ["govuk_tax_rates"]) if cgt_year else None
+        if o:
+            rebase(by_id[lever_id], o.value)
+        income_tax = store.get(it_series, tax_year, ["govuk_tax_rates"]) if tax_year else None
+        from_hmrc_steps(store, by_id[lever_id], slug, what, run, base_obs=o, income_tax=(it_name, income_tax))
+
     fuel_rate = current_fuel_duty(store)
     if fuel_rate and "fuel_duty" in by_id:
         rebase(by_id["fuel_duty"], fuel_rate.value)
@@ -487,6 +505,61 @@ def build_levers(store: Store, base_year: str, base_statement: dict, run: Run) -
     return seed
 
 
+def money_m(bn: float) -> str:
+    """£bn as HMRC prints it, in £ million with a sign: -0.54 -> "−£540m", 0.01 -> "+£10m"."""
+    m = round(bn * 1000)
+    return f"{'−' if m < 0 else '+' if m > 0 else ''}£{abs(m):,}m"
+
+
+def from_hmrc_steps(store: Store, lever: dict, slug: str, what: str, run: Run, base_obs: Observation | None, income_tax: tuple[str, Observation | None]) -> None:
+    """
+    Set a stepped lever from HMRC's own steps (reckoner.<slug>_<n>pp, n in CGT_STEPS). y1 is HMRC's first
+    year and y5 its last, as from_hmrc does. HMRC says the figures cannot be scaled, so the lever offers
+    exactly these steps; if any is missing, the whole template stays and a coverage warning says so.
+    """
+    def edge(at: int, i: int) -> Observation | None:
+        ps = store.periods(f"reckoner.{slug}_{at}pp", "hmrc_reckoner")
+        return store.idx[(f"reckoner.{slug}_{at}pp", ps[i], "hmrc_reckoner")] if ps else None
+
+    found = {at: (edge(at, 0), edge(at, -1)) for at in CGT_STEPS}
+    missing = [f"{slug}_{at}pp" for at, (y1, _) in found.items() if y1 is None]
+    if missing:
+        run.add("coverage", "warning", f"lever {lever['id']}", f"HMRC reckoner {', '.join(missing)} missing; keeping the template value")
+        return
+    lever["effect"].pop("per_unit_bn", None)
+    lever["effect"]["steps"] = [
+        {"at": at, "y1": sorted_range(ranged(y1.value, EDITORIAL_RANGE_HMRC)), "y5": sorted_range(ranged(yn.value, EDITORIAL_RANGE_HMRC))}
+        for at, (y1, yn) in found.items()
+    ]
+    lever["min"], lever["max"] = lever["base"], round(lever["base"] + CGT_STEPS[-1], 4)
+
+    obs = [o for pair in found.values() for o in pair]
+    quality = next((q for q in ("training", "modelled", "approx") if any(o.quality == q for o in obs)), "sourced")
+    first_obs = found[CGT_STEPS[0]][0]
+    figures = "; ".join(f"+{at} {'point' if at == 1 else 'points'}: {money_m(y1.value)} in {y1.period}, {money_m(yn.value)} in {yn.period}" for at, (y1, yn) in found.items())
+    steps = ", ".join(f"+{at}" for at in CGT_STEPS)
+    note = (
+        f"HMRC's estimates for raising {what}, with the change made at the start of {first_obs.period} ({first_obs.vintage}). {figures}. "
+        "A minus means the Treasury collects less: HMRC's figures allow for people selling fewer assets when the rate rises. "
+        f"These are HMRC's only steps ({steps} points), so the sandbox offers no others and never scales or blends them: "
+        f"HMRC says its capital gains tax figures “{HMRC_CGT_NON_LINEAR}”."
+    )
+    name, it = income_tax
+    if it is not None:
+        gap = round(it.value - lever["base"], 4)
+        to_match = f" Taxing these gains at the {name} of income tax ({it.value:g}% in England, Wales and Northern Ireland) would need a rise of {gap:g} points"
+        if gap > CGT_STEPS[-1]:
+            note += f"{to_match}, bigger than any HMRC estimates."
+        elif gap in CGT_STEPS:
+            note += f"{to_match}, which is HMRC's +{gap:g} step."
+        elif gap > 0:
+            note += f"{to_match}, which is not one of HMRC's steps."
+    if base_obs is not None:
+        note += f" Starting rate {base_obs.value:g}%, the rate for {base_obs.period} (GOV.UK)."
+    note += f" Low–high is an editorial ±{EDITORIAL_RANGE_HMRC:.0%} because HMRC publishes a central figure only. {HMRC_BEHAVIOUR}"
+    lever.update(quality=quality, source_id="hmrc_reckoner", method_note=note)
+
+
 def sorted_range(r: list[float]) -> list[float]:
     """A negative central figure (allowances) flips low and high; keep the range ordered."""
     return [min(r), r[1], max(r)]
@@ -507,6 +580,11 @@ def current_fuel_duty(store: Store):
 
 
 HMRC_BEHAVIOUR = "HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects."
+
+
+def latest_cgt_year(store: Store) -> str | None:
+    years = store.periods("tax.cgt.lower_rate", "govuk_tax_rates")
+    return years[-1] if years else None
 
 
 def latest_tax_year(store: Store) -> str | None:

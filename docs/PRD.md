@@ -25,7 +25,7 @@ People hear "£2 bus fares", "3.5% on defence", "cut income tax by 2p" and have 
 - **Acceptance:** balances to £0.1bn every year; every node shows a quality badge on hover/focus; renders <1 s on 4G.
 
 ### F2. Sandbox
-- Levers v0: Bank Rate (central bank), income tax basic/higher/additional rates, personal allowance, employee NICs, VAT, corporation tax, fuel duty, defence % GDP, NHS budget %, state pension level %, plus "point measures" tied to promises (e.g. bus fare cap) with funding options.
+- Levers v0: Bank Rate (central bank), income tax basic/higher/additional rates, personal allowance, employee NICs, VAT, corporation tax, fuel duty, capital gains tax lower/higher rates (HMRC's own steps only, no slider), defence % GDP, NHS budget %, state pension level %, plus "point measures" tied to promises (e.g. bus fare cap) with funding options.
 - Presets: one per promise card that has `lever_id`s; plus editorial presets.
 - Outputs (year one and to the end of forecast horizon): Δ borrowing, per household, CPI one-off, GDP year one, debt % GDP path. All as low/central/high.
 - "What moved" list in plain language. Mortgage translation for Bank Rate.
