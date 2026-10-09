@@ -58,5 +58,38 @@ export function budgetWatch(cards: CardView[]): BudgetWatch {
   return { needMoney, tax, other, opposition, moved };
 }
 
+/**
+ * Questions readers bring to this Budget. A topic lists every card whose
+ * headline, words or status note name its subject: the same rule for every
+ * party. The intro is framing only; every figure stays on the cards, with its
+ * source.
+ */
+export const BUDGET_TOPICS = [
+  {
+    id: "capital-gains-tax",
+    title: "Capital gains tax",
+    match: /capital gains/i,
+    intro:
+      "Ministers have been asked in Parliament whether capital gains tax will rise to match income tax. The Treasury's answer is that decisions on tax are taken by the Chancellor at the Budget. HMRC's own estimates show that large rises can lose money rather than raise it, because people sell fewer assets. These are the promises parties have made on it, with what each would cost or raise.",
+    sources: [
+      { title: "Treasury answer to HL2381 (30 Jul 2026)", url: "https://questions-statements.parliament.uk/written-questions/detail/2026-07-21/HL2381" },
+      {
+        title: "HMRC: Direct effects of illustrative tax changes",
+        url: "https://www.gov.uk/government/statistics/direct-effects-of-illustrative-tax-changes/direct-effects-of-illustrative-tax-changes-bulletin-january-2025",
+      },
+    ],
+  },
+] as const;
+
+export type BudgetTopic = (typeof BUDGET_TOPICS)[number];
+
+/** The cards on a topic: the government's first, as only it sets a Budget, then the largest cost first. */
+export function topicCards(cards: CardView[], topic: BudgetTopic): CardView[] {
+  const names = (c: CardView) =>
+    [c.file.headline ?? "", c.file.status_note ?? "", ...c.file.versions.map((v) => v.text)].some((t) => topic.match.test(t));
+  const gov = (c: CardView) => (standingOf(c) === "government" ? 0 : 1);
+  return cards.filter(names).sort((a, b) => gov(a) - gov(b) || byCostThenDeadline(a, b));
+}
+
 /** The events on Budget day for one card, for the "What the Budget did" list. */
 export const budgetDayEvents = (c: CardView) => c.file.events.filter((e) => e.date === BUDGET.date && e.type !== "deadline_missed");
