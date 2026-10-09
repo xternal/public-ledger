@@ -20,7 +20,9 @@
     "deadlines": "tsx scripts/deadlines.ts",
     "alerts": "tsx scripts/alerts.ts",
     "indexnow": "tsx scripts/indexnow.ts",
-    "harvest": "tsx scripts/harvest.ts"
+    "harvest": "tsx scripts/harvest.ts",
+    "parity:snapshot": "tsx scripts/parity.ts snapshot",
+    "parity:check": "tsx scripts/parity.ts check"
   },
   "devDependencies": {
     "@ledger/engine": "workspace:*",

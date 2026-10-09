@@ -12,6 +12,8 @@ next-env.d.ts
 .DS_Store
 .turbo/
 screenshots/tmp/
+# Parity snapshots (pnpm parity:snapshot / parity:check)
+.parity/
 
 # ETL
 etl/.venv/
