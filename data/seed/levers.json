@@ -46,6 +46,22 @@
         "publisher": "OBR",
         "url": "https://obr.uk/box/fiscal-multipliers/",
         "licence": "OGL v3"
+      },
+      {
+        "id": "boe_ir_2012_02",
+        "title": "Bank of England: Inflation Report, February 2012, section 4 (the effect of the January 2011 VAT rise on CPI)",
+        "publisher": "Bank of England",
+        "url": "https://www.bankofengland.co.uk/-/media/boe/files/inflation-report/2012/february-2012.pdf#page=33",
+        "published_on": "2012-02-15",
+        "licence": "Bank of England copyright"
+      },
+      {
+        "id": "ons_vat_cpi_2011",
+        "title": "ONS: Impact of the VAT increase on the CPI (information note, April 2011; UK Government Web Archive)",
+        "publisher": "ONS",
+        "url": "https://webarchive.nationalarchives.gov.uk/ukgwa/20110425141450/http://www.statistics.gov.uk/downloads/theme_economy/vat-increase-on-cpi.pdf#page=1",
+        "published_on": "2011-04-07",
+        "licence": "OGL v3"
       }
     ]
   },
@@ -224,10 +240,15 @@
           ]
         },
         "cpi_pp_per_unit": [
+          0.28,
           0.4,
-          0.6,
-          0.8
-        ]
+          0.56
+        ],
+        "cpi_provenance": {
+          "quality": "approx",
+          "source_id": "boe_ir_2012_02",
+          "method_note": "One-off rise in the CPI level per 1 point on the standard rate of VAT. The Bank of England estimated that the January 2011 rise from 17.5% to 20% added 0.7, about 1 and 1.4 percentage points to CPI inflation if half, three quarters (its central case) or all of it reached prices; divided by the 2.5-point rise, that is 0.28 (low), 0.40 (central) and 0.56 (high). VAT applies to around two thirds of the CPI basket. The ONS measured about 0.76 points for the same rise (0.30 per point) in the month it took effect. The effect drops out of annual inflation after about 12 months."
+        }
       },
       "quality": "training",
       "source_id": "hmrc_ready_reckoner",

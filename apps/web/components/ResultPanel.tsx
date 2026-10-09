@@ -97,13 +97,6 @@ function LinkNotice() {
   );
 }
 
-/** How much of a VAT change reaches shop prices: the one figure in the sandbox still without an official source. */
-const VAT_PRICE_RULE = {
-  quality: "training",
-  method_note:
-    "TODO(source): the share of a VAT change that reaches the consumer prices index is a rule of thumb, pending an official estimate, such as the Bank of England's or the ONS's analysis of a past change in VAT.",
-} as const;
-
 export function ResultPanel() {
   const { seed, result, settings, model, applyPreset } = useScenario();
   const { macro, macro: { provenance } } = seed.statement;
@@ -129,17 +122,20 @@ export function ResultPanel() {
   const dm = mortgage && rate && rateMoved ? mortgageDelta(mortgage, rate.base, rateNow) : 0;
 
   // Tiles in the right-hand column on phones open their tip leftwards, so it stays on screen (no sideways scroll at 390px).
-  // GDP uses the OBR's fiscal multipliers (macro_rules, with their own quality); the price effect of VAT is still a rule of thumb.
+  // GDP uses the OBR's fiscal multipliers (macro_rules, with their own quality).
   const multipliers = (align: "start" | "end") => (
     <WithProvenance p={rules} align={align} className={align === "end" ? "w-full" : ""}>
       <QualityBadge quality={rules.quality}>{rules.quality === "training" ? "Rule of thumb" : "OBR multipliers"}</QualityBadge>
     </WithProvenance>
   );
-  const priceRule = (align: "start" | "end") => (
-    <WithProvenance p={VAT_PRICE_RULE} align={align} className={align === "end" ? "w-full" : ""}>
-      <QualityBadge quality={VAT_PRICE_RULE.quality}>Rule of thumb</QualityBadge>
-    </WithProvenance>
-  );
+  // The price effect has its own source on the lever that carries it (VAT): never the multipliers'.
+  const price = seed.levers.levers.find((l) => l.effect.cpi_provenance)?.effect.cpi_provenance;
+  const priceRule = (align: "start" | "end") =>
+    price ? (
+      <WithProvenance p={price} align={align} className={align === "end" ? "w-full" : ""}>
+        <QualityBadge quality={price.quality}>{price.quality === "training" ? "Rule of thumb" : "Bank of England estimate"}</QualityBadge>
+      </WithProvenance>
+    ) : null;
 
   return (
     <div id="scenario" className="mt-12 grid gap-8 border-t border-line pt-8">
