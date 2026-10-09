@@ -1,0 +1,40 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-i-have-real-hope-that-britain-can-come-together-to-defeat-de.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-08"
+source:
+  id: govuk-i-have-real-hope-that-britain-can-come-together-to-defeat-de
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/i-have-real-hope-that-britain-can-come-together-to-defeat-dementia-pm
+  title: “I have real hope that Britain can come together to defeat dementia" – PM
+  date: "2026-10-08"
+  venue_label: Press release (Prime Minister's Office, 10 Downing Street)
+quote: >-
+  So, alongside this new investment, we will ensure that the treatment of dementia is one of the
+  central priorities of our new National Care Service.
+source_span: [4801, 4948]
+speaker:
+  name: Yvette Cooper
+  role: null
+  party: null
+  member_id: null
+  actor_id: null
+  check: nearby # the name is printed just before the quote; check it
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: social_protection
+  who: People living with dementia and their families
+  how_much: null
+  when: null
+  funded_by: null
+  deadline: null
+why: >-
+  The treatment of dementia will be made a central priority of the planned National Care Service.
+confidence: 0.5
+model: claude-opus-5-5
+status: to_review

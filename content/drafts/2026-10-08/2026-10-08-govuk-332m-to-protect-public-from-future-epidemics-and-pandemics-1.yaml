@@ -1,0 +1,48 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-332m-to-protect-public-from-future-epidemics-and-pandemics.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-08"
+source:
+  id: govuk-332m-to-protect-public-from-future-epidemics-and-pandemics
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/332m-to-protect-public-from-future-epidemics-and-pandemics
+  title: £33.2 million to protect public from future epidemics and pandemics
+  date: "2026-10-08"
+  venue_label: Press release (Department of Health and Social Care)
+quote: >-
+  Supported by the UK Vaccine Network and delivered through Innovate UK, the funding will target
+  diseases including Ebola, plague, Marburg, Lassa fever, Nipah virus, chikungunya and Mayaro.
+
+  Eight projects will advance promising vaccines, clinical trials and technologies that can make
+  vaccine design and manufacture faster and more effective.
+source_span: [1297, 1637]
+speaker:
+  name: HM Government
+  role: Department of Health and Social Care
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: health
+  who: >-
+    Scientists and researchers developing vaccines; people in low and middle-income countries and
+    the UK
+  how_much: £33.2 million
+  when: null
+  funded_by: >-
+    Department of Health and Social Care through the UK Vaccine Network, delivered by Innovate UK;
+    includes official development assistance funding 5 of the projects
+  deadline: null
+why: >-
+  The government commits £33.2 million to eight vaccine projects targeting diseases including Ebola,
+  plague, Marburg and Lassa fever.
+confidence: 0.5
+model: claude-opus-5-5
+status: to_review

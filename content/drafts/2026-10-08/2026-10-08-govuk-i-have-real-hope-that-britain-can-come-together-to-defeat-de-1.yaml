@@ -1,0 +1,45 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-i-have-real-hope-that-britain-can-come-together-to-defeat-de.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-08"
+source:
+  id: govuk-i-have-real-hope-that-britain-can-come-together-to-defeat-de
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/i-have-real-hope-that-britain-can-come-together-to-defeat-dementia-pm
+  title: “I have real hope that Britain can come together to defeat dementia" – PM
+  date: "2026-10-08"
+  venue_label: Press release (Prime Minister's Office, 10 Downing Street)
+quote: >-
+  The Government is investing £33 million through the Dame Barbara Windsor Dementia Goals programme,
+  alongside funding from Bristol Myers Squibb, GSK and Gates Ventures, to tackle one of the biggest
+  barriers to dementia research: recruiting enough people into clinical studies to test promising
+  new treatments.
+source_span: [727, 1035]
+speaker:
+  name: HM Government
+  role: Prime Minister's Office, 10 Downing Street
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: health
+  who: People living with dementia and their families; dementia researchers
+  how_much: £33 million from Government, part of a £48 million partnership
+  when: null
+  funded_by: >-
+    Dame Barbara Windsor Dementia Goals programme, alongside Bristol Myers Squibb, GSK and Gates
+    Ventures
+  deadline: null
+why: >-
+  The government commits £33 million, as part of a £48 million industry partnership, to improve
+  recruitment into dementia clinical trials.
+confidence: 0.75
+model: claude-opus-5-5
+status: to_review

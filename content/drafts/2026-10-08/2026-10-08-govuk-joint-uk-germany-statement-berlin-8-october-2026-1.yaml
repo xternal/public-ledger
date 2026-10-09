@@ -1,0 +1,41 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-joint-uk-germany-statement-berlin-8-october-2026.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-08"
+source:
+  id: govuk-joint-uk-germany-statement-berlin-8-october-2026
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/joint-uk-germany-statement-berlin-8-october-2026
+  title: Joint UK-Germany Statement - Berlin, 8 October 2026
+  date: "2026-10-08"
+  venue_label: Press release (Prime Minister's Office, 10 Downing Street)
+quote: >-
+  A first dedicated Tech Corridor roundtable convening CEOs of selected primes, AI scale-ups, and
+  senior officials will be held later in the autumn.
+source_span: [916, 1062]
+speaker:
+  name: HM Government
+  role: Prime Minister's Office, 10 Downing Street
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: economic_affairs
+  who: CEOs of selected primes, AI scale-ups and senior officials
+  how_much: null
+  when: later in the autumn
+  funded_by: null
+  deadline: null
+why: >-
+  A first Industrial Tech Corridor roundtable of CEOs, AI scale-ups and senior officials will be
+  held in autumn 2026.
+confidence: 0.6
+model: claude-opus-5-5
+status: to_review
