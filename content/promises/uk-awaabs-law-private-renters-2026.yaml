@@ -1,0 +1,44 @@
+id: uk-awaabs-law-private-renters-2026
+headline: "Extend Awaab's Law to private renters"
+actor_id: matthew-pennycook
+made_on: "2026-10-08"
+venue: press_release
+venue_label: Press release (MHCLG), quote from the Housing Minister
+policy_area: housing_env
+status: promised
+status_note: >-
+  A government consultation on how to introduce Awaab's Law in the private rented sector, including when it comes
+  into force, closes on 18 December 2026; an options assessment of its impacts was published with it. The
+  government calls extending Awaab's Law a commitment in the Renters' Rights Act and the National Plan to End
+  Homelessness. No start date has been set.
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "MHCLG press release, 8 Oct 2026: Clampdown on dangerous homes to protect more tenants and families"
+    url: https://www.gov.uk/government/news/clampdown-on-dangerous-homes-to-protect-more-tenants-and-families
+versions:
+  - version: 1
+    text: >-
+      Awaab’s Law is already helping to drive up standards in the social housing sector. We’re now moving to extend
+      it to private landlords so that England’s 11 million private renters can enjoy the same protections.
+    recorded_on: "2026-10-08"
+    source_url: https://www.gov.uk/government/news/clampdown-on-dangerous-homes-to-protect-more-tenants-and-families
+    quote_checked_on: "2026-10-09"
+    parameters:
+      who: England's private renters (11 million, the minister's figure); private landlords must fix hazards to legal deadlines
+      how_much_bn_per_year: null
+      cost_note: >-
+        Repairs are paid for by private landlords. The cost to the public purse (councils enforce the rules) has not
+        been stated; the consultation's options assessment covers the impacts.
+      when: Not set; the consultation closing on 18 December 2026 will inform the timescale
+      funded_by: null
+events:
+  - date: "2026-10-08"
+    type: promised
+    text: The Housing Minister says the government is moving to extend Awaab's Law to private landlords
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-09"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.

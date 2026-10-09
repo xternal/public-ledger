@@ -1,0 +1,46 @@
+id: uk-awaabs-law-all-hazards-2027
+headline: "Awaab's Law for all serious hazards in 2027"
+actor_id: hm-government
+made_on: "2026-10-08"
+venue: press_release
+venue_label: Press release (MHCLG), notes to editors
+policy_area: housing_env
+status: promised
+status_note: >-
+  The government describes this as the third and final phase of Awaab's Law in social housing, after damp and mould
+  (in force since October 2025) and a wider list of hazards (due 30 November 2026, see the related card). No
+  regulations or date within 2027 have been published for this phase.
+deadline: "2027-12-31"
+origin: llm_intake
+editor_check_required: true
+sources:
+  - title: "MHCLG press release, 8 Oct 2026: Clampdown on dangerous homes to protect more tenants and families"
+    url: https://www.gov.uk/government/news/clampdown-on-dangerous-homes-to-protect-more-tenants-and-families
+versions:
+  - version: 1
+    text: >-
+      The third and final phase will be introduced in 2027, covering all remaining hazards in the Housing Health and
+      Safety Rating System where they present a significant risk of harm, except overcrowding which is addressed
+      differently.
+    recorded_on: "2026-10-08"
+    source_url: https://www.gov.uk/government/news/clampdown-on-dangerous-homes-to-protect-more-tenants-and-families
+    quote_checked_on: "2026-10-09"
+    parameters:
+      who: Social housing tenants in England, whose landlords must fix all remaining serious hazards to legal deadlines
+      how_much_bn_per_year: null
+      cost_note: No costing has been published for this phase.
+      when: During 2027 (taken as by 31 December 2027)
+      funded_by: null
+events:
+  - date: "2026-10-08"
+    type: promised
+    text: The government says the final phase of Awaab's Law in social housing will be introduced in 2027
+  - date: "2027-12-31"
+    type: deadline
+    text: End of 2027 (editorial date for "in 2027")
+replies: []
+reviews:
+  - by: AI Journalist
+    kind: automated
+    on: "2026-10-09"
+    note: Quote checked word for word at the source; dates, figures and links checked against the cited sources.
