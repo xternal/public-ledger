@@ -11,6 +11,8 @@ status_note: >-
   chaired by Professor Becky Francis, published its final report on 5 November 2025, alongside a government
   response.
 origin: llm_intake
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Hansard, House of Commons, 9 Sep 2026: Education and Skills Reform"

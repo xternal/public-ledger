@@ -10,6 +10,8 @@ status_note: >-
   The Treasury says the Budget will set out how the fund is paid for, from savings found by the Department for Work
   and Pensions.
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "HM Treasury: Chancellor backs young people into work by supporting jobs (28 Sep 2026)"
@@ -23,6 +25,9 @@ versions:
     parameters:
       who: Working people in England
       how_much_bn_per_year: [0.0135, 0.015, 0.0165]
+      costed_by:
+        kind: official
+        name: HM Treasury
       cost_note: >-
         The government's own figure: £15 million a year. No start date or independent costing has been published.
         Low–high is an editorial ±10% because the source gives a central figure only.

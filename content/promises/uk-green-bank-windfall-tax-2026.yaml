@@ -11,6 +11,7 @@ status_note: >-
   2026: 38% on the biggest banks' UK retail profits above £800m. The quoted sentence also promises support from the
   welfare state, which is too general to score.
 origin: manual
+outcome_by: null
 editor_check_required: true
 sources:
   - title: "Green Party: Zack Polanski's speech to conference in full (2 Oct 2026)"
@@ -28,6 +29,9 @@ versions:
     parameters:
       who: The UK's biggest banks, on their UK retail profits above £800m
       how_much_bn_per_year: [-20.9, -19.0, -17.1]
+      costed_by:
+        kind: party
+        name: Green Party
       cost_note: >-
         Raises money, so the figures are negative. Year shown: 2026, one year of profits; the party does not say
         whether the tax would repeat. The party's figure of about £19bn rests on Positive Money's estimate: 38% of the

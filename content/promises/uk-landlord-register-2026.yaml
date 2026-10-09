@@ -14,6 +14,8 @@ status_note: >-
   England; until then renters apply to the First-tier Tribunal.
 deadline: "2027-11-14"
 origin: llm_intake
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "MHCLG press release, 9 Sep 2026: Stronger protections and greater confidence for renters"

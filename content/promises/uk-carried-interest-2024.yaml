@@ -12,6 +12,8 @@ status_note: >-
   2024, a 72.5% multiplier applies to qualifying carried interest brought into the charge (para 5.67). As an interim
   step, the capital gains tax rates on carried interest rose to 32% from 6 April 2025.
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Labour Party: Change, 2024 manifesto (PDF), page 21"
@@ -31,6 +33,9 @@ versions:
     parameters:
       who: Private equity and other fund managers who are paid carried interest
       how_much_bn_per_year: [-0.088, -0.08, -0.072]
+      costed_by:
+        kind: official
+        name: HM Treasury
       cost_note: >-
         Negative because the pledge raises money. Year used: 2028-29, the year Labour's costings use. The official
         Autumn Budget 2024 costing, covering both the 32% interim rate and the move into income tax, is £80m in

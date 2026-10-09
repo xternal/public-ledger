@@ -12,6 +12,8 @@ status_note: >-
   announced by 7 October 2026. The same statement announced the closure of the Social Mobility Commission, to be
   achieved through primary legislation "when Parliamentary time and consideration allows".
 origin: llm_intake
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Written ministerial statement HCWS322, 9 Sep 2026: Driving Opportunity in Every Postcode"

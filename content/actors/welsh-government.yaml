@@ -1,0 +1,9 @@
+# The Welsh Government: the devolved government of Wales, responsible for childcare and early education there.
+# Source: https://www.gov.wales/
+id: welsh-government
+name: Welsh Government
+kind: government
+# Official pages (structured data sameAs), checked 9 Oct 2026: gov.wales.
+same_as:
+  - https://www.gov.wales/
+roles: []

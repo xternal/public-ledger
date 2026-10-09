@@ -15,6 +15,8 @@ lever_settings:
   defence_gdp: 3.5
 preset_label: Core defence at 3.5% of GDP, the 2035 NATO pledge
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "National Security Strategy 2025: Security for the British People in a Dangerous World (PDF)"
@@ -36,6 +38,9 @@ versions:
     parameters:
       who: UK defence and national security (3.5% of GDP core defence, 1.5% resilience and security)
       how_much_bn_per_year: [36, 40, 44]
+      costed_by:
+        kind: official
+        name: OBR
       cost_note: >-
         Year shown: 2034-35, in 2025-26 terms. The government gave no cost. The OBR estimates that raising
         core defence spending from 2.4% of GDP in 2025-26 to 3.5% would cost around £40bn a year by 2034-35.

@@ -12,6 +12,8 @@ status_note: >-
   receipts kept locally from April 2028.
 deadline: "2028-04-01"
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Cabinet Office: Rewiring the State – Cabinet Statement (31 Jul 2026)"

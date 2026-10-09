@@ -10,6 +10,7 @@ status_note: >-
   £20,000 allowance, which it said in November 2025 it was no longer committed to; the same document keeps
   £20,000 as a long-term ambition.
 origin: manual
+outcome_by: null
 editor_check_required: true
 sources:
   - title: "Reform UK: The First 100 Days: Our Pledges to You (PDF), September 2026"
@@ -31,6 +32,9 @@ versions:
         Income taxpayers earning under £100,000 (the party says about 40 million, with 2.9 million taken out of
         income tax). The higher-rate threshold stays at £50,270 and the taper above £100,000 is kept.
       how_much_bn_per_year: [19.0, 21.1, 23.2]
+      costed_by:
+        kind: party
+        name: Reform UK
       cost_note: >-
         Year shown: the fifth year, the latest year Reform UK costed. The party's own costing, including a
         behavioural adjustment, is £17.7bn in the first year (2026-27 incomes), rising to £21.1bn by the fifth year

@@ -12,6 +12,9 @@ status_note: >-
   manifesto introduces it "accepting that all governments require flexibility to respond to material changes in
   circumstances". It covers the number of bands and their rates, not the thresholds.
 origin: manual
+outcome_by:
+  actor_id: scottish-government
+  note: The Scottish Government, which the SNP leads, proposes Scottish income tax bands and rates each year.
 editor_check_required: true
 sources:
   - title: "SNP: Scottish Parliament election manifesto 2026 (PDF), page 27"

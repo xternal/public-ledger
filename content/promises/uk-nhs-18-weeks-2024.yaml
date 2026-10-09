@@ -12,6 +12,8 @@ status_note: >-
   card sits at Delivering.
 deadline: "2029-03-31"
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Plan for Change: Milestones for mission-led government (PDF), 5 Dec 2024"

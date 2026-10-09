@@ -11,6 +11,8 @@ status_note: >-
   funding allocation has been published since, so the card stays at Promised.
 deadline: "2027-04-01"
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Press release, 18 Aug 2026: Free bus travel 24/7 for disabled people"

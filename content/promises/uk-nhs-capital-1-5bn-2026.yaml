@@ -16,6 +16,8 @@ status_note: >-
   Howard Centre, London (£25m), Crystal Centre and Linden Centre, Essex (£15m), Queen Elizabeth Hospital, Gateshead
   (£12m), Lister Hospital, Hertfordshire (£11m) and Southend Hospital (£1m, to begin planning a replacement tower).
 origin: llm_intake
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "DHSC press release, 9 Sep 2026: Over £1.5 billion to help NHS withstand year-round pressure"

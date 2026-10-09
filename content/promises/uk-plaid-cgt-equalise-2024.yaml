@@ -10,6 +10,7 @@ status_note: >-
   Plaid Cymru is not in government, so the card stays at Promised. Capital gains tax is set for the whole UK at
   Westminster.
 origin: manual
+outcome_by: null
 editor_check_required: true
 sources:
   - title: "Plaid Cymru: For fairness, for ambition, for Wales, 2024 manifesto (PDF), page 8"
@@ -23,6 +24,9 @@ versions:
     parameters:
       who: People across the UK who make taxable capital gains
       how_much_bn_per_year: [-15.0, -13.5, -12.0]
+      costed_by:
+        kind: party
+        name: Plaid Cymru
       cost_note: >-
         Negative because the pledge raises money. Year not stated by the party. Low and high are the party's own
         range, £12bn to £15bn (manifesto page 8); central is the midpoint. Independent estimates depend on the

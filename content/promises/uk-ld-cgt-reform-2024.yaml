@@ -12,6 +12,7 @@ status_note: >-
   for inflation and a relief for small businesses. Since then Autumn Budget 2024 has raised the main rates of capital
   gains tax to 18% and 24%.
 origin: manual
+outcome_by: null
 editor_check_required: true
 sources:
   - title: "Liberal Democrats: For a Fair Deal, 2024 manifesto (PDF), page 14"
@@ -29,6 +30,9 @@ versions:
     parameters:
       who: People who make large capital gains; the party says the aim is to close loopholes used by the very wealthy
       how_much_bn_per_year: [-5.731, -5.21, -4.689]
+      costed_by:
+        kind: party
+        name: Liberal Democrats
       cost_note: >-
         Negative because the pledge raises money. Year shown: 2028-29, the year the party costed. Party figure only:
         £5,210m in 2028-29 (costings, page 6, line 15). The figure predates Autumn Budget 2024, which raised the main

@@ -12,6 +12,8 @@ status_note: >-
   government calls extending Awaab's Law a commitment in the Renters' Rights Act and the National Plan to End
   Homelessness. No start date has been set.
 origin: llm_intake
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "MHCLG press release, 8 Oct 2026: Clampdown on dangerous homes to protect more tenants and families"

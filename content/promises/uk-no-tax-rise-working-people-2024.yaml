@@ -18,6 +18,8 @@ status_note: >-
   Parliament, taken as 1 July 2029.
 deadline: "2029-07-01"
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Labour Party: Change, 2024 manifesto (PDF), page 21"

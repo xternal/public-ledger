@@ -14,6 +14,8 @@ status_note: >-
   Supreme Court gave permission to appeal on 22 May 2026 and has listed a hearing for 1–2 December 2026. This card
   tracks the two tax changes, not how the money is spent.
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Labour Party: Change, 2024 manifesto (PDF), page 82"
@@ -42,6 +44,9 @@ versions:
     parameters:
       who: Families paying private school fees and the schools (pay more); the stated aim is investment in state schools
       how_much_bn_per_year: [-1.75, -1.75, -1.51]
+      costed_by:
+        kind: official
+        name: HM Treasury
       cost_note: >-
         Negative because the pledge raises money. Year used: 2028-29, the year Labour's costings use. Central is the
         official figure from Autumn Budget 2024, certified by the OBR: £1,665m from VAT plus £85m from business rates

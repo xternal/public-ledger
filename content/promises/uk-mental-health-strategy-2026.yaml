@@ -11,6 +11,8 @@ status_note: >-
   cross-government mental health strategy for England on 15 May 2026; no strategy had been published by 7 October 2026.
 deadline: "2026-12-24"
 origin: llm_intake
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Hansard, House of Commons, 9 Sep 2026: Engagements (Prime Minister's Questions)"

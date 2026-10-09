@@ -10,6 +10,7 @@ status_note: >-
   cut: domestic electricity has been zero-rated in Great Britain since 1 October 2026 (see the card "Cut taxes on
   energy bills").
 origin: manual
+outcome_by: null
 editor_check_required: true
 sources:
   - title: "Reform UK: The First 100 Days: Our Pledges to You (PDF), September 2026"
@@ -27,6 +28,9 @@ versions:
         Households paying gas and electricity bills. Gas generators would stop paying carbon taxes, and four schemes
         now charged on bills would be paid by the Treasury instead.
       how_much_bn_per_year: [8.9, 9.9, 10.9]
+      costed_by:
+        kind: party
+        name: Reform UK
       cost_note: >-
         Year shown: the fifth year, the latest year Reform UK costed. The party's own figure is £9.9bn by the fifth
         year: £2.1bn from removing VAT, £4.8bn from removing energy taxes, and the rest from moving scheme costs onto

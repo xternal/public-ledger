@@ -10,6 +10,7 @@ status_note: >-
   The Green Party is not in government, so the card stays at Promised. Leader Zack Polanski restated the same rates
   in a speech on 18 March 2026 and put the yield at around £15bn a year.
 origin: manual
+outcome_by: null
 editor_check_required: true
 sources:
   - title: "Green Party: Real Hope. Real Change. 2024 manifesto (PDF), page 20"
@@ -35,6 +36,9 @@ versions:
         Individual UK-resident taxpayers with net assets above £10m (the party estimates about 22,000 people), with
         a higher rate above £1bn.
       how_much_bn_per_year: [-16.0, -15.0, -14.0]
+      costed_by:
+        kind: party
+        name: Green Party
       cost_note: >-
         Negative because the pledge raises money rather than costing it. Year shown: a full year of the tax, as the
         party's figures are yearly amounts (the £16bn is for the end of the Parliament). Party figures only: around

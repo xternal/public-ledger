@@ -16,6 +16,8 @@ lever_settings:
   defence_gdp: 2.6
 preset_label: Defence at 2.6% of GDP (NATO measure), as planned for 2027
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Hansard, House of Commons, 25 Feb 2025: Defence and Security (PM's statement)"
@@ -39,6 +41,9 @@ versions:
     parameters:
       who: The armed forces and defence budget; paid for by a cut to overseas aid
       how_much_bn_per_year: [6.0, 13.4, 13.4]
+      costed_by:
+        kind: official
+        name: No 10
       cost_note: >-
         Year shown: 2027-28, the first full year at the new level. The PM put it at £13.4bn more on defence
         every year from 2027 (central). The IFS said an extra 0.2% of GDP is around £6bn (low), and that the
