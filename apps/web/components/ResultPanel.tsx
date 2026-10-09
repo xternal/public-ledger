@@ -101,7 +101,7 @@ function LinkNotice() {
 const VAT_PRICE_RULE = {
   quality: "training",
   method_note:
-    "TODO(source): the share of a VAT change that reaches the consumer prices index is a rule of thumb, pending an official estimate (for example the Bank of England's or the ONS's analysis of the January 2011 VAT rise).",
+    "TODO(source): the share of a VAT change that reaches the consumer prices index is a rule of thumb, pending an official estimate, such as the Bank of England's or the ONS's analysis of a past change in VAT.",
 } as const;
 
 export function ResultPanel() {
