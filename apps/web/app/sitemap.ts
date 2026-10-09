@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { constituencies, constituencyList } from "@ledger/server/mp";
 import { getPeople, getSeed, getVintages } from "@/lib/data";
 import { areaPath } from "@ledger/server/seo";
+import { BUDGET_TOPICS, topicCards } from "@/lib/budget";
 import { absolute, EDITORS_PAGE_UPDATED, lastChanged } from "@/lib/site";
 import { PRIVACY_UPDATED } from "@/lib/privacy-copy";
 
@@ -33,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absolute("/method/api"), lastModified: built, changeFrequency: "monthly", priority: 0.5 },
     { url: absolute("/follow"), lastModified: built, changeFrequency: "monthly", priority: 0.4 },
     { url: absolute("/budget"), lastModified: latest, changeFrequency: "daily", priority: 0.8 },
+    ...BUDGET_TOPICS.filter((t) => topicCards(seed.cards, t).length > 0).map((t) => ({ url: absolute(`/budget/${t.id}`), lastModified: latest, changeFrequency: "daily" as const, priority: 0.7 })),
     { url: absolute("/editors"), lastModified: EDITORS_PAGE_UPDATED, changeFrequency: "monthly", priority: 0.4 },
     { url: absolute("/privacy"), lastModified: PRIVACY_UPDATED, changeFrequency: "yearly", priority: 0.3 },
     { url: absolute("/feeds"), lastModified: latest, changeFrequency: "daily", priority: 0.4 },

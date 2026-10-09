@@ -188,6 +188,9 @@ export default function BudgetPage() {
                   </span>
                 ))}
               </p>
+              <p className="m-0 text-label">
+                <a href={`/budget/${topic.id}`}>{topic.title} on its own page, to share</a>
+              </p>
             </div>
             <PromiseList cards={cards} today={today} />
           </section>
