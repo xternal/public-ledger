@@ -247,7 +247,7 @@ async function main() {
     }
     const report = await runMaintenance(db);
     console.log(
-      `Maintenance: deleted ${report.deliveries} old delivery record(s), ${report.unconfirmed} unconfirmed sign-up(s), ${report.pendingAdditions} unconfirmed addition(s), ${report.submitterEmails} submitter email(s) past 90 days, ${report.outbox} old outbox mail(s); pruned rate-limit state.`,
+      `Maintenance: deleted ${report.deliveries} old delivery record(s), ${report.unconfirmed} unconfirmed sign-up(s), ${report.pendingAdditions} unconfirmed addition(s), ${report.submitterEmails} submitter email(s) past 90 days, ${report.turnedDown} turned-down submission(s) past 12 months, ${report.outbox} old outbox mail(s); pruned rate-limit state.`,
     );
     if (!(await announceData(db, config, captured))) process.exitCode = 1;
     warnCaptured(config, captured);

@@ -11,6 +11,7 @@ import {
   deleteSubmitterEmail,
   lookupDeleteToken,
   pruneSubmitterEmails,
+  pruneTurnedDownSubmissions,
   receiveSubmission,
   referencePrefix,
   runAutoChecks,
@@ -226,6 +227,23 @@ describe("submitter emails are kept only as long as needed", () => {
     expect(m!.body_text).toContain("Another reader sent this first, so the editors already have it.");
     expect(m!.body_text).toContain("We have not kept your email address");
     expect(m!.body_text).not.toContain("/submission/delete");
+  });
+
+  it("deletes turned-down submissions 12 months after the decision, and nothing else", async () => {
+    const decided = new Date("2025-10-01T09:00:00Z");
+    for (const [url, status] of [["rejected", "rejected"], ["dup", "duplicate"], ["accepted", "accepted"], ["open", "in_review"]] as const)
+      await send({ kind: "new_promise", url: `https://www.gov.uk/${url}`, altcha: "p" }).then(() =>
+        db.query("UPDATE submission SET status = $1, triaged_at = $2 WHERE url = $3", [status, status === "in_review" ? null : decided.toISOString(), `https://www.gov.uk/${url}`]),
+      );
+    const monthsAfter = (m: number, extraDays = 0) => {
+      const d = new Date(decided);
+      d.setUTCMonth(d.getUTCMonth() + m);
+      return new Date(d.getTime() + extraDays * 86_400_000);
+    };
+    expect(await pruneTurnedDownSubmissions(db, monthsAfter(12, -1))).toBe(0);
+    expect(await pruneTurnedDownSubmissions(db, monthsAfter(12, 1))).toBe(2);
+    const left = await db.query<{ url: string }>("SELECT url FROM submission ORDER BY url");
+    expect(left.map((r) => r.url)).toEqual(["https://www.gov.uk/accepted", "https://www.gov.uk/open"]);
   });
 
   it("deletes every email and delete link after 90 days, whatever the status", async () => {

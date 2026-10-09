@@ -24,6 +24,8 @@ export const DUPLICATE_WINDOW_DAYS = 180;
 export const DUPLICATE_TIME_SECONDS = 30;
 /** A submitter's email is deleted after this many days, whatever happened to the submission. */
 export const SUBMITTER_EMAIL_RETENTION_DAYS = 90;
+/** A submission the editors turned down (rejected, or a duplicate) is deleted this many months after they decided. */
+export const TURNED_DOWN_RETENTION_MONTHS = 12;
 
 export type ReceiveResult =
   | { ok: true; reference: string; status: "received" | "duplicate"; duplicateOf: string | null; receiptSent: boolean | null }
@@ -296,6 +298,22 @@ export async function pruneSubmitterEmails(db: Db, now = new Date()): Promise<nu
     `UPDATE submission SET contact_email_enc = NULL, delete_token_hash = NULL
       WHERE received_at < $1 AND (contact_email_enc IS NOT NULL OR delete_token_hash IS NOT NULL) RETURNING id`,
     [cutoff],
+  );
+  return rows.length;
+}
+
+/**
+ * Delete submissions the editors turned down (rejected, or marked a duplicate)
+ * 12 months after they decided. Published submissions live on as the card's
+ * public source; undecided ones wait for the editors. Run daily (alerts
+ * maintenance job). Returns how many submissions were deleted.
+ */
+export async function pruneTurnedDownSubmissions(db: Db, now = new Date()): Promise<number> {
+  const cutoff = new Date(now);
+  cutoff.setUTCMonth(cutoff.getUTCMonth() - TURNED_DOWN_RETENTION_MONTHS);
+  const rows = await db.query(
+    "DELETE FROM submission WHERE status IN ('rejected', 'duplicate') AND triaged_at IS NOT NULL AND triaged_at < $1 RETURNING id",
+    [cutoff.toISOString()],
   );
   return rows.length;
 }

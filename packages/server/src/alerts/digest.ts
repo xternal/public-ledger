@@ -1,7 +1,7 @@
 import type { Db } from "../db";
 import { pruneSpamState } from "../spam";
 import { prunePendingAdditions, pruneUnconfirmed } from "../follow";
-import { pruneSubmitterEmails } from "../intake/submissions";
+import { pruneSubmitterEmails, pruneTurnedDownSubmissions } from "../intake/submissions";
 import { countSent, deliver, inList, type AlertContext } from "./fanout";
 import { errorText } from "./log";
 import type { MessageEvent } from "./messages";
@@ -74,13 +74,15 @@ export interface MaintenanceReport {
   pendingAdditions: number;
   /** Submitters' emails past 90 days, whatever the submission's status. */
   submitterEmails: number;
+  /** Turned-down submissions (rejected or duplicate) 12 months after the editors decided. */
+  turnedDown: number;
   outbox: number;
 }
 
 /**
  * Daily: delete delivery records older than 35 days, sign-ups and additions
  * never confirmed within 7 days (Follow service), submitters' emails older
- * than 90 days, yesterday's rate-limit salts and buckets and expired spam
+ * than 90 days, turned-down submissions 12 months after the decision, yesterday's rate-limit salts and buckets and expired spam
  * challenges, and old development outbox mail.
  */
 export async function runMaintenance(db: Db, now = new Date()): Promise<MaintenanceReport> {
@@ -90,6 +92,7 @@ export async function runMaintenance(db: Db, now = new Date()): Promise<Maintena
   const unconfirmed = await pruneUnconfirmed(db, now);
   const pendingAdditions = await prunePendingAdditions(db, now);
   const submitterEmails = await pruneSubmitterEmails(db, now);
+  const turnedDown = await pruneTurnedDownSubmissions(db, now);
   await pruneSpamState(db, now);
-  return { deliveries, unconfirmed: Number(unconfirmed) || 0, pendingAdditions, submitterEmails, outbox };
+  return { deliveries, unconfirmed: Number(unconfirmed) || 0, pendingAdditions, submitterEmails, turnedDown, outbox };
 }
