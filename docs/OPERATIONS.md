@@ -63,6 +63,7 @@ Mail needs a domain you own, for example `alerts@<your-domain>`: neither provide
 2. On the domain, turn **open tracking and click tracking off**. Our mail is plain text with no images or rewritten links, and tracking would break the privacy promise.
 3. Create an API key with **sending access** to that domain only.
 4. Set `MAIL_PROVIDER=resend`, `RESEND_API_KEY`, `MAIL_FROM` (e.g. `Public Ledger <alerts@your-domain>`) and optionally `MAIL_REPLY_TO`, in Vercel and, for alerts, in GitHub Actions secrets.
+5. **Bounces and complaints.** In Resend, *Webhooks → Add endpoint*: URL `https://<your-domain>/api/mail/resend`, events `email.bounced` and `email.complained`. Copy the endpoint's signing secret (`whsec_…`) into Vercel as `RESEND_WEBHOOK_SECRET` (Production, sensitive) and redeploy. A permanent bounce or a spam complaint then deletes that address's alert subscription at once; temporary bounces change nothing. Without the secret the endpoint answers 404.
 
 **Amazon SES** (`MAIL_PROVIDER=ses`): keeps mail in London, at the cost of more setup.
 

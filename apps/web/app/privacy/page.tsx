@@ -45,7 +45,7 @@ const SECTIONS = [
 const SERVICES: { name: string; role: string; where: string; sees: string; whereToConfirm?: boolean }[] = [
   { name: "Vercel", role: "hosts the site", where: "US company; our code runs in London", sees: "Every request, including your IP address, in its own logs." },
   { name: "Neon", role: "runs our database", where: "US company; the data is stored in London", sees: "Everything we keep. Addresses are encrypted before they reach it." },
-  { name: "Resend", role: "sends our emails", where: "US company; sends from Ireland", sees: "Your email address and each email, which names what you follow." },
+  { name: "Resend", role: "sends our emails", where: "US company; sends from Ireland", sees: "Your email address and each email, which names what you follow. It tells us when an email bounces or is marked as spam." },
   {
     name: "Telegram",
     role: "carries the bot's messages, if you choose Telegram",
@@ -216,6 +216,10 @@ export default function PrivacyPage() {
             <p className="m-0 text-muted">
               We use it only to send the alerts you asked for. Nothing is followed until you press Confirm in the email we send, and adding more later is
               confirmed the same way. What you follow can reveal your political opinions, so we treat it as sensitive.
+            </p>
+            <p className="m-0 text-muted">
+              If your address stops accepting our email for good, or you mark one of our alerts as spam, we delete your alerts at once, with everything you
+              follow.
             </p>
           </Feature>
           <Feature title="Alerts on Telegram">

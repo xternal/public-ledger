@@ -18,6 +18,8 @@ export type UsageEvent =
   | { event: "submission_auto_checked"; props: { archived: "yes" | "no"; quote_matched: "yes" | "no" | "na"; duplicate: "yes" | "no" } }
   | { event: "submission_triaged"; props: { outcome: "accepted" | "rejected" | "duplicate"; reason_code: string } }
   | { event: "alert_sent"; props: { channel: "email" | "telegram"; change_type: string } }
+  /** A permanent bounce or a spam complaint reported by the mail provider, and whether a subscription was removed for it. */
+  | { event: "mail_feedback"; props: { kind: "bounce" | "complaint"; removed: "yes" | "no" } }
   | { event: "t1_requested"; props: { outcome: T1Outcome } }
   /** /mp: how a search went. Never the postcode, name or constituency searched for. */
   | { event: "mp_lookup"; props: { by: "postcode" | "name"; outcome: "found" | "choices" | "not_found" | "unavailable" } };
