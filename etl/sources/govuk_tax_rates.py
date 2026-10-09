@@ -14,6 +14,7 @@ Documents (JSON from https://www.gov.uk/api/content/<path>):
   .../amended-fuel-duty-rates-2026-to-2027
                                      HMRC policy paper: the temporary cut, its end date and
                                      the scheduled rates after it (FUEL_SCHEDULE_PATH)
+  capital-gains-tax                  "rates" part: the two main rates of capital gains tax
 
 Income tax comes from income-tax-rates and is cross-checked against the HMRC
 PAYE table (England and Northern Ireland). NI comes from the HMRC guidance
@@ -22,8 +23,11 @@ cross-checked against the NI page for the current year. Fuel duty in force
 comes from the HMRC rates page and must equal the policy paper's rate for the
 same start date; the paper adds the dates the cut ends and the scheduled
 rates (kind "forecast" until they take effect). Petrol and diesel must carry
-the same rate. Any pattern that is not found, or any disagreement between
-documents, raises ValueError: nothing is guessed.
+the same rate. Capital gains tax comes from the GOV.UK guide: the rate on
+gains within the basic income tax band, and the rate above it, which must
+equal the rate it gives higher and additional rate taxpayers. Any pattern that
+is not found, or any disagreement between documents, raises ValueError:
+nothing is guessed.
 
 Series (period = tax year "YYYY-YY"; gbp = £ a year; pct = 20.0 for 20%):
   tax.income_tax.personal_allowance, basic_rate, basic_band (width above the
@@ -32,6 +36,9 @@ Series (period = tax year "YYYY-YY"; gbp = £ a year; pct = 20.0 for 20%):
   main_rate, upper_rate (employee, category A; geography UK).
   tax.fuel_duty.main_rate: pence per litre on unleaded petrol and diesel,
   period = date the rate took effect "YYYY-MM-DD", geography UK.
+  tax.cgt.lower_rate (gains within the basic rate band) and tax.cgt.higher_rate
+  (gains above it): pct, period = the tax year the guide's rates start in,
+  geography UK.
 """
 
 from __future__ import annotations
@@ -56,10 +63,13 @@ FUEL_RATES_PATH = "government/publications/rates-and-allowances-excise-duty-hydr
 # The latest HMRC policy paper on fuel duty rates. Replace it when a fiscal event publishes a newer one:
 # parse() fails if the rates page shows a start date this paper does not have.
 FUEL_SCHEDULE_PATH = "government/publications/amended-fuel-duty-rates-for-2026-to-2027/amended-fuel-duty-rates-2026-to-2027"
+CGT_PATH = "capital-gains-tax"
+CGT_GEOGRAPHY = "UK"
+CGT_KEYS = ["lower_rate", "higher_rate"]
 
 SOURCE = Source(
     id=SOURCE_ID,
-    title="Income Tax rates and Personal Allowances; National Insurance rates; HMRC rates and thresholds for employers; HMRC hydrocarbon oils (fuel duty) rates",
+    title="Income Tax rates and Personal Allowances; National Insurance rates; HMRC rates and thresholds for employers; HMRC hydrocarbon oils (fuel duty) rates; Capital Gains Tax rates",
     publisher="GOV.UK / HM Revenue and Customs",
     url="https://www.gov.uk/income-tax-rates",
     cadence_days=365,
@@ -402,6 +412,44 @@ def _fuel_observations(rates_doc: dict, paper_doc: dict, today: date) -> list[Ob
     return out
 
 
+# ---------------------------------------------------------------- capital gains tax
+
+def _cgt(doc: dict) -> tuple[str, dict]:
+    """
+    (tax year, {"lower_rate", "higher_rate"}) from the guide's "rates" part. The guide gives the
+    rates "from 6 April YYYY" in three places; all three must name the same year, and the rate
+    above the basic band must equal the rate for higher and additional rate taxpayers.
+    """
+    soup = _part(doc, "rates")
+    # Link text is split out by get_text(" "): "taxpayer , you’ll" -> "taxpayer, you'll".
+    text = re.sub(r" ([,.;:])", r"\1", _norm(soup.get_text(" "))).replace("\u2019", "'")
+    what = "capital-gains-tax rates"
+    lower = _need(r"within the basic Income Tax band, you'll pay (\d+(?:\.\d+)?)% on your gains made from 6 April (\d{4})", text, what)
+    above = _need(r"above the basic Income Tax band, you'll pay (\d+(?:\.\d+)?)% on gains made from 6 April (\d{4})", text, what)
+    higher = _need(r"higher or additional rate taxpayer, you'll pay (\d+(?:\.\d+)?)% on your gains from 6 April (\d{4})", text, what)
+    years = {int(m.group(2)) for m in (lower, above, higher)}
+    if len(years) != 1:
+        raise ValueError(f"{SOURCE_ID}: {what}: the rates start in different years {sorted(years)}")
+    if float(above.group(1)) != float(higher.group(1)):
+        raise ValueError(f"{SOURCE_ID}: {what}: rate above the basic band {above.group(1)}% and higher rate taxpayers' {higher.group(1)}% disagree")
+    rates = {"lower_rate": float(lower.group(1)), "higher_rate": float(higher.group(1))}
+    if not rates["lower_rate"] < rates["higher_rate"]:
+        raise ValueError(f"{SOURCE_ID}: {what}: lower rate {rates['lower_rate']}% is not below the higher rate {rates['higher_rate']}%")
+    return fiscal_year(years.pop()), rates
+
+
+def _cgt_observations(doc: dict, today: date) -> list[Observation]:
+    year, rates = _cgt(doc)
+    kind = "outturn" if date(int(year[:4]), 4, 6) <= today else "forecast"
+    return [
+        Observation(
+            series_id=f"tax.cgt.{k}", period=year, geography=CGT_GEOGRAPHY, value=rates[k], unit="pct",
+            kind=kind, source_id=SOURCE_ID, vintage=_vintage(doc), quality="sourced",
+        )
+        for k in CGT_KEYS
+    ]
+
+
 # ---------------------------------------------------------------- contract
 
 def _url(path: str) -> str:
@@ -422,7 +470,7 @@ def fetch(since: date | None = None) -> list[RawArtifact]:
         start = int(y[:4])
         path = HMRC_PATH.format(start=start, end=start + 1)
         out.append(download(SOURCE_ID, _url(path), _filename(path)))
-    for path in (FUEL_RATES_PATH, FUEL_SCHEDULE_PATH):
+    for path in (FUEL_RATES_PATH, FUEL_SCHEDULE_PATH, CGT_PATH):
         out.append(download(SOURCE_ID, _url(path), _filename(path)))
     return out
 
@@ -436,7 +484,7 @@ def _check(year: str, a: dict, b: dict, keys, what: str) -> None:
 def parse(raws: list[RawArtifact]) -> list[Observation]:
     docs = [_doc(r) for r in raws]
     by_path = {d["base_path"].lstrip("/"): d for d in docs}
-    missing = [p for p in (INCOME_TAX_PATH, NI_PATH, FUEL_RATES_PATH, FUEL_SCHEDULE_PATH) if p not in by_path]
+    missing = [p for p in (INCOME_TAX_PATH, NI_PATH, FUEL_RATES_PATH, FUEL_SCHEDULE_PATH, CGT_PATH) if p not in by_path]
     if missing:
         raise ValueError(f"{SOURCE_ID}: missing documents {missing}, got {sorted(by_path)}")
     it_doc, ni_doc = by_path[INCOME_TAX_PATH], by_path[NI_PATH]
@@ -476,4 +524,5 @@ def parse(raws: list[RawArtifact]) -> list[Observation]:
         emit(year, "ni", ni, NI_KEYS, vintage, NI_GEOGRAPHY)
 
     out += _fuel_observations(by_path[FUEL_RATES_PATH], by_path[FUEL_SCHEDULE_PATH], today)
+    out += _cgt_observations(by_path[CGT_PATH], today)
     return out

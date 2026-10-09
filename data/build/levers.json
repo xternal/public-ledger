@@ -332,6 +332,122 @@
       "source_id": "hmrc_reckoner"
     },
     {
+      "group": "taxes",
+      "controlled_by": "government",
+      "quality": "sourced",
+      "method_note": "HMRC's estimates for raising the lower rate of capital gains tax, with the change made at the start of 2026-27 (HMRC-DE-2025-06). +1 point: −£5m in 2026-27, +£5m in 2028-29; +5 points: −£40m in 2026-27, −£10m in 2028-29; +10 points: −£130m in 2026-27, −£135m in 2028-29. A minus means the Treasury collects less: HMRC's figures allow for people selling fewer assets when the rate rises. These are HMRC's only steps (+1, +5, +10 points), so the sandbox offers no others and never scales or blends them: HMRC says its capital gains tax figures “are also non-linear and so cannot be scaled up”. Taxing these gains at the basic rate of income tax (20% in England, Wales and Northern Ireland) would need a rise of 2 points, which is not one of HMRC's steps. Starting rate 18%, the rate for 2026-27 (GOV.UK). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects.",
+      "id": "cgt_lower",
+      "label": "Capital gains tax, lower rate",
+      "unit": "pp",
+      "base": 18.0,
+      "min": 18.0,
+      "max": 28.0,
+      "step": 1,
+      "effect": {
+        "target": "cgt",
+        "steps": [
+          {
+            "at": 1,
+            "y1": [
+              -0.0055,
+              -0.005,
+              -0.0045
+            ],
+            "y5": [
+              0.0045,
+              0.005,
+              0.0055
+            ]
+          },
+          {
+            "at": 5,
+            "y1": [
+              -0.044,
+              -0.04,
+              -0.036
+            ],
+            "y5": [
+              -0.011,
+              -0.01,
+              -0.009
+            ]
+          },
+          {
+            "at": 10,
+            "y1": [
+              -0.143,
+              -0.13,
+              -0.117
+            ],
+            "y5": [
+              -0.1485,
+              -0.135,
+              -0.1215
+            ]
+          }
+        ]
+      },
+      "source_id": "hmrc_reckoner"
+    },
+    {
+      "group": "taxes",
+      "controlled_by": "government",
+      "quality": "sourced",
+      "method_note": "HMRC's estimates for raising the higher rate of capital gains tax, with the change made at the start of 2026-27 (HMRC-DE-2025-06). +1 point: −£15m in 2026-27, −£30m in 2028-29; +5 points: −£170m in 2026-27, −£870m in 2028-29; +10 points: −£540m in 2026-27, −£3,565m in 2028-29. A minus means the Treasury collects less: HMRC's figures allow for people selling fewer assets when the rate rises. These are HMRC's only steps (+1, +5, +10 points), so the sandbox offers no others and never scales or blends them: HMRC says its capital gains tax figures “are also non-linear and so cannot be scaled up”. Taxing these gains at the higher rate of income tax (40% in England, Wales and Northern Ireland) would need a rise of 16 points, bigger than any HMRC estimates. Starting rate 24%, the rate for 2026-27 (GOV.UK). Low–high is an editorial ±10% because HMRC publishes a central figure only. HMRC includes taxpayers' own behavioural response where it models one, but no wider economic effects.",
+      "id": "cgt_higher",
+      "label": "Capital gains tax, higher rate",
+      "unit": "pp",
+      "base": 24.0,
+      "min": 24.0,
+      "max": 34.0,
+      "step": 1,
+      "effect": {
+        "target": "cgt",
+        "steps": [
+          {
+            "at": 1,
+            "y1": [
+              -0.0165,
+              -0.015,
+              -0.0135
+            ],
+            "y5": [
+              -0.033,
+              -0.03,
+              -0.027
+            ]
+          },
+          {
+            "at": 5,
+            "y1": [
+              -0.187,
+              -0.17,
+              -0.153
+            ],
+            "y5": [
+              -0.957,
+              -0.87,
+              -0.783
+            ]
+          },
+          {
+            "at": 10,
+            "y1": [
+              -0.594,
+              -0.54,
+              -0.486
+            ],
+            "y5": [
+              -3.9215,
+              -3.565,
+              -3.2085
+            ]
+          }
+        ]
+      },
+      "source_id": "hmrc_reckoner"
+    },
+    {
       "id": "defence_gdp",
       "label": "Defence, % of GDP (NATO measure)",
       "group": "spending",

@@ -1,0 +1,3 @@
+series_id,period,geography,value,unit,kind,source_id,vintage,quality,method_note
+tax.cgt.higher_rate,2026-27,UK,24.0,pct,outturn,govuk_tax_rates,capital-gains-tax@2026-10-02,sourced,
+tax.cgt.lower_rate,2026-27,UK,18.0,pct,outturn,govuk_tax_rates,capital-gains-tax@2026-10-02,sourced,

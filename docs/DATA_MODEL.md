@@ -66,8 +66,11 @@ interface Lever {
   base: number; min: number; max: number; step: number;
   effect: {
     target_node: string;      // BudgetNode id
-    per_unit_bn: { y1: Range; y5?: Range };
-    cpi_pp_per_unit?: Range;
+    // Exactly one of these two. Steps: the source's own changes, never scaled or blended (MODEL.md, Stepped levers);
+    // a stepped lever runs from min = base to max = base + its last step.
+    per_unit_bn?: { y1: Range; y5?: Range };
+    steps?: { at: number /* units above base, ascending */; y1: Range; y5?: Range }[];
+    cpi_pp_per_unit?: Range;  // per-unit levers only
   };
   funding_options?: { id: string; label: string; offset_bn: number; target_node: string; quality: Quality }[];
   quality: Quality;

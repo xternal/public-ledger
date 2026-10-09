@@ -1,6 +1,7 @@
 import type { Settings } from "@ledger/schema";
 import { fundingKey } from "@ledger/schema";
 import { baseSettings, changedSettings, type Model } from "./model";
+import { isStepped, snapToStep } from "./steps";
 
 /**
  * Scenario links (PRD F2, BUILD_PLAN M2): `?s=<code>` and `/s/<code>`.
@@ -26,7 +27,7 @@ export interface DecodedScenario {
   baseYear: string;
   /** Keys in the link that no longer match a lever or option, so were ignored. */
   dropped: string[];
-  /** Values moved back inside a lever's range or onto its step. */
+  /** Values moved back inside a lever's range, onto its step grid, or onto one of its published steps. */
   adjusted: string[];
 }
 
@@ -83,7 +84,8 @@ export function decodeScenario(model: Model, code: string): DecodedScenario | nu
       dropped.push(key);
       continue;
     }
-    const snapped = snap(value, lever.min, lever.max, lever.step);
+    // A stepped lever offers only its source's steps; a value between them takes the step below (never a blend).
+    const snapped = isStepped(lever) ? snapToStep(lever, value) : snap(value, lever.min, lever.max, lever.step);
     if (Math.abs(snapped - value) > 1e-9) adjusted.push(key);
     settings[lever.id] = snapped;
   }
