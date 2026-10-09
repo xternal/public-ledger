@@ -10,6 +10,8 @@ export {
   pruneSubmitterEmails,
   SUBMIT_DAILY_LIMIT,
   SUBMITTER_EMAIL_RETENTION_DAYS,
+  TURNED_DOWN_RETENTION_MONTHS,
+  pruneTurnedDownSubmissions,
   DUPLICATE_WINDOW_DAYS,
   DUPLICATE_TIME_SECONDS,
   type ReceiveResult,

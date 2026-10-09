@@ -1,6 +1,6 @@
 import { CONFIRM_TTL_DAYS } from "@ledger/server/follow";
 import { DELIVERY_RETENTION_DAYS } from "@ledger/server/alerts";
-import { SUBMITTER_EMAIL_RETENTION_DAYS } from "@ledger/server/intake";
+import { SUBMITTER_EMAIL_RETENTION_DAYS, TURNED_DOWN_RETENTION_MONTHS } from "@ledger/server/intake";
 import { loadConfig } from "@ledger/server";
 import { ALPHA_COOKIE_MAX_AGE } from "@ledger/server/alpha";
 
@@ -70,7 +70,10 @@ export function retention(): RetentionRow[] {
     { what: "Which alert went to which subscriber", howLong: `${DELIVERY_RETENTION_DAYS} days` },
     { what: "Your email with a submission", howLong: `Until the editors decide, ${SUBMITTER_EMAIL_RETENTION_DAYS} days at most. Not kept at all if someone sent it first` },
     { what: "Your credit name", howLong: "On the card for good if it is published. Deleted if the editors turn it down" },
-    { what: "What you sent in a submission", howLong: "Kept as the editors' record. We have not set an end date yet", toConfirm: true },
+    {
+      what: "What you sent in a submission",
+      howLong: `On the card for good if it is published, as its public source. If the editors turn it down, deleted ${TURNED_DOWN_RETENTION_MONTHS} months after they decide. Until they decide, kept for them to check`,
+    },
     {
       what: "An application to be an editor",
       howLong: `Deleted within ${EDITOR_APPLICATION_RETENTION_MONTHS} months if you do not join. If you do, kept while you are an editor and deleted ${EDITOR_APPLICATION_RETENTION_MONTHS} months after you stop`,
