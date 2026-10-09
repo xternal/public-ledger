@@ -12,6 +12,8 @@ status_note: >-
   extra in the government's first eight months. The pledge is for every year, so the card sits at Delivering rather than Delivered. The manifesto sets no
   end date.
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Labour Party: Change, 2024 manifesto (PDF), page 95"
@@ -37,6 +39,9 @@ versions:
     parameters:
       who: NHS patients in England waiting for planned (elective) operations, scans and appointments
       how_much_bn_per_year: [0.909, 1.01, 1.111]
+      costed_by:
+        kind: party
+        name: Labour Party
       cost_note: >-
         Year used: 2028-29, the year Labour's costings use. Labour's own figure is £1,010m (manifesto page 127);
         central figure only. No independent costing of the pledge itself was found. For comparison, Autumn Budget 2024

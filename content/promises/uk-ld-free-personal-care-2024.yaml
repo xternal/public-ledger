@@ -13,6 +13,7 @@ status_note: >-
   working-age adults, and no detailed plan, legislation or funding has been published, so the card stays at
   Promised.
 origin: manual
+outcome_by: null
 editor_check_required: true
 sources:
   - title: "Liberal Democrats: For a Fair Deal, 2024 manifesto (PDF), page 37"
@@ -44,6 +45,9 @@ versions:
         People in England who need personal care, at home or in a care home. Care home residents would still pay
         for their accommodation.
       how_much_bn_per_year: [2.7, 6.0, 6.6]
+      costed_by:
+        kind: independent
+        name: Health Foundation
       cost_note: >-
         Years shown: 2028-29 for the party's own figure and 2026/27 for the independent estimate, the years each
         source costs. The party's own figure is £2.7bn a year by 2028-29 above existing social care plans (low). The

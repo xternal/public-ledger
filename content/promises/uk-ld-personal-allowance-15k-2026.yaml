@@ -10,6 +10,7 @@ status_note: >-
   The Liberal Democrats are not in government, so the card stays at Promised. The release says 2.5 million people
   would be taken out of income tax; the leader's speech the same day says 2 million more.
 origin: manual
+outcome_by: null
 editor_check_required: true
 sources:
   - title: "Liberal Democrats: Cutting income tax to tackle the cost of living crisis (22 Sep 2026)"
@@ -29,6 +30,9 @@ versions:
         UK income taxpayers. The same package raises the employee National Insurance threshold to £15,000 and the
         higher-rate threshold to £56,000 (outside Scotland).
       how_much_bn_per_year: [15.3, 17.0, 18.7]
+      costed_by:
+        kind: party
+        name: Liberal Democrats
       cost_note: >-
         The party's own figure, £17bn a year, covers the whole package (the allowance, the National Insurance
         threshold and the higher-rate threshold) with no split, and the release gives no year. No independent costing

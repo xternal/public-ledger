@@ -13,6 +13,8 @@ status_note: >-
   that sum across both Great British Energy and Great British Energy–Nuclear, so the card sits at Delivering.
 deadline: "2029-07-01"
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Labour Party: Change, 2024 manifesto (PDF), page 53"
@@ -37,6 +39,9 @@ versions:
     parameters:
       who: Energy billpayers and communities across the UK; taxpayers provide the company's capital
       how_much_bn_per_year: [1.53, 1.7, 1.87]
+      costed_by:
+        kind: party
+        name: Labour Party
       cost_note: >-
         Year used: an average year of the Parliament, as Labour's costings give an annual average (£1.7bn, manifesto
         page 128) of the £8.3bn capitalisation promised on page 53; central figure only. Later official figures:

@@ -54,7 +54,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
           Public Ledger
         </div>
         <div style={{ display: "flex", fontSize: 24, fontWeight: 600, color: STATUS_COLOR[card.file.status] ?? OG.ink, border: `2px solid ${STATUS_COLOR[card.file.status] ?? OG.ink}`, padding: "4px 16px", borderRadius: 999 }}>
-          {card.outcomeBy ? `${STATUS_LABEL[card.file.status]} by ${card.outcomeBy.name}` : STATUS_LABEL[card.file.status]}
+          {card.broughtAboutBy ? `${STATUS_LABEL[card.file.status]} by ${card.broughtAboutBy.name}` : STATUS_LABEL[card.file.status]}
         </div>
       </div>
       <div style={{ display: "flex", fontSize: 24, color: OG.muted, marginTop: 34 }}>{`${whoLine(card)}, ${longDate(card.file.made_on)}`}</div>

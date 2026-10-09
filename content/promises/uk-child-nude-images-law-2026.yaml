@@ -12,6 +12,8 @@ status_note: >-
   features that keep users scrolling for longer, such as videos that play one after another and personalised
   feeds, will also be switched off by default for 16 and 17-year-olds; no date is given for this either.
 origin: llm_intake
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "DCMS press release, 9 Sep 2026: UK to have world's strongest online child safety laws as government prepares legislation on nude images"

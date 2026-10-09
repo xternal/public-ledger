@@ -71,10 +71,30 @@ export type PolicyArea = z.infer<typeof PolicyArea>;
 
 const Link = z.object({ title: z.string().min(1), url: z.url(), archived_url: z.url().optional() });
 
+/**
+ * Who made a cost's central figure (PROMISE_STANDARD §2). The kind follows who
+ * made the figure, not who made the promise: "official" is the OBR, HMRC, HM
+ * Treasury or another UK government department, or a devolved government's
+ * equivalent; "party" is a party's or candidate's own figure, including one a
+ * party now in government made in opposition; "independent" is anyone else
+ * (the IFS, think tanks, academics, Tax Policy Associates). The name is the
+ * maker as a reader would say it: "OBR", "HM Treasury", "Labour Party", "IFS".
+ */
+export const CostedBy = z.object({
+  kind: z.enum(["official", "party", "independent"]),
+  name: z.string().trim().min(1).max(80),
+});
+export type CostedBy = z.infer<typeof CostedBy>;
+
+/** How readers see the kind: "Central figure: OBR (official)". */
+export const COSTED_BY_LABEL: Record<CostedBy["kind"], string> = { official: "official", party: "party's own figure", independent: "independent" };
+
 export const VersionParameters = z
   .object({
     who: z.string().optional(),
     how_much_bn_per_year: Range.nullable().optional(),
+    /** Who made the central figure of how_much_bn_per_year; required with a cost, absent without one. */
+    costed_by: CostedBy.optional(),
     cost_note: z.string().optional(),
     cost_sources: z.array(Link).optional(),
     when: z.string().optional(),
@@ -229,11 +249,21 @@ export const PromiseFile = z
     events: z.array(PromiseEvent).min(1),
     replies: z.array(Reply).default([]),
     /**
+     * The body that would have to act to deliver the promise as worded, as of
+     * now (PROMISE_STANDARD §11): a government or public body, named by its
+     * role (hm-government, a devolved government, a council), never a party or
+     * a person. null when no body in power is committed to it, such as an
+     * opposition party's pledge. Required, so a card cannot leave it out by
+     * accident; it describes the present, so it is kept current by ordinary edits.
+     */
+    outcome_by: z.object({ actor_id: z.string(), note: z.string().optional() }).nullable(),
+    /**
      * Who made the outcome happen when it was not the card's own actor, e.g. an
      * opposition pledge the government carried out. Shown next to the status
      * and in the track record, so credit is not given for someone else's action.
+     * (Until 9 Oct 2026 this was called outcome_by.)
      */
-    outcome_by: z.object({ actor_id: z.string(), note: z.string().optional() }).optional(),
+    brought_about_by: z.object({ actor_id: z.string(), note: z.string().optional() }).optional(),
     corrections: z.array(Correction).default([]),
     reviews: z.array(Review).default([]),
     /**
@@ -244,8 +274,8 @@ export const PromiseFile = z
     contracts: z.array(ContractRef).default([]),
   })
   .superRefine((p, ctx) => {
-    if (p.outcome_by && !["legislated", "funded", "delivering", "delivered"].includes(p.status))
-      ctx.addIssue({ code: "custom", path: ["outcome_by"], message: "outcome_by only applies once something has happened (legislated, funded, delivering or delivered)" });
+    if (p.brought_about_by && !["legislated", "funded", "delivering", "delivered"].includes(p.status))
+      ctx.addIssue({ code: "custom", path: ["brought_about_by"], message: "brought_about_by only applies once something has happened (legislated, funded, delivering or delivered)" });
     p.versions.forEach((v, i) => {
       if (v.version !== i + 1) ctx.addIssue({ code: "custom", path: ["versions", i, "version"], message: "versions must be numbered 1, 2, 3… in order" });
     });
@@ -262,6 +292,14 @@ export const PromiseFile = z
           path: ["versions", i, "parameters", "how_much_bn_per_year"],
           message: "a cost needs a low–high range (invariant 2); if the source gives a central figure only, use the editorial ±10% and say so in cost_note",
         });
+      if (r && !v.parameters?.costed_by)
+        ctx.addIssue({
+          code: "custom",
+          path: ["versions", i, "parameters", "costed_by"],
+          message: "a cost needs costed_by: who made the central figure, { kind: official | party | independent, name } (PROMISE_STANDARD §2)",
+        });
+      if (!r && v.parameters?.costed_by)
+        ctx.addIssue({ code: "custom", path: ["versions", i, "parameters", "costed_by"], message: "costed_by goes with a cost; this version has none" });
     });
     p.events.forEach((e, i) => {
       if (EVIDENCE_REQUIRED.includes(e.type) && !e.evidence_url)
@@ -290,7 +328,9 @@ export interface CardView {
   file: PromiseFile;
   actor: ActorFile;
   party: ActorFile | null;
-  /** Set when someone other than the actor brought about the current status. */
+  /** Set when someone other than the actor brought about the current status (credit). */
+  broughtAboutBy: ActorFile | null;
+  /** The body that would have to act to deliver it now; null when no body in power is committed. */
   outcomeBy: ActorFile | null;
   current: PromiseVersion;
   /** Role of the actor on the day the promise was made, if known. */
@@ -308,21 +348,42 @@ export function cardViews(promises: PromiseFile[], actors: ActorFile[], contract
       const party = actor.kind === "party" ? actor : actor.party_id ? (byId.get(actor.party_id) ?? null) : null;
       const role =
         actor.roles.find((r) => (!r.from || r.from <= file.made_on) && (!r.to || r.to >= file.made_on))?.title ?? actor.roles[0]?.title ?? null;
+      const broughtAboutBy = file.brought_about_by ? (byId.get(file.brought_about_by.actor_id) ?? null) : null;
       const outcomeBy = file.outcome_by ? (byId.get(file.outcome_by.actor_id) ?? null) : null;
       const linked = file.contracts.flatMap((r) => {
         const c = contractByKey.get(contractKey(r));
         return c ? [{ ...c, id: `${file.id}:${c.key}`, promise_id: file.id }] : [];
       });
-      return { id: file.id, file, actor, party, outcomeBy, current: file.versions[file.versions.length - 1]!, role, contracts: linked };
+      return { id: file.id, file, actor, party, broughtAboutBy, outcomeBy, current: file.versions[file.versions.length - 1]!, role, contracts: linked };
     })
     .sort((a, b) => b.file.made_on.localeCompare(a.file.made_on) || a.id.localeCompare(b.id));
+}
+
+/**
+ * Fields added to the standard after entries were published. Filling one in on
+ * a published entry that never had it is not a rewrite of history, so it needs
+ * no correction; once it has a value, changing it is a correction like any other.
+ */
+export const LATE_FIELDS: Record<"versions" | "events" | "replies", string[]> = {
+  // Who made the cost's central figure (PROMISE_STANDARD §2), added 9 Oct 2026.
+  versions: [".parameters.costed_by"],
+  events: [],
+  replies: [],
+};
+
+/** The entry as it stands, minus any late field the published entry did not have. */
+function withoutLateFields(key: keyof typeof LATE_FIELDS, published: unknown, now: unknown): unknown {
+  let out = now;
+  for (const tail of LATE_FIELDS[key]) if (now !== undefined && fieldAt(published, tail) === null && fieldAt(out, tail) !== null) out = withField(out, tail, null);
+  return out;
 }
 
 /**
  * Invariant 5: a card's history only grows. Every entry that existed in the
  * published card must still be there, in the same place, and unchanged unless
  * a correction appended in this change records exactly what changed
- * (PROMISE_STANDARD §9). Existing corrections never change either.
+ * (PROMISE_STANDARD §9). Existing corrections never change either. A field in
+ * LATE_FIELDS may be filled in once where the published entry lacked it.
  */
 export function appendOnlyIssues(before: unknown, after: unknown): string[] {
   const b = (before ?? {}) as Record<string, unknown>;
@@ -340,7 +401,7 @@ export function appendOnlyIssues(before: unknown, after: unknown): string[] {
   const fresh = allCorrections.slice(oldCorrections.length) as { path?: string; was?: unknown }[];
   for (const key of ["versions", "events", "replies"] as const) {
     const was = list(b, key);
-    const now = list(a, key);
+    const now = list(a, key).map((entry, i) => (i < was.length ? withoutLateFields(key, was[i], entry) : entry));
     was.forEach((item, i) => {
       if (stable(item) === stable(now[i])) return;
       const fixes = fresh.filter((c) => typeof c.path === "string" && c.path.startsWith(`${key}[${i}].`));

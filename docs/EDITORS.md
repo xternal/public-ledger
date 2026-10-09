@@ -22,7 +22,9 @@ Every promise on [ledgergov.uk](https://ledgergov.uk) is a card: the exact words
 
 **The four questions.** Who benefits or pays; how much a year; when; and from where (what pays for it). "From where" is recorded exactly as the speaker stated it; if they named nothing, the card says "Funding not stated". That is a fact about the promise, not a judgement.
 
-**Cost.** A range a year, low to high, in £ billions. The speaker's own figure if they gave one; otherwise the best official costing (OBR, HMRC, the Treasury, the department, an impact assessment). Think tanks only as support. A multi-year total is never shown as a yearly figure. If there is only a single figure, the range is an editorial ±10% and the note says so. If there is no official costing, the card says why, and nobody guesses.
+**Cost.** A range a year, low to high, in £ billions. The speaker's own figure if they gave one; otherwise the best official costing (OBR, HMRC, the Treasury, the department, an impact assessment). Think tanks only as support. A multi-year total is never shown as a yearly figure. If there is only a single figure, the range is an editorial ±10% and the note says so. If there is no official costing, the card says why, and nobody guesses. Every cost also says who made its central figure (`costed_by`): `official` (the OBR, HMRC, the Treasury, another department, a devolved government), `party` (the promise-maker's own figure, even if that party is now in government) or `independent` (the IFS, think tanks, academics).
+
+**Who has to deliver it.** Every card names the body that would have to act to deliver the promise now (`outcome_by`): `hm-government`, the Scottish or Welsh Government, a council. It is a body, never a party or a person. It is `null` when no body in power has committed to it, such as an opposition party's pledge. The same rule for every party; it changes when power changes hands only if the new holders take the promise on or drop it.
 
 **Status moves only on evidence.**
 
@@ -63,6 +65,8 @@ Every status change is a new event with a link to its evidence. An announcement 
 - [ ] Each new event has an evidence link, and the evidence really shows what the event says.
 - [ ] The status matches the evidence (table above).
 - [ ] The cost is a yearly figure from the best official source, and the note says which year it is and how the range was made.
+- [ ] `costed_by` names whoever made the central figure, with the right kind: official, party or independent.
+- [ ] `outcome_by` is the body that would have to deliver it now, or `null` if no body in power is committed to it.
 - [ ] "Funded by" is exactly what the speaker said, or empty if they said nothing.
 - [ ] The headline and notes are neutral and say no more than the sources.
 - [ ] Any change to something already published has a matching correction.

@@ -11,6 +11,8 @@ status_note: >-
   mayors' control of the budget for 16- to 19-year-olds among the agreed reforms and says a white paper this
   autumn will set out a timetable for implementation.
 origin: llm_intake
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Hansard, House of Commons, 9 Sep 2026: Education and Skills Reform"

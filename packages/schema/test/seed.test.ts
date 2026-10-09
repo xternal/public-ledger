@@ -148,6 +148,43 @@ describe("validation rejects", () => {
     expect(errorsOf(raw).some((e) => e.message.includes("does not exist in this card"))).toBe(true);
   });
 
+  it("a card that leaves out outcome_by, which must be a value or null", () => {
+    const raw = clone();
+    delete bus(raw).outcome_by;
+    expect(errorsOf(raw).some((e) => e.message.startsWith("outcome_by is missing"))).toBe(true);
+    bus(raw).outcome_by = null;
+    expect(errorsOf(raw)).toEqual([]);
+  });
+
+  it("an outcome_by that names a party or a person instead of a body", () => {
+    const raw = clone();
+    bus(raw).outcome_by = { actor_id: "labour" };
+    expect(errorsOf(raw).some((e) => e.message.includes("names a body by its role"))).toBe(true);
+    bus(raw).outcome_by = { actor_id: "nobody" };
+    expect(errorsOf(raw).some((e) => e.message.includes("unknown outcome_by actor"))).toBe(true);
+  });
+
+  it("a cost without costed_by, or costed_by without a cost", () => {
+    const raw = clone();
+    const params = bus(raw).versions[0].parameters;
+    const by = params.costed_by;
+    delete params.costed_by;
+    expect(errorsOf(raw).some((e) => e.message.includes("a cost needs costed_by"))).toBe(true);
+    params.costed_by = { kind: "government", name: "DfT" };
+    expect(errorsOf(raw).length).toBeGreaterThan(0);
+    params.costed_by = by;
+    params.how_much_bn_per_year = null;
+    expect(errorsOf(raw).some((e) => e.message.includes("costed_by goes with a cost"))).toBe(true);
+  });
+
+  it("credit for an outcome before anything has happened", () => {
+    const raw = clone();
+    const card = bus(raw);
+    card.status = "promised";
+    card.brought_about_by = { actor_id: "hm-government" };
+    expect(errorsOf(raw).some((e) => e.message.includes("brought_about_by only applies"))).toBe(true);
+  });
+
   it("a card without sources", () => {
     const raw = clone();
     bus(raw).sources = [];

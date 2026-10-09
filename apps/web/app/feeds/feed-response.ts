@@ -10,8 +10,8 @@ import { siteUrl } from "@/lib/site";
  * Atom feeds, built from content and data/build (no database). URL convention
  * (shared with Follow): /feeds/all.xml, /feeds/promise/{id}.xml,
  * /feeds/actor/{id}.xml, /feeds/area/{area}.xml, /feeds/deadlines/{window}.xml,
- * and /feeds/updates.xml for data changes (contracts and new editions of the
- * headline figures).
+ * and /feeds/updates.xml for data changes (promise costs, contracts and new
+ * editions of the headline figures).
  */
 
 /** Headline figures of every year in the Statement, for edition entries. */
@@ -43,11 +43,12 @@ export function feedResponse(kind: FeedKind, key: string): Response {
   if (kind === "all") {
     title = "Public Ledger: every change";
     subtitle =
-      "New timeline events, rewordings and replies on every tracked UK political promise, changes to the contracts behind them, and new editions of the headline figures, newest first.";
+      "New timeline events, rewordings, replies and cost changes on every tracked UK political promise, changes to the contracts behind them, and new editions of the headline figures, newest first.";
     alternatePath = "/promises";
   } else if (kind === "updates") {
     title = "Public Ledger: updates to the figures";
-    subtitle = "Data changes only: a contract behind a promise moves or is linked, or a new OBR forecast or ONS release changes the Statement's borrowing, income or spending.";
+    subtitle =
+      "Data changes only: a promise's yearly cost changes, a contract behind a promise moves or is linked, or a new OBR forecast or ONS release changes the Statement's borrowing, income or spending.";
     alternatePath = "/#statement";
   } else if (kind === "deadlines") {
     if (isDeadlineWindow(key)) title = windowFeedTitle(key);
@@ -56,7 +57,7 @@ export function feedResponse(kind: FeedKind, key: string): Response {
   } else if (kind === "promise") {
     const card = seed.cards.find((c) => c.id === key);
     if (card) title = `Public Ledger: ${card.actor.name}, “${short(card.current.text)}”`;
-    subtitle = "Every change to this promise: timeline events, rewordings and replies.";
+    subtitle = "Every change to this promise: timeline events, rewordings, replies and cost changes.";
     alternatePath = `/promise/${key}`;
   } else if (kind === "actor") {
     const actor = seed.actors.find((a) => a.id === key);

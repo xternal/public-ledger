@@ -13,6 +13,8 @@ status_note: >-
   they need Parliament's approval.
 deadline: "2026-11-30"
 origin: llm_intake
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "MHCLG press release, 8 Oct 2026: Clampdown on dangerous homes to protect more tenants and families"
@@ -36,6 +38,9 @@ versions:
         Social housing tenants in England (over 4 million, by the government's count), whose landlords must fix more
         kinds of serious hazard to legal deadlines; councils and housing associations as landlords
       how_much_bn_per_year: [0.0143, 0.0159, 0.0175]
+      costed_by:
+        kind: official
+        name: Ministry of Housing, Communities and Local Government
       cost_note: >-
         Cost to the public purse: what councils, as landlords, pay to comply. Year shown: the first year. The
         government's impact assessment puts councils' costs at £15.9m a year in years 1 and 2 and £5.7m a year

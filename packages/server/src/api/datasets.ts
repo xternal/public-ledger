@@ -196,6 +196,12 @@ export interface CostOut {
   quality: Quality;
   method_note: string | null;
   sources: { title: string; url: string }[];
+  /**
+   * Who made the central figure (PROMISE_STANDARD §2). official: the OBR, HMRC, HM Treasury or another UK government
+   * department, or a devolved government's equivalent. party: the promise-maker's own figure. independent: anyone else
+   * (IFS, think tanks, academics). Set on every cost; CI enforces it.
+   */
+  costed_by: { kind: "official" | "party" | "independent"; name: string } | null;
 }
 
 export interface PromiseOut {
@@ -214,7 +220,15 @@ export interface PromiseOut {
   status_label: string;
   status_note: string | null;
   deadline: string | null;
+  /**
+   * The body that would have to act to deliver the promise as worded, as of now (an actor id of kind government,
+   * named by its role: hm-government, a devolved government, a council). null when no body in power is committed to
+   * it, such as an opposition party's pledge (PROMISE_STANDARD §11). Until 9 Oct 2026 this field carried what
+   * brought_about_by carries now.
+   */
   outcome_by: string | null;
+  /** Who brought about the current status when it was not the card's own actor (credit); null otherwise. */
+  brought_about_by: string | null;
   origin: string;
   text: string;
   version: number;
@@ -246,6 +260,7 @@ function costOf(p: Card["current"]["parameters"]): CostOut | null {
     quality: p.cost_sources?.length ? "sourced" : "approx",
     method_note: p.cost_note ?? null,
     sources: (p.cost_sources ?? []).map((s) => ({ title: s.title, url: s.url })),
+    costed_by: p.costed_by ? { kind: p.costed_by.kind, name: p.costed_by.name } : null,
   };
 }
 
@@ -269,6 +284,7 @@ export function promiseOut(c: Card, ctx: Ctx): PromiseOut {
     status_note: f.status_note ?? null,
     deadline: f.deadline ?? null,
     outcome_by: c.outcomeBy?.id ?? null,
+    brought_about_by: c.broughtAboutBy?.id ?? null,
     origin: f.origin,
     text: c.current.text,
     version: c.current.version,
@@ -316,6 +332,11 @@ export const PROMISE_CSV_COLUMNS = [
   "funded_by",
   "events",
   "last_event_date",
+  // Added 9 Oct 2026, at the end so existing column positions stay the same.
+  "outcome_by",
+  "brought_about_by",
+  "cost_costed_by_kind",
+  "cost_costed_by_name",
 ] as const;
 export type PromiseCsvRow = Record<(typeof PROMISE_CSV_COLUMNS)[number], Cell>;
 
@@ -346,6 +367,10 @@ export function promiseRows(seed: Seed, ctx: Ctx): PromiseCsvRow[] {
     funded_by: p.funded_by,
     events: p.events.length,
     last_event_date: p.events.map((e) => e.date).sort().at(-1),
+    outcome_by: p.outcome_by,
+    brought_about_by: p.brought_about_by,
+    cost_costed_by_kind: p.cost?.costed_by?.kind,
+    cost_costed_by_name: p.cost?.costed_by?.name,
   }));
 }
 

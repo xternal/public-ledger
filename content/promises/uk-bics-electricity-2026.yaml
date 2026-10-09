@@ -13,6 +13,8 @@ status_note: >-
   were laid on 7 September 2026 and need approval by both Houses; none had been made by 7 October 2026. The
   Exchequer funding is due to be scored at Budget 2026, so the card stays at In plan.
 origin: llm_intake
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Hansard, House of Commons, 9 Sep 2026: Jaguar Land Rover: Redundancies (statement)"
@@ -46,6 +48,9 @@ versions:
         They stop paying the indirect costs of the Renewables Obligation, Feed-in Tariffs and the Capacity Market.
         The Northern Ireland Executive is to get funding for an equivalent programme, subject to a business case.
       how_much_bn_per_year: [0.54, 0.6, 0.66]
+      costed_by:
+        kind: official
+        name: Department for Business and Trade
       cost_note: >-
         Year shown: a typical year of the scheme from April 2027; the government gives an average yearly figure,
         not one for a named year. Its estimate is "around £600 million on average p.a." (government response,

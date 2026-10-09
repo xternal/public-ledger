@@ -11,6 +11,8 @@ status_note: >-
   applying from assessment periods starting on or after 6 April 2026, as DWP's official statistics confirm.
 deadline: "2026-04-06"
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Hansard, House of Commons, 26 Nov 2025: Financial Statement and Budget Report"
@@ -36,6 +38,9 @@ versions:
     parameters:
       who: Families on Universal Credit with three or more children
       how_much_bn_per_year: [2.1285, 2.365, 2.6015]
+      costed_by:
+        kind: official
+        name: HM Treasury
       cost_note: >-
         Year shown: 2026-27, the first full year (Budget 2025 policy table, certified by the OBR); central
         figure only. Other years in the same table: £2.590bn in 2027-28, £2.815bn in 2028-29, £3.095bn in

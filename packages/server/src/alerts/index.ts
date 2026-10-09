@@ -57,6 +57,7 @@ export {
   buildFeed,
   cardEntries,
   contractEntries,
+  costEntries,
   deadlineEntries,
   editionEntries,
   windowFeedTitle,

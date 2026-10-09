@@ -10,6 +10,7 @@ status_note: >-
   The Conservatives are not in government, so the card stays at Promised. Shadow Chancellor Andrew Griffith
   restated the pledge at the party's 2026 conference on 5 October 2026.
 origin: manual
+outcome_by: null
 editor_check_required: true
 sources:
   - title: "Conservatives: Kemi Badenoch Announces Our Plan to Abolish Stamp Duty (speech text), 8 Oct 2025"
@@ -33,6 +34,9 @@ versions:
         UK residents buying a main home in England and Northern Ireland, at any price. Second and further homes,
         purchases by companies and by non-UK residents would still pay. Stamp duty is devolved in Scotland and Wales.
       how_much_bn_per_year: [8.1, 9.0, 9.9]
+      costed_by:
+        kind: party
+        name: Conservative Party
       cost_note: >-
         Year shown: 2029-30, the year the party costed. The party's own estimate is £9bn in 2029-30 (central); it
         says the current cost is about £4.5bn, so the yearly cost rises over time. The Institute for Government says

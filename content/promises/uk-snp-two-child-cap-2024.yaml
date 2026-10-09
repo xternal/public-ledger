@@ -13,6 +13,9 @@ status_note: >-
 origin: manual
 outcome_by:
   actor_id: hm-government
+  note: The UK Government removed the limit.
+brought_about_by:
+  actor_id: hm-government
   note: The UK Government removed the limit; the SNP is not in government at Westminster.
 editor_check_required: true
 sources:
@@ -41,6 +44,9 @@ versions:
     parameters:
       who: Families with three or more children claiming Universal Credit or Child Tax Credit
       how_much_bn_per_year: [2.53, 2.815, 3.1]
+      costed_by:
+        kind: official
+        name: HM Treasury
       cost_note: >-
         The SNP did not publish a cost. The UK Government's Budget 2025 scorecard puts removing the limit at
         £2.365bn in 2026-27, £2.815bn in 2028-29 and £3.235bn in 2030-31. The card uses 2028-29, once the change

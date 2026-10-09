@@ -18,6 +18,8 @@ lever_settings:
   bus_cap_2.funding: climate_loans
 preset_label: £2 bus cap, as announced
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "No 10, HM Treasury and DfT press release: Cheaper travel for millions with a third off fares, 22 Jul 2026"
@@ -41,6 +43,9 @@ versions:
     parameters:
       who: Bus passengers on participating services in England outside London
       how_much_bn_per_year: [0.36, 0.4, 0.44]
+      costed_by:
+        kind: official
+        name: Department for Transport
       cost_note: >-
         Year shown: 2027, the only year of the cap (1 January to 31 December 2027); central figure only. The
         government says the cap is backed by £400m of extra funding. Its press release puts the total at £454m

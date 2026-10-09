@@ -8,6 +8,7 @@ policy_area: taxes
 status: promised
 status_note: The Green Party is not in government, so the card stays at Promised.
 origin: manual
+outcome_by: null
 editor_check_required: true
 sources:
   - title: "Green Party: Real Hope. Real Change. 2024 manifesto (PDF), page 13"
@@ -25,6 +26,9 @@ versions:
     parameters:
       who: People with taxable capital gains; the party says under 2% of income tax payers would be affected
       how_much_bn_per_year: [-20.9, -19.0, -17.1]
+      costed_by:
+        kind: party
+        name: Green Party
       cost_note: >-
         Negative because the pledge raises money. Year shown: the end of the Parliament, the year of the party's
         figure. Party figure: about £19bn a year by the end of the Parliament (budget background paper, page 3).

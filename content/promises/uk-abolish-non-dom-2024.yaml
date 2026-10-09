@@ -12,6 +12,8 @@ status_note: >-
   end to the regime in March 2024; Labour's Autumn Budget 2024 changed parts of the design, such as removing a planned
   50% discount on foreign income in 2025-26.
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "Labour Party: Change, 2024 manifesto (PDF), page 21"
@@ -37,6 +39,9 @@ versions:
         UK residents who used non-dom status now pay UK tax on worldwide income and gains; people who become UK
         resident after at least 10 years as non-residents can claim relief on foreign income and gains for up to 4 years
       how_much_bn_per_year: [-2.7995, -2.545, -2.2905]
+      costed_by:
+        kind: official
+        name: HM Treasury
       cost_note: >-
         Negative because the pledge raises money. Year used: 2028-29, the year Labour's costings use. The official
         Autumn Budget 2024 costing of Labour's changes, on top of the abolition already in the forecast since March

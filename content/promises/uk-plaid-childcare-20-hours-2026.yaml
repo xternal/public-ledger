@@ -11,6 +11,9 @@ status_note: >-
   commits to a new childcare offer from 9 months to 4 years, building to 20 hours a week for 48 weeks a year, so
   the card is In plan. The existing offer for 3 and 4-year-olds of working parents stays.
 origin: manual
+outcome_by:
+  actor_id: welsh-government
+  note: Childcare is devolved; the Welsh Government's Programme for Government 2026 to 2030 commits to the offer.
 editor_check_required: true
 sources:
   - title: "Plaid Cymru: For Wales, Senedd manifesto 2026 (PDF), page 8"
@@ -30,6 +33,9 @@ versions:
     parameters:
       who: Every child in Wales aged 9 months to 4 years, whatever their parents' work
       how_much_bn_per_year: [0.36, 0.4, 0.44]
+      costed_by:
+        kind: independent
+        name: IFS
       cost_note: >-
         Year shown: the end of the Senedd term, 2030-31. The manifesto gives no cost; the IFS says Plaid Cymru
         propose increasing spending on childcare by around £400 million a year by the end of the parliament, and

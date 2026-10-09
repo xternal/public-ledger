@@ -270,6 +270,9 @@ describe("accept", () => {
     expect(card.status).toBe("promised");
     expect(yaml).toContain("(the reader said: Rachel Reeves)");
     expect(yaml).toContain("(the reader said: 2026-10-01)");
+    // Who must deliver it is asked for, never guessed: a value or null, filled in by an editor.
+    expect(card.outcome_by).toBe("TODO");
+    expect(yaml).toContain("or null when no body in power is committed to it (PROMISE_STANDARD §11)");
     // It fails validation until editors finish it: CI tells them what is left.
     expect(PromiseFile.safeParse(card).success).toBe(false);
 

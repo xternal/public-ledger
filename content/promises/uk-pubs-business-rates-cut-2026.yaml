@@ -12,6 +12,8 @@ status_note: >-
   would set out more details of business rates reform there.
 deadline: "2027-04-01"
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "No 10, HM Treasury and DBT: Burnham means business: PM slashes business rates bills for pubs, clubs and live music venues (23 Jul 2026)"
@@ -29,6 +31,9 @@ versions:
     parameters:
       who: Nearly 32,000 pubs, clubs and live music venues in England (the very largest live music venues excluded)
       how_much_bn_per_year: [0.09, 0.1, 0.11]
+      costed_by:
+        kind: official
+        name: No 10
       cost_note: >-
         Year shown: 2027-28, the first year of the cut. The government says the package is worth around £100
         million a year. No independent costing has been published.

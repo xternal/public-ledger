@@ -258,7 +258,7 @@ describe("Markdown for AI assistants", () => {
     expect(md.startsWith("# Create Great British Energy\n")).toBe(true);
     expect(md).toContain("> “To drive forward investment in clean, home-grown energy production,");
     expect(md).toContain("- **Status:** Delivering");
-    expect(md).toContain("- **Cost a year:** Costs £1.5bn to £1.9bn a year (central £1.7bn)");
+    expect(md).toContain("- **Cost a year:** Costs £1.5bn to £1.9bn a year (central £1.7bn by Labour Party, party's own figure)");
     expect(md).toContain("- **Paid for by:** A windfall tax on oil and gas giants");
     expect(md).toContain("- **Card:** https://ledger.test/promise/uk-great-british-energy-2024");
     expect(md).toContain("- **Policy area:** [Transport & economy](https://ledger.test/promises/area/transport-and-economy)");

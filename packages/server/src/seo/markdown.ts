@@ -1,4 +1,4 @@
-import { contractChange, CORRECTION_PATH, LADDER, type CardView, type Correction, type PromiseFile } from "@ledger/schema";
+import { contractChange, CORRECTION_PATH, COSTED_BY_LABEL, LADDER, type CardView, type Correction, type PromiseFile } from "@ledger/schema";
 import { areaLabel, CONTRACT_STATUSES, displayName, eventLabel, gbpBnText, moneyText, statusLabel, ukDate } from "../alerts/labels";
 import { OGL, OPEN_PARLIAMENT_LICENCE, OWN_WORK_LICENCE, quoteLicence } from "../api/envelope";
 import { absoluteUrl, areaPath, cardCostText, cardHeadline, cardLastUpdated, SITE_NAME, statusCounts, type SeoContext } from "./cards";
@@ -21,11 +21,13 @@ const link = (text: string, url: string) => `[${linkText(text)}](${url})`;
 const REVIEWER_NAME: Record<string, string> = { "Junior Editor": "AI Journalist" };
 const reviewer = (r: PromiseFile["reviews"][number]) => `${REVIEWER_NAME[r.by] ?? r.by} (${r.kind === "automated" ? "automated" : r.kind === "legal" ? "legal review" : "editor"})`;
 
-/** "£1.53bn to £1.87bn a year (central £1.7bn)", or why there is no figure. */
+/** "Costs £1.5bn to £1.9bn a year (central £1.7bn by Labour Party, party's own figure)", or why there is no figure. */
 function costLine(c: CardView): string {
-  const r = c.current.parameters?.how_much_bn_per_year;
-  if (!r) return c.current.parameters ? "No costing published" : "Not costable";
-  return `${cardCostText(c)} (central ${gbpBnText(Math.abs(r[1]))})`;
+  const p = c.current.parameters;
+  const r = p?.how_much_bn_per_year;
+  if (!r) return p ? "No costing published" : "Not costable";
+  const by = p.costed_by ? ` by ${p.costed_by.name}, ${COSTED_BY_LABEL[p.costed_by.kind]}` : "";
+  return `${cardCostText(c)} (central ${gbpBnText(Math.abs(r[1]))}${by})`;
 }
 
 /** A corrected value in words, as the card shows it. */
@@ -68,7 +70,7 @@ export function cardMarkdown(c: CardView, ctx: SeoContext, level: 1 | 2 = 1): st
 
   line(`${h(0)} ${cardHeadline(c)}`, "", `> “${flat(c.current.text)}”`, ">", `> — ${speaker}; ${said}`, "");
   const facts: [string, string | null][] = [
-    ["Status", `${statusLabel(f.status)}${c.outcomeBy ? `, brought about by ${c.outcomeBy.name}${f.outcome_by?.note ? ` (${flat(f.outcome_by.note)})` : ""}` : ""}`],
+    ["Status", `${statusLabel(f.status)}${c.broughtAboutBy ? `, brought about by ${c.broughtAboutBy.name}${f.brought_about_by?.note ? ` (${flat(f.brought_about_by.note)})` : ""}` : ""}`],
     ["Status ladder", f.status === "unscoreable" ? null : LADDER.map(statusLabel).join(" → ")],
     ["Policy area", link(areaLabel(f.policy_area), absoluteUrl(ctx, areaPath(f.policy_area)))],
     ["Speaker", link(c.actor.name, absoluteUrl(ctx, `/actor/${c.actor.id}`)) + (c.role ? `, ${c.role}` : "")],

@@ -11,6 +11,8 @@ status_note: >-
   price caps and timetable.
 deadline: "2026-10-28"
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "MHCLG: New first-time buyer scheme to be confirmed at Budget (26 Sep 2026)"

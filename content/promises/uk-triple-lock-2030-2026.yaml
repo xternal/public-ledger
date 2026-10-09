@@ -11,6 +11,8 @@ status_note: >-
   Pension keeps rising by the triple lock; the Budget sets the April 2027 rise.
 deadline: "2030-04-01"
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "No 10: Prime Minister Andy Burnham sets out plans for a new National Care Service (29 Sep 2026)"

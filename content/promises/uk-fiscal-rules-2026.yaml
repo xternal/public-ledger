@@ -13,6 +13,8 @@ status_note: >-
   Charter sets 2029-30.
 deadline: "2026-10-28"
 origin: manual
+outcome_by:
+  actor_id: hm-government
 editor_check_required: true
 sources:
   - title: "HM Treasury: Chancellor John Healey delivers speech to Treasury staff (21 Jul 2026)"

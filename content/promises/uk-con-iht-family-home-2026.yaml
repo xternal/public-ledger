@@ -10,6 +10,7 @@ status_note: >-
   The Conservatives are not in government, so the card stays at Promised. The same release says the individual
   tax-free threshold would rise to £500,000.
 origin: manual
+outcome_by: null
 editor_check_required: true
 sources:
   - title: "Conservatives: Conservatives to abolish Inheritance Tax on the family home (7 Oct 2026)"
@@ -29,6 +30,9 @@ versions:
         Estates passing on a main home, which would become exempt, and estates above today's threshold, which would
         rise to £500,000 per person
       how_much_bn_per_year: [6.0, 7.7, 10.9]
+      costed_by:
+        kind: independent
+        name: Tax Policy Associates
       cost_note: >-
         Year shown: 2029-30. Low is the party's own figure, £6bn a year, from an Onward and Oxford Economics analysis
         in which inheritance tax liabilities of £12.6bn in 2029/30 fall to £6.6bn. Central and high are the two ends
