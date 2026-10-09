@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Quality, Range, Source, provenanceShape, refineProvenance } from "./provenance";
+import { Provenance, Quality, Range, Source, provenanceIssues, provenanceShape, refineProvenance } from "./provenance";
 
 /** CLAUDE.md invariant 3: every lever says who controls it. */
 export const ControlledBy = z.enum(["government", "central_bank", "demography", "external"]);
@@ -57,6 +57,8 @@ export const Lever = z
       target: z.string().min(1),
       per_unit_bn: z.object({ y1: Range, y5: Range.optional() }),
       cpi_pp_per_unit: Range.optional(),
+      /** Where the CPI effect comes from: its own source, separate from the lever's cost (invariant 1). */
+      cpi_provenance: Provenance.optional(),
     }),
     household: MortgageReference.optional(),
     promise_id: z.string().optional(),
@@ -65,6 +67,10 @@ export const Lever = z
   })
   .superRefine((l, ctx) => {
     refineProvenance(l, ctx);
+    if (l.effect.cpi_pp_per_unit && !l.effect.cpi_provenance)
+      ctx.addIssue({ code: "custom", path: ["effect", "cpi_provenance"], message: "a CPI effect needs its own provenance (cpi_provenance)" });
+    if (l.effect.cpi_provenance)
+      for (const message of provenanceIssues(l.effect.cpi_provenance)) ctx.addIssue({ code: "custom", path: ["effect", "cpi_provenance"], message });
     if (!(l.min <= l.base && l.base <= l.max))
       ctx.addIssue({ code: "custom", path: ["base"], message: "base must sit between min and max" });
     if (l.unit === "toggle" && (l.min !== 0 || l.max !== 1 || l.step !== 1))

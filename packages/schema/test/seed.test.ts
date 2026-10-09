@@ -60,6 +60,13 @@ describe("validation rejects", () => {
     expect(errorsOf(raw).some((e) => e.message.includes("TODO(source)"))).toBe(true);
   });
 
+  it("a CPI effect without its own provenance", () => {
+    const raw = clone();
+    const vat = levers(raw).levers.find((l: any) => l.effect.cpi_pp_per_unit);
+    delete vat.effect.cpi_provenance;
+    expect(errorsOf(raw).some((e) => e.message.includes("cpi_provenance"))).toBe(true);
+  });
+
   it("an estimate without a method note", () => {
     const raw = clone();
     const line = baseStatement(raw).spending.find((l: any) => l.quality === "approx");
