@@ -9,6 +9,16 @@ The plan for moving Public Ledger's promise cards and their checks onto the Open
 | OpenPromises | release 0.1.0 (`81276cf`), its own built command-line tool, run unchanged |
 | Read first | RFC 0001 §7–§10 and §12; OpenPromises `docs/FORMAT.md`, `docs/COMPARISON.md`, `docs/DECISIONS.md`, `docs/MIGRATING.md` |
 
+## Update, 10 October 2026: what has changed since this was written
+
+The findings below are from OpenPromises 0.1.0 on 9 October and stay as the record. Since then:
+
+- **OpenPromises 0.3.0** (released 10 October) answers every question in §4. Who made the cost is `cost.by` inside each version's cost (decision 14; `costed_by` moves there, correction paths included). The engine has late fields like #67's (decision 13). Who must deliver is the core field `responsible`, and credit is `brought_about_by` (decision 14). Cost changes are feed entries with our ids. The 29 cost quality labels are filled in once after the conversion with no corrections, because the configuration keeps `legacy: "public-ledger"` (decision 15). `migrate` moves comments into fields and lists the ones it cannot place: 37 of 63 lines move, 10 are left for an editor (decision 16). Our intake keeps its own draft format until the engine's intake package (decision 17).
+- **The OpenPromises dry run** against Public Ledger at `1bb4f81` and the live site finds nothing worse in any of its 12 areas; all 560 live feed entries are identical.
+- **Steps 1 and 6 are prepared**: `openpromises.config.ts`, the engine's check in CI as a report that never blocks, and `docs/OPERATIONS.md` §15. On today's content the check reports 83 errors and nothing else: 54 cards without editors' approvals and 29 costs without a quality label. They land as soon as 0.3.0 is a day old (pnpm's minimum release age; no exclusions), from 09:07 BST on Sunday 11 October.
+- **Pavel decided on 10 October** (§9): the owner's past approvals are not imported as an editor's, so every card needs two editors' reviews; and the conversion lands **after Tuesday 17 November 2026**, when the 30-day build series ends, not on 29 October or by 11 November.
+- **What now sets the pace is the editors list**, kept private as the CI secret `OPENPROMISES_EDITORS` (decision 10). Until it has at least two people, no card can pass the approvals rule. The read-only list of past approvals is in the owner's notes (`engine/approvals-import-2026-10-10.md`): 15 cards have one approval, all from the owner's account; 39 have none.
+
 ## In short
 
 - **Every card and actor converts to format v1.** OpenPromises' Public Ledger converter reads all 54 cards and 19 actors. Converted, they rewrite no history (the engine's append-only check finds nothing), and read back into Public Ledger's own shape they give the same data as today for all 73 files, apart from YAML comments (below).
@@ -286,6 +296,6 @@ The principle: **the files move, the site does not.** Public Ledger keeps `Promi
 
 These are Public Ledger's to make, not OpenPromises':
 
-1. **Is the owner on the editors list for importing past approvals?** If yes, three intake pull requests give one imported approval to the cards they published, and those cards need one more editor review. If no, every card needs two. Recommended: no. Those three approvals are the owner's, on intake pull requests the owner then merged. The editors' guide keeps the two roles apart (editors approve, the owner merges), and counting them would make the person who publishes one of the two who check.
-2. **When the conversion lands:** by Wednesday 11 November, or after AI Journalist's launch (§8).
+1. **Decided 10 October: no.** *Is the owner on the editors list for importing past approvals?* If yes, three intake pull requests give one imported approval to the cards they published, and those cards need one more editor review. If no, every card needs two. Recommended: no. Those three approvals are the owner's, on intake pull requests the owner then merged. The editors' guide keeps the two roles apart (editors approve, the owner merges), and counting them would make the person who publishes one of the two who check.
+2. **Decided 10 October: after Tuesday 17 November 2026,** when the 30-day build series ends. *When the conversion lands:* the options were by Wednesday 11 November, or after AI Journalist's launch (§8).
 3. **Editors' time:** about 14–27 hours across the editors in November for the approvals and quality labels.
