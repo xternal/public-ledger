@@ -1,0 +1,49 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-prime-minister-to-hand-regions-innovation-funding-to-build-w.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-09"
+source:
+  id: govuk-prime-minister-to-hand-regions-innovation-funding-to-build-w
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/prime-minister-to-hand-regions-innovation-funding-to-build-world-leading-industries
+  title: >-
+    Prime Minister to hand regions innovation funding to build world-leading industries
+  date: "2026-10-09"
+  venue_label: Press release (Prime Minister's Office, 10 Downing Street)
+quote: >-
+  No.10 North will also be tasked with bringing forward new partnerships between clusters in the
+  Industrial Strategy’s eight growth-driving sectors, building on the success of the Cambridge and
+  Manchester collaboration.
+
+  The first will connect the complementary strengths of the Northern Growth Corridor and the Oxford
+  to Cambridge Growth Corridor in sectors including life sciences, digital and technology, and
+  advanced manufacturing.
+source_span: [4052, 4484]
+speaker:
+  name: HM Government
+  role: Prime Minister's Office, 10 Downing Street
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: economic_affairs
+  who: >-
+    Innovation clusters in the Industrial Strategy's eight growth-driving sectors, starting with the
+    Northern Growth Corridor and the Oxford to Cambridge Growth Corridor
+  how_much: null
+  when: null
+  funded_by: null
+  deadline: null
+why: >-
+  No.10 North will set up new partnerships between innovation clusters, starting with one linking
+  the Northern and Oxford to Cambridge growth corridors.
+confidence: 0.7
+model: claude-opus-5-5
+status: to_review

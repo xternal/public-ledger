@@ -1,0 +1,45 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-prime-minister-to-hand-regions-innovation-funding-to-build-w.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-09"
+source:
+  id: govuk-prime-minister-to-hand-regions-innovation-funding-to-build-w
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/prime-minister-to-hand-regions-innovation-funding-to-build-world-leading-industries
+  title: >-
+    Prime Minister to hand regions innovation funding to build world-leading industries
+  date: "2026-10-09"
+  venue_label: Press release (Prime Minister's Office, 10 Downing Street)
+quote: >-
+  The Government will also commit £1 billion through UK Research and Innovation (UKRI) over the next
+  four years to support high-growth innovation clusters in the Industrial Strategy’s priority
+  sectors across the UK, backing the places with the research excellence, businesses and skilled
+  workers needed to turn new ideas into successful companies.
+source_span: [3367, 3712]
+speaker:
+  name: HM Government
+  role: Prime Minister's Office, 10 Downing Street
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: economic_affairs
+  who: >-
+    High-growth innovation clusters in the Industrial Strategy's priority sectors across the UK
+  how_much: £1 billion over the next four years
+  when: Over the next four years
+  funded_by: UK Research and Innovation (UKRI)
+  deadline: null
+why: >-
+  The government commits £1 billion through UKRI over four years to high-growth innovation clusters
+  in Industrial Strategy priority sectors.
+confidence: 0.9
+model: claude-opus-5-5
+status: to_review

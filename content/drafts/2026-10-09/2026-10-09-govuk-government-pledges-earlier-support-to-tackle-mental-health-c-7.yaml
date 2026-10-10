@@ -1,0 +1,40 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-government-pledges-earlier-support-to-tackle-mental-health-c.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-09"
+source:
+  id: govuk-government-pledges-earlier-support-to-tackle-mental-health-c
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/government-pledges-earlier-support-to-tackle-mental-health-crises
+  title: Government pledges earlier support to tackle mental health crises
+  date: "2026-10-09"
+  venue_label: Press release (Department of Health and Social Care)
+quote: >-
+  The government will set out further action through its cross-government mental health strategy
+  later this year, bringing together immediate reforms and long-term action to improve mental health
+  outcomes and ensure support is available earlier and more consistently across England
+source_span: [10975, 11254]
+speaker:
+  name: HM Government
+  role: Department of Health and Social Care
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: health
+  who: People across England
+  how_much: null
+  when: later this year
+  funded_by: null
+  deadline: null
+why: Commits to publishing a cross-government mental health strategy later in 2026.
+confidence: 0.6
+model: claude-opus-5-5
+status: to_review

@@ -1,0 +1,44 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-government-pledges-earlier-support-to-tackle-mental-health-c.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-09"
+source:
+  id: govuk-government-pledges-earlier-support-to-tackle-mental-health-c
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/government-pledges-earlier-support-to-tackle-mental-health-crises
+  title: Government pledges earlier support to tackle mental health crises
+  date: "2026-10-09"
+  venue_label: Press release (Department of Health and Social Care)
+quote: >-
+  Based on the review findings, we will also take action to strengthen the oversight of mental
+  health and neurodevelopmental services, and make all diagnostic assessments for ADHD and autism
+  CQC-regulated, so people can be confident that assessments are high quality and that the NHS is
+  not being overcharged by independent or private providers.
+source_span: [3969, 4312]
+speaker:
+  name: Yvette Cooper
+  role: null
+  party: null
+  member_id: null
+  actor_id: null
+  check: nearby # the name is printed just before the quote; check it
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: health
+  who: >-
+    NHS-funded, non-NHS-funded and self-funding patients receiving ADHD and autism assessments
+  how_much: null
+  when: null
+  funded_by: null
+  deadline: null
+why: >-
+  Commits to making all diagnostic assessments for ADHD and autism a Care Quality Commission
+  regulated activity.
+confidence: 0.85
+model: claude-opus-5-5
+status: to_review
