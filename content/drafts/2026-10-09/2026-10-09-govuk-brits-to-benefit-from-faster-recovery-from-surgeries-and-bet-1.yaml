@@ -1,0 +1,44 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-brits-to-benefit-from-faster-recovery-from-surgeries-and-bet.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-09"
+source:
+  id: govuk-brits-to-benefit-from-faster-recovery-from-surgeries-and-bet
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/brits-to-benefit-from-faster-recovery-from-surgeries-and-better-harvests-through-new-backing-for-robotics
+  title: >-
+    Brits to benefit from faster recovery from surgeries and better harvests through new backing for
+    robotics
+  date: "2026-10-09"
+  venue_label: Press release (Department for Business, Innovation, Science and Trade)
+quote: >-
+  Backed by £40 million, the hubs - from Newcastle and the South West to Milton Keynes and South
+  Wales - will give businesses and public services across the country the support they need to adopt
+  cutting-edge robotics technology.
+source_span: [737, 964]
+speaker:
+  name: HM Government
+  role: Department for Business, Innovation, Science and Trade
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: economic_affairs
+  who: Businesses and public services across the UK
+  how_much: £40 million
+  when: Rolled out from Friday 9th October
+  funded_by: null
+  deadline: null
+why: >-
+  The government commits £40 million to a network of Robotics Adoption Hubs that will support
+  businesses and public services to adopt robotics.
+confidence: 0.6
+model: claude-opus-5-5
+status: to_review

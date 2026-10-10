@@ -1,0 +1,48 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-government-pledges-earlier-support-to-tackle-mental-health-c.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-09"
+source:
+  id: govuk-government-pledges-earlier-support-to-tackle-mental-health-c
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/government-pledges-earlier-support-to-tackle-mental-health-crises
+  title: Government pledges earlier support to tackle mental health crises
+  date: "2026-10-09"
+  venue_label: Press release (Department of Health and Social Care)
+quote: >-
+  earlier and more timely identification and support in education: transforming the special
+  educational needs and disabilities (SEND) system so children and young people get the support they
+  need, backing schools to embed inclusion, rolling out comprehensive training for all teachers, and
+  investing £1.8 billion over 3 years in the new Experts at Hand offer, to bring speech and language
+  therapists, occupational therapists, specialist teachers, educational psychologists and other
+  professionals into mainstream schools, early years settings and colleges, widening access to
+  specialist support
+source_span: [9897, 10489]
+speaker:
+  name: HM Government
+  role: Department of Health and Social Care
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: education
+  who: >-
+    Children and young people with special educational needs and disabilities; mainstream schools,
+    early years settings and colleges
+  how_much: £1.8 billion over 3 years
+  when: over 3 years
+  funded_by: null
+  deadline: null
+why: >-
+  Commits to investing £1.8 billion over three years in the Experts at Hand offer bringing
+  specialist professionals into mainstream schools, early years settings and colleges.
+confidence: 0.6
+model: claude-opus-5-5
+status: to_review
