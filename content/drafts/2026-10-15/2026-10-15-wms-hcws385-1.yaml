@@ -1,0 +1,46 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/wms-hcws385.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-15"
+source:
+  id: wms-hcws385
+  kind: hansard_wms
+  url: https://questions-statements.parliament.uk/written-statements/detail/2026-10-15/HCWS385
+  title: Broadcast Media Mergers Update
+  date: "2026-10-15"
+  venue_label: Written ministerial statement
+quote: >-
+  Consequently, if I decide to intervene on the basis of this new public interest consideration, I
+  will bring forward legislation which amends section 58 of the Act to extend the application of the
+  public interest consideration relating to the availability of a wide range of broadcasting to
+  on-demand programmes.
+source_span: [2607, 2918]
+speaker:
+  name: Lisa Nandy
+  role: Secretary of State for Digital, Culture, Media and Sport
+  party: Labour
+  member_id: 4082
+  actor_id: labour
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: culture
+  who: >-
+    Media mergers involving on-demand and streaming programmes, initially the proposed Sky/ITV merger
+  how_much: null
+  when: null
+  funded_by: null
+  deadline: null
+why: >-
+  If the minister intervenes on the new ground, the government will bring forward legislation
+  amending section 58 of the Enterprise Act 2002 to extend the broadcasting public interest
+  consideration to on-demand programmes. The commitment is conditional on that intervention
+  decision, and the source does not name the minister.
+confidence: 0.55
+model: claude-opus-5-5
+status: to_review

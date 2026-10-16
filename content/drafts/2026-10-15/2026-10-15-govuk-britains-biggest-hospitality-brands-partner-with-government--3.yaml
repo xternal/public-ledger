@@ -1,0 +1,43 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-britains-biggest-hospitality-brands-partner-with-government-.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-15"
+source:
+  id: govuk-britains-biggest-hospitality-brands-partner-with-government-
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/britains-biggest-hospitality-brands-partner-with-government-to-deliver-100000-jobs-for-neet-young-people
+  title: >-
+    Britain's biggest hospitality brands partner with Government to deliver 100,000 jobs for NEET
+    young people
+  date: "2026-10-15"
+  venue_label: Press release (Department for Work and Pensions)
+quote: >-
+  The new national qualifications will be created to sit alongside traditional GCSEs and will
+  replace the current Technical Awards.
+source_span: [9570, 9699]
+speaker:
+  name: HM Government
+  role: Department for Work and Pensions
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: education
+  who: every young person
+  how_much: null
+  when: null
+  funded_by: null
+  deadline: null
+why: >-
+  The Government will create new Vocational GCSEs that replace the current Technical Awards; this
+  restates the Prime Minister's earlier commitment.
+confidence: 0.6
+model: claude-opus-5-5
+status: to_review

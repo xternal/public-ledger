@@ -1,0 +1,46 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/govuk-major-drive-to-restore-churches-and-revitalise-heritage-buil.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-15"
+source:
+  id: govuk-major-drive-to-restore-churches-and-revitalise-heritage-buil
+  kind: govuk_press_release
+  url: https://www.gov.uk/government/news/major-drive-to-restore-churches-and-revitalise-heritage-buildings-in-communities-across-england-announced
+  title: >-
+    Major drive to restore churches and revitalise heritage buildings in communities across England
+    announced
+  date: "2026-10-15"
+  venue_label: Press release (Department for Digital, Culture, Media and Sport)
+quote: >-
+  The Heritage at Risk Capital Fund will also support three major national heritage sites with
+  projects designed to keep them preserved for future generations, thanks to an additional £10
+  million across the remainder of this parliament. Dover Castle will benefit from restoration to its
+  defensive fortifications. Brodsworth Hall in Doncaster will receive repairs to its roof to
+  conserve the fabric of the building.
+source_span: [3877, 4289]
+speaker:
+  name: HM Government
+  role: Department for Digital, Culture, Media and Sport
+  party: null
+  member_id: null
+  actor_id: hm-government
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: culture
+  who: Dover Castle, Brodsworth Hall and Osborne, sites in the care of English Heritage
+  how_much: an additional £10 million
+  when: across the remainder of this parliament
+  funded_by: Heritage at Risk Capital Fund
+  deadline: null
+why: >-
+  The government commits an additional £10 million over the rest of this parliament to repair Dover
+  Castle's fortifications and the roofs of Brodsworth Hall and Osborne.
+confidence: 0.7
+model: claude-opus-5-5
+status: to_review
