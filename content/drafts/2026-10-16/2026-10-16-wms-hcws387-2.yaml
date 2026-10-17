@@ -1,0 +1,44 @@
+# Draft from automatic intake. Not published.
+# Editors: check the quote against the source, fill the card, move it to
+# content/promises/ (see content/README.md), or delete it.
+
+# The quote is source_span of sources/wms-hcws387.txt beside this file
+# (JavaScript string offsets). pnpm validate re-checks it character for character.
+
+draft: llm_intake
+intake_date: "2026-10-16"
+source:
+  id: wms-hcws387
+  kind: hansard_wms
+  url: https://questions-statements.parliament.uk/written-statements/detail/2026-10-16/HCWS387
+  title: >-
+    Carbon Border Adjustment Mechanism (CBAM) – October 2026 CBAM Rate and Default Emissions Values
+    update
+  date: "2026-10-16"
+  venue_label: Written ministerial statement
+quote: >-
+  The default values published today will be in place for 2027 and 2028. The government also commits
+  today to introducing country-specific default values from 2029.
+source_span: [3112, 3274]
+speaker:
+  name: James Murray
+  role: Financial Secretary to the Treasury
+  party: Labour
+  member_id: 4797
+  actor_id: labour
+  check: segment # the source's own data (or the uploader) says this person spoke these words
+# Unverified suggestions from the language model. Editors confirm each one at the source.
+suggested:
+  policy_area: taxes
+  who: UK importers of CBAM goods
+  how_much: null
+  when: from 2029
+  funded_by: null
+  deadline: null
+why: >-
+  The government commits to replacing single product-level CBAM default emissions values with
+  country-specific default values from 2029, in line with an earlier commitment to move to an
+  alternative approach.
+confidence: 0.85
+model: claude-opus-5-5
+status: to_review
